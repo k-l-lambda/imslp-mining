@@ -1,0 +1,44 @@
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+	provider	= "prisma-client-js"
+}
+
+datasource db {
+	provider	= "sqlite"
+	url			= env("DATABASE_URL")
+}
+
+// 作曲家
+model Composer {
+	id				Int						@id @default(autoincrement())
+	createdAt		DateTime				@default(now())
+	categoryId 		String? // 原始列表里的id
+	name			String?					@unique // 名字
+	bnd				String? // 生卒年原始数据
+	birth			DateTime? // 出生
+	death			DateTime? // 卒年
+	works			ComposerOfWork[] // 作品
+}
+
+model ComposerOfWork {
+	type			String // 作者类型
+	work			Work					@relation(fields: [workId], references: [id]) // 作品
+	workId		 	Int
+	composer	 	Composer 				@relation(fields: [composerId], references: [id]) // 作曲
+	composerId		Int
+
+	@@id([workId, composerId])
+}
+
+// 作品信息
+model Work {
+	id				Int						@id @default(autoincrement())
+	composers		ComposerOfWork[] // 作曲
+	title			String // 作品标题
+	categories		String? // 标签分类
+	url				String?					@unique // 详情地址
+	audios		 	String? // 音频文件json 序列化
+	pdfs			String? // 曲谱文件json 序列化
+	metadata	 	String? // 作品基础信息
+}
