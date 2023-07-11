@@ -19,6 +19,12 @@ const ensureDir = (dir: string): void => {
 };
 
 
+const EXT_MAP = {
+	midi: "mid",
+	jpeg: "jpg",
+};
+
+
 const main = async () => {
 	ensureDir(DATA_DIR);
 
@@ -41,6 +47,7 @@ const main = async () => {
 
 			tab.files.forEach((group, gi) => group.filter(file => file.savePath).forEach(file => {
 				const fileId = file.url.match(/\d+$/)[0];
+				const ext = file.savePath.match(/\.([^.]+)$/)[1].toLowerCase();
 				files.push({
 					id: fileId,
 					tab: tabName,
@@ -50,6 +57,7 @@ const main = async () => {
 					group: gi,
 					title: file.title,
 					path: file.savePath,
+					ext: EXT_MAP[ext] || ext,
 				});
 			}));
 		});
