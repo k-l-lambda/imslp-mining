@@ -1,6 +1,6 @@
 
 import "../env";
-import prisma from "./prismaClient";
+import prisma from "./libs/prismaClient";
 
 
 
