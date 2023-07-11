@@ -5,12 +5,11 @@ import YAML from "yaml";
 
 import "../env";
 import prisma from "./libs/prismaClient";
+import { DATA_DIR } from "./libs/constants";
 
 
 
 const DB_WORK_LIMIT = process.env.DB_WORK_LIMIT || 1e+6;
-
-const DATA_DIR = "./data";
 
 
 const ensureDir = (dir: string): void => {
