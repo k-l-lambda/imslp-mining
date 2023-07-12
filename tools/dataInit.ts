@@ -41,7 +41,7 @@ const main = async () => {
 
 			tab.files.forEach((group, gi) => group.filter(file => file.savePath).forEach(file => {
 				const fileId = file.url.match(/\d+$/)[0];
-				const ext = file.savePath.match(/\.([^.]+)$/)[1].toLowerCase();
+				const ext = file.savePath.match(/\.([^.]+)$/)?.[1]?.toLowerCase();
 				files.push({
 					id: fileId,
 					tab: tabName,
@@ -64,7 +64,7 @@ const main = async () => {
 			id: work.id,
 			title,
 			author,
-			ulr: work.url,
+			url: work.url,
 			meta: JSON.parse(work.metadata),
 			categories: JSON.parse(work.categories),
 			files,
