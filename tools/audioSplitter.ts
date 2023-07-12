@@ -21,7 +21,7 @@ const IMSLP_FILES_DIR = process.env.IMSLP_FILES_DIR;
 
 const main = async () => {
 	const works = walkDir(DATA_DIR, /\/$/);
-	works.sort((d1, d2) => Number(d1) - Number(d2));
+	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
 
 	for (const work of works) {
 		const basic = YAML.parse(fs.readFileSync(path.join(work, "basic.yaml")).toString()) as WorkBasic;
