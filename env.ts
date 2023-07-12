@@ -11,7 +11,7 @@ process.env.APP_ROOT_PATH = appRoot;
 
 const dotenvName = path.resolve(appRoot, ".env");
 
-const dotenvFiles = [`${dotenvName}.local`, dotenvName].filter(Boolean);
+const dotenvFiles = [`${dotenvName}.local`, dotenvName, `${dotenvName}.default`].filter(Boolean);
 
 
 dotenvFiles.forEach((path) => {
