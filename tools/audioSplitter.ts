@@ -21,6 +21,8 @@ const IMSLP_FILES_DIR = process.env.IMSLP_FILES_DIR;
 
 const main = async () => {
 	const works = walkDir(DATA_DIR, /\/$/);
+	works.sort((d1, d2) => Number(d1) - Number(d2));
+
 	for (const work of works) {
 		const basic = YAML.parse(fs.readFileSync(path.join(work, "basic.yaml")).toString()) as WorkBasic;
 		console.log(basic.id, basic.title);
@@ -38,16 +40,24 @@ const main = async () => {
 				continue;
 			}
 
+			let logs = "";
+
 			const proc = child_process.spawn("spleeter", ["separate", "-p", SPLEETER_MODEL, "-o", fileDir, path.join(IMSLP_FILES_DIR, file.path)]).childProcess;
-			proc.stderr.on("data", data => console.log("[spleeter err]:", data.toString()));
-			proc.stdout.on("data", data => console.log("[spleeter out]:", data.toString()));
+			proc.stderr.on("data", data => {logs += data.toString(); console.log("[spleeter err]:", data.toString())});
+			proc.stdout.on("data", data => {logs += data.toString(); console.log("[spleeter out]:", data.toString())});
 
 			const result = await new Promise(resolve => proc.once("close", (code, signal) => resolve(code)));
 			console.debug("Spleeter done:", result);
 
-			const subdir = walkDir(fileDir, /^IMSLP.*\/$/)[0];
-			if (subdir)
-				fs.renameSync(subdir, spleeterDir);
+			if (result === 0) {
+				const subdir = walkDir(fileDir, /^IMSLP.*\/$/)[0];
+				if (subdir)
+					fs.renameSync(subdir, spleeterDir);
+				else
+					fs.writeFileSync(path.join(fileDir, "spleeter.log"), logs);
+			}
+			else
+				fs.writeFileSync(path.join(fileDir, "spleeter.log"), logs);
 		};
 	};
 };
