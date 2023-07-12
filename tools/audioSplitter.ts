@@ -29,6 +29,12 @@ const main = async () => {
 
 		const files = basic.files.filter(file => AUDIO_EXTS.includes(file.ext));
 		for (const file of files) {
+			const sourcePath = path.join(IMSLP_FILES_DIR, file.path);
+			if (!fs.existsSync(sourcePath)) {
+				console.log("Source not exist, skipped.", file.id, file.path);
+				continue;
+			}
+
 			//console.log("audio:", basic.id, file.path);
 			console.log("Splitting file:", file.id, file.path);
 			const fileDir = path.join(work, file.id);
@@ -42,7 +48,14 @@ const main = async () => {
 
 			let logs = "";
 
-			const proc = child_process.spawn("spleeter", ["separate", "-p", SPLEETER_MODEL, "-o", fileDir, path.join(IMSLP_FILES_DIR, file.path)]).childProcess;
+			const linkPath = sourcePath.length > 240 ? path.resolve(IMSLP_FILES_DIR, "../temp.local." + file.ext) : null;
+			if (linkPath) {
+				if (fs.existsSync(linkPath))
+					fs.unlinkSync(linkPath);
+				fs.linkSync(sourcePath, linkPath);
+			}
+
+			const proc = child_process.spawn("spleeter", ["separate", "-p", SPLEETER_MODEL, "-o", fileDir, linkPath || sourcePath]).childProcess;
 			proc.stderr.on("data", data => {logs += data.toString(); console.log("[spleeter err]:", data.toString())});
 			proc.stdout.on("data", data => {logs += data.toString(); console.log("[spleeter out]:", data.toString())});
 
@@ -50,7 +63,7 @@ const main = async () => {
 			console.debug("Spleeter done:", result);
 
 			if (result === 0) {
-				const subdir = walkDir(fileDir, /^IMSLP.*\/$/)[0];
+				const subdir = walkDir(fileDir, /^(IMSLP|temp).*\/$/)[0];
 				if (subdir)
 					fs.renameSync(subdir, spleeterDir);
 				else
