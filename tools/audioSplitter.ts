@@ -53,7 +53,7 @@ const main = async () => {
 				for (let i = 1; true; ++i) {
 					try {
 						if (fs.existsSync(linkPath))
-							fs.unlinkSync(linkPath);
+							await fs.promises.unlink(linkPath);
 						break;
 					}
 					catch (err) {
@@ -62,7 +62,15 @@ const main = async () => {
 
 					linkPath = path.resolve(IMSLP_FILES_DIR, `../temp${i}.local.` + file.ext);
 				}
-				fs.linkSync(sourcePath, linkPath);
+
+				try {
+					fs.linkSync(sourcePath, linkPath);
+				}
+				catch (err) {
+					console.warn(err);
+					fs.writeFileSync(path.join(fileDir, "spleeter.log"), err.toString());
+					continue;
+				}
 			}
 
 			const proc = child_process.spawn("spleeter", ["separate", "-p", SPLEETER_MODEL, "-o", fileDir, linkPath || sourcePath]).childProcess;
