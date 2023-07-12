@@ -48,10 +48,20 @@ const main = async () => {
 
 			let logs = "";
 
-			const linkPath = sourcePath.length > 240 ? path.resolve(IMSLP_FILES_DIR, "../temp.local." + file.ext) : null;
+			let linkPath = sourcePath.length > 240 ? path.resolve(IMSLP_FILES_DIR, "../temp.local." + file.ext) : null;
 			if (linkPath) {
-				if (fs.existsSync(linkPath))
-					fs.unlinkSync(linkPath);
+				for (let i = 1; true; ++i) {
+					try {
+						if (fs.existsSync(linkPath))
+							fs.unlinkSync(linkPath);
+						break;
+					}
+					catch (err) {
+						console.warn(err);
+					}
+
+					linkPath = path.resolve(IMSLP_FILES_DIR, `../temp${i}.local.` + file.ext);
+				}
 				fs.linkSync(sourcePath, linkPath);
 			}
 
