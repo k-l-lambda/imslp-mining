@@ -25,7 +25,11 @@ def main():
 					else:
 						print('Transcribing:', root)
 						(audio, _) = pti.load_audio(os.path.join(root, source), sr=pti.sample_rate, mono=True)
-						transcriptor.transcribe(audio, os.path.join(root, midi_filename))
+
+						midi_path = os.path.join(root, midi_filename)
+						transcriptor.transcribe(audio, midi_path)
+
+						os.symlink(os.path.abspath(midi_path), os.path.join(root, '..', midi_filename))
 	except:
 		print(sys.exc_info())
 
