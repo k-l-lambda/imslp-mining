@@ -2,6 +2,8 @@
 
 2023.7.13
 
+	+	tools/copyMIDI.ts created.
+
 	+	spectrumPlotter.py created.
 
 
