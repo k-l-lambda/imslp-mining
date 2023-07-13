@@ -13,6 +13,9 @@ import env
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 
 
+SPECTRUM_RESERVE_DB = float(os.getenv('SPECTRUM_RESERVE_DB'))
+
+
 def fftWave (filename):
 	audio, _ = pti.load_audio(filename, sr=16000, mono=True)
 	fft = librosa.stft(audio, n_fft=256)
@@ -45,6 +48,7 @@ def main():
 
 			log_path = os.path.join(root, 'spectrum.log')
 			if 'spectrum.log' in files:
+				logging.info('Already done, skip: %s', root)
 				continue
 
 			with open(log_path, 'w') as log:
@@ -62,6 +66,10 @@ def main():
 					log.write('spectrum:\n')
 					log.write(text_thumb)
 					log.write('\n\n')
+
+					if db < SPECTRUM_RESERVE_DB:
+						logging.info('Low DB, deleted.')
+						os.remove(file_path)
 
 
 if __name__ == "__main__":
