@@ -34,14 +34,19 @@ const main = async () => {
 
 		const files = basic.files.filter(file => file.ext === "pdf");
 		for (const file of files) {
+			console.log(String.fromCodePoint(0x1f3bc), `[${file.id}]`, file.path);
+			if (file.path.includes("manuscript")) {
+				console.log("Skip manuscript.", );
+				continue;
+			}
+
 			const sourcePath = path.resolve(IMSLP_FILES_DIR, file.path);
 			if (!fs.existsSync(sourcePath)) {
-				console.log("Source not exist, skipped.", file.id, file.path);
+				console.log("Source not exist, skipped.");
 				continue;
 			}
 
 			//console.log("audio:", basic.id, file.path);
-			console.log("Processing PDF pages:", file.id, file.path);
 			const fileDir = path.join(work, file.id);
 			ensureDir(fileDir);
 
@@ -51,6 +56,7 @@ const main = async () => {
 				continue;
 			}
 
+			console.log("Processing PDF pages...");
 			const result = await predictor.predict([], { pdf: sourcePath, output_folder: IMAGE_BED });
 			const resultObj = JSON.parse(result);
 			const pages = resultObj.semantics;
