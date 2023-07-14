@@ -14,13 +14,13 @@ const main = async (sourceFile) => {
 	const predictor = new ProcessPredictor({
 		command: PROCESS_PREDICTOR_CMD,
 		cwd: PROCESS_PREDICTOR_DIR,
-		args: ["./streamPredictor.py", SCORE_LAYOUT_WEIGHT, "-m", "scorePage", "-dv", TORCH_DEVICE],
+		args: ["./streamPredictor.py", SCORE_LAYOUT_WEIGHT, "-m", "scorePage", "-dv", TORCH_DEVICE, "-i"],
 	});
 
 	const result = await predictor.predict([], { pdf: sourceFile, output_folder: IMAGE_BED });
 	console.log("result:", result);
 
-	predictor.dispose();
+	//predictor.dispose();
 };
 
 

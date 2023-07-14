@@ -3,5 +3,6 @@ basic.yaml
 
 *.wav
 *.midi
+*.webp
 
 layout.json

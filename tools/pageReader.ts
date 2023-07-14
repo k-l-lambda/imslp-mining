@@ -20,7 +20,7 @@ const main = async () => {
 	const predictor = new ProcessPredictor({
 		command: PROCESS_PREDICTOR_CMD,
 		cwd: PROCESS_PREDICTOR_DIR,
-		args: ["./streamPredictor.py", SCORE_LAYOUT_WEIGHT, "-m", "scorePage", "-dv", TORCH_DEVICE],
+		args: ["./streamPredictor.py", SCORE_LAYOUT_WEIGHT, "-m", "scorePage", "-dv", TORCH_DEVICE, "-i"],
 	});
 
 	const works = walkDir(DATA_DIR, /\/$/);
@@ -53,8 +53,22 @@ const main = async () => {
 
 			const result = await predictor.predict([], { pdf: sourcePath, output_folder: IMAGE_BED });
 			const resultObj = JSON.parse(result);
+			const pages = resultObj.semantics;
 
-			fs.writeFileSync(layoutPath, JSON.stringify(resultObj.semantics));
+			// save layout heatmap
+			const layoutsDir = path.join(fileDir, "layouts");
+			ensureDir(layoutsDir);
+			pages.forEach((page, i) => {
+				const [header, ext] = page.image.match(/^data:image\/(\w+);base64,/);
+				const imageBuffer = Buffer.from(page.image.substring(header.length), "base64");
+
+				const filename = `${i}.${ext}`;
+				fs.writeFileSync(path.join(layoutsDir, filename), imageBuffer);
+
+				page.image = `layouts/${filename}`;
+			});
+
+			fs.writeFileSync(layoutPath, JSON.stringify(pages));
 			console.log("Layout saved.");
 		}
 	}
