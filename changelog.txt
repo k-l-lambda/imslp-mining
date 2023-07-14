@@ -1,5 +1,10 @@
 
 
+2023.7.14
+
+	+	tools/pageReader.ts created.
+
+
 2023.7.13
 
 	+	tools/copyMIDI.ts created.
