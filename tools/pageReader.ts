@@ -75,7 +75,7 @@ const main = async () => {
 			});
 
 			fs.writeFileSync(layoutPath, JSON.stringify(pages));
-			console.log("Layout saved.");
+			console.log("Layout saved,", pages.length, "pages.");
 		}
 	}
 
