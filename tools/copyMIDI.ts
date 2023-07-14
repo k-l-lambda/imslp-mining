@@ -5,13 +5,10 @@ import YAML from "yaml";
 
 import "../env";
 import walkDir from "./libs/walkDir";
-import { DATA_DIR } from "./libs/constants";
+import { DATA_DIR, IMSLP_FILES_DIR } from "./libs/constants";
 import { WorkBasic } from "./libs/types";
 import { ensureDir } from "./libs/utils";
 
-
-
-const IMSLP_FILES_DIR = process.env.IMSLP_FILES_DIR;
 
 
 const main = async () => {

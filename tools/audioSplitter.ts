@@ -6,7 +6,7 @@ import child_process from "child-process-promise";
 
 import "../env";
 import walkDir from "./libs/walkDir";
-import { DATA_DIR } from "./libs/constants";
+import { DATA_DIR, IMSLP_FILES_DIR } from "./libs/constants";
 import { WorkBasic } from "./libs/types";
 import { ensureDir } from "./libs/utils";
 
@@ -16,7 +16,6 @@ const AUDIO_EXTS = ["mp3", "ogg", "flac"];
 
 
 const SPLEETER_MODEL = process.env.SPLEETER_MODEL;
-const IMSLP_FILES_DIR = process.env.IMSLP_FILES_DIR;
 
 
 const main = async () => {
