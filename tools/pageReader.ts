@@ -26,6 +26,8 @@ const main = async () => {
 	const works = walkDir(DATA_DIR, /\/$/);
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
 
+	await predictor.waitInitialization();
+
 	for (const work of works) {
 		const basic = YAML.parse(fs.readFileSync(path.join(work, "basic.yaml")).toString()) as WorkBasic;
 		console.log(basic.id, basic.title);
@@ -50,11 +52,14 @@ const main = async () => {
 			}
 
 			const result = await predictor.predict([], { pdf: sourcePath, output_folder: IMAGE_BED });
-			console.log("result:", result);
-			break;
+			const resultObj = JSON.parse(result);
+
+			fs.writeFileSync(layoutPath, JSON.stringify(resultObj.semantics));
+			console.log("Layout saved.");
 		}
-		break;
 	}
+
+	predictor.dispose();
 };
 
 
