@@ -59,7 +59,11 @@ const main = async () => {
 			console.log("Processing PDF pages...");
 			const result = await predictor.predict([], { pdf: sourcePath, output_folder: IMAGE_BED });
 			const resultObj = JSON.parse(result);
-			const pages = resultObj.semantics;
+			if (!resultObj?.semantics || !resultObj?.semantics.filter(Boolean).length) {
+				console.log("Layout detection failed.");
+				continue;
+			}
+			const pages = resultObj.semantics.filter(Boolean);
 
 			// save layout heatmap
 			const layoutsDir = path.join(fileDir, "layouts");
