@@ -26,12 +26,26 @@ interface WorkBasic {
 };
 
 
+interface OCRArea {
+	score: number;
+	text: string;
+	feature_dict: Record<string, number>;
+	cx: number;
+	cy: number;
+	width: number;
+	height: number;
+	theta: number;
+	title: string;
+};
+
+
 type PageLayoutResult = omr.LayoutResult & {
 	image: string;
 	page_info: {
 		url: string;
 		size: [number, number];
 	};
+	text: OCRArea[];
 }
 
 

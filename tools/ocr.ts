@@ -9,7 +9,7 @@ import { WorkBasic, PageLayoutResult } from "./libs/types";
 import { IMAGE_BED, DATA_DIR, IMSLP_FILES_DIR, TORCH_DEVICE, PROCESS_PREDICTOR_DIR, PROCESS_PREDICTOR_CMD } from "./libs/constants";
 import walkDir from "./libs/walkDir";
 import { loadImage } from "./libs/utils";
-import * as omr from "./libs/omr";
+//import * as omr from "./libs/omr";
 import pyClients from "./libs/pyClients";
 
 
@@ -41,7 +41,7 @@ const main = async () => {
 
 			const omrStatePath = path.join(work, file.id, "omr.yaml");
 			const omrState = fs.existsSync(omrStatePath) ? YAML.parse(fs.readFileSync(omrStatePath).toString()) : {};
-			if (omrState && omrState.ocr) {
+			if (omrState?.ocr?.done) {
 				console.log("OCR already done, skip");
 				continue;
 			}
@@ -58,11 +58,21 @@ const main = async () => {
 						location,
 					});
 
-					console.log("resultOCR:", resultOCR?.areas?.filter(x => x.text));
+					//console.log("resultOCR:", resultOCR?.areas?.filter(x => x.text));
+					page.text = resultOCR?.areas;
 				}
 			}
+
+			fs.writeFileSync(layoutPath, JSON.stringify(layout));
+
+			const n_text = layout.reduce((n, page) => n + (page?.text?.length ?? 0), 0);
+			console.log(`${n_text} texts of ${layout.length} pages.`);
+
+			omrState.ocr = omrState.ocr || {done: true, logs: []};
+			omrState.ocr.done = true;
+			omrState.ocr.logs.push(`[${new Date().toLocaleString()}] ${n_text} texts of ${layout.length} pages.`);
+			fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
 		}
-		break;
 	}
 
 	console.log("All works done.");
