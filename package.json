@@ -11,16 +11,23 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@k-l-lambda/music-widgets": "^0.3.35",
     "@prisma/client": "^4.16.2",
     "@types/child-process-promise": "^2.2.2",
     "@types/node": "^20.4.1",
     "child-process-promise": "^2.2.1",
     "dotenv": "^16.3.1",
     "dotenv-expand": "^10.0.0",
+    "js-sha1": "^0.6.0",
+    "math-erf": "^1.0.0",
+    "msgpackr": "^1.9.5",
+    "portfinder": "^1.0.32",
     "prisma": "^4.16.2",
+    "python-shell": "^5.0.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "4.7.4",
-    "yaml": "^2.3.1"
+    "yaml": "^2.3.1",
+    "zeromq": "6.0.0-beta.16"
   }
 }

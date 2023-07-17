@@ -1,5 +1,13 @@
 # IMSLP Mining
 
+
+## Prerequisites
+
+Config file in project root direcotry: `config.local.yaml`
+
++	*pyclients*, the OMR python clients.
+
+
 ## Data Pipeline
 
 ```shell

@@ -1,4 +1,7 @@
 
+import * as omr from "./omr";
+
+
 interface FileInfo {
 	id: string;
 	tab: string;
@@ -23,8 +26,18 @@ interface WorkBasic {
 };
 
 
+type PageLayoutResult = omr.LayoutResult & {
+	image: string;
+	page_info: {
+		url: string;
+		size: [number, number];
+	};
+}
+
+
 
 export {
 	FileInfo,
 	WorkBasic,
+	PageLayoutResult,
 };
