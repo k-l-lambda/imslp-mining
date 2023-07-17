@@ -29,12 +29,14 @@ const main = async () => {
 	await predictor.waitInitialization();
 
 	for (const work of works) {
+		const workId = path.basename(work);
+
 		const basic = YAML.parse(fs.readFileSync(path.join(work, "basic.yaml")).toString()) as WorkBasic;
 		console.log(basic.id, basic.title);
 
 		const files = basic.files.filter(file => file.ext === "pdf");
 		for (const file of files) {
-			console.log(String.fromCodePoint(0x1f3bc), `[${file.id}]`, file.path);
+			console.log(String.fromCodePoint(0x1f3bc), `[${workId}/${file.id}]`, file.path);
 			if (file.path.includes("manuscript")) {
 				console.log("Skip manuscript.", );
 				continue;

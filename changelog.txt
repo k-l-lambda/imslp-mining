@@ -1,5 +1,10 @@
 
 
+2023.7.17
+
+	+	tools/ocr.ts created.
+
+
 2023.7.14
 
 	+	tools/pageReader.ts created.
