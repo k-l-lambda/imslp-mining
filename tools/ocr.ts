@@ -46,7 +46,10 @@ const main = async () => {
 				continue;
 			}
 
+			let i = 0;
 			for (const page of layout) {
+				console.log(`Page ${i++}/${layout.length}`);
+
 				const image = await loadImage(page.page_info.url);
 				const resultLoc = await pyClients.predictScoreImages("textLoc", [image]);
 				const location = resultLoc[0].filter((box) => box.score > 0);
