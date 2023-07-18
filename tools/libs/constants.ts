@@ -14,3 +14,5 @@ export const TORCH_DEVICE = process.env.TORCH_DEVICE;
 
 export const PROCESS_PREDICTOR_DIR = process.env.PROCESS_PREDICTOR_DIR;
 export const PROCESS_PREDICTOR_CMD = process.env.PROCESS_PREDICTOR_CMD;
+
+export const SCORE_FILTER_CONDITION = process.env.SCORE_FILTER_CONDITION;

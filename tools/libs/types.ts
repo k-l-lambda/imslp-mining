@@ -39,7 +39,23 @@ interface OCRArea {
 };
 
 
+interface StaffImage {
+	hash: string;
+	position: {
+		x: number;
+		y: number;
+		width: number;
+		height: number;
+	};
+};
+
+
+type LayoutArea = omr.starry.Area & {
+	staff_images: StaffImage[];
+};
+
 type PageLayoutResult = omr.LayoutResult & {
+	detection: {areas: LayoutArea[]};
 	image: string;
 	page_info: {
 		url: string;
@@ -53,5 +69,6 @@ type PageLayoutResult = omr.LayoutResult & {
 export {
 	FileInfo,
 	WorkBasic,
+	LayoutArea,
 	PageLayoutResult,
 };

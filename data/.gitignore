@@ -1,8 +1,7 @@
 *.yaml
+*.json
 *.log
 
 *.wav
 *.midi
 *.webp
-
-layout.json

@@ -6,10 +6,9 @@ import YAML from "yaml";
 import "../env";
 
 import { WorkBasic, PageLayoutResult } from "./libs/types";
-import { IMAGE_BED, DATA_DIR, IMSLP_FILES_DIR, TORCH_DEVICE, PROCESS_PREDICTOR_DIR, PROCESS_PREDICTOR_CMD } from "./libs/constants";
+import { DATA_DIR } from "./libs/constants";
 import walkDir from "./libs/walkDir";
 import { loadImage } from "./libs/utils";
-//import * as omr from "./libs/omr";
 import pyClients from "./libs/pyClients";
 
 

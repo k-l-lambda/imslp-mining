@@ -31,5 +31,7 @@ yarn ts ./tools/pageReader.ts
 
 ##	vison
 yarn ts ./tools/ocr.ts
+yarn ts ./tools/scoreInit.ts
+yarn ts ./tools/scoreVision.ts
 
 ```
