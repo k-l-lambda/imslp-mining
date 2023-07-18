@@ -50,6 +50,7 @@ const constructSystem = ({ page, backgroundImage, area, position }: SystemInitOp
 	const staves = area.staff_images.map((img, i) => {
 		const staffY = detection.middleRhos[i] / detection.interval - stavesTops[i];
 
+		// TODO: fix position
 		return new starry.Staff({
 			top,
 			height: (stavesTops[i + 1] || systemHeight) - top,
@@ -161,6 +162,8 @@ const main = async () => {
 						needGauge: true,
 					},
 					layout: layout.detection,
+					width: pageSize.width / unitSize,
+					height: pageSize.height / unitSize,
 				});
 
 				(page.layout.areas as LayoutArea[]).forEach(area => {
