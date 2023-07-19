@@ -110,15 +110,23 @@ const main = async () => {
 			if (!layoutPages.length)
 				continue;
 	
-			const n_staff = layout.reduce((n, page) => Math.max(n, ...(page.detection?.areas?.map(area => area?.staves?.middleRhos?.length ?? 0) ?? [])), 0);
+			const staffNumbers = layout.filter(page => page.detection?.areas?.length)
+				.map(page => page.detection?.areas).flat(1)
+				.filter(area => area.staves?.middleRhos?.length)
+				.map(area => area.staves.middleRhos.length)
+				.sort((a, b) => a - b);
+
+			const n_staff = Math.max(0, ...staffNumbers);
+			const n_staff_90percent = staffNumbers[Math.floor(staffNumbers.length * 0.9)];
+
 			switch (SCORE_FILTER_CONDITION) {
 			case "single_piano":
-				if (n_staff > 3)
+				if (n_staff_90percent > 3)
 					continue;
 
 				break;
 			case "1or2pianos":
-				if (n_staff > 4)
+				if (n_staff_90percent > 4)
 					continue;
 
 				break;
