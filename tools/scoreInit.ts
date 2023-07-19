@@ -6,7 +6,7 @@ import YAML from "yaml";
 import "../env";
 
 import { WorkBasic, PageLayoutResult, LayoutArea } from "./libs/types";
-import { DATA_DIR, SCORE_FILTER_CONDITION } from "./libs/constants";
+import { DATA_DIR, SCORE_FILTER_CONDITION, VIEWPORT_UNIT } from "./libs/constants";
 import walkDir from "./libs/walkDir";
 //import { loadImage } from "./libs/utils";
 import { starry } from "./libs/omr";
@@ -14,8 +14,6 @@ import { starry } from "./libs/omr";
 
 
 const SYSTEM_MARGIN = 4;
-
-const VIEWPORT_UNIT = 8;
 
 
 interface SystemInitOptions {
