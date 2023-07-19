@@ -183,6 +183,9 @@ const main = async () => {
 					}));
 				});
 
+				if (layout.text)
+					page.assignTexts(layout.text, [layout.page_info.size[1], layout.page_info.size[0]]);
+
 				return page;
 			});
 
