@@ -55,13 +55,15 @@ const main = async () => {
 				//console.log("location:", location);
 
 				if (location.length > 0) {
-					const [resultOCR] = await pyClients.predictScoreImages("textOcr", {
-						buffers: [image],
-						location,
-					});
-
-					//console.log("resultOCR:", resultOCR?.areas?.filter(x => x.text));
-					page.text = resultOCR?.areas;
+					page.text = [];
+					for (let ii = 0; ii < location.length; ii +=100) {
+						const [resultOCR] = await pyClients.predictScoreImages("textOcr", {
+							buffers: [image],
+							location: location.slice(ii, ii + 100),
+						});
+						//console.log("resultOCR:", resultOCR?.areas?.filter(x => x.text));
+						page.text.push(...resultOCR?.areas);
+					}
 				}
 			}
 
