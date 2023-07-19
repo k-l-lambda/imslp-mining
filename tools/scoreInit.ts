@@ -88,6 +88,8 @@ const main = async () => {
 	const works = walkDir(DATA_DIR, /\/$/);
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
 
+	let n_score = 0;
+
 	for (const work of works) {
 		const workId = path.basename(work);
 
@@ -165,7 +167,7 @@ const main = async () => {
 					height: pageSize.height / unitSize,
 				});
 
-				(page.layout.areas as LayoutArea[]).forEach(area => {
+				(page.layout.areas.filter(area => area.staves?.middleRhos?.length) as LayoutArea[]).forEach(area => {
 					const sourceCenter = {
 						x: layout.sourceSize.width / 2 / layout.interval,
 						y: layout.sourceSize.height / 2 / layout.interval,
@@ -214,13 +216,12 @@ const main = async () => {
 			omrState.score = {init: Date.now()};
 			fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
 
-			break;
+			++n_score;
+			console.log("Initial score saved.");
 		}
-
-		break;
 	}
 
-	console.log("All works done.");
+	console.log("All works done,", n_score, "scores saved.");
 	process.exit(0);
 };
 
