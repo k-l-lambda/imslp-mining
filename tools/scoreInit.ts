@@ -103,10 +103,14 @@ const main = async () => {
 				continue;
 
 			const layout = JSON.parse(fs.readFileSync(layoutPath).toString()) as PageLayoutResult[];
-			if (!layout || !layout.length)
+			if (!layout?.length)
 				continue;
 
-			const n_staff = layout.reduce((n, page) => Math.max(n, Math.max(...page.detection.areas.map(area => area?.staves?.middleRhos?.length ?? 0))), 0);
+			const layoutPages = layout.filter(page => page.detection?.areas?.length);
+			if (!layoutPages.length)
+				continue;
+	
+			const n_staff = layout.reduce((n, page) => Math.max(n, ...(page.detection?.areas?.map(area => area?.staves?.middleRhos?.length ?? 0) ?? [])), 0);
 			switch (SCORE_FILTER_CONDITION) {
 			case "single_piano":
 				if (n_staff > 3)
@@ -131,7 +135,6 @@ const main = async () => {
 				continue;
 			}
 
-			const layoutPages = layout.filter(page => page.detection?.areas?.length);
 			const meanWidth = layoutPages.reduce((sum, page) => sum + page.sourceSize.width, 0) / layoutPages.length;
 
 			const pageRatios = layoutPages.map(page => {
