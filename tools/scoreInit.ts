@@ -155,7 +155,7 @@ const main = async () => {
 				const page = new starry.Page({
 					source: {
 						url: layout.page_info.url,
-						dimensions: layout.page_info.size,
+						dimensions: {width: layout.page_info.size[0], height: layout.page_info.size[1]},
 						matrix: [Math.cos(layout.theta), -Math.sin(layout.theta), Math.sin(layout.theta), Math.cos(layout.theta), 0, 0],
 						interval: layout.interval,
 						needGauge: true,
