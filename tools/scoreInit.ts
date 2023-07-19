@@ -50,10 +50,9 @@ const constructSystem = ({ page, backgroundImage, area, position }: SystemInitOp
 	const staves = area.staff_images.map((img, i) => {
 		const staffY = detection.middleRhos[i] / detection.interval - stavesTops[i];
 
-		// TODO: fix position
 		return new starry.Staff({
-			top,
-			height: (stavesTops[i + 1] || systemHeight) - top,
+			top: stavesTops[i],
+			height: (stavesTops[i + 1] || systemHeight) - stavesTops[i],
 			staffY,
 			measureBars,
 			backgroundImage: img.hash,
@@ -88,6 +87,8 @@ const constructSystem = ({ page, backgroundImage, area, position }: SystemInitOp
 const main = async () => {
 	const works = walkDir(DATA_DIR, /\/$/);
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
+
+	let n_score = 0;
 
 	for (const work of works) {
 		const workId = path.basename(work);
@@ -156,7 +157,7 @@ const main = async () => {
 				const page = new starry.Page({
 					source: {
 						url: layout.page_info.url,
-						dimensions: layout.page_info.size,
+						dimensions: {width: layout.page_info.size[0], height: layout.page_info.size[1]},
 						matrix: [Math.cos(layout.theta), -Math.sin(layout.theta), Math.sin(layout.theta), Math.cos(layout.theta), 0, 0],
 						interval: layout.interval,
 						needGauge: true,
@@ -166,7 +167,7 @@ const main = async () => {
 					height: pageSize.height / unitSize,
 				});
 
-				(page.layout.areas as LayoutArea[]).forEach(area => {
+				(page.layout.areas.filter(area => area.staves?.middleRhos?.length) as LayoutArea[]).forEach(area => {
 					const sourceCenter = {
 						x: layout.sourceSize.width / 2 / layout.interval,
 						y: layout.sourceSize.height / 2 / layout.interval,
@@ -184,6 +185,9 @@ const main = async () => {
 					}));
 				});
 
+				if (layout.text)
+					page.assignTexts(layout.text, [layout.page_info.size[1], layout.page_info.size[0]]);
+
 				return page;
 			});
 
@@ -195,7 +199,7 @@ const main = async () => {
 				unitSize,
 				pageSize,
 				headers: {
-					id: `imslp-${basic.id}`,
+					id: `imslp-${basic.id}-${file.id}`,
 					author: basic.author,
 					...basic.meta,
 				},
@@ -212,13 +216,12 @@ const main = async () => {
 			omrState.score = {init: Date.now()};
 			fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
 
-			break;
+			++n_score;
+			console.log("Initial score saved.");
 		}
-
-		break;
 	}
 
-	console.log("All works done.");
+	console.log("All works done,", n_score, "scores saved.");
 	process.exit(0);
 };
 

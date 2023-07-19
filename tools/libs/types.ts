@@ -26,7 +26,7 @@ interface WorkBasic {
 };
 
 
-interface OCRArea {
+/*interface OCRArea {
 	score: number;
 	text: string;
 	feature_dict: Record<string, number>;
@@ -36,7 +36,7 @@ interface OCRArea {
 	height: number;
 	theta: number;
 	title: string;
-};
+};*/
 
 
 interface StaffImage {
@@ -61,7 +61,7 @@ type PageLayoutResult = omr.LayoutResult & {
 		url: string;
 		size: [number, number];
 	};
-	text: OCRArea[];
+	text?: omr.starry.TextArea[];
 }
 
 
