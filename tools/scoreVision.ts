@@ -205,7 +205,6 @@ const main = async () => {
 						staffItem.strightBuffer = buffer;
 					}
 
-					omrState.score.straightification = Date.now();
 					console.log("staves straightification done:", staves.length);
 
 					page.systems.forEach(system => system.clearTokens());
@@ -226,9 +225,9 @@ const main = async () => {
 
 						score.assembleSystem(system, score.settings?.semanticConfidenceThreshold);
 					});
-
-					omrState.score.semantic = Date.now();
 				}
+
+				omrState.score.semantic = Date.now();
 
 				await saveScore();
 				fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
