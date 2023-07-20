@@ -118,6 +118,7 @@ const main = async () => {
 					score.inferenceStaffLayout();
 					console.log("Score staffLayout:", score.staffLayoutCode);
 
+					omrState.score.staffLayoutCode = score.staffLayoutCode;
 					omrState.score.brackets = Date.now();
 					fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
 				}
@@ -149,63 +150,70 @@ const main = async () => {
 					console.log(`Page ${pageIndex++}/${score.pages.length}...`);
 
 					const staves = await Promise.all(page.systems.map(system => system.staves.map(async (staff, staffIndex) => {
-						//const image = await loadImage(staff.backgroundImage as string);
-						const sourceCanvas = await shootStaffCanvas(system, staffIndex, {
-							paddingLeft: STAFF_PADDING_LEFT,
-							spec: GAUGE_VISION_SPEC,
-						});
-						const image = sourceCanvas.toBufferSync("png");
+						let image: Buffer;
+						let strightBuffer: Buffer;
+						if (score.settings.enabledGauge) {
+							const sourceCanvas = await shootStaffCanvas(system, staffIndex, {
+								paddingLeft: STAFF_PADDING_LEFT,
+								spec: GAUGE_VISION_SPEC,
+							});
+							image = sourceCanvas.toBufferSync("png");
+						}
+						else
+							strightBuffer = await loadImage(staff.backgroundImage as string);
 
 						return {
 							gauge: undefined as Buffer,
 							image,
-							strightBuffer: undefined as Buffer,
+							strightBuffer,
 							system,
 							staff, staffIndex,
 						};
 					})).flat(1));
 
-					const gaugeRes = await pyClients.predictScoreImages("gauge", staves.map(staff => staff.image));
-					console.assert(gaugeRes.length === staves.length, "invalid gauge response:", gaugeRes);
-					if (gaugeRes?.length !== staves.length)
-						throw new Error("invalid gauge response");
+					if (score.settings.enabledGauge) {
+						const gaugeRes = await pyClients.predictScoreImages("gauge", staves.map(staff => staff.image));
+						console.assert(gaugeRes.length === staves.length, "invalid gauge response:", gaugeRes);
+						if (gaugeRes?.length !== staves.length)
+							throw new Error("invalid gauge response");
 
-					staves.forEach((staff, i) => staff.gauge = gaugeRes[i].image);
+						staves.forEach((staff, i) => staff.gauge = gaugeRes[i].image);
 
-					for (const staffItem of staves) {
-						const {gauge, system, staff, staffIndex} = staffItem;
+						for (const staffItem of staves) {
+							const {gauge, system, staff, staffIndex} = staffItem;
 
-						const sourceCanvas = await shootStaffCanvas(system, staffIndex, {
-							paddingLeft: STAFF_PADDING_LEFT,
-							spec: GAUGE_VISION_SPEC,
-							scaling: 2,
-						});
+							const sourceCanvas = await shootStaffCanvas(system, staffIndex, {
+								paddingLeft: STAFF_PADDING_LEFT,
+								spec: GAUGE_VISION_SPEC,
+								scaling: 2,
+							});
 
-						const sourceBuffer = sourceCanvas.toBufferSync("png");
-						//fs.writeFileSync("./test/sourceBuffer.png", sourceBuffer);
-						//fs.writeFileSync("./test/gauge.png", gauge);
+							const sourceBuffer = sourceCanvas.toBufferSync("png");
+							//fs.writeFileSync("./test/sourceBuffer.png", sourceBuffer);
+							//fs.writeFileSync("./test/gauge.png", gauge);
+	
+							const baseY = (system.middleY - (staff.top + staff.staffY)) * GAUGE_VISION_SPEC.viewportUnit + GAUGE_VISION_SPEC.viewportHeight / 2;
+	
+							const { buffer, size } = await pyClients.predictScoreImages("gaugeRenderer", [sourceBuffer, gauge, baseY]);
+							//fs.writeFileSync("./test/afterGauge.png", buffer);
+							//process.exit(0);
+							const webpBuffer = await sharp(buffer).toFormat("webp").toBuffer();
 
-						const baseY = (system.middleY - (staff.top + staff.staffY)) * GAUGE_VISION_SPEC.viewportUnit + GAUGE_VISION_SPEC.viewportHeight / 2;
+							staff.backgroundImage = await saveImage(webpBuffer, "webp");
+							staff.maskImage = undefined;
 
-						const { buffer, size } = await pyClients.predictScoreImages("gaugeRenderer", [sourceBuffer, gauge, baseY]);
-						//fs.writeFileSync("./test/afterGauge.png", buffer);
-						//process.exit(0);
-						const webpBuffer = await sharp(buffer).toFormat("webp").toBuffer();
+							staff.imagePosition = {
+								x: -STAFF_PADDING_LEFT / GAUGE_VISION_SPEC.viewportUnit,
+								y: staff.staffY - size.height / GAUGE_VISION_SPEC.viewportUnit / 2,
+								width: size.width / GAUGE_VISION_SPEC.viewportUnit,
+								height: size.height / GAUGE_VISION_SPEC.viewportUnit,
+							};
 
-						staff.backgroundImage = await saveImage(webpBuffer, "webp");
-						staff.maskImage = undefined;
+							staffItem.strightBuffer = buffer;
+						}
 
-						staff.imagePosition = {
-							x: -STAFF_PADDING_LEFT / GAUGE_VISION_SPEC.viewportUnit,
-							y: staff.staffY - size.height / GAUGE_VISION_SPEC.viewportUnit / 2,
-							width: size.width / GAUGE_VISION_SPEC.viewportUnit,
-							height: size.height / GAUGE_VISION_SPEC.viewportUnit,
-						};
-
-						staffItem.strightBuffer = buffer;
+						console.log("staves straightification done:", staves.length);
 					}
-
-					console.log("staves straightification done:", staves.length);
 
 					page.systems.forEach(system => system.clearTokens());
 
@@ -230,6 +238,11 @@ const main = async () => {
 				omrState.score.semantic = Date.now();
 
 				await saveScore();
+
+				score.assemble();
+				const n_measure = score.systems.reduce((sum, system) => sum + system.measureCount, 0);
+				omrState.score.n_measure = n_measure;
+
 				fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
 				console.log("Score saved.");
 
