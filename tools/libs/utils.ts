@@ -1,6 +1,7 @@
 
 import fs from "fs";
 import path from "path";
+import md5 from "spark-md5";
 
 import { IMAGE_BED } from "./constants";
 
@@ -26,8 +27,18 @@ const loadImage = (url: string): Promise<Buffer> => {
 };
 
 
+const saveImage = async (data: Buffer, ext: string): Promise<string> => {
+	const hash = md5.ArrayBuffer.hash(data);
+	const filename = `${hash}.${ext}`;
+	await fs.promises.writeFile(path.join(IMAGE_BED, filename), data);
+
+	return `md5:${filename}`;
+};
+
+
 
 export {
 	ensureDir,
 	loadImage,
+	saveImage,
 };
