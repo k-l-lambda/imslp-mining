@@ -8,7 +8,7 @@ import sharp from "sharp";
 import "../env";
 
 import { WorkBasic } from "./libs/types";
-import { DATA_DIR, SCORE_FILTER_CONDITION, VIEWPORT_UNIT, GAUGE_VISION_SPEC, STAFF_PADDING_LEFT } from "./libs/constants";
+import { DATA_DIR, SCORE_FILTER_CONDITION, VIEWPORT_UNIT, GAUGE_VISION_SPEC, SEMANTIC_VISION_SPEC, STAFF_PADDING_LEFT } from "./libs/constants";
 import walkDir from "./libs/walkDir";
 import { loadImage, saveImage } from "./libs/utils";
 import { starry } from "./libs/omr";
@@ -159,6 +159,7 @@ const main = async () => {
 						return {
 							gauge: undefined as Buffer,
 							image,
+							strightBuffer: undefined as Buffer,
 							system,
 							staff, staffIndex,
 						};
@@ -166,12 +167,14 @@ const main = async () => {
 
 					const gaugeRes = await pyClients.predictScoreImages("gauge", staves.map(staff => staff.image));
 					console.assert(gaugeRes.length === staves.length, "invalid gauge response:", gaugeRes);
-					if (gaugeRes.length !== staves.length)
+					if (gaugeRes?.length !== staves.length)
 						throw new Error("invalid gauge response");
 
 					staves.forEach((staff, i) => staff.gauge = gaugeRes[i].image);
 
-					for (const {gauge, system, staff, staffIndex} of staves) {
+					for (const staffItem of staves) {
+						const {gauge, system, staff, staffIndex} = staffItem;
+
 						const sourceCanvas = await shootStaffCanvas(system, staffIndex, {
 							paddingLeft: STAFF_PADDING_LEFT,
 							spec: GAUGE_VISION_SPEC,
@@ -198,13 +201,38 @@ const main = async () => {
 							width: size.width / GAUGE_VISION_SPEC.viewportUnit,
 							height: size.height / GAUGE_VISION_SPEC.viewportUnit,
 						};
+
+						staffItem.strightBuffer = buffer;
 					}
+
+					omrState.score.straightification = Date.now();
 					console.log("staves straightification done:", staves.length);
 
-					// TODO: semantic prediction
+					page.systems.forEach(system => system.clearTokens());
+
+					const semanticRes = await pyClients.predictScoreImages("semantic", staves.map(staff => staff.strightBuffer));
+					console.assert(semanticRes.length === staves.length, "invalid semantic response:", semanticRes);
+					if (semanticRes?.length !== staves.length)
+						throw new Error("invalid semantic response");
+
+					staves.forEach(({system, staff, staffIndex}, i) => {
+						const graph = starry.recoverJSON<starry.SemanticGraph>(semanticRes[i], starry);
+						graph.offset(-STAFF_PADDING_LEFT / SEMANTIC_VISION_SPEC.viewportUnit, 0);
+
+						system.assignSemantics(staffIndex, graph);
+
+						staff.assignSemantics(graph);
+						staff.clearPredictedTokens();
+
+						score.assembleSystem(system, score.settings?.semanticConfidenceThreshold);
+					});
+
+					omrState.score.semantic = Date.now();
 				}
 
 				await saveScore();
+				fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
+				console.log("Score saved.");
 
 				++n_score;
 
@@ -218,10 +246,7 @@ const main = async () => {
 				fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
 				console.warn("Interrupted by exception:", err);
 			}
-
-			break;	// temp
 		}
-		break;	// temp
 	}
 
 	console.log("All works done,", n_work, "works, ", n_score, "scores.");

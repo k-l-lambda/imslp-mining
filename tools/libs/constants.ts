@@ -26,4 +26,9 @@ export const GAUGE_VISION_SPEC = {
 	viewportUnit: 8,
 };
 
+export const SEMANTIC_VISION_SPEC = {
+	viewportHeight: 192,
+	viewportUnit: 8,
+};
+
 export const STAFF_PADDING_LEFT = 32;
