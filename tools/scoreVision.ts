@@ -13,6 +13,7 @@ import walkDir from "./libs/walkDir";
 import { loadImage } from "./libs/utils";
 import { starry } from "./libs/omr";
 import pyClients from "./libs/pyClients";
+import { shootPageCanvas } from "./libs/canvasUtilities";
 
 
 
@@ -52,22 +53,17 @@ const main = async () => {
 
 			console.log(String.fromCodePoint(0x1f3bc), `[${workId}/${file.id}]`, score.title);
 
-			const pageImages = await Promise.all(score.pages.map(async page => {
+			const pageCanvases = await Promise.all(score.pages.map(async page => {
 				const buffer = await loadImage(page.source.url);
 				const pngBuffer = await sharp(buffer).toFormat("png").toBuffer();
 				const image = await skc.loadImage(pngBuffer);
-				/*const image = new skc.Image();
-				image.onerror = x => console.log("image onerror:", x);
-				image.onload = x => console.log("image onload:", image, x);
-				image.src = path;*/
-				console.log("image:", image);
+				const pageCanvas = shootPageCanvas({ page, source: image });
 
-				return image;
+				return {page, pageCanvas};
 			}));
-			// TODO:
 
-			/*// brackets
-			for (const page of score.pages) {
+			// brackets
+			for (const {page, pageCanvas} of pageCanvases) {
 				const areas = page.layout.areas.filter(area => area.staves?.middleRhos?.length);
 				const interval = page.source.interval;
 
@@ -88,25 +84,29 @@ const main = async () => {
 						height: bottomMid - topMid + 8 * interval,
 					};
 
-					const canvas = new Canvas(VIEWPORT_UNIT * 8, (sourceRect.height / interval) * VIEWPORT_UNIT);
+					const canvas = new skc.Canvas(VIEWPORT_UNIT * 8, (sourceRect.height / interval) * VIEWPORT_UNIT);
 
 					const context = canvas.getContext("2d");
-					context.drawImage(correctCanvas, sourceRect.x, sourceRect.y, sourceRect.width, sourceRect.height, 0, 0, canvas.width, canvas.height);
+					context.drawImage(pageCanvas, sourceRect.x, sourceRect.y, sourceRect.width, sourceRect.height, 0, 0, canvas.width, canvas.height);
 
 					return {
 						system,
-						buffer: canvas.toBufferSync('png'),
+						buffer: canvas.toBufferSync("png"),
 					};
 				});
+				/*bracketImages.forEach((img, i) => {
+					fs.writeFileSync(`./test/sys-${i}.png`, img.buffer);
+				});*/
 
 				const bracketsRes = await pyClients.predictScoreImages("brackets", { buffers: bracketImages.map(x => x.buffer) });
 
 				bracketImages.forEach(({ system }, index) => {
 					if (bracketsRes[index]) {
 						system.bracketsAppearance = bracketsRes[index];
+						//console.log("res:", system.bracketsAppearance);
 					}
 				});
-			}*/
+			}
 
 			++n_score;
 
