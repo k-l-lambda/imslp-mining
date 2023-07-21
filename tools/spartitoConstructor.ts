@@ -48,7 +48,11 @@ const main = async () => {
 				continue;
 
 			const omrState = fs.existsSync(omrStatePath) ? YAML.parse(fs.readFileSync(omrStatePath).toString()) : {};
-			if (!omrState?.score?.semantic) {
+			if (!omrState?.score?.semantic)
+				continue;
+
+			if (omrState.sparitito) {
+				console.log("Spartito already constructed, skip.");
 				continue;
 			}
 
@@ -62,6 +66,9 @@ const main = async () => {
 				console.warn("invalid score, null system semantics:", `${ns}/${score.systems.length}`);
 				continue;
 			}
+
+			omrState.sparitito = [];
+
 			const subScores = score.splitToSingleScores();
 			for (const [index, singleScore] of subScores.entries()) {
 				const spartito = singleScore.makeSpartito();
@@ -74,8 +81,16 @@ const main = async () => {
 				fs.writeFileSync(spartitoPath, JSON.stringify(spartito));
 				console.log("Spartito saved:", singleScore.headers.SubScorePage ? `page[${singleScore.headers.SubScorePage}]` : "entire");
 
+				omrState.sparitito.push({
+					index: omrState.sparitito.length,
+					time: Date.now(),
+					range: singleScore.headers.SubScoreSystem || "all",
+				});
+
 				++n_spartito;
 			}
+
+			fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
 
 			++n_score;
 			if (!workCount) {
