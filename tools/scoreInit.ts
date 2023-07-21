@@ -204,7 +204,7 @@ const main = async () => {
 
 			const score = new starry.Score({
 				title,
-				stavesCount: n_staff,
+				//stavesCount: n_staff,
 				unitSize,
 				pageSize,
 				headers: {

@@ -2,6 +2,8 @@
 
 2023.7.19
 
+	+	spartitoConstructor.ts created.
+
 	+	tools/scoreVision.ts created.
 
 

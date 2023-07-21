@@ -32,3 +32,6 @@ export const SEMANTIC_VISION_SPEC = {
 };
 
 export const STAFF_PADDING_LEFT = 32;
+
+
+export const BEAD_PICKER_URL = process.env.BEAD_PICKER_URL;

@@ -23,6 +23,7 @@
     "js-sha1": "^0.6.0",
     "math-erf": "^1.0.0",
     "msgpackr": "^1.9.5",
+    "onnxruntime-node": "1.12.1",
     "portfinder": "^1.0.32",
     "prisma": "^4.16.2",
     "python-shell": "^5.0.0",
