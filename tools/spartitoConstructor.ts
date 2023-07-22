@@ -51,7 +51,7 @@ const main = async () => {
 			if (!omrState?.score?.semantic)
 				continue;
 
-			if (omrState.sparitito) {
+			if (omrState.spartito) {
 				console.log("Spartito already constructed, skip.");
 				continue;
 			}
@@ -67,7 +67,7 @@ const main = async () => {
 				continue;
 			}
 
-			omrState.sparitito = [];
+			omrState.spartito = [];
 
 			const subScores = score.splitToSingleScores();
 			for (const [index, singleScore] of subScores.entries()) {
@@ -77,12 +77,12 @@ const main = async () => {
 					if (measure.events.length + 1 < beadPicker.n_seq)
 						await beadSolver.glimpseMeasure(measure, beadPicker);
 
-				const spartitoPath = path.join(work, file.id, `spartito-${index}.json`);
+				const spartitoPath = path.join(work, file.id, `${index}.spartito.json`);
 				fs.writeFileSync(spartitoPath, JSON.stringify(spartito));
 				console.log("Spartito saved:", singleScore.headers.SubScorePage ? `page[${singleScore.headers.SubScorePage}]` : "entire");
 
-				omrState.sparitito.push({
-					index: omrState.sparitito.length,
+				omrState.spartito.push({
+					index: omrState.spartito.length,
 					time: Date.now(),
 					range: singleScore.headers.SubScoreSystem || "all",
 				});
