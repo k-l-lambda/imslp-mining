@@ -3,6 +3,8 @@ import fs from "fs";
 import path from "path";
 import YAML from "yaml";
 import { MIDI } from "@k-l-lambda/music-widgets";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
 
 import "../env";
 
@@ -12,6 +14,16 @@ import walkDir from "./libs/walkDir";
 import { starry, beadSolver, measureLayout } from "./libs/omr";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
 
+
+
+const argv = yargs(hideBin(process.argv))
+	.command(
+		"$0 [options]",
+		"Construct spartito files.",
+		yargs => yargs
+			.option("renew", { alias: "r", type: "boolean" })
+		,
+	).help().argv;
 
 
 const main = async () => {
@@ -52,7 +64,7 @@ const main = async () => {
 			if (!omrState?.score?.semantic)
 				continue;
 
-			if (omrState.spartito) {
+			if (!(argv as any).renew && omrState.spartito) {
 				console.log("Spartito already constructed, skip.");
 				continue;
 			}
@@ -102,6 +114,7 @@ const main = async () => {
 				const headPage = score.pages[headPageIndex];
 				const title = (headPage.tokens ?? [])
 					.filter((token: starry.TextToken) => token.textType === starry.TextType.Title)
+					.sort((t1, t2) => t1.y - t2.y)
 					.map((token: starry.TextToken) => token.text)
 					.join("\n");
 
