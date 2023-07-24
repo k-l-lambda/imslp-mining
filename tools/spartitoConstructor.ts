@@ -88,8 +88,10 @@ const main = async () => {
 				fs.writeFileSync(spartitoPath, JSON.stringify(spartito));
 				console.log("Spartito saved:", singleScore.headers.SubScorePage ? `page[${singleScore.headers.SubScorePage}]` : "entire");
 
-				const midiPath = path.join(work, file.id, `${index}.spartito.midi`);
-				fs.writeFileSync(midiPath, Buffer.from(MIDI.encodeMidiFile(midi)));
+				if (midi) {
+					const midiPath = path.join(work, file.id, `${index}.spartito.midi`);
+					fs.writeFileSync(midiPath, Buffer.from(MIDI.encodeMidiFile(midi)));
+				}
 
 				omrState.spartito.push({
 					index: omrState.spartito.length,
