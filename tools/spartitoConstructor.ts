@@ -2,13 +2,14 @@
 import fs from "fs";
 import path from "path";
 import YAML from "yaml";
+import { MIDI } from "@k-l-lambda/music-widgets";
 
 import "../env";
 
 import { WorkBasic } from "./libs/types";
 import { DATA_DIR, BEAD_PICKER_URL } from "./libs/constants";
 import walkDir from "./libs/walkDir";
-import { starry, beadSolver } from "./libs/omr";
+import { starry, beadSolver, measureLayout } from "./libs/omr";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
 
 
@@ -77,9 +78,18 @@ const main = async () => {
 					if (measure.events.length + 1 < beadPicker.n_seq)
 						await beadSolver.glimpseMeasure(measure, beadPicker);
 
+				const { notation } = spartito.performByEstimation();
+				const mlayout = singleScore.getMeasureLayout()
+				const measureIndices = mlayout?.serialize(measureLayout.LayoutType.Full)
+					?? Array(notation.measures.length).fill(null).map((_, i) => i + 1);
+				const midi = notation.toPerformingMIDI(measureIndices);
+
 				const spartitoPath = path.join(work, file.id, `${index}.spartito.json`);
 				fs.writeFileSync(spartitoPath, JSON.stringify(spartito));
 				console.log("Spartito saved:", singleScore.headers.SubScorePage ? `page[${singleScore.headers.SubScorePage}]` : "entire");
+
+				const midiPath = path.join(work, file.id, `${index}.spartito.midi`);
+				fs.writeFileSync(midiPath, Buffer.from(MIDI.encodeMidiFile(midi)));
 
 				omrState.spartito.push({
 					index: omrState.spartito.length,
