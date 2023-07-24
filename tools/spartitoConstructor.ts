@@ -126,6 +126,7 @@ const main = async () => {
 				fs.writeFileSync(midiPath, Buffer.from(MIDI.encodeMidiFile(midi)));
 
 				omrState.spartito.push({
+					id: subId,
 					index: omrState.spartito.length,
 					time: Date.now(),
 					title,
