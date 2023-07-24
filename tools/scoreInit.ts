@@ -162,7 +162,7 @@ const main = async () => {
 				height: meanWidth * maxAspect,
 			};
 
-			const pages = layoutPages.map((layout, i) => {
+			const pages = layoutPages.map(layout => {
 				const page = new starry.Page({
 					source: {
 						url: layout.page_info.url,

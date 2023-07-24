@@ -70,8 +70,10 @@ const main = async () => {
 
 			omrState.spartito = [];
 
+			const pageCounting = {} as Record<number, number>;
+
 			const subScores = score.splitToSingleScores();
-			for (const [index, singleScore] of subScores.entries()) {
+			for (const singleScore of subScores) {
 				const spartito = singleScore.makeSpartito();
 
 				for (const measure of spartito.measures)
@@ -84,19 +86,38 @@ const main = async () => {
 					?? Array(notation.measures.length).fill(null).map((_, i) => i + 1);
 				const midi = notation.toPerformingMIDI(measureIndices);
 
-				const spartitoPath = path.join(work, file.id, `${index}.spartito.json`);
+				// ignore empty spartito
+				if (!midi)
+					continue;
+
+				const headPageIndex = singleScore.headers.SubScorePage ? Number(singleScore.headers.SubScorePage.match(/^\d+/)[0]) : 0;
+				console.assert(Number.isInteger(headPageIndex) && score.pages[headPageIndex],
+					"invalid headPageIndex:", singleScore.headers.SubScorePage, score.pages.length);
+
+				const subId = pageCounting[headPageIndex] ? `p${headPageIndex}-${pageCounting[headPageIndex]}` : `p${headPageIndex}`;
+
+				pageCounting[headPageIndex] = pageCounting[headPageIndex] || 0;
+				++pageCounting[headPageIndex];
+
+				const headPage = score.pages[headPageIndex];
+				const title = (headPage.tokens ?? [])
+					.filter((token: starry.TextToken) => token.textType === starry.TextType.Title)
+					.map((token: starry.TextToken) => token.text)
+					.join("\n");
+
+				const spartitoPath = path.join(work, file.id, `${subId}.spartito.json`);
 				fs.writeFileSync(spartitoPath, JSON.stringify(spartito));
 				console.log("Spartito saved:", singleScore.headers.SubScorePage ? `page[${singleScore.headers.SubScorePage}]` : "entire");
 
-				if (midi) {
-					const midiPath = path.join(work, file.id, `${index}.spartito.midi`);
-					fs.writeFileSync(midiPath, Buffer.from(MIDI.encodeMidiFile(midi)));
-				}
+				const midiPath = path.join(work, file.id, `${subId}.spartito.midi`);
+				fs.writeFileSync(midiPath, Buffer.from(MIDI.encodeMidiFile(midi)));
 
 				omrState.spartito.push({
 					index: omrState.spartito.length,
 					time: Date.now(),
-					range: singleScore.headers.SubScoreSystem || "all",
+					title,
+					systemRange: singleScore.headers.SubScoreSystem || "all",
+					pageRange: singleScore.headers.SubScorePage || "all",
 				});
 
 				++n_spartito;
