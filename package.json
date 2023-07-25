@@ -23,6 +23,7 @@
     "dotenv-expand": "^10.0.0",
     "js-sha1": "^0.6.0",
     "math-erf": "^1.0.0",
+    "minhash": "^0.0.9",
     "msgpackr": "^1.9.5",
     "onnxruntime-node": "1.12.1",
     "portfinder": "^1.0.32",

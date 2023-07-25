@@ -34,7 +34,7 @@ yarn ts ./tools/ocr.ts
 yarn ts ./tools/scoreInit.ts
 yarn ts ./tools/scoreVision.ts
 
-# regulation
+##	regulation
 yarn ts ./tools/spartitoConstructor.ts
 
 ```
