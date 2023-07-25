@@ -2,6 +2,8 @@
 
 2023.7.25
 
+	+	tools/midiIndexing.ts created.
+
 	+	tools/libs/midiHash.ts created.
 
 
