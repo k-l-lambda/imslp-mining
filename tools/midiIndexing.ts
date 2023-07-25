@@ -48,7 +48,7 @@ const main = async () => {
 		if (!midiFiles.length)
 			continue;
 
-		console.log(String.fromCodePoint(0x1f3bc), `[${workId}]`, midiFiles.length, "MIDI files.");
+		console.log(String.fromCodePoint(0x1f4d5), `[${workId}]`, midiFiles.length, "MIDI files.");
 
 		const hashes = midiFiles.map(file => hashMidiFile(file, work));
 		//console.log("hashes:", hashes);
