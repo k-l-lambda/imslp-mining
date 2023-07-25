@@ -11,13 +11,13 @@ interface Onset {
 };
 
 
-const midiToChords = (midi: MIDI.MidiData, {interval = 20} = {}): Chord[] => {
+const midiToChords = (midi: MIDI.MidiData, { interval = 20 } = {}): Chord[] => {
 	const tracks = midi.tracks.map(events => {
 		let tick = 0;
 		return events.reduce((set, event) => {
 			tick += event.deltaTime;
 			if (event.subtype === "noteOn")
-				set.push({tick, pitch: event.noteNumber!});
+				set.push({ tick, pitch: event.noteNumber! });
 
 			return set;
 		}, [] as Onset[]);
@@ -44,8 +44,8 @@ const midiToChords = (midi: MIDI.MidiData, {interval = 20} = {}): Chord[] => {
 };
 
 
-const chordsToWords = (chords: Chord[], {groupSize = 2} = {}): string[] => {
-	const groups = Array(chords.length - groupSize + 1).fill(0).map((_, i) => chords.slice(i, i + groupSize));
+const chordsToWords = (chords: Chord[], { groupSize = 2 } = {}): string[] => {
+	const groups = Array(Math.max(1, chords.length - groupSize + 1)).fill(0).map((_, i) => chords.slice(i, i + groupSize));
 
 	return groups.map(chords => chords.map(pitches => pitches.map(p => p.toString(16)).join("")).join(";"));
 };

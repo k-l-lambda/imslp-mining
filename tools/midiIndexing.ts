@@ -39,6 +39,7 @@ const main = async () => {
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
 
 	let n_cluster = 0;
+	let n_saCluster = 0;	// sheet - audio cluster
 	let n_work = 0;
 
 	for (const work of works) {
@@ -75,6 +76,9 @@ const main = async () => {
 			console.log("clusters:", multiClusters);
 			n_cluster += multiClusters.length;
 			++n_work;
+
+			const saClusters = multiClusters.filter(cluster => cluster.some(key => /spartito/.test(key)) && cluster.some(key => !/spartito/.test(key)));
+			n_saCluster += saClusters.length;
 		}
 
 		//console.log("clusters:", clusters);
@@ -84,7 +88,7 @@ const main = async () => {
 		}));
 	}
 
-	console.log("Done,", n_cluster, "clusters found in", n_work, "works.");
+	console.log("Done,", `${n_saCluster}/${n_cluster}`, "clusters found in", n_work, "works.");
 }
 
 main();
