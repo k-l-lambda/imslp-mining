@@ -82,17 +82,17 @@ const main = async () => {
 			console.log(String.fromCodePoint(0x1f3bc), `[${workId}/${file.id}]`, score.title);
 
 			try {
-				const pageCanvases = await Promise.all(score.pages.map(async page => {
-					const buffer = await loadImage(page.source.url);
-					const pngBuffer = await sharp(buffer).toFormat("png").toBuffer();
-					const image = await skc.loadImage(pngBuffer);
-					const pageCanvas = await shootPageCanvas({ page, source: image });	// also prepare system background images
-
-					return {page, pageCanvas};
-				}));
-
 				if (!omrState.score?.brackets) {
 					// brackets prediction
+					const pageCanvases = await Promise.all(score.pages.map(async page => {
+						const buffer = await loadImage(page.source.url);
+						const pngBuffer = await sharp(buffer).toFormat("png").toBuffer();
+						const image = await skc.loadImage(pngBuffer);
+						const pageCanvas = await shootPageCanvas({ page, source: image });	// also prepare system background images
+
+						return { page, pageCanvas };
+					}));
+
 					for (const {page, pageCanvas} of pageCanvases) {
 						const areas = page.layout.areas.filter(area => area.staves?.middleRhos?.length);
 						const interval = page.source.interval;
