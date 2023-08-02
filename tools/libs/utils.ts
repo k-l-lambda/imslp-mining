@@ -36,9 +36,13 @@ const saveImage = async (data: Buffer, ext: string): Promise<string> => {
 };
 
 
+const parseIdRangeStr = (ids: string): [number, number?] => ids.split("-").map(x => x ? parseInt(x) : null) as any;
+
+
 
 export {
 	ensureDir,
 	loadImage,
 	saveImage,
+	parseIdRangeStr,
 };
