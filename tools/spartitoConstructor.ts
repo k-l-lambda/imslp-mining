@@ -81,7 +81,7 @@ const main = async () => {
 			const scoreJSON = fs.readFileSync(scorePath).toString();
 			const score = starry.recoverJSON<starry.Score>(scoreJSON, starry);
 
-			console.log(String.fromCodePoint(0x1f3bc), `[${workId}/${file.id}]`, score.title);
+			console.log(String.fromCodePoint(0x1f3bc), `[${workId}/${file.id}]`, score.title, `(${score.pages.length}p)`);
 
 			if (score.systems.some(system => !system.semantics)) {
 				const ns = score.systems.filter(system => !system.semantics).length;
@@ -94,13 +94,15 @@ const main = async () => {
 
 			const pageCounting = {} as Record<number, number>;
 
-			const subScores = score.splitToSingleScores();
-			for (const singleScore of subScores) {
+			for (const singleScore of score.splitToSingleScoresGen()) {
+				//console.debug("singleScore:", singleScore.pages.length);
 				const spartito = singleScore.makeSpartito();
 
 				for (const measure of spartito.measures)
-					if (measure.events.length + 1 < beadPicker.n_seq)
+					if (measure.events.length + 1 < beadPicker.n_seq) {
+						//console.debug("glimpse:", `${measure.measureIndex}/${spartito.measures.length}`);
 						await beadSolver.glimpseMeasure(measure, beadPicker);
+					}
 
 				const { notation } = spartito.performByEstimation();
 				const mlayout = singleScore.getMeasureLayout()
