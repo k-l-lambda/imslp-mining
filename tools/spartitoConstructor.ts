@@ -38,6 +38,8 @@ const main = async () => {
 	const works = walkDir(DATA_DIR, /\/$/);
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
 
+	const modelName = BEAD_PICKER_URL.replace(/\\/g, "/").split("/").slice(-2).join("/");
+
 	let n_work = 0;
 	let n_score = 0;
 	let n_spartito = 0;
@@ -81,6 +83,7 @@ const main = async () => {
 			}
 
 			omrState.spartito = [];
+			omrState.glimpseModel = modelName;
 
 			const pageCounting = {} as Record<number, number>;
 
