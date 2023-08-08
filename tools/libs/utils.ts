@@ -39,10 +39,20 @@ const saveImage = async (data: Buffer, ext: string): Promise<string> => {
 const parseIdRangeStr = (ids: string): [number, number?] => ids.split("-").map(x => x ? parseInt(x) : null) as any;
 
 
+const idRange2Filter = (ids: string): (n: number) => boolean => {
+	const [begin, end] = parseIdRangeStr(ids);
+	if (end !== undefined)
+		return id => id >= begin && (!end || id < end);
+
+	return id => id === begin;
+};
+
+
 
 export {
 	ensureDir,
 	loadImage,
 	saveImage,
 	parseIdRangeStr,
+	idRange2Filter,
 };

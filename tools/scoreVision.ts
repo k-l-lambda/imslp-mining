@@ -12,7 +12,7 @@ import "../env";
 import { WorkBasic } from "./libs/types";
 import { DATA_DIR, SCORE_FILTER_CONDITION, VIEWPORT_UNIT, GAUGE_VISION_SPEC, SEMANTIC_VISION_SPEC, STAFF_PADDING_LEFT } from "./libs/constants";
 import walkDir from "./libs/walkDir";
-import { loadImage, saveImage, parseIdRangeStr } from "./libs/utils";
+import { loadImage, saveImage, idRange2Filter } from "./libs/utils";
 import { starry } from "./libs/omr";
 import pyClients from "./libs/pyClients";
 import { shootPageCanvas, shootStaffCanvas } from "./libs/canvasUtilities";
@@ -40,14 +40,8 @@ const main = async () => {
 	let n_score = 0;
 
 	if ((argv as any).ids) {
-		const [begin, end] = parseIdRangeStr((argv as any).ids);
-		if (end !== undefined)
-			works = works.filter(work => {
-				const id = Number(path.basename(work));
-				return id >= begin && (!end || id < end);
-			});
-		else
-			works = works.filter(work => Number(path.basename(work)) === begin);
+		const goodId = idRange2Filter((argv as any).ids);
+		works = works.filter(work => goodId(Number(path.basename(work))));
 	}
 
 	for (const work of works) {

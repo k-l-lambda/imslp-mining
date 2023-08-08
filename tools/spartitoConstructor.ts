@@ -13,7 +13,7 @@ import { DATA_DIR, BEAD_PICKER_URL } from "./libs/constants";
 import walkDir from "./libs/walkDir";
 import { starry, beadSolver, measureLayout } from "./libs/omr";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
-import { parseIdRangeStr } from "./libs/utils";
+import { idRange2Filter } from "./libs/utils";
 
 
 
@@ -41,14 +41,8 @@ const main = async () => {
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
 
 	if ((argv as any).ids) {
-		const [begin, end] = parseIdRangeStr((argv as any).ids);
-		if (end !== undefined)
-			works = works.filter(work => {
-				const id = Number(path.basename(work));
-				return id >= begin && (!end || id < end);
-			});
-		else
-			works = works.filter(work => Number(path.basename(work)) === begin);
+		const goodId = idRange2Filter((argv as any).ids);
+		works = works.filter(work => goodId(Number(path.basename(work))));
 	}
 
 	const modelName = BEAD_PICKER_URL.replace(/\\/g, "/").split("/").slice(-2).join("/");
