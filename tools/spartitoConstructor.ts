@@ -13,6 +13,7 @@ import { DATA_DIR, BEAD_PICKER_URL } from "./libs/constants";
 import walkDir from "./libs/walkDir";
 import { starry, beadSolver, measureLayout } from "./libs/omr";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
+import { parseIdRangeStr } from "./libs/utils";
 
 
 
@@ -22,6 +23,7 @@ const argv = yargs(hideBin(process.argv))
 		"Construct spartito files.",
 		yargs => yargs
 			.option("renew", { alias: "r", type: "boolean" })
+			.option("ids", { alias: "i", type: "string" })
 		,
 	).help().argv;
 
@@ -35,8 +37,19 @@ const main = async () => {
 		onLoad: promise => pickerLoading = promise,
 	});
 
-	const works = walkDir(DATA_DIR, /\/$/);
+	let works = walkDir(DATA_DIR, /\/$/);
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
+
+	if ((argv as any).ids) {
+		const [begin, end] = parseIdRangeStr((argv as any).ids);
+		if (end !== undefined)
+			works = works.filter(work => {
+				const id = Number(path.basename(work));
+				return id >= begin && (!end || id < end);
+			});
+		else
+			works = works.filter(work => Number(path.basename(work)) === begin);
+	}
 
 	const modelName = BEAD_PICKER_URL.replace(/\\/g, "/").split("/").slice(-2).join("/");
 
