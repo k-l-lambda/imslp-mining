@@ -3,7 +3,7 @@
   "private": true,
   "description": "",
   "scripts": {
-    "ts": "ts-node --",
+    "ts": "node -r ts-node/register --max-old-space-size=16384 --",
     "dev": "ts-node-dev --",
     "dev:inspect": "ts-node-dev --inspect --",
     "postinstall": "prisma generate && prisma db push",
