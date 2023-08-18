@@ -98,6 +98,9 @@ const main = async () => {
 				//console.debug("singleScore:", singleScore.pages.length);
 				const spartito = singleScore.makeSpartito();
 
+				spartito.measures.forEach((measure) => score.assignBackgroundForMeasure(measure));
+				singleScore.makeTimewiseGraph({ store: true });
+
 				for (const measure of spartito.measures)
 					if (measure.events.length + 1 < beadPicker.n_seq) {
 						//console.debug("glimpse:", `${measure.measureIndex}/${spartito.measures.length}`);
