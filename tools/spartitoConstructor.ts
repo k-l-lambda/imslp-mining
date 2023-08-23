@@ -9,7 +9,7 @@ import { hideBin } from "yargs/helpers";
 import "../env";
 
 import { WorkBasic } from "./libs/types";
-import { DATA_DIR, BEAD_PICKER_URL } from "./libs/constants";
+import { DATA_DIR, BEAD_PICKER_URL, PRIMARY_CATEGORIES } from "./libs/constants";
 import walkDir from "./libs/walkDir";
 import { starry, beadSolver, measureLayout } from "./libs/omr";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
@@ -60,6 +60,16 @@ const main = async () => {
 		const basic = YAML.parse(fs.readFileSync(path.join(work, "basic.yaml")).toString()) as WorkBasic;
 		console.log(basic.id, basic.title);
 
+		const tags = [];
+		const author = basic.author.match(/^[^,\s]+/)?.[0].toLocaleLowerCase();
+		if (author)
+			tags.push(author)
+		basic.categories.forEach(category => {
+			const tag = PRIMARY_CATEGORIES[category];
+			if (tag)
+				tags.push(tag);
+		});
+
 		let workCount = false;
 
 		const files = basic.files.filter(file => file.ext === "pdf");
@@ -97,6 +107,8 @@ const main = async () => {
 			for (const singleScore of score.splitToSingleScoresGen()) {
 				//console.debug("singleScore:", singleScore.pages.length);
 				const spartito = singleScore.makeSpartito();
+
+				spartito.tags = tags;
 
 				spartito.measures.forEach((measure) => score.assignBackgroundForMeasure(measure));
 				singleScore.makeTimewiseGraph({ store: true });

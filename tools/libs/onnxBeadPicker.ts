@@ -79,7 +79,7 @@ export default class OnnxBeadPicker {
 			];
 		}).flat(1)), [1, this.n_seq, FEATURE_DIMS]);
 
-		const time8th = new ort.Tensor("int8", Int8Array.from([Math.min(16, Math.ceil((cluster.signatureDuration || 1920) / 240))]));
+		const time8th = new ort.Tensor("int8", Int8Array.from([Math.min(16, Math.ceil((cluster.signatureDuration || 0) / 240))]));
 
 		const results = await this.session.run({ type, staff, beading_pos, x, y1, y2, feature, time8th });
 		//console.log("results:", results);

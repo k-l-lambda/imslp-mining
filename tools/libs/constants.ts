@@ -35,3 +35,12 @@ export const STAFF_PADDING_LEFT = 32;
 
 
 export const BEAD_PICKER_URL = process.env.BEAD_PICKER_URL;
+
+
+export const PRIMARY_CATEGORIES = {
+	Baroque: "baroque",
+	Classical: "classical",
+	Romantic: "romantic",
+	"Early 20th century": "early20th",
+	Modern: "modern",
+};
