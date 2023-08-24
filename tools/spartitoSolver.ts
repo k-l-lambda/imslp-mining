@@ -24,6 +24,7 @@ const argv = yargs(hideBin(process.argv))
 		yargs => yargs
 			.positional("target", { type: "string", describe: "Target directory" })
 			.option("ids", { alias: "i", type: "string" })
+			.option("logger", { alias: "l", type: "boolean" })
 		,
 	).help().argv;
 
@@ -53,6 +54,38 @@ const main = async () => {
 
 	const solutionStore = new AdminSolutionStore({...SOLUTION_STORE_OPTIONS, fetch});
 
+	let n_stat = 0;
+	const statSum = {
+		totalCost: 0,
+		pickerCost: 0,
+		measures: {
+			cached: 0,
+			simple: 0,
+			computed: 0,
+			tryTimes: 0,
+			solved: 0,
+			issue: 0,
+			fatal: 0,
+		},
+		qualityScore: 0,
+	};
+	const reportStat = () => {
+		if (!n_stat)
+			return;
+
+		console.log("totalCost:", statSum.totalCost, "mean:", statSum.totalCost / n_stat);
+		console.log("pickerCost:", statSum.pickerCost, "mean:", statSum.pickerCost / n_stat);
+		console.log("measures:");
+		console.log("\tcached:", statSum.measures.cached);
+		console.log("\tsimple:", statSum.measures.simple);
+		console.log("\tcomputed:", statSum.measures.computed);
+		console.log("\ttryTimes:", statSum.measures.tryTimes);
+		console.log("\tsolved:", statSum.measures.solved);
+		console.log("\tissue:", statSum.measures.issue);
+		console.log("\tfatal:", statSum.measures.fatal);
+		console.log(n_stat, "spartitos, mean qualityScore:", statSum.qualityScore / n_stat);
+	};
+
 	await Promise.all(loadings);
 
 	for (const work of works) {
@@ -68,12 +101,23 @@ const main = async () => {
 				continue;
 
 			const omrState = YAML.parse(fs.readFileSync(omrStatePath).toString());
-			//console.log("omrState:", omrState);
+			if (!omrState.spartito)
+				continue;
 
 			for (const item of omrState.spartito) {
 				const spartitoPath = path.join(work, file.id, `${item.id}.spartito.json`);
 				if (!fs.existsSync(spartitoPath))
 					continue;
+				console.log("--------------------------------------");
+				console.log(String.fromCodePoint(0x1d11e), `${basic.id}/${file.id}/${item.id}`);
+
+				const targetName = omrState.spartito.length > 1 ? `${workId}-${file.id}-${item.id}.spartito.json` : `${workId}-${file.id}.spartito.json`;
+				const targetPath = path.join(targetDir, targetName);
+
+				if (fs.existsSync(targetPath)) {
+					console.log("Solving finished, skip.");
+					continue;
+				}
 
 				const content = fs.readFileSync(spartitoPath).toString();
 				const spartito = starry.recoverJSON<starry.Spartito>(content, starry);
@@ -85,19 +129,27 @@ const main = async () => {
 				} as starry.Score;
 
 				const stat = await regulateWithBeadSolver(dummyScore, {
-					logger: console,
+					logger: argv.logger ? console : undefined,
 					pickers,
 					solutionStore,
 				});
-				console.log('stat:', stat);
+				//console.log('stat:', stat);
+				statSum.totalCost += stat.totalCost;
+				statSum.pickerCost += stat.pickerCost;
+				statSum.qualityScore += stat.qualityScore;
+				Object.keys(stat.measures).forEach(key => statSum.measures[key] += stat.measures[key]);
+				++n_stat;
 
-				const targetName = omrState.spartito.length > 1 ? `${workId}-${file.id}-${item.id}.spartito.json` : `${workId}-${file.id}.spartito.json`;
-				fs.writeFileSync(path.join(targetDir, targetName), JSON.stringify(spartito));
+				if (n_stat % 100 === 0)
+					reportStat();
+
+				fs.writeFileSync(targetPath, JSON.stringify(spartito));
 			}
-			break;
 		}
-		break;
 	}
+
+	reportStat();
+	console.log("Done.");
 };
 
 
