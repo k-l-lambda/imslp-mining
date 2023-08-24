@@ -73,8 +73,8 @@ const main = async () => {
 		if (!n_stat)
 			return;
 
-		console.log("totalCost:", statSum.totalCost, "mean:", statSum.totalCost / n_stat);
-		console.log("pickerCost:", statSum.pickerCost, "mean:", statSum.pickerCost / n_stat);
+		console.log("totalCost:", statSum.totalCost, "per measure:", statSum.totalCost / statSum.measures.computed);
+		console.log("pickerCost:", statSum.pickerCost, "per time:", statSum.pickerCost / statSum.measures.tryTimes);
 		console.log("measures:");
 		console.log("\tcached:", statSum.measures.cached);
 		console.log("\tsimple:", statSum.measures.simple);
