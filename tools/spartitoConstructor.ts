@@ -33,7 +33,7 @@ const main = async () => {
 
 	const beadPicker = new OnnxBeadPicker(BEAD_PICKER_URL, {
 		n_seq: 128,
-		usePivotX: BEAD_PICKER_URL.includes("pivotx"),
+		usePivotX: true,
 		onLoad: promise => pickerLoading = promise,
 	});
 
