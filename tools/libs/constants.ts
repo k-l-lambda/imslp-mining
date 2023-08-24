@@ -44,3 +44,6 @@ export const PRIMARY_CATEGORIES = {
 	"Early 20th century": "early20th",
 	Modern: "modern",
 };
+
+
+export const SOLUTION_STORE_OPTIONS = JSON.parse(process.env.SOLUTION_STORE ?? "null");
