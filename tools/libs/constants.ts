@@ -10,6 +10,8 @@ export const IMSLP_FILES_DIR = process.env.IMSLP_FILES_DIR;
 
 export const IMAGE_BED = path.resolve(process.env.IMAGE_BED);
 
+export const SPARTITO_ROOT = process.env.SPARTITO_ROOT;
+
 export const TORCH_DEVICE = process.env.TORCH_DEVICE;
 
 export const PROCESS_PREDICTOR_DIR = process.env.PROCESS_PREDICTOR_DIR;

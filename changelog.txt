@@ -1,6 +1,11 @@
 
 
-2023.7.25
+2023.8.24
+
+	+	tools/spartitoSolver.ts created.
+
+
+2023.8.23
 
 	+	spartitoConstructor.ts: tags on spartito appended.
 
