@@ -143,6 +143,8 @@ const main = async () => {
 				if (n_stat % 100 === 0)
 					reportStat();
 
+				console.log("measures:", `(${stat.measures.cached})${stat.measures.simple}->${stat.measures.solved}->${stat.measures.issue}->${stat.measures.fatal}/${spartito.measures.length}`, "quality:", spartito.qualityScore);
+
 				fs.writeFileSync(targetPath, JSON.stringify(spartito));
 			}
 		}
