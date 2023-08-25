@@ -39,8 +39,8 @@ const main = async () => {
 	let n_work = 0;
 	let n_score = 0;
 
-	if ((argv as any).ids) {
-		const goodId = idRange2Filter((argv as any).ids);
+	if (argv.ids) {
+		const goodId = idRange2Filter(argv.ids);
 		works = works.filter(work => goodId(Number(path.basename(work))));
 	}
 

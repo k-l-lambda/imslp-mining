@@ -40,8 +40,8 @@ const main = async () => {
 	let works = walkDir(DATA_DIR, /\/$/);
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
 
-	if ((argv as any).ids) {
-		const goodId = idRange2Filter((argv as any).ids);
+	if (argv.ids) {
+		const goodId = idRange2Filter(argv.ids);
 		works = works.filter(work => goodId(Number(path.basename(work))));
 	}
 
@@ -83,7 +83,7 @@ const main = async () => {
 			if (!omrState?.score?.semantic)
 				continue;
 
-			if (!(argv as any).renew && omrState.spartito) {
+			if (!argv.renew && omrState.spartito) {
 				console.log("Spartito already constructed, skip.");
 				continue;
 			}
