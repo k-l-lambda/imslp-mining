@@ -108,7 +108,7 @@ const main = async () => {
 				const spartitoPath = path.join(work, file.id, `${item.id}.spartito.json`);
 				if (!fs.existsSync(spartitoPath))
 					continue;
-				console.log("--------------------------------------");
+				//console.log("--------------------------------------");
 				console.log(String.fromCodePoint(0x1d11e), `${basic.id}/${file.id}/${item.id}`);
 
 				const targetName = omrState.spartito.length > 1 ? `${workId}-${file.id}-${item.id}.spartito.json` : `${workId}-${file.id}.spartito.json`;
