@@ -110,7 +110,7 @@ const main = async () => {
 
 				spartito.tags = tags;
 
-				spartito.measures.forEach((measure) => score.assignBackgroundForMeasure(measure));
+				spartito.measures.forEach((measure) => singleScore.assignBackgroundForMeasure(measure));
 				singleScore.makeTimewiseGraph({ store: true });
 
 				for (const measure of spartito.measures)
