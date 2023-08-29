@@ -7,6 +7,8 @@ import librosa
 import piano_transcription_inference as pti
 
 import env
+from tools.libs.encodec import sampling_rate
+from tools.libs.rvqFormat import RVQFile
 
 
 
@@ -69,9 +71,17 @@ def main():
 
 					if db < SPECTRUM_RESERVE_DB:
 						logging.info('Low DB, deleted.')
-						os.remove(file_path)
+					else:
+						logging.info('Converting to rvq...')
 
-					# TODO: convert wav to rvq
+						audio, sr = librosa.core.load(file_path, sr=sampling_rate, mono=True)
+						rvq = RVQFile.fromAudio(audio, sr)
+
+						target_path = file_path.replace('.wav', '.rvq')
+						with open(target_path, 'wb') as file:
+							rvq.save(file)
+
+					os.remove(file_path)
 
 
 if __name__ == "__main__":
