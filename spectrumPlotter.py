@@ -71,6 +71,8 @@ def main():
 						logging.info('Low DB, deleted.')
 						os.remove(file_path)
 
+					# TODO: convert wav to rvq
+
 
 if __name__ == "__main__":
 	main()

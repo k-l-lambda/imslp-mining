@@ -5,6 +5,7 @@
 *.wav
 *.midi
 *.webp
+*.rvq
 
 *.csv
 *.tsv
