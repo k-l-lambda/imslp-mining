@@ -71,7 +71,8 @@ def main():
 
 					if db < SPECTRUM_RESERVE_DB:
 						logging.info('Low DB, deleted.')
-					else:
+						os.remove(file_path)
+					'''else:
 						logging.info('Converting to rvq...')
 
 						audio, sr = librosa.core.load(file_path, sr=sampling_rate, mono=True)
@@ -79,9 +80,7 @@ def main():
 
 						target_path = file_path.replace('.wav', '.rvq')
 						with open(target_path, 'wb') as file:
-							rvq.save(file)
-
-					os.remove(file_path)
+							rvq.save(file)'''
 
 
 if __name__ == "__main__":
