@@ -50,7 +50,7 @@ def unpackInt10 (buf: bytes, n_codebook) -> torch.Tensor:
 def encode (audio, bandwidth=ENCODEC_BANDWIDTH, sr=sampling_rate):
 	codes = []
 	samples = ENCODEC_BATCHSIZE * 320
-	for t in tqdm(range(0, len(audio), samples)):
+	for t in tqdm(range(0, len(audio), samples), leave=False):
 		seg = audio[t:t + samples]
 		c, scales, mask = modelEncode(seg, bandwidth, sr=sr)
 		codes.append(c)
@@ -66,7 +66,7 @@ def decode (buffer: bytes, n_codebook):
 	codes = unpackInt10(buffer, n_codebook)
 
 	audio = []
-	for f in tqdm(range(0, codes.shape[-1], ENCODEC_BATCHSIZE)):
+	for f in tqdm(range(0, codes.shape[-1], ENCODEC_BATCHSIZE), leave=False):
 		c = codes[:, :, :, f:f + ENCODEC_BATCHSIZE]
 		audio.append(modelDecode(c, [None]))
 
