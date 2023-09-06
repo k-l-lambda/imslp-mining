@@ -116,7 +116,7 @@ const main = async () => {
 				for (const measure of spartito.measures)
 					if (measure.events.length + 1 < beadPicker.n_seq) {
 						//console.debug("glimpse:", `${measure.measureIndex}/${spartito.measures.length}`);
-						await beadSolver.glimpseMeasure(measure, beadPicker);
+						await beadSolver.glimpseMeasure(measure, {picker: beadPicker});
 					}
 
 				const { notation } = spartito.performByEstimation();
