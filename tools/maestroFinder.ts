@@ -18,7 +18,12 @@ const patternize = word => `%${word}%`;
 
 
 const formatName = name => {
-	const [_, firstName, lastName] = name.match(/^(.*)\s+(\S+)$/);
+	const captures = name.match(/^(.*)\s+(\S+)$/);
+	if (!captures) {
+		console.warn("invalid name:", name);
+		return name;
+	}
+	const [_, firstName, lastName] = captures;
 
 	return `${lastName}, ${firstName}`;
 };
@@ -72,6 +77,9 @@ const composerMap = new Map<string, QueryResult[]>;
 
 
 const queryWork = async (composer: string, titles: string[]): Promise<QueryResult[]> => {
+	if (!composer)
+		return [];
+
 	if (!composerMap.get(composer))
 		composerMap.set(composer, await queryComposer(composer));
 
