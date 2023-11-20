@@ -6,6 +6,7 @@
     "ts": "node -r ts-node/register --max-old-space-size=16384 --",
     "dev": "ts-node-dev --",
     "dev:inspect": "ts-node-dev --inspect --",
+    "prisma-inspect": "ts-node-dev --inspect -- ./tools/prismaInspector.ts",
     "postinstall": "prisma generate && prisma db push",
     "test": "ts-node ./tools/scoreVision.ts"
   },
