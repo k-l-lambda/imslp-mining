@@ -2,6 +2,9 @@
 import fs from "fs";
 import path from "path";
 import YAML from "yaml";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
+import { Prisma } from '@prisma/client';
 
 import "../env";
 import prisma from "./libs/prismaClient";
@@ -19,15 +22,29 @@ const EXT_MAP = {
 };
 
 
+const argv = yargs(hideBin(process.argv))
+	.command(
+		"$0 [options]",
+		"Initialize data directory",
+		yargs => yargs
+			.option("ids", { alias: "i", type: "string" })
+		,
+	).help().argv;
+
+
 const main = async () => {
 	ensureDir(DATA_DIR);
 
-	const works = await prisma.$queryRaw`SELECT * FROM Work
+	const query = argv.ids ? prisma.$queryRaw`SELECT * FROM Work
+		WHERE id IN (${Prisma.join(argv.ids.split(","))})`
+		: prisma.$queryRaw`SELECT * FROM Work
 		WHERE pdfs like '%"savePath"%' OR audios like '%"savePath"%'
-		LIMIT ${DB_WORK_LIMIT}
-	` as any[];
+		LIMIT ${DB_WORK_LIMIT}`;
+
+	const works = (await query) as any[];
 
 	works.forEach(work => {
+		//console.log(work.id);
 		const dir = path.join(DATA_DIR, work.id.toString());
 		ensureDir(dir);
 
