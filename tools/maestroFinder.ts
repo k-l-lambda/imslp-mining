@@ -76,6 +76,20 @@ const queryComposer = async (composer: string): Promise<QueryResult[]> => {
 const composerMap = new Map<string, QueryResult[]>;
 
 
+const fieldsOfObj = (obj: any): string[] => {
+	if (obj && typeof obj === "object") {
+		if (Object.keys(obj).length)
+			return Object.values(obj).map(fieldsOfObj).flat(1);
+
+		return [];
+	}
+
+	return [obj];
+};
+
+const stringifyFields = obj => fieldsOfObj(obj).join(" ");
+
+
 const queryWork = async (composer: string, titles: string[]): Promise<QueryResult[]> => {
 	if (!composer)
 		return [];
@@ -86,8 +100,12 @@ const queryWork = async (composer: string, titles: string[]): Promise<QueryResul
 	const title = titles.join(", ");
 
 	const works = composerMap.get(composer);
-	const simlarities = works.map(work => stringSimilarity(work.title, title));
+	let simlarities = works.map(work => stringSimilarity(work.title, title));
 	//console.log("simlarities:", title, simlarities);
+
+	const noTitleSimilar = !simlarities.some(s => s > 0);
+	if (noTitleSimilar)
+		simlarities = works.map(work => stringSimilarity(stringifyFields(work.meta), title));
 
 	const similars = works.map((work, i) => ({work, similarity: simlarities[i]}))
 		.filter(({similarity}) => similarity > 0)
@@ -97,7 +115,7 @@ const queryWork = async (composer: string, titles: string[]): Promise<QueryResul
 
 	const candidates = similars.filter(work => work.similarity >= similars[0].similarity);
 
-	if (candidates.length > 1) {
+	if (!noTitleSimilar && candidates.length > 1) {
 		const distances = candidates.map(({work}) => ({
 			work,
 			distance: levenshtein.distance(title, work.title.replace(/ \([^()]+\)$/, "")),
@@ -118,10 +136,16 @@ const main = async (csvPath: string) => {
 	const csv = fs.readFileSync(csvPath, "utf8");
 	//console.log("csv:", csv);
 	const lines = csv.split("\n");
-	const table = lines.map(line => line.split(",")).slice(1);
-	//console.log("table:", table.length);
+	const table = lines.map(line => line.split(",")).slice(1).map(fields => {
+		const yearIndex = fields.findIndex(field => /^20\d\d$/.test(field));
+		const title = fields.slice(1, yearIndex - 1).join(",");
 
-	const workKeys = new Set(table.map(([composer, title]) => `${composer}|${title}`));
+		return [fields[0], title, ...fields.slice(yearIndex - 1)];
+	});
+	const pendingTable = table.filter(fields => !fields[7]);
+	//console.log("pendingTable:", pendingTable.length, pendingTable.map(f => f[0] + "|" + f[1]));
+
+	const workKeys = new Set(pendingTable.map(([composer, title]) => `${composer}|${title}`));
 	//console.log("works:", workKeys);
 
 	const key2Ids = new Map<string, number[]>();
@@ -147,10 +171,12 @@ const main = async (csvPath: string) => {
 		const [composer, title] = line;
 		const ids = key2Ids.get(`${composer}|${title}`) || [];
 
-		return line.concat([ids.join(";")]);
+		if (line[7])
+			return line;
+		return line.slice(0, 7).concat([ids.join(";")]);
 	});
 
-	const newCsv = [lines[0] + ",ids", ...newTable.map(line => line.join(","))].join("\n");
+	const newCsv = [lines[0], ...newTable.map(line => line.join(","))].join("\n");
 	fs.writeFileSync(csvPath.replace(/\.\w+$/, "-ids.csv"), newCsv);
 };
 
