@@ -2,20 +2,37 @@
 import fs from "fs";
 import path from "path";
 import YAML from "yaml";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
 
 import "../env";
 
 import { WorkBasic, PageLayoutResult } from "./libs/types";
 import { DATA_DIR } from "./libs/constants";
 import walkDir from "./libs/walkDir";
-import { loadImage } from "./libs/utils";
+import { loadImage, idRange2Filter } from "./libs/utils";
 import pyClients from "./libs/pyClients";
 
 
 
+const argv = yargs(hideBin(process.argv))
+	.command(
+		"$0 [options]",
+		"Run OCR on layouts",
+		yargs => yargs
+			.option("ids", { alias: "i", type: "string" })
+		,
+	).help().argv;
+
+
 const main = async () => {
-	const works = walkDir(DATA_DIR, /\/$/);
+	let works = walkDir(DATA_DIR, /\/$/);
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
+
+	if (argv.ids) {
+		const goodId = idRange2Filter(argv.ids);
+		works = works.filter(work => goodId(Number(path.basename(work))));
+	}
 
 	console.log("pyClients warming up");
 	await pyClients.warmup();

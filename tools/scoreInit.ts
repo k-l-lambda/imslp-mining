@@ -2,15 +2,27 @@
 import fs from "fs";
 import path from "path";
 import YAML from "yaml";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
 
 import "../env";
 
 import { WorkBasic, PageLayoutResult, LayoutArea } from "./libs/types";
 import { DATA_DIR, SCORE_FILTER_CONDITION, VIEWPORT_UNIT } from "./libs/constants";
 import walkDir from "./libs/walkDir";
-//import { loadImage } from "./libs/utils";
+import { idRange2Filter } from "./libs/utils";
 import { starry } from "./libs/omr";
 
+
+
+const argv = yargs(hideBin(process.argv))
+	.command(
+		"$0 [options]",
+		"Run OCR on layouts",
+		yargs => yargs
+			.option("ids", { alias: "i", type: "string" })
+		,
+	).help().argv;
 
 
 const SYSTEM_MARGIN = 4;
@@ -83,8 +95,13 @@ const constructSystem = ({ page, backgroundImage, area, position }: SystemInitOp
 
 
 const main = async () => {
-	const works = walkDir(DATA_DIR, /\/$/);
+	let works = walkDir(DATA_DIR, /\/$/);
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
+
+	if (argv.ids) {
+		const goodId = idRange2Filter(argv.ids);
+		works = works.filter(work => goodId(Number(path.basename(work))));
+	}
 
 	let n_score = 0;
 

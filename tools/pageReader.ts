@@ -2,6 +2,8 @@
 import fs from "fs";
 import path from "path";
 import YAML from "yaml";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
 
 import "../env";
 
@@ -9,11 +11,21 @@ import { WorkBasic } from "./libs/types";
 import { IMAGE_BED, DATA_DIR, IMSLP_FILES_DIR, TORCH_DEVICE, PROCESS_PREDICTOR_DIR, PROCESS_PREDICTOR_CMD } from "./libs/constants";
 import ProcessPredictor from "./libs/processPredictor";
 import walkDir from "./libs/walkDir";
-import { ensureDir } from "./libs/utils";
+import { ensureDir, idRange2Filter } from "./libs/utils";
 
 
 
 const SCORE_LAYOUT_WEIGHT = process.env.SCORE_LAYOUT_WEIGHT;
+
+
+const argv = yargs(hideBin(process.argv))
+	.command(
+		"$0 [options]",
+		"Locate score pages.",
+		yargs => yargs
+			.option("ids", { alias: "i", type: "string" })
+		,
+	).help().argv;
 
 
 const main = async () => {
@@ -23,8 +35,13 @@ const main = async () => {
 		args: ["./streamPredictor.py", SCORE_LAYOUT_WEIGHT, "-m", "scorePage", "-dv", TORCH_DEVICE, "-i"],
 	});
 
-	const works = walkDir(DATA_DIR, /\/$/);
+	let works = walkDir(DATA_DIR, /\/$/);
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
+
+	if (argv.ids) {
+		const goodId = idRange2Filter(argv.ids);
+		works = works.filter(work => goodId(Number(path.basename(work))));
+	}
 
 	await predictor.waitInitialization();
 
