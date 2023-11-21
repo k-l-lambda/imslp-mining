@@ -4,12 +4,15 @@ import path from "path";
 import YAML from "yaml";
 import { MIDI } from "@k-l-lambda/music-widgets";
 import { Minhash, LshIndex } from "minhash";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
 
 import "../env";
 
 import { DATA_DIR } from "./libs/constants";
 import walkDir from "./libs/walkDir";
 import * as midiHash from "./libs/midiHash";
+import { idRange2Filter } from "./libs/utils";
 
 
 
@@ -17,6 +20,16 @@ interface MidiHash {
 	key: string;
 	hash: Minhash;
 };
+
+
+const argv = yargs(hideBin(process.argv))
+	.command(
+		"$0 [options]",
+		"Construct spartito files.",
+		yargs => yargs
+			.option("ids", { alias: "i", type: "string" })
+		,
+	).help().argv;
 
 
 const hashMidiFile = (file: string, root: string): MidiHash => {
@@ -35,8 +48,13 @@ const hashMidiFile = (file: string, root: string): MidiHash => {
 
 
 const main = async () => {
-	const works = walkDir(DATA_DIR, /\/$/);
+	let works = walkDir(DATA_DIR, /\/$/);
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
+
+	if (argv.ids) {
+		const goodId = idRange2Filter(argv.ids);
+		works = works.filter(work => goodId(Number(path.basename(work))));
+	}
 
 	let n_cluster = 0;
 	let n_saCluster = 0;	// sheet - audio cluster
