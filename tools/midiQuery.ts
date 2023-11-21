@@ -1,7 +1,6 @@
 
 import fs from "fs";
 import path from "path";
-import YAML from "yaml";
 import { MIDI } from "@k-l-lambda/music-widgets";
 import { Minhash, LshIndex } from "minhash";
 import yargs from "yargs/yargs";
@@ -24,10 +23,13 @@ interface MidiHash {
 
 const argv = yargs(hideBin(process.argv))
 	.command(
-		"$0 [options]",
-		"Construct MIDI indexes.",
+		"$0 source [options]",
+		"Query a MIDI by hash.",
 		yargs => yargs
+			.positional("source", {type: "string", describe: ""})
+			.demandOption("source")
 			.option("ids", { alias: "i", type: "string" })
+			.option("bandSize", { alias: "b", type: "number", default: 3 })
 		,
 	).help().argv;
 
@@ -47,7 +49,7 @@ const hashMidiFile = (file: string, root: string): MidiHash => {
 };
 
 
-const main = () => {
+const main = async () => {
 	let works = walkDir(DATA_DIR, /\/$/);
 	works.sort((d1, d2) => Number(path.basename(d1)) - Number(path.basename(d2)));
 
@@ -56,9 +58,11 @@ const main = () => {
 		works = works.filter(work => goodId(Number(path.basename(work))));
 	}
 
-	let n_cluster = 0;
-	let n_saCluster = 0;	// sheet - audio cluster
-	let n_work = 0;
+	const {hash} = hashMidiFile(argv.source, "");
+	//console.log("hash:", hash);
+
+	const index = new LshIndex({bandSize: argv.bandSize});
+	const hashMap = {};
 
 	for (const work of works) {
 		const workId = path.basename(work);
@@ -70,43 +74,19 @@ const main = () => {
 		console.log(String.fromCodePoint(0x1f4d5), `[${workId}]`, midiFiles.length, "MIDI files.");
 
 		const hashes = midiFiles.map(file => hashMidiFile(file, work));
-		//console.log("hashes:", hashes);
-
-		const index = new LshIndex();
-		hashes.forEach(hash => index.insert(hash.key, hash.hash));
-
-		// clustering
-		const refs = new Set<string>();
-		const clusters = [] as string[][];
-
-		hashes.forEach(hash => {
-			if (refs.has(hash.key))
-				return;
-
-			const cluster = index.query(hash.hash);
-			clusters.push(cluster);
-
-			cluster.forEach(key => refs.add(key));
+		hashes.forEach(({key, hash}) => {
+			hashMap[key] = hash;
+			index.insert(key, hash);
 		});
-
-		const multiClusters = clusters.filter(cluster => cluster.length > 1);
-		if (multiClusters.length) {
-			console.log("clusters:", multiClusters);
-			n_cluster += multiClusters.length;
-			++n_work;
-
-			const saClusters = multiClusters.filter(cluster => cluster.some(key => /spartito/.test(key)) && cluster.some(key => !/spartito/.test(key)));
-			n_saCluster += saClusters.length;
-		}
-
-		//console.log("clusters:", clusters);
-		const indexPath = path.join(work, "index.yaml");
-		fs.writeFileSync(indexPath, YAML.stringify({
-			midiClusters: clusters,
-		}));
 	}
 
-	console.log("Done,", `${n_saCluster}/${n_cluster}`, "clusters found in", n_work, "works.");
+	//console.log("index:", index);
+
+	const keys = index.query(hash);
+	const similarities = keys.map(key => [key, hash.jaccard(hashMap[key])]).sort((i1, i2) => i2[1] - i1[1]);
+
+	console.log("similarities:", similarities);
+	//await new Promise(resolve => setTimeout(resolve, 1e+9));
 }
 
 main();
