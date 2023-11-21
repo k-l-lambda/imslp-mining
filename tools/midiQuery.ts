@@ -24,7 +24,7 @@ interface MidiHash {
 const argv = yargs(hideBin(process.argv))
 	.command(
 		"$0 source [options]",
-		"Query a MIDI by hash.",
+		"Query a MIDI by hash from midi files in works directory.",
 		yargs => yargs
 			.positional("source", {type: "string", describe: ""})
 			.demandOption("source")

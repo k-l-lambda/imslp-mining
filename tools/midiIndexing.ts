@@ -26,7 +26,7 @@ interface MidiHash {
 const argv = yargs(hideBin(process.argv))
 	.command(
 		"$0 [options]",
-		"Construct MIDI indexes.",
+		"Construct MIDI indexes and save hash library.",
 		yargs => yargs
 			.option("ids", { alias: "i", type: "string" })
 		,
