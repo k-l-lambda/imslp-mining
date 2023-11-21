@@ -62,6 +62,13 @@ const main = () => {
 	let n_work = 0;
 
 	const hashLib = {} as Record<string, Record<string, string>>;
+	const hashLibPath = path.join(DATA_DIR, "midi-hash.yaml");
+	if (fs.existsSync(hashLibPath)) {
+		const lib = YAML.parse(fs.readFileSync(hashLibPath).toString());
+		Object.assign(hashLib, lib);
+
+		console.log("MIDI hashes from", Object.keys(lib).length, "works loaded.");
+	}
 
 	for (const work of works) {
 		const workId = path.basename(work);
@@ -111,7 +118,7 @@ const main = () => {
 		}));
 	}
 
-	fs.writeFileSync(path.join(DATA_DIR, "midi-hash.yaml"), YAML.stringify(hashLib));
+	fs.writeFileSync(hashLibPath, YAML.stringify(hashLib));
 
 	console.log("Done,", `${n_saCluster}/${n_cluster}`, "clusters found in", n_work, "works.");
 }
