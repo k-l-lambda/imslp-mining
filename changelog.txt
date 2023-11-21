@@ -2,6 +2,8 @@
 
 2023.11.21
 
+	+	midiIndexing.ts: MIDI hash library file added.
+
 	+	tools/midiQuery.ts created.
 
 

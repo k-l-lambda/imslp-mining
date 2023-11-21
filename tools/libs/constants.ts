@@ -23,6 +23,9 @@ export const SCORE_FILTER_CONDITION = process.env.SCORE_FILTER_CONDITION as ("si
 export const VIEWPORT_UNIT = 8;
 
 
+export const MINHASH_BANDSIZE = process.env.MINHASH_BANDSIZE;
+
+
 export const GAUGE_VISION_SPEC = {
 	viewportHeight: 256,
 	viewportUnit: 8,
