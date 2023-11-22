@@ -26,7 +26,7 @@ const hashMidiFile = (file: string): Minhash => {
 
 
 const main = async (csvPath: string) => {
-	const midiRoot = path.dirname(csvPath);
+	const maestroRoot = path.dirname(csvPath);
 
 	const csv = fs.readFileSync(csvPath, "utf8");
 	const lines = csv.split("\n");
@@ -57,6 +57,8 @@ const main = async (csvPath: string) => {
 		hashDict[key] = hash;
 	}));
 
+	const indexing = [];
+
 	table.forEach((fields, li) => {
 		const midiPath = fields[4];
 		console.log("Querying:", fields[7], midiPath);
@@ -65,11 +67,11 @@ const main = async (csvPath: string) => {
 		const validIds = works.filter(workId => hashLib[workId]);
 		//console.log("path:", path, works);
 
-		const hash = hashMidiFile(path.join(midiRoot, midiPath));
+		const hash = hashMidiFile(path.join(maestroRoot, midiPath));
 		index.insert(`_${li}`, hash);
 		//console.log("hash:", minhashSerializer.stringify(hash));
 
-		const localIndex = new LshIndex({bandSize: MINHASH_BANDSIZE});
+		/*const localIndex = new LshIndex({bandSize: MINHASH_BANDSIZE});
 		localIndex.insert(`_${li}`, hash);
 		validIds.forEach(workId => Object.entries(hashLib[workId]).forEach(([path, hash]) => localIndex.insert(`${workId}/${path}`, hash)));
 
@@ -77,12 +79,21 @@ const main = async (csvPath: string) => {
 		if (!keys.length) {
 			console.log("no local matching keys.");
 			keys = index.query(hash).filter(k => !k.startsWith("_"));
-		}
+		}*/
+		const keys = index.query(hash).filter(k => !k.startsWith("_"));
 
 		const similarities = keys.map(key => [key, hash.jaccard(hashDict[key])]).sort((i1, i2) => i2[1] - i1[1]);
 		if (similarities.length)
 			console.log("similarities:", similarities);
+
+		indexing.push({
+			midi: midiPath,
+			works: fields[7],
+			imslp: similarities,
+		});
 	});
+
+	fs.writeFileSync(path.join(maestroRoot, "imslp-indexing.yaml"), YAML.stringify(indexing));
 };
 
 

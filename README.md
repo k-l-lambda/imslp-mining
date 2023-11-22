@@ -38,3 +38,13 @@ yarn ts ./tools/scoreVision.ts
 yarn ts ./tools/spartitoConstructor.ts
 
 ```
+
+
+## Maestro Pipeline
+
+```shell
+# save MIDI hashes in midi-hash.yaml
+yarn ts ./tools/midiIndexing.ts
+
+yarn ts ./tools/maestroIndexer.ts
+```
