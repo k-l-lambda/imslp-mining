@@ -18,7 +18,7 @@ import { starry } from "./libs/omr";
 const argv = yargs(hideBin(process.argv))
 	.command(
 		"$0 [options]",
-		"Run OCR on layouts",
+		"Create starry score files from layouts.",
 		yargs => yargs
 			.option("ids", { alias: "i", type: "string" })
 		,

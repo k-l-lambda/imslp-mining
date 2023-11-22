@@ -22,7 +22,7 @@ import { shootPageCanvas, shootStaffCanvas } from "./libs/canvasUtilities";
 const argv = yargs(hideBin(process.argv))
 	.command(
 		"$0 [options]",
-		"Construct spartito files.",
+		"Run vision prediction on starry score files.",
 		yargs => yargs
 			.option("ids", { alias: "i", type: "string" })
 		,
