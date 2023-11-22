@@ -9,7 +9,7 @@ const stringify = hash => {
 
 const parse = (base64: string, seed = 257) => {
 	const buffer = Buffer.from(base64, "base64");
-	const arr = new Uint32Array(buffer.buffer);
+	const arr = new Uint32Array(new Uint8Array(buffer).buffer);
 
 	return {
 		hashvalues: arr,

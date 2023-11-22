@@ -1,5 +1,10 @@
 
 
+2023.11.22
+
+	+	tools/maestroIndexer.ts created.
+
+
 2023.11.21
 
 	+	midiIndexing.ts: MIDI hash library file added.
