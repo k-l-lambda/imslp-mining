@@ -7,7 +7,8 @@ import fs from "fs";
 
 import "../env"
 
-import {mountService} from "./service";
+import { mountService } from "./service";
+import { IMSLP_FILES_DIR } from "../tools/libs/constants";
 
 
 const app = express();
@@ -28,6 +29,7 @@ app.use("*", (req, res, next) => {
 const staticDir = dir => express.static(path.resolve(fs.realpathSync(__dirname), dir));
 
 app.use("/", staticDir("./dist"));
+app.use("/imslp", express.static(IMSLP_FILES_DIR));
 
 
 mountService(app);

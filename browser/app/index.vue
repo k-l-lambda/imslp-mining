@@ -18,7 +18,7 @@
 						<h3 class="file-id"><em>{{file.id}}</em></h3>
 						<p>
 							<i>{{iconForFile(file)}}</i>
-							<a>{{file.path.split("/").pop()}}</a>
+							<a :href="'/imslp/' + file.path" target="_blank">{{file.path.split("/").pop()}}</a>
 						</p>
 					</li>
 				</ul>
