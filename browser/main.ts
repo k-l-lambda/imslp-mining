@@ -27,7 +27,7 @@ app.use("*", (req, res, next) => {
 
 const staticDir = dir => express.static(path.resolve(fs.realpathSync(__dirname), dir));
 
-app.use("/", staticDir("./public"));
+app.use("/", staticDir("./dist"));
 
 
 mountService(app);
