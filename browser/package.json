@@ -5,6 +5,7 @@
   "description": "",
   "main": "main.ts",
   "scripts": {
+    "build": "vite build",
     "dev": "ts-node-dev main.ts & vite build --watch",
     "start": "node -r ts-node/register main.ts",
     "vite": "vite"
