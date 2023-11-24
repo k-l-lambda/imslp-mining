@@ -13,6 +13,7 @@
 					<strong class="title">{{workInfo.title}}</strong>
 					<a :href="workInfo.url" target="_blank">&#x1f517;</a>
 				</h2>
+				<pre class="work-names" v-if="workNames" v-text="workNames"></pre>
 				<ul class="file-list">
 					<li v-for="file of workInfo.files" :key="file.id">
 						<h3 class="file-id"><em>{{file.id}}</em></h3>
@@ -38,6 +39,11 @@
 		font-size: 150%;
 	}
 
+	h2
+	{
+		padding: 0 2em;
+	}
+
 	h2 a
 	{
 		text-decoration: none;
@@ -46,8 +52,19 @@
 	.author
 	{
 		display: inline-block;
-		margin: 0 1.2em;
 		font-weight: normal;
+	}
+
+	.title
+	{
+		margin: 0 1.2em;
+	}
+
+	.work-names
+	{
+		margin: 4em;
+		font-size: 120%;
+		float: right;
 	}
 
 	li h3
@@ -77,13 +94,20 @@
 </style>
 
 <script setup>
-	import { ref, reactive, onMounted, watch } from "vue";
+	import { ref, computed, onMounted, watch } from "vue";
 
 
 	const workIdList = ref([]);
 	const workId = ref("");
 
 	const workInfo = ref(null);
+
+	const workNames = computed(() => {
+		if (!workInfo.value || !workInfo.value.meta || !workInfo.value.meta["Name Translations"])
+			return;
+
+		return workInfo.value.meta["Name Translations"].split("; ").join("\n");
+	});
 
 
 	onMounted(async () => {
