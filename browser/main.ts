@@ -7,6 +7,8 @@ import fs from "fs";
 
 import "../env"
 
+import {mountService} from "./service";
+
 
 const app = express();
 
@@ -23,10 +25,12 @@ app.use("*", (req, res, next) => {
 });
 
 
-console.log("root", fs.realpathSync(__dirname));
 const staticDir = dir => express.static(path.resolve(fs.realpathSync(__dirname), dir));
 
 app.use("/", staticDir("./public"));
+
+
+mountService(app);
 
 
 const httpServer = http.createServer(app);
