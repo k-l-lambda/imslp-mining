@@ -65,10 +65,19 @@ type PageLayoutResult = omr.LayoutResult & {
 }
 
 
+interface SystemInitOptions {
+	page: omr.starry.Page;
+	backgroundImage?: string;
+	area: LayoutArea;
+	position: { x: number, y: number };
+};
+
+
 
 export {
 	FileInfo,
 	WorkBasic,
 	LayoutArea,
 	PageLayoutResult,
+	SystemInitOptions,
 };
