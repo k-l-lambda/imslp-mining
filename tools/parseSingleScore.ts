@@ -11,9 +11,10 @@ import { PageLayoutResult, LayoutArea } from "./libs/types";
 import { IMAGE_BED, SCORE_FILTER_CONDITION, TORCH_DEVICE, PROCESS_PREDICTOR_DIR, PROCESS_PREDICTOR_CMD } from "./libs/constants";
 import ProcessPredictor from "./libs/processPredictor";
 //import walkDir from "./libs/walkDir";
-import { ensureDir } from "./libs/utils";
+import { ensureDir, loadImage } from "./libs/utils";
 import { starry } from "./libs/omr";
 import { constructSystem } from "./libs/scoreSystem";
+import pyClients from "./libs/pyClients";
 
 
 
@@ -81,6 +82,58 @@ const readPages = async (sourcePath: string, targetDir: string, predictor: Proce
 	});
 
 	fs.writeFileSync(layoutPath, JSON.stringify(pages));
+};
+
+
+const ocr = async (targetDir: string): Promise<void> => {
+	const layoutPath = path.join(targetDir, "layout.json");
+	if (!fs.existsSync(layoutPath))
+		return;
+
+	const layout = JSON.parse(fs.readFileSync(layoutPath).toString()) as PageLayoutResult[];
+	if (!layout || !layout.length)
+		return;
+
+	console.log("OCR...");
+
+	const omrStatePath = path.join(targetDir, "omr.yaml");
+	const omrState = fs.existsSync(omrStatePath) ? YAML.parse(fs.readFileSync(omrStatePath).toString()) : {};
+	if (omrState?.ocr?.done) {
+		console.log("OCR already done, skip");
+		return;
+	}
+
+	let i = 0;
+	for (const page of layout) {
+		console.log(`Page ${i++}/${layout.length}`);
+
+		const image = await loadImage(page.page_info.url);
+		const resultLoc = await pyClients.predictScoreImages("textLoc", [image]);
+		const location = resultLoc[0].filter((box) => box.score > 0);
+		//console.log("location:", location);
+
+		if (location.length > 0) {
+			page.text = [];
+			for (let ii = 0; ii < location.length; ii += 100) {
+				const [resultOCR] = await pyClients.predictScoreImages("textOcr", {
+					buffers: [image],
+					location: location.slice(ii, ii + 100),
+				});
+				//console.log("resultOCR:", resultOCR?.areas?.filter(x => x.text));
+				page.text.push(...resultOCR?.areas);
+			}
+		}
+	}
+
+	fs.writeFileSync(layoutPath, JSON.stringify(layout));
+
+	const n_text = layout.reduce((n, page) => n + (page?.text?.length ?? 0), 0);
+	console.log(`${n_text} texts of ${layout.length} pages.`);
+
+	omrState.ocr = omrState.ocr || { done: true, logs: [] };
+	omrState.ocr.done = true;
+	omrState.ocr.logs.push(`[${new Date().toLocaleString()}] ${n_text} texts of ${layout.length} pages.`);
+	fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
 };
 
 
@@ -212,6 +265,8 @@ const initScore = (targetDir: string, meta: ScoreMeta): void => {
 
 
 const main = async () => {
+	const t0 = Date.now();
+
 	const predictor = new ProcessPredictor({
 		command: PROCESS_PREDICTOR_CMD,
 		cwd: PROCESS_PREDICTOR_DIR,
@@ -224,12 +279,14 @@ const main = async () => {
 	const sourcePath = argv.source;
 	await readPages(sourcePath, targetDir, predictor);
 
+	await ocr(targetDir);
+
 	const title = path.basename(sourcePath, path.extname(sourcePath));
 	initScore(targetDir, { title });
 
-	predictor.dispose();
+	//predictor.dispose();
 
-	console.log("Done");
+	console.log(`parseSingleScore Done in ${(Date.now() - t0) * 1e-3}s`);
 };
 
 
