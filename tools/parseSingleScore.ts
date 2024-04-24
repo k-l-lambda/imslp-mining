@@ -43,6 +43,7 @@ const argv = yargs(hideBin(process.argv))
 				type: "string",
 			})
 			.option("renew", { alias: "r", type: "boolean" })
+			.option("gauge", { alias: "g", type: "boolean" })
 		,
 	).help().argv;
 
@@ -243,7 +244,7 @@ const initScore = (targetDir: string, meta: ScoreMeta): void => {
 		headers,
 		instrumentDict: {},
 		settings: {
-			enabledGauge: true,
+			enabledGauge: argv.gauge,
 			semanticConfidenceThreshold: 1,
 		},
 		pages,
@@ -357,15 +358,27 @@ const scoreVision = async (targetDir: string): Promise<void> => {
 					});
 					image = sourceCanvas.toBufferSync("png");
 				}
-				else
-					strightBuffer = await loadImage(staff.backgroundImage as string);
+				else {
+					const sourceCanvas = await shootStaffCanvas(system, staffIndex, {
+						paddingLeft: STAFF_PADDING_LEFT,
+						spec: SEMANTIC_VISION_SPEC,
+					});
+					strightBuffer = sourceCanvas.toBufferSync("png");
+					staff.imagePosition = {
+						x: -STAFF_PADDING_LEFT / SEMANTIC_VISION_SPEC.viewportUnit,
+						y: staff.staffY - sourceCanvas.height / SEMANTIC_VISION_SPEC.viewportUnit / 2,
+						width: sourceCanvas.width / SEMANTIC_VISION_SPEC.viewportUnit,
+						height: sourceCanvas.height / SEMANTIC_VISION_SPEC.viewportUnit,
+					};
+				}
 
 				return {
 					gauge: undefined as Buffer,
 					image,
 					strightBuffer,
 					system,
-					staff, staffIndex,
+					staff,
+					staffIndex,
 				};
 			})).flat(1));
 

@@ -176,8 +176,19 @@ const main = async () => {
 							});
 							image = sourceCanvas.toBufferSync("png");
 						}
-						else
-							strightBuffer = await loadImage(staff.backgroundImage as string);
+						else {
+							const sourceCanvas = await shootStaffCanvas(system, staffIndex, {
+								paddingLeft: STAFF_PADDING_LEFT,
+								spec: SEMANTIC_VISION_SPEC,
+							});
+							strightBuffer = sourceCanvas.toBufferSync("png");
+							staff.imagePosition = {
+								x: -STAFF_PADDING_LEFT / SEMANTIC_VISION_SPEC.viewportUnit,
+								y: staff.staffY - sourceCanvas.height / SEMANTIC_VISION_SPEC.viewportUnit / 2,
+								width: sourceCanvas.width / SEMANTIC_VISION_SPEC.viewportUnit,
+								height: sourceCanvas.height / SEMANTIC_VISION_SPEC.viewportUnit,
+							};
+						}
 
 						return {
 							gauge: undefined as Buffer,
