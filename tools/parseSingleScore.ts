@@ -6,21 +6,23 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import * as skc from "skia-canvas";
 import sharp from "sharp";
+import { MIDI } from "@k-l-lambda/music-widgets";
 
 import "../env";
 
 import { PageLayoutResult, LayoutArea } from "./libs/types";
 import {
 	IMAGE_BED, TORCH_DEVICE, PROCESS_PREDICTOR_DIR, PROCESS_PREDICTOR_CMD, VIEWPORT_UNIT,
-	STAFF_PADDING_LEFT, GAUGE_VISION_SPEC, SEMANTIC_VISION_SPEC,
+	STAFF_PADDING_LEFT, GAUGE_VISION_SPEC, SEMANTIC_VISION_SPEC, BEAD_PICKER_URL,
 } from "./libs/constants";
 import ProcessPredictor from "./libs/processPredictor";
 //import walkDir from "./libs/walkDir";
 import { ensureDir, loadImage, saveImage } from "./libs/utils";
-import { starry } from "./libs/omr";
+import { starry, beadSolver, measureLayout } from "./libs/omr";
 import { constructSystem } from "./libs/scoreSystem";
 import pyClients from "./libs/pyClients";
 import { shootPageCanvas, shootStaffCanvas } from "./libs/canvasUtilities";
+import OnnxBeadPicker from "./libs/onnxBeadPicker";
 
 
 
@@ -448,6 +450,99 @@ const scoreVision = async (targetDir: string): Promise<void> => {
 };
 
 
+const constructSpartitos = async (targetDir: string, beadPicker: OnnxBeadPicker): Promise<void> => {
+	const omrStatePath = path.join(targetDir, "omr.yaml");
+	const scorePath = path.join(targetDir, "score.json");
+	if (!fs.existsSync(scorePath))
+		return;
+
+	const omrState = fs.existsSync(omrStatePath) ? YAML.parse(fs.readFileSync(omrStatePath).toString()) : {};
+	if (!omrState?.score?.semantic)
+		return;
+
+	if (!argv.renew && omrState.spartito) {
+		console.log("Spartito already constructed, skip.");
+		return;
+	}
+
+	const scoreJSON = fs.readFileSync(scorePath).toString();
+	const score = starry.recoverJSON<starry.Score>(scoreJSON, starry);
+
+	console.log("Constructing spartitos...");;
+
+	if (score.systems.some(system => !system.semantics)) {
+		const ns = score.systems.filter(system => !system.semantics).length;
+		console.warn("invalid score, null system semantics:", `${ns}/${score.systems.length}`);
+		return;
+	}
+
+	omrState.spartito = [];
+	omrState.glimpseModel = BEAD_PICKER_URL.replace(/\\/g, "/").split("/").slice(-2).join("/");
+
+	const pageCounting = {} as Record<number, number>;
+
+	for (const singleScore of score.splitToSingleScoresGen()) {
+		//console.debug("singleScore:", singleScore.pages.length);
+		const spartito = singleScore.makeSpartito();
+
+		spartito.measures.forEach((measure) => singleScore.assignBackgroundForMeasure(measure));
+		singleScore.makeTimewiseGraph({ store: true });
+
+		for (const measure of spartito.measures)
+			if (measure.events.length + 1 < beadPicker.n_seq) {
+				//console.debug("glimpse:", `${measure.measureIndex}/${spartito.measures.length}`);
+				await beadSolver.glimpseMeasure(measure, { picker: beadPicker });
+			}
+
+		const { notation } = spartito.performByEstimation();
+		const mlayout = singleScore.getMeasureLayout()
+		const measureIndices = mlayout?.serialize(measureLayout.LayoutType.Full)
+			?? Array(notation.measures.length).fill(null).map((_, i) => i + 1);
+		const midi = notation.toPerformingMIDI(measureIndices);
+
+		// ignore empty spartito
+		if (!midi)
+			continue;
+
+		const headPageIndex = singleScore.headers.SubScorePage ? Number(singleScore.headers.SubScorePage.match(/^\d+/)[0]) : 0;
+		console.assert(Number.isInteger(headPageIndex) && score.pages[headPageIndex],
+			"invalid headPageIndex:", singleScore.headers.SubScorePage, score.pages.length);
+
+		const subId = pageCounting[headPageIndex] ? `p${headPageIndex}-${pageCounting[headPageIndex]}` : `p${headPageIndex}`;
+
+		pageCounting[headPageIndex] = pageCounting[headPageIndex] || 0;
+		++pageCounting[headPageIndex];
+
+		const headPage = score.pages[headPageIndex];
+		const title = (headPage.tokens ?? [])
+			.filter((token: starry.TextToken) => token.textType === starry.TextType.Title)
+			.sort((t1, t2) => t1.y - t2.y)
+			.map((token: starry.TextToken) => token.text)
+			.join("\n");
+
+		const spartitoPath = path.join(targetDir, `${subId}.spartito.json`);
+		fs.writeFileSync(spartitoPath, JSON.stringify(spartito));
+		const subScorePath = path.join(targetDir, `${subId}.score.json`);
+		fs.writeFileSync(subScorePath, JSON.stringify(singleScore));
+		console.log("Spartito saved:", singleScore.headers.SubScorePage ? `page[${singleScore.headers.SubScorePage}]` : "entire");
+
+		const midiPath = path.join(targetDir, `${subId}.spartito.midi`);
+		fs.writeFileSync(midiPath, Buffer.from(MIDI.encodeMidiFile(midi)));
+
+		omrState.spartito.push({
+			id: subId,
+			index: omrState.spartito.length,
+			time: Date.now(),
+			title,
+			systemRange: singleScore.headers.SubScoreSystem || "all",
+			pageRange: singleScore.headers.SubScorePage || "all",
+		});
+	}
+
+	fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
+};
+
+
 const main = async () => {
 	const t0 = Date.now();
 
@@ -455,6 +550,13 @@ const main = async () => {
 		command: PROCESS_PREDICTOR_CMD,
 		cwd: PROCESS_PREDICTOR_DIR,
 		args: ["./streamPredictor.py", SCORE_LAYOUT_WEIGHT, "-m", "scorePage", "-dv", TORCH_DEVICE, "-i"],
+	});
+
+	let pickerLoading;
+	const beadPicker = new OnnxBeadPicker(BEAD_PICKER_URL, {
+		n_seq: 128,
+		usePivotX: true,
+		onLoad: promise => pickerLoading = promise,
 	});
 
 	const targetDir = argv.target || path.dirname(argv.source);
@@ -469,6 +571,9 @@ const main = async () => {
 	initScore(targetDir, { title });
 
 	await scoreVision(targetDir);
+
+	await pickerLoading;
+	constructSpartitos(targetDir, beadPicker);
 
 	//predictor.dispose();
 
