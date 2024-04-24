@@ -542,9 +542,21 @@ const constructSpartitos = async (targetDir: string, pickers: OnnxBeadPicker[]):
 
 		const spartitoPath = path.join(targetDir, `${subId}.spartito.json`);
 		fs.writeFileSync(spartitoPath, JSON.stringify(spartito));
+		console.log("Spartito saved:", singleScore.headers.SubScorePage ? `page[${singleScore.headers.SubScorePage}]` : "entire");
+
+		// expand score images as data URL
+		await singleScore.replaceImageKeys(async key => {
+			if (typeof (key) === "string" && key.startsWith("md5:")) {
+				const ext = key.split(".").pop();
+				const buffer = await loadImage(key);
+				return `data:image/${ext};base64,${buffer.toString("base64")}`;
+			}
+
+			return key as string;
+		});
+
 		const subScorePath = path.join(targetDir, `${subId}.score.json`);
 		fs.writeFileSync(subScorePath, JSON.stringify(singleScore));
-		console.log("Spartito saved:", singleScore.headers.SubScorePage ? `page[${singleScore.headers.SubScorePage}]` : "entire");
 
 		const midiPath = path.join(targetDir, `${subId}.spartito.midi`);
 		fs.writeFileSync(midiPath, Buffer.from(MIDI.encodeMidiFile(midi)));
