@@ -39,10 +39,21 @@ const saveImage = async (data: Buffer, ext: string): Promise<string> => {
 const parseIdRangeStr = (ids: string): [number, number?] => ids.split("-").map(x => x ? parseInt(x) : null) as any;
 
 
+// left close, right open
 const idRange2Filter = (ids: string): (n: number) => boolean => {
 	const [begin, end] = parseIdRangeStr(ids);
 	if (end !== undefined)
 		return id => id >= begin && (!end || id < end);
+
+	return id => id === begin;
+};
+
+
+// close interval
+const pageRange2Filter = (range: string): (n: number) => boolean => {
+	const [begin, end] = parseIdRangeStr(range);
+	if (end !== undefined)
+		return id => id >= begin && (!end || id <= end);
 
 	return id => id === begin;
 };
@@ -75,4 +86,5 @@ export {
 	saveImage,
 	parseIdRangeStr,
 	idRange2Filter,
+	pageRange2Filter,
 };

@@ -17,8 +17,8 @@ import {
 } from "./libs/constants";
 import ProcessPredictor from "./libs/processPredictor";
 //import walkDir from "./libs/walkDir";
-import { ensureDir, loadImage, saveImage } from "./libs/utils";
-import { starry, beadSolver, measureLayout, regulateWithBeadSolver } from "./libs/omr";
+import { ensureDir, loadImage, saveImage, pageRange2Filter } from "./libs/utils";
+import { starry, measureLayout, regulateWithBeadSolver } from "./libs/omr";
 import { constructSystem } from "./libs/scoreSystem";
 import pyClients from "./libs/pyClients";
 import { shootPageCanvas, shootStaffCanvas } from "./libs/canvasUtilities";
@@ -43,7 +43,8 @@ const argv = yargs(hideBin(process.argv))
 				type: "string",
 			})
 			.option("renew", { alias: "r", type: "boolean" })
-			.option("gauge", { alias: "g", type: "boolean" })
+			.option("gauge", { alias: "g", type: "boolean", description: "enabled staff image strgighten" })
+			.option("pages", { alias: "p", type: "string", description: "page range, e.g. 1-3, -5, 2-" })
 		,
 	).help().argv;
 
@@ -54,7 +55,7 @@ type ScoreMeta = { title: string } & Record<string, string>;
 const readPages = async (sourcePath: string, targetDir: string, predictor: ProcessPredictor): Promise<void> => {
 	if (path.extname(sourcePath).toLowerCase() !== ".pdf") {
 		// TODO:
-		console.warn("not PDF:", path.extname(sourcePath));
+		console.warn("not PDF:", sourcePath);
 		return;
 	}
 	if (!fs.existsSync(sourcePath)) {
@@ -157,15 +158,11 @@ const initScore = (targetDir: string, meta: ScoreMeta): void => {
 	if (!layout?.length)
 		return;
 
-	const layoutPages = layout.filter(page => page.detection?.areas?.length);
+	const goodIndices = argv.pages ? pageRange2Filter(argv.pages) : () => true;
+
+	const layoutPages = layout.filter((_, i) => goodIndices(i + 1)).filter(page => page.detection?.areas?.length);
 	if (!layoutPages.length)
 		return;
-
-	const staffNumbers = layout.filter(page => page.detection?.areas?.length)
-		.map(page => page.detection?.areas).flat(1)
-		.filter(area => area.staves?.middleRhos?.length)
-		.map(area => area.staves.middleRhos.length)
-		.sort((a, b) => a - b);
 
 	const omrStatePath = path.join(targetDir, "omr.yaml");
 	const scorePath = path.join(targetDir, "score.json");
@@ -175,6 +172,9 @@ const initScore = (targetDir: string, meta: ScoreMeta): void => {
 		console.log("Score initilization already done, skip");
 		return;
 	}
+
+	if (argv.pages)
+		omrState.pageRange = argv.pages;
 
 	const meanWidth = layoutPages.reduce((sum, page) => sum + page.sourceSize.width, 0) / layoutPages.length;
 
