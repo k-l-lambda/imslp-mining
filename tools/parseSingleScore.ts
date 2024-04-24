@@ -4,17 +4,23 @@ import path from "path";
 import YAML from "yaml";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import * as skc from "skia-canvas";
+import sharp from "sharp";
 
 import "../env";
 
 import { PageLayoutResult, LayoutArea } from "./libs/types";
-import { IMAGE_BED, SCORE_FILTER_CONDITION, TORCH_DEVICE, PROCESS_PREDICTOR_DIR, PROCESS_PREDICTOR_CMD } from "./libs/constants";
+import {
+	IMAGE_BED, TORCH_DEVICE, PROCESS_PREDICTOR_DIR, PROCESS_PREDICTOR_CMD, VIEWPORT_UNIT,
+	STAFF_PADDING_LEFT, GAUGE_VISION_SPEC, SEMANTIC_VISION_SPEC,
+} from "./libs/constants";
 import ProcessPredictor from "./libs/processPredictor";
 //import walkDir from "./libs/walkDir";
-import { ensureDir, loadImage } from "./libs/utils";
+import { ensureDir, loadImage, saveImage } from "./libs/utils";
 import { starry } from "./libs/omr";
 import { constructSystem } from "./libs/scoreSystem";
 import pyClients from "./libs/pyClients";
+import { shootPageCanvas, shootStaffCanvas } from "./libs/canvasUtilities";
 
 
 
@@ -156,22 +162,6 @@ const initScore = (targetDir: string, meta: ScoreMeta): void => {
 		.map(area => area.staves.middleRhos.length)
 		.sort((a, b) => a - b);
 
-	const n_staff = Math.max(0, ...staffNumbers);
-	const n_staff_90percent = staffNumbers[Math.floor(staffNumbers.length * 0.9)];
-
-	switch (SCORE_FILTER_CONDITION) {
-		case "single_piano":
-			if (n_staff_90percent > 3)
-				return;
-
-			break;
-		case "1or2pianos":
-			if (n_staff_90percent > 4)
-				return;
-
-			break;
-	}
-
 	const omrStatePath = path.join(targetDir, "omr.yaml");
 	const scorePath = path.join(targetDir, "score.json");
 
@@ -264,6 +254,200 @@ const initScore = (targetDir: string, meta: ScoreMeta): void => {
 };
 
 
+const scoreVision = async (targetDir: string): Promise<void> => {
+	const omrStatePath = path.join(targetDir, "omr.yaml");
+	const scorePath = path.join(targetDir, "score.json");
+	if (!fs.existsSync(scorePath))
+		return;
+
+	const omrState = fs.existsSync(omrStatePath) ? YAML.parse(fs.readFileSync(omrStatePath).toString()) : {};
+	if (omrState?.score?.semantic) {
+		console.log("Score vision already done, skip.");
+		return;
+	}
+
+	const scoreJSON = fs.readFileSync(scorePath).toString();
+	const score = starry.recoverJSON<starry.Score>(scoreJSON, starry);
+
+	const saveScore = async () => {
+		await score.replaceImageKeys(key => Promise.resolve(Buffer.isBuffer(key) || ArrayBuffer.isView(key) ? undefined : key));
+		fs.writeFileSync(scorePath, JSON.stringify(score));
+	};
+
+	console.log("Runing scoreVision...");
+
+	try {
+		if (!omrState.score?.brackets) {
+			// brackets prediction
+			const pageCanvases = await Promise.all(score.pages.map(async page => {
+				const buffer = await loadImage(page.source.url);
+				const pngBuffer = await sharp(buffer).toFormat("png").toBuffer();
+				const image = await skc.loadImage(pngBuffer);
+				const pageCanvas = await shootPageCanvas({ page, source: image });	// also prepare system background images
+
+				return { page, pageCanvas };
+			}));
+
+			for (const { page, pageCanvas } of pageCanvases) {
+				const areas = page.layout.areas.filter(area => area.staves?.middleRhos?.length);
+				const interval = page.source.interval;
+
+				const bracketImages = page.systems.map((system, systemIndex) => {
+					const {
+						x,
+						y,
+						staves: { middleRhos, phi1 },
+					} = areas[systemIndex];
+
+					const topMid = middleRhos[0];
+					const bottomMid = middleRhos[middleRhos.length - 1];
+
+					const sourceRect = {
+						x: x + phi1 - 4 * interval,
+						y: y + topMid - 4 * interval,
+						width: 8 * interval,
+						height: bottomMid - topMid + 8 * interval,
+					};
+
+					const canvas = new skc.Canvas(VIEWPORT_UNIT * 8, (sourceRect.height / interval) * VIEWPORT_UNIT);
+
+					const context = canvas.getContext("2d");
+					context.drawImage(pageCanvas, sourceRect.x, sourceRect.y, sourceRect.width, sourceRect.height, 0, 0, canvas.width, canvas.height);
+
+					return {
+						system,
+						buffer: canvas.toBufferSync("png"),
+					};
+				});
+
+				const bracketsRes = await pyClients.predictScoreImages("brackets", { buffers: bracketImages.map(x => x.buffer) });
+
+				bracketImages.forEach(({ system }, index) => {
+					if (bracketsRes[index]) {
+						system.bracketsAppearance = bracketsRes[index];
+						//console.log("res:", system.bracketsAppearance);
+					}
+				});
+			}
+
+			score.inferenceStaffLayout();
+			console.log("Score staffLayout:", score.staffLayoutCode);
+
+			omrState.score.staffLayoutCode = score.staffLayoutCode;
+			omrState.score.brackets = Date.now();
+			fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
+		}
+
+		// straightification & semantic prediction
+		let pageIndex = 0;
+		for (const page of score.pages) {
+			console.log(`Page ${pageIndex++}/${score.pages.length}...`);
+
+			const staves = await Promise.all(page.systems.map(system => system.staves.map(async (staff, staffIndex) => {
+				let image: Buffer;
+				let strightBuffer: Buffer;
+				if (score.settings.enabledGauge) {
+					const sourceCanvas = await shootStaffCanvas(system, staffIndex, {
+						paddingLeft: STAFF_PADDING_LEFT,
+						spec: GAUGE_VISION_SPEC,
+					});
+					image = sourceCanvas.toBufferSync("png");
+				}
+				else
+					strightBuffer = await loadImage(staff.backgroundImage as string);
+
+				return {
+					gauge: undefined as Buffer,
+					image,
+					strightBuffer,
+					system,
+					staff, staffIndex,
+				};
+			})).flat(1));
+
+			if (score.settings.enabledGauge) {
+				const gaugeRes = await pyClients.predictScoreImages("gauge", staves.map(staff => staff.image));
+				console.assert(gaugeRes.length === staves.length, "invalid gauge response:", gaugeRes);
+				if (gaugeRes?.length !== staves.length)
+					throw new Error("invalid gauge response");
+
+				staves.forEach((staff, i) => staff.gauge = gaugeRes[i].image);
+
+				for (const staffItem of staves) {
+					const { gauge, system, staff, staffIndex } = staffItem;
+
+					const sourceCanvas = await shootStaffCanvas(system, staffIndex, {
+						paddingLeft: STAFF_PADDING_LEFT,
+						spec: GAUGE_VISION_SPEC,
+						scaling: 2,
+					});
+
+					const sourceBuffer = sourceCanvas.toBufferSync("png");
+					//fs.writeFileSync("./test/sourceBuffer.png", sourceBuffer);
+					//fs.writeFileSync("./test/gauge.png", gauge);
+
+					const baseY = (system.middleY - (staff.top + staff.staffY)) * GAUGE_VISION_SPEC.viewportUnit + GAUGE_VISION_SPEC.viewportHeight / 2;
+
+					const { buffer, size } = await pyClients.predictScoreImages("gaugeRenderer", [sourceBuffer, gauge, baseY]);
+					//fs.writeFileSync("./test/afterGauge.png", buffer);
+					//process.exit(0);
+					const webpBuffer = await sharp(buffer).toFormat("webp").toBuffer();
+
+					staff.backgroundImage = await saveImage(webpBuffer, "webp");
+					staff.maskImage = undefined;
+
+					staff.imagePosition = {
+						x: -STAFF_PADDING_LEFT / GAUGE_VISION_SPEC.viewportUnit,
+						y: staff.staffY - size.height / GAUGE_VISION_SPEC.viewportUnit / 2,
+						width: size.width / GAUGE_VISION_SPEC.viewportUnit,
+						height: size.height / GAUGE_VISION_SPEC.viewportUnit,
+					};
+
+					staffItem.strightBuffer = buffer;
+				}
+
+				console.log("staves straightification done:", staves.length);
+			}
+
+			page.systems.forEach(system => system.clearTokens());
+
+			const semanticRes = await pyClients.predictScoreImages("semantic", staves.map(staff => staff.strightBuffer));
+			console.assert(semanticRes.length === staves.length, "invalid semantic response:", semanticRes);
+			if (semanticRes?.length !== staves.length)
+				throw new Error("invalid semantic response");
+
+			staves.forEach(({ system, staff, staffIndex }, i) => {
+				const graph = starry.recoverJSON<starry.SemanticGraph>(semanticRes[i], starry);
+				graph.offset(-STAFF_PADDING_LEFT / SEMANTIC_VISION_SPEC.viewportUnit, 0);
+
+				system.assignSemantics(staffIndex, graph);
+
+				staff.assignSemantics(graph);
+				staff.clearPredictedTokens();
+
+				score.assembleSystem(system, score.settings?.semanticConfidenceThreshold);
+			});
+		}
+
+		omrState.score.semantic = Date.now();
+
+		await saveScore();
+
+		score.assemble();
+		const n_measure = score.systems.reduce((sum, system) => sum + system.measureCount, 0);
+		omrState.score.n_measure = n_measure;
+
+		fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
+		console.log("Score saved.");
+	}
+	catch (err) {
+		omrState.score.lastError = err.toString();
+		fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
+		console.warn("Interrupted by exception:", err);
+	}
+};
+
+
 const main = async () => {
 	const t0 = Date.now();
 
@@ -283,6 +467,8 @@ const main = async () => {
 
 	const title = path.basename(sourcePath, path.extname(sourcePath));
 	initScore(targetDir, { title });
+
+	await scoreVision(targetDir);
 
 	//predictor.dispose();
 
