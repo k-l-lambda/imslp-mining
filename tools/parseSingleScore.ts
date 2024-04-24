@@ -18,11 +18,12 @@ import {
 import ProcessPredictor from "./libs/processPredictor";
 //import walkDir from "./libs/walkDir";
 import { ensureDir, loadImage, saveImage } from "./libs/utils";
-import { starry, beadSolver, measureLayout } from "./libs/omr";
+import { starry, beadSolver, measureLayout, regulateWithBeadSolver } from "./libs/omr";
 import { constructSystem } from "./libs/scoreSystem";
 import pyClients from "./libs/pyClients";
 import { shootPageCanvas, shootStaffCanvas } from "./libs/canvasUtilities";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
+import solutionStore from "./libs/solutionStore";
 
 
 
@@ -41,6 +42,7 @@ const argv = yargs(hideBin(process.argv))
 			.positional("target", {
 				type: "string",
 			})
+			.option("renew", { alias: "r", type: "boolean" })
 		,
 	).help().argv;
 
@@ -450,7 +452,7 @@ const scoreVision = async (targetDir: string): Promise<void> => {
 };
 
 
-const constructSpartitos = async (targetDir: string, beadPicker: OnnxBeadPicker): Promise<void> => {
+const constructSpartitos = async (targetDir: string, pickers: OnnxBeadPicker[]): Promise<void> => {
 	const omrStatePath = path.join(targetDir, "omr.yaml");
 	const scorePath = path.join(targetDir, "score.json");
 	if (!fs.existsSync(scorePath))
@@ -483,16 +485,23 @@ const constructSpartitos = async (targetDir: string, beadPicker: OnnxBeadPicker)
 
 	for (const singleScore of score.splitToSingleScoresGen()) {
 		//console.debug("singleScore:", singleScore.pages.length);
-		const spartito = singleScore.makeSpartito();
+		const stat = await regulateWithBeadSolver(singleScore, {
+			logger: console,
+			pickers,
+			solutionStore,
+		});
+		console.log('regulateWithBeadSolver stat:', stat);
+
+		const spartito = singleScore.spartito;
 
 		spartito.measures.forEach((measure) => singleScore.assignBackgroundForMeasure(measure));
 		singleScore.makeTimewiseGraph({ store: true });
 
-		for (const measure of spartito.measures)
+		/*for (const measure of spartito.measures)
 			if (measure.events.length + 1 < beadPicker.n_seq) {
 				//console.debug("glimpse:", `${measure.measureIndex}/${spartito.measures.length}`);
 				await beadSolver.glimpseMeasure(measure, { picker: beadPicker });
-			}
+			}*/
 
 		const { notation } = spartito.performByEstimation();
 		const mlayout = singleScore.getMeasureLayout()
@@ -552,12 +561,12 @@ const main = async () => {
 		args: ["./streamPredictor.py", SCORE_LAYOUT_WEIGHT, "-m", "scorePage", "-dv", TORCH_DEVICE, "-i"],
 	});
 
-	let pickerLoading;
-	const beadPicker = new OnnxBeadPicker(BEAD_PICKER_URL, {
-		n_seq: 128,
+	const pickerLoadings = [];
+	const beadPickers = [32, 64, 128, 512].map(n_seq => new OnnxBeadPicker(BEAD_PICKER_URL.replace(/seq\d+/, `seq${n_seq}`), {
+		n_seq,
 		usePivotX: true,
-		onLoad: promise => pickerLoading = promise,
-	});
+		onLoad: promise => pickerLoadings.push(promise),
+	}));
 
 	const targetDir = argv.target || path.dirname(argv.source);
 	ensureDir(targetDir);
@@ -572,8 +581,8 @@ const main = async () => {
 
 	await scoreVision(targetDir);
 
-	await pickerLoading;
-	constructSpartitos(targetDir, beadPicker);
+	await Promise.all(pickerLoadings);
+	constructSpartitos(targetDir, beadPickers);
 
 	//predictor.dispose();
 

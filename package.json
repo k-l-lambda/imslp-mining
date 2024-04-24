@@ -26,6 +26,7 @@
     "fastest-levenshtein": "^1.0.16",
     "isomorphic-fetch": "^3.0.0",
     "js-sha1": "^0.6.0",
+    "lmdb": "^3.0.6",
     "math-erf": "^1.0.0",
     "minhash": "^0.0.9",
     "msgpackr": "^1.9.5",

@@ -1,5 +1,10 @@
 
 
+2024.4.24
+
+	+	parseSingleScore.ts: score recognition & regulation implemented.
+
+
 2024.4.23
 
 	+	tools/parseSingleScore.ts created.
