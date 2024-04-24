@@ -415,12 +415,23 @@ const scoreVision = async (targetDir: string): Promise<void> => {
 
 			page.systems.forEach(system => system.clearTokens());
 
-			const semanticRes = await pyClients.predictScoreImages("semantic", staves.map(staff => staff.strightBuffer));
+			const [semanticRes, maskRes] = await Promise.all([
+				pyClients.predictScoreImages("semantic", staves.map(staff => staff.strightBuffer)),
+				pyClients.predictScoreImages("mask", staves.map(staff => staff.strightBuffer)),
+			]);
 			console.assert(semanticRes.length === staves.length, "invalid semantic response:", semanticRes);
+			console.assert(maskRes.length === staves.length, "invalid mask response:", semanticRes);
 			if (semanticRes?.length !== staves.length)
 				throw new Error("invalid semantic response");
+			if (maskRes?.length !== staves.length)
+				throw new Error("invalid mask response");
 
-			staves.forEach(({ system, staff, staffIndex }, i) => {
+			for (let i = 0; i < staves.length; i++) {
+				const { system, staff, staffIndex } = staves[i];
+
+				const webpMaskBuffer = await sharp(maskRes[i].image).toFormat("webp").toBuffer();
+				staff.maskImage = await saveImage(webpMaskBuffer, "webp");;
+
 				const graph = starry.recoverJSON<starry.SemanticGraph>(semanticRes[i], starry);
 				graph.offset(-STAFF_PADDING_LEFT / SEMANTIC_VISION_SPEC.viewportUnit, 0);
 
@@ -430,7 +441,7 @@ const scoreVision = async (targetDir: string): Promise<void> => {
 				staff.clearPredictedTokens();
 
 				score.assembleSystem(system, score.settings?.semanticConfidenceThreshold);
-			});
+			};
 		}
 
 		omrState.score.semantic = Date.now();
@@ -479,7 +490,7 @@ const constructSpartitos = async (targetDir: string, pickers: OnnxBeadPicker[]):
 	}
 
 	omrState.spartito = [];
-	omrState.glimpseModel = BEAD_PICKER_URL.replace(/\\/g, "/").split("/").slice(-2).join("/");
+	omrState.solverModel = BEAD_PICKER_URL.replace(/\\/g, "/").split("/").slice(-2).join("/");
 
 	const pageCounting = {} as Record<number, number>;
 
@@ -582,7 +593,7 @@ const main = async () => {
 	await scoreVision(targetDir);
 
 	await Promise.all(pickerLoadings);
-	constructSpartitos(targetDir, beadPickers);
+	await constructSpartitos(targetDir, beadPickers);
 
 	//predictor.dispose();
 
