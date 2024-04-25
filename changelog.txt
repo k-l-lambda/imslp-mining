@@ -1,5 +1,10 @@
 
 
+2024.4.25
+
+	+	tools/metaExtractor.ts created.
+
+
 2024.4.24
 
 	+	parseSingleScore.ts: score recognition & regulation implemented.
