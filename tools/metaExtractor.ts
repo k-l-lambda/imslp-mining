@@ -1,5 +1,5 @@
 
-// extract meta info (title, author etc.) from score images
+// extract meta info (title, author etc.) from score images by OCR
 
 import fs from "fs";
 import path from "path";
@@ -40,18 +40,25 @@ const ocrImage = async (filePath: string): Promise<any> => {
 };
 
 
+const normalizeString = (str: string): string => str.replace(/[,"]/g, " ");
+
+
 const main = async () => {
-	const dirs = fs.readdirSync(argv.source);
+	const dirs = fs.readdirSync(argv.source).filter(name => /^\d+/.test(name));
+	dirs.sort((d1, d2) => parseInt(d1) - parseInt(d2));
 	//console.log("dirs:", dirs);
 
 	const metaPath = path.join(argv.source, "meta.csv");
 
 	for (const dir of dirs) {
 		const dirPath = path.join(argv.source, dir);
+		if (fs.existsSync(path.join(dirPath, "ocr.yaml")))
+			continue;
+
 		const files = fs.readdirSync(dirPath).filter(file => /^\d+/.test(file));
 		files.sort();
 
-		if (!files.length || files.includes("ocr.yaml"))
+		if (!files.length)
 			continue;
 
 		const meta = {};
@@ -72,11 +79,12 @@ const main = async () => {
 			if (!titles.length)
 				continue;
 
-			const title = titles[0].text;
-			const author = authors[0]?.text ?? "";
+			const title = normalizeString(titles[0].text);
+			const author = normalizeString(authors[0]?.text ?? "");
 
 			const totalMeta = fs.createWriteStream(metaPath, { flags: "a" });
 			totalMeta.write(`${dir},${title},${author}\n`);
+			totalMeta.close();
 
 			console.log(`${dir}: ${title}`);
 
