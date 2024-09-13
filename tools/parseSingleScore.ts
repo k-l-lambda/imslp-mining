@@ -625,6 +625,7 @@ const main = async () => {
 	//predictor.dispose();
 
 	console.log(`parseSingleScore Done in ${(Date.now() - t0) * 1e-3}s`);
+	process.exit(0);
 };
 
 
