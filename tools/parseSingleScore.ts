@@ -18,7 +18,7 @@ import {
 import ProcessPredictor from "./libs/processPredictor";
 //import walkDir from "./libs/walkDir";
 import { ensureDir, loadImage, saveImage, pageRange2Filter } from "./libs/utils";
-import { starry, measureLayout, regulateWithBeadSolver } from "./libs/omr";
+import { starry, measureLayout, regulateWithBeadSolver, beadSolver } from "./libs/omr";
 import { constructSystem } from "./libs/scoreSystem";
 import pyClients from "./libs/pyClients";
 import { shootPageCanvas, shootStaffCanvas } from "./libs/canvasUtilities";
@@ -507,6 +507,8 @@ const constructSpartitos = async (targetDir: string, pickers: OnnxBeadPicker[]):
 
 	const pageCounting = {} as Record<number, number>;
 
+	const beadPicker = pickers[pickers.length - 1];
+
 	for (const singleScore of score.splitToSingleScoresGen()) {
 		//console.debug("singleScore:", singleScore.pages.length);
 		const stat = await regulateWithBeadSolver(singleScore, {
@@ -521,11 +523,11 @@ const constructSpartitos = async (targetDir: string, pickers: OnnxBeadPicker[]):
 		spartito.measures.forEach((measure) => singleScore.assignBackgroundForMeasure(measure));
 		singleScore.makeTimewiseGraph({ store: true });
 
-		/*for (const measure of spartito.measures)
+		for (const measure of spartito.measures)
 			if (measure.events.length + 1 < beadPicker.n_seq) {
 				//console.debug("glimpse:", `${measure.measureIndex}/${spartito.measures.length}`);
 				await beadSolver.glimpseMeasure(measure, { picker: beadPicker });
-			}*/
+			}
 
 		const { notation } = spartito.performByEstimation();
 		const mlayout = singleScore.getMeasureLayout()

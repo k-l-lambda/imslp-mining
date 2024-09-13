@@ -1,5 +1,10 @@
 
 
+2024.9.13
+
+	+	tools/parseSingleScore.ts: enabled glimpseMeasure.
+
+
 2024.4.25
 
 	+	tools/metaExtractor.ts created.
