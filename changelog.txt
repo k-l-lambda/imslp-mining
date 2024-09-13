@@ -2,6 +2,8 @@
 
 2024.9.13
 
+	>	tools/lib/solutionStore.ts: merged remote solution store into.
+
 	+	tools/parseSingleScore.ts: enabled glimpseMeasure.
 
 

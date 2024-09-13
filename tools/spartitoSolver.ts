@@ -2,18 +2,18 @@
 import fs from "fs";
 import path from "path";
 import YAML from "yaml";
-import fetch from "isomorphic-fetch";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 import "../env";
 
 import { WorkBasic } from "./libs/types";
-import { DATA_DIR, BEAD_PICKER_URL, SPARTITO_ROOT, SOLUTION_STORE_OPTIONS } from "./libs/constants";
-import { starry, AdminSolutionStore, regulateWithBeadSolver } from "./libs/omr";
+import { DATA_DIR, BEAD_PICKER_URL, SPARTITO_ROOT } from "./libs/constants";
+import { starry, regulateWithBeadSolver } from "./libs/omr";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
 import walkDir from "./libs/walkDir";
 import { idRange2Filter } from "./libs/utils";
+import solutionStore from "./libs/solutionStore";
 
 
 
@@ -51,8 +51,6 @@ const main = async () => {
 		const goodId = idRange2Filter(argv.ids);
 		works = works.filter(work => goodId(Number(path.basename(work))));
 	}
-
-	const solutionStore = new AdminSolutionStore({...SOLUTION_STORE_OPTIONS, fetch});
 
 	let n_stat = 0;
 	const statSum = {
