@@ -43,6 +43,7 @@ const argv = yargs(hideBin(process.argv))
 				type: "string",
 			})
 			.option("renew", { alias: "r", type: "boolean" })
+			.option("skip_exist", { alias: "s", type: "boolean" })
 			.option("gauge", { alias: "g", type: "boolean", description: "enabled staff image strgighten" })
 			.option("pages", { alias: "p", type: "string", description: "page range, e.g. 1-3, -5, 2-" })
 		,
@@ -593,6 +594,13 @@ const constructSpartitos = async (targetDir: string, pickers: OnnxBeadPicker[]):
 const main = async () => {
 	const t0 = Date.now();
 
+	const targetDir = argv.target || path.dirname(argv.source);
+	if (argv.skip_exist && fs.existsSync(path.join(targetDir, "omr.yaml"))) {
+		console.log("omr.yaml exists, skip.");
+		return;
+	}
+	ensureDir(targetDir);
+
 	const predictor = new ProcessPredictor({
 		command: PROCESS_PREDICTOR_CMD,
 		cwd: PROCESS_PREDICTOR_DIR,
@@ -605,9 +613,6 @@ const main = async () => {
 		usePivotX: true,
 		onLoad: promise => pickerLoadings.push(promise),
 	}));
-
-	const targetDir = argv.target || path.dirname(argv.source);
-	ensureDir(targetDir);
 
 	const sourcePath = argv.source;
 	await readPages(sourcePath, targetDir, predictor);

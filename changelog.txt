@@ -1,5 +1,10 @@
 
 
+2024.9.19
+
+	+	parseSingleScore.ts: added argv of skip_exist.
+
+
 2024.9.13
 
 	>	tools/lib/solutionStore.ts: merged remote solution store into.
