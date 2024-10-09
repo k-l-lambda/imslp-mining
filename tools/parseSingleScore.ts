@@ -46,6 +46,7 @@ const argv = yargs(hideBin(process.argv))
 			.option("skip_exist", { alias: "s", type: "boolean" })
 			.option("gauge", { alias: "g", type: "boolean", description: "enabled staff image strgighten" })
 			.option("pages", { alias: "p", type: "string", description: "page range, e.g. 1-3, -5, 2-" })
+			.option("solveSpartito", { alias: "v", type: "boolean", description: "run spartito solver" })
 		,
 	).help().argv;
 
@@ -608,11 +609,11 @@ const main = async () => {
 	});
 
 	const pickerLoadings = [];
-	const beadPickers = [32, 64, 128, 512].map(n_seq => new OnnxBeadPicker(BEAD_PICKER_URL.replace(/seq\d+/, `seq${n_seq}`), {
+	const beadPickers = argv.solveSpartito ? [32, 64, 128, 512].map(n_seq => new OnnxBeadPicker(BEAD_PICKER_URL.replace(/seq\d+/, `seq${n_seq}`), {
 		n_seq,
 		usePivotX: true,
 		onLoad: promise => pickerLoadings.push(promise),
-	}));
+	})) : [];
 
 	const sourcePath = argv.source;
 	await readPages(sourcePath, targetDir, predictor);
@@ -624,8 +625,10 @@ const main = async () => {
 
 	await scoreVision(targetDir);
 
-	await Promise.all(pickerLoadings);
-	await constructSpartitos(targetDir, beadPickers);
+	if (argv.solveSpartito) {
+		await Promise.all(pickerLoadings);
+		await constructSpartitos(targetDir, beadPickers);
+	}
 
 	//predictor.dispose();
 
