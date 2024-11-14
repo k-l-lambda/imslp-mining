@@ -1,0 +1,153 @@
+id: 3714
+title: Piano Sonata in B-flat major, D.960
+author: Schubert, Franz
+url: https://imslp.org/wiki/Piano Sonata in B-flat major, D.960 (Schubert, Franz)
+meta:
+  Work Title: Piano Sonata in B-flat major
+  Alternative. Title: Piano Sonata No.15; Piano Sonata No.21
+  Name Translations: Klaviersonate Nr. 21; Sonata in B-flat major, D. 960; Sonata
+    para piano en si bemol mayor, D. 960; Sonate pour piano nº 21 de Schubert;
+    ピアノソナタ第21番; Sonata per a piano núm. 21 en si bemoll major, D 960
+  Name Aliases: Klaviersonate Nr. 21, B-Dur, D 960; D 960; sonata para piano n.º
+    21 en si bemol mayor, D 960; Sonate pour piano en si bémol majeur
+  Authorities: "WorldCat; VIAF: 293260566; BNF: 13911286p"
+  Composer: Schubert, Franz
+  Opus/Catalogue NumberOp./Cat. No.: D.960
+  I-Catalogue NumberI-Cat. No.: IFS 594
+  Key: B-flat major
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements:
+    Molto moderato (B♭ major)
+    Andante sostenuto (C♯ minor/C♯ major)
+    Scherzo. Allegro vivace con delicatezza — Trio (B♭ major)
+    Allegro ma non troppo (B♭ major)
+  Year/Date of CompositionY/D of Comp.: 1828 September
+  First Publication.: 1839 – Diabelli
+  Average DurationAvg. Duration: 43 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia article (French)
+categories:
+  - Albright, Charlie/Performer
+  - Gardner Museum Recordings
+  - Lipkin, Seymour/Performer
+  - Hokanson, Randolph/Performer
+  - Pages with recordings from Pandora/Goldstein Archive
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Epstein, Julius/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Scores published by Muzgiz
+  - Paulsson, Karl/Editor
+  - Litschauer, Walburga/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Work pages with links to recordings
+  - Scores
+  - Schubert, Franz
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1839
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+  - B-flat major
+files:
+  - id: "714728"
+    tab: Score1
+    tabText: Scores
+    rating: 8.6666666666667
+    rateBy: 3
+    group: 0
+    title: Complete Score
+    path: (1797)Franz Schubert/(1828)Piano Sonata in B-flat major, D.960 (Schubert,
+      Franz)/IMSLP714728-PMLP2039-Schubert_D960_Barenreiter.pdf
+    ext: pdf
+  - id: "31446"
+    tab: Score1
+    tabText: Scores
+    rating: 5.7297297297297
+    rateBy: 37
+    group: 1
+    title: Complete Scorepiano.ru
+    path: (1797)Franz Schubert/(1828)Piano Sonata in B-flat major, D.960 (Schubert,
+      Franz)/IMSLP31446-PMLP02039-Piano_Sonata,_D._960.pdf
+    ext: pdf
+  - id: "55387"
+    tab: Score1
+    tabText: Scores
+    rating: 5.625
+    rateBy: 16
+    group: 2
+    title: Complete ScoreD-Mbs
+    path: (1797)Franz Schubert/(1828)Piano Sonata in B-flat major, D.960 (Schubert,
+      Franz)/IMSLP55387-PMLP02039-Schubert_Werke_Breitkopf_Serie_10_No_107_D_960.pdf
+    ext: pdf
+  - id: "78037"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 26
+    group: 0
+    title: I. Molto moderato
+    path: (1797)Franz Schubert/(1828)Piano Sonata in B-flat major, D.960 (Schubert,
+      Franz)/IMSLP78037-PMLP02039-5Moderato.mp3
+    ext: mp3
+  - id: "78038"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.5789473684211
+    rateBy: 19
+    group: 0
+    title: II. Andante sostenuto
+    path: (1797)Franz Schubert/(1828)Piano Sonata in B-flat major, D.960 (Schubert,
+      Franz)/IMSLP78038-PMLP02039-6Andante.mp3
+    ext: mp3
+  - id: "78039"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.4545454545455
+    rateBy: 11
+    group: 0
+    title: III. Scherzo. Allegro vivace con delicatezza - Trio
+    path: (1797)Franz Schubert/(1828)Piano Sonata in B-flat major, D.960 (Schubert,
+      Franz)/IMSLP78039-PMLP02039-7Scherzo.mp3
+    ext: mp3
+  - id: "78040"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.1666666666667
+    rateBy: 12
+    group: 0
+    title: IV. Allegro ma non troppo
+    path: (1797)Franz Schubert/(1828)Piano Sonata in B-flat major, D.960 (Schubert,
+      Franz)/IMSLP78040-PMLP02039-8Allegro.mp3
+    ext: mp3
+  - id: "78230"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.7692307692308
+    rateBy: 13
+    group: 1
+    title: Complete Performance
+    path: (1797)Franz Schubert/(1828)Piano Sonata in B-flat major, D.960 (Schubert,
+      Franz)/IMSLP78230-PMLP02039-schubert_d960.mp3
+    ext: mp3
+  - id: "482397"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 2
+    group: 2
+    title: Complete Recording
+    path: (1797)Franz Schubert/(1828)Piano Sonata in B-flat major, D.960 (Schubert,
+      Franz)/IMSLP482397-PMLP02039-schubert_sonatabflatmajord960_albright.mp3
+    ext: mp3

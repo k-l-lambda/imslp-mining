@@ -1,0 +1,186 @@
+id: 13263
+title: Prelude and Fugue in A minor, BWV 543
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in A minor, BWV 543 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in A minor
+  Alternative. Title: ""
+  Name Translations: Прелюдия и Фуга ля минор, BWV 543; Preludium og fuge i
+    a-moll, BWV 543; Preludio y fuga en la menor, BWV 543; Prélude et fugue en
+    la mineur; Preludio e fuga in la minore, BWV 543; Präludium und Fuge a-Moll,
+    BWV 543
+  Authorities: "WorldCat; Wikipedia; VIAF: 175322666; BNF: 139096646"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 543
+  I-Catalogue NumberI-Cat. No.: IJB 484
+  Key: A minor
+  Movements/SectionsMov'ts/Sec's: 2 sections
+  First Publication.: 1812 ca. - J. Riedl
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ
+categories:
+  - Moshkin, Evgeniy E./Performer
+  - WIMA files
+  - Recordings
+  - Scores from the Internet Archive
+  - Dragonetti, Domenico/Arranger
+  - Scores published by Novello
+  - Scores from the Royal College of Music Library of London
+  - Rust, Wilhelm/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Moshkin, Evgeniy E./Editor
+  - Kapurai/Editor
+  - Kilian, Dietrich/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Höger, Anton/Arranger
+  - Gleichauf, Franz Xaver/Arranger
+  - Scores published by Edition Peters
+  - Sibley Mirroring Project
+  - Reger, Max/Arranger
+  - Scores published by Augener
+  - Szántó, Tivadar/Arranger
+  - Scores published by Universal Edition
+  - Tagliapietra, Gino/Arranger
+  - Scores published by Ricordi
+  - MIT project
+  - Areskoug, Johan/Arranger
+  - Mondrup, Christian/Arranger
+  - Mondrup Recorder Collection
+  - Work pages with links to recordings
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - For 4 guitars (arr)
+  - Scores featuring the guitar (arr)
+  - For 4 players (arr)
+  - For piano 4 hands (arr)
+  - Scores featuring the piano (arr)
+  - Scores featuring the piano 4 hands (arr)
+  - For 2 players (arr)
+  - For piano (arr)
+  - For 1 player (arr)
+  - For 4 recorders (arr)
+  - Scores featuring the recorder (arr)
+  - Pages with arrangements
+  - Works first published in 1812
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A minor
+  - Pages with References to Hofmeister's Monatsbericht
+files:
+  - id: "663369"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 3
+    group: 0
+    title: Complete Score (with fingering, pedaling and tempo indication)
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in A minor, BWV 543
+      (Bach, Johann Sebastian)/IMSLP663369-PMLP111731-bwv_543.pdf
+    ext: pdf
+  - id: "376415"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 15
+    group: 1
+    title: Complete score (portrait)
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in A minor, BWV 543
+      (Bach, Johann Sebastian)/IMSLP376415-PMLP111731-bach_bwv543.pdf
+    ext: pdf
+  - id: "313700"
+    tab: Score1
+    tabText: Scores
+    rating: 5.4666666666667
+    rateBy: 30
+    group: 2
+    title: Complete Score (2 earlier files combined)
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in A minor, BWV 543
+      (Bach, Johann Sebastian)/IMSLP313700-PMLP111731-543(2).pdf
+    ext: pdf
+  - id: "548539"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in A minor, BWV 543
+      (Bach, Johann
+      Sebastian)/IMSLP548539-PMLP111731-Bach,_Johann_Sebastian_-_Fuga_BWV543_(4Git).pdf
+    ext: pdf
+  - id: "174532"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 8
+    rateBy: 1
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in A minor, BWV 543
+      (Bach, Johann
+      Sebastian)/IMSLP174532-SIBLEY1802.4631.6158-39087012867901prelude&fugueaminor.pdf
+    ext: pdf
+  - id: "96724"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 5
+    rateBy: 6
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in A minor, BWV 543
+      (Bach, Johann
+      Sebastian)/IMSLP96724-PMLP111731-Bach-Szanto_Prelude_and_Fugue_BWV543_2H.pdf
+    ext: pdf
+  - id: "663368"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in A minor, BWV 543
+      (Bach, Johann Sebastian)/IMSLP663368-PMLP111731-bwv543.mp3
+    ext: mp3
+  - id: "376417"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 8.6666666666667
+    rateBy: 3
+    group: 0
+    title: Prelude
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in A minor, BWV 543
+      (Bach, Johann Sebastian)/IMSLP376417-PMLP111731-bach_bwv543.mid
+    ext: mid
+  - id: "376418"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 6
+    rateBy: 2
+    group: 0
+    title: Fugue
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in A minor, BWV 543
+      (Bach, Johann Sebastian)/IMSLP376418-PMLP111731-bach_bwv543-1.mid
+    ext: mid
+  - id: "713274"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in A minor, BWV 543
+      (Bach, Johann Sebastian)/IMSLP713274-PMLP111731-BWV543.mp3
+    ext: mp3

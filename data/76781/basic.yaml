@@ -1,0 +1,64 @@
+id: 76781
+title: Suite No.1 for Orchestra, Op.9
+author: Enescu, George
+url: https://imslp.org/wiki/Suite No.1 for Orchestra, Op.9 (Enescu, George)
+meta:
+  Work Title: Suite No.1
+  Alternative. Title: Suite d'orchestre
+  Composer: Enescu, George
+  Opus/Catalogue NumberOp./Cat. No.: Op.9
+  I-Catalogue NumberI-Cat. No.: IGE 24
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements:
+     Prélude à l'unisson
+     Menuet lent
+     Intermède
+     Final
+  Year/Date of CompositionY/D of Comp.: "1903"
+  First Publication.: 1905 ca.?
+  Dedication: Camille Saint-Saëns
+  Composer Time PeriodComp. Period: Early 20th century
+  Piece Style: Romantic
+  Instrumentation: orchestra
+  InstrDetail: piccolo, 2 flutes, 2 oboes (2nd also English horn), 2 clarinets, 2
+    bassoons4 horns, 2 trumpets, 3 trombonestimpani, cymbals, harp, strings
+categories:
+  - WorkNonPD-EU
+  - Scores published by Enoch
+  - Works reprinted by Edwin F. Kalmus
+  - Scores
+  - Enescu, George
+  - Romantic style
+  - Early 20th century
+  - Suites
+  - For orchestra
+  - Scores featuring the orchestra
+  - Works first published in 1905
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with parts for purchase
+  - C major
+  - Saint-Saëns, Camille/Dedicatee
+files:
+  - id: "92594"
+    tab: Score1
+    tabText: Full Scores
+    rating: 6.5
+    rateBy: 4
+    group: 0
+    title: Complete Score
+    path: (1881)George Enescu/(1903)Suite No.1 for Orchestra, Op.9 (Enescu,
+      George)/IMSLP92594-PMLP190849-Enescu_-_Suite_No._1,_Op._9_(orch._score).pdf
+    ext: pdf
+  - id: "710827"
+    tab: Score1
+    tabText: Full Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1881)George Enescu/(1903)Suite No.1 for Orchestra, Op.9 (Enescu,
+      George)/IMSLP710827-PMLP190849-Enescu-Suite_-_Conductor_Score.pdf
+    ext: pdf

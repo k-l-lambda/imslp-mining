@@ -1,0 +1,74 @@
+id: 17365
+title: Prelude and Fugue in D minor, BWV 554
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in D minor, BWV 554 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in D minor
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 554 ; BC.J29
+  I-Catalogue NumberI-Cat. No.: IJB 976
+  Key: D minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 sections:
+    Praeludium (31 bars)
+    Fuga (30 bars)
+  First Publication.: 1852 in 8 Kleine Präludien und Fugen (No.2)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ
+  Primary Sources: Bach Digital (source list)
+categories:
+  - Brezhestovski, Max/Performer
+  - WIMA files
+  - Naumann, Ernst/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Gouin, Pierre/Editor
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - Works first published in 1852
+  - Works first published in the 19th century
+  - D minor
+files:
+  - id: "129115"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in D minor, BWV 554
+      (Bach, Johann
+      Sebastian)/IMSLP129115-PMLP10674-Bach_Kleine_Praeludien_2.pdf
+    ext: pdf
+  - id: "739699"
+    tab: Score1
+    tabText: Scores
+    rating: 2
+    rateBy: 1
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in D minor, BWV 554
+      (Bach, Johann
+      Sebastian)/IMSLP739699-PMLP1175901-E4322_5-7-Bach_-_BGA_-_BWV_553-560.pdf
+    ext: pdf
+  - id: "175576"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 3
+    rateBy: 2
+    group: 0
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in D minor, BWV 554
+      (Bach, Johann Sebastian)/IMSLP175576-WIMA.9de9-BWV554-fugue.mp3
+    ext: mp3

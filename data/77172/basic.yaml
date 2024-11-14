@@ -1,0 +1,77 @@
+id: 77172
+title: Piano Sonata in A minor, D.845
+author: Schubert, Franz
+url: https://imslp.org/wiki/Piano Sonata in A minor, D.845 (Schubert, Franz)
+meta:
+  Work Title: Piano Sonata in A minor
+  Alternative. Title: Piano Sonata No.9; Piano Sonata No.16
+  Name Translations: ピアノソナタ第16番; Sonate pour piano nº 16 de Schubert; Piano Sonata
+    in A minor, D. 845; Sonata para piano en la menor, D. 845; Sonata per a
+    piano núm. 16 en la menor, D 845
+  Name Aliases: Sonate D.845; Sonate pour piano n° 16 de Schubert; Sonate pour
+    piano d.845 de schubert; Sonata para piano en la menor D. 845; Sonata para
+    piano en la menor D 845; Sonata para piano en la menor, D 845
+  Authorities: "WorldCat; Wikipedia; VIAF: 294155939; BNF: 139112004"
+  Composer: Schubert, Franz
+  Opus/Catalogue NumberOp./Cat. No.: D.845 (published as Op.42)
+  I-Catalogue NumberI-Cat. No.: IFS 589
+  Key: A minor
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements:
+    Moderato (A minor)
+    Andante poco mosso (C major)
+    Scherzo. Allegro vivace — Trio. Un poco più lento (A minor)
+    Rondo. Allegro vivace (A minor)
+  Year/Date of CompositionY/D of Comp.: 1825 May
+  First Publication.: 1826 − Pennauer
+  Dedication: Erzherzog Rudolph von Österreich
+  Average DurationAvg. Duration: 37 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia link
+categories:
+  - Lipkin, Seymour/Performer
+  - Gardner Museum Recordings
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Epstein, Julius/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Work pages with links to recordings
+  - Scores
+  - Schubert, Franz
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1826
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A minor
+  - Rudolph, Erzherzog/Dedicatee
+files:
+  - id: "55378"
+    tab: Score1
+    tabText: Scores
+    rating: 6.4390243902439
+    rateBy: 41
+    group: 0
+    title: Complete ScoreD-Mbs
+    path: (1797)Franz Schubert/(1825)Piano Sonata in A minor, D.845 (Schubert,
+      Franz)/IMSLP55378-PMLP02036-Schubert_Werke_Breitkopf_Serie_10_No_101_Op_42.pdf
+    ext: pdf
+  - id: "78232"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.8461538461538
+    rateBy: 13
+    group: 0
+    title: Complete Performance
+    path: (1797)Franz Schubert/(1825)Piano Sonata in A minor, D.845 (Schubert,
+      Franz)/IMSLP78232-PMLP02036-schubert_d845.mp3
+    ext: mp3

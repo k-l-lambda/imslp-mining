@@ -1,0 +1,120 @@
+id: 5840
+title: Piano Sonata No.4, Op.30
+author: Scriabin, Aleksandr
+url: https://imslp.org/wiki/Piano Sonata No.4, Op.30 (Scriabin, Aleksandr)
+meta:
+  Work Title: Piano Sonata No.4
+  Alternative. Title: ""
+  Name Translations: Klaviersonate Nr. 4 (Skrjabin); Piano Sonata No. 4; ピアノソナタ第4番
+    (スクリャービン); sonate pour piano nº 4 op. 30; Sonata per pianoforte n. 4
+    (Skrjabin)
+  Name Aliases: sonate pour piano nº 4 de Scriabine; Piano Sonata No. 4 in F-sharp
+    Major, Op. 30
+  Authorities: "Wikipedia; BNF: 14799922r"
+  Composer: Scriabin, Aleksandr
+  Opus/Catalogue NumberOp./Cat. No.: Op.30
+  I-Catalogue NumberI-Cat. No.: IAS 32
+  Key: F-sharp major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    I. Andante
+    II. Prestissimo volando
+  Year/Date of CompositionY/D of Comp.: 1903 (?)
+  First Publication.: 1904 by M.P. Belaïeff
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia articleHyperion Records
+categories:
+  - Drozdov, Vladimir/Performer
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Pages with First Editions
+  - Scores engraved by C.G. Röder
+  - Scores published by M.P. Belaieff
+  - Sibley Mirroring Project
+  - Sorokin, Konstantin/Editor
+  - Scores published by Muzgiz
+  - Igumnov, Konstantin/Editor
+  - Milstein, Yakov/Editor
+  - MIT project
+  - Philipp, Günter/Editor
+  - Scores published by Edition Peters
+  - Zhou, Zhengyi/Editor
+  - Alston, Ray/Editor
+  - Work pages with links to recordings
+  - Scores
+  - Scriabin, Aleksandr
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1904
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - F-sharp major
+files:
+  - id: "10998"
+    tab: Score1
+    tabText: Scores
+    rating: 8.5333333333333
+    rateBy: 15
+    group: 0
+    title: Complete Score
+    path: (1872)Aleksandr Scriabin/(1903)Piano Sonata No.4, Op.30 (Scriabin,
+      Aleksandr)/IMSLP10998-Scriabin_-_Piano_Sonata_No.4.pdf
+    ext: pdf
+  - id: "427708"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 3
+    group: 1
+    title: Complete Score
+    path: (1872)Aleksandr Scriabin/(1903)Piano Sonata No.4, Op.30 (Scriabin,
+      Aleksandr)/IMSLP427708-PMLP05654-Scriabin_sonata_4.pdf
+    ext: pdf
+  - id: "509047"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 4
+    group: 2
+    title: Complete Score
+    path: (1872)Aleksandr Scriabin/(1903)Piano Sonata No.4, Op.30 (Scriabin,
+      Aleksandr)/IMSLP509047-PMLP5654-Scriabin_A_-_Op_30_Piano_Sonata_No.4_(Muzgiz).pdf
+    ext: pdf
+  - id: "557912"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9.6363636363636
+    rateBy: 11
+    group: 0
+    title: Complete Performance
+    path: (1872)Aleksandr Scriabin/(1903)Piano Sonata No.4, Op.30 (Scriabin,
+      Aleksandr)/IMSLP557912-PMLP05654-Scriabin_-_Sonata_No._4.mp3
+    ext: mp3
+  - id: "475516"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5
+    rateBy: 4
+    group: 1
+    title: Side A
+    path: (1872)Aleksandr Scriabin/(1903)Piano Sonata No.4, Op.30 (Scriabin,
+      Aleksandr)/IMSLP475516-PMLP5654-Drozdoff_plays_Scriabin_Sonata_No_4_part_1.mp3
+    ext: mp3
+  - id: "475517"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Side B
+    path: (1872)Aleksandr Scriabin/(1903)Piano Sonata No.4, Op.30 (Scriabin,
+      Aleksandr)/IMSLP475517-PMLP5654-Drozdoff_plays_Scriabin_Sonata_No_4_part_2.mp3
+    ext: mp3

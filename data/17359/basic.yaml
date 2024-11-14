@@ -1,0 +1,177 @@
+id: 17359
+title: Prelude and Fugue in C major, BWV 547
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in C major, BWV 547 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in C major
+  Alternative. Title: Prelude & Fugue ex C con organo pleno
+  Name Translations: Preludio e fuga in do maggiore BWV 547; Preludio y fuga en do
+    mayor, BWV 547; Präludium und Fuge C-Dur BWV 547
+  Name Aliases: Preludio e fuga in Do maggiore n. 2 (Bach)
+  Authorities: "BNF: 13909668k"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 547
+  I-Catalogue NumberI-Cat. No.: IJB 504
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: 2 sections
+  Year/Date of CompositionY/D of Comp.: 1738-42 poss.
+  First Publication.: 1812 ca.
+  Average DurationAvg. Duration: 9-15 minutes
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (Italian)
+categories:
+  - Moshkin, Evgeniy E./Performer
+  - Schopen, Michael/Performer
+  - Recordings
+  - Manuscripts from the 1700s
+  - Composers' holographs from the 1700s
+  - Pages with MssAu template
+  - Rust, Wilhelm/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Kilian, Dietrich/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Moshkin, Evgeniy E./Editor
+  - Nehls, Ulrich/Arranger
+  - WIMA files
+  - Bartoli, Russ/Arranger
+  - Gleichauf, Franz Xaver/Arranger
+  - Scores published by Edition Peters
+  - Sibley Mirroring Project
+  - Messerschmidt, Hans Jorgen/Arranger
+  - Work pages with links to recordings
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - For brass ensemble (arr)
+  - Scores featuring brass ensemble (arr)
+  - For orchestra without strings (arr)
+  - For 2 violins, viola, cello (arr)
+  - For 4 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the viola (arr)
+  - Scores featuring the cello (arr)
+  - For violin, viola, cello (arr)
+  - For 3 players (arr)
+  - For piano 4 hands (arr)
+  - Scores featuring the piano (arr)
+  - Scores featuring the piano 4 hands (arr)
+  - For 2 players (arr)
+  - For horn, trumpet, euphonium (arr)
+  - Scores featuring the horn (arr)
+  - Scores featuring the trumpet (arr)
+  - Scores featuring the euphonium (arr)
+  - Pages with arrangements
+  - Works first published in 1812
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C major
+  - Pages with References to Hofmeister's Monatsbericht
+files:
+  - id: "533121"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1738)Prelude and Fugue in C major, BWV 547
+      (Bach, Johann
+      Sebastian)/IMSLP533121-PMLP111735-Bach-orgelwerke05_praeludium-et-fuga-C-major_BWV547_pp20-29.pdf
+    ext: pdf
+  - id: "01332"
+    tab: Score1
+    tabText: Scores
+    rating: 6.3333333333333
+    rateBy: 12
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1738)Prelude and Fugue in C major, BWV 547
+      (Bach, Johann Sebastian)/IMSLP01332-BWV0547.pdf
+    ext: pdf
+  - id: "725737"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 2
+    group: 2
+    title: Complete Score (with fingering and pedaling, tempo indication)
+    path: (1685)Johann Sebastian Bach/(1738)Prelude and Fugue in C major, BWV 547
+      (Bach, Johann Sebastian)/IMSLP725737-PMLP111735-bwv_547.pdf
+    ext: pdf
+  - id: "187604"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1738)Prelude and Fugue in C major, BWV 547
+      (Bach, Johann Sebastian)/IMSLP187604-WIMA.1d0f-score.pdf
+    ext: pdf
+  - id: "161236"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 2
+    rateBy: 2
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1738)Prelude and Fugue in C major, BWV 547
+      (Bach, Johann
+      Sebastian)/IMSLP161236-PMLP111735-Bach_BWV547_Prelude&fugue_CMajor_Pf4h.pdf
+    ext: pdf
+  - id: "460352"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1738)Prelude and Fugue in C major, BWV 547
+      (Bach, Johann
+      Sebastian)/IMSLP460352-PMLP111735-bach_547_s4_Bartoli_-_Full_Score.pdf
+    ext: pdf
+  - id: "725765"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1738)Prelude and Fugue in C major, BWV 547
+      (Bach, Johann Sebastian)/IMSLP725765-PMLP111735-bwv_547.mp3
+    ext: mp3
+  - id: "298186"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.2
+    rateBy: 15
+    group: 1
+    title: Prelude
+    path: (1685)Johann Sebastian Bach/(1738)Prelude and Fugue in C major, BWV 547
+      (Bach, Johann Sebastian)/IMSLP298186-PMLP111735-BWV-547-1.mp3
+    ext: mp3
+  - id: "298187"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 2
+    group: 1
+    title: Fugue
+    path: (1685)Johann Sebastian Bach/(1738)Prelude and Fugue in C major, BWV 547
+      (Bach, Johann Sebastian)/IMSLP298187-PMLP111735-BWV-547-2.mp3
+    ext: mp3

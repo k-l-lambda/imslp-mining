@@ -1,0 +1,112 @@
+id: 94012
+title: Keyboard Sonata in C minor, K.84
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in C minor, K.84 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in C minor
+  Alternative. Title: Sonata in C minor
+  Name Translations: sonate K. 84; Sonata K. 84; Sonate K. 84; Sonat K. 84
+  Authorities: "WorldCat; VIAF: 293110083; LCCN: no96022382; GND: 300711107; BNF: 139146270"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.84 ; L.10 ; P.45
+  I-Catalogue NumberI-Cat. No.: IDS 215
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: (No tempo indication)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - C minor
+files:
+  - id: "281714"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.84 (Scarlatti,
+      Domenico)/IMSLP281714-PMLP334530-Scarlatti_Sonate_K.84.pdf
+    ext: pdf
+  - id: "353938"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 2
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.84 (Scarlatti,
+      Domenico)/IMSLP353938-PMLP334530-Scarlatti,_Domenico-Sonates_Heugel_32.522_Volume_2_32_K.84_scan.pdf
+    ext: pdf
+  - id: "626942"
+    tab: Score1
+    tabText: Scores
+    rating: 4
+    rateBy: 1
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.84 (Scarlatti,
+      Domenico)/IMSLP626942-PMLP334530-Sonata_K._84_(as_L._10).pdf
+    ext: pdf
+  - id: "195054"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 9
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.84 (Scarlatti,
+      Domenico)/IMSLP195054-WIMA.36ce-Scar84Sco.pdf
+    ext: pdf
+  - id: "281715"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.84 (Scarlatti,
+      Domenico)/IMSLP281715-PMLP334530-Scarlatti_Sonate_K.84.mid
+    ext: mid
+  - id: "195062"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.84 (Scarlatti,
+      Domenico)/IMSLP195062-WIMA.1de5-Scar84Sco.mp3
+    ext: mp3
+  - id: "195063"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.84 (Scarlatti,
+      Domenico)/IMSLP195063-WIMA.29a4-Scar84Sco.mid
+    ext: mid

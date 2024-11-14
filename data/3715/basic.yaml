@@ -1,0 +1,97 @@
+id: 3715
+title: Piano Sonata in C minor, D.958
+author: Schubert, Franz
+url: https://imslp.org/wiki/Piano Sonata in C minor, D.958 (Schubert, Franz)
+meta:
+  Work Title: Piano Sonata in C minor
+  Alternative. Title: Piano Sonata No.13; Piano Sonata No.19
+  Name Translations: ピアノソナタ第19番 (シューベルト); Sonate pour piano nº 19 de Schubert;
+    Klaviersonate Nr. 19; Sonata in C minor, D. 958; Sonata per a piano núm. 19
+    en do menor, D 958; Sonata para piano en do menor (Schubert)
+  Name Aliases: Klaviersonate Nr. 19, c-Moll, D 958; D 958; Sonate pour piano no
+    19 en do mineur, D. 958
+  Authorities: "WorldCat; LCCN: n81022460"
+  Composer: Schubert, Franz
+  Opus/Catalogue NumberOp./Cat. No.: D.958
+  I-Catalogue NumberI-Cat. No.: IFS 592
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements:
+    Allegro (C minor)
+    Adagio (A♭ major)
+    Menuetto. Allegro — Trio (C minor)
+    Allegro (C minor)
+  Year/Date of CompositionY/D of Comp.: 1828 September
+  First Publication.: "1839 – Vienna: Diabelli"
+  Average DurationAvg. Duration: 32 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia article (Spanish)
+categories:
+  - Albright, Charlie/Performer
+  - Gardner Museum Recordings
+  - Lipkin, Seymour/Performer
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Epstein, Julius/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Litschauer, Walburga/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Scores
+  - Schubert, Franz
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1839
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C minor
+files:
+  - id: "55384"
+    tab: Score1
+    tabText: Scores
+    rating: 6.2173913043478
+    rateBy: 23
+    group: 0
+    title: Complete ScoreD-Mbs
+    path: (1797)Franz Schubert/(1828)Piano Sonata in C minor, D.958 (Schubert,
+      Franz)/IMSLP55384-PMLP02045-Schubert_Werke_Breitkopf_Serie_10_No_105_D_958.pdf
+    ext: pdf
+  - id: "714724"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1797)Franz Schubert/(1828)Piano Sonata in C minor, D.958 (Schubert,
+      Franz)/IMSLP714724-PMLP2045-Schubert_D958_Barenreiter.pdf
+    ext: pdf
+  - id: "243708"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.1818181818182
+    rateBy: 11
+    group: 0
+    title: Complete Performance
+    path: (1797)Franz Schubert/(1828)Piano Sonata in C minor, D.958 (Schubert,
+      Franz)/IMSLP243708-PMLP02045-schubert_D958.mp3
+    ext: mp3
+  - id: "425319"
+    tab: Audio1
+    tabText: Recordings
+    rating: 4.8
+    rateBy: 5
+    group: 1
+    title: Complete Performance
+    path: (1797)Franz Schubert/(1828)Piano Sonata in C minor, D.958 (Schubert,
+      Franz)/IMSLP425319-PMLP02045-schubert_d958_albright.mp3
+    ext: mp3

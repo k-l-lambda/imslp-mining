@@ -1,0 +1,85 @@
+id: 74402
+title: Der Schäfer und der Reiter, D.517
+author: Schubert, Franz
+url: https://imslp.org/wiki/Der Schäfer und der Reiter, D.517 (Schubert, Franz)
+meta:
+  Work Title: Der Schäfer und der Reiter
+  Alternative. Title: The Shepherd and the Horseman
+  Composer: Schubert, Franz
+  Opus/Catalogue NumberOp./Cat. No.: D.517 (2nd version published as Op.13 No.1)
+  I-Catalogue NumberI-Cat. No.: IFS 638
+  Key: E major/E minor (both versions)
+  Movements/SectionsMov'ts/Sec's: 1 song (2 versions):Langsam (1st version)Mässig, heiter (2nd version)
+  Text Incipit: Ein Schäfer sass im Grünen
+  Year/Date of CompositionY/D of Comp.: 1817 April (both versions)
+  First Publication.: 1972 (1st version)1822 (2nd version)
+  Librettist: Friedrich de la Motte Fouqué (1777-1843)
+  Language: German
+  Dedication: Joseph von Spaun
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: voice, piano
+categories:
+  - Dürr, Walther/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Pages with files from the Neue Schubert-Ausgabe
+  - Scores from Loeb Music Library
+  - Pages with First Editions
+  - Scores published by Diabelli
+  - Mandyczewski, Eusebius/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with items from 'Franz Schubert's Werke'
+  - Works reprinted by Edwin F. Kalmus
+  - Scores published by Edition Peters
+  - Work pages with links to recordings
+  - Pages linked to Schubertlied.de
+  - Scores
+  - Schubert, Franz
+  - Romantic style
+  - Romantic
+  - Lieder
+  - Songs
+  - For voice, piano
+  - For voices with keyboard
+  - Scores featuring the voice
+  - Scores featuring the piano
+  - German language
+  - Works first published in 1972
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - E major
+  - E minor
+  - Fouqué, Friedrich de la Motte/Librettist
+files:
+  - id: "16200"
+    tab: Score1
+    tabText: Scores
+    rating: 2
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1797)Franz Schubert/(1817)Der Schäfer und der Reiter, D.517 (Schubert,
+      Franz)/IMSLP16200-SchubertD517_Der_Schäfer_und_der_Reiter.pdf
+    ext: pdf
+  - id: "570007"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1797)Franz Schubert/(1817)Der Schäfer und der Reiter, D.517 (Schubert,
+      Franz)/IMSLP570007-PMLP38976-D_517,_Der_Scha-fer_und_der_Reiter_(1st_version).pdf
+    ext: pdf
+  - id: "346787"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (full LOEB resolution)US-CAe
+    path: (1797)Franz Schubert/(1817)Der Schäfer und der Reiter, D.517 (Schubert,
+      Franz)/IMSLP346787-PMLP38976-LOEB_47070026_1.pdf
+    ext: pdf

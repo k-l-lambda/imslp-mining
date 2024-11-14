@@ -1,0 +1,176 @@
+id: 32609
+title: Keyboard Sonata in B minor, K.87
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in B minor, K.87 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in B minor
+  Alternative. Title: ""
+  Name Translations: Sonate K. 87; Sonata K. 87; Sonat K. 87
+  Authorities: "WorldCat; VIAF: 179429301; GND: 300135815; BNF: 13914630w"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.87 ; L.33 ; P.43
+  I-Catalogue NumberI-Cat. No.: IDS 84
+  Key: B minor
+  Movements/SectionsMov'ts/Sec's: (No Tempo)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Luisi, Gianluca/Performer
+  - Scores from the Internet Archive
+  - WIMA files
+  - Recordings
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Pasztor, Ernö/Arranger
+  - Beuming, Ben/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 4 accordions, double bass (arr)
+  - Scores featuring the accordion (arr)
+  - Scores featuring the double bass (arr)
+  - For 5 players (arr)
+  - For guitar (arr)
+  - Scores featuring the guitar (arr)
+  - For 1 player (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - B minor
+files:
+  - id: "353942"
+    tab: Score1
+    tabText: Scores
+    rating: 5.5714285714286
+    rateBy: 28
+    group: 0
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in B minor, K.87 (Scarlatti,
+      Domenico)/IMSLP353942-PMLP334568-Scarlatti,_Domenico-Sonates_Heugel_32.522_Volume_2_35_K.87_scan.pdf
+    ext: pdf
+  - id: "281986"
+    tab: Score1
+    tabText: Scores
+    rating: 5.5
+    rateBy: 4
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in B minor, K.87 (Scarlatti,
+      Domenico)/IMSLP281986-PMLP334568-Scarlatti_Sonate_K.87.pdf
+    ext: pdf
+  - id: "460574"
+    tab: Score1
+    tabText: Scores
+    rating: 4.5714285714286
+    rateBy: 7
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in B minor, K.87 (Scarlatti,
+      Domenico)/IMSLP460574-PMLP334568-DScarlatti-K087-facsimile-Kirkpatrick.pdf
+    ext: pdf
+  - id: "195089"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 8
+    rateBy: 4
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in B minor, K.87 (Scarlatti,
+      Domenico)/IMSLP195089-WIMA.cd95-Scar87Sco.pdf
+    ext: pdf
+  - id: "780831"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in B minor, K.87 (Scarlatti,
+      Domenico)/IMSLP780831-PMLP334568-Scarlatti_Sonate_K087_Rondeau.pdf
+    ext: pdf
+  - id: "563355"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in B minor, K.87 (Scarlatti,
+      Domenico)/IMSLP563355-PMLP334568-Domenico_Scarlatti_Sonata_K_87.pdf
+    ext: pdf
+  - id: "505005"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 2
+    group: 0
+    title: Complete Performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in B minor, K.87 (Scarlatti,
+      Domenico)/IMSLP505005-PMLP334568-Scarlatti_-_Sonata_K87_In_B_min.mp3
+    ext: mp3
+  - id: "480288"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 1
+    group: 1
+    title: Complete Performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in B minor, K.87 (Scarlatti,
+      Domenico)/IMSLP480288-PMLP334568-Scarlatti-K087oc.mp3
+    ext: mp3
+  - id: "195098"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in B minor, K.87 (Scarlatti,
+      Domenico)/IMSLP195098-WIMA.ff51-Scar87Sco.mp3
+    ext: mp3
+  - id: "195099"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in B minor, K.87 (Scarlatti,
+      Domenico)/IMSLP195099-WIMA.cda6-Scar87Sco.mid
+    ext: mid
+  - id: "281987"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in B minor, K.87 (Scarlatti,
+      Domenico)/IMSLP281987-PMLP334568-Scarlatti_Sonate_K.87.mid
+    ext: mid
+  - id: "454514"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Synthesised Audio
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in B minor, K.87 (Scarlatti,
+      Domenico)/IMSLP454514-PMLP738724-SonBmin_Scar_IDKK.ogg
+    ext: ogg

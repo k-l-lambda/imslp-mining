@@ -1,0 +1,99 @@
+id: 7124
+title: Canzona in D minor, BWV 588
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Canzona in D minor, BWV 588 (Bach, Johann Sebastian)
+meta:
+  Work Title: Canzona in D minor
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 588 ; BC.J80
+  I-Catalogue NumberI-Cat. No.: IJB 60
+  Key: D minor
+  Movements/SectionsMov'ts/Sec's: 2 Parts
+  Year/Date of CompositionY/D of Comp.: by 1705
+  First Publication.: |-
+    1845 (or earlier)
+    Hofmeister's Monatsbericht (1846), p.26 / WorldCat
+  Average DurationAvg. Duration: 6 minutes
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Organ
+  External Links: All Music Guide
+categories:
+  - WIMA files
+  - Mondrup Recorder Collection
+  - Andreola, Giacomo/Arranger
+  - Naumann, Ernst/Editor
+  - Scores published by Breitkopf und Härtel
+  - Tennent, R.D./Arranger
+  - Work pages with links to recordings
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Pieces
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - For 4 recorders (arr)
+  - Scores featuring the recorder (arr)
+  - For 4 players (arr)
+  - Pages with arrangements
+  - Works first published in 1845
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - D minor
+  - Pages with References to Hofmeister's Monatsbericht
+files:
+  - id: "04397"
+    tab: Score1
+    tabText: Scores
+    rating: 5.0909090909091
+    rateBy: 11
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1705)Canzona in D minor, BWV 588 (Bach,
+      Johann Sebastian)/IMSLP04397-Bach_-_BGA_-_BWV_588.pdf
+    ext: pdf
+  - id: "603302"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1705)Canzona in D minor, BWV 588 (Bach,
+      Johann Sebastian)/IMSLP603302-PMLP153700-bwv588.pdf
+    ext: pdf
+  - id: "161758"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1705)Canzona in D minor, BWV 588 (Bach,
+      Johann Sebastian)/IMSLP161758-WIMA.b6eb-Canzona-SATB.pdf
+    ext: pdf
+  - id: "603304"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1705)Canzona in D minor, BWV 588 (Bach,
+      Johann Sebastian)/IMSLP603304-PMLP153700-bwv588.mid
+    ext: mid
+  - id: "161761"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: MIDI Performance
+    path: (1685)Johann Sebastian Bach/(1705)Canzona in D minor, BWV 588 (Bach,
+      Johann Sebastian)/IMSLP161761-WIMA.4be0-Canzona-SATB.mid
+    ext: mid

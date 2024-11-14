@@ -1,0 +1,81 @@
+id: 32490
+title: Piano Sonata in A minor, D.537
+author: Schubert, Franz
+url: https://imslp.org/wiki/Piano Sonata in A minor, D.537 (Schubert, Franz)
+meta:
+  Work Title: Piano Sonata in A minor
+  Alternative. Title: Piano Sonata No.4, Piano Sonata No.6
+  Composer: Schubert, Franz
+  Opus/Catalogue NumberOp./Cat. No.: D.537 (published as Op.posth.164)
+  I-Catalogue NumberI-Cat. No.: IFS 577
+  Key: A minor
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements:
+    Allegro ma non troppo (A minor)
+    Allegretto quasi Andantino (E major)
+    Allegro vivace (A minor)
+  Year/Date of CompositionY/D of Comp.: 1817 March
+  First Publication.: 1852 ca. – Spina
+  Average DurationAvg. Duration: 25 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Scores from Bayerische Staatsbibliothek
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Clements, Patrick/Arranger
+  - Best, William Thomas/Arranger
+  - Scores published by Novello
+  - Scores
+  - Schubert, Franz
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For 2 flutes (arr)
+  - Scores featuring the flute (arr)
+  - For 2 players (arr)
+  - For organ (arr)
+  - For 1 player (arr)
+  - Scores featuring the organ (arr)
+  - Pages with arrangements
+  - Works first published in 1852
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A minor
+files:
+  - id: "55369"
+    tab: Score1
+    tabText: Scores
+    rating: 7.04
+    rateBy: 25
+    group: 0
+    title: Complete ScoreD-Mbs
+    path: (1797)Franz Schubert/(1817)Piano Sonata in A minor, D.537 (Schubert,
+      Franz)/IMSLP55369-PMLP02032-Schubert_Werke_Breitkopf_Serie_10_No_98_Op_164.pdf
+    ext: pdf
+  - id: "623398"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1797)Franz Schubert/(1817)Piano Sonata in A minor, D.537 (Schubert,
+      Franz)/IMSLP623398-PMLP2032-Sonata_I_Score_(etc).pdf
+    ext: pdf
+  - id: "492267"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1797)Franz Schubert/(1817)Piano Sonata in A minor, D.537 (Schubert,
+      Franz)/IMSLP492267-PMLP02032-926,_Schubert,_Andantino_form_Sonata_in_A_minor_Op._164.pdf
+    ext: pdf

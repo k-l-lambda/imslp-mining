@@ -1,0 +1,120 @@
+id: 118273
+title: Piano Sonata No.2, Op.36
+author: Rachmaninoff, Sergei
+url: https://imslp.org/wiki/Piano Sonata No.2, Op.36 (Rachmaninoff, Sergei)
+meta:
+  Work Title: Piano Sonata No.2
+  Alternative. Title: ""
+  Name Translations: 第2号钢琴奏鸣曲; 第2號鋼琴奏鳴曲; ピアノソナタ第2番; Klavirska sonata št. 2; II
+    Sonata fortepianowa; Соната для фортепиано № 2; Sonate pour piano nº 2 de
+    Rachmaninov; Sonata para piano n.º 2; Piano Sonata No. 2; Соната для
+    фортепіано № 2; Sonata No. 2
+  Name Aliases: "降B小調第二號鋼琴奏鳴曲; Sergej Rahmaninov: Klavirska sonata št. 2; Sonate
+    pour piano n° 2 de Rachmaninov; Sonata para piano n º 2; Sonata para piano
+    n. 2; Sonata para piano n 2; Piano Sonata No. 2 in B-flat Minor, Op. 36"
+  Authorities: "WorldCat; Wikipedia; LCCN: nr93028908"
+  Composer: Rachmaninoff, Sergei
+  Opus/Catalogue NumberOp./Cat. No.: Op.36
+  I-Catalogue NumberI-Cat. No.: ISR 34
+  Key: B-flat minor
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements:
+     Allegro agitato (B♭ minor)
+     Non allegro—Lento (E major–E major)
+     L'istesso tempo—Allegro molto (B♭ major)
+  Year/Date of CompositionY/D of Comp.: 1913  — 1st version1931 — 2nd version
+  First Publication.: "1914"
+  Dedication: Matvey Presman (1870–1941)
+  Average DurationAvg. Duration: 21 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia article
+categories:
+  - Manookian, Jeff/Performer
+  - Licad, Cecile/Performer
+  - Gardner Museum Recordings
+  - Recordings
+  - Pages with First Editions
+  - Scores published by Gutheil
+  - Lamm, Pavel/Editor
+  - Igumnov, Konstantin/Editor
+  - Scores published by Muzgiz
+  - Scores published by International Music Company
+  - Work pages with links to recordings
+  - Scores
+  - Rachmaninoff, Sergei
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1914
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - B-flat minor
+  - Presman, Matvey/Dedicatee
+files:
+  - id: "69058"
+    tab: Score1
+    tabText: Piano Scores
+    rating: 8.3170731707317
+    rateBy: 41
+    group: 0
+    title: Complete ScoreElibron
+    path: (1873)Sergei Rachmaninoff/(1913)Piano Sonata No.2, Op.36 (Rachmaninoff,
+      Sergei)/IMSLP69058-PMLP05510-Rachmaninoff--Sonata-Op36-1st-Ver-FE.pdf
+    ext: pdf
+  - id: "01988"
+    tab: Score1
+    tabText: Piano Scores
+    rating: 7.1428571428571
+    rateBy: 21
+    group: 1
+    title: Complete Score
+    path: (1873)Sergei Rachmaninoff/(1913)Piano Sonata No.2, Op.36 (Rachmaninoff,
+      Sergei)/IMSLP01988-Rachmaninoff_-_Sonata_No_2_in_B_Flat_Minor_Op_36.pdf
+    ext: pdf
+  - id: "40924"
+    tab: Score1
+    tabText: Piano Scores
+    rating: 6.3333333333333
+    rateBy: 18
+    group: 2
+    title: Complete Score
+    path: (1873)Sergei Rachmaninoff/(1913)Piano Sonata No.2, Op.36 (Rachmaninoff,
+      Sergei)/IMSLP40924-PMLP05510-Rachmaninoff-Sonata-No2-2ndVer.pdf
+    ext: pdf
+  - id: "243533"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9.3846153846154
+    rateBy: 13
+    group: 0
+    title: Complete Performance
+    path: (1873)Sergei Rachmaninoff/(1913)Piano Sonata No.2, Op.36 (Rachmaninoff,
+      Sergei)/IMSLP243533-PMLP05510-rachmaninoff_op36_licad.mp3
+    ext: mp3
+  - id: "255488"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 16
+    group: 1
+    title: Live Performance
+    path: (1873)Sergei Rachmaninoff/(1913)Piano Sonata No.2, Op.36 (Rachmaninoff,
+      Sergei)/IMSLP255488-PMLP05510-01_Track.mp3
+    ext: mp3
+  - id: "280758"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Performance
+    path: (1873)Sergei Rachmaninoff/(1913)Piano Sonata No.2, Op.36 (Rachmaninoff,
+      Sergei)/IMSLP280758-PMLP05510-Rachmaninoff_-_Piano_Sonata_No._2_B-flat_minor.mp3
+    ext: mp3

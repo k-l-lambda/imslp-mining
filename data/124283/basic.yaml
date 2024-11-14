@@ -1,0 +1,134 @@
+id: 124283
+title: Piano Sonata No.1 in C major, Op.24
+author: Weber, Carl Maria von
+url: https://imslp.org/wiki/Piano Sonata No.1 in C major, Op.24 (Weber, Carl
+  Maria von)
+meta:
+  Work Title: Piano Sonata No.1
+  Alternative. Title: ""
+  Composer: Weber, Carl Maria von
+  Opus/Catalogue NumberOp./Cat. No.: Op.24 ; J.138
+  I-Catalogue NumberI-Cat. No.: ICW 54
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements:
+    Allegro
+    Adagio
+    Menuetto. Allegro — Trio
+    Rondo. Presto
+  Year/Date of CompositionY/D of Comp.: "1812"
+  First Publication.: "1812"
+  Dedication: Dédiée à S.A.J. Mme. la Grande-Duchesse Maria Paulowna
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Scores from SLUB Dresden
+  - Manuscripts from the 1800s
+  - Composers' holographs from the 1800s
+  - Pages with MssAu template
+  - Manuscripts
+  - Köhler, Louis/Editor
+  - Schmidt, Richard/Editor
+  - Scores published by Edition Peters
+  - Ruthardt, Adolf/Editor
+  - Scores with links to Amazon
+  - Liszt, Franz/Editor
+  - Scores published by Schuberth & Co.
+  - Vizthum, Heinrich/Arranger
+  - Scores published by Bachmann
+  - Pages with References to Hofmeister's Monatsbericht
+  - Tchaikovsky, Pyotr/Arranger
+  - Scores published by D. Rahter
+  - Sibley Mirroring Project
+  - Kirkor, Georgy/Editor
+  - Scores published by Muzgiz
+  - Pages with items from the Tchaikovsky Complete Collected Works
+  - Urtext
+  - Scores
+  - Weber, Carl Maria von
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For harp (arr)
+  - Scores featuring the harp (arr)
+  - For 1 player (arr)
+  - For piano (arr)
+  - Scores featuring the piano (arr)
+  - For piano left hand (arr)
+  - Scores featuring the piano left hand (arr)
+  - Pages with arrangements
+  - Works first published in 1812
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C major
+files:
+  - id: "00998"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 5
+    group: 0
+    title: "IV: Rondo - Perpetuum Mobile"
+    path: (1786)Carl Maria von Weber/(1812)Piano Sonata No.1 in C major, Op.24
+      (Weber, Carl Maria von)/IMSLP00998-Wbson1_3.pdf
+    ext: pdf
+  - id: "313165"
+    tab: Score1
+    tabText: Scores
+    rating: 4
+    rateBy: 3
+    group: 1
+    title: Complete ScoreD-Dl
+    path: (1786)Carl Maria von Weber/(1812)Piano Sonata No.1 in C major, Op.24
+      (Weber, Carl Maria
+      von)/IMSLP313165-PMLP03447-cm_weber_sonata_C_op24_394101030.pdf
+    ext: pdf
+  - id: "385691"
+    tab: Score1
+    tabText: Scores
+    rating: 4
+    rateBy: 1
+    group: 2
+    title: Complete Score (scan)
+    path: (1786)Carl Maria von Weber/(1812)Piano Sonata No.1 in C major, Op.24
+      (Weber, Carl Maria
+      von)/IMSLP385691-PMLP03447-Weber,_Carl_Maria_von-Saemmtliche_Werke_fuer_Pianoforte_Peters_6176_17_Op_24_scan.pdf
+    ext: pdf
+  - id: "180677"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6.8
+    rateBy: 5
+    group: 0
+    title: Complete ScoreUS-R
+    path: (1786)Carl Maria von Weber/(1812)Piano Sonata No.1 in C major, Op.24
+      (Weber, Carl Maria
+      von)/IMSLP180677-SIBLEY1802.19102.e788-39087012632487Perpetuum.pdf
+    ext: pdf
+  - id: "651508"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1786)Carl Maria von Weber/(1812)Piano Sonata No.1 in C major, Op.24
+      (Weber, Carl Maria
+      von)/IMSLP651508-PMLP3447-WeberVizthum_Perpetuummobile.pdf
+    ext: pdf
+  - id: "786696"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1786)Carl Maria von Weber/(1812)Piano Sonata No.1 in C major, Op.24
+      (Weber, Carl Maria von)/IMSLP786696-PMLP3447-TH181-PSSM.pdf
+    ext: pdf

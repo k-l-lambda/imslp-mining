@@ -1,0 +1,106 @@
+id: 93870
+title: Keyboard Sonata in A minor, K.7
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in A minor, K.7 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in A minor
+  Alternative. Title: ""
+  Name Translations: Sonate K. 7; Sonata K. 7; Sonat K. 7
+  Authorities: "WorldCat; VIAF: 175770689; BNF: 13914611m"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.7 ; L.379 ; P.63 ; CZ.12
+  I-Catalogue NumberI-Cat. No.: IDS 59
+  Key: A minor
+  Movements/SectionsMov'ts/Sec's: Presto
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.7)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Exercises
+  - Studies
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - A minor
+files:
+  - id: "133068"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A minor, K.7 (Scarlatti,
+      Domenico)/IMSLP133068-WIMA.f514-Scarlatti_Sonate_K.7.pdf
+    ext: pdf
+  - id: "313337"
+    tab: Score1
+    tabText: Scores
+    rating: 5.6
+    rateBy: 5
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A minor, K.7 (Scarlatti,
+      Domenico)/IMSLP313337-PMLP330414-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_07_K.7_scan.pdf
+    ext: pdf
+  - id: "626415"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A minor, K.7 (Scarlatti,
+      Domenico)/IMSLP626415-PMLP330414-Sonata_K._7_(as_L._379).pdf
+    ext: pdf
+  - id: "191866"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A minor, K.7 (Scarlatti,
+      Domenico)/IMSLP191866-WIMA.00c6-ScarK7Sco.pdf
+    ext: pdf
+  - id: "279414"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A minor, K.7 (Scarlatti,
+      Domenico)/IMSLP279414-PMLP257047-Scarlatti_Sonate_K.7.mid
+    ext: mid
+  - id: "191874"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A minor, K.7 (Scarlatti,
+      Domenico)/IMSLP191874-WIMA.e3f0-ScarK7Sco.mp3
+    ext: mp3

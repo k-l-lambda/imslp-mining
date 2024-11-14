@@ -1,0 +1,143 @@
+id: 27877
+title: Cello Sonata No.5, Op.102 No.2
+author: Beethoven, Ludwig van
+url: https://imslp.org/wiki/Cello Sonata No.5, Op.102 No.2 (Beethoven, Ludwig van)
+meta:
+  Work Title: Cello Sonata No.5
+  Alternative. Title: ""
+  Composer: Beethoven, Ludwig van
+  Opus/Catalogue NumberOp./Cat. No.: Op.102 No.2
+  I-Catalogue NumberI-Cat. No.: ILB 45
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements:
+     Allegro con brio (D major)
+     Adagio con molto sentimento d'affetto (D minor)
+     Allegro (D major)
+  Year/Date of CompositionY/D of Comp.: "1815"
+  First Publication.: "1816 - Bonn: Simrock"
+  Dedication: Countess Marie Erdödy
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: cello, piano
+  External Links: Wikipedia article (on Sonatas 4 and 5)
+categories:
+  - Lesser, Laurence/Performer
+  - Sherman, Russell/Performer
+  - Gardner Museum Recordings
+  - Recordings
+  - Pages with First Editions
+  - Scores published by N. Simrock
+  - Scores published by Artaria
+  - Scores from Bayerische Staatsbibliothek
+  - Scores from Łódź University Library
+  - Scores published by Breitkopf und Härtel
+  - Pages with References to Hofmeister's Monatsbericht
+  - Scores with links to Amazon
+  - Scores published by Litolff
+  - Hermann, Friedrich/Editor
+  - Scores published by Edition Peters
+  - Van der Grinten, Tom/Arranger
+  - Ulrich, Hugo/Arranger
+  - Wittmann, Robert/Arranger
+  - Sibley Mirroring Project
+  - Scores
+  - Beethoven, Ludwig van
+  - Classical style
+  - Classical
+  - Sonatas
+  - For cello, piano
+  - Scores featuring the cello
+  - Scores featuring the piano
+  - For 2 players
+  - For violin, piano (arr)
+  - For 2 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the piano (arr)
+  - For viola, piano (arr)
+  - Scores featuring the viola (arr)
+  - For piano 4 hands (arr)
+  - Scores featuring the piano 4 hands (arr)
+  - Pages with arrangements
+  - Works first published in 1816
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+  - D major
+files:
+  - id: "51304"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 7.5
+    rateBy: 8
+    group: 0
+    title: Complete ScoreD-BNba
+    path: (1770)Ludwig van Beethoven/(1815)Cello Sonata No.5, Op.102 No.2
+      (Beethoven, Ludwig van)/IMSLP51304-PMLP09411-Op.102-2.pdf
+    ext: pdf
+  - id: "36957"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 6
+    rateBy: 7
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1770)Ludwig van Beethoven/(1815)Cello Sonata No.5, Op.102 No.2
+      (Beethoven, Ludwig
+      van)/IMSLP36957-PMLP09411-Beethoven_-_Sonata_Op102_No2_Piano.pdf
+    ext: pdf
+  - id: "03794"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 6
+    rateBy: 5
+    group: 2
+    title: Complete Score
+    path: (1770)Ludwig van Beethoven/(1815)Cello Sonata No.5, Op.102 No.2
+      (Beethoven, Ludwig van)/IMSLP03794-Beethoven_-_Cello_Sonata_No5.pdf
+    ext: pdf
+  - id: "70351"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Complete Score (Cello and Piano)
+    path: (1770)Ludwig van Beethoven/(1815)Cello Sonata No.5, Op.102 No.2
+      (Beethoven, Ludwig
+      van)/IMSLP70351-PMLP09411-Beethoven_-_Cello_Sonata_No5_in_DM_Op102_No2_(Litolff)_Vc_Pno_score.pdf
+    ext: pdf
+  - id: "773190"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Viola Part
+    path: (1770)Ludwig van Beethoven/(1815)Cello Sonata No.5, Op.102 No.2
+      (Beethoven, Ludwig
+      van)/IMSLP773190-PMLP9411-Beethoven,_Sonata_Op102_No2_Viool_-alt_-_Full_Score.pdf
+    ext: pdf
+  - id: "270864"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete ScoreUS-R
+    path: (1770)Ludwig van Beethoven/(1815)Cello Sonata No.5, Op.102 No.2
+      (Beethoven, Ludwig
+      van)/IMSLP270864-PMLP09411-Beethoven_Sonate_Op102_2_Pf4h.pdf
+    ext: pdf
+  - id: "243519"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 3
+    group: 0
+    title: Complete Performance
+    path: (1770)Ludwig van Beethoven/(1815)Cello Sonata No.5, Op.102 No.2
+      (Beethoven, Ludwig van)/IMSLP243519-PMLP09411-beethoven_op102no2.mp3
+    ext: mp3

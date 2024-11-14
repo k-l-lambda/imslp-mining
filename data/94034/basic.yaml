@@ -1,0 +1,112 @@
+id: 94034
+title: Keyboard Sonata in D major, K.45
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in D major, K.45 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in D major
+  Alternative. Title: ""
+  Name Translations: Sonate K. 45; Sonata K. 45; Sonat K. 45
+  Authorities: "WorldCat; VIAF: 294589912; LCCN: no2004105915; BNF: 13914478b"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.45 ; L.265 ; P.230 ; CZ.93
+  I-Catalogue NumberI-Cat. No.: IDS 238
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: Allegro
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - D major
+files:
+  - id: "277558"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.45 (Scarlatti,
+      Domenico)/IMSLP277558-PMLP332555-Scarlatti_Sonate_K.45.pdf
+    ext: pdf
+  - id: "626453"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.45 (Scarlatti,
+      Domenico)/IMSLP626453-PMLP332555-Sonata_K._45_(as_L._265).pdf
+    ext: pdf
+  - id: "313872"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.45 (Scarlatti,
+      Domenico)/IMSLP313872-PMLP332555-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_45_K.45_scan.pdf
+    ext: pdf
+  - id: "193515"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.45 (Scarlatti,
+      Domenico)/IMSLP193515-WIMA.e50f-Sca45Sco.pdf
+    ext: pdf
+  - id: "277561"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized Performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.45 (Scarlatti,
+      Domenico)/IMSLP277561-PMLP332555-Scarlatti_Sonate_K.45.mid
+    ext: mid
+  - id: "193523"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual Performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.45 (Scarlatti,
+      Domenico)/IMSLP193523-WIMA.4623-Sca45Sco.mp3
+    ext: mp3
+  - id: "193524"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual Performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.45 (Scarlatti,
+      Domenico)/IMSLP193524-WIMA.fc4e-Sca45Sco.mid
+    ext: mid

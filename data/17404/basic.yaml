@@ -1,0 +1,172 @@
+id: 17404
+title: Prelude and Fugue in G minor, BWV 885
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in G minor, BWV 885 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in G minor
+  Alternative. Title: ""
+  Name Translations: Prélude et fugue en sol mineur (BWV 885); Πρελούδιο και
+    Φούγκα σε Σολ ελάσσονα, BWV 885
+  Authorities: "WorldCat; VIAF: 210939995; GND: 300190719; BNF: 13996080x"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 885
+  I-Catalogue NumberI-Cat. No.: IJB 548
+  Key: G minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 sections:
+    Prelude
+    Fugue
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.16)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: clavier
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (WTC)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Moshkin, Evgeniy E./Performer
+  - Zhang, Shuwen/Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Moshkin, Evgeniy E./Editor
+  - Rother, Kyle/Editor
+  - De Faria, Pedro Henrique/Arranger
+  - Besseling, Peter/Arranger
+  - Fujishita, Keigo/Arranger
+  - Reger, Max/Arranger
+  - Scores published by Aibl
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For horn, 2 trumpets, trombone, tuba (arr)
+  - For 5 players (arr)
+  - Scores featuring the horn (arr)
+  - Scores featuring the trumpet (arr)
+  - Scores featuring the trombone (arr)
+  - Scores featuring the tuba (arr)
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - For guitar (arr)
+  - Scores featuring the guitar (arr)
+  - For 1 player (arr)
+  - For organ (arr)
+  - Scores featuring the organ (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - G minor
+files:
+  - id: "02193"
+    tab: Score1
+    tabText: Scores
+    rating: 7.5294117647059
+    rateBy: 17
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G minor, BWV 885
+      (Bach, Johann Sebastian)/IMSLP02193-BWV0885.pdf
+    ext: pdf
+  - id: "567436"
+    tab: Score1
+    tabText: Scores
+    rating: 7.3333333333333
+    rateBy: 3
+    group: 1
+    title: Complete Score (with fingering and tempo indication)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G minor, BWV 885
+      (Bach, Johann Sebastian)/IMSLP567436-PMLP697375-bwv_885.pdf
+    ext: pdf
+  - id: "675665"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 1
+    group: 2
+    title: Complete Score (Version A, London MS)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G minor, BWV 885
+      (Bach, Johann
+      Sebastian)/IMSLP675665-PMLP697375-Bach_-_WTC_2_(NBA),_Prelude_and_Fugue_16_(G_minor,_BWV_885)._Version_A_-_London_MS_(full-size).pdf
+    ext: pdf
+  - id: "429275"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score (C)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G minor, BWV 885
+      (Bach, Johann Sebastian)/IMSLP429275-PMLP05899-score-2.pdf
+    ext: pdf
+  - id: "738159"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G minor, BWV 885
+      (Bach, Johann Sebastian)/IMSLP738159-PMLP697375-Bach_WTK_2_16_BWV_885.pdf
+    ext: pdf
+  - id: "638244"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Prelude
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G minor, BWV 885
+      (Bach, Johann Sebastian)/IMSLP638244-PMLP697375-Prelude_g-moll_BWV_885.pdf
+    ext: pdf
+  - id: "462477"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 6
+    group: 0
+    title: Complete Recording (Piano)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G minor, BWV 885
+      (Bach, Johann
+      Sebastian)/IMSLP462477-PMLP05899-Book_2_-_Prelude_and_Fugue_in_G_min.mp3
+    ext: mp3
+  - id: "567435"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Complete Recording (Harpsichord)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G minor, BWV 885
+      (Bach, Johann Sebastian)/IMSLP567435-PMLP697375-bwv885.ogg
+    ext: ogg
+  - id: "375273"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9.3333333333333
+    rateBy: 3
+    group: 2
+    title: Complete Recording (Harpsichord)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G minor, BWV 885
+      (Bach, Johann
+      Sebastian)/IMSLP375273-PMLP05899-J.S.Bach-Well_Tempered_Klavier-BK.II,_No.16-Prelude_and_Fugue_in_G_minor,BWV.885.mp3
+    ext: mp3

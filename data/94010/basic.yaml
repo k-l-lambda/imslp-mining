@@ -1,0 +1,112 @@
+id: 94010
+title: Keyboard Sonata in C minor, K.56
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in C minor, K.56 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in C minor
+  Alternative. Title: ""
+  Name Translations: sonate K. 56; Sonata K. 56; Sonate K. 56; Sonat K. 56
+  Authorities: "WorldCat; VIAF: 294060771; LCCN: no2004036286; BNF: 13914596j"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.56 ; L.356 ; P.50 ; CZ.57
+  I-Catalogue NumberI-Cat. No.: IDS 212
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: Con spirito
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - C minor
+files:
+  - id: "280465"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.56 (Scarlatti,
+      Domenico)/IMSLP280465-PMLP333238-Scarlatti_Sonate_K.56.pdf
+    ext: pdf
+  - id: "353909"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 2
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.56 (Scarlatti,
+      Domenico)/IMSLP353909-PMLP333238-Scarlatti,_Domenico-Sonates_Heugel_32.522_Volume_2_04_K.56_scan.pdf
+    ext: pdf
+  - id: "626844"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.56 (Scarlatti,
+      Domenico)/IMSLP626844-PMLP333238-Sonata_K._56_(as_L._356).pdf
+    ext: pdf
+  - id: "194036"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.56 (Scarlatti,
+      Domenico)/IMSLP194036-WIMA.25b6-Sca56Sco.pdf
+    ext: pdf
+  - id: "280466"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.56 (Scarlatti,
+      Domenico)/IMSLP280466-PMLP333238-Scarlatti_Sonate_K.56.mid
+    ext: mid
+  - id: "194044"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.56 (Scarlatti,
+      Domenico)/IMSLP194044-WIMA.ca1d-Sca56Sco.mp3
+    ext: mp3
+  - id: "194045"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.56 (Scarlatti,
+      Domenico)/IMSLP194045-WIMA.73ea-Sca56Sco.mid
+    ext: mid

@@ -1,0 +1,73 @@
+id: 105143
+title: "18"
+author: Liszt, Franz
+url: https://imslp.org/wiki/Hungarian Rhapsody No.18, S.244/18 (Liszt, Franz)
+meta:
+  Work Title: Hungarian Rhapsody No.18
+  Alternative. Title: Magyar rhapsodia (Lento)
+  Name Translations: Hungarian Rhapsody No. 18; Ungarische Rhapsodie Nr. 18; 第18號匈牙利狂想曲
+  Authorities: Wikipedia
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.244/18 ; LW.A132/18
+  I-Catalogue NumberI-Cat. No.: IFL 180
+  Key: F-sharp minor
+  Movements/SectionsMov'ts/Sec's: 1 piece
+  Year/Date of CompositionY/D of Comp.: "1885"
+  First Publication.: "1885"
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Raabe, Peter/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Milstein, Yakov/Editor
+  - Scores published by Muzgiz
+  - Gárdonyi, Zoltán/Editor
+  - Szelényi, István/Editor
+  - Scores published by Editio Musica Budapest
+  - Urtext
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Rhapsodies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1885
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (BnF collection)
+  - F-sharp minor
+files:
+  - id: "34664"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score (S.244/18)BSB
+    path: (1811)Franz Liszt/(1885)18 (Liszt,
+      Franz)/IMSLP34664-PMLP12469-Liszt_Musikalische_Werke_2_Band_12_134_Ungarische_Rhapsodie_18.pdf
+    ext: pdf
+  - id: "186122"
+    tab: Score1
+    tabText: Scores
+    rating: 9
+    rateBy: 2
+    group: 1
+    title: Complete Score (S.244/18) (scan)
+    path: (1811)Franz Liszt/(1885)18 (Liszt,
+      Franz)/IMSLP186122-PMLP12469-Liszt_NLA_Serie_I_Band_04_09_Rhapsodie_hongroise_S.244_18_scan.pdf
+    ext: pdf
+  - id: "05084"
+    tab: Score1
+    tabText: Scores
+    rating: 7.3333333333333
+    rateBy: 3
+    group: 2
+    title: Complete Score (S.244/18)
+    path: (1811)Franz Liszt/(1885)18 (Liszt,
+      Franz)/IMSLP05084-Liszt_-_S244_Hungarian_Rhapsody_No18_(edition_b).PDF
+    ext: pdf

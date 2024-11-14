@@ -1,0 +1,157 @@
+id: 32613
+title: Keyboard Sonata in F minor, K.466
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in F minor, K.466 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in F minor
+  Alternative. Title: Sonata in F minor
+  Name Translations: Sonate K. 466; Sonata K. 466; Sonat K. 466
+  Authorities: "WorldCat; VIAF: 186707999; LCCN: n82126429; GND: 300135955; BNF: 139144968"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.466
+  I-Catalogue NumberI-Cat. No.: IDS 457
+  Key: F minor
+  Movements/SectionsMov'ts/Sec's: 1 movement
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Höger, Anton/Arranger
+  - Mandozzi, Orfeo/Arranger
+  - Hanson, Andrew/Arranger
+  - Beuming, Ben/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 2 guitars (arr)
+  - For 2 players (arr)
+  - Scores featuring the guitar (arr)
+  - For violin, cello (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the cello (arr)
+  - For recorder (arr)
+  - Scores featuring the recorder (arr)
+  - For 1 player (arr)
+  - For guitar (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - F minor
+files:
+  - id: "692020"
+    tab: Score1
+    tabText: Scores
+    rating: 6.4
+    rateBy: 5
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.466 (Scarlatti,
+      Domenico)/IMSLP692020-PMLP336146-Keyboard_Sonata_in_f_minor,_K.466.pdf
+    ext: pdf
+  - id: "318837"
+    tab: Score1
+    tabText: Scores
+    rating: 5.5348837209302
+    rateBy: 43
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.466 (Scarlatti,
+      Domenico)/IMSLP318837-PMLP336146-Scarlatti,_Domenico-Sonates_Heugel_32.210_Volume_10_09_K.466_scan.pdf
+    ext: pdf
+  - id: "293802"
+    tab: Score1
+    tabText: Scores
+    rating: 4.8
+    rateBy: 5
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.466 (Scarlatti,
+      Domenico)/IMSLP293802-PMLP336146-Scarlatti_Sonate_K.466.pdf
+    ext: pdf
+  - id: "302520"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.466 (Scarlatti,
+      Domenico)/IMSLP302520-PMLP336146-Scarlatti_Sonata_466_Mandozzi_-_Partitur.pdf
+    ext: pdf
+  - id: "196429"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4.5
+    rateBy: 4
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.466 (Scarlatti,
+      Domenico)/IMSLP196429-WIMA.7895-Sca466Sco.pdf
+    ext: pdf
+  - id: "532368"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.466 (Scarlatti,
+      Domenico)/IMSLP532368-PMLP336146-Scarlatti_-_Sonata_in_F_minor,_K.466.pdf
+    ext: pdf
+  - id: "196437"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized Performance (MP3)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.466 (Scarlatti,
+      Domenico)/IMSLP196437-WIMA.1419-Sca466Sco.mp3
+    ext: mp3
+  - id: "196438"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Synthesized Performance (MIDI)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.466 (Scarlatti,
+      Domenico)/IMSLP196438-WIMA.a4cf-Sca466Sco.mid
+    ext: mid
+  - id: "532369"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Synthesized Performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.466 (Scarlatti,
+      Domenico)/IMSLP532369-PMLP336146-Scarlatti_-_Sonata_in_F_minor,_K.466.mp3
+    ext: mp3
+  - id: "293803"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Synthesized Performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.466 (Scarlatti,
+      Domenico)/IMSLP293803-PMLP336146-Scarlatti_Sonate_K.466.mid
+    ext: mid

@@ -1,0 +1,102 @@
+id: 21061
+title: Piano Sonata No.1, Op.4
+author: Chopin, Frédéric
+url: https://imslp.org/wiki/Piano Sonata No.1, Op.4 (Chopin, Frédéric)
+meta:
+  Work Title: Sonata No.1
+  Alternative. Title: ""
+  Name Translations: Sonate pour piano nº 1 de Chopin; Piano Sonata No. 1 in C
+    minor, Op. 4; I Sonata fortepianowa (Chopin); Соната для фортепіано № 1
+    (Шопен); Klaviersonate Nr. 1 (Chopin); ピアノソナタ第1番 (ショパン); Sonata para piano
+    n.º 1 (Chopin); Sonata per pianoforte n. 1 op. 4; Sonata per a piano núm. 1;
+    Соната для фортепиано № 1; Σονάτα για πιάνο No. 1
+  Name Aliases: Sonata para piano nº1 (Chopin); Sonata para piano n º 1 (Chopin);
+    Sonata para piano n 1 (Chopin); Sonata para piano n. 1 (Chopin)
+  Authorities: "WorldCat; Wikipedia; VIAF: 173970256; LCCN: no00025339; BNF:
+    14801792r; NLA: 35427352"
+  Composer: Chopin, Frédéric
+  Opus/Catalogue NumberOp./Cat. No.: Op.4
+  I-Catalogue NumberI-Cat. No.: IFC 75
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements:
+     Allegro maestoso (C minor)
+     Minuetto. Allegretto (E♭ major) - Trio (E♭ minor)
+     Larghetto (A♭ major)
+     Finale. Presto (C minor)
+  Year/Date of CompositionY/D of Comp.: "1828"
+  First Publication.: "1851"
+  Dedication: Józef Elsner
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia articleInstytut Fryderyka ChopinaAll Music Guide
+categories:
+  - Scores from Bibliothèque nationale de France
+  - Pages with First Editions
+  - Scores published by Tobias Haslinger
+  - Scores from Chopin Early Editions
+  - Scholtz, Herrmann/Editor
+  - Scores published by Edition Peters
+  - Pages with ChopinScholtzEP
+  - Scores from HathiTrust
+  - Bargiel, Woldemar/Editor
+  - Brahms, Johannes/Editor
+  - Franchomme, Auguste/Editor
+  - Liszt, Franz/Editor
+  - Reinecke, Carl/Editor
+  - Rudorff, Ernst/Editor
+  - Klindworth, Karl/Editor
+  - Scharwenka, Xaver/Editor
+  - Scores published by Augener
+  - Kullak, Theodor/Editor
+  - Parsons, Albert Ross/Translator
+  - Sibley Mirroring Project
+  - Mikuli, Carl/Editor
+  - Scores
+  - Chopin, Frédéric
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1851
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C minor
+  - Elsner, Józef/Dedicatee
+  - Quintuple time
+files:
+  - id: "113232"
+    tab: Score1
+    tabText: Scores
+    rating: 6.3636363636364
+    rateBy: 11
+    group: 0
+    title: Complete Score (scan)
+    path: (1810)Frédéric Chopin/(1828)Piano Sonata No.1, Op.4 (Chopin,
+      Frédéric)/IMSLP113232-PMLP02362-Chopin_Klavierwerke_Band_3_Peters_6208_Op_4_scan.pdf
+    ext: pdf
+  - id: "400814"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 2
+    group: 1
+    title: Complete Score (full BNF resolution)F-Pn
+    path: (1810)Frédéric Chopin/(1828)Piano Sonata No.1, Op.4 (Chopin,
+      Frédéric)/IMSLP400814-PMLP02362-BnF_btv1b525005382.pdf
+    ext: pdf
+  - id: "88219"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 16
+    group: 2
+    title: Complete ScoreUS-Cum
+    path: (1810)Frédéric Chopin/(1828)Piano Sonata No.1, Op.4 (Chopin,
+      Frédéric)/IMSLP88219-PMLP02362-Chopin_Op_4_Haslinger_8147_First_Edition_1851.pdf
+    ext: pdf

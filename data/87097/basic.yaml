@@ -1,0 +1,111 @@
+id: 87097
+title: Ballade No.2, S.171
+author: Liszt, Franz
+url: https://imslp.org/wiki/Ballade No.2, S.171 (Liszt, Franz)
+meta:
+  Work Title: Ballade No.2
+  Alternative. Title: ""
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.170a (1st version)S.171 ; LW.A181 (2nd version)
+  I-Catalogue NumberI-Cat. No.: IFL 39
+  Key: B minor
+  Movements/SectionsMov'ts/Sec's: 1 movement
+  Year/Date of CompositionY/D of Comp.: 1853 (both versions)
+  First Publication.: "1854 (2nd version) – Leipzig: Kistner"
+  Dedication: Count Carl Friedrich Wilhelm Emich, Prince of Leiningen (1804–1856)
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Gardner Museum Recordings
+  - Zbinden, Christoph/Performer
+  - Recordings
+  - Scores from the Juilliard Manuscript Collection
+  - Manuscripts from the 1800s
+  - Composers' holographs from the 1800s
+  - Pages with MssAu template
+  - Manuscripts
+  - Pages with First Editions
+  - Scores published by Kistner
+  - Pages with References to Hofmeister's Monatsbericht
+  - Sauer, Emil von/Editor
+  - Scores published by Edition Peters
+  - Friedman, Ignaz/Editor
+  - Scores published by Universal Edition
+  - Scores from Bayerische Staatsbibliothek
+  - Vianna da Motta, José/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Milstein, Yakov/Editor
+  - Scores published by Muzgiz
+  - Urtext
+  - Mező, Imre/Editor
+  - Sulyok, Imre/Editor
+  - Scores published by Editio Musica Budapest
+  - Checkin, Vassily/Editor
+  - Pages with Mutopia scores
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Ballades
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1854
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - B minor
+files:
+  - id: "106021"
+    tab: Score1
+    tabText: Scores
+    rating: 8.6666666666667
+    rateBy: 3
+    group: 0
+    title: Complete Score (scan)
+    path: (1811)Franz Liszt/(1853)Ballade No.2, S.171 (Liszt,
+      Franz)/IMSLP106021-PMLP02178-Liszt_NLA_Serie_I_Band_09_06_Zweite_Ballade_S.171_scan.pdf
+    ext: pdf
+  - id: "05899"
+    tab: Score1
+    tabText: Scores
+    rating: 8.25
+    rateBy: 4
+    group: 1
+    title: Complete Score
+    path: (1811)Franz Liszt/(1853)Ballade No.2, S.171 (Liszt,
+      Franz)/IMSLP05899-Liszt_-_S171_Ballade_No2_typeset.pdf
+    ext: pdf
+  - id: "56090"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 4
+    group: 2
+    title: Complete ScoreD-Mbs
+    path: (1811)Franz Liszt/(1853)Ballade No.2, S.171 (Liszt,
+      Franz)/IMSLP56090-PMLP02178-Liszt_Musikalische_Werke_2_Band_8_57.pdf
+    ext: pdf
+  - id: "325426"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.5
+    rateBy: 4
+    group: 0
+    title: Complete Performance
+    path: (1811)Franz Liszt/(1853)Ballade No.2, S.171 (Liszt,
+      Franz)/IMSLP325426-PMLP02178-liszt_balladeno2_filjak.mp3
+    ext: mp3
+  - id: "429169"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5
+    rateBy: 2
+    group: 1
+    title: Complete Performance
+    path: (1811)Franz Liszt/(1853)Ballade No.2, S.171 (Liszt,
+      Franz)/IMSLP429169-PMLP02178-Liszt_Ballade_2_h_moll.mp3
+    ext: mp3

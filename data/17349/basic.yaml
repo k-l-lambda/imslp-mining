@@ -1,0 +1,140 @@
+id: 17349
+title: Prelude and Fugue in E minor, BWV 555
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in E minor, BWV 555 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in E minor
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 555 ; BC.J30
+  I-Catalogue NumberI-Cat. No.: IJB 982
+  Key: E minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 sections:
+    Praeludium (25 bars)
+    Fuga (72 bars)
+  First Publication.: 1852 in 8 Kleine Präludien und Fugen, BWV 553-560 (No.3)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ
+  Primary Sources: Bach Digital (source list)
+categories:
+  - WIMA files
+  - Naumann, Ernst/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Gouin, Pierre/Editor
+  - Graber, Günther/Arranger
+  - Kompy/Arranger
+  - Kuipers, Albert H./Arranger
+  - Mondrup Recorder Collection
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - For horn, 2 trumpets, trombone, tuba (arr)
+  - Scores featuring the horn (arr)
+  - Scores featuring the trumpet (arr)
+  - Scores featuring the trombone (arr)
+  - Scores featuring the tuba (arr)
+  - For 5 players (arr)
+  - For 4 recorders (arr)
+  - Scores featuring the recorder (arr)
+  - For 4 players (arr)
+  - Pages with arrangements
+  - Works first published in 1852
+  - Works first published in the 19th century
+  - E minor
+files:
+  - id: "129116"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in E minor, BWV 555
+      (Bach, Johann
+      Sebastian)/IMSLP129116-PMLP10674-Bach_Kleine_Praeludien_3.pdf
+    ext: pdf
+  - id: "739702"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in E minor, BWV 555
+      (Bach, Johann
+      Sebastian)/IMSLP739702-PMLP266838-E4322_8-10-Bach_-_BGA_-_BWV_553-560.pdf
+    ext: pdf
+  - id: "141187"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 9
+    rateBy: 2
+    group: 0
+    title: Complete Score (G minor)
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in E minor, BWV 555
+      (Bach, Johann
+      Sebastian)/IMSLP141187-WIMA.9a5d-BWV-555-Preludium-und-Fuge-Recorders-SATB-g-minor-score.pdf
+    ext: pdf
+  - id: "15743"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6.5714285714286
+    rateBy: 7
+    group: 1
+    title: Complete Score and parts
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in E minor, BWV 555
+      (Bach, Johann Sebastian)/IMSLP15743-Bwv_555_bfl.pdf
+    ext: pdf
+  - id: "456061"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in E minor, BWV 555
+      (Bach, Johann Sebastian)/IMSLP456061-PMLP10674-praeludium_nr3.pdf
+    ext: pdf
+  - id: "212680"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in E minor, BWV 555
+      (Bach, Johann Sebastian)/IMSLP212680-WIMA.88c0-fugue_565.mid
+    ext: mid
+  - id: "200199"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in E minor, BWV 555
+      (Bach, Johann
+      Sebastian)/IMSLP200199-WIMA.6893-BWV-555-Preludium-und-Fuge-Recorders-SATB-e-minor-midi.mid
+    ext: mid
+  - id: "200200"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Synthesized Performance (G minor)
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in E minor, BWV 555
+      (Bach, Johann
+      Sebastian)/IMSLP200200-WIMA.3525-BWV-555-Preludium-und-Fuge-Recorders-SATB-g-minor-midi.mid
+    ext: mid

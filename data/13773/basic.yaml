@@ -1,0 +1,60 @@
+id: 13773
+title: Toccata, BV 287
+author: Busoni, Ferruccio
+url: https://imslp.org/wiki/Toccata, BV 287 (Busoni, Ferruccio)
+meta:
+  Work Title: Toccata
+  Alternative. Title: Preludio, Fantasia, Ciaccona
+  Composer: Busoni, Ferruccio
+  Opus/Catalogue NumberOp./Cat. No.: BV 287
+  I-Catalogue NumberI-Cat. No.: IFB 67
+  Movements/SectionsMov'ts/Sec's: "3"
+  Year/Date of CompositionY/D of Comp.: "1921"
+  First Publication.: "1922"
+  Dedication: Isidor Philipp
+  Composer Time PeriodComp. Period: Early 20th century
+  Piece Style: Early 20th century
+  Instrumentation: piano
+  External Links: Wikipedia (French)
+categories:
+  - Armstrong, Peter McKenzie/Performer
+  - Recordings
+  - Scores published by Breitkopf und Härtel
+  - Sibley Mirroring Project
+  - Scores
+  - Busoni, Ferruccio
+  - Early 20th century style
+  - Early 20th century
+  - Toccatas
+  - Preludes
+  - Fantasias
+  - Chaconnes
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1922
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Philipp, Isidor/Dedicatee
+files:
+  - id: "03658"
+    tab: Score1
+    tabText: Piano Scores
+    rating: 3.5
+    rateBy: 6
+    group: 0
+    title: Complete Score
+    path: (1866)Ferruccio Busoni/(1921)Toccata, BV 287 (Busoni,
+      Ferruccio)/IMSLP03658-Busoni_toccata297.pdf
+    ext: pdf
+  - id: "180023"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Performance (BV 287)
+    path: (1866)Ferruccio Busoni/(1921)Toccata, BV 287 (Busoni,
+      Ferruccio)/IMSLP180023-PMLP09112-FB-Tocca-1-OR.mp3
+    ext: mp3

@@ -1,0 +1,146 @@
+id: 17411
+title: Prelude and Fugue in B major, BWV 892
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in B major, BWV 892 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in B major
+  Alternative. Title: ""
+  Name Translations: Präludium und Fuge H-Dur BWV 892; Prélude et fugue en si majeur (BWV 892)
+  Authorities: "WorldCat; VIAF: 317087327; GND: 1076376266"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 892
+  I-Catalogue NumberI-Cat. No.: IJB 493
+  Key: B major
+  Movements/SectionsMov'ts/Sec's: 2 sections
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.23)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: clavier
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (WTC)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Dürr, Alfred/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Pages with items from the Neue Bach-Ausgabe
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Best, William Thomas/Arranger
+  - Scores published by Novello
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - For organ (arr)
+  - For 1 player (arr)
+  - Scores featuring the organ (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - B major
+files:
+  - id: "02200"
+    tab: Score1
+    tabText: Scores
+    rating: 7.7142857142857
+    rateBy: 14
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B major, BWV 892
+      (Bach, Johann Sebastian)/IMSLP02200-BWV0892.pdf
+    ext: pdf
+  - id: "675650"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score (Version A, London MS)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B major, BWV 892
+      (Bach, Johann
+      Sebastian)/IMSLP675650-PMLP787009-Bach_-_WTC_2_(NBA),_Prelude_and_Fugue_23_(B_major,_BWV_892)._Version_A_-_London_MS_(full-size).pdf
+    ext: pdf
+  - id: "497316"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Fugue (Open Score)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B major, BWV 892
+      (Bach, Johann Sebastian)/IMSLP497316-PMLP787009-fugue23_expanded.pdf
+    ext: pdf
+  - id: "497317"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Source File (LilyPond)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B major, BWV 892
+      (Bach, Johann Sebastian)/IMSLP497317-PMLP787009-fugue23_expanded.ly.zip
+    ext: zip
+  - id: "738402"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B major, BWV 892
+      (Bach, Johann Sebastian)/IMSLP738402-PMLP787009-Bach_WTK_2_23_BWV_892.pdf
+    ext: pdf
+  - id: "738405"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score (B♭ major)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B major, BWV 892
+      (Bach, Johann
+      Sebastian)/IMSLP738405-PMLP787009-Bach_WTK_2_23_BWV_892_Bes.pdf
+    ext: pdf
+  - id: "474279"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Fugue
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B major, BWV 892
+      (Bach, Johann
+      Sebastian)/IMSLP474279-PMLP05899-12._BACH_FUGUE_B_major_BWV892.pdf
+    ext: pdf
+  - id: "462272"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9
+    rateBy: 6
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B major, BWV 892
+      (Bach, Johann
+      Sebastian)/IMSLP462272-PMLP05899-Bach_-_Prelude_&_Fugue_in_B_Maj_Book_2.mp3
+    ext: mp3

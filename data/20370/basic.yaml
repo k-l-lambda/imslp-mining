@@ -1,0 +1,135 @@
+id: 20370
+title: Nuit d’étoiles
+author: Debussy, Claude
+url: https://imslp.org/wiki/Nuit d’étoiles (Debussy, Claude)
+meta:
+  Work Title: Nuit d’étoiles
+  Alternative. Title: Starry Night
+  Name Translations: Nuit d'étoiles
+  Authorities: "WorldCat; VIAF: 179935321; BNF: 139114193"
+  Composer: Debussy, Claude
+  Opus/Catalogue NumberOp./Cat. No.: CD 2 ; L.4
+  I-Catalogue NumberI-Cat. No.: ICD 56
+  Year/Date of CompositionY/D of Comp.: "1880"
+  First Publication.: "1882 - Paris: E. Bulla"
+  Librettist: Théodore de Banville (1823-1891)
+  Language: French
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: voice, piano
+  External Links: Centre de documentation Claude DebussyMusicBrainz
+categories:
+  - Valls, Héctor/Performer
+  - Recordings
+  - Sibley Mirroring Project
+  - Scores published by Société Artistique d'Edition d'Estampes et de Musique
+  - Scores published by Muzgiz
+  - Scores from Loeb Music Library
+  - Scores published by E. Coutarel
+  - Yair I/Editor
+  - Scores
+  - Debussy, Claude
+  - Romantic style
+  - Romantic
+  - Songs
+  - For voice, piano
+  - For voices with keyboard
+  - Scores featuring the voice
+  - Scores featuring the piano
+  - French language
+  - Works first published in 1882
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Banville, Théodore de/Librettist
+files:
+  - id: "426246"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 2
+    group: 0
+    title: Baritone and Piano (full LOEB resolution)US-CAe
+    path: (1862)Claude Debussy/(1880)Nuit d’étoiles (Debussy,
+      Claude)/IMSLP426246-PMLP39276-LOEB_7343498.pdf
+    ext: pdf
+  - id: "426247"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 4
+    group: 0
+    title: Baritone and Piano (monochrome)US-CAe
+    path: (1862)Claude Debussy/(1880)Nuit d’étoiles (Debussy,
+      Claude)/IMSLP426247-PMLP39276-LOEB_7343498_mono.pdf
+    ext: pdf
+  - id: "426244"
+    tab: Score1
+    tabText: Scores
+    rating: 7.1428571428571
+    rateBy: 7
+    group: 1
+    title: Tenor and Piano (full LOEB resolution)US-CAe
+    path: (1862)Claude Debussy/(1880)Nuit d’étoiles (Debussy,
+      Claude)/IMSLP426244-PMLP39276-LOEB_7343500.pdf
+    ext: pdf
+  - id: "426245"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Tenor and Piano (monochrome)US-CAe
+    path: (1862)Claude Debussy/(1880)Nuit d’étoiles (Debussy,
+      Claude)/IMSLP426245-PMLP39276-LOEB_7343500_mono.pdf
+    ext: pdf
+  - id: "426275"
+    tab: Score1
+    tabText: Scores
+    rating: 6.8571428571429
+    rateBy: 7
+    group: 2
+    title: Soprano and Piano (full LOEB resolution)US-CAe
+    path: (1862)Claude Debussy/(1880)Nuit d’étoiles (Debussy,
+      Claude)/IMSLP426275-PMLP39276-LOEB_7343499.pdf
+    ext: pdf
+  - id: "426276"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 6
+    group: 2
+    title: Soprano and Piano (monochrome)US-CAe
+    path: (1862)Claude Debussy/(1880)Nuit d’étoiles (Debussy,
+      Claude)/IMSLP426276-PMLP39276-LOEB_7343499_mono.pdf
+    ext: pdf
+  - id: "443197"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7
+    rateBy: 10
+    group: 0
+    title: Complete Performance  (D♭ major)
+    path: (1862)Claude Debussy/(1880)Nuit d’étoiles (Debussy,
+      Claude)/IMSLP443197-PMLP39276-Nuit_d'Etoiles_(Db_low).mp3
+    ext: mp3
+  - id: "443198"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 14
+    group: 0
+    title: Complete Performance (F major)
+    path: (1862)Claude Debussy/(1880)Nuit d’étoiles (Debussy,
+      Claude)/IMSLP443198-PMLP39276-Nuit_d'Etoiles_(F_high).mp3
+    ext: mp3
+  - id: "446757"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.25
+    rateBy: 8
+    group: 0
+    title: Complete Performance (E♭ major)
+    path: (1862)Claude Debussy/(1880)Nuit d’étoiles (Debussy,
+      Claude)/IMSLP446757-PMLP39276-Nuit_d'Etoiles_(Eb).mp3
+    ext: mp3

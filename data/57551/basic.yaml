@@ -1,0 +1,136 @@
+id: 57551
+title: Violin Sonata in F major, K.13
+author: Mozart, Wolfgang Amadeus
+url: https://imslp.org/wiki/Violin Sonata in F major, K.13 (Mozart, Wolfgang
+  Amadeus)
+meta:
+  Work Title: Violin Sonata
+  Alternative. Title: Violin Sonata No.8
+  Name Translations: Sonata per violino (o flauto) K 13; Violin sonata K 13
+  Name Aliases: K 13; KV 13
+  Composer: Mozart, Wolfgang Amadeus
+  Opus/Catalogue NumberOp./Cat. No.: K.13 ; Op.3 No.4
+  I-Catalogue NumberI-Cat. No.: IWM 666
+  Key: F major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements
+    Allegro
+    Andante
+    Menuetto 1 & 2
+  Year/Date of CompositionY/D of Comp.: "1764"
+  First Publication.: "1765"
+  Dedication: A Sa Majeste Charlotte Reine de la Grande Bretagne
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: violin (or flute), piano (+ cello ad lib.)
+categories:
+  - Recordings
+  - Scores from Łódź University Library
+  - Goldschmidt, Otto/Editor
+  - Joachim, Joseph/Editor
+  - Reinecke, Carl/Editor
+  - Rudorff, Ernst/Editor
+  - Waldersee, Paul/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with scores from the Digital Mozart Edition
+  - Plath, Wolfgang/Editor
+  - Rehm, Wolfgang/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Pages with files from the Neue Mozart-Ausgabe
+  - Cohn, Brian/Editor
+  - Scores
+  - Mozart, Wolfgang Amadeus
+  - Classical style
+  - Classical
+  - Sonatas
+  - For violin, piano
+  - Scores featuring the violin
+  - Scores featuring the piano
+  - For 2 players
+  - For flute, piano
+  - Scores featuring the flute
+  - For violin, cello, piano
+  - Scores featuring the cello
+  - For 3 players
+  - For flute, cello, piano
+  - Works first published in 1765
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - F major
+files:
+  - id: "57791"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 5.7142857142857
+    rateBy: 7
+    group: 0
+    title: Complete ScorePL-LZu
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in F major, K.13
+      (Mozart, Wolfgang
+      Amadeus)/IMSLP57791-PMLP50271-Mozart_Werke_Breitkopf_Serie_18_KV13_Piano.pdf
+    ext: pdf
+  - id: "22339"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 4.6666666666667
+    rateBy: 3
+    group: 1
+    title: Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in F major, K.13
+      (Mozart, Wolfgang
+      Amadeus)/IMSLP22339-PMLP50271-Sonate_in_F_Kv.13_Complete_Score.pdf
+    ext: pdf
+  - id: "498610"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in F major, K.13
+      (Mozart, Wolfgang
+      Amadeus)/IMSLP498610-PMLP50271-Mozart,_Wofgang_Amadeus-NMA_08_22_2_04_KV_13_scan.pdf
+    ext: pdf
+  - id: "575505"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Recording
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in F major, K.13
+      (Mozart, Wolfgang
+      Amadeus)/IMSLP575505-PMLP926900-Mozart_W.A.,_Sonata_K._13,_flute_&_harpsichord_-_Erato_1963.mp3
+    ext: mp3
+  - id: "498174"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: I. Allegro
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in F major, K.13
+      (Mozart, Wolfgang Amadeus)/IMSLP498174-PMLP50271-Moz_kv13a.mid
+    ext: mid
+  - id: "498175"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: II. Andante
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in F major, K.13
+      (Mozart, Wolfgang Amadeus)/IMSLP498175-PMLP50271-Moz_kv13b.mid
+    ext: mid
+  - id: "498176"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: III. Menuetto primo & secondo
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in F major, K.13
+      (Mozart, Wolfgang Amadeus)/IMSLP498176-PMLP50271-Moz_kv13c.mid
+    ext: mid

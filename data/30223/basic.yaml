@@ -1,0 +1,112 @@
+id: 30223
+title: Piano Sonata, Op.1
+author: Berg, Alban
+url: https://imslp.org/wiki/Piano Sonata, Op.1 (Berg, Alban)
+meta:
+  Work Title: Piano Sonata
+  Alternative. Title: ""
+  Composer: Berg, Alban
+  Opus/Catalogue NumberOp./Cat. No.: Op.1
+  I-Catalogue NumberI-Cat. No.: IAB 9
+  Key: B minor
+  Movements/SectionsMov'ts/Sec's: "1"
+  Year/Date of CompositionY/D of Comp.: 1907–1909?
+  First Performance.: 1911-04-24 in Vienna. Etta Werndorff, piano
+  First Publication.: |-
+    1910 – Berlin: Robert Lienau
+    (Hofmeister's Monatsbericht (1910), p.251)
+  Composer Time PeriodComp. Period: Early 20th century
+  Piece Style: Early 20th century
+  Instrumentation: piano
+  External Links: Wikipedia article
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Gardner Museum Recordings
+  - Gould, Glenn/Performer
+  - Recordings published in 1959
+  - Recordings published in the 20th century
+  - Recordings
+  - Pages with First Editions
+  - Scores published by Robert Lienau
+  - Pages with References to Hofmeister's Monatsbericht
+  - Sibley Mirroring Project
+  - Scores published by Universal Edition
+  - Scores published by Muzgiz
+  - Portes, Antoine/Editor
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Berg, Alban
+  - Early 20th century style
+  - Early 20th century
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1910
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - B minor
+files:
+  - id: "254701"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 16
+    group: 0
+    title: Complete Score
+    path: (1885)Alban Berg/(1907)Piano Sonata, Op.1 (Berg,
+      Alban)/IMSLP254701-PMLP06602-Sonate_für_Klavier,_op._1.pdf
+    ext: pdf
+  - id: "234327"
+    tab: Score1
+    tabText: Scores
+    rating: 5.625
+    rateBy: 16
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1885)Alban Berg/(1907)Piano Sonata, Op.1 (Berg,
+      Alban)/IMSLP234327-SIBLEY1802.21900.4ff7-39087012041663score.pdf
+    ext: pdf
+  - id: "651355"
+    tab: Score1
+    tabText: Scores
+    rating: 5.6
+    rateBy: 5
+    group: 2
+    title: Complete Score
+    path: (1885)Alban Berg/(1907)Piano Sonata, Op.1 (Berg,
+      Alban)/IMSLP651355-PMLP6602-Berg,_Alban_-_Sonate,_Op._1.pdf
+    ext: pdf
+  - id: "356152"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.9333333333333
+    rateBy: 15
+    group: 0
+    title: Complete Performance
+    path: (1885)Alban Berg/(1907)Piano Sonata, Op.1 (Berg,
+      Alban)/IMSLP356152-PMLP06602-02-03_Berg_-_Sonate_Op.1.mp3
+    ext: mp3
+  - id: "78142"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.4
+    rateBy: 10
+    group: 1
+    title: Complete Performance
+    path: (1885)Alban Berg/(1907)Piano Sonata, Op.1 (Berg,
+      Alban)/IMSLP78142-PMLP06602-berg_op1.mp3
+    ext: mp3
+  - id: "711037"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 2
+    group: 2
+    title: Complete Performance
+    path: (1885)Alban Berg/(1907)Piano Sonata, Op.1 (Berg,
+      Alban)/IMSLP711037-PMLP6602-01.01._Sonata_For_Piano,_Op._1-_Allegro_Moderato.mp3
+    ext: mp3

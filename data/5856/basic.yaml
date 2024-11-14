@@ -1,0 +1,96 @@
+id: 5856
+title: Toccata, Op.7
+author: Schumann, Robert
+url: https://imslp.org/wiki/Toccata, Op.7 (Schumann, Robert)
+meta:
+  Work Title: Toccata
+  Alternative. Title: Exercice pour le pianoforte
+  Composer: Schumann, Robert
+  Opus/Catalogue NumberOp./Cat. No.: Op.7
+  I-Catalogue NumberI-Cat. No.: IRS 158
+  Key: C major
+  Year/Date of CompositionY/D of Comp.: 1829-32
+  First Publication.: "1834 - Leipzig: Hofmeister, Plate 1969"
+  Dedication: Ludwig Schunke
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  Discography: MusicBrainz
+  Authorities: Wikidata
+  External Links: Wikipedia article
+  Extra Information: Composition, Publication history
+categories:
+  - Zbinden, Christoph/Performer
+  - Recordings
+  - Pessolano, Aldo Roberto/Editor
+  - Pages with First Editions
+  - Scores published by Friedrich Hofmeister
+  - Scores from Bayerische Staatsbibliothek
+  - Schumann, Clara/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with items from Schumann's Werke
+  - Scores with links to Amazon
+  - Eames, Henry Purmort/Editor
+  - Scores published by The University Society
+  - Joseffy, Rafael/Editor
+  - Scores published by Schirmer
+  - Scores published by Muzyka
+  - Alston, Ray/Editor
+  - Scores
+  - Schumann, Robert
+  - Romantic style
+  - Romantic
+  - Toccatas
+  - Exercises
+  - Studies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1834
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C major
+  - Schunke, Ludwig/Dedicatee
+files:
+  - id: "680684"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1810)Robert Schumann/(1829)Toccata, Op.7 (Schumann,
+      Robert)/IMSLP680684-PMLP2926-Toccata_Op_7.pdf
+    ext: pdf
+  - id: "511889"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 5
+    group: 1
+    title: Complete Score
+    path: (1810)Robert Schumann/(1829)Toccata, Op.7 (Schumann,
+      Robert)/IMSLP511889-PMLP829492-Schumann_Exercice_pour_le_Pianoforte_(Aldo_Roberto_Pessolano)_corretto.pdf
+    ext: pdf
+  - id: "289906"
+    tab: Score1
+    tabText: Scores
+    rating: 7.4545454545455
+    rateBy: 22
+    group: 2
+    title: Complete Score (scan)
+    path: (1810)Robert Schumann/(1829)Toccata, Op.7 (Schumann,
+      Robert)/IMSLP289906-PMLP02926-Schumann,_Robert_Werke_Breitkopf_Gregg_Serie_7_Band_1_RS_45_Op_7_scan.pdf
+    ext: pdf
+  - id: "70236"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 10
+    group: 0
+    title: Complete Performance
+    path: (1810)Robert Schumann/(1829)Toccata, Op.7 (Schumann,
+      Robert)/IMSLP70236-PMLP02926-.Schumann_toccata_Op.7.mp3
+    ext: mp3

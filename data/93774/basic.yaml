@@ -1,0 +1,108 @@
+id: 93774
+title: 12 Etudes, Op.8
+author: Scriabin, Aleksandr
+url: https://imslp.org/wiki/12 Etudes, Op.8 (Scriabin, Aleksandr)
+meta:
+  Work Title: 12 Etudes
+  Alternative. Title: ""
+  Name Translations: Douze Études op. 8; 12 Etüden op. 8 für Klavier; 12 Études, Op. 8
+  Name Aliases: zwölf Etüden op. 8 für Klavier
+  Composer: Scriabin, Aleksandr
+  Opus/Catalogue NumberOp./Cat. No.: Op.8
+  I-Catalogue NumberI-Cat. No.: IAS 7
+  Movements/SectionsMov'ts/Sec's: |-
+    12 etudes:
+    1. Etude in C-sharp major
+    2. Etude in F-sharp minor
+    3. Etude in B minor
+    4. Etude in B major
+    5. Etude in E major
+    6. Etude in A major
+    7. Etude in B-flat minor
+    8. Etude in A-flat major
+    9. Etude in G-sharp minor
+    10. Etude in D-flat major
+    11. Etude in B-flat minor
+    12. Etude in D-sharp minor
+  Year/Date of CompositionY/D of Comp.: "1894"
+  First Publication.: "1895"
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Gil Esteva, Marco Alejandro/Performer
+  - Ossovskiy, Stanislav/Performer
+  - Recordings
+  - Pages with First Editions
+  - Scores published by M.P. Belaieff
+  - Igumnov, Konstantin/Editor
+  - Milstein, Yakov/Editor
+  - Scores published by Muzgiz
+  - Friedman, Arthur/Editor
+  - Scores published by Schirmer
+  - MIT project
+  - Work pages with links to recordings
+  - Scores
+  - Scriabin, Aleksandr
+  - Romantic style
+  - Romantic
+  - Studies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1895
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+files:
+  - id: "10489"
+    tab: Score1
+    tabText: Scores
+    rating: 7.1666666666667
+    rateBy: 24
+    group: 0
+    title: 12. Etude in D-sharp minor - 2nd version
+    path: (1872)Aleksandr Scriabin/(1894)12 Etudes, Op.8 (Scriabin,
+      Aleksandr)/IMSLP10489-Scriabin_-_Op.8_No.12_second_version.pdf
+    ext: pdf
+  - id: "309417"
+    tab: Score1
+    tabText: Scores
+    rating: 7.0588235294118
+    rateBy: 34
+    group: 1
+    title: Complete Score
+    path: (1872)Aleksandr Scriabin/(1894)12 Etudes, Op.8 (Scriabin,
+      Aleksandr)/IMSLP309417-PMLP07375-Skrjabin_op.08_Zwoelf_Etueden.pdf
+    ext: pdf
+  - id: "69176"
+    tab: Score1
+    tabText: Scores
+    rating: 6.85
+    rateBy: 20
+    group: 2
+    title: Complete Scorepiano.ru
+    path: (1872)Aleksandr Scriabin/(1894)12 Etudes, Op.8 (Scriabin,
+      Aleksandr)/IMSLP69176-PMLP07375-Scriabin--Etudes-Op8-Ed-Muzyka.pdf
+    ext: pdf
+  - id: "317288"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.5
+    rateBy: 12
+    group: 0
+    title: 2. Etude in F-sharp minor
+    path: (1872)Aleksandr Scriabin/(1894)12 Etudes, Op.8 (Scriabin,
+      Aleksandr)/IMSLP317288-PMLP07375----Scriabin_-_Etude_Op_8_-2_in_F-m.mp4
+    ext: mp4
+  - id: "486321"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.4545454545455
+    rateBy: 11
+    group: 1
+    title: 12. Etude in D-sharp minor
+    path: (1872)Aleksandr Scriabin/(1894)12 Etudes, Op.8 (Scriabin,
+      Aleksandr)/IMSLP486321-PMLP07375-scriabin.mp3
+    ext: mp3

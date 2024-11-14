@@ -1,0 +1,136 @@
+id: 93828
+title: Keyboard Sonata in A major, K.62
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in A major, K.62 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in A major
+  Alternative. Title: ""
+  Name Translations: sonate K. 62; Sonata K. 62; Sonate K. 62; Sonat K. 62
+  Authorities: "WorldCat; VIAF: 294574970; LCCN: no2011134427; BNF: 139146030"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.62 ; L.45 ; P.49
+  I-Catalogue NumberI-Cat. No.: IDS 11
+  Key: A major
+  Movements/SectionsMov'ts/Sec's: Allegro
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Höger, Anton/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 2 guitars (arr)
+  - For 2 players (arr)
+  - Scores featuring the guitar (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - A major
+files:
+  - id: "353916"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.62 (Scarlatti,
+      Domenico)/IMSLP353916-PMLP333766-Scarlatti,_Domenico-Sonates_Heugel_32.522_Volume_2_10_K.62_scan.pdf
+    ext: pdf
+  - id: "280692"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.62 (Scarlatti,
+      Domenico)/IMSLP280692-PMLP333766-Scarlatti_Sonate_K.62.pdf
+    ext: pdf
+  - id: "626850"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.62 (Scarlatti,
+      Domenico)/IMSLP626850-PMLP333766-Sonata_K._62_(as_L._45).pdf
+    ext: pdf
+  - id: "194443"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.62 (Scarlatti,
+      Domenico)/IMSLP194443-WIMA.932e-Sca62Sco.pdf
+    ext: pdf
+  - id: "354014"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.62 (Scarlatti,
+      Domenico)/IMSLP354014-PMLP333766-Scarlatti_-_Sonate_K_062_(Orig_in_A).pdf
+    ext: pdf
+  - id: "280693"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.62 (Scarlatti,
+      Domenico)/IMSLP280693-PMLP333766-Scarlatti_Sonate_K.62.mid
+    ext: mid
+  - id: "194451"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.62 (Scarlatti,
+      Domenico)/IMSLP194451-WIMA.bec5-Sca62Sco.mp3
+    ext: mp3
+  - id: "194452"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.62 (Scarlatti,
+      Domenico)/IMSLP194452-WIMA.3a14-Sca62Sco.mid
+    ext: mid
+  - id: "354015"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.62 (Scarlatti,
+      Domenico)/IMSLP354015-PMLP333766-Scarlatti_-_Sonate_K_062_(Orig_in_A).mp3
+    ext: mp3

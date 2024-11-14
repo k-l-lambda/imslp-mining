@@ -1,0 +1,152 @@
+id: 17358
+title: Prelude and Fugue in C minor, BWV 546
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in C minor, BWV 546 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 546
+  I-Catalogue NumberI-Cat. No.: IJB 507
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: 2 sections
+  First Publication.: 1812-14 ca. by J. Riedl
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ
+  External Links: Wikipedia article
+categories:
+  - Moshkin, Evgeniy E./Performer
+  - Recordings
+  - Manuscripts from the 1700s
+  - Manuscripts
+  - Scores from the Internet Archive
+  - Dragonetti, Domenico/Arranger
+  - Scores published by Novello
+  - Scores from the Royal College of Music Library of London
+  - Rust, Wilhelm/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Kilian, Dietrich/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Brunet, Alain/Editor
+  - Moshkin, Evgeniy E./Editor
+  - Bartoli, Russ/Arranger
+  - Gleichauf, Franz Xaver/Arranger
+  - Scores published by Edition Peters
+  - Sibley Mirroring Project
+  - Szántó, Tivadar/Arranger
+  - Scores published by E. Demets
+  - Messerschmidt, Hans Jorgen/Arranger
+  - Work pages with links to recordings
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - For 2 violins, viola, cello (arr)
+  - For 4 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the viola (arr)
+  - Scores featuring the cello (arr)
+  - For piano 4 hands (arr)
+  - Scores featuring the piano (arr)
+  - Scores featuring the piano 4 hands (arr)
+  - For 2 players (arr)
+  - For piano (arr)
+  - For 1 player (arr)
+  - For horn, trumpet, euphonium (arr)
+  - Scores featuring the horn (arr)
+  - Scores featuring the trumpet (arr)
+  - Scores featuring the euphonium (arr)
+  - For 3 players (arr)
+  - Pages with arrangements
+  - Works first published in 1812
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C minor
+  - Pages with References to Hofmeister's Monatsbericht
+files:
+  - id: "533123"
+    tab: Score1
+    tabText: Scores
+    rating: 8.6666666666667
+    rateBy: 3
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C minor, BWV 546
+      (Bach, Johann
+      Sebastian)/IMSLP533123-PMLP111734-Bach-orgelwerke05_praeludium-et-fuga-C-minor_BWV546_pp35-46.pdf
+    ext: pdf
+  - id: "721877"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 2
+    group: 1
+    title: Complete Score (with fingering and pedaling, tempo indication)
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C minor, BWV 546
+      (Bach, Johann Sebastian)/IMSLP721877-PMLP111734-bwv_546.pdf
+    ext: pdf
+  - id: "01331"
+    tab: Score1
+    tabText: Scores
+    rating: 5.0666666666667
+    rateBy: 30
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C minor, BWV 546
+      (Bach, Johann Sebastian)/IMSLP01331-BWV0546.pdf
+    ext: pdf
+  - id: "96258"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6.6666666666667
+    rateBy: 3
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C minor, BWV 546
+      (Bach, Johann
+      Sebastian)/IMSLP96258-PMLP111734-Bach-Szanto_Prelude_and_Fugue_BWV546_2H.pdf
+    ext: pdf
+  - id: "464819"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C minor, BWV 546
+      (Bach, Johann
+      Sebastian)/IMSLP464819-PMLP111734-bach_546_s4_-_Full_Score.pdf
+    ext: pdf
+  - id: "161235"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C minor, BWV 546
+      (Bach, Johann
+      Sebastian)/IMSLP161235-PMLP111734-Bach_BWV546_Prelude&fugue_Cminor_Pf4h.pdf
+    ext: pdf
+  - id: "722290"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C minor, BWV 546
+      (Bach, Johann Sebastian)/IMSLP722290-PMLP111734-bwv_546.mp3
+    ext: mp3

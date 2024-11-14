@@ -1,0 +1,74 @@
+id: 17367
+title: Prelude and Fugue in G major, BWV 557
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in G major, BWV 557 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in G major
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 557 ; BC.J32
+  I-Catalogue NumberI-Cat. No.: IJB 978
+  Key: G major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 sections:
+    Praeludium (25 bars)
+    Fuga (35 bars)
+  First Publication.: 1852 in 8 Kleine Präludien und Fugen (No.5)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ
+  Primary Sources: Bach Digital (source list)
+categories:
+  - Brezhestovski, Max/Performer
+  - WIMA files
+  - Naumann, Ernst/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Gouin, Pierre/Editor
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - Works first published in 1852
+  - Works first published in the 19th century
+  - G major
+files:
+  - id: "129118"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in G major, BWV 557
+      (Bach, Johann
+      Sebastian)/IMSLP129118-PMLP10674-Bach_Kleine_Praeludien_5.pdf
+    ext: pdf
+  - id: "739705"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in G major, BWV 557
+      (Bach, Johann
+      Sebastian)/IMSLP739705-PMLP1175937-E4322_14-16-Bach_-_BGA_-_BWV_553-560.pdf
+    ext: pdf
+  - id: "175577"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 2
+    rateBy: 1
+    group: 0
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in G major, BWV 557
+      (Bach, Johann Sebastian)/IMSLP175577-WIMA.2ef0-BWV557-fugue.mp3
+    ext: mp3

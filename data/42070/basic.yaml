@@ -1,0 +1,131 @@
+id: 42070
+title: Piano Concerto No.2, S.125
+author: Liszt, Franz
+url: https://imslp.org/wiki/Piano Concerto No.2, S.125 (Liszt, Franz)
+meta:
+  Work Title: Piano Concerto No.2
+  Alternative. Title: ""
+  Name Translations: Concerto pour piano nº 2 de Liszt; Piano Concerto No. 2; 2.
+    Klavierkonzert; Concerto para piano n.º 2 (Liszt); A-dúr zongoraverseny
+    (Liszt); ピアノ協奏曲第2番 (リスト); Concierto para piano n.º 2 (Liszt); Concerto per
+    pianoforte e orchestra n. 2; קונצ'רטו לפסנתר מס' 2 של ליסט; 피아노 협주곡 2번
+  Name Aliases: Klavierkonzert Nr. 2; Klavierkonzert A-Dur; Klavierkonzert in A-Dur
+  Authorities: "WorldCat; Wikipedia; VIAF: 292966965; BNF: 148238322"
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.125 ; LW.H6
+  I-Catalogue NumberI-Cat. No.: IFL 296
+  Key: A major
+  Movements/SectionsMov'ts/Sec's: >-
+    1 movement/4 main sections:
+
+    I. Adagio sostenuto assai - Allegro agitato assai - Un poco più mosso -
+    Tempo del andante -
+
+    II. Allegro moderato -
+
+    III. Allegro deciso - Marziale un poco meno allegro - Un poco animato - Un
+    poco meno mosso -
+
+    V. Allegro animato
+  Year/Date of CompositionY/D of Comp.: 1849–61
+  First Performance.: 1857-01-07 — Weimar
+  First Publication.: "1863 (possibly late 1862) – Mainz: Schott"
+  Dedication: Hans Bronsart von Schellendorff (1830–1913)
+  Average DurationAvg. Duration: 18–22 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: "Solo: pianoOrchestra: 3 flutes/piccolo, 2 oboes, 2 clarinets,
+    2 bassoons + 2 horns, 2 trumpets, 3 trombones, tuba + timpani, percussion +
+    strings"
+  External Links: Wikipedia article
+categories:
+  - Rosbaud, Hans/Performer
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Works reprinted by Edwin F. Kalmus
+  - OM Parts
+  - Scores from Thüringer Universitäts- und Landesbibliothek Jena
+  - Pages with First Editions
+  - Scores published by Schott
+  - Pages with References to Hofmeister's Monatsbericht
+  - Sauer, Emil von/Editor
+  - Scores published by Edition Peters
+  - Sibley Mirroring Project
+  - Rosenthal, Moriz/Editor
+  - Scores published by Ullstein
+  - Friedman, Ignaz/Editor
+  - Scores published by Universal Edition
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Concertos
+  - For piano, orchestra
+  - Scores featuring the piano
+  - Scores featuring the orchestra
+  - For orchestra with soloists
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1863
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+  - A major
+  - Bronsart von Schellendorff, Hans/Dedicatee
+files:
+  - id: "00647"
+    tab: Score1
+    tabText: Scores
+    rating: 5.6
+    rateBy: 15
+    group: 0
+    title: Complete Score
+    path: (1811)Franz Liszt/(1849)Piano Concerto No.2, S.125 (Liszt,
+      Franz)/IMSLP00647-Liszt_-_Piano_Concerto_No.2.pdf
+    ext: pdf
+  - id: "164345"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6
+    rateBy: 1
+    group: 0
+    title: Complete Score (S.651) (scan)
+    path: (1811)Franz Liszt/(1849)Piano Concerto No.2, S.125 (Liszt,
+      Franz)/IMSLP164345-PMLP02663-Liszt_Klavierwerke_Peters_Sauer_Band_11_02_Konzert_A-dur_scan.pdf
+    ext: pdf
+  - id: "13607"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 2
+    rateBy: 1
+    group: 1
+    title: Complete Score (S.651, color)Juilliard
+    path: (1811)Franz Liszt/(1849)Piano Concerto No.2, S.125 (Liszt,
+      Franz)/IMSLP13607-Liszt_-_S651_Piano_Concerto_No2_(schott).pdf
+    ext: pdf
+  - id: "734103"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1811)Franz Liszt/(1849)Piano Concerto No.2, S.125 (Liszt,
+      Franz)/IMSLP734103-PMLP2663-Liszt_PC_-2_ed._Rosenthal_-_Jacopo_Tore.pdf
+    ext: pdf
+  - id: "457813"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Recording
+    path: (1811)Franz Liszt/(1849)Piano Concerto No.2, S.125 (Liszt,
+      Franz)/IMSLP457813-PMLP02663-Liszt_S_125_Arrau_OrchReichssenderBerlin_Rosbaud_05_1935.mp3
+    ext: mp3

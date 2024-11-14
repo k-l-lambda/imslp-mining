@@ -1,0 +1,79 @@
+id: 118236
+title: Fantasie, Op.28
+author: Scriabin, Aleksandr
+url: https://imslp.org/wiki/Fantasie, Op.28 (Scriabin, Aleksandr)
+meta:
+  Work Title: Fantasie
+  Alternative. Title: Фантазия для фортепиано, соч. 28
+  Composer: Scriabin, Aleksandr
+  Opus/Catalogue NumberOp./Cat. No.: Op.28
+  I-Catalogue NumberI-Cat. No.: IAS 10
+  Key: B minor
+  Movements/SectionsMov'ts/Sec's: 1 (Moderato.  = 56)
+  First Publication.: "1901 – Leipzig: M.P. Belaieff"
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Aldo Ragone/Performer
+  - Recordings
+  - Pages with First Editions
+  - Scores engraved by C.G. Röder
+  - Scores published by M.P. Belaieff
+  - Scores published by Muzgiz
+  - Igumnov, Konstantin/Editor
+  - Milstein, Yakov/Editor
+  - MIT project
+  - Scores
+  - Scriabin, Aleksandr
+  - Romantic style
+  - Romantic
+  - Fantasias
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1901
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+files:
+  - id: "10997"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 9
+    group: 0
+    title: Complete Score
+    path: (1872)Aleksandr Scriabin/(1901)Fantasie, Op.28 (Scriabin,
+      Aleksandr)/IMSLP10997-Scriabin_-_Op.28.pdf
+    ext: pdf
+  - id: "478334"
+    tab: Score1
+    tabText: Scores
+    rating: 3.3333333333333
+    rateBy: 3
+    group: 1
+    title: Complete ScoreRUS-Mrg
+    path: (1872)Aleksandr Scriabin/(1901)Fantasie, Op.28 (Scriabin,
+      Aleksandr)/IMSLP478334-PMLP14793-skryabin_fantasiya_belyaev.pdf
+    ext: pdf
+  - id: "597166"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1872)Aleksandr Scriabin/(1901)Fantasie, Op.28 (Scriabin,
+      Aleksandr)/IMSLP597166-PMLP14793-Scriabin_A_-_Op_28_Fantasie.pdf
+    ext: pdf
+  - id: "493248"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 6
+    group: 0
+    title: Complete Performance
+    path: (1872)Aleksandr Scriabin/(1901)Fantasie, Op.28 (Scriabin,
+      Aleksandr)/IMSLP493248-PMLP14793-Scriabin_Fantasia_Op._28_Aldo_Ragone.mp3
+    ext: mp3

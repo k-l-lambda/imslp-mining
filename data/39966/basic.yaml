@@ -1,0 +1,137 @@
+id: 39966
+title: Piano Sonata No.1, Op.1
+author: Brahms, Johannes
+url: https://imslp.org/wiki/Piano Sonata No.1, Op.1 (Brahms, Johannes)
+meta:
+  Work Title: Piano Sonata No.1
+  Alternative. Title: ""
+  Name Translations: ピアノソナタ第1番; Sonate pour piano n° 1 de Brahms; Sonata para
+    piano n.º 1; Piano Sonata No. 1; Klaviersonate Nr. 1 (Brahms); Sonata per
+    pianoforte n. 1; Sonata per a piano núm. 1; סונטה לפסנתר מס' 1 של ברהמס;
+    第1号钢琴奏鸣曲 (勃拉姆斯)
+  Name Aliases: Sonata para piano n . 1; Sonata para piano n 1; Sonata para piano
+    n. 1; Sonata para piano nº 1; Sonata para piano nº. 1; Sonata para piano n º
+    1; Klaviersonate Nr. 1; Piano Sonata No. 1 in C major, Op. 1
+  Authorities: "WorldCat; Wikipedia; LCCN: no97083995; BNF: 14822020m"
+  Composer: Brahms, Johannes
+  Opus/Catalogue NumberOp./Cat. No.: Op.1
+  I-Catalogue NumberI-Cat. No.: IJB 88
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements:
+    Allegro
+    Andante
+    Scherzo. Allegro molto e con fuoco — Più mosso
+    Finale. Allegro con fuoco
+  Year/Date of CompositionY/D of Comp.: 1852–53
+  First Performance.: "1853-12-17 - Leipzig, Gewandhaus: Johannes Brahms (piano)"
+  First Publication.: "1853 (December) - Leipzig: Breitkopf und Härtel, Plate 8833, 40 pages."
+  Dedication: Joseph Joachim (1831–1907)
+  Average DurationAvg. Duration: 30 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia articleKDH Listening Guide
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Scores published by Breitkopf und Härtel
+  - Pages with References to Hofmeister's Monatsbericht
+  - Scores published by N. Simrock
+  - Sibley Mirroring Project
+  - Sauer, Emil von/Editor
+  - Scores published by Edition Peters
+  - Whiting, Arthur Battelle/Editor
+  - Scores published by Schirmer
+  - Mandyczewski, Eusebius/Editor
+  - Scores published by Dover Publications
+  - Scores with links to Amazon
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Brahms, Johannes
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1853
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C major
+  - Joachim, Joseph/Dedicatee
+files:
+  - id: "107601"
+    tab: Score1
+    tabText: Scores
+    rating: 7.3333333333333
+    rateBy: 3
+    group: 0
+    title: Complete Score (scan)
+    path: (1833)Johannes Brahms/(1852)Piano Sonata No.1, Op.1 (Brahms,
+      Johannes)/IMSLP107601-PMLP01655-Brahms_Werke_Band_13_Breitkopf_JB_50_Op_1_scan.pdf
+    ext: pdf
+  - id: "00119"
+    tab: Score1
+    tabText: Scores
+    rating: 6.9375
+    rateBy: 16
+    group: 1
+    title: Complete Score
+    path: (1833)Johannes Brahms/(1852)Piano Sonata No.1, Op.1 (Brahms,
+      Johannes)/IMSLP00119-Brahms_-_Piano_Sonata_No_1_in_C.pdf
+    ext: pdf
+  - id: "249442"
+    tab: Score1
+    tabText: Scores
+    rating: 6.5
+    rateBy: 4
+    group: 2
+    title: Complete ScoreUS-R
+    path: (1833)Johannes Brahms/(1852)Piano Sonata No.1, Op.1 (Brahms,
+      Johannes)/IMSLP249442-SIBLEY1802.22023.5488-39087012358810Op._1.pdf
+    ext: pdf
+  - id: "355729"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.8888888888889
+    rateBy: 18
+    group: 0
+    title: 1. Allegro
+    path: (1833)Johannes Brahms/(1852)Piano Sonata No.1, Op.1 (Brahms,
+      Johannes)/IMSLP355729-PMLP01655-Brahms_-_Sonata_No_1_1st_Movt.mp3
+    ext: mp3
+  - id: "355730"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.2666666666667
+    rateBy: 15
+    group: 0
+    title: 2. Andante
+    path: (1833)Johannes Brahms/(1852)Piano Sonata No.1, Op.1 (Brahms,
+      Johannes)/IMSLP355730-PMLP01655-Brahms_-_Sonata_No_1_2nd_Movt.mp3
+    ext: mp3
+  - id: "355731"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9.3333333333333
+    rateBy: 9
+    group: 0
+    title: 3. Scherzo. Allegro molto e con fuoco
+    path: (1833)Johannes Brahms/(1852)Piano Sonata No.1, Op.1 (Brahms,
+      Johannes)/IMSLP355731-PMLP01655-Brahms_-_Sonata_No_1_3rd_Movt.mp3
+    ext: mp3
+  - id: "355732"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9.5
+    rateBy: 12
+    group: 0
+    title: 4. Finale. Allegro con fuoco
+    path: (1833)Johannes Brahms/(1852)Piano Sonata No.1, Op.1 (Brahms,
+      Johannes)/IMSLP355732-PMLP01655-Brahms_-_Sonata_No_1_4th_Movt.mp3
+    ext: mp3

@@ -1,0 +1,105 @@
+id: 105137
+title: "8"
+author: Liszt, Franz
+url: https://imslp.org/wiki/Hungarian Rhapsody No.8, S.244/8 (Liszt, Franz)
+meta:
+  Work Title: Hungarian Rhapsody No.8
+  Alternative. Title: Lento a capriccio
+  Name Translations: Hungarian Rhapsody No. 8; Ungarische Rhapsodie Nr. 8;
+    第8號匈牙利狂想曲; უნგრული რაფსოდია №8; Rapsodia húngara n.º 8 (Liszt)
+  Name Aliases: Hungarian Rhapsody No. 8 in F-sharp Minor, S. 244, No. 8
+  Authorities: "WorldCat; Wikipedia; LCCN: no97076287"
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.244/8 ; LW.A132/8
+  I-Catalogue NumberI-Cat. No.: IFL 170
+  Key: F-sharp minor
+  Movements/SectionsMov'ts/Sec's: 1 piece
+  Year/Date of CompositionY/D of Comp.: "1846"
+  First Publication.: "1853"
+  Dedication: Baron Anton Augusz
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Zhang, Shuwen/Performer
+  - Recordings
+  - Pages with First Editions
+  - Scores published by Schott
+  - Scores from the Library of Congress
+  - Mills, Sebastian Bach/Editor
+  - Scores published by J. O. von Prochaźka
+  - Scores from the Gaylord Music Library
+  - Gaylord Files
+  - Sauer, Emil von/Editor
+  - Scores published by Edition Peters
+  - Scores from Bayerische Staatsbibliothek
+  - Raabe, Peter/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Gárdonyi, Zoltán/Editor
+  - Szelényi, István/Editor
+  - Scores published by Editio Musica Budapest
+  - Urtext
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Rhapsodies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1853
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (BnF collection)
+  - F-sharp minor
+files:
+  - id: "183379"
+    tab: Score1
+    tabText: Scores
+    rating: 8.8
+    rateBy: 5
+    group: 0
+    title: Complete Score (S.244/8) (scan)
+    path: (1811)Franz Liszt/(1846)8 (Liszt,
+      Franz)/IMSLP183379-PMLP12459-Liszt_NLA_Serie_I_Band_03_08_Rhapsodie_hongroise_S.244_8_scan.pdf
+    ext: pdf
+  - id: "286012"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 3
+    group: 1
+    title: Complete Score (300 dpi)US-SLug
+    path: (1811)Franz Liszt/(1846)8 (Liszt,
+      Franz)/IMSLP286012-PMLP12459-b10301070.pdf
+    ext: pdf
+  - id: "300592"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 5
+    group: 2
+    title: Complete Score (scan)
+    path: (1811)Franz Liszt/(1846)8 (Liszt,
+      Franz)/IMSLP300592-PMLP12459-Liszt_Klavierwerke_Peters_Sauer_Band_1_08_Ungarische_Rhapsodie_No_8_scan.pdf
+    ext: pdf
+  - id: "419571"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Live Performance
+    path: (1811)Franz Liszt/(1846)8 (Liszt, Franz)/IMSLP419571-PMLP12459-01_曲目_1.mp3
+    ext: mp3
+  - id: "391722"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9
+    rateBy: 2
+    group: 1
+    title: Complete Performance
+    path: (1811)Franz Liszt/(1846)8 (Liszt,
+      Franz)/IMSLP391722-PMLP12459-李斯特-第8匈牙利狂想曲_Liszt-Hungarian_Rhapsody_No.8.mp3
+    ext: mp3

@@ -1,0 +1,54 @@
+id: 16496
+title: Bach Suite
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Bach Suite (Bach, Johann Sebastian)
+meta:
+  Work Title: Bach Suite
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  I-Catalogue NumberI-Cat. No.: None [force assignment]
+  Movements/SectionsMov'ts/Sec's: "8"
+  First Publication.: "1924"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Orchestra
+  Extra Information: A pasticcio suite made up of selected movements, including
+    some pieces (from the Anna Magdalena Notenbuch) that are now generally
+    attributed to Carl Philipp Emanuel Bach
+categories:
+  - Clark, Tom/Arranger
+  - Rebmann, Victor L.F./Editor
+  - Scores published by Schirmer
+  - Scores
+  - Bach, Johann Sebastian/Collections
+  - Baroque style
+  - Baroque
+  - Suites
+  - For orchestra
+  - Scores featuring the orchestra
+  - For orchestra (arr)
+  - Works first published in 1924
+  - Works first published in the 20th century
+  - Bach, Carl Philipp Emanuel/Collections
+  - Collections
+files:
+  - id: "693109"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Condensed Score
+    path: (1854)Tom Clark/(1924)Bach Suite (Bach, Johann
+      Sebastian)/IMSLP693109-PMLP1109540-PMLUS02547-BachJS_Clark_Bach_suite_Piano.pdf
+    ext: pdf
+  - id: "693113"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Title page and Notices
+    path: (1854)Tom Clark/(1924)Bach Suite (Bach, Johann
+      Sebastian)/IMSLP693113-PMLP1109540-BachJS_Clark_Bach_suite_Frontmatter.pdf
+    ext: pdf

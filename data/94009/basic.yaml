@@ -1,0 +1,112 @@
+id: 94009
+title: Keyboard Sonata in C minor, K.48
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in C minor, K.48 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in C minor
+  Alternative. Title: ""
+  Name Translations: Sonate K. 48; Sonata K. 48; Sonat K. 48
+  Authorities: "WorldCat; VIAF: 292934256; LCCN: n2018056506; BNF: 13914511b"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.48 ; L.157 ; P.87
+  I-Catalogue NumberI-Cat. No.: IDS 211
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: Presto
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - C minor
+files:
+  - id: "277732"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.48 (Scarlatti,
+      Domenico)/IMSLP277732-PMLP332592-Scarlatti_Sonate_K.48.pdf
+    ext: pdf
+  - id: "626456"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.48 (Scarlatti,
+      Domenico)/IMSLP626456-PMLP332592-Sonata_K._48_(as_L._157).pdf
+    ext: pdf
+  - id: "313876"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.48 (Scarlatti,
+      Domenico)/IMSLP313876-PMLP332592-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_48_K.48_scan.pdf
+    ext: pdf
+  - id: "193556"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.48 (Scarlatti,
+      Domenico)/IMSLP193556-WIMA.24de-Sca48Sco.pdf
+    ext: pdf
+  - id: "277733"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.48 (Scarlatti,
+      Domenico)/IMSLP277733-PMLP332592-Scarlatti_Sonate_K.48.mid
+    ext: mid
+  - id: "193564"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.48 (Scarlatti,
+      Domenico)/IMSLP193564-WIMA.398e-Sca48Sco.mp3
+    ext: mp3
+  - id: "193565"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.48 (Scarlatti,
+      Domenico)/IMSLP193565-WIMA.630f-Sca48Sco.mid
+    ext: mid

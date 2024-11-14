@@ -1,0 +1,150 @@
+id: 17403
+title: Prelude and Fugue in G major, BWV 884
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in G major, BWV 884 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in G major
+  Alternative. Title: ""
+  Name Translations: Präludium und Fuge G-Dur BWV 884; Prélude et fugue en sol
+    majeur (BWV 884); G-dúr prelúdium és fúga, BWV 884
+  Authorities: "WorldCat; VIAF: 174509994; LCCN: nr93019680; GND: 1076376096"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 884
+  I-Catalogue NumberI-Cat. No.: IJB 544
+  Key: G major
+  Movements/SectionsMov'ts/Sec's: 2 sections
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.15)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: clavier
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (complete WTC)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Moshkin, Evgeniy E./Performer
+  - Gil Esteva, Marco Alejandro/Performer
+  - Noll, Jürgen/Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Moshkin, Evgeniy E./Editor
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Reger, Max/Arranger
+  - Scores published by Aibl
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - For organ (arr)
+  - For 1 player (arr)
+  - Scores featuring the organ (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - G major
+files:
+  - id: "564779"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 6
+    group: 0
+    title: Complete Score (with fingering and tempo indication)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G major, BWV 884
+      (Bach, Johann Sebastian)/IMSLP564779-PMLP738830-bwv_884.pdf
+    ext: pdf
+  - id: "02192"
+    tab: Score1
+    tabText: Scores
+    rating: 6.3529411764706
+    rateBy: 17
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G major, BWV 884
+      (Bach, Johann Sebastian)/IMSLP02192-BWV0884.pdf
+    ext: pdf
+  - id: "675667"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (Version A, London MS)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G major, BWV 884
+      (Bach, Johann
+      Sebastian)/IMSLP675667-PMLP738830-Bach_-_WTC_2_(NBA),_Prelude_and_Fugue_15_(G_major,_BWV_884)._Version_A_-_London_MS_(full-size).pdf
+    ext: pdf
+  - id: "738156"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G major, BWV 884
+      (Bach, Johann Sebastian)/IMSLP738156-PMLP738830-Bach_WTK_2_15_BWV_884.pdf
+    ext: pdf
+  - id: "750393"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G major, BWV 884
+      (Bach, Johann Sebastian)/IMSLP750393-PMLP738830-BWV884_Reger.pdf
+    ext: pdf
+  - id: "564780"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Recording (Harpsichord)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G major, BWV 884
+      (Bach, Johann Sebastian)/IMSLP564780-PMLP738830-bwv884.ogg
+    ext: ogg
+  - id: "462475"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.5714285714286
+    rateBy: 7
+    group: 1
+    title: Complete recording (Piano)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G major, BWV 884
+      (Bach, Johann
+      Sebastian)/IMSLP462475-PMLP05899-Book_2_-_Prelude_and_Fugue_in_G_maj.mp3
+    ext: mp3
+  - id: "90464"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.6
+    rateBy: 10
+    group: 2
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G major, BWV 884
+      (Bach, Johann
+      Sebastian)/IMSLP90464-PMLP05899-3_-_J.S._Bach,_Prelude_and_Fugue_15_in_G_(Book_2)_BWV_884.mp4
+    ext: mp4

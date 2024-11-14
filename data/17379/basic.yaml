@@ -1,0 +1,201 @@
+id: 17379
+title: Prelude and Fugue in F-sharp major, BWV 858
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in F-sharp major, BWV 858 (Bach,
+  Johann Sebastian)
+meta:
+  Work Title: Prelude and Fugue No.13 in F-sharp major
+  Alternative. Title: ""
+  Name Translations: Präludium und Fuge Fis-Dur BWV 858; Prélude et fugue en fa
+    dièse majeur (BWV 858); Прелюдия и фуга фа-диез мажор, BWV 858
+  Authorities: "GND: 1076375057; BNF: 139099463"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 858
+  I-Catalogue NumberI-Cat. No.: IJB 537
+  Key: F-sharp major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1722 in Das wohltemperierte Klavier I, BWV 846-869 (No.13)
+  First Publication.: "1801"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: clavier (keyboard)
+  External Links: Wikipedia article (on Das wohltemperierte Klavier)Bach Digital (source list)
+categories:
+  - Smullyan, Raymond/Performer
+  - Pages with recordings from Pandora/Goldstein Archive
+  - Ishizaka, Kimiko/Performer
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Pages with items from Bach Digital
+  - Manuscripts from the 1700s
+  - Manuscripts
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Czerny, Carl/Editor
+  - Scores published by Schirmer
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - F-sharp major
+files:
+  - id: "01017"
+    tab: Score1
+    tabText: Scores
+    rating: 7.6
+    rateBy: 10
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in F-sharp major, BWV
+      858 (Bach, Johann Sebastian)/IMSLP01017-Prefug13.pdf
+    ext: pdf
+  - id: "02218"
+    tab: Score1
+    tabText: Scores
+    rating: 6.75
+    rateBy: 8
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in F-sharp major, BWV
+      858 (Bach, Johann Sebastian)/IMSLP02218-BWV0858.pdf
+    ext: pdf
+  - id: "81781"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 13
+    group: 2
+    title: Complete ScoreBach Digital
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in F-sharp major, BWV
+      858 (Bach, Johann Sebastian)/IMSLP81781-PMLP05948-BWV_858.pdf
+    ext: pdf
+  - id: "733961"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in F-sharp major, BWV
+      858 (Bach, Johann
+      Sebastian)/IMSLP733961-PMLP542606-Bach_WTK_1_13_BWV_858.pdf
+    ext: pdf
+  - id: "733964"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score (F major)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in F-sharp major, BWV
+      858 (Bach, Johann
+      Sebastian)/IMSLP733964-PMLP542606-Bach_WTK_1_13_BWV_858_F.pdf
+    ext: pdf
+  - id: "439291"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in F-sharp major, BWV
+      858 (Bach, Johann
+      Sebastian)/IMSLP439291-PMLP542606-Bach_-_Prelude_&_Fugue_in_F-_major.mp3
+    ext: mp3
+  - id: "336571"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.8181818181818
+    rateBy: 11
+    group: 1
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in F-sharp major, BWV
+      858 (Bach, Johann
+      Sebastian)/IMSLP336571-PMLP05948-02JSBachPrelude&Fugue_F-_Major.mp3
+    ext: mp3
+  - id: "336572"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 5
+    group: 1
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in F-sharp major, BWV
+      858 (Bach, Johann
+      Sebastian)/IMSLP336572-PMLP05948-02JSBachPrelude&Fugue_F-_Major.ogg
+    ext: ogg
+  - id: "410064"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7
+    rateBy: 2
+    group: 2
+    title: Prelude (lossless)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in F-sharp major, BWV
+      858 (Bach, Johann
+      Sebastian)/IMSLP410064-PMLP542606-Kimiko_Ishizaka_-_Bach-_Well-Tempered_Clavier,_Book_1_-_25_Prelude_No._13_in_F-sharp_major,_BWV_858.flac
+    ext: flac
+  - id: "410065"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Fugue (lossless)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in F-sharp major, BWV
+      858 (Bach, Johann
+      Sebastian)/IMSLP410065-PMLP542606-Kimiko_Ishizaka_-_Bach-_Well-Tempered_Clavier,_Book_1_-_26_Fugue_No._13_in_F-sharp_major,_BWV_858.flac
+    ext: flac
+  - id: "410066"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Prelude (lossy)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in F-sharp major, BWV
+      858 (Bach, Johann
+      Sebastian)/IMSLP410066-PMLP542606-Prelude_No._13_in_F-sharp_major,_BWV_858.mp3
+    ext: mp3
+  - id: "410067"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Fugue (lossy)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in F-sharp major, BWV
+      858 (Bach, Johann
+      Sebastian)/IMSLP410067-PMLP542606-Fugue_No._13_in_F-sharp_major,_BWV_858.mp3
+    ext: mp3

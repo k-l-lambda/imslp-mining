@@ -1,0 +1,62 @@
+id: 27973
+title: Piano Sonata in C major, WoO 51
+author: Beethoven, Ludwig van
+url: https://imslp.org/wiki/Piano Sonata in C major, WoO 51 (Beethoven, Ludwig van)
+meta:
+  Work Title: Piano Sonata, C major
+  Alternative. Title: Piano Sonatina
+  Composer: Beethoven, Ludwig van
+  Opus/Catalogue NumberOp./Cat. No.: WoO 51
+  I-Catalogue NumberI-Cat. No.: ILB 161
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: |-
+    only 2 remain; only 1 completed, 1 fragment
+     Allegro (C major)
+     Adagio (F major)
+     completed by Ferdinand Ries (1784–1838).
+  First Publication.: "1830"
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: piano
+  External Links: Wikipedia article
+categories:
+  - Pages with First Editions
+  - Scores published by Dunst
+  - Scores from Bayerische Staatsbibliothek
+  - Pages with items from edition "Ludwig van Beethovens Werke"
+  - Scores published by Breitkopf und Härtel
+  - Scores
+  - Beethoven, Ludwig van
+  - Classical style
+  - Classical
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1830
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - C major
+files:
+  - id: "58174"
+    tab: Score1
+    tabText: Scores
+    rating: 5.3846153846154
+    rateBy: 13
+    group: 0
+    title: Complete ScoreD-Mbs
+    path: (1770)Ludwig van Beethoven/(1830)Piano Sonata in C major, WoO 51
+      (Beethoven, Ludwig
+      van)/IMSLP58174-PMLP106707-Beethoven_Werke_Breitkopf_Serie_16_No_159_WoO_51.pdf
+    ext: pdf
+  - id: "51424"
+    tab: Score1
+    tabText: Scores
+    rating: 5.375
+    rateBy: 16
+    group: 1
+    title: Complete ScoreD-BNba
+    path: (1770)Ludwig van Beethoven/(1830)Piano Sonata in C major, WoO 51
+      (Beethoven, Ludwig van)/IMSLP51424-PMLP106707-WoO_51.pdf
+    ext: pdf

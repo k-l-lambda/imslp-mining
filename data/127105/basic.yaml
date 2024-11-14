@@ -1,0 +1,109 @@
+id: 127105
+title: Piano Sonata in C major, D.840
+author: Schubert, Franz
+url: https://imslp.org/wiki/Piano Sonata in C major, D.840 (Schubert, Franz)
+meta:
+  Work Title: Piano Sonata in C major, Reliquie
+  Alternative. Title: Piano Sonata No.15
+  Name Translations: Sonate pour piano nº 15 de Schubert; Piano Sonata in C major,
+    D. 840; ピアノソナタ第15番 (シューベルト); Sonata per a piano núm. 15 en do major, D 840;
+    Reliquie
+  Name Aliases: Sonate D.840 (Schubert); Sonate pour piano D.840 (Schubert);
+    Sonate pour piano d.840 de schubert; Sonate pour piano D.840 de Schubert;
+    Sonate pour piano n°15 de Schubert; Sonate pour piano n° 15 de Schubert
+  Authorities: "WorldCat; Wikipedia; VIAF: 185088889; LCCN: n81078996; GND:
+    300141866; NLA: 35672773"
+  Composer: Schubert, Franz
+  Opus/Catalogue NumberOp./Cat. No.: D.840
+  I-Catalogue NumberI-Cat. No.: IFS 588
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements:
+    Moderato (C major)
+    Andante (C minor)
+    Menuetto. Allegretto — Trio (A♭ major - fragment)
+    Rondo. Allegro (C major - fragment)
+  Year/Date of CompositionY/D of Comp.: 1825 April
+  First Publication.: 1861 − Whistling
+  Average DurationAvg. Duration: 38 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Serkin, Rudolf/Performer
+  - Recordings published in 1956
+  - Recordings published in the 20th century
+  - Recordings
+  - Mandyczewski, Eusebius/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Scores from Bibliothèque nationale de France
+  - Pages with items from series "Album Musica"
+  - Scores published by Pierre Lafitte
+  - Krenek, Ernst/Arranger
+  - Scores published by Universal Edition
+  - Scores
+  - Schubert, Franz
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1861
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C major
+files:
+  - id: "08967"
+    tab: Score1
+    tabText: Scores
+    rating: 6.125
+    rateBy: 8
+    group: 0
+    title: Complete Score
+    path: (1797)Franz Schubert/(1825)Piano Sonata in C major, D.840 (Schubert,
+      Franz)/IMSLP08967-Schubert_-_D.840_-_Piano_Sonata_in_C_Major.pdf
+    ext: pdf
+  - id: "562693"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 1
+    group: 1
+    title: Complete Score
+    path: (1797)Franz Schubert/(1825)Piano Sonata in C major, D.840 (Schubert,
+      Franz)/IMSLP562693-PMLP21675-PMLUS01301-Schubert_D840_Krenek.pdf
+    ext: pdf
+  - id: "626607"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: II. AndanteF-Pn
+    path: (1797)Franz Schubert/(1825)Piano Sonata in C major, D.840 (Schubert,
+      Franz)/IMSLP626607-PMLP21675-Schubert_Sonate_inachevee_Andante.pdf
+    ext: pdf
+  - id: "718064"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 1. Moderato
+    path: (1797)Franz Schubert/(1825)Piano Sonata in C major, D.840 (Schubert,
+      Franz)/IMSLP718064-PMLP21675-02.01._Sonata_In_C_Major_(Unfinished)-_I._Moderato.mp3
+    ext: mp3
+  - id: "718065"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 2. Andante
+    path: (1797)Franz Schubert/(1825)Piano Sonata in C major, D.840 (Schubert,
+      Franz)/IMSLP718065-PMLP21675-02.02._Sonata_In_C_Major_(Unfinished)-_II._Andante.mp3
+    ext: mp3

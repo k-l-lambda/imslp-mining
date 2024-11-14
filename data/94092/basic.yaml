@@ -1,0 +1,106 @@
+id: 94092
+title: Keyboard Sonata in D minor, K.5
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in D minor, K.5 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in D minor
+  Alternative. Title: ""
+  Name Translations: sonate K. 5; Sonata K. 5; Sonate K. 5; Sonat K. 5
+  Authorities: "WorldCat; VIAF: 293025261; LCCN: n84053948; BNF: 13914533n"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.5 ; L.367 ; P.61 ; CZ.10
+  I-Catalogue NumberI-Cat. No.: IDS 303
+  Key: D minor
+  Movements/SectionsMov'ts/Sec's: Allegro
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.5)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by D. Rahter
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - D minor
+files:
+  - id: "133066"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.5 (Scarlatti,
+      Domenico)/IMSLP133066-WIMA.ed69-Scarlatti_Sonate_K.5.pdf
+    ext: pdf
+  - id: "313335"
+    tab: Score1
+    tabText: Scores
+    rating: 3.3333333333333
+    rateBy: 3
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.5 (Scarlatti,
+      Domenico)/IMSLP313335-PMLP330390-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_05_K.5_scan.pdf
+    ext: pdf
+  - id: "376358"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete ScoreUS-R
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.5 (Scarlatti,
+      Domenico)/IMSLP376358-PMLP330390-Sibley1802.22722_-_No._11_-_Sonata_in_D_minor,_K._5.pdf
+    ext: pdf
+  - id: "191846"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6.6666666666667
+    rateBy: 3
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.5 (Scarlatti,
+      Domenico)/IMSLP191846-WIMA.4421-ScaK5Sco.pdf
+    ext: pdf
+  - id: "279378"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.5 (Scarlatti,
+      Domenico)/IMSLP279378-PMLP257047-Scarlatti_Sonate_K.5.mid
+    ext: mid
+  - id: "191854"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.5 (Scarlatti,
+      Domenico)/IMSLP191854-WIMA.c353-ScaK5Sco.mp3
+    ext: mp3

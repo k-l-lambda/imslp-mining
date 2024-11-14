@@ -1,0 +1,109 @@
+id: 121312
+title: Abegg Variations, Op.1
+author: Schumann, Robert
+url: https://imslp.org/wiki/Abegg Variations, Op.1 (Schumann, Robert)
+meta:
+  Work Title: Abegg Variations
+  Alternative. Title: ""
+  Composer: Schumann, Robert
+  Opus/Catalogue NumberOp./Cat. No.: Op.1
+  I-Catalogue NumberI-Cat. No.: IRS 1
+  Key: F major
+  Movements/SectionsMov'ts/Sec's: Theme, 3 Variations, Finale
+  Year/Date of CompositionY/D of Comp.: 1829-1830
+  First Publication.: "1831 (November) - Leipzig: Kistner. Plate 974, 11 pages"
+  Average DurationAvg. Duration: 7-8 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: Piano
+  External Links: Wikipedia article
+categories:
+  - Jumppanen, Paavali/Performer
+  - Gardner Museum Recordings
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Schumann, Clara/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with items from Schumann's Werke
+  - Scores with links to Amazon
+  - Works reprinted by Edwin F. Kalmus
+  - Kühner, Conrad/Editor
+  - Scores published by Litolff
+  - Pages with References to Hofmeister's Monatsbericht
+  - Alston, Ray/Editor
+  - Work pages with links to recordings
+  - Scores
+  - Schumann, Robert
+  - Romantic style
+  - Romantic
+  - Variations
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1831
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - F major
+files:
+  - id: "584456"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 4
+    group: 0
+    title: Complete Score
+    path: (1810)Robert Schumann/(1829)Abegg Variations, Op.1 (Schumann,
+      Robert)/IMSLP584456-PMLP2928-Abegg.pdf
+    ext: pdf
+  - id: "794472"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 2
+    group: 1
+    title: Complete score
+    path: (1810)Robert Schumann/(1829)Abegg Variations, Op.1 (Schumann,
+      Robert)/IMSLP794472-PMLP2928-Abegg_Variations_Op_1.pdf
+    ext: pdf
+  - id: "289843"
+    tab: Score1
+    tabText: Scores
+    rating: 5.1666666666667
+    rateBy: 24
+    group: 2
+    title: Complete Score (scan)
+    path: (1810)Robert Schumann/(1829)Abegg Variations, Op.1 (Schumann,
+      Robert)/IMSLP289843-PMLP02928-Schumann,_Robert_Werke_Breitkopf_Gregg_Serie_7_Band_1_RS_39_Op_1_scan.pdf
+    ext: pdf
+  - id: "417954"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.5
+    rateBy: 4
+    group: 0
+    title: Complete Performance
+    path: (1810)Robert Schumann/(1829)Abegg Variations, Op.1 (Schumann,
+      Robert)/IMSLP417954-PMLP02928-schumann_variationsonthenameabegg_jumppanen_.mp3
+    ext: mp3
+  - id: "355601"
+    tab: Audio1
+    tabText: Recordings
+    rating: 4
+    rateBy: 4
+    group: 1
+    title: Complete Recording
+    path: (1810)Robert Schumann/(1829)Abegg Variations, Op.1 (Schumann,
+      Robert)/IMSLP355601-PMLP02928-schumann_op1_lig_gardner.mp3
+    ext: mp3
+  - id: "280624"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized Performance
+    path: (1810)Robert Schumann/(1829)Abegg Variations, Op.1 (Schumann,
+      Robert)/IMSLP280624-PMLP02928-Thema,_Var_I,_Var_II,_Var_III,_Finale_alla_Fantasia.mp3
+    ext: mp3

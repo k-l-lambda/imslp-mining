@@ -1,0 +1,112 @@
+id: 44342
+title: 6 Piano Sonatas, Op.25
+author: Clementi, Muzio
+url: https://imslp.org/wiki/6 Piano Sonatas, Op.25 (Clementi, Muzio)
+meta:
+  Work Title: Six Piano Sonatas
+  Alternative. Title: ""
+  Composer: Clementi, Muzio
+  Opus/Catalogue NumberOp./Cat. No.: Op.25 (Nos.4-6 often also published as Op.26)
+  I-Catalogue NumberI-Cat. No.: IMC 32
+  Movements/SectionsMov'ts/Sec's: |-
+    6 sonatas:
+     C major
+     G major
+     B♭ major
+     A major
+     F♯ minor
+     D major
+  First Publication.: "1790"
+  Dedication: Mrs Meyrick
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: piano
+categories:
+  - Reale, Federica/Performer
+  - Recordings
+  - Scores from the British Library
+  - Scores published by J. Dale
+  - Scores published by Litolff
+  - Scores from Bibliothèque nationale de France
+  - Scores published by Sieber
+  - Pages with items from the Zentralbibliothek Zürich
+  - Scores published by Nägeli
+  - Scores from Herzogin Anna Amalia Bibliothek
+  - Scores published by Artaria
+  - Ruthardt, Adolf/Editor
+  - Scores published by Edition Peters
+  - Buonamici, Giuseppe/Editor
+  - Scores published by Schirmer
+  - Scores
+  - Clementi, Muzio
+  - Classical style
+  - Classical
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1790
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+files:
+  - id: "608827"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 2
+    group: 0
+    title: Sonatas 1, 4, 5CH-Zz
+    path: (1752)Muzio Clementi/(1790)6 Piano Sonatas, Op.25 (Clementi,
+      Muzio)/IMSLP608827-PMLP7262-Clementi-op25-4-5-1.pdf
+    ext: pdf
+  - id: "400281"
+    tab: Score1
+    tabText: Scores
+    rating: 7.6
+    rateBy: 5
+    group: 1
+    title: Sonata No.5 in F♯ minor (monochrome)
+    path: (1752)Muzio Clementi/(1790)6 Piano Sonatas, Op.25 (Clementi,
+      Muzio)/IMSLP400281-PMLP07264-Clementi_-_26_Piano_Sonata_Op.26,_No.2.pdf
+    ext: pdf
+  - id: "400282"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 1
+    group: 1
+    title: Sonata No.6 in D major (monochrome)
+    path: (1752)Muzio Clementi/(1790)6 Piano Sonatas, Op.25 (Clementi,
+      Muzio)/IMSLP400282-PMLP07264-Clementi_-_26_Piano_Sonata_Op.26,_No.3.pdf
+    ext: pdf
+  - id: "55291"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Sonata No.5 in F♯ minor (scan)
+    path: (1752)Muzio Clementi/(1790)6 Piano Sonatas, Op.25 (Clementi,
+      Muzio)/IMSLP55291-PMLP07264-Clementi_Twelve_Sonatas_Schirmer_Op_26_No_2_scan.pdf
+    ext: pdf
+  - id: "55292"
+    tab: Score1
+    tabText: Scores
+    rating: 7.3333333333333
+    rateBy: 3
+    group: 2
+    title: Sonata No.5 in F♯ minor (filter)
+    path: (1752)Muzio Clementi/(1790)6 Piano Sonatas, Op.25 (Clementi,
+      Muzio)/IMSLP55292-PMLP07264-Clementi_Twelve_Sonatas_Schirmer_Op_26_No_2_filter.pdf
+    ext: pdf
+  - id: "579666"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Sonata No.5 in F# minor
+    path: (1752)Muzio Clementi/(1790)6 Piano Sonatas, Op.25 (Clementi,
+      Muzio)/IMSLP579666-PMLP7262-clementi_Sonata_op._26.mp3
+    ext: mp3

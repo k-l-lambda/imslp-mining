@@ -1,0 +1,186 @@
+id: 17371
+title: Prelude and Fugue in D major, BWV 850
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in D major, BWV 850 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue No.5 in D major
+  Alternative. Title: Praeludium et Fuga a 4 voci
+  Name Translations: Präludium und Fuge D-Dur BWV 850; Prélude et fugue en ré
+    majeur (BWV 850); Preludi i fuga en re major, BWV 850; Прелюдия и фуга ре
+    мажор, BWV 850; Prelúdium a Fúga D dur BWV 850
+  Authorities: "WorldCat; VIAF: 210952008; GND: 300629400; BNF: 13944846f"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 850
+  I-Catalogue NumberI-Cat. No.: IJB 515
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1722 in Das wohltemperierte Klavier I, BWV 846-869 (No.5)
+  First Publication.: "1801"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: clavier (keyboard)
+  External Links: Wikipedia article (on Das wohltemperierte Klavier)Bach Digital (source list)
+categories:
+  - Goldstein, Martha/Performer
+  - Pages with recordings from Pandora/Goldstein Archive
+  - Noll, Jürgen/Performer
+  - Ishizaka, Kimiko/Performer
+  - Bradley-Fulgoni, Peter/Performer
+  - Gould, Glenn/Performer
+  - Recordings published in 1963
+  - Recordings published in the 20th century
+  - Recordings
+  - Pages with items from Bach Digital
+  - Manuscripts
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Czerny, Carl/Editor
+  - Scores published by Schirmer
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Moshkin, Evgeniy E./Editor
+  - RSB/Editor
+  - Rother, Kyle/Editor
+  - Franco Rocha, Jonathan/Editor
+  - Besseling, Peter/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - D major
+files:
+  - id: "756942"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score (with fingering and tempo indication)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in D major, BWV 850
+      (Bach, Johann Sebastian)/IMSLP756942-PMLP533938-bwv_850.pdf
+    ext: pdf
+  - id: "743692"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Complete Score in Braille
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in D major, BWV 850
+      (Bach, Johann
+      Sebastian)/IMSLP743692-PMLP533938-Preludio_e_Fuga_5_-_Bach_tinta-braille.pdf
+    ext: pdf
+  - id: "01009"
+    tab: Score1
+    tabText: Scores
+    rating: 8.1052631578947
+    rateBy: 19
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in D major, BWV 850
+      (Bach, Johann Sebastian)/IMSLP01009-Pre_fug5.pdf
+    ext: pdf
+  - id: "732491"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in D major, BWV 850
+      (Bach, Johann Sebastian)/IMSLP732491-PMLP533938-Bach_WTK_1_05_BWV_850.pdf
+    ext: pdf
+  - id: "410005"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.5
+    rateBy: 4
+    group: 0
+    title: Prelude (lossless)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in D major, BWV 850
+      (Bach, Johann
+      Sebastian)/IMSLP410005-PMLP533938-Kimiko_Ishizaka_-_Bach-_Well-Tempered_Clavier,_Book_1_-_09_Prelude_No._5_in_D_major,_BWV_850.flac
+    ext: flac
+  - id: "410006"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Fugue (lossless)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in D major, BWV 850
+      (Bach, Johann
+      Sebastian)/IMSLP410006-PMLP533938-Kimiko_Ishizaka_-_Bach-_Well-Tempered_Clavier,_Book_1_-_10_Fugue_No._5_in_D_major,_BWV_850.flac
+    ext: flac
+  - id: "410007"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Prelude (lossy)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in D major, BWV 850
+      (Bach, Johann
+      Sebastian)/IMSLP410007-PMLP533938-Prelude_No._5_in_D_major,_BWV_850.mp3
+    ext: mp3
+  - id: "410008"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Fugue (lossy)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in D major, BWV 850
+      (Bach, Johann
+      Sebastian)/IMSLP410008-PMLP533938-Fugue_No._5_in_D_major,_BWV_850.mp3
+    ext: mp3
+  - id: "717187"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in D major, BWV 850
+      (Bach, Johann
+      Sebastian)/IMSLP717187-PMLP5948-01.05._The_Well-Tempered_Clavier,_Book_I-_Prelude_And_Fugue_In_D_Major.mp3
+    ext: mp3
+  - id: "439297"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7
+    rateBy: 2
+    group: 2
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in D major, BWV 850
+      (Bach, Johann
+      Sebastian)/IMSLP439297-PMLP533938-Bach_-_Prelude_&_Fugue_in_D_major.mp3
+    ext: mp3

@@ -1,0 +1,116 @@
+id: 93830
+title: Keyboard Sonata in A major, K.74
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in A major, K.74 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in A major
+  Alternative. Title: ""
+  Name Translations: Sonate K. 74; Sonata K. 74; Sonat K. 74
+  Authorities: "WorldCat; VIAF: 294330290; LCCN: no2011112796; BNF: 13914616b"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.74 ; L.94 ; P.35
+  I-Catalogue NumberI-Cat. No.: IDS 13
+  Key: A major
+  Movements/SectionsMov'ts/Sec's: Allegro
+  First Publication.: 1742?
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Works first published in 1742
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - A major
+files:
+  - id: "281195"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1742)Keyboard Sonata in A major, K.74
+      (Scarlatti, Domenico)/IMSLP281195-PMLP333914-Scarlatti_Sonate_K.74.pdf
+    ext: pdf
+  - id: "353928"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 2
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1742)Keyboard Sonata in A major, K.74
+      (Scarlatti,
+      Domenico)/IMSLP353928-PMLP333914-Scarlatti,_Domenico-Sonates_Heugel_32.522_Volume_2_22_K.74_scan.pdf
+    ext: pdf
+  - id: "626933"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1742)Keyboard Sonata in A major, K.74
+      (Scarlatti, Domenico)/IMSLP626933-PMLP333914-Sonata_K._74_(as_L._94).pdf
+    ext: pdf
+  - id: "194575"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1742)Keyboard Sonata in A major, K.74
+      (Scarlatti, Domenico)/IMSLP194575-WIMA.7f1e-Scar74Sco.pdf
+    ext: pdf
+  - id: "281196"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/(1742)Keyboard Sonata in A major, K.74
+      (Scarlatti, Domenico)/IMSLP281196-PMLP333914-Scarlatti_Sonate_K.74.mid
+    ext: mid
+  - id: "194592"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1742)Keyboard Sonata in A major, K.74
+      (Scarlatti, Domenico)/IMSLP194592-WIMA.95e4-Scar74Sco.mp3
+    ext: mp3
+  - id: "194593"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1742)Keyboard Sonata in A major, K.74
+      (Scarlatti, Domenico)/IMSLP194593-WIMA.3932-Scar74Sco.mid
+    ext: mid

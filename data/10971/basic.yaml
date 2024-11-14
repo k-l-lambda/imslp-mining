@@ -1,0 +1,125 @@
+id: 10971
+title: Keyboard Sonata in D major, Hob.XVI:51
+author: Haydn, Joseph
+url: https://imslp.org/wiki/Keyboard Sonata in D major, Hob.XVI:51 (Haydn, Joseph)
+meta:
+  Work Title: Keyboard Sonata
+  Alternative. Title: Klaviersonate Nr.51
+  Name Translations: Sonate pour piano nº 61 de Joseph Haydn; ピアノソナタ第51番
+  Authorities: "WorldCat; VIAF: 293916249; BNF: 14823612w"
+  Composer: Haydn, Joseph
+  Opus/Catalogue NumberOp./Cat. No.: Hob.XVI:51 ; Op.93
+  I-Catalogue NumberI-Cat. No.: IJH 271
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Andante (D major)
+    Finale. Presto (D major)
+  Year/Date of CompositionY/D of Comp.: 1794–95
+  First Publication.: 1805 or earlier
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: piano
+categories:
+  - Okonsar, Mehmet K./Performer
+  - Scores with links to Amazon
+  - Recordings
+  - Scores from the Internet Archive
+  - Roitzsch, Friedrich August/Editor
+  - Scores published by Edition Peters
+  - Päsler, Karl/Editor
+  - Scores published by Breitkopf und Härtel
+  - Martienssen, Carl Adolf/Editor
+  - Landon, Christa/Editor
+  - Scores published by Wiener Urtext Edition
+  - Urtext
+  - Peterpiano/Editor
+  - Apke, Stefan/Arranger
+  - Scores
+  - Haydn, Joseph
+  - Classical style
+  - Classical
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For guitar (arr)
+  - Scores featuring the guitar (arr)
+  - For 1 player (arr)
+  - Pages with arrangements
+  - Works first published in 1805
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - D major
+files:
+  - id: "511732"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: 1. Andante
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in D major, Hob.XVI51 (Haydn,
+      Joseph)/IMSLP511732-PMLP1731-1_Andante_-_------_---------.pdf
+    ext: pdf
+  - id: "509830"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: 2. Finale
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in D major, Hob.XVI51 (Haydn,
+      Joseph)/IMSLP509830-PMLP1731-2_Finale_-_------_---------.pdf
+    ext: pdf
+  - id: "370775"
+    tab: Score1
+    tabText: Scores
+    rating: 7.5
+    rateBy: 4
+    group: 1
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in D major, Hob.XVI51 (Haydn,
+      Joseph)/IMSLP370775-PMLP01731-Haydn_-_Sonata_No._61,_Hob._XVI_51.pdf
+    ext: pdf
+  - id: "72261"
+    tab: Score1
+    tabText: Scores
+    rating: 6.8
+    rateBy: 5
+    group: 2
+    title: Complete Score (scan)
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in D major, Hob.XVI51 (Haydn,
+      Joseph)/IMSLP72261-PMLP01731-Haydn_Sonaten_Klavier_Band_4_38_Peters_11304_scan.pdf
+    ext: pdf
+  - id: "654477"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in D major, Hob.XVI51 (Haydn,
+      Joseph)/IMSLP654477-PMLP1731-Haydn_J-Finale_Hob_XVI_51+mid.pdf
+    ext: pdf
+  - id: "275637"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 1
+    group: 0
+    title: 1. Andante
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in D major, Hob.XVI51 (Haydn,
+      Joseph)/IMSLP275637-PMLP01731-07-HaydnSonatas-D_Maj_HBK_XVI-51_01-Andante.mp3
+    ext: mp3
+  - id: "275638"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: 2. Finale. Presto
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in D major, Hob.XVI51 (Haydn,
+      Joseph)/IMSLP275638-PMLP01731-08-HaydnSonatas-D_Maj_HBK_XVI-51_02-Finale_Presto.mp3
+    ext: mp3

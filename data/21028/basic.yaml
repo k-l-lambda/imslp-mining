@@ -1,0 +1,119 @@
+id: 21028
+title: Barcarolle, Op.60
+author: Chopin, Frédéric
+url: https://imslp.org/wiki/Barcarolle, Op.60 (Chopin, Frédéric)
+meta:
+  Work Title: Barcarolle
+  Alternative. Title: ""
+  Name Translations: Barcarolle (Chopin); Barcarole; Barkarola (Chopin); Баркарола
+    (Шопен); Barkarol (Chopin); 舟歌 (ショパン); Barcarola (Chopin); Баркарола;
+    Barcarola op. 60; 뱃노래
+  Name Aliases: Barcarole (Chopin); Barcarola de Chopin; Barcarolle, Op. 60
+  Authorities: "WorldCat; Wikipedia; VIAF: 173983022; LCCN: no95032889; GND: 300036809"
+  Composer: Chopin, Frédéric
+  Opus/Catalogue NumberOp./Cat. No.: Op.60
+  I-Catalogue NumberI-Cat. No.: IFC 9
+  Key: F-sharp major
+  Movements/SectionsMov'ts/Sec's: Allegretto
+  Year/Date of CompositionY/D of Comp.: 1845-46
+  First Publication.: "1846 – Paris: Brandus ; London: Wessel ; Leipzig: Breitkopf & Härtel"
+  Dedication: A Mme. la Baronne de Stockhausen
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia articleInstytut Fryderyka ChopinaAll Music Guide
+categories:
+  - Gurevich, Olga/Performer
+  - Novaes, Guiomar/Performer
+  - Recordings published in 1963
+  - Recordings published in the 20th century
+  - Recordings
+  - Scores from Jagiellonian University
+  - Submission Project
+  - Manuscripts
+  - Scores from Bibliothèque nationale de France
+  - Pages with First Editions
+  - Scores published by Brandus
+  - Scholtz, Herrmann/Editor
+  - Scores published by Edition Peters
+  - Pages with ChopinScholtzEP
+  - Scores from HathiTrust
+  - Bargiel, Woldemar/Editor
+  - Brahms, Johannes/Editor
+  - Franchomme, Auguste/Editor
+  - Liszt, Franz/Editor
+  - Reinecke, Carl/Editor
+  - Rudorff, Ernst/Editor
+  - Klindworth, Karl/Editor
+  - Scharwenka, Xaver/Editor
+  - Scores published by Augener
+  - Kullak, Theodor/Editor
+  - Parsons, Albert Ross/Translator
+  - Sibley Mirroring Project
+  - Mikuli, Carl/Editor
+  - Tran, Eric/Editor
+  - Scores
+  - Chopin, Frédéric
+  - Romantic style
+  - Romantic
+  - Barcarolles
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1846
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - F-sharp major
+files:
+  - id: "667926"
+    tab: Score1
+    tabText: Scores
+    rating: 8.6153846153846
+    rateBy: 13
+    group: 0
+    title: Complete Score (Urtext)
+    path: (1810)Frédéric Chopin/(1845)Barcarolle, Op.60 (Chopin,
+      Frédéric)/IMSLP667926-PMLP2633-Chopin_Barcarolle_(edition_ET)_FINAL.pdf
+    ext: pdf
+  - id: "143206"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 10
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1810)Frédéric Chopin/(1845)Barcarolle, Op.60 (Chopin,
+      Frédéric)/IMSLP143206-PMLP02633-FChopin_Barcarolle,_Op.60_KullakEd.pdf
+    ext: pdf
+  - id: "54943"
+    tab: Score1
+    tabText: Scores
+    rating: 6.3636363636364
+    rateBy: 11
+    group: 2
+    title: Complete Score (scan)
+    path: (1810)Frédéric Chopin/(1845)Barcarolle, Op.60 (Chopin,
+      Frédéric)/IMSLP54943-PMLP02633-Chopin_Berceuse_Barcarolle_etc_Op_60_Peters_scan.pdf
+    ext: pdf
+  - id: "479621"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.4
+    rateBy: 5
+    group: 0
+    title: Complete Performance
+    path: (1810)Frédéric Chopin/(1845)Barcarolle, Op.60 (Chopin,
+      Frédéric)/IMSLP479621-PMLP02633-Barcarolle,_Op.60_in_F-sharp_major.mp3
+    ext: mp3
+  - id: "705192"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 1
+    group: 1
+    title: Complete Performance
+    path: (1810)Frédéric Chopin/(1845)Barcarolle, Op.60 (Chopin,
+      Frédéric)/IMSLP705192-PMLP2633-01._Chopin_-_Barcarola_Op.60.mp3
+    ext: mp3

@@ -1,0 +1,203 @@
+id: 57545
+title: Violin Sonata in B-flat major, K.8
+author: Mozart, Wolfgang Amadeus
+url: https://imslp.org/wiki/Violin Sonata in B-flat major, K.8 (Mozart, Wolfgang
+  Amadeus)
+meta:
+  Work Title: Violin Sonata
+  Alternative. Title: Violin Sonata No.3
+  Name Translations: Sonata per violino K 8; Violin sonata K 8
+  Name Aliases: K 8; KV 8
+  Authorities: "WorldCat; VIAF: 177985221"
+  Composer: Mozart, Wolfgang Amadeus
+  Opus/Catalogue NumberOp./Cat. No.: K.8 ; Op.2 No.1
+  I-Catalogue NumberI-Cat. No.: IWM 640
+  Key: B-flat major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements
+    Allegro
+    Andante
+    Menuets 1 and 2
+  Year/Date of CompositionY/D of Comp.: 1764 January
+  First Publication.: "1764 – Paris: Vendôme"
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: violin, piano
+  Related Works: Nannerl's Music Book (No.24)
+  External Links: NMA scoreNMA report (German)
+categories:
+  - WIMA files
+  - Scores from Łódź University Library
+  - Goldschmidt, Otto/Editor
+  - Joachim, Joseph/Editor
+  - Reinecke, Carl/Editor
+  - Rudorff, Ernst/Editor
+  - Waldersee, Paul/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with scores from the Digital Mozart Edition
+  - Reeser, Eduard/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Pages with files from the Neue Mozart-Ausgabe
+  - Cohn, Brian/Editor
+  - RSB/Editor
+  - Rondeau, Michel/Arranger
+  - Hallé, Charles/Arranger
+  - Scores published by Forsyth Brothers, Ltd.
+  - Scores
+  - Mozart, Wolfgang Amadeus
+  - Classical style
+  - Classical
+  - Sonatas
+  - For violin, piano
+  - Scores featuring the violin
+  - Scores featuring the piano
+  - For 2 players
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For piano (arr)
+  - For 1 player (arr)
+  - Scores featuring the piano (arr)
+  - Pages with arrangements
+  - Works first published in 1764
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+  - B-flat major
+files:
+  - id: "110925"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang
+      Amadeus)/IMSLP110925-PMLP70437-Mozart_KV_8_Complete_Score_(Transc.RSB).pdf
+    ext: pdf
+  - id: "57714"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 7.3333333333333
+    rateBy: 6
+    group: 1
+    title: Complete ScorePL-LZu
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang
+      Amadeus)/IMSLP57714-PMLP70437-Mozart_Werke_Breitkopf_Serie_18_KV8_Piano.pdf
+    ext: pdf
+  - id: "467404"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 6
+    rateBy: 1
+    group: 2
+    title: Complete Score (scan)
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang
+      Amadeus)/IMSLP467404-PMLP70437-Mozart,_Wofgang_Amadeus-NMA_08_23_1_03_KV_8_scan.pdf
+    ext: pdf
+  - id: "223373"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: I. Allegro - Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang Amadeus)/IMSLP223373-WIMA.7874-24MoSco.pdf
+    ext: pdf
+  - id: "223374"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Violins I
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang Amadeus)/IMSLP223374-WIMA.68eb-24MoVl1.pdf
+    ext: pdf
+  - id: "223375"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Violins II
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang Amadeus)/IMSLP223375-WIMA.1ce4-24MoVl2.pdf
+    ext: pdf
+  - id: "223376"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Violas
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang Amadeus)/IMSLP223376-WIMA.c242-24MoVla.pdf
+    ext: pdf
+  - id: "223377"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Violins III (Violas)
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang Amadeus)/IMSLP223377-WIMA.e0c6-24MoVl3.pdf
+    ext: pdf
+  - id: "223378"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Cellos
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang Amadeus)/IMSLP223378-WIMA.a4f0-24MoVc.pdf
+    ext: pdf
+  - id: "223379"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Basses
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang Amadeus)/IMSLP223379-WIMA.09f6-24MoDb.pdf
+    ext: pdf
+  - id: "188852"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 7
+    rateBy: 2
+    group: 0
+    title: Engraving files (Finale)
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang Amadeus)/IMSLP188852-WIMA.e418-LM.zip
+    ext: zip
+  - id: "433705"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang
+      Amadeus)/IMSLP433705-PMLP70437-Mozart_Sonata_in_B_flat_K8.pdf
+    ext: pdf
+  - id: "223402"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: I. Allegro in B♭ major
+    path: (1756)Wolfgang Amadeus Mozart/(1764)Violin Sonata in B-flat major, K.8
+      (Mozart, Wolfgang Amadeus)/IMSLP223402-WIMA.8132-24MoSco.mp3
+    ext: mp3

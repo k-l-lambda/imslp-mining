@@ -1,0 +1,174 @@
+id: 57548
+title: Violin Sonata in C major, K.6
+author: Mozart, Wolfgang Amadeus
+url: https://imslp.org/wiki/Violin Sonata in C major, K.6 (Mozart, Wolfgang Amadeus)
+meta:
+  Work Title: Violin Sonata
+  Alternative. Title: Violin Sonata No.1
+  Name Translations: Sonata per violino K 6; Violin Sonata K 6
+  Name Aliases: K 6; KV 6
+  Authorities: "WorldCat; VIAF: 174017225"
+  Composer: Mozart, Wolfgang Amadeus
+  Opus/Catalogue NumberOp./Cat. No.: K.6 ; Op.1 No.1
+  I-Catalogue NumberI-Cat. No.: IWM 646
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements
+    Allegro
+    Andante
+    Menuets 1 and 2
+    Allegretto
+  Year/Date of CompositionY/D of Comp.: 1762–63
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: violin, piano
+  Related Works: Nannerl's Music Book (Nos.25-26, 46, 48)
+categories:
+  - WIMA files
+  - Scores from Bibliothèque nationale de France
+  - Scores from Łódź University Library
+  - Goldschmidt, Otto/Editor
+  - Joachim, Joseph/Editor
+  - Reinecke, Carl/Editor
+  - Rudorff, Ernst/Editor
+  - Waldersee, Paul/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with scores from the Digital Mozart Edition
+  - Reeser, Eduard/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Pages with files from the Neue Mozart-Ausgabe
+  - Cohn, Brian/Editor
+  - RSB/Editor
+  - Kattah, Vinicius/Editor
+  - Rondeau, Michel/Arranger
+  - Gouin, Pierre/Editor
+  - Scores
+  - Mozart, Wolfgang Amadeus
+  - Classical style
+  - Classical
+  - Sonatas
+  - For violin, piano
+  - Scores featuring the violin
+  - Scores featuring the piano
+  - For 2 players
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For orchestra (arr)
+  - Scores featuring the orchestra (arr)
+  - For piano (arr)
+  - For 1 player (arr)
+  - Scores featuring the piano (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+  - C major
+files:
+  - id: "57710"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 9
+    rateBy: 2
+    group: 0
+    title: Complete ScorePL-LZu
+    path: (1756)Wolfgang Amadeus Mozart/(1762)Violin Sonata in C major, K.6 (Mozart,
+      Wolfgang
+      Amadeus)/IMSLP57710-PMLP64414-Mozart_Werke_Breitkopf_Serie_18_KV6_Piano.pdf
+    ext: pdf
+  - id: "427829"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 7.3333333333333
+    rateBy: 3
+    group: 1
+    title: Complete PartsF-Pn
+    path: (1756)Wolfgang Amadeus Mozart/(1762)Violin Sonata in C major, K.6 (Mozart,
+      Wolfgang
+      Amadeus)/IMSLP427829-PMLP64414-BnF_RES-866_-_pt6k1172289d_-_Mozart_WA,_Sonates_pour_le_clavecin_KV_6,_7_(1764)..pdf
+    ext: pdf
+  - id: "110068"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 5.5
+    rateBy: 8
+    group: 2
+    title: Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1762)Violin Sonata in C major, K.6 (Mozart,
+      Wolfgang
+      Amadeus)/IMSLP110068-PMLP64414-Mozart-KV_6-Complete_Score_(Transcription-RSB-2011).pdf
+    ext: pdf
+  - id: "265150"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1762)Violin Sonata in C major, K.6 (Mozart,
+      Wolfgang Amadeus)/IMSLP265150-PMLP64414-Mozart_Menuet_C_KV6.pdf
+    ext: pdf
+  - id: "259484"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1762)Violin Sonata in C major, K.6 (Mozart,
+      Wolfgang
+      Amadeus)/IMSLP259484-PMLP64414-IMSLP223342-WIMA.244e-KV6_Sco-8.pdf
+    ext: pdf
+  - id: "111138"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1762)Violin Sonata in C major, K.6 (Mozart,
+      Wolfgang
+      Amadeus)/IMSLP111138-PMLP64414-Mozart-kv6-iiia-sym-arr.-by-RSB.pdf
+    ext: pdf
+  - id: "327846"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Menuet 1
+    path: (1756)Wolfgang Amadeus Mozart/(1762)Violin Sonata in C major, K.6 (Mozart,
+      Wolfgang
+      Amadeus)/IMSLP327846-PMLP77431-26_Menuett_No_1_KV_6_from_Nannerl_Notebook_Wolfgang_Amadeus_Mozart_1764.mid
+    ext: mid
+  - id: "223350"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 6
+    rateBy: 2
+    group: 1
+    title: I. Allegro
+    path: (1756)Wolfgang Amadeus Mozart/(1762)Violin Sonata in C major, K.6 (Mozart,
+      Wolfgang Amadeus)/IMSLP223350-WIMA.c79d-KV6AllSco.mp3
+    ext: mp3
+  - id: "223351"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 9
+    rateBy: 2
+    group: 1
+    title: II. Andante
+    path: (1756)Wolfgang Amadeus Mozart/(1762)Violin Sonata in C major, K.6 (Mozart,
+      Wolfgang Amadeus)/IMSLP223351-WIMA.df5b-KV6Sco.mp3
+    ext: mp3
+  - id: "223352"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 7
+    rateBy: 2
+    group: 1
+    title: III. Menuets 1 and 2
+    path: (1756)Wolfgang Amadeus Mozart/(1762)Violin Sonata in C major, K.6 (Mozart,
+      Wolfgang Amadeus)/IMSLP223352-WIMA.3f50-KV6MenSco.mp3
+    ext: mp3

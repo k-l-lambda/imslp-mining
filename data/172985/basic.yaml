@@ -1,0 +1,132 @@
+id: 172985
+title: Piano Sonata No.2, Op.22
+author: Schumann, Robert
+url: https://imslp.org/wiki/Piano Sonata No.2, Op.22 (Schumann, Robert)
+meta:
+  Work Title: Grand Sonata No.2
+  Alternative. Title: ""
+  Name Translations: Sonate pour piano nº 2; Piano Sonata No. 2; ピアノソナタ第2番 (シューマン); 피아노 소나타 2번
+  Name Aliases: Piano Sonata No. 2 in G Minor, Op. 22
+  Authorities: "WorldCat; Wikipedia; VIAF: 294471878; LCCN: n81085485; BNF: 13918960m"
+  Composer: Schumann, Robert
+  Opus/Catalogue NumberOp./Cat. No.: Op.22
+  I-Catalogue NumberI-Cat. No.: IRS 112
+  Key: G minor
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements:
+    I. So rasch wie möglich
+    II. Andantino. Getragen
+    III. Scherzo. Sehr rasch und markiert
+    IV. Rondo. Presto
+  Year/Date of CompositionY/D of Comp.: 1833-35
+  First Publication.: "1839 – Leipzig: Breitkopf und HärtelHofmeister's
+    Monatsbericht (1839), p.136"
+  Dedication: Madame Henriette Voigt (1808-1839)
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: 1 piano
+  Related Works: Presto, H/K WoO 5,2 (original finale)
+categories:
+  - Zhang, Shuwen/Performer
+  - Recordings
+  - Scores from Staatsbibliothek zu Berlin
+  - Manuscripts from the 1800s
+  - Composers' holographs from the 1800s
+  - Pages with MssAu template
+  - Pages with RISM citations
+  - Manuscripts
+  - Scores from Bayerische Staatsbibliothek
+  - Schumann, Clara/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with items from Schumann's Werke
+  - Scores with links to Amazon
+  - Ruthardt, Adolf/Editor
+  - Scores published by Edition Peters
+  - Scores published by Muzgiz
+  - Scores
+  - Schumann, Robert
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1839
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - G minor
+  - Pages with References to Hofmeister's Monatsbericht
+  - Voigt, Henriette/Dedicatee
+files:
+  - id: "96387"
+    tab: Score1
+    tabText: Scores
+    rating: 6.8888888888889
+    rateBy: 9
+    group: 0
+    title: Complete ScoreD-B
+    path: (1810)Robert Schumann/(1833)Piano Sonata No.2, Op.22 (Schumann,
+      Robert)/IMSLP96387-PMLP02194-Schumann,_Robert,_Piano_Sonata_No.2,_Op.22,_Autogr.pdf
+    ext: pdf
+  - id: "289729"
+    tab: Score1
+    tabText: Scores
+    rating: 5.5454545454545
+    rateBy: 22
+    group: 1
+    title: Complete Score (scan)
+    path: (1810)Robert Schumann/(1833)Piano Sonata No.2, Op.22 (Schumann,
+      Robert)/IMSLP289729-PMLP02194-Schumann,_Robert_Werke_Breitkopf_Gregg_Serie_7_Band_4_RS_60_Op_22_scan.pdf
+    ext: pdf
+  - id: "109494"
+    tab: Score1
+    tabText: Scores
+    rating: 5.4285714285714
+    rateBy: 7
+    group: 2
+    title: Complete ScoreClassical Music Library
+    path: (1810)Robert Schumann/(1833)Piano Sonata No.2, Op.22 (Schumann,
+      Robert)/IMSLP109494-PMLP02194-Sonata_no_2_-_Opus_22.pdf
+    ext: pdf
+  - id: "364643"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.2
+    rateBy: 10
+    group: 0
+    title: I. So rasch wie möglich
+    path: (1810)Robert Schumann/(1833)Piano Sonata No.2, Op.22 (Schumann,
+      Robert)/IMSLP364643-PMLP02194-Schumann-Sonata_in_G_minor,Op.22-I.Vivacissimo.mp3
+    ext: mp3
+  - id: "364644"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.2
+    rateBy: 5
+    group: 0
+    title: II. Andantino. Getragen
+    path: (1810)Robert Schumann/(1833)Piano Sonata No.2, Op.22 (Schumann,
+      Robert)/IMSLP364644-PMLP02194-Schumann-Sonata_in_G_minor,Op.22-II.Andantino.mp3
+    ext: mp3
+  - id: "364645"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5
+    rateBy: 6
+    group: 0
+    title: III. Scherzo. Sehr rasch und markiert
+    path: (1810)Robert Schumann/(1833)Piano Sonata No.2, Op.22 (Schumann,
+      Robert)/IMSLP364645-PMLP02194-Schumann-Sonata_in_G_minor,Op.22-III.Scherzo.mp3
+    ext: mp3
+  - id: "364646"
+    tab: Audio1
+    tabText: Recordings
+    rating: 4.5
+    rateBy: 4
+    group: 0
+    title: IV. Rondo. Presto
+    path: (1810)Robert Schumann/(1833)Piano Sonata No.2, Op.22 (Schumann,
+      Robert)/IMSLP364646-PMLP02194-Schumann-Sonata_in_G_minor,Op.22-IV.Finale-Rondo-Presto.mp3
+    ext: mp3

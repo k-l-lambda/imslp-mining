@@ -1,0 +1,145 @@
+id: 94008
+title: Keyboard Sonata in C minor, K.37
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in C minor, K.37 (Scarlatti, Domenico)
+meta:
+  Work Title: Sonata in C minor
+  Alternative. Title: ""
+  Name Translations: sonate K. 37; Sonata K. 37; Sonate K. 37; Sonat K. 37
+  Authorities: "WorldCat; VIAF: 294295908; LCCN: n2001064225; GND: 1139134930;
+    BNF: 13914389q"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.37 ; L.406 ; P.2 ; CZ.62
+  I-Catalogue NumberI-Cat. No.: IDS 209
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: Allegro
+  First Publication.: Walsh edition, London, c.1750
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard; harpsichord
+categories:
+  - WIMA files
+  - Scores from the Internet Archive
+  - Roseingrave, Thomas/Editor
+  - Scores published by John Walsh
+  - Scores from the Royal College of Music Library of London
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Höger, Anton/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 2 guitars (arr)
+  - For 2 players (arr)
+  - Scores featuring the guitar (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - C minor
+files:
+  - id: "276955"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1750)Keyboard Sonata in C minor, K.37
+      (Scarlatti, Domenico)/IMSLP276955-PMLP332463-Scarlatti_Sonate_K.37.pdf
+    ext: pdf
+  - id: "313861"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 2
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1750)Keyboard Sonata in C minor, K.37
+      (Scarlatti,
+      Domenico)/IMSLP313861-PMLP332463-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_37_K.37_scan.pdf
+    ext: pdf
+  - id: "700820"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete ScoreRoyal College of Music Library
+    path: (1685)Domenico Scarlatti/(1750)Keyboard Sonata in C minor, K.37
+      (Scarlatti, Domenico)/IMSLP700820-PMLP332463-Scarlatti_37.pdf
+    ext: pdf
+  - id: "193433"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1750)Keyboard Sonata in C minor, K.37
+      (Scarlatti, Domenico)/IMSLP193433-WIMA.d259-Sca37Sco.pdf
+    ext: pdf
+  - id: "353869"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1750)Keyboard Sonata in C minor, K.37
+      (Scarlatti,
+      Domenico)/IMSLP353869-PMLP332463-Scarlatti_-_Sonate_K_037_(Orig_in_Cm).pdf
+    ext: pdf
+  - id: "276957"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/(1750)Keyboard Sonata in C minor, K.37
+      (Scarlatti, Domenico)/IMSLP276957-PMLP332463-Scarlatti_Sonate_K.37.mid
+    ext: mid
+  - id: "193441"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1750)Keyboard Sonata in C minor, K.37
+      (Scarlatti, Domenico)/IMSLP193441-WIMA.6bc6-Sca37Sco.mp3
+    ext: mp3
+  - id: "193442"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1750)Keyboard Sonata in C minor, K.37
+      (Scarlatti, Domenico)/IMSLP193442-WIMA.cb8b-Sca37Sco.mid
+    ext: mid
+  - id: "353872"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/(1750)Keyboard Sonata in C minor, K.37
+      (Scarlatti,
+      Domenico)/IMSLP353872-PMLP332463-Scarlatti_-_Sonate_K_037_(Orig_in_Cm).mp3
+    ext: mp3

@@ -1,0 +1,84 @@
+id: 105133
+title: "1"
+author: Liszt, Franz
+url: https://imslp.org/wiki/Hungarian Rhapsody No.1, S.244/1 (Liszt, Franz)
+meta:
+  Work Title: Hungarian Rhapsody No.1
+  Alternative. Title: Rêves et fantaisies
+  Name Translations: Rapsodia húngara n.º 1; Hungarian Rhapsody No. 1; I Rapsodia
+    węgierska; Ungarische Rhapsodie Nr. 1; Rapsòdia hongaresa n.1; Ungarsk
+    rapsodi nr. 1; 第1號匈牙利狂想曲; უნგრული რაფსოდია №1
+  Name Aliases: Primera rapsòdia hongaresa; 1a rapsòdia hongaresa
+  Authorities: Wikipedia
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.244/1 ; LW.A132/1
+  I-Catalogue NumberI-Cat. No.: IFL 163
+  Key: C-sharp minor
+  Movements/SectionsMov'ts/Sec's: 1 - Lento quasi recitativo
+  Year/Date of CompositionY/D of Comp.: "1846"
+  First Publication.: "1853"
+  Dedication: Ede Szerdahelyi (1820–1880)
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  Extra Information: History
+categories:
+  - Pages with First Editions
+  - Scores published by Bartholf Senff
+  - Sauer, Emil von/Editor
+  - Scores published by Edition Peters
+  - Scores from Bayerische Staatsbibliothek
+  - Raabe, Peter/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Gárdonyi, Zoltán/Editor
+  - Szelényi, István/Editor
+  - Scores published by Editio Musica Budapest
+  - Urtext
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Rhapsodies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For orchestra (arr)
+  - Scores featuring the orchestra (arr)
+  - Pages with arrangements
+  - Works first published in 1853
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C-sharp minor
+files:
+  - id: "183367"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 3
+    group: 0
+    title: Complete Score (scan)
+    path: (1811)Franz Liszt/(1846)1 (Liszt,
+      Franz)/IMSLP183367-PMLP12452-Liszt_NLA_Serie_I_Band_03_01_Rhapsodie_hongroise_S.244_1_scan.pdf
+    ext: pdf
+  - id: "67714"
+    tab: Score1
+    tabText: Scores
+    rating: 6.2727272727273
+    rateBy: 11
+    group: 1
+    title: Complete ScoreJuilliard
+    path: (1811)Franz Liszt/(1846)1 (Liszt, Franz)/IMSLP67714-PMLP136737-s244.01.pdf
+    ext: pdf
+  - id: "300583"
+    tab: Score1
+    tabText: Scores
+    rating: 5.6
+    rateBy: 5
+    group: 2
+    title: Complete Score (scan)
+    path: (1811)Franz Liszt/(1846)1 (Liszt,
+      Franz)/IMSLP300583-PMLP12452-Liszt_Klavierwerke_Peters_Sauer_Band_1_01_Ungarische_Rhapsodie_No_1_scan.pdf
+    ext: pdf

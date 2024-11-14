@@ -1,0 +1,111 @@
+id: 13766
+title: Prélude, Choral et Fugue
+author: Franck, César
+url: https://imslp.org/wiki/Prélude, Choral et Fugue (Franck, César)
+meta:
+  Work Title: Prélude, Choral et Fugue
+  Alternative. Title: ""
+  Composer: Franck, César
+  Opus/Catalogue NumberOp./Cat. No.: CFF 24; FWV 21
+  I-Catalogue NumberI-Cat. No.: ICF 53
+  Movements/SectionsMov'ts/Sec's: |-
+    3 sections without pause:
+    Prélude. Moderato
+    Choral. Poco più lento (C minor) — Poco allegro
+    Fugue. Tempo I  (B minor, ends in B major)
+  Year/Date of CompositionY/D of Comp.: "1884"
+  First Performance.: 1885-01-25, Paris, Société Nationale de Musique, Marie Poitevin (piano)
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia article
+categories:
+  - Armstrong, Peter McKenzie/Performer
+  - Okonsar, Mehmet K./Performer
+  - Bradley-Fulgoni, Peter/Performer
+  - Richter, Sviatoslav/Performer
+  - Recordings published in 1958
+  - Recordings published in the 20th century
+  - Recordings
+  - Scores published by Litolff
+  - Sibley Mirroring Project
+  - Boekelman, Bernhardus/Editor
+  - Scores published by Ditson
+  - Scores published by Dover Publications
+  - Scores published by Muzgiz
+  - Scores
+  - Franck, César
+  - Romantic style
+  - Romantic
+  - Preludes
+  - Chorales
+  - Religious works
+  - Fugues
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+files:
+  - id: "517385"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 8
+    group: 0
+    title: Complete Score
+    path: (1822)César Franck/(1884)Prélude, Choral et Fugue (Franck,
+      César)/IMSLP517385-PMLP4775-Franck_-_preludechoralandfugue1_(etc).pdf
+    ext: pdf
+  - id: "174523"
+    tab: Score1
+    tabText: Scores
+    rating: 5.125
+    rateBy: 16
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1822)César Franck/(1884)Prélude, Choral et Fugue (Franck,
+      César)/IMSLP174523-SIBLEY1802.18610.8534-39087012760643score.pdf
+    ext: pdf
+  - id: "03211"
+    tab: Score1
+    tabText: Scores
+    rating: 4.9090909090909
+    rateBy: 11
+    group: 2
+    title: Piano Score
+    path: (1822)César Franck/(1884)Prélude, Choral et Fugue (Franck,
+      César)/IMSLP03211-Franck_-_Prelude,_Choral_et_Fugue.pdf
+    ext: pdf
+  - id: "292157"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete performance
+    path: (1822)César Franck/(1884)Prélude, Choral et Fugue (Franck,
+      César)/IMSLP292157-PMLP04775-Prelude-Choral-Fugue_128Kbps.mp3
+    ext: mp3
+  - id: "415772"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9.0909090909091
+    rateBy: 11
+    group: 1
+    title: complete performance
+    path: (1822)César Franck/(1884)Prélude, Choral et Fugue (Franck,
+      César)/IMSLP415772-PMLP04775-02_-_Franck_-_Prelude_Chorale_and_Fugue.mp3
+    ext: mp3
+  - id: "266759"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.1666666666667
+    rateBy: 12
+    group: 2
+    title: Complete Performance
+    path: (1822)César Franck/(1884)Prélude, Choral et Fugue (Franck,
+      César)/IMSLP266759-PMLP04775-Franck-PCF.mp3
+    ext: mp3

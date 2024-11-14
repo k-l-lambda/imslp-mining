@@ -1,0 +1,106 @@
+id: 56691
+title: 2 Piano Sonatas, Op.24
+author: Clementi, Muzio
+url: https://imslp.org/wiki/2 Piano Sonatas, Op.24 (Clementi, Muzio)
+meta:
+  Work Title: 2 Piano Sonatas
+  Alternative. Title: ""
+  Composer: Clementi, Muzio
+  Opus/Catalogue NumberOp./Cat. No.: Op.24
+  I-Catalogue NumberI-Cat. No.: IMC 31
+  Movements/SectionsMov'ts/Sec's: |-
+    2 sonatas:
+    in F major (3 movements)
+    in B♭ major (4 movements)
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: piano
+  Extra Information: Erroneously indicated as Op.47 No.2 in many editions.
+    Performed in Vienna during the Mozart-Clementi competition
+categories:
+  - Scores from the British Library
+  - Scores published by H. Andrews
+  - Scores published by Hoffmeister
+  - Scores from Bibliothèque nationale de France
+  - Scores published by Boyer
+  - Scores published by Litolff
+  - Scores from Herzogin Anna Amalia Bibliothek
+  - Moscheles, Ignaz/Editor
+  - Scores published by Hallberger
+  - Hofmann, Józef/Editor
+  - Scores published by August Cranz
+  - Ruthardt, Adolf/Editor
+  - Scores published by Edition Peters
+  - Bosse, Nicholas/Editor
+  - Muratt, Cauê/Arranger
+  - Scores
+  - Clementi, Muzio
+  - Classical style
+  - Classical
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+files:
+  - id: "511208"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Sonata No.1 in F majorUS-R
+    path: (1752)Muzio Clementi/2 Piano Sonatas, Op.24 (Clementi,
+      Muzio)/IMSLP511208-PMLP52159-Clementi_-_Op_24_No_1_Piano_Sonata_(2405)_(F_major).pdf
+    ext: pdf
+  - id: "511209"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Sonata No.2 in B♭ majorUS-R
+    path: (1752)Muzio Clementi/2 Piano Sonatas, Op.24 (Clementi,
+      Muzio)/IMSLP511209-PMLP52159-Clementi_-_Op_24_No_2_Piano_Sonata_(2398)_(Bb_major).pdf
+    ext: pdf
+  - id: "63618"
+    tab: Score1
+    tabText: Scores
+    rating: 6.75
+    rateBy: 8
+    group: 1
+    title: Sonata No.2 in B♭ major (scan)
+    path: (1752)Muzio Clementi/2 Piano Sonatas, Op.24 (Clementi,
+      Muzio)/IMSLP63618-PMLP52175-Clementi_Sonaten_Peters_Op_47_No_2_scan.pdf
+    ext: pdf
+  - id: "63619"
+    tab: Score1
+    tabText: Scores
+    rating: 7.6
+    rateBy: 5
+    group: 1
+    title: Sonata No.2 in B♭ major (filter)
+    path: (1752)Muzio Clementi/2 Piano Sonatas, Op.24 (Clementi,
+      Muzio)/IMSLP63619-PMLP52175-Clementi_Sonaten_Peters_Op_47_No_2_filter.pdf
+    ext: pdf
+  - id: "02863"
+    tab: Score1
+    tabText: Scores
+    rating: 6.3333333333333
+    rateBy: 6
+    group: 2
+    title: Sonata No.1, 1. Allegro assai
+    path: (1752)Muzio Clementi/2 Piano Sonatas, Op.24 (Clementi,
+      Muzio)/IMSLP02863-Clementi_wo3.pdf
+    ext: pdf
+  - id: "423570"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Sonata No.2 in B♭ major - 1st movement
+    path: (1752)Muzio Clementi/2 Piano Sonatas, Op.24 (Clementi,
+      Muzio)/IMSLP423570-PMLP52159-Cadenza_Clementi_sonata_Op._24_Nr.2_Mov._1.pdf
+    ext: pdf

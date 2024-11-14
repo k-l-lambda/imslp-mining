@@ -1,0 +1,298 @@
+id: 17330
+title: Partita in C minor, BWV 826
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Partita in C minor, BWV 826 (Bach, Johann Sebastian)
+meta:
+  Work Title: Partita in C minor
+  Alternative. Title: Partita No.2 ; German Suite No.2
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 826 ; BC L2 ; Op.1 No.2
+  I-Catalogue NumberI-Cat. No.: IJB 464
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: |-
+    6 movements:
+     Sinfonia
+     Allemande
+     Courante
+     Sarabande
+     Rondeau
+     Capriccio
+  Year/Date of CompositionY/D of Comp.: "1726"
+  First Publication.: 1726 (separately), 1731 in Clavier-Übung I, Op.1 (No.2)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: harpsichord
+  External Links: Wikipedia article (BWV 825-30)
+categories:
+  - Ilić, Ivan/Performer
+  - Zhang, Shuwen/Performer
+  - Bradley-Fulgoni, Peter/Performer
+  - Dubé, Jean/Performer
+  - De Bra, Paul/Performer
+  - WIMA files
+  - Bach for Viols
+  - Recordings
+  - Becker, Carl Ferdinand/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Czerny, Carl/Editor
+  - Griepenkerl, Friedrich Conrad/Editor
+  - Roitzsch, Friedrich August/Editor
+  - Scores published by Edition Peters
+  - Scores published by Bärenreiter
+  - Urtext
+  - Giovine, Eugenio/Editor
+  - Florence, Dominic/Editor
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Bartoli, Russ/Arranger
+  - De Bra, Paul/Arranger
+  - Watanabe, Hitoshi/Arranger
+  - Clarke, John/Arranger
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Partitas
+  - For harpsichord
+  - Scores featuring the harpsichord
+  - For 1 player
+  - Unknown arrangement tag
+  - For 4 accordions, bass accordion and drum (arr)
+  - For violin, cello (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the cello (arr)
+  - For 2 players (arr)
+  - For 3 viols (arr)
+  - Scores featuring the viol (arr)
+  - For 3 players (arr)
+  - For 2 oboes, 2 clarinets, bassoon, contrabassoon, 2 horns (arr)
+  - Scores featuring the oboe (arr)
+  - Scores featuring the clarinet (arr)
+  - Scores featuring the bassoon (arr)
+  - Scores featuring the contrabassoon (arr)
+  - Scores featuring the horn (arr)
+  - For 8 players (arr)
+  - Pages with arrangements
+  - Works first published in 1726
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C minor
+files:
+  - id: "586916"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 4
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann Sebastian)/IMSLP586916-PMLP667905-Score.pdf
+    ext: pdf
+  - id: "18993"
+    tab: Score1
+    tabText: Scores
+    rating: 5.5
+    rateBy: 4
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP18993-PMLP03276-Bach_-_Partitas_Peters_-_Partita_2.pdf
+    ext: pdf
+  - id: "00790"
+    tab: Score1
+    tabText: Scores
+    rating: 5.4090909090909
+    rateBy: 132
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann Sebastian)/IMSLP00790-BWV0826.pdf
+    ext: pdf
+  - id: "129578"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann Sebastian)/IMSLP129578-WIMA.565a-Capriccio_BWV826.pdf
+    ext: pdf
+  - id: "553801"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 1
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP553801-PMLP667905-bach_826_s2_vn_vc_-_Full_Score.pdf
+    ext: pdf
+  - id: "578222"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann Sebastian)/IMSLP578222-PMLP667905-partita-2-score.pdf
+    ext: pdf
+  - id: "415775"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.5
+    rateBy: 12
+    group: 0
+    title: 1. Sinfonia
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP415775-PMLP03276-01_-_JS_Bach_-_Partita_No_2_BVW_826_Sinfonia.mp3
+    ext: mp3
+  - id: "415776"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.5714285714286
+    rateBy: 7
+    group: 0
+    title: 2. Allemande
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP415776-PMLP03276-02_-_JS_Bach_-_Partita_No_2_BVW_826_Allemande.mp3
+    ext: mp3
+  - id: "415777"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.25
+    rateBy: 8
+    group: 0
+    title: 3. Courante
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP415777-PMLP03276-03_-_JS_Bach_-_Partita_No_2_BVW_826_Courante.mp3
+    ext: mp3
+  - id: "415778"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.25
+    rateBy: 8
+    group: 0
+    title: 4. Sarabande
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP415778-PMLP03276-04_-_JS_Bach_-_Partita_No_2_BVW_826_Sarabande.mp3
+    ext: mp3
+  - id: "415779"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.75
+    rateBy: 8
+    group: 0
+    title: 5. Rondeau
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP415779-PMLP03276-05_-_JS_Bach_-_Partita_No_2_BVW_826_Rondeaux.mp3
+    ext: mp3
+  - id: "415780"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.8888888888889
+    rateBy: 9
+    group: 0
+    title: 6. Capriccio
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP415780-PMLP03276-06_-_JS_Bach_-_Partita_No_2_BVW_826_Capriccio.mp3
+    ext: mp3
+  - id: "578225"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 1
+    group: 1
+    title: 1. Sinfonia
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann Sebastian)/IMSLP578225-PMLP667905-Partita-2.mp3
+    ext: mp3
+  - id: "363631"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.4
+    rateBy: 10
+    group: 2
+    title: 1. Sinfonia
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP363631-PMLP03276-J.S.Bach-Partita_No.2_in_C_minor,BWV_826-I_Sinfonia.mp3
+    ext: mp3
+  - id: "363632"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 6
+    group: 2
+    title: 2. Allemande
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP363632-PMLP03276-J.S.Bach-Partita_No.2_in_C_minor,BWV_826-II_Allemande.mp3
+    ext: mp3
+  - id: "363633"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 4
+    group: 2
+    title: 3. Courante
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP363633-PMLP03276-J.S.Bach-Partita_No.2_in_C_minor,BWV_826-III_Courante.mp3
+    ext: mp3
+  - id: "363634"
+    tab: Audio1
+    tabText: Recordings
+    rating: 4.6666666666667
+    rateBy: 3
+    group: 2
+    title: 4. Sarabande
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP363634-PMLP03276-J.S.Bach-Partita_No.2_in_C_minor,BWV_826-IV_Sarabande.mp3
+    ext: mp3
+  - id: "363635"
+    tab: Audio1
+    tabText: Recordings
+    rating: 4.6666666666667
+    rateBy: 3
+    group: 2
+    title: 5. Rondeaux
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP363635-PMLP03276-J.S.Bach-Partita_No.2_in_C_minor,BWV_826-V_Rondeaux.mp3
+    ext: mp3
+  - id: "363636"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.5714285714286
+    rateBy: 7
+    group: 2
+    title: 6. Capriccio
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann
+      Sebastian)/IMSLP363636-PMLP03276-J.S.Bach-Partita_No.2_in_C_minor,BWV_826-VI.Capriccio.mp3
+    ext: mp3
+  - id: "147762"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized audio
+    path: (1685)Johann Sebastian Bach/(1726)Partita in C minor, BWV 826 (Bach,
+      Johann Sebastian)/IMSLP147762-WIMA.c6da-Capriccio_BWV826.mid
+    ext: mid

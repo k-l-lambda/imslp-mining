@@ -1,0 +1,70 @@
+id: 13772
+title: Sonatina No.6, BV 284
+author: Busoni, Ferruccio
+url: https://imslp.org/wiki/Sonatina No.6, BV 284 (Busoni, Ferruccio)
+meta:
+  Work Title: Sonatina No.6
+  Alternative. Title: Kammer-Fantasie über Bizets 'Carmen' / Fantasia da Camera super Carmen
+  Composer: Busoni, Ferruccio
+  Opus/Catalogue NumberOp./Cat. No.: BV 284
+  I-Catalogue NumberI-Cat. No.: IFB 58
+  Movements/SectionsMov'ts/Sec's: "1"
+  Year/Date of CompositionY/D of Comp.: "1920"
+  First Publication.: "1921"
+  Dedication: Leonhard Tauber
+  Composer Time PeriodComp. Period: Early 20th century
+  Piece Style: Early 20th century
+  Instrumentation: Piano (solo)
+  Related Works: Based on Carmen by Bizet
+categories:
+  - Pieces based on Bizet's 'Carmen'
+  - Pieces based on operas, operettas and stage works
+  - Armstrong, Peter McKenzie/Performer
+  - Recordings
+  - MIT project
+  - Scores with links to Amazon
+  - Scores
+  - Busoni, Ferruccio
+  - Early 20th century style
+  - Early 20th century
+  - Sonatinas
+  - Sonatas
+  - Fantasias
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1921
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+files:
+  - id: "02061"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1866)Ferruccio Busoni/(1920)Sonatina No.6, BV 284 (Busoni,
+      Ferruccio)/IMSLP02061-Busoni_-_Carmen.pdf
+    ext: pdf
+  - id: "13593"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1866)Ferruccio Busoni/(1920)Sonatina No.6, BV 284 (Busoni,
+      Ferruccio)/IMSLP13593-Bizet-Busoni_Carmen.pdf
+    ext: pdf
+  - id: "180212"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Performance
+    path: (1866)Ferruccio Busoni/(1920)Sonatina No.6, BV 284 (Busoni,
+      Ferruccio)/IMSLP180212-PMLP33486-FB-Sonat-6-DH.mp3
+    ext: mp3

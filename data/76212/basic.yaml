@@ -1,0 +1,62 @@
+id: 76212
+title: Richard Wagner's Prose Works
+author: Wagner, Richard
+url: https://imslp.org/wiki/Richard Wagner's Prose Works (Wagner, Richard)
+meta:
+  Work Title: Richard Wagner's Prose Works
+  Alternative. Title: ""
+  Composer: Wagner, Richard
+  I-Catalogue NumberI-Cat. No.: None [force assignment]
+  Movements/SectionsMov'ts/Sec's: 8 volumes
+  Year/Date of CompositionY/D of Comp.: 1834-1883 (Wagner's original writings)
+  First Publication.: 1892-1899 (Ashton's translation)
+  Language: German (Wagner's original writings)
+  Dedication: Cosima Wagner
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+categories:
+  - Ellis, William Ashton/Translator
+  - Scores
+  - Wagner, Richard/Books
+  - Romantic style
+  - Romantic
+  - Autobiographies
+  - Writings
+  - Biographies
+  - Music history
+  - Music criticism
+  - German language
+  - Works first published in 1892
+  - Works first published in the 19th century
+  - Liszt, Cosima/Dedicatee
+files:
+  - id: "94195"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Volume 8 (Posthumous, etc.)
+    path: (1852)William Ashton Ellis/(1834)Richard Wagner's Prose Works (Wagner,
+      Richard)/IMSLP94195-PMLP194194-RWagner_Prose_Works_Vol8.pdf
+    ext: pdf
+  - id: "94177"
+    tab: Score1
+    tabText: Scores
+    rating: 7.3333333333333
+    rateBy: 3
+    group: 1
+    title: Volume 1 (The Art-Work of the Future, etc.)
+    path: (1852)William Ashton Ellis/(1834)Richard Wagner's Prose Works (Wagner,
+      Richard)/IMSLP94177-PMLP194194-RWagner_Prose_Works_Vol1.pdf
+    ext: pdf
+  - id: "94178"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 1
+    group: 2
+    title: Volume 2 (Opera and Drama)
+    path: (1852)William Ashton Ellis/(1834)Richard Wagner's Prose Works (Wagner,
+      Richard)/IMSLP94178-PMLP194194-RWagner_Prose_Works_Vol2.pdf
+    ext: pdf

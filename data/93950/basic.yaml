@@ -1,0 +1,123 @@
+id: 93950
+title: Keyboard Sonata in C major, K.72
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in C major, K.72 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in C major
+  Alternative. Title: ""
+  Name Translations: Sonate K. 72; Sonata K. 72; Sonat K. 72
+  Authorities: "WorldCat; VIAF: 251006179; GND: 1071156101; BNF: 13914614n"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.72 ; L.401 ; P.1
+  I-Catalogue NumberI-Cat. No.: IDS 147
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: "1"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C major
+files:
+  - id: "353926"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.72 (Scarlatti,
+      Domenico)/IMSLP353926-PMLP333889-Scarlatti,_Domenico-Sonates_Heugel_32.522_Volume_2_20_K.72_scan.pdf
+    ext: pdf
+  - id: "281148"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.72 (Scarlatti,
+      Domenico)/IMSLP281148-PMLP333889-Scarlatti_Sonate_K.72.pdf
+    ext: pdf
+  - id: "464297"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.72 (Scarlatti,
+      Domenico)/IMSLP464297-PMLP333889-DScarlatti-K072-facsimile.pdf
+    ext: pdf
+  - id: "194553"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.72 (Scarlatti,
+      Domenico)/IMSLP194553-WIMA.c903-Scar72Sco.pdf
+    ext: pdf
+  - id: "281149"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance (Harpsichord)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.72 (Scarlatti,
+      Domenico)/IMSLP281149-PMLP333889-Scarlatti_Sonate_K.72H.mid
+    ext: mid
+  - id: "281150"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance (Trompeteria)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.72 (Scarlatti,
+      Domenico)/IMSLP281150-PMLP333889-Scarlatti_Sonate_K.72T.mid
+    ext: mid
+  - id: "194561"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.72 (Scarlatti,
+      Domenico)/IMSLP194561-WIMA.3de5-Scar72Sco.mp3
+    ext: mp3
+  - id: "194562"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.72 (Scarlatti,
+      Domenico)/IMSLP194562-WIMA.2f01-Scar72Sco.mid
+    ext: mid

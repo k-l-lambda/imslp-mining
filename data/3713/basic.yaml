@@ -1,0 +1,197 @@
+id: 3713
+title: Piano Sonata in A major, D.959
+author: Schubert, Franz
+url: https://imslp.org/wiki/Piano Sonata in A major, D.959 (Schubert, Franz)
+meta:
+  Work Title: Piano Sonata in A major
+  Alternative. Title: Piano Sonata No.14; Piano Sonata No.20
+  Name Translations: Klaviersonate Nr. 20; Sonata in A major, D. 959; Sonate pour
+    piano nº 20 de Schubert; ピアノソナタ第20番; Sonata per a piano núm. 20 en la major,
+    D 959; Sonata para piano en la mayor (Schubert)
+  Name Aliases: Klaviersonate Nr. 20 A-Dur D 959; D 959; Sonate pour piano n° 20
+    en la majeur, D. 959; Piano Sonata in A Major, D. 959
+  Authorities: "WorldCat; VIAF: 184686002; LCCN: n81149796"
+  Composer: Schubert, Franz
+  Opus/Catalogue NumberOp./Cat. No.: D.959
+  I-Catalogue NumberI-Cat. No.: IFS 593
+  Key: A major
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements:
+    Allegro (A major)
+    Andantino (F♯ minor)
+    Scherzo. Allegro vivace — Trio. Un poco più lento (A major)
+    Rondo. Allegretto (A major)
+  Year/Date of CompositionY/D of Comp.: 1828 September
+  First Publication.: "1839 − Vienna: Diabelli"
+  Average DurationAvg. Duration: 42 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia article (German)Wikipedia article (Spanish)
+categories:
+  - Albright, Charlie/Performer
+  - Gardner Museum Recordings
+  - Pitman, Paul/Performer
+  - Bertoglio, Chiara/Performer
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Epstein, Julius/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Mies, Paul/Editor
+  - Scores published by G. Henle Verlag
+  - Urtext
+  - Litschauer, Walburga/Editor
+  - Scores published by Bärenreiter
+  - Drillon, Jacques/Arranger
+  - Scores
+  - Schubert, Franz
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For 2 violins, viola, cello (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the viola (arr)
+  - Scores featuring the cello (arr)
+  - For 4 players (arr)
+  - Pages with arrangements
+  - Works first published in 1839
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A major
+files:
+  - id: "374087"
+    tab: Score1
+    tabText: Scores
+    rating: 6.2666666666667
+    rateBy: 15
+    group: 0
+    title: Complete Score
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP374087-PMLP02037-Schubert_-_Sonata_in_A_major,_D._959_(Henle).pdf
+    ext: pdf
+  - id: "55386"
+    tab: Score1
+    tabText: Scores
+    rating: 4.4
+    rateBy: 5
+    group: 1
+    title: Complete ScoreD-Mbs
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP55386-PMLP02037-Schubert_Werke_Breitkopf_Serie_10_No_106_D_959.pdf
+    ext: pdf
+  - id: "714726"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP714726-PMLP2037-Schubert_D959_Barenreiter.pdf
+    ext: pdf
+  - id: "427606"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score and Parts
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP427606-PMLP02037-Schubert_Drillon_Sonate_D_959_en_quatuor_score_et_parties.pdf
+    ext: pdf
+  - id: "264513"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.4
+    rateBy: 5
+    group: 0
+    title: I. Allegro
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP264513-PMLP02037-01_Traccia_01_2.mp3
+    ext: mp3
+  - id: "264514"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.8
+    rateBy: 10
+    group: 0
+    title: II. Andantino
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP264514-PMLP02037-02_Traccia_02_1.mp3
+    ext: mp3
+  - id: "264515"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: III. Scherzo. Allegro vivace - Trio. Un poco più lento
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP264515-PMLP02037-03_Traccia_03_1.mp3
+    ext: mp3
+  - id: "264516"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: IV. Rondo. Allegretto
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP264516-PMLP02037-04_Traccia_04_1.mp3
+    ext: mp3
+  - id: "247000"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 16
+    group: 1
+    title: I. Allegro
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP247000-PMLP02037-Sonata_in_A_Minor,_D._959_-_I._Allegro.mp3
+    ext: mp3
+  - id: "247001"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.3684210526316
+    rateBy: 38
+    group: 1
+    title: II. Andantino
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP247001-PMLP02037-Sonata_in_A_Minor,_D._959_-_II._Andantino.mp3
+    ext: mp3
+  - id: "247002"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.8888888888889
+    rateBy: 9
+    group: 1
+    title: III. Scherzo. Allegro vivace - Trio. Un poco più lento
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP247002-PMLP02037-Sonata_in_A_Minor,_D._959_-_III._Scherzo._Allegro_vivace.mp3
+    ext: mp3
+  - id: "247003"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.5
+    rateBy: 12
+    group: 1
+    title: IV. Rondo. Allegretto
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP247003-PMLP02037-Sonata_in_A_Minor,_D._959_-_IV._Rondo._Allegretto.mp3
+    ext: mp3
+  - id: "425318"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.2
+    rateBy: 5
+    group: 2
+    title: Complete Performance
+    path: (1797)Franz Schubert/(1828)Piano Sonata in A major, D.959 (Schubert,
+      Franz)/IMSLP425318-PMLP02037-schubert_sonataamajord959_albright.mp3
+    ext: mp3

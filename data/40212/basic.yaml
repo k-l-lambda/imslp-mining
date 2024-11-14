@@ -1,0 +1,160 @@
+id: 40212
+title: Piano Trio No.2, Op.87
+author: Brahms, Johannes
+url: https://imslp.org/wiki/Piano Trio No.2, Op.87 (Brahms, Johannes)
+meta:
+  Work Title: Piano Trio No.2
+  Alternative. Title: ""
+  Name Translations: Trio pour piano et cordes n° 2; Piano Trio No. 2; ピアノ三重奏曲第2番
+    (ブラームス); Klaviertrio Nr. 2; Trio per pianoforte e archi n. 2; Trio per a
+    piano núm. 2
+  Name Aliases: Klaviertrio in C; Klaviertrio op. 87; Klaviertrio C-Dur; Piano
+    Trio in C major; Piano Trio, Op. 87
+  Authorities: "WorldCat; Wikipedia; LCCN: no97026743; GND: 300027192; BNF: 139090427"
+  Composer: Brahms, Johannes
+  Opus/Catalogue NumberOp./Cat. No.: Op.87
+  I-Catalogue NumberI-Cat. No.: IJB 92
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements:
+    Allegro (moderato) ( = 138)
+    Andante con moto
+    Scherzo. Presto — Poco meno presto
+    Finale. Allegro giocoso
+  Year/Date of CompositionY/D of Comp.: 1880–82
+  First Performance.: |-
+    1882-12-29 in Frankfurt, Kammermusik abend der Museumsgesellschaft.
+    Hugo Heermann (violin), Valentin Müller (cello), Johannes Brahms (piano)
+  First Publication.: "1883"
+  Average DurationAvg. Duration: 29 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: violin, cello, piano
+  External Links: Wikipedia article
+categories:
+  - Szigeti, Joseph/Performer
+  - Casals, Pablo/Performer
+  - Hess, Myra/Performer
+  - Recordings published in 1953
+  - Recordings published in the 20th century
+  - Fischer, Edwin/Performer
+  - Schneiderhan, Wolfgang/Performer
+  - Mainardi, Enrico/Performer
+  - Recordings
+  - Scores from the Library of Congress
+  - Manuscripts from the 1800s
+  - Composers' holographs from the 1800s
+  - Pages with MssAu template
+  - Manuscripts
+  - Pages with First Editions
+  - Scores engraved by C.G. Röder
+  - Scores published by N. Simrock
+  - Schumann, Georg/Editor
+  - Scores published by Edition Peters
+  - Pages with References to Hofmeister's Monatsbericht
+  - Gál, Hans/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores from Staatsbibliothek zu Berlin
+  - Schnirlin, Ossip/Editor
+  - Kahn, Robert/Editor
+  - Pages with citations from items at Internet Archive
+  - Work-NonPD-US-renewed
+  - Mandozzi, Orfeo/Editor
+  - Scores
+  - Brahms, Johannes
+  - Romantic style
+  - Romantic
+  - Trios
+  - For violin, cello, piano
+  - Scores featuring the violin
+  - Scores featuring the cello
+  - Scores featuring the piano
+  - For 3 players
+  - Works first published in 1883
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+  - C major
+files:
+  - id: "138489"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 6.5882352941176
+    rateBy: 17
+    group: 0
+    title: Complete ScoreRUS-Mrg
+    path: (1833)Johannes Brahms/(1880)Piano Trio No.2, Op.87 (Brahms,
+      Johannes)/IMSLP138489-PMLP52833-JBRahms_Piano_Trio_No.2,_Op.87_rsl.pdf
+    ext: pdf
+  - id: "299112"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 6
+    rateBy: 3
+    group: 1
+    title: Complete Score (with preface)D-B
+    path: (1833)Johannes Brahms/(1880)Piano Trio No.2, Op.87 (Brahms,
+      Johannes)/IMSLP299112-PMLP52833-JBrahms_Piano_Trio_No.2,_Op.87_pianoscore_RKahnEd.pdf
+    ext: pdf
+  - id: "113808"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 5.7777777777778
+    rateBy: 9
+    group: 2
+    title: Complete Score (scan)
+    path: (1833)Johannes Brahms/(1880)Piano Trio No.2, Op.87 (Brahms,
+      Johannes)/IMSLP113808-PMLP52833-Brahms_Werke_Band_9_Breitkopf_JB_31_Op_87_scan.pdf
+    ext: pdf
+  - id: "716334"
+    tab: Audio1
+    tabText: Recordings
+    rating: 2
+    rateBy: 1
+    group: 0
+    title: 1. Allegro
+    path: (1833)Johannes Brahms/(1880)Piano Trio No.2, Op.87 (Brahms,
+      Johannes)/IMSLP716334-PMLP52833-01.01._Trio_No.2_In_C_Major-_First_Movement.mp3
+    ext: mp3
+  - id: "716335"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 2. Andante con moto
+    path: (1833)Johannes Brahms/(1880)Piano Trio No.2, Op.87 (Brahms,
+      Johannes)/IMSLP716335-PMLP52833-01.02._Trio_No.2_In_C_Major-_Second_Movement.mp3
+    ext: mp3
+  - id: "716336"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 3. Scherzo. Presto — Poco meno presto
+    path: (1833)Johannes Brahms/(1880)Piano Trio No.2, Op.87 (Brahms,
+      Johannes)/IMSLP716336-PMLP52833-02.01._Trio_No.2_In_C_Major-_Third_Movement.mp3
+    ext: mp3
+  - id: "716337"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 4. Finale. Allegro giocoso
+    path: (1833)Johannes Brahms/(1880)Piano Trio No.2, Op.87 (Brahms,
+      Johannes)/IMSLP716337-PMLP52833-02.02._Trio_No.2_In_C_Major-_Fourth_Movement.mp3
+    ext: mp3
+  - id: "421662"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Recording
+    path: (1833)Johannes Brahms/(1880)Piano Trio No.2, Op.87 (Brahms,
+      Johannes)/IMSLP421662-PMLP52833-Brahms_Op87_Fischer_Schneiderhahn_Mainardi_1951.mp3
+    ext: mp3

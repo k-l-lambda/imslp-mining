@@ -1,0 +1,115 @@
+id: 94011
+title: Keyboard Sonata in C minor, K.58
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in C minor, K.58 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in C minor
+  Alternative. Title: Fuga in C minor
+  Name Translations: Sonate K. 58; Sonata K. 58; Sonat K. 58
+  Authorities: "WorldCat; VIAF: 294816534; LCCN: no2007017817; GND: 1071155628;
+    BNF: 139145987"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.58 ; L.158 ; P.39
+  I-Catalogue NumberI-Cat. No.: IDS 213
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: (No Tempo)
+  Average DurationAvg. Duration: 2'40"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - WIMA files
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with parts for purchase
+  - C minor
+files:
+  - id: "280509"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.58 (Scarlatti,
+      Domenico)/IMSLP280509-PMLP333264-Scarlatti_Sonate_K.58.pdf
+    ext: pdf
+  - id: "353912"
+    tab: Score1
+    tabText: Scores
+    rating: 4
+    rateBy: 1
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.58 (Scarlatti,
+      Domenico)/IMSLP353912-PMLP333264-Scarlatti,_Domenico-Sonates_Heugel_32.522_Volume_2_06_K.58_scan.pdf
+    ext: pdf
+  - id: "626845"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.58 (Scarlatti,
+      Domenico)/IMSLP626845-PMLP333264-Sonata_K._58_(as_L._158).pdf
+    ext: pdf
+  - id: "194058"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.58 (Scarlatti,
+      Domenico)/IMSLP194058-WIMA.b912-Sca58Sco.pdf
+    ext: pdf
+  - id: "280510"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.58 (Scarlatti,
+      Domenico)/IMSLP280510-PMLP333264-Scarlatti_Sonate_K.58.mid
+    ext: mid
+  - id: "194066"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.58 (Scarlatti,
+      Domenico)/IMSLP194066-WIMA.5cdd-Sca58Sco.mp3
+    ext: mp3
+  - id: "194067"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C minor, K.58 (Scarlatti,
+      Domenico)/IMSLP194067-WIMA.0d8f-Sca58Sco.mid
+    ext: mid

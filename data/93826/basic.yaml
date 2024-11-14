@@ -1,0 +1,132 @@
+id: 93826
+title: Keyboard Sonata in A major, K.26
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in A major, K.26 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in A major
+  Alternative. Title: ""
+  Name Translations: sonate K. 26; Sonata K. 26; Sonate K. 26; Sonat K. 26
+  Authorities: "WorldCat; VIAF: 294601863; LCCN: n96031886; BNF: 139142674"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.26 ; L.368 ; P.82 ; CZ.32
+  I-Catalogue NumberI-Cat. No.: IDS 9
+  Key: A major
+  Movements/SectionsMov'ts/Sec's: Presto
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.26)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by D. Rahter
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Höger, Anton/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 2 guitars (arr)
+  - For 2 players (arr)
+  - Scores featuring the guitar (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - A major
+files:
+  - id: "313848"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.26
+      (Scarlatti,
+      Domenico)/IMSLP313848-PMLP332008-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_26_K.26_scan.pdf
+    ext: pdf
+  - id: "132961"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 2
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.26
+      (Scarlatti, Domenico)/IMSLP132961-WIMA.a29b-Scarlatti_Sonate_K.26.pdf
+    ext: pdf
+  - id: "376357"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete ScoreUS-R
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.26
+      (Scarlatti,
+      Domenico)/IMSLP376357-PMLP332008-Sibley1802.22722_-_No._10_-_Sonata_in_A_major,_K._26.pdf
+    ext: pdf
+  - id: "193074"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.26
+      (Scarlatti, Domenico)/IMSLP193074-WIMA.7604-Sca26Sco.pdf
+    ext: pdf
+  - id: "220544"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.26
+      (Scarlatti, Domenico)/IMSLP220544-PMLP332008-Scarlatti_-_Sonate_K26.pdf
+    ext: pdf
+  - id: "280163"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.26
+      (Scarlatti, Domenico)/IMSLP280163-PMLP257047-Scarlatti_Sonate_K.26.mid
+    ext: mid
+  - id: "193082"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.26
+      (Scarlatti, Domenico)/IMSLP193082-WIMA.3527-Sca26Sco.mp3
+    ext: mp3
+  - id: "193083"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.26
+      (Scarlatti, Domenico)/IMSLP193083-WIMA.b9e1-Sca26Sco.mid
+    ext: mid

@@ -1,0 +1,125 @@
+id: 39949
+title: Keyboard Sonata in C major, Hob.XVI:48
+author: Haydn, Joseph
+url: https://imslp.org/wiki/Keyboard Sonata in C major, Hob.XVI:48 (Haydn, Joseph)
+meta:
+  Work Title: Keyboard Sonata
+  Alternative. Title: Klaviersonate Nr.58
+  Name Translations: Sonate pour piano nº 58 de Joseph Haydn
+  Authorities: "WorldCat; VIAF: 294185979; BNF: 13913483p"
+  Composer: Haydn, Joseph
+  Opus/Catalogue NumberOp./Cat. No.: Hob.XVI:48 ; Op.70
+  I-Catalogue NumberI-Cat. No.: IJH 263
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Andante con espressione (C major)
+    Rondo. Presto (C major)
+  Year/Date of CompositionY/D of Comp.: 1789 or before
+  First Publication.: "1792 – Offenbach: Johann André, Plate 459"
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: harpsichord (or piano)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Scores from Universität Tübingen
+  - Scores published by J. Schmitt
+  - Submission Project
+  - Moscheles, Ignaz/Editor
+  - Scores published by Hallberger
+  - Sibley Mirroring Project
+  - Scores from the Internet Archive
+  - Roitzsch, Friedrich August/Editor
+  - Scores published by Edition Peters
+  - Päsler, Karl/Editor
+  - Scores published by Breitkopf und Härtel
+  - Martienssen, Carl Adolf/Editor
+  - Feder, Georg/Editor
+  - Pages with items from edition "Joseph Haydn Werke (Haydn, Joseph)"
+  - Scores published by G. Henle Verlag
+  - Urtext
+  - Edwards, Daniel Christopher/Arranger
+  - Scores
+  - Haydn, Joseph
+  - Classical style
+  - Classical
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For harpsichord
+  - Scores featuring the harpsichord
+  - For 2 violins, viola, cello (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the viola (arr)
+  - Scores featuring the cello (arr)
+  - For 4 players (arr)
+  - Pages with arrangements
+  - Works first published in 1792
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C major
+files:
+  - id: "814509"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1789)Keyboard Sonata in C major, Hob.XVI48 (Haydn,
+      Joseph)/IMSLP814509-PMLP1728-48.pdf
+    ext: pdf
+  - id: "109683"
+    tab: Score1
+    tabText: Scores
+    rating: 5.8461538461538
+    rateBy: 13
+    group: 1
+    title: Complete ScoreUS-PRV
+    path: (1732)Joseph Haydn/(1789)Keyboard Sonata in C major, Hob.XVI48 (Haydn,
+      Joseph)/IMSLP109683-PMLP01728-Haydn-Piano_Sonate_No58-XVI48-Roitzsch.pdf
+    ext: pdf
+  - id: "70224"
+    tab: Score1
+    tabText: Scores
+    rating: 4.9
+    rateBy: 10
+    group: 2
+    title: Complete Score (scan)
+    path: (1732)Joseph Haydn/(1789)Keyboard Sonata in C major, Hob.XVI48 (Haydn,
+      Joseph)/IMSLP70224-PMLP01682-Haydn_Sonaten_Klavier_Band_3_Peters_11261_scan.pdf
+    ext: pdf
+  - id: "515231"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1789)Keyboard Sonata in C major, Hob.XVI48 (Haydn,
+      Joseph)/IMSLP515231-PMLP1728-Rondo_from_Keyboard_Sonata_in_C_-_Haydn_(arr._Edwards)_-Score-.pdf
+    ext: pdf
+  - id: "398740"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.1428571428571
+    rateBy: 7
+    group: 0
+    title: 1. Andante con espressione
+    path: (1732)Joseph Haydn/(1789)Keyboard Sonata in C major, Hob.XVI48 (Haydn,
+      Joseph)/IMSLP398740-PMLP01728-Haydn_-_Sonata_in_C_maj_1st_movt.mp3
+    ext: mp3
+  - id: "398741"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.4285714285714
+    rateBy: 7
+    group: 0
+    title: 2. Rondo (Presto)
+    path: (1732)Joseph Haydn/(1789)Keyboard Sonata in C major, Hob.XVI48 (Haydn,
+      Joseph)/IMSLP398741-PMLP01728-Haydn_-_Sonata_in_C_maj_2nd_movt.mp3
+    ext: mp3

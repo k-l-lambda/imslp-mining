@@ -1,0 +1,154 @@
+id: 94036
+title: Keyboard Sonata in D major, K.96
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in D major, K.96 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in D major
+  Alternative. Title: Gigue
+  Name Translations: Sonate K. 96; Sonata K. 96; Sonat K. 96
+  Authorities: "WorldCat; VIAF: 181668778; GND: 300135823; BNF: 139146406"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.96 ; L.465 ; P.210 ; CZ.79
+  I-Catalogue NumberI-Cat. No.: IDS 240
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: 1 (Allegrissimo)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Kram, Richard/Editor
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores from the National Library of the Czech Republic
+  - Godowsky, Leopold/Arranger
+  - Scores published by Bosworth & Co.
+  - Scores from Podlaska Digital Library
+  - Singer II, Otto/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For violin, piano (arr)
+  - For 2 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the piano (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+  - D major
+files:
+  - id: "472585"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.96 (Scarlatti,
+      Domenico)/IMSLP472585-PMLP297359-DScarlatti-K096-facsimile.pdf
+    ext: pdf
+  - id: "283044"
+    tab: Score1
+    tabText: Scores
+    rating: 9
+    rateBy: 2
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.96 (Scarlatti,
+      Domenico)/IMSLP283044-PMLP297359-Scarlatti_Sonate_K.96.pdf
+    ext: pdf
+  - id: "353952"
+    tab: Score1
+    tabText: Scores
+    rating: 7.6
+    rateBy: 10
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.96 (Scarlatti,
+      Domenico)/IMSLP353952-PMLP297359-Scarlatti,_Domenico-Sonates_Heugel_32.522_Volume_2_44_K.96_scan.pdf
+    ext: pdf
+  - id: "195568"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.96 (Scarlatti,
+      Domenico)/IMSLP195568-WIMA.2160-Scar96Sco.pdf
+    ext: pdf
+  - id: "732337"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score and Violin PartCZ-Pu
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.96 (Scarlatti,
+      Domenico)/IMSLP732337-PMLP297359-Gigue.pdf
+    ext: pdf
+  - id: "118651"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score and Violin PartPodlaska DL
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.96 (Scarlatti,
+      Domenico)/IMSLP118651-PMLP11408-Rameaeu_GAvotte_an_dva_v_p.pdf
+    ext: pdf
+  - id: "260083"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 8.6666666666667
+    rateBy: 3
+    group: 0
+    title: Synthesized Performance (Halion Harpsichord 8' A & 4')
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.96 (Scarlatti,
+      Domenico)/IMSLP260083-PMLP297359-Scarlartti_K96_Play_Halion.mp3
+    ext: mp3
+  - id: "195577"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 6
+    rateBy: 1
+    group: 1
+    title: Synthesized Performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.96 (Scarlatti,
+      Domenico)/IMSLP195577-WIMA.cf1b-Scar96Sco.mp3
+    ext: mp3
+  - id: "195578"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Synthesized Performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.96 (Scarlatti,
+      Domenico)/IMSLP195578-WIMA.6a94-Scar96Sco.mid
+    ext: mid
+  - id: "283045"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Synthesized Performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.96 (Scarlatti,
+      Domenico)/IMSLP283045-PMLP297359-Scarlatti_Sonate_K.96.mid
+    ext: mid

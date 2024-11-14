@@ -1,0 +1,160 @@
+id: 17389
+title: Prelude and Fugue in C major, BWV 870
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in C major, BWV 870 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in C major
+  Alternative. Title: ""
+  Name Translations: Präludium und Fuge C-Dur BWV 870; Prélude et fugue en ut
+    majeur (BWV 870); پرلود و فوگ در دو ماژور (BWV 870)
+  Name Aliases: BWV 870
+  Authorities: "Wikipedia; BNF: 140122797"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 870 (alternative versions, BWV 870a, 870b)
+  I-Catalogue NumberI-Cat. No.: IJB 506
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.1)
+  First Publication.: "1799 - London: Kollman"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Czerny, Carl/Editor
+  - Scores published by Schirmer
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Moshkin, Evgeniy E./Editor
+  - Gouin, Pierre/Editor
+  - Rother, Kyle/Editor
+  - Yokoyama, Shin-Itchiro/Arranger
+  - Besseling, Peter/Arranger
+  - Reger, Max/Arranger
+  - Scores published by Aibl
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For violin, piano (arr)
+  - For 2 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the piano (arr)
+  - For 2 pianos (arr)
+  - For organ (arr)
+  - For 1 player (arr)
+  - Scores featuring the organ (arr)
+  - Pages with arrangements
+  - Works first published in 1799
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C major
+files:
+  - id: "497272"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Fugue (Open Score)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C major, BWV 870
+      (Bach, Johann Sebastian)/IMSLP497272-PMLP697382-fugue1_expanded.pdf
+    ext: pdf
+  - id: "497273"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Source File (LilyPond)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C major, BWV 870
+      (Bach, Johann Sebastian)/IMSLP497273-PMLP697382-fugue1_expanded.ly.zip
+    ext: zip
+  - id: "675705"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 1
+    group: 1
+    title: Complete Score (Version A, London MS)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C major, BWV 870
+      (Bach, Johann
+      Sebastian)/IMSLP675705-PMLP697382-Bach_-_WTC_2_(NBA),_Prelude_and_Fugue_1_(C_major,_BWV_870b)._Version_A_-_London_MS_(full-size).pdf
+    ext: pdf
+  - id: "222792"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 4
+    group: 2
+    title: Præludium, BWV 870a
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C major, BWV 870
+      (Bach, Johann Sebastian)/IMSLP222792-PMLP05899-Bach_Prelude_BWV870a.pdf
+    ext: pdf
+  - id: "248394"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C major, BWV 870
+      (Bach, Johann
+      Sebastian)/IMSLP248394-PMLP05899-Bach_Prelude_and_Fugue_2-1_for_Pf_and_Vn_(Pf).pdf
+    ext: pdf
+  - id: "736915"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C major, BWV 870
+      (Bach, Johann Sebastian)/IMSLP736915-PMLP697382-Bach_WTK_2_01_BWV_870.pdf
+    ext: pdf
+  - id: "750388"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C major, BWV 870
+      (Bach, Johann Sebastian)/IMSLP750388-PMLP697382-BWV870_Reger.pdf
+    ext: pdf
+  - id: "449077"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.6
+    rateBy: 10
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C major, BWV 870
+      (Bach, Johann
+      Sebastian)/IMSLP449077-PMLP05899-Book_2_No.1_Prelude_an_fugue_in_C_major.mp3
+    ext: mp3

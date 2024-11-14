@@ -1,0 +1,129 @@
+id: 6579
+title: Komm, Jesu, komm, BWV 229
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Komm, Jesu, komm, BWV 229 (Bach, Johann Sebastian)
+meta:
+  Work Title: Komm, Jesu, komm
+  Alternative. Title: Come, Jesus, come
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 229 ; BC C 3
+  I-Catalogue NumberI-Cat. No.: IJB 354
+  Key: G minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Komm, Jesu, komm -
+    Aria: Drum schließ ich mich in deine Hände und sage, Welt, guter Nacht!
+  Year/Date of CompositionY/D of Comp.: 1735 (before) in Leipzig
+  First Performance.: 1731–32 in Leipzig
+  First Publication.: 1892 (BGA)
+  Librettist: Paul Thymich (1656-1694)
+  Language: German
+  Dedication: Unspecified/Unknown Occasion
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: 2 mixed choruses (SATB/SATB), orchestra (colle parta)
+  InstrDetail: "Choral I: stringsChoral II: 2 oboes, English horn, bassoon, strings"
+  Primary Sources: Bach Digital (source list)
+  External Links: Bach-Cantatas.comWikipedia article
+categories:
+  - Recordings with unknown publication dates
+  - WIMA files
+  - Recordings
+  - Wüllner, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Ameln, Konrad/Editor
+  - Wolters, Gottfried/Editor
+  - Scores published by Möseler Verlag
+  - Urtext
+  - Works reprinted by Edwin F. Kalmus
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Brodersen, Fritz/Editor
+  - Bitzan, Wendelin/Arranger
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Motets
+  - For 2 mixed choruses
+  - Scores featuring mixed chorus
+  - For unaccompanied chorus
+  - For 2 mixed choruses, orchestra
+  - Scores featuring the orchestra
+  - For chorus with orchestra
+  - German language
+  - For keyboard (arr)
+  - Scores featuring keyboard soloists (arr)
+  - Pages with arrangements
+  - Works first published in 1892
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+  - G minor
+  - Thymich, Paul/Librettist
+  - Pieces for an Unspecified/Unknown Occasion
+files:
+  - id: "482618"
+    tab: Score1
+    tabText: Full Scores
+    rating: 10
+    rateBy: 3
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1735)Komm, Jesu, komm, BWV 229 (Bach, Johann
+      Sebastian)/IMSLP482618-PMLP152212-bachNBAIII,1komm,jesu,kommBWV229.pdf
+    ext: pdf
+  - id: "208562"
+    tab: Score1
+    tabText: Full Scores
+    rating: 6.4285714285714
+    rateBy: 28
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1735)Komm, Jesu, komm, BWV 229 (Bach, Johann
+      Sebastian)/IMSLP208562-WIMA.9f64-BWV229.pdf
+    ext: pdf
+  - id: "04144"
+    tab: Score1
+    tabText: Full Scores
+    rating: 5.1428571428571
+    rateBy: 7
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1735)Komm, Jesu, komm, BWV 229 (Bach, Johann
+      Sebastian)/IMSLP04144-Bach_-_BGA_-_BWV_229.pdf
+    ext: pdf
+  - id: "656900"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: "2. Aria: Drum schließ ich mich in deine Hände"
+    path: (1685)Johann Sebastian Bach/(1735)Komm, Jesu, komm, BWV 229 (Bach, Johann
+      Sebastian)/IMSLP656900-PMLP152212-AriaFughetta.pdf
+    ext: pdf
+  - id: "570271"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1735)Komm, Jesu, komm, BWV 229 (Bach, Johann
+      Sebastian)/IMSLP570271-PMLP558189-C-5(5)_Bach_J.S.,_Komm,_Jesu,_komm,_BWV_229_(Wilhelm_Gerhard)_Vox_VUX_2010.mp3
+    ext: mp3
+  - id: "208573"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1735)Komm, Jesu, komm, BWV 229 (Bach, Johann
+      Sebastian)/IMSLP208573-WIMA.d11d-BWV229.mid
+    ext: mid

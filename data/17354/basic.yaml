@@ -1,0 +1,195 @@
+id: 17354
+title: Prelude and Fugue in G minor, BWV 535
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in G minor, BWV 535 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in G minor
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 535
+  I-Catalogue NumberI-Cat. No.: IJB 546
+  Key: G minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 parts:
+    Prelude
+    Fugue
+  First Publication.: |-
+    1845 or earlier
+    Hofmeister's Monatsbericht (1845), p.121 ; WorldCat
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ
+categories:
+  - Pages with References to Hofmeister's Monatsbericht
+  - Moshkin, Evgeniy E./Performer
+  - Zwaag, Peter van der/Performer
+  - Epstein, Estelinha/Performer
+  - Recordings published in 1958
+  - Recordings published in the 20th century
+  - Recordings published in 1965
+  - Novaes, Guiomar/Performer
+  - Recordings published in 1952
+  - Recordings published in 1957
+  - Recordings
+  - Rust, Wilhelm/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Kilian, Dietrich/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Bartoli, Russ/Arranger
+  - Siloti, Alexander/Arranger
+  - Scores published by Carl Fischer
+  - MIT project
+  - Zadora, Michael/Arranger
+  - Scores published by Schirmer
+  - Work-NonPD-US-renewed
+  - Tanaka, Hiroyuki/Arranger
+  - Locke, Nicholas/Arranger
+  - Work pages with links to recordings
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - For violin, viola, cello (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the viola (arr)
+  - Scores featuring the cello (arr)
+  - For 3 players (arr)
+  - For piano (arr)
+  - For 1 player (arr)
+  - Scores featuring the piano (arr)
+  - For piano left hand (arr)
+  - Scores featuring the piano left hand (arr)
+  - Pages with arrangements
+  - Works first published in 1845
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - G minor
+files:
+  - id: "533135"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 4
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1845)Prelude and Fugue in G minor, BWV 535
+      (Bach, Johann
+      Sebastian)/IMSLP533135-PMLP111691-Bach-orgelwerke05_praeludium-et-fuga-G-minor_BWV535_pp157-166.pdf
+    ext: pdf
+  - id: "01320"
+    tab: Score1
+    tabText: Scores
+    rating: 5.52
+    rateBy: 25
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1845)Prelude and Fugue in G minor, BWV 535
+      (Bach, Johann Sebastian)/IMSLP01320-BWV0535.pdf
+    ext: pdf
+  - id: "349719"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1845)Prelude and Fugue in G minor, BWV 535
+      (Bach, Johann
+      Sebastian)/IMSLP349719-PMLP111691-Bach-Zadora_Prelude_&_Fugue_in_g_minor,_BWV_535.pdf
+    ext: pdf
+  - id: "09629"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6
+    rateBy: 5
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1845)Prelude and Fugue in G minor, BWV 535
+      (Bach, Johann
+      Sebastian)/IMSLP09629-Siloti_-_Transcription_of_Bach's_Organ_Prelude_in_G_minor.pdf
+    ext: pdf
+  - id: "482172"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: score
+    path: (1685)Johann Sebastian Bach/(1845)Prelude and Fugue in G minor, BWV 535
+      (Bach, Johann
+      Sebastian)/IMSLP482172-PMLP111691-bach_535_s3_-_Full_Score.pdf
+    ext: pdf
+  - id: "482173"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: violin
+    path: (1685)Johann Sebastian Bach/(1845)Prelude and Fugue in G minor, BWV 535
+      (Bach, Johann Sebastian)/IMSLP482173-PMLP111691-bach_535_s3_-_Violin.pdf
+    ext: pdf
+  - id: "482174"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: viola
+    path: (1685)Johann Sebastian Bach/(1845)Prelude and Fugue in G minor, BWV 535
+      (Bach, Johann Sebastian)/IMSLP482174-PMLP111691-bach_535_s3_-_Viola.pdf
+    ext: pdf
+  - id: "482175"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: cello
+    path: (1685)Johann Sebastian Bach/(1845)Prelude and Fugue in G minor, BWV 535
+      (Bach, Johann
+      Sebastian)/IMSLP482175-PMLP111691-bach_535_s3_-_Violoncello.pdf
+    ext: pdf
+  - id: "534117"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1845)Prelude and Fugue in G minor, BWV 535
+      (Bach, Johann Sebastian)/IMSLP534117-PMLP111691-bwv535.ogg
+    ext: ogg
+  - id: "500419"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 1
+    group: 1
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1845)Prelude and Fugue in G minor, BWV 535
+      (Bach, Johann
+      Sebastian)/IMSLP500419-PMLP111691-Bach_Prelude_&_Fugue_in_G_Minor_(Complete).mp3
+    ext: mp3
+  - id: "318288"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.3333333333333
+    rateBy: 3
+    group: 2
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1845)Prelude and Fugue in G minor, BWV 535
+      (Bach, Johann
+      Sebastian)/IMSLP318288-PMLP111691-Bach_-_Praeludium_und_Fuge_in_g-moll,_BWV_535_(Utrecht).mp3
+    ext: mp3

@@ -1,0 +1,99 @@
+id: 377
+title: Chaconne in A minor
+author: Fischer, Johann Caspar Ferdinand
+url: https://imslp.org/wiki/Chaconne in A minor (Fischer, Johann Caspar Ferdinand)
+meta:
+  Work Title: Chaconne in A minor
+  Alternative. Title: ""
+  Composer: Fischer, Johann Caspar Ferdinand
+  I-Catalogue NumberI-Cat. No.: IJF 1
+  Key: A minor
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Organ
+categories:
+  - WIMA files
+  - Aboyan, Gayk/Editor
+  - Rondeau, Michel/Arranger
+  - Messerschmidt, Hans Jorgen/Arranger
+  - Scores
+  - Fischer, Johann Caspar Ferdinand
+  - Baroque style
+  - Baroque
+  - Chaconnes
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - For 2 trumpets, 2 trombones (arr)
+  - Scores featuring the trumpet (arr)
+  - Scores featuring the trombone (arr)
+  - For 4 players (arr)
+  - For horn, trumpet, euphonium (arr)
+  - Scores featuring the horn (arr)
+  - Scores featuring the euphonium (arr)
+  - For 3 players (arr)
+  - Pages with arrangements
+  - A minor
+files:
+  - id: "198242"
+    tab: Score1
+    tabText: Scores
+    rating: 6.4
+    rateBy: 10
+    group: 0
+    title: Complete Score
+    path: (1656)Johann Caspar Ferdinand Fischer/Chaconne in A minor (Fischer, Johann
+      Caspar
+      Ferdinand)/IMSLP198242-WIMA.cc7f-Chaconne_Johann_Kaspar_Ferdinand_Fischer.pdf
+    ext: pdf
+  - id: "220110"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1656)Johann Caspar Ferdinand Fischer/Chaconne in A minor (Fischer, Johann
+      Caspar Ferdinand)/IMSLP220110-WIMA.ef66-FischChaSco.pdf
+    ext: pdf
+  - id: "691023"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1656)Johann Caspar Ferdinand Fischer/Chaconne in A minor (Fischer, Johann
+      Caspar Ferdinand)/IMSLP691023-PMLP338241-Chaconne_for_Brass_-_Score.pdf
+    ext: pdf
+  - id: "198244"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: MIDI performance
+    path: (1656)Johann Caspar Ferdinand Fischer/Chaconne in A minor (Fischer, Johann
+      Caspar
+      Ferdinand)/IMSLP198244-WIMA.997f-Chaconne_Johann_Kaspar_Ferdinand_Fischer.mid
+    ext: mid
+  - id: "220116"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1656)Johann Caspar Ferdinand Fischer/Chaconne in A minor (Fischer, Johann
+      Caspar Ferdinand)/IMSLP220116-WIMA.8232-FischChaSco.mp3
+    ext: mp3
+  - id: "220117"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1656)Johann Caspar Ferdinand Fischer/Chaconne in A minor (Fischer, Johann
+      Caspar Ferdinand)/IMSLP220117-WIMA.4734-FischChaSco.mid
+    ext: mid

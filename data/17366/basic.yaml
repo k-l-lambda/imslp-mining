@@ -1,0 +1,80 @@
+id: 17366
+title: Prelude and Fugue in F major, BWV 556
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in F major, BWV 556 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in F major
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 556 ; BC.J31
+  I-Catalogue NumberI-Cat. No.: IJB 977
+  Key: F major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 sections:
+    Praeludium (58 bars)
+    Fuga (29 bars)
+  First Publication.: 1852 in 8 Kleine Präludien und Fugen (No.4)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ
+  Primary Sources: Bach Digital (source list)
+categories:
+  - Naumann, Ernst/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Gouin, Pierre/Editor
+  - WIMA files
+  - Ekman, Karl/Arranger
+  - Scores published by Anton J. Benjamin
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - For piano (arr)
+  - For 1 player (arr)
+  - Scores featuring the piano (arr)
+  - Pages with arrangements
+  - Works first published in 1852
+  - Works first published in the 19th century
+  - F major
+files:
+  - id: "739703"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in F major, BWV 556
+      (Bach, Johann
+      Sebastian)/IMSLP739703-PMLP1175930-E4322_11-13-Bach_-_BGA_-_BWV_553-560.pdf
+    ext: pdf
+  - id: "129117"
+    tab: Score1
+    tabText: Scores
+    rating: 9.6
+    rateBy: 5
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in F major, BWV 556
+      (Bach, Johann
+      Sebastian)/IMSLP129117-PMLP10674-Bach_Kleine_Praeludien_4.pdf
+    ext: pdf
+  - id: "97346"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 5
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in F major, BWV 556
+      (Bach, Johann
+      Sebastian)/IMSLP97346-PMLP10674-Bach-Ekman_prelude-fugue_f-major_BWV556.pdf
+    ext: pdf

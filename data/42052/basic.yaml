@@ -1,0 +1,101 @@
+id: 42052
+title: Prelude in A-flat major, B.86
+author: Chopin, Frédéric
+url: https://imslp.org/wiki/Prelude in A-flat major, B.86 (Chopin, Frédéric)
+meta:
+  Work Title: Prelude in A-flat major
+  Alternative. Title: ""
+  Name Translations: Prelude [No. 26] "Presto con leggierezza" in A-flat major;
+    Preludium op. posth.; Preludio in la bemolle maggiore
+  Name Aliases: Preludio per Pierre Wolf; À Pierre Wolf
+  Composer: Chopin, Frédéric
+  Opus/Catalogue NumberOp./Cat. No.: B.86 ; Op.P2 No.7
+  I-Catalogue NumberI-Cat. No.: IFC 92
+  Key: A-flat major
+  Movements/SectionsMov'ts/Sec's: Presto con leggierezza
+  Year/Date of CompositionY/D of Comp.: "1834"
+  First Publication.: "1918"
+  Dedication: Pierre Wolff
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia article (Preludes)Instytut Fryderyka ChopinaAll Music Guide
+categories:
+  - Recordings
+  - Scores from the Library of Congress
+  - Manuscripts from the 1800s
+  - Composers' holographs from the 1800s
+  - Pages with MssAu template
+  - Manuscripts
+  - Paderewski, Ignacy Jan/Editor
+  - Bronarski, Ludwik/Editor
+  - Turczyński, Józef/Editor
+  - Scores published by Polskie Wydawnictwo Muzyczne
+  - Pages with items from Chopin Works PWM
+  - Otto, Steven Robert/Editor
+  - Wang, Ziyao/Editor
+  - Scores
+  - Chopin, Frédéric
+  - Romantic style
+  - Romantic
+  - Preludes
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1918
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A-flat major
+files:
+  - id: "31809"
+    tab: Score1
+    tabText: Scores
+    rating: 6.4545454545455
+    rateBy: 11
+    group: 0
+    title: Complete Score
+    path: (1810)Frédéric Chopin/(1834)Prelude in A-flat major, B.86 (Chopin,
+      Frédéric)/IMSLP31809-PMLP28254-chopin_prelude_aflat_posth.pdf
+    ext: pdf
+  - id: "11523"
+    tab: Score1
+    tabText: Scores
+    rating: 4.3333333333333
+    rateBy: 6
+    group: 1
+    title: Complete ScoreUS-Wc
+    path: (1810)Frédéric Chopin/(1834)Prelude in A-flat major, B.86 (Chopin,
+      Frédéric)/IMSLP11523-Prelude_in_A_Flat_Op.P_2_No_.7.pdf
+    ext: pdf
+  - id: "347539"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1810)Frédéric Chopin/(1834)Prelude in A-flat major, B.86 (Chopin,
+      Frédéric)/IMSLP347539-PMLP28254-Chopin_Prelude_26_to_Pierre_Wolff.pdf
+    ext: pdf
+  - id: "347541"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Performance
+    path: (1810)Frédéric Chopin/(1834)Prelude in A-flat major, B.86 (Chopin,
+      Frédéric)/IMSLP347541-PMLP28254-26.mp3
+    ext: mp3
+  - id: "286198"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 5.3333333333333
+    rateBy: 3
+    group: 0
+    title: Virtual Performance
+    path: (1810)Frédéric Chopin/(1834)Prelude in A-flat major, B.86 (Chopin,
+      Frédéric)/IMSLP286198-PMLP28254-Prelude_en_Lab_Posth_Pleyel_Riche.mp3
+    ext: mp3

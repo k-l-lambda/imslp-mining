@@ -1,0 +1,140 @@
+id: 17405
+title: Prelude and Fugue in A-flat major, BWV 886
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in A-flat major, BWV 886 (Bach,
+  Johann Sebastian)
+meta:
+  Work Title: Prelude and Fugue in A-flat major
+  Alternative. Title: ""
+  Name Translations: Präludium und Fuge As-Dur BWV 886; Prélude et fugue en la
+    bémol majeur (BWV 886)
+  Authorities: "WorldCat; VIAF: 317087318; LCCN: no2006018117; GND: 1076376134"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 886
+  I-Catalogue NumberI-Cat. No.: IJB 491
+  Key: A-flat major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.17)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (WTC)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Kretzschmar, Hermann/Editor
+  - Manuscripts
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A-flat major
+files:
+  - id: "497304"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Fugue (Open Score)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A-flat major, BWV
+      886 (Bach, Johann Sebastian)/IMSLP497304-PMLP787003-fugue17_expanded.pdf
+    ext: pdf
+  - id: "497305"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Source File (LilyPond)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A-flat major, BWV
+      886 (Bach, Johann
+      Sebastian)/IMSLP497305-PMLP787003-fugue17_expanded.ly.zip
+    ext: zip
+  - id: "02194"
+    tab: Score1
+    tabText: Scores
+    rating: 6.3636363636364
+    rateBy: 11
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A-flat major, BWV
+      886 (Bach, Johann Sebastian)/IMSLP02194-BWV0886.pdf
+    ext: pdf
+  - id: "23029"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 3
+    group: 2
+    title: Fugue
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A-flat major, BWV
+      886 (Bach, Johann Sebastian)/IMSLP23029-PMLP05900-BGA44_31.pdf
+    ext: pdf
+  - id: "738192"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A-flat major, BWV
+      886 (Bach, Johann
+      Sebastian)/IMSLP738192-PMLP787001-Bach_WTK_2_17_BWV_886.pdf
+    ext: pdf
+  - id: "738195"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score (A major)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A-flat major, BWV
+      886 (Bach, Johann
+      Sebastian)/IMSLP738195-PMLP787001-Bach_WTK_2_17_BWV_886_A.pdf
+    ext: pdf
+  - id: "462460"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9.3333333333333
+    rateBy: 6
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A-flat major, BWV
+      886 (Bach, Johann
+      Sebastian)/IMSLP462460-PMLP05899-Book_2_-_Prelude_and_Fugue_in_A_flat_maj.mp3
+    ext: mp3

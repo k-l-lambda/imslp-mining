@@ -1,0 +1,183 @@
+id: 17357
+title: Prelude and Fugue in C major, BWV 545
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in C major, BWV 545 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in C major
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 545
+  I-Catalogue NumberI-Cat. No.: IJB 503
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 sections:
+    Praeludium
+    Fuga
+  First Publication.: "1812"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ
+  Primary Sources: Bach Digital (source list)
+categories:
+  - Walcha, Helmut/Performer
+  - Recordings published in 1957
+  - Recordings published in the 20th century
+  - WIMA files
+  - Recordings
+  - Rust, Wilhelm/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Kilian, Dietrich/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Rondeau, Michel/Arranger
+  - Bartoli, Russ/Arranger
+  - Gleichauf, Franz Xaver/Arranger
+  - Scores published by Edition Peters
+  - Sibley Mirroring Project
+  - Kok, Jan/Arranger
+  - Mondrup Recorder Collection
+  - Van Duffel, Jan/Arranger
+  - Work pages with links to recordings
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - For orchestra (arr)
+  - Scores featuring the orchestra (arr)
+  - For 2 violins, viola, cello (arr)
+  - For 4 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the viola (arr)
+  - Scores featuring the cello (arr)
+  - For violin, viola, cello (arr)
+  - For 3 players (arr)
+  - For piano 4 hands (arr)
+  - Scores featuring the piano (arr)
+  - Scores featuring the piano 4 hands (arr)
+  - For 2 players (arr)
+  - For 4 recorders (arr)
+  - Scores featuring the recorder (arr)
+  - For 4 horns (arr)
+  - Scores featuring the horn (arr)
+  - Pages with arrangements
+  - Works first published in 1812
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C major
+  - Pages with References to Hofmeister's Monatsbericht
+files:
+  - id: "01330"
+    tab: Score1
+    tabText: Scores
+    rating: 5.2631578947368
+    rateBy: 19
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C major, BWV 545
+      (Bach, Johann Sebastian)/IMSLP01330-BWV0545.pdf
+    ext: pdf
+  - id: "533120"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C major, BWV 545
+      (Bach, Johann
+      Sebastian)/IMSLP533120-PMLP111733-Bach-orgelwerke05_praeludium-et-fuga-C-major_BWV545_pp10-19.pdf
+    ext: pdf
+  - id: "462184"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C major, BWV 545
+      (Bach, Johann Sebastian)/IMSLP462184-PMLP111733-BacBWV545Sco.pdf
+    ext: pdf
+  - id: "460906"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C major, BWV 545
+      (Bach, Johann
+      Sebastian)/IMSLP460906-PMLP111733-bach_545_s4_-_Full_Score.pdf
+    ext: pdf
+  - id: "502996"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C major, BWV 545
+      (Bach, Johann
+      Sebastian)/IMSLP502996-PMLP111733-bach_545_s3_-_Full_Score.pdf
+    ext: pdf
+  - id: "607566"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C major, BWV 545
+      (Bach, Johann
+      Sebastian)/IMSLP607566-PMLP111733-Preludio_e_fuga_in_do_maggiore,_BWV_545.flac
+    ext: flac
+  - id: "529180"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C major, BWV 545
+      (Bach, Johann
+      Sebastian)/IMSLP529180-PMLP111733-Prelude_and_Fugue_in_C_Major,_BWV_545_(Johann_Sebastian_Bach)_AP_37022=.mp3
+    ext: mp3
+  - id: "96303"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 6
+    rateBy: 1
+    group: 0
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C major, BWV 545
+      (Bach, Johann Sebastian)/IMSLP96303-PMLP111733-JSB_Praeludium545.mp3
+    ext: mp3
+  - id: "462187"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C major, BWV 545
+      (Bach, Johann Sebastian)/IMSLP462187-PMLP111733-BacBWV545Sco.mp3
+    ext: mp3
+  - id: "212669"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Synthesized performance
+    path: (1685)Johann Sebastian Bach/(1812)Prelude and Fugue in C major, BWV 545
+      (Bach, Johann Sebastian)/IMSLP212669-WIMA.dc18-Prealudium_BWV_545.mp3
+    ext: mp3

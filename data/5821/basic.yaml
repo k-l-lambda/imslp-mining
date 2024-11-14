@@ -1,0 +1,107 @@
+id: 5821
+title: Fantasie, Op.17
+author: Schumann, Robert
+url: https://imslp.org/wiki/Fantasie, Op.17 (Schumann, Robert)
+meta:
+  Work Title: Fantasy
+  Alternative. Title: Fantasy in C major
+  Name Translations: Fantaisie; Fantasia en do; Fantasie in C; Fantasie C-Dur; 幻想曲
+    (シューマン); 幻想曲 (罗伯特·舒曼); 환상곡; Fantazja op. 17 (Schumann)
+  Name Aliases: Fantaisie opus 17; Fantasie C-Dur op. 17; Fantasy in C Major, Op.
+    17; Fantasie in C major
+  Authorities: "WorldCat; Wikipedia; VIAF: 177808907; LCCN: n81024795; GND: 300144709"
+  Composer: Schumann, Robert
+  Opus/Catalogue NumberOp./Cat. No.: Op.17
+  I-Catalogue NumberI-Cat. No.: IRS 31
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: >-
+    3 movements:
+
+    Durchaus phantastisch und leidenschaftlich vorzutragen - Im Legendenton -
+    Erstes Tempo - Adagio - Im Tempo
+
+    Mässig. Durchaus energisch. - Etwas bewegter. - Viel bewegter
+
+    Langsam getragen. Durchweg leise zu halten. - Etwas bewegter. - Nach und
+    nach bewegter und schneller. - Adagio
+  Year/Date of CompositionY/D of Comp.: 1836-38
+  First Publication.: "1839"
+  Dedication: Franz Liszt
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Schumann, Clara/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with items from Schumann's Werke
+  - Scores with links to Amazon
+  - Alston, Ray/Editor
+  - Work pages with links to recordings
+  - Scores
+  - Schumann, Robert
+  - Romantic style
+  - Romantic
+  - Fantasias
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1839
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C major
+  - Liszt, Franz/Dedicatee
+files:
+  - id: "693414"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1810)Robert Schumann/(1836)Fantasie, Op.17 (Schumann,
+      Robert)/IMSLP693414-PMLP2776-Fantasie_in_C,_Op.17.pdf
+    ext: pdf
+  - id: "289793"
+    tab: Score1
+    tabText: Scores
+    rating: 5.4761904761905
+    rateBy: 42
+    group: 1
+    title: Complete Score (scan)
+    path: (1810)Robert Schumann/(1836)Fantasie, Op.17 (Schumann,
+      Robert)/IMSLP289793-PMLP02776-Schumann,_Robert_Werke_Breitkopf_Gregg_Serie_7_Band_3_RS_55_Op_17_scan.pdf
+    ext: pdf
+  - id: "741719"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1810)Robert Schumann/(1836)Fantasie, Op.17 (Schumann,
+      Robert)/IMSLP741719-PMLP2776-Phantasie_in_C_-_Op_17.pdf
+    ext: pdf
+  - id: "434885"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9
+    rateBy: 4
+    group: 0
+    title: 3. Langsam Getragen
+    path: (1810)Robert Schumann/(1836)Fantasie, Op.17 (Schumann,
+      Robert)/IMSLP434885-PMLP02776-andrys-schumann-fantasie-in-c-wr3.mp3
+    ext: mp3
+  - id: "586514"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 3
+    group: 1
+    title: Complete Recording
+    path: (1810)Robert Schumann/(1836)Fantasie, Op.17 (Schumann,
+      Robert)/IMSLP586514-PMLP02776-Fantasie_in_C_Major,_Op._17_(Robert_Schumann)_Sviatoslav_Richter_(1961_Parlaphone).mp3
+    ext: mp3

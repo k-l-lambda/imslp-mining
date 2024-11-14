@@ -1,0 +1,117 @@
+id: 94035
+title: Keyboard Sonata in D major, K.53
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in D major, K.53 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in D major
+  Alternative. Title: ""
+  Name Translations: Sonate K. 53; Sonata K. 53; Sonat K. 53
+  Authorities: "WorldCat; VIAF: 294438947; LCCN: no97011833; GND: 1136159436; BNF:
+    13914567z"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.53 ; L.261 ; P.161 ; CZ.173
+  I-Catalogue NumberI-Cat. No.: IDS 239
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: "1"
+  First Publication.: 1752 in 12 Sonatas Modernas para Clavicordio, Libro 1 (No.7)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For orchestra (arr)
+  - Scores featuring the orchestra (arr)
+  - Pages with arrangements
+  - Works first published in 1752
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - D major
+files:
+  - id: "279282"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 3
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1752)Keyboard Sonata in D major, K.53
+      (Scarlatti, Domenico)/IMSLP279282-PMLP332884-Scarlatti_Sonate_K.53.pdf
+    ext: pdf
+  - id: "353906"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 1
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1752)Keyboard Sonata in D major, K.53
+      (Scarlatti,
+      Domenico)/IMSLP353906-PMLP332884-Scarlatti,_Domenico-Sonates_Heugel_32.522_Volume_2_01_K.53_scan.pdf
+    ext: pdf
+  - id: "464295"
+    tab: Score1
+    tabText: Scores
+    rating: 4
+    rateBy: 1
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1752)Keyboard Sonata in D major, K.53
+      (Scarlatti, Domenico)/IMSLP464295-PMLP332884-DScarlatti-K053-facsimile.pdf
+    ext: pdf
+  - id: "193774"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1752)Keyboard Sonata in D major, K.53
+      (Scarlatti, Domenico)/IMSLP193774-WIMA.f522-Sca53Sco.pdf
+    ext: pdf
+  - id: "279283"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/(1752)Keyboard Sonata in D major, K.53
+      (Scarlatti, Domenico)/IMSLP279283-PMLP332884-Scarlatti_Sonate_K.53.mid
+    ext: mid
+  - id: "193791"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1752)Keyboard Sonata in D major, K.53
+      (Scarlatti, Domenico)/IMSLP193791-WIMA.517d-Sca53Sco.mp3
+    ext: mp3
+  - id: "193792"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1752)Keyboard Sonata in D major, K.53
+      (Scarlatti, Domenico)/IMSLP193792-WIMA.0527-Sca53Sco.mid
+    ext: mid

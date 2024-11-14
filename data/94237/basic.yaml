@@ -1,0 +1,122 @@
+id: 94237
+title: Keyboard Sonata in G major, K.2
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in G major, K.2 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in G major
+  Alternative. Title: ""
+  Name Translations: Sonate K. 2; Sonata K. 2; Sonat K. 2
+  Authorities: "WorldCat; VIAF: 293775750; LCCN: n92081682; GND: 1173479368; BNF: 13914199g"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.2 ; L.388 ; P.58 ; CZ.7
+  I-Catalogue NumberI-Cat. No.: IDS 469
+  Key: G major
+  Movements/SectionsMov'ts/Sec's: Presto
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.2)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by D. Rahter
+  - Sibley Mirroring Project
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Höger, Anton/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 2 guitars (arr)
+  - For 2 players (arr)
+  - Scores featuring the guitar (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - G major
+files:
+  - id: "132937"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G major, K.2 (Scarlatti,
+      Domenico)/IMSLP132937-WIMA.8200-Scarlatti_Sonate_K.2.pdf
+    ext: pdf
+  - id: "313322"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 8
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G major, K.2 (Scarlatti,
+      Domenico)/IMSLP313322-PMLP330355-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_02_K.2_scan.pdf
+    ext: pdf
+  - id: "376335"
+    tab: Score1
+    tabText: Scores
+    rating: 4.8
+    rateBy: 5
+    group: 2
+    title: Complete ScoreUS-R
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G major, K.2 (Scarlatti,
+      Domenico)/IMSLP376335-PMLP330355-Sibley1802.22722_-_No._2_-_Sonata_in_G_major,_K._2.pdf
+    ext: pdf
+  - id: "191816"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G major, K.2 (Scarlatti,
+      Domenico)/IMSLP191816-WIMA.063f-ScaK2Sco.pdf
+    ext: pdf
+  - id: "353268"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G major, K.2 (Scarlatti,
+      Domenico)/IMSLP353268-PMLP330355-Scarlatti_-_Sonate_K.2_(in_G).pdf
+    ext: pdf
+  - id: "279317"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized audio
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G major, K.2 (Scarlatti,
+      Domenico)/IMSLP279317-PMLP257047-Scarlatti_Sonate_K.2.mid
+    ext: mid
+  - id: "191824"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G major, K.2 (Scarlatti,
+      Domenico)/IMSLP191824-WIMA.d4d6-ScaK2Sco.mp3
+    ext: mp3

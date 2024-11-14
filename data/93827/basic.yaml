@@ -1,0 +1,112 @@
+id: 93827
+title: Keyboard Sonata in A major, K.39
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in A major, K.39 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in A major
+  Alternative. Title: ""
+  Name Translations: Sonate K. 39; Sonata K. 39; Sonat K. 39
+  Authorities: "WorldCat; VIAF: 178614938; LCCN: n79128690; GND: 300135793; BNF: 139144112"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.39 ; L.391 ; P.53 ; CZ.65
+  I-Catalogue NumberI-Cat. No.: IDS 10
+  Key: A major
+  Movements/SectionsMov'ts/Sec's: "1"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - A major
+files:
+  - id: "277117"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.39 (Scarlatti,
+      Domenico)/IMSLP277117-PMLP332485-Scarlatti_Sonate_K.39.pdf
+    ext: pdf
+  - id: "313863"
+    tab: Score1
+    tabText: Scores
+    rating: 3.3333333333333
+    rateBy: 3
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.39 (Scarlatti,
+      Domenico)/IMSLP313863-PMLP332485-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_39_K.39_scan.pdf
+    ext: pdf
+  - id: "464293"
+    tab: Score1
+    tabText: Scores
+    rating: 2
+    rateBy: 1
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.39 (Scarlatti,
+      Domenico)/IMSLP464293-PMLP332485-DScarlatti-K039-facsimile.pdf
+    ext: pdf
+  - id: "193453"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.39 (Scarlatti,
+      Domenico)/IMSLP193453-WIMA.708e-Sca39Sco.pdf
+    ext: pdf
+  - id: "277118"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.39 (Scarlatti,
+      Domenico)/IMSLP277118-PMLP332485-Scarlatti_Sonate_K.39.mid
+    ext: mid
+  - id: "193461"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.39 (Scarlatti,
+      Domenico)/IMSLP193461-WIMA.7679-Sca39Sco.mp3
+    ext: mp3
+  - id: "193462"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.39 (Scarlatti,
+      Domenico)/IMSLP193462-WIMA.51a3-Sca39Sco.mid
+    ext: mid

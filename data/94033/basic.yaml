@@ -1,0 +1,111 @@
+id: 94033
+title: Keyboard Sonata in D major, K.33
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in D major, K.33 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in D major
+  Alternative. Title: ""
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.33 ; L.424 ; P.130 ; CZ.58
+  I-Catalogue NumberI-Cat. No.: IDS 237
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: "1"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - D major
+files:
+  - id: "313856"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.33 (Scarlatti,
+      Domenico)/IMSLP313856-PMLP332093-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_33_K.33_scan.pdf
+    ext: pdf
+  - id: "276778"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.33 (Scarlatti,
+      Domenico)/IMSLP276778-PMLP332093-Scarlatti_Sonate_K.33.pdf
+    ext: pdf
+  - id: "461760"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.33 (Scarlatti,
+      Domenico)/IMSLP461760-PMLP332093-DScarlatti-K033-facsimile.pdf
+    ext: pdf
+  - id: "193147"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 5
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.33 (Scarlatti,
+      Domenico)/IMSLP193147-WIMA.7088-Sca33Sco.pdf
+    ext: pdf
+  - id: "276779"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.33 (Scarlatti,
+      Domenico)/IMSLP276779-PMLP332093-Scarlatti_Sonate_K.33.mid
+    ext: mid
+  - id: "193155"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.33 (Scarlatti,
+      Domenico)/IMSLP193155-WIMA.809d-Sca33Sco.mp3
+    ext: mp3
+  - id: "193156"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in D major, K.33 (Scarlatti,
+      Domenico)/IMSLP193156-WIMA.965f-Sca33Sco.mid
+    ext: mid

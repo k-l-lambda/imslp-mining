@@ -1,0 +1,203 @@
+id: 33964
+title: Carmen Suite No.1
+author: Bizet, Georges
+url: https://imslp.org/wiki/Carmen Suite No.1 (Bizet, Georges)
+meta:
+  Work Title: Carmen Suite No.1
+  Alternative. Title: Suite de concert No.1
+  Composer: Bizet, Georges
+  I-Catalogue NumberI-Cat. No.: IGB 14
+  Movements/SectionsMov'ts/Sec's: >-
+    5 or 6 movements:
+     PréludeAct I, Prélude (bars 121–48)
+     AragonaiseEntr'acte before Act IV
+     IntermezzoEntr'acte before Act III
+     Séguedille*Act I, No.10. "Près des remparts de Séville" (bars 1–81, 162–82, rescored)
+     Les Dragons d'AlcalaEntr'acte before Act II
+     Final (Les Toréadors)Act I, Prélude (bars 1-119)
+  Year/Date of CompositionY/D of Comp.: 1885 or before (suite)
+  First Publication.: "1885 - Paris: Choudens, n.d. Plate A.C. 6459"
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: >-
+    orchestra 
+
+    2 flutes (2nd also piccolo), 2 oboes (2nd also English horn), 2 clarinets, 2
+    bassoons4 horns, 2 cornets, 3 trombonestimpani, triangle, cymbals, bass
+    drum, tambourine, side drum, harp, strings
+  Related Works: Based on Carmen
+  Extra Information: "*The \"Séguedille\" was added to the edition of this suite
+    prepared by Fritz Hoffmann issued ca.1905. The two orchestral suites were
+    arranged nearly a deacde after Bizet's death with minor changes to Bizet's
+    original orchestration, probably by Ernest Guiraud."
+categories:
+  - Pieces based on Bizet's 'Carmen'
+  - Pieces based on operas, operettas and stage works
+  - Papalin/Performer
+  - Recordings
+  - Guiraud, Ernest/Editor
+  - Pages with First Editions
+  - Scores published by Choudens
+  - Hoffmann, Fritz/Editor
+  - Scores published by Breitkopf und Härtel
+  - Works reprinted by Edwin F. Kalmus
+  - OM Parts
+  - Piovesan, Marco/Editor
+  - Sun, Tzu-Horng/Arranger
+  - Guiraud, Ernest/Arranger
+  - Sibley Mirroring Project
+  - Zehar, Farid/Arranger
+  - Kamioka, Hideo/Arranger
+  - Lee, Andrew Jonathan/Arranger
+  - Kowalewski, Jakub/Arranger
+  - Scores
+  - Bizet, Georges
+  - Romantic style
+  - Romantic
+  - Suites
+  - For orchestra
+  - Scores featuring the orchestra
+  - Unknown arrangement tag
+  - For flute, horn and piano (arr)
+  - For flute, trombone and piano (arr)
+  - For piano (arr)
+  - For 1 player (arr)
+  - Scores featuring the piano (arr)
+  - For 3 flutes, alto flute, bass flute (arr)
+  - Scores featuring the flute (arr)
+  - Scores featuring the alto flute (arr)
+  - Scores featuring the bass flute (arr)
+  - For 5 players (arr)
+  - For flute, piano (arr)
+  - For 2 players (arr)
+  - For piano 6 hands (arr)
+  - Scores featuring the piano 6 hands (arr)
+  - For 3 players (arr)
+  - Pages with arrangements
+  - Works first published in 1885
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+files:
+  - id: "569254"
+    tab: Score1
+    tabText: Full Scores
+    rating: 6.1818181818182
+    rateBy: 11
+    group: 0
+    title: Complete Score
+    path: (1838)Georges Bizet/(1885)Carmen Suite No.1 (Bizet,
+      Georges)/IMSLP569254-PMLP64163-Suite1FSbh.pdf
+    ext: pdf
+  - id: "38965"
+    tab: Score1
+    tabText: Full Scores
+    rating: 4.4494382022472
+    rateBy: 89
+    group: 1
+    title: Complete Score
+    path: (1838)Georges Bizet/(1885)Carmen Suite No.1 (Bizet,
+      Georges)/IMSLP38965-PMLP64163-Bizet_G._Carmen-suite-1.pdf
+    ext: pdf
+  - id: "835590"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1838)Georges Bizet/(1885)Carmen Suite No.1 (Bizet,
+      Georges)/IMSLP835590-PMLP64163-Bizet_-_uwertura_Carmen_1-_na_fortepian_na_6_rąk.pdf
+    ext: pdf
+  - id: "20954"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6.9230769230769
+    rateBy: 13
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1838)Georges Bizet/(1885)Carmen Suite No.1 (Bizet,
+      Georges)/IMSLP20954-PMLP15769-Bizet-CarmenSte1-arrPf.pdf
+    ext: pdf
+  - id: "709205"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1838)Georges Bizet/(1885)Carmen Suite No.1 (Bizet,
+      Georges)/IMSLP709205-PMLP64163-Carmen_Suite_Trio_for_flute,_Horn_and_Paino.pdf
+    ext: pdf
+  - id: "568419"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.3333333333333
+    rateBy: 3
+    group: 0
+    title: Complete Performance
+    path: (1838)Georges Bizet/(1885)Carmen Suite No.1 (Bizet,
+      Georges)/IMSLP568419-PMLP15769-Bizet_G.,_Carmen,_Suite_No._1,_WD_31_(André_Cluytens)_Parlaphone_(1964).mp3
+    ext: mp3
+  - id: "103270"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.5194805194805
+    rateBy: 77
+    group: 1
+    title: 1. Prélude
+    path: (1838)Georges Bizet/(1885)Carmen Suite No.1 (Bizet,
+      Georges)/IMSLP103270-PMLP64163-S012-02-128k.mp3
+    ext: mp3
+  - id: "103271"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.8095238095238
+    rateBy: 42
+    group: 1
+    title: 2. Aragonaise
+    path: (1838)Georges Bizet/(1885)Carmen Suite No.1 (Bizet,
+      Georges)/IMSLP103271-PMLP64163-S012-09-128k.mp3
+    ext: mp3
+  - id: "103272"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7
+    rateBy: 36
+    group: 1
+    title: 3. Intermezzo
+    path: (1838)Georges Bizet/(1885)Carmen Suite No.1 (Bizet,
+      Georges)/IMSLP103272-PMLP64163-S012-08-128k.mp3
+    ext: mp3
+  - id: "103273"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7
+    rateBy: 34
+    group: 1
+    title: 4. Séguedille
+    path: (1838)Georges Bizet/(1885)Carmen Suite No.1 (Bizet,
+      Georges)/IMSLP103273-PMLP64163-S012-06-128k.mp3
+    ext: mp3
+  - id: "103274"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.2692307692308
+    rateBy: 26
+    group: 1
+    title: 5. Les Dragons d'Alcala
+    path: (1838)Georges Bizet/(1885)Carmen Suite No.1 (Bizet,
+      Georges)/IMSLP103274-PMLP64163-S012-04-128k.mp3
+    ext: mp3
+  - id: "103275"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.90625
+    rateBy: 64
+    group: 1
+    title: 6. Les Toréadors
+    path: (1838)Georges Bizet/(1885)Carmen Suite No.1 (Bizet,
+      Georges)/IMSLP103275-PMLP64163-S012-01-128k.mp3
+    ext: mp3

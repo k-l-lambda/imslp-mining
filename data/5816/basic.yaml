@@ -1,0 +1,109 @@
+id: 5816
+title: Davidsbündlertänze, Op.6
+author: Schumann, Robert
+url: https://imslp.org/wiki/Davidsbündlertänze, Op.6 (Schumann, Robert)
+meta:
+  Work Title: Davidsbündlertänze
+  Alternative. Title: Die Davidsbündler (2nd Ed.) ; 18 Charakterstücke für Klavier
+  Name Translations: ダヴィッド同盟舞曲集; Танцы давидсбюндлеров
+  Name Aliases: Die Davidsbündlertänze
+  Authorities: "WorldCat; Wikipedia; VIAF: 177003498; GND: 300144563; BNF: 139629172"
+  Composer: Schumann, Robert
+  Opus/Catalogue NumberOp./Cat. No.: Op.6
+  I-Catalogue NumberI-Cat. No.: IRS 22
+  Movements/SectionsMov'ts/Sec's: |-
+    18 character pieces:
+    Lebhaft
+    Innig
+    Mit Humor
+    Ungeduldig
+    Einfach
+    Sehr rasch
+    Nicht schnell
+    Frisch
+    Lebhaft
+    Balladenmäßig - Sehr rasch
+    Einfach
+    Mit Humor
+    Wild und lustig
+    Zart und singend
+    Frisch
+    Mit gutem Humor
+    Wie aus der Ferne
+    Nicht schnell
+  Year/Date of CompositionY/D of Comp.: 1837?
+  First Publication.: "1837 – Leipzig: FrieseHofmeister's Monatsbericht (1838), p.24"
+  Dedication: Walther von Goethe (Walter Goethe, 1818–1885)
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  Related Works: Mazurka in G major (No.5) from Soirées Musicales, Op.6, by Clara
+    Schumann. More character-pieces than dances, according to Feldman.
+  External Links: Wikipedia
+categories:
+  - Gardner Museum Recordings
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Schumann, Clara/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with items from Schumann's Werke
+  - Scores with links to Amazon
+  - Alston, Ray/Editor
+  - Work pages with links to recordings
+  - Scores from the Internet Archive
+  - Scores
+  - Schumann, Robert
+  - Romantic style
+  - Romantic
+  - Dances
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1837
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with References to Hofmeister's Monatsbericht
+  - Goethe, Walter/Dedicatee
+files:
+  - id: "711761"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1810)Robert Schumann/(1837)Davidsbündlertänze, Op.6 (Schumann,
+      Robert)/IMSLP711761-PMLP2774-Davidsbu-ndler.pdf
+    ext: pdf
+  - id: "289905"
+    tab: Score1
+    tabText: Scores
+    rating: 6.9411764705882
+    rateBy: 34
+    group: 1
+    title: Complete Score (1.+2. Ausgabe) (scan)
+    path: (1810)Robert Schumann/(1837)Davidsbündlertänze, Op.6 (Schumann,
+      Robert)/IMSLP289905-PMLP02774-Schumann,_Robert_Werke_Breitkopf_Gregg_Serie_7_Band_1_RS_44_Op_6_scan.pdf
+    ext: pdf
+  - id: "72131"
+    tab: Score1
+    tabText: Scores
+    rating: 6.2222222222222
+    rateBy: 9
+    group: 2
+    title: Complete Score (2. Ausgabe)
+    path: (1810)Robert Schumann/(1837)Davidsbündlertänze, Op.6 (Schumann,
+      Robert)/IMSLP72131-PMLP02774-Schumann--Davidsbundler-Op6--2nd-ver--Ed-B&H.pdf
+    ext: pdf
+  - id: "482408"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Recording
+    path: (1810)Robert Schumann/(1837)Davidsbündlertänze, Op.6 (Schumann,
+      Robert)/IMSLP482408-PMLP02774-schumann_op6_denk.mp3
+    ext: mp3

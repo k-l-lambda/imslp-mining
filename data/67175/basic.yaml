@@ -1,0 +1,80 @@
+id: 67175
+title: 12 Songs
+author: Debussy, Claude
+url: https://imslp.org/wiki/12 Songs (Debussy, Claude)
+meta:
+  Work Title: 12 Songs
+  Alternative. Title: ""
+  Composer: Debussy, Claude
+  I-Catalogue NumberI-Cat. No.: None [force assignment]
+  Movements/SectionsMov'ts/Sec's: |-
+    12 songs
+     Mandoline
+     Romance
+     Beau soir
+     Green
+     C'est l'extase langoureuse
+     Il pleure dans mon coeur
+     L'ombre des arbres
+     Les cloches
+     La mort des amants
+     Harmonie du soir
+     En sourdine
+     La chevelure
+  First Publication.: "1913"
+  Language: English, French
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: Voice, piano
+categories:
+  - Richards, Roman/Performer
+  - Recordings
+  - Manney, Charles Fonteyn/Editor
+  - Sibley Mirroring Project
+  - Scores
+  - Debussy, Claude/Collections
+  - Romantic style
+  - Romantic
+  - Melodies
+  - Songs
+  - For voice, piano
+  - For voices with keyboard
+  - Scores featuring the voice
+  - Scores featuring the piano
+  - French language
+  - English language
+  - Works first published in 1913
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+files:
+  - id: "287357"
+    tab: Score1
+    tabText: Scores
+    rating: 5.1794871794872
+    rateBy: 39
+    group: 0
+    title: Complete Score (high voice)US-R
+    path: (1872)Charles Fonteyn Manney/(1913)12 Songs (Debussy,
+      Claude)/IMSLP287357-SIBLEY1802.17383.ee1f-39087012960193score.pdf
+    ext: pdf
+  - id: "635240"
+    tab: Audio1
+    tabText: Accompaniments
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 3. Beau Soir (E Major)
+    path: (1872)Charles Fonteyn Manney/(1913)12 Songs (Debussy,
+      Claude)/IMSLP635240-PMLP455063-VA07970P_Beau_Soir_in_E.mp3
+    ext: mp3
+  - id: "635241"
+    tab: Audio1
+    tabText: Accompaniments
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 3. Beau Soir (C Major)
+    path: (1872)Charles Fonteyn Manney/(1913)12 Songs (Debussy,
+      Claude)/IMSLP635241-PMLP455063-VA07972P_Beau_Soir_in_C.mp3
+    ext: mp3

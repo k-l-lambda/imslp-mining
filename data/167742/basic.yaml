@@ -1,0 +1,98 @@
+id: 167742
+title: Violin Sonata
+author: Janáček, Leoš
+url: https://imslp.org/wiki/Violin Sonata (Janáček, Leoš)
+meta:
+  Work Title: Violin Sonata
+  Alternative. Title: ""
+  Composer: Janáček, Leoš
+  Opus/Catalogue NumberOp./Cat. No.: JW VII/7
+  I-Catalogue NumberI-Cat. No.: ILJ 28
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements
+    I. Con moto
+    II. Ballada
+    III. Allegretto
+    IV. Adagio
+  Year/Date of CompositionY/D of Comp.: 1914–15 ; rev.1916–22
+  First Performance.: |-
+    1922-04-24
+    František Kudlácek, violin, Jaroslav Kvapil, piano
+    Museum of Applied Arts, in Brno
+  First Publication.: 1915 (mvmt. II only) ; 1922 (revised version, complete)
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Early 20th century
+  Instrumentation: Violin and Piano
+  External Links: Wikipedia articleUniversal Edition
+categories:
+  - Recordings
+  - Reissig, Rudolf/Editor
+  - Scores published by Hudební Matice
+  - Sibley Mirroring Project
+  - Suk, Josef/Editor
+  - MIT project
+  - Scores
+  - Janáček, Leoš
+  - Early 20th century style
+  - Romantic
+  - Sonatas
+  - For violin, piano
+  - Scores featuring the violin
+  - Scores featuring the piano
+  - For 2 players
+  - Works first published in 1915
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+files:
+  - id: "00564"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 5.4285714285714
+    rateBy: 14
+    group: 0
+    title: Piano Scorenlib.org.ua
+    path: (1874)Rudolf Reissig/(1914)Violin Sonata (Janáček,
+      Leoš)/IMSLP00564-Janacek_-_Violin_Sonata.pdf
+    ext: pdf
+  - id: "11709"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 6.5
+    rateBy: 10
+    group: 0
+    title: Violin Partnlib.org.ua
+    path: (1874)Rudolf Reissig/(1914)Violin Sonata (Janáček,
+      Leoš)/IMSLP11709-Janacek_-_Violin_Sonata_(Part).pdf
+    ext: pdf
+  - id: "166576"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 5.5384615384615
+    rateBy: 13
+    group: 1
+    title: Piano ScoreUS-R
+    path: (1874)Rudolf Reissig/(1914)Violin Sonata (Janáček,
+      Leoš)/IMSLP166576-SIBLEY1802.17857.a340-39087004901809score.pdf
+    ext: pdf
+  - id: "166577"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 4.5
+    rateBy: 12
+    group: 1
+    title: Violin PartUS-R
+    path: (1874)Rudolf Reissig/(1914)Violin Sonata (Janáček,
+      Leoš)/IMSLP166577-SIBLEY1802.17857.302a-39087004901809violin.pdf
+    ext: pdf
+  - id: "407014"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete recording
+    path: (1874)Rudolf Reissig/(1914)Violin Sonata (Janáček,
+      Leoš)/IMSLP407014-PMLP02507-Janáček_sonate.Vln,_Jean-Claude_Féret._Pno,_Christine_Hartley-Troskie.mp3
+    ext: mp3

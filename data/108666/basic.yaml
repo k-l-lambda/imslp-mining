@@ -1,0 +1,132 @@
+id: 108666
+title: Keyboard Sonata in F major, Hob.XVI:23
+author: Haydn, Joseph
+url: https://imslp.org/wiki/Keyboard Sonata in F major, Hob.XVI:23 (Haydn, Joseph)
+meta:
+  Work Title: Keyboard Sonata
+  Alternative. Title: Klaviersonate Nr.38
+  Name Translations: Sonate pour piano nº 38 de Joseph Haydn; Piano Sonata No. 38, H. XVI/23
+  Authorities: "WorldCat; VIAF: 294085015; BNF: 13927871z"
+  Composer: Haydn, Joseph
+  Opus/Catalogue NumberOp./Cat. No.: Hob.XVI:23 ; Op.13 No.3
+  I-Catalogue NumberI-Cat. No.: IJH 281
+  Key: F major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements
+    Allegro moderato (F major)
+    Adagio (F minor)
+    Finale. Presto (F major)
+  Year/Date of CompositionY/D of Comp.: "1773"
+  First Publication.: "1774 – Vienna : Presso Giuseppe Kurzböck"
+  Dedication: Nikolaus Esterházy
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: harpsichord (or fortepiano)
+  External Links: All Music Guide
+  Extra Information: Published in his Opus 13 of 1774 ("Haydn's 6 sonatas
+    announced by Kurzbock on 26 Feb. 1774" (Maunder, "Keyboard Instruments in
+    Eighteenth-century Vienna", 1998), possibly also in a 1780 publication, Opus
+    XXX, judging from its description?? (hence the "pf", since the 1780
+    publication is explicitly for "il clavicembalo, o forte piano")
+categories:
+  - Ilić, Ivan/Performer
+  - Recordings
+  - Scores from Bibliothèque nationale de France
+  - Manuscripts from the 1700s
+  - Composers' holographs from the 1700s
+  - Pages with MssAu template
+  - Manuscripts
+  - Scores from SLUB Dresden
+  - Moscheles, Ignaz/Editor
+  - Scores published by Hallberger
+  - Sibley Mirroring Project
+  - Scores from the Internet Archive
+  - Köhler, Louis/Editor
+  - Scores published by Edition Peters
+  - Klee, Ludwig/Editor
+  - Lebert, Sigmund/Editor
+  - Scores published by Schirmer
+  - Päsler, Karl/Editor
+  - Scores published by Breitkopf und Härtel
+  - Martienssen, Carl Adolf/Editor
+  - Feder, Georg/Editor
+  - Pages with items from edition "Joseph Haydn Werke (Haydn, Joseph)"
+  - Scores published by G. Henle Verlag
+  - Urtext
+  - Scores
+  - Haydn, Joseph
+  - Classical style
+  - Classical
+  - Sonatas
+  - For harpsichord
+  - Scores featuring the harpsichord
+  - For 1 player
+  - For piano
+  - Scores featuring the piano
+  - Works first published in 1774
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - F major
+files:
+  - id: "814497"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1773)Keyboard Sonata in F major, Hob.XVI23 (Haydn,
+      Joseph)/IMSLP814497-PMLP1680-23.pdf
+    ext: pdf
+  - id: "76739"
+    tab: Score1
+    tabText: Scores
+    rating: 7.4615384615385
+    rateBy: 13
+    group: 1
+    title: Complete Score (scan)
+    path: (1732)Joseph Haydn/(1773)Keyboard Sonata in F major, Hob.XVI23 (Haydn,
+      Joseph)/IMSLP76739-PMLP01680-Haydn_Sonaten_Klavier_Band_2_21_Peters_11333_scan.pdf
+    ext: pdf
+  - id: "120749"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 10
+    group: 2
+    title: Complete ScoreUS-R
+    path: (1732)Joseph Haydn/(1773)Keyboard Sonata in F major, Hob.XVI23 (Haydn,
+      Joseph)/IMSLP120749-PMLP01680-haydn_23_moscheles_sibley.1802.3067.pdf
+    ext: pdf
+  - id: "110191"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.25
+    rateBy: 48
+    group: 0
+    title: 1. Allegro moderato
+    path: (1732)Joseph Haydn/(1773)Keyboard Sonata in F major, Hob.XVI23 (Haydn,
+      Joseph)/IMSLP110191-PMLP01680-haydn_23.1.mp3
+    ext: mp3
+  - id: "110192"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.2857142857143
+    rateBy: 21
+    group: 0
+    title: 2. Adagio
+    path: (1732)Joseph Haydn/(1773)Keyboard Sonata in F major, Hob.XVI23 (Haydn,
+      Joseph)/IMSLP110192-PMLP01680-haydn_23.2.mp3
+    ext: mp3
+  - id: "110193"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.8095238095238
+    rateBy: 21
+    group: 0
+    title: 3. Finale - Presto
+    path: (1732)Joseph Haydn/(1773)Keyboard Sonata in F major, Hob.XVI23 (Haydn,
+      Joseph)/IMSLP110193-PMLP01680-haydn_23.3.mp3
+    ext: mp3

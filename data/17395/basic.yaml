@@ -1,0 +1,176 @@
+id: 17395
+title: Prelude and Fugue in E-flat major, BWV 876
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in E-flat major, BWV 876 (Bach,
+  Johann Sebastian)
+meta:
+  Work Title: Prelude and Fugue in E-flat major
+  Alternative. Title: Praeludium et Fuga a 4 voci
+  Name Translations: Preludium i fuga Es-dur nr 7, II tom "Das Wohltemperierte
+    Clavier"; Präludium und Fuge Es-Dur BWV 876; Prélude et fugue en mi bémol
+    majeur (BWV 876)
+  Authorities: "BNF: 150850581"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 876
+  I-Catalogue NumberI-Cat. No.: IJB 529
+  Key: E-flat major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.7)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (complete TWC)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Reale, Federica/Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Schmitz, Jochen/Arranger
+  - Messerschmidt, Hans Jorgen/Arranger
+  - Best, William Thomas/Arranger
+  - Scores published by Novello
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - For 3 euphoniums, tuba (arr)
+  - Scores featuring the euphonium (arr)
+  - Scores featuring the tuba (arr)
+  - For 4 players (arr)
+  - For horn, trumpet, euphonium (arr)
+  - Scores featuring the horn (arr)
+  - Scores featuring the trumpet (arr)
+  - For 3 players (arr)
+  - For organ (arr)
+  - For 1 player (arr)
+  - Scores featuring the organ (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - E-flat major
+files:
+  - id: "497284"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Fugue (Open Score)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat major, BWV
+      876 (Bach, Johann Sebastian)/IMSLP497284-PMLP697378-fugue7_expanded.pdf
+    ext: pdf
+  - id: "497285"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Source File (LilyPond)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat major, BWV
+      876 (Bach, Johann Sebastian)/IMSLP497285-PMLP697378-fugue7_expanded.ly.zip
+    ext: zip
+  - id: "02184"
+    tab: Score1
+    tabText: Scores
+    rating: 6.0555555555556
+    rateBy: 18
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat major, BWV
+      876 (Bach, Johann Sebastian)/IMSLP02184-BWV0876.pdf
+    ext: pdf
+  - id: "569717"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat major, BWV
+      876 (Bach, Johann Sebastian)/IMSLP569717-PMLP697378-bach_bwv_876.pdf
+    ext: pdf
+  - id: "737408"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat major, BWV
+      876 (Bach, Johann
+      Sebastian)/IMSLP737408-PMLP697378-Bach_WTK_2_07_BWV_876.pdf
+    ext: pdf
+  - id: "178161"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat major, BWV
+      876 (Bach, Johann
+      Sebastian)/IMSLP178161-PMLP05899-Fuga_Es_Dur_BWV_876_-_Euphonium_Quartett_Complete_Score.pdf
+    ext: pdf
+  - id: "698202"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat major, BWV
+      876 (Bach, Johann
+      Sebastian)/IMSLP698202-PMLP697378-Fuga_in_Eb_Major_-_Score_(etc).pdf
+    ext: pdf
+  - id: "579664"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat major, BWV
+      876 (Bach, Johann
+      Sebastian)/IMSLP579664-PMLP697378-Bach_Prelude_&_Fugue_no_7_BWV876_Federica_Reale_pianist.mp3
+    ext: mp3
+  - id: "428850"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.6666666666667
+    rateBy: 9
+    group: 1
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat major, BWV
+      876 (Bach, Johann
+      Sebastian)/IMSLP428850-PMLP05899-PBF_7._Prelude_and_Fugue_in_E♭_major,_BWV_876.mp3
+    ext: mp3

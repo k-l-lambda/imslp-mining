@@ -1,0 +1,102 @@
+id: 94203
+title: Keyboard Sonata in F major, K.525
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in F major, K.525 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in F major
+  Alternative. Title: Scherzo in F major
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.525
+  I-Catalogue NumberI-Cat. No.: IDS 433
+  Key: F major
+  Movements/SectionsMov'ts/Sec's: "1"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - WIMA files
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Larocque, Jacques/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 4 saxophones (arr)
+  - Scores featuring the saxophone (arr)
+  - For 4 players (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - F major
+files:
+  - id: "292895"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F major, K.525 (Scarlatti,
+      Domenico)/IMSLP292895-PMLP404095-Scarlatti_Sonate_K.525.pdf
+    ext: pdf
+  - id: "321734"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F major, K.525 (Scarlatti,
+      Domenico)/IMSLP321734-PMLP404095-Scarlatti,_Domenico-Sonates_Heugel_32.298_Volume_11_19_K.525_scan.pdf
+    ext: pdf
+  - id: "249327"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 9
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F major, K.525 (Scarlatti,
+      Domenico)/IMSLP249327-PMLP404095-Sonata_K._525_Compl_Score.pdf
+    ext: pdf
+  - id: "353159"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F major, K.525 (Scarlatti,
+      Domenico)/IMSLP353159-PMLP404095-Scar525Sco.pdf
+    ext: pdf
+  - id: "292896"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F major, K.525 (Scarlatti,
+      Domenico)/IMSLP292896-PMLP404095-Scarlatti_Sonate_K.525.mid
+    ext: mid
+  - id: "353162"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F major, K.525 (Scarlatti,
+      Domenico)/IMSLP353162-PMLP404095-Scar525Sco.mp3
+    ext: mp3

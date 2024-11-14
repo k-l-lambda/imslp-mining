@@ -1,0 +1,66 @@
+id: 28057
+title: 6 Variations in D major, Op.76
+author: Beethoven, Ludwig van
+url: https://imslp.org/wiki/6 Variations in D major, Op.76 (Beethoven, Ludwig van)
+meta:
+  Work Title: Six Variations on an Original Theme in D major
+  Alternative. Title: ""
+  Composer: Beethoven, Ludwig van
+  Opus/Catalogue NumberOp./Cat. No.: Op.76
+  I-Catalogue NumberI-Cat. No.: ILB 295
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: |-
+    theme, 6 variations, coda:
+     Theme. Allegro risoluto (D major)
+     Variation 1 (D major)
+     Variation 2 (D major)
+     Variation 3 (D major)
+     Variation 4 (D major)
+     Variation 5 (D major)
+     Variation 6. Presto (D major)
+     Coda. Tempo I (D major)
+  Year/Date of CompositionY/D of Comp.: "1809"
+  Dedication: Franz Seraficus Oliva
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: piano
+categories:
+  - Pages with First Editions
+  - Scores published by Breitkopf und Härtel
+  - Scores from Bayerische Staatsbibliothek
+  - Pages with items from edition "Ludwig van Beethovens Werke"
+  - Scores with links to Amazon
+  - Scores
+  - Beethoven, Ludwig van
+  - Classical style
+  - Classical
+  - Variations
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - D major
+files:
+  - id: "53027"
+    tab: Score1
+    tabText: Scores
+    rating: 5.25
+    rateBy: 8
+    group: 0
+    title: Complete ScoreD-Mbs
+    path: (1770)Ludwig van Beethoven/(1809)6 Variations in D major, Op.76
+      (Beethoven, Ludwig
+      van)/IMSLP53027-PMLP12224-Beethoven_Werke_Breitkopf_Serie_17_No_164_Op_76.pdf
+    ext: pdf
+  - id: "51247"
+    tab: Score1
+    tabText: Scores
+    rating: 3.6
+    rateBy: 5
+    group: 1
+    title: Complete ScoreBeethoven-Haus Bonn
+    path: (1770)Ludwig van Beethoven/(1809)6 Variations in D major, Op.76
+      (Beethoven, Ludwig van)/IMSLP51247-PMLP12224-Op.76.pdf
+    ext: pdf

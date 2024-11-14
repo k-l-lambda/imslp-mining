@@ -1,0 +1,137 @@
+id: 39930
+title: 3 Études de concert, S.144
+author: Liszt, Franz
+url: https://imslp.org/wiki/3 Études de concert, S.144 (Liszt, Franz)
+meta:
+  Work Title: 3 Études de concert
+  Alternative. Title: Trois grandes études de concert ; Trois Caprices Poétiques
+  Name Translations: Három hangverseny-etűd; Three Concert Études; 3つの演奏会用練習曲;
+    Trois Études de Concert; Trois études de concert
+  Name Aliases: Trois Etudes de Concert; Three Concert Etudes
+  Authorities: "WorldCat; Wikipedia; VIAF: 177009743; GND: 300093462; BNF: 139182375"
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.144 ; LW.A118
+  I-Catalogue NumberI-Cat. No.: IFL 101
+  Movements/SectionsMov'ts/Sec's: |-
+    3 pieces (titles in italics are probably not by Liszt)
+     Il lamento (A♭ major)
+     La leggierezza (F minor)
+     Un sospiro (D♭ major)
+  Year/Date of CompositionY/D of Comp.: 1845–49
+  First Publication.: "1849 – Leipzig: Kistner"
+  Dedication: Eduard Liszt (1817-1879)
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia article
+categories:
+  - Cziffra, György/Performer
+  - Recordings published in 1963
+  - Recordings published in the 20th century
+  - Bradley-Fulgoni, Peter/Performer
+  - Ringeissen, Bernard/Performer
+  - Recordings
+  - Pages with First Editions
+  - Scores published by Kistner
+  - Scores from Bayerische Staatsbibliothek
+  - Busoni, Ferruccio/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores published by Dover Publications
+  - Scores with links to Amazon
+  - Sauer, Emil von/Editor
+  - Scores published by Edition Peters
+  - Gárdonyi, Zoltán/Editor
+  - Szelényi, István/Editor
+  - Scores published by Editio Musica Budapest
+  - Urtext
+  - Sibley Mirroring Project
+  - Friedman, Ignaz/Editor
+  - Scores published by Universal Edition
+  - Schmid-Lindner, August/Editor
+  - Scores published by Schott
+  - Work pages with links to recordings
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Studies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1849
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Liszt, Eduard/Dedicatee
+files:
+  - id: "04424"
+    tab: Score1
+    tabText: Scores
+    rating: 6.9459459459459
+    rateBy: 37
+    group: 0
+    title: Complete Score
+    path: (1811)Franz Liszt/(1845)3 Études de concert, S.144 (Liszt,
+      Franz)/IMSLP04424-Liszt_-_Etudes_de_Concert_-_Schmid.pdf
+    ext: pdf
+  - id: "182698"
+    tab: Score1
+    tabText: Scores
+    rating: 6.6086956521739
+    rateBy: 23
+    group: 1
+    title: Complete Score (S.144) (scan)
+    path: (1811)Franz Liszt/(1845)3 Études de concert, S.144 (Liszt,
+      Franz)/IMSLP182698-PMLP02666-Liszt_NLA_Serie_I_Band_02_01_Trois_Etudes_de_Concert_S.144_scan.pdf
+    ext: pdf
+  - id: "55307"
+    tab: Score1
+    tabText: Scores
+    rating: 5.7619047619048
+    rateBy: 42
+    group: 2
+    title: Complete Score (S.144)D-Mbs
+    path: (1811)Franz Liszt/(1845)3 Études de concert, S.144 (Liszt,
+      Franz)/IMSLP55307-PMLP02666-Liszt_Musikalische_Werke_2_Band_3_41.pdf
+    ext: pdf
+  - id: "597819"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 2
+    group: 0
+    title: 2. La leggierezza
+    path: (1811)Franz Liszt/(1845)3 Études de concert, S.144 (Liszt,
+      Franz)/IMSLP597819-PMLP02666-Liszt_F.,_Caprice_poétique_n°_2_“La_Leggierezza”_-_Gyorgy_Cziffra.mp3
+    ext: mp3
+  - id: "597817"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9.3333333333333
+    rateBy: 3
+    group: 0
+    title: 3. Un sospiro
+    path: (1811)Franz Liszt/(1845)3 Études de concert, S.144 (Liszt,
+      Franz)/IMSLP597817-PMLP02666-Liszt_F.,_Caprice_poétique_n°_3_“Un_sospiro”_-_Gyorgy_Cziffra.mp3
+    ext: mp3
+  - id: "355785"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.8
+    rateBy: 20
+    group: 1
+    title: 2. La leggierezza
+    path: (1811)Franz Liszt/(1845)3 Études de concert, S.144 (Liszt,
+      Franz)/IMSLP355785-PMLP02666-05-Liszt_-_Concert_Study_in_F_minor_-_La_Leggierezza.mp3
+    ext: mp3
+  - id: "505003"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.2
+    rateBy: 20
+    group: 2
+    title: 3. Un sospiro (D♭ major)
+    path: (1811)Franz Liszt/(1845)3 Études de concert, S.144 (Liszt,
+      Franz)/IMSLP505003-PMLP02666-Liszt_-_Un_Sospiro.mp3
+    ext: mp3

@@ -1,0 +1,146 @@
+id: 55258
+title: Chaconne in G major, HWV 442
+author: Handel, George Frideric
+url: https://imslp.org/wiki/Chaconne in G major, HWV 442 (Handel, George Frideric)
+meta:
+  Work Title: Chaconne in G (with 62 variations)
+  Alternative. Title: Chacoone
+  Composer: Handel, George Frideric
+  Opus/Catalogue NumberOp./Cat. No.: HWV 442
+  I-Catalogue NumberI-Cat. No.: IGH 98
+  Movements/SectionsMov'ts/Sec's: |-
+    2 sections
+    Preludio
+    Chacoone (62 var.)
+  Year/Date of CompositionY/D of Comp.: 1705-17
+  First Publication.: 1733 in Suites de Pièces
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: harpsichord
+categories:
+  - WIMA files
+  - Chrysander, Friedrich/Editor
+  - Scores published by Breitkopf und Härtel
+  - MIT project
+  - Scores with links to Amazon
+  - Scores from the Library of Congress
+  - Northway, Peter/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Pages with items from the Hallische Händel-Ausgabe
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Handel, George Frideric
+  - Baroque style
+  - Baroque
+  - Chaconnes
+  - For harpsichord
+  - Scores featuring the harpsichord
+  - For 1 player
+  - For 2 flugelhorns, bass trombone (arr)
+  - Scores featuring the flugelhorn (arr)
+  - Scores featuring the bass trombone (arr)
+  - For 3 players (arr)
+  - For violin, harpsichord (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the harpsichord (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1733
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+files:
+  - id: "12242"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Variations 1-10US-Wc
+    path: (1685)George Frideric Handel/(1705)Chaconne in G major, HWV 442 (Handel,
+      George Frideric)/IMSLP12242-Handel_-_Chaconne_in_G_major_G228_(alt).pdf
+    ext: pdf
+  - id: "402667"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 7
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)George Frideric Handel/(1705)Chaconne in G major, HWV 442 (Handel,
+      George
+      Frideric)/IMSLP402667-PMLP29653-Handel,_Georg_Friedrich-Werke_2_18_HWV_442_scan.pdf
+    ext: pdf
+  - id: "423099"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)George Frideric Handel/(1705)Chaconne in G major, HWV 442 (Handel,
+      George
+      Frideric)/IMSLP423099-PMLP29653-Handel,_Georg_Friedrich-HHA_Serie_IV_Band_5_09_HWV_442_scan.pdf
+    ext: pdf
+  - id: "673392"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Variations 1-10  - Score and Parts
+    path: (1685)George Frideric Handel/(1705)Chaconne in G major, HWV 442 (Handel,
+      George Frideric)/IMSLP673392-PMLP29653-HWV442ALL.pdf
+    ext: pdf
+  - id: "673393"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Engraving files (Finale & XML)
+    path: (1685)George Frideric Handel/(1705)Chaconne in G major, HWV 442 (Handel,
+      George Frideric)/IMSLP673393-PMLP29653-HWV442Sco.zip
+    ext: zip
+  - id: "427500"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: 1. Prelude - Complete Score, Violin Part
+    path: (1685)George Frideric Handel/(1705)Chaconne in G major, HWV 442 (Handel,
+      George Frideric)/IMSLP427500-PMLP29653-HanHWV442ALL.pdf
+    ext: pdf
+  - id: "427501"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Engraving files (Finale & XML)
+    path: (1685)George Frideric Handel/(1705)Chaconne in G major, HWV 442 (Handel,
+      George Frideric)/IMSLP427501-PMLP29653-HanHWV442.zip
+    ext: zip
+  - id: "673395"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Variations 1-10
+    path: (1685)George Frideric Handel/(1705)Chaconne in G major, HWV 442 (Handel,
+      George Frideric)/IMSLP673395-PMLP29653-HWV442Sco.mp3
+    ext: mp3
+  - id: "427502"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: 1. Preludio
+    path: (1685)George Frideric Handel/(1705)Chaconne in G major, HWV 442 (Handel,
+      George Frideric)/IMSLP427502-PMLP29653-HanHWV442Sco.mp3
+    ext: mp3

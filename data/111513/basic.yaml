@@ -1,0 +1,84 @@
+id: 111513
+title: Mephisto Waltz No.3, S.216
+author: Liszt, Franz
+url: https://imslp.org/wiki/Mephisto Waltz No.3, S.216 (Liszt, Franz)
+meta:
+  Work Title: Mephisto Waltz No.3
+  Alternative. Title: Dritter Mephisto-Walzer
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.215a (1st version)S.216 ; LW.A325 (2nd version)
+  I-Catalogue NumberI-Cat. No.: IFL 253
+  Movements/SectionsMov'ts/Sec's: 1 piece
+  Year/Date of CompositionY/D of Comp.: "1883"
+  First Publication.: 1883 (2nd version)
+  Dedication: Marie Jaëll (1846–1925)
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: Piano (solo)
+categories:
+  - Hernandez Romero, Gabriel Antonio/Performer
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Vianna da Motta, José/Editor
+  - Scores published by Breitkopf und Härtel
+  - Mező, Imre/Editor
+  - Sulyok, Imre/Editor
+  - Scores published by Editio Musica Budapest
+  - Urtext
+  - Zhilyayev, Nikolai/Editor
+  - Scores published by Muzgiz
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Waltzes
+  - Dances
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1883
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Jaëll, Marie/Dedicatee
+files:
+  - id: "58317"
+    tab: Score1
+    tabText: Scores
+    rating: 7.625
+    rateBy: 8
+    group: 0
+    title: Complete Score (S.216)D-Mbs
+    path: (1811)Franz Liszt/(1883)Mephisto Waltz No.3, S.216 (Liszt,
+      Franz)/IMSLP58317-PMLP10299-Liszt_Musikalische_Werke_2_Band_10_102.pdf
+    ext: pdf
+  - id: "108679"
+    tab: Score1
+    tabText: Scores
+    rating: 5.3333333333333
+    rateBy: 3
+    group: 1
+    title: Complete Score (scan)
+    path: (1811)Franz Liszt/(1883)Mephisto Waltz No.3, S.216 (Liszt,
+      Franz)/IMSLP108679-PMLP10299-Liszt_NLA_Serie_I_Band_13_06_Dritter_Mephisto-Walzer_S.216_scan.pdf
+    ext: pdf
+  - id: "610486"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1811)Franz Liszt/(1883)Mephisto Waltz No.3, S.216 (Liszt,
+      Franz)/IMSLP610486-PMLP10299-Liszt.pdf
+    ext: pdf
+  - id: "517343"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 23
+    group: 0
+    title: Complete Performance
+    path: (1811)Franz Liszt/(1883)Mephisto Waltz No.3, S.216 (Liszt,
+      Franz)/IMSLP517343-PMLP10299-Mephisto_Valtz_3_-_Liszt_3._MP3.mp3
+    ext: mp3

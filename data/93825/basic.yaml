@@ -1,0 +1,132 @@
+id: 93825
+title: Keyboard Sonata in A major, K.24
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in A major, K.24 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in A major
+  Alternative. Title: ""
+  Name Translations: sonate K. 24; Sonata K. 24; Sonate K. 24; Sonat K. 24
+  Authorities: "WorldCat; VIAF: 292690709; LCCN: no2006092292; GND: 107137866X;
+    BNF: 13914245t"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.24 ; L.495 ; P.80 ; CZ.30
+  I-Catalogue NumberI-Cat. No.: IDS 8
+  Key: A major
+  Movements/SectionsMov'ts/Sec's: "1"
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.24)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - Luisi, Gianluca/Performer
+  - Scores from the Internet Archive
+  - WIMA files
+  - Recordings
+  - Longo, Alessandro/Editor
+  - Scores published by D. Rahter
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - A major
+files:
+  - id: "132959"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.24
+      (Scarlatti, Domenico)/IMSLP132959-WIMA.fdda-Scarlatti_Sonate_K.24.pdf
+    ext: pdf
+  - id: "376374"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 8
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.24
+      (Scarlatti,
+      Domenico)/IMSLP376374-PMLP331987-Sibley1802.22722_-_No._24_-_Sonata_in_A_major,_K._24.pdf
+    ext: pdf
+  - id: "313845"
+    tab: Score1
+    tabText: Scores
+    rating: 6.75
+    rateBy: 8
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.24
+      (Scarlatti,
+      Domenico)/IMSLP313845-PMLP331987-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_24_K.24_scan.pdf
+    ext: pdf
+  - id: "193060"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.24
+      (Scarlatti, Domenico)/IMSLP193060-WIMA.377a-Sca24Sco.pdf
+    ext: pdf
+  - id: "480287"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Recording
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.24
+      (Scarlatti, Domenico)/IMSLP480287-PMLP331987-Scarlatti-K024oc.mp3
+    ext: mp3
+  - id: "279760"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.24
+      (Scarlatti, Domenico)/IMSLP279760-PMLP257047-Scarlatti_Sonate_K.24.mid
+    ext: mid
+  - id: "193069"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.24
+      (Scarlatti, Domenico)/IMSLP193069-WIMA.8941-Sca24Sco.mp3
+    ext: mp3
+  - id: "193070"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A major, K.24
+      (Scarlatti, Domenico)/IMSLP193070-WIMA.64f7-Sca24Sco.mid
+    ext: mid

@@ -1,0 +1,176 @@
+id: 17382
+title: Prelude and Fugue in A-flat major, BWV 862
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in A-flat major, BWV 862 (Bach,
+  Johann Sebastian)
+meta:
+  Work Title: Prelude and Fugue No.17 in A-flat major
+  Alternative. Title: Praeludium et Fuga a 4 voci
+  Name Translations: Präludium und Fuge As-Dur BWV 862; Prélude et fugue en la
+    bémol majeur (BWV 862); Preludio e fuga BWV 862; Прелюдия и фуга ля-бемоль
+    мажор, BWV 862
+  Authorities: "GND: 1076375383"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 862
+  I-Catalogue NumberI-Cat. No.: IJB 490
+  Key: A-flat major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1722 in Das wohltemperierte Klavier I, BWV 846-869 (No.17)
+  First Publication.: "1801"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: clavier (keyboard)
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (on Das wohltemperierte Klavier)
+categories:
+  - Ishizaka, Kimiko/Performer
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Pages with items from Bach Digital
+  - Manuscripts from the 1700s
+  - Manuscripts
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Czerny, Carl/Editor
+  - Scores published by Schirmer
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A-flat major
+files:
+  - id: "01021"
+    tab: Score1
+    tabText: Scores
+    rating: 7.7142857142857
+    rateBy: 14
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A-flat major, BWV
+      862 (Bach, Johann Sebastian)/IMSLP01021-Prefug17.pdf
+    ext: pdf
+  - id: "02222"
+    tab: Score1
+    tabText: Scores
+    rating: 6.2666666666667
+    rateBy: 15
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A-flat major, BWV
+      862 (Bach, Johann Sebastian)/IMSLP02222-BWV0862.pdf
+    ext: pdf
+  - id: "497256"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 2
+    group: 2
+    title: Fugue (open score)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A-flat major, BWV
+      862 (Bach, Johann Sebastian)/IMSLP497256-PMLP569344-fugue17_expanded.pdf
+    ext: pdf
+  - id: "497257"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 2
+    group: 2
+    title: Source File (LilyPond)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A-flat major, BWV
+      862 (Bach, Johann
+      Sebastian)/IMSLP497257-PMLP569344-fugue17_expanded.ly.zip
+    ext: zip
+  - id: "734362"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A-flat major, BWV
+      862 (Bach, Johann
+      Sebastian)/IMSLP734362-PMLP569344-Bach_WTK_1_17_BWV_862.pdf
+    ext: pdf
+  - id: "410094"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.8
+    rateBy: 5
+    group: 0
+    title: 1. Prelude (lossless)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A-flat major, BWV
+      862 (Bach, Johann
+      Sebastian)/IMSLP410094-PMLP569344-Kimiko_Ishizaka_-_Bach-_Well-Tempered_Clavier,_Book_1_-_33_Prelude_No._17_in_A-flat_major,_BWV_862.flac
+    ext: flac
+  - id: "410095"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: 2. Fugue (lossless)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A-flat major, BWV
+      862 (Bach, Johann
+      Sebastian)/IMSLP410095-PMLP569344-Kimiko_Ishizaka_-_Bach-_Well-Tempered_Clavier,_Book_1_-_34_Fugue_No._17_in_A-flat_major,_BWV_862.flac
+    ext: flac
+  - id: "410096"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 2
+    group: 0
+    title: 1. Prelude (lossy)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A-flat major, BWV
+      862 (Bach, Johann
+      Sebastian)/IMSLP410096-PMLP569344-Prelude_No._17_in_A-flat_major,_BWV_862.mp3
+    ext: mp3
+  - id: "410097"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: 2. Fugue (lossy)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A-flat major, BWV
+      862 (Bach, Johann
+      Sebastian)/IMSLP410097-PMLP569344-Fugue_No._17_in_A-flat_major,_BWV_862.mp3
+    ext: mp3
+  - id: "439289"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A-flat major, BWV
+      862 (Bach, Johann
+      Sebastian)/IMSLP439289-PMLP569344-Bach_-_Prelude_&_Fugue_in_A_flet_major.mp3
+    ext: mp3

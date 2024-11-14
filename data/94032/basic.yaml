@@ -1,0 +1,134 @@
+id: 94032
+title: Keyboard Sonata in D major, K.29
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in D major, K.29 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in D major
+  Alternative. Title: ""
+  Name Translations: Sonate K. 29; Sonata K. 29; Sonat K. 29; Sonates, clavecí, K. 29, re major
+  Authorities: "WorldCat; VIAF: 293792482; LCCN: n81036056; GND: 1091597111; BNF:
+    139143004; NLA: 35559482"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.29 ; L.461 ; P.85 ; CZ.36
+  I-Catalogue NumberI-Cat. No.: IDS 236
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: Presto
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.29)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - Marlowe, Sylvia/Performer
+  - Recordings published in 1956
+  - Recordings published in the 20th century
+  - Scores from the Internet Archive
+  - WIMA files
+  - Recordings
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - D major
+files:
+  - id: "132964"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.29
+      (Scarlatti, Domenico)/IMSLP132964-WIMA.15b4-Scarlatti_Sonate_K.29.pdf
+    ext: pdf
+  - id: "313851"
+    tab: Score1
+    tabText: Scores
+    rating: 5.5384615384615
+    rateBy: 13
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.29
+      (Scarlatti,
+      Domenico)/IMSLP313851-PMLP332041-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_29_K.29_scan.pdf
+    ext: pdf
+  - id: "626439"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.29
+      (Scarlatti, Domenico)/IMSLP626439-PMLP332041-Sonata_K._29_(as_L._461).pdf
+    ext: pdf
+  - id: "193106"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.29
+      (Scarlatti, Domenico)/IMSLP193106-WIMA.ae74-Sca29Sco.pdf
+    ext: pdf
+  - id: "731103"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.29
+      (Scarlatti,
+      Domenico)/IMSLP731103-PMLP332041-02.02._Sonata_In_D_Major_(L._461).mp3
+    ext: mp3
+  - id: "280166"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.29
+      (Scarlatti, Domenico)/IMSLP280166-PMLP257047-Scarlatti_Sonate_K.29.mid
+    ext: mid
+  - id: "193115"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.29
+      (Scarlatti, Domenico)/IMSLP193115-WIMA.a75e-Sca29Sco.mp3
+    ext: mp3
+  - id: "193116"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.29
+      (Scarlatti, Domenico)/IMSLP193116-WIMA.f016-Sca29Sco.mid
+    ext: mid

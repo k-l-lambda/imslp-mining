@@ -1,0 +1,127 @@
+id: 17394
+title: Prelude and Fugue in D minor, BWV 875
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in D minor, BWV 875 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in D minor
+  Alternative. Title: ""
+  Name Translations: Prélude et fugue en ré mineur (BWV 875)
+  Authorities: "WorldCat; Wikipedia; VIAF: 293241429; GND: 300306296; BNF: 140085570"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 875
+  I-Catalogue NumberI-Cat. No.: IJB 519
+  Key: D minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.6)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (complete WTC)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Moshkin, Evgeniy E./Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Moshkin, Evgeniy E./Editor
+  - Gouin, Pierre/Editor
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - D minor
+files:
+  - id: "675685"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score (Version A, London MS)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in D minor, BWV 875
+      (Bach, Johann
+      Sebastian)/IMSLP675685-PMLP751208-Bach_-_WTC_2_(NBA),_Prelude_and_Fugue_6_(D_minor,_BWV_875)._Version_A_-_London_MS_(full-size).pdf
+    ext: pdf
+  - id: "569716"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 4
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in D minor, BWV 875
+      (Bach, Johann Sebastian)/IMSLP569716-PMLP751208-bach_bwv_875.pdf
+    ext: pdf
+  - id: "558450"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 4
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in D minor, BWV 875
+      (Bach, Johann Sebastian)/IMSLP558450-PMLP751208-bwv_875.pdf
+    ext: pdf
+  - id: "737363"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in D minor, BWV 875
+      (Bach, Johann Sebastian)/IMSLP737363-PMLP751208-Bach_WTK_2_06_BWV_875.pdf
+    ext: pdf
+  - id: "558451"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Recording (Harpsichord)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in D minor, BWV 875
+      (Bach, Johann Sebastian)/IMSLP558451-PMLP751208-bwv875.ogg
+    ext: ogg
+  - id: "355986"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.6842105263158
+    rateBy: 19
+    group: 1
+    title: Complete Recording (Piano)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in D minor, BWV 875
+      (Bach, Johann Sebastian)/IMSLP355986-PMLP05899-08-Bach_-_BWV875.mp3
+    ext: mp3

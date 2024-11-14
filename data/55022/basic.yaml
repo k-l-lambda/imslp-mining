@@ -1,0 +1,51 @@
+id: 55022
+title: Etudes
+author: Chopin, Frédéric
+url: https://imslp.org/wiki/Etudes (Chopin, Frédéric)
+meta:
+  Work Title: Etudes
+  Alternative. Title: ""
+  Composer: Chopin, Frédéric
+  I-Catalogue NumberI-Cat. No.: None [force assignment]
+  Movements/SectionsMov'ts/Sec's: |-
+    27 etudes:
+    Études, Op.10
+    Études, Op.25
+    3 Nouvelles études, B.130
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Scores from Uniwersytet Warszawski
+  - Michałowski, Aleksander/Editor
+  - Scores published by Gebethner and Wolff
+  - Friedman, Ignaz/Editor
+  - Scores
+  - Chopin, Frédéric/Collections
+  - Romantic style
+  - Romantic
+  - Studies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+files:
+  - id: "443796"
+    tab: Score1
+    tabText: Scores
+    rating: 7.1111111111111
+    rateBy: 18
+    group: 0
+    title: Complete ScorePL-Wu
+    path: (1882)Ignaz Friedman/Etudes (Chopin,
+      Frédéric)/IMSLP443796-PMLP722042-Chopin_Etudes_Michalowski.pdf
+    ext: pdf
+  - id: "702895"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 4
+    group: 1
+    title: Complete Score
+    path: (1882)Ignaz Friedman/Etudes (Chopin,
+      Frédéric)/IMSLP702895-PMLP722042-Chopin_27_Etudes;_Op._10,_Op._25,_3_Nouvelles_Etudes,_Ignaz_Friedman_1913_B&H_V.A._3817.pdf
+    ext: pdf

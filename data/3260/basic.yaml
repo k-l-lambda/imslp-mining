@@ -1,0 +1,134 @@
+id: 3260
+title: 32 Variations in C minor, WoO 80
+author: Beethoven, Ludwig van
+url: https://imslp.org/wiki/32 Variations in C minor, WoO 80 (Beethoven, Ludwig van)
+meta:
+  Work Title: Thirty-two variations in C minor on an original theme
+  Alternative. Title: ""
+  Name Translations: 32 Variationen über ein eigenes Thema in c-Moll;
+    創作主題による32の変奏曲; 32 variations en do mineur; 32 Variations in C minor; 32
+    variacions en do menor; 32개의 변주곡 다단조
+  Name Aliases: Variationen WoO 80; 32 Variationen über ein eigenes Thema;
+    Thirty-Two Variations on an Original Theme in C Minor, WoO 80; Variations en
+    ut mineur WoO 80
+  Authorities: "WorldCat; Wikipedia; LCCN: n82028185; BNF: 14817948g"
+  Composer: Beethoven, Ludwig van
+  Opus/Catalogue NumberOp./Cat. No.: WoO 80
+  I-Catalogue NumberI-Cat. No.: ILB 294
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: |-
+    theme and 32 variations:
+     Theme. Allegretto (C minor)
+     Variation 1 (C minor)
+     Variation 2 (C minor)
+     Variation 3 (C minor)
+     Variation 4 (C minor)
+     Variation 5 (C minor)
+     Variation 6 (C minor)
+     Variation 7 (C minor)
+     Variation 8 (C minor)
+     Variation 9. Espressivo (C minor)
+     Variation 10 (C minor)
+     Variation 11 (C minor)
+     Variation 12 (C major)
+     Variation 13 (C major)
+     Variation 14 (C major)
+     Variation 15 (C major)
+     Variation 16 (C major)
+     Variation 17 (C minor)
+     Variation 18 (C minor)
+     Variation 19 (C minor)
+     Variation 20 (C minor)
+     Variation 21 (C minor)
+     Variation 22 (C minor)
+     Variation 23 (C minor)
+     Variation 24 (C minor)
+     Variation 25. Leggiermente (C minor)
+     Variation 26 (C minor)
+     Variation 27 (C minor)
+     Variation 28 (C minor)
+     Variation 29 (C minor)
+     Variation 30 (C minor)
+     Variation 31 (C minor)
+     Variation 32 (C minor)
+  Year/Date of CompositionY/D of Comp.: "1806"
+  Average DurationAvg. Duration: 11 minutes
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: piano
+  External Links: Wikipedia articleRISM 454001674 (copy in ms, possibly by Johann
+    Vitzthum, ca 1769-1833, at Metten)All Music Guide
+categories:
+  - Lipkin, Seymour/Performer
+  - Gardner Museum Recordings
+  - Recordings
+  - Pages with First Editions
+  - Scores published by Kunst- und Industrie-Comptoir
+  - Scores published by Johann André
+  - Sibley Mirroring Project
+  - Scores from Bayerische Staatsbibliothek
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Albert, Eugen d'/Editor
+  - Scores published by Ditson
+  - Moszkowski, Moritz/Editor
+  - Lamond, Frederic/Editor
+  - Florence, Dominic/Editor
+  - Scores
+  - Beethoven, Ludwig van
+  - Classical style
+  - Classical
+  - Variations
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C minor
+  - Pages with RISM references
+files:
+  - id: "109833"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 8
+    group: 0
+    title: Complete ScoreUS-R
+    path: (1770)Ludwig van Beethoven/(1806)32 Variations in C minor, WoO 80
+      (Beethoven, Ludwig
+      van)/IMSLP109833-PMLP05830-sibley.1802.1525.beethoven.woO80.pdf
+    ext: pdf
+  - id: "168716"
+    tab: Score1
+    tabText: Scores
+    rating: 7.4285714285714
+    rateBy: 7
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1770)Ludwig van Beethoven/(1806)32 Variations in C minor, WoO 80
+      (Beethoven, Ludwig
+      van)/IMSLP168716-SIBLEY1802.12032.c26a-39087012841427score.pdf
+    ext: pdf
+  - id: "53059"
+    tab: Score1
+    tabText: Scores
+    rating: 7.3548387096774
+    rateBy: 31
+    group: 2
+    title: Complete ScoreD-Mbs
+    path: (1770)Ludwig van Beethoven/(1806)32 Variations in C minor, WoO 80
+      (Beethoven, Ludwig
+      van)/IMSLP53059-PMLP05830-Beethoven_Werke_Breitkopf_Serie_17_No_181_32_Variationen_WoO_80.pdf
+    ext: pdf
+  - id: "279662"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.4444444444444
+    rateBy: 9
+    group: 0
+    title: Complete Performance
+    path: (1770)Ludwig van Beethoven/(1806)32 Variations in C minor, WoO 80
+      (Beethoven, Ludwig
+      van)/IMSLP279662-PMLP05830-beethoven_32variations_lipkin.mp3
+    ext: mp3

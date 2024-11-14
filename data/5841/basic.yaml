@@ -1,0 +1,100 @@
+id: 5841
+title: Piano Sonata No.5, Op.53
+author: Scriabin, Aleksandr
+url: https://imslp.org/wiki/Piano Sonata No.5, Op.53 (Scriabin, Aleksandr)
+meta:
+  Work Title: Piano Sonata No.5
+  Alternative. Title: ""
+  Name Translations: Piano Sonata No. 5; Klaviersonate Nr. 5; sonate pour piano nº
+    5 op. 53; ピアノソナタ第5番; Klavirska sonata št. 5; Sonata per pianoforte n. 5
+    (Skrjabin); 第5钢琴奏鸣曲 (斯克里亚宾); 피아노 소나타 5번
+  Name Aliases: sonate pour piano nº 5 de Scriabine; Piano Sonata No. 5 in F-sharp
+    Major, Op. 53
+  Authorities: "WorldCat; Wikipedia; LCCN: nr94026334; BNF: 139193459"
+  Composer: Scriabin, Aleksandr
+  Opus/Catalogue NumberOp./Cat. No.: Op.53
+  I-Catalogue NumberI-Cat. No.: IAS 33
+  Movements/SectionsMov'ts/Sec's: 1 movement
+  Year/Date of CompositionY/D of Comp.: "1907"
+  First Publication.: 1910 - Author's Edition
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Early 20th century
+  Instrumentation: piano
+  External Links: Wikipedia article
+categories:
+  - Recordings
+  - Pages with First Editions
+  - Scores engraved by C.G. Röder
+  - Sibley Mirroring Project
+  - Sorokin, Konstantin/Editor
+  - Scores published by Muzgiz
+  - Oborin, Lev/Editor
+  - Milstein, Yakov/Editor
+  - Philipp, Günter/Editor
+  - Scores published by Edition Peters
+  - MIT project
+  - Alston, Ray/Editor
+  - Scores
+  - Scriabin, Aleksandr
+  - Early 20th century style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1910
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+files:
+  - id: "509048"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 3
+    group: 0
+    title: Complete Score
+    path: (1872)Aleksandr Scriabin/(1907)Piano Sonata No.5, Op.53 (Scriabin,
+      Aleksandr)/IMSLP509048-PMLP5365-Scriabin_A_-_Op_53_Piano_Sonata_No.5_(Muzgiz).pdf
+    ext: pdf
+  - id: "417286"
+    tab: Score1
+    tabText: Scores
+    rating: 7.5
+    rateBy: 4
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1872)Aleksandr Scriabin/(1907)Piano Sonata No.5, Op.53 (Scriabin,
+      Aleksandr)/IMSLP417286-SIBLEY1802.30620.909e-M23.S6.29_no.5,R95.pdf
+    ext: pdf
+  - id: "12670"
+    tab: Score1
+    tabText: Scores
+    rating: 6.875
+    rateBy: 16
+    group: 2
+    title: Complete Score
+    path: (1872)Aleksandr Scriabin/(1907)Piano Sonata No.5, Op.53 (Scriabin,
+      Aleksandr)/IMSLP12670-Scriabin_-_Op.53_Peters.pdf
+    ext: pdf
+  - id: "470698"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 2
+    group: 0
+    title: Complete Performance
+    path: (1872)Aleksandr Scriabin/(1907)Piano Sonata No.5, Op.53 (Scriabin,
+      Aleksandr)/IMSLP470698-PMLP5365-Scr5-29-4-17-Iain.mp3
+    ext: mp3
+  - id: "75359"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 5
+    group: 1
+    title: Complete Performance
+    path: (1872)Aleksandr Scriabin/(1907)Piano Sonata No.5, Op.53 (Scriabin,
+      Aleksandr)/IMSLP75359-PMLP05365-Alexander_Scriabin_-_Sonata_5_-_Karstein_Djupdal.mp3
+    ext: mp3

@@ -1,0 +1,150 @@
+id: 93872
+title: Keyboard Sonata in A minor, K.54
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in A minor, K.54 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in A minor
+  Alternative. Title: ""
+  Name Translations: Sonate K. 54; Sonata K. 54; Sonat K. 54
+  Authorities: "WorldCat; VIAF: 179684701; GND: 300135807; BNF: 13914578m"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.54 ; L.241 ; P.147 ; CZ.53
+  I-Catalogue NumberI-Cat. No.: IDS 61
+  Key: A minor
+  Movements/SectionsMov'ts/Sec's: "1"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Höger, Anton/Arranger
+  - Hanson, Andrew/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 2 guitars (arr)
+  - For 2 players (arr)
+  - Scores featuring the guitar (arr)
+  - For recorder (arr)
+  - Scores featuring the recorder (arr)
+  - For 1 player (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - A minor
+files:
+  - id: "279305"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A minor, K.54 (Scarlatti,
+      Domenico)/IMSLP279305-PMLP333214-Scarlatti_Sonate_K.54.pdf
+    ext: pdf
+  - id: "626841"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 4
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A minor, K.54 (Scarlatti,
+      Domenico)/IMSLP626841-PMLP333214-Sonata_K._54_(as_L._241).pdf
+    ext: pdf
+  - id: "353907"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 6
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A minor, K.54 (Scarlatti,
+      Domenico)/IMSLP353907-PMLP333214-Scarlatti,_Domenico-Sonates_Heugel_32.522_Volume_2_02_K.54_scan.pdf
+    ext: pdf
+  - id: "194016"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 9
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A minor, K.54 (Scarlatti,
+      Domenico)/IMSLP194016-WIMA.2a5e-Sca54Sco.pdf
+    ext: pdf
+  - id: "353980"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A minor, K.54 (Scarlatti,
+      Domenico)/IMSLP353980-PMLP333214-Scarlatti_-_Sonate_K_054_(Orig_in_Am).pdf
+    ext: pdf
+  - id: "781182"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A minor, K.54 (Scarlatti,
+      Domenico)/IMSLP781182-PMLP333214-Scarlatti,_D._K54-Default_Score_Layout.pdf
+    ext: pdf
+  - id: "194024"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Synthesized Performance (MP3)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A minor, K.54 (Scarlatti,
+      Domenico)/IMSLP194024-WIMA.8b3b-Sca54Sco.mp3
+    ext: mp3
+  - id: "194025"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized Performance (MIDI)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A minor, K.54 (Scarlatti,
+      Domenico)/IMSLP194025-WIMA.f539-Sca54Sco.mid
+    ext: mid
+  - id: "279306"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Synthesized Performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A minor, K.54 (Scarlatti,
+      Domenico)/IMSLP279306-PMLP333214-Scarlatti_Sonate_K.54.mid
+    ext: mid
+  - id: "353983"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Synthesized Performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A minor, K.54 (Scarlatti,
+      Domenico)/IMSLP353983-PMLP333214-Scarlatti_-_Sonate_K_054_(Orig_in_Am).mp3
+    ext: mp3

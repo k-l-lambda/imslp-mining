@@ -1,0 +1,137 @@
+id: 67143
+title: 3 Chansons de Charles d'Orléans
+author: Debussy, Claude
+url: https://imslp.org/wiki/3 Chansons de Charles d'Orléans (Debussy, Claude)
+meta:
+  Work Title: 3 Chansons de Charles d'Orléans
+  Alternative. Title: ""
+  Name Translations: Trois Chansons; Trois Chansons de Charles d'Orléans; Trois
+    chansons de Charles d'Orléans
+  Authorities: "WorldCat; Wikipedia; VIAF: 181478936; GND: 300041748; BNF: 13998012x"
+  Composer: Debussy, Claude
+  Opus/Catalogue NumberOp./Cat. No.: CD 99 ; L.92
+  I-Catalogue NumberI-Cat. No.: ICD 15
+  Movements/SectionsMov'ts/Sec's: |-
+    3 songs:
+    1. Dieu! qu'il la fait bon regarder! 
+    2. Quand j'ay ouy le tabourin 
+    3. Yver, vous n'estes qu'un vilain
+  Year/Date of CompositionY/D of Comp.: 1898 (nos.1, 3), 1908 (no.2)
+  First Performance.: |-
+    1909-03-11, Bathori-Engel concert
+    Paris: Salle de l'Université des arts. Université des arts chorus
+  First Publication.: "1908 – Paris: Durand, Plate D. & F. 7179, 19 pages"
+  Librettist: Charles d' Orléans (1394-1465)
+  Language: French
+  Average DurationAvg. Duration: 5-6 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: mixed chorus (SSAATTBB) a capella
+  External Links: Centre de documentation Claude DebussyMusicBrainz
+categories:
+  - WIMA files
+  - Scores from Bibliothèque nationale de France
+  - Manuscripts from the 1900s
+  - Composers' holographs from the 1900s
+  - Pages with MssAu template
+  - Manuscripts
+  - Pages with First Editions
+  - Jacquemard, Françoise/Editor
+  - Garban, Lucien/Arranger
+  - Höger, Anton/Arranger
+  - Work pages with links to recordings
+  - Scores
+  - Debussy, Claude
+  - Romantic style
+  - Romantic
+  - Chansons
+  - Songs
+  - For mixed chorus
+  - Scores featuring mixed chorus
+  - For unaccompanied chorus
+  - French language
+  - For voice, piano (arr)
+  - For voices with keyboard (arr)
+  - Scores featuring the voice (arr)
+  - Scores featuring the piano (arr)
+  - For 4 guitars (arr)
+  - Scores featuring the guitar (arr)
+  - For 4 players (arr)
+  - Pages with arrangements
+  - Works first published in 1908
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Orléans, Charles d'/Librettist
+files:
+  - id: "190328"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 4
+    group: 0
+    title: Complete Score
+    path: (1862)Claude Debussy/(1898)3 Chansons de Charles d'Orléans (Debussy,
+      Claude)/IMSLP190328-WIMA.a7da-tambourin.pdf
+    ext: pdf
+  - id: "37901"
+    tab: Score1
+    tabText: Scores
+    rating: 4.8888888888889
+    rateBy: 18
+    group: 1
+    title: Complete Score
+    path: (1862)Claude Debussy/(1898)3 Chansons de Charles d'Orléans (Debussy,
+      Claude)/IMSLP37901-PMLP81775-Debussy_-_3_Chansons_de_Charles_d'Orléans_(SATB).pdf
+    ext: pdf
+  - id: "409216"
+    tab: Score1
+    tabText: Scores
+    rating: 2
+    rateBy: 1
+    group: 2
+    title: Complete ScoreF-Pn
+    path: (1862)Claude Debussy/(1898)3 Chansons de Charles d'Orléans (Debussy,
+      Claude)/IMSLP409216-PMLP81775-BnF_btv1b55009646d_-_MS-982_-_Debussy_C,_Trois_chansons_de_Charles_d'Orléans_(Ms,_1908).pdf
+    ext: pdf
+  - id: "36708"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1862)Claude Debussy/(1898)3 Chansons de Charles d'Orléans (Debussy,
+      Claude)/IMSLP36708-PMLP81775-Debussy_-_3_Chansons_de_Charles_d'Orléans_(trans._Garban_-_Voice_and_Piano).pdf
+    ext: pdf
+  - id: "532112"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1862)Claude Debussy/(1898)3 Chansons de Charles d'Orléans (Debussy,
+      Claude)/IMSLP532112-PMLP81775-Debussy_-_1-Dieu!_qu'il_la_fait_bon_regarder!_(4Git).pdf
+    ext: pdf
+  - id: "532107"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1862)Claude Debussy/(1898)3 Chansons de Charles d'Orléans (Debussy,
+      Claude)/IMSLP532107-PMLP81775-Debussy_-_2-Quand_j'ay_ouy_le_tabourin_.pdf
+    ext: pdf
+  - id: "190331"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: MIDI Performance
+    path: (1862)Claude Debussy/(1898)3 Chansons de Charles d'Orléans (Debussy,
+      Claude)/IMSLP190331-WIMA.1e7d-tambourin.mid
+    ext: mid

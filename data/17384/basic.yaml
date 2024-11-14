@@ -1,0 +1,190 @@
+id: 17384
+title: Prelude and Fugue in A major, BWV 864
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in A major, BWV 864 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue No.19 in A major
+  Alternative. Title: Praeludium et Fuga a 3 voci
+  Name Translations: Präludium und Fuge A-Dur BWV 864; Prélude et fugue en la
+    majeur (BWV 864); Прелюдия и фуга ля мажор, BWV 864
+  Authorities: "GND: 4564138-9"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 864
+  I-Catalogue NumberI-Cat. No.: IJB 481
+  Key: A major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1722 in Das wohltemperierte Klavier I, BWV 846-869 (No.19)
+  First Publication.: "1801"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (on Das wohltemperierte Klavier)
+categories:
+  - Ishizaka, Kimiko/Performer
+  - WIMA files
+  - Mondrup Recorder Collection
+  - Recordings
+  - Pages with items from Bach Digital
+  - Manuscripts from the 1700s
+  - Manuscripts
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Czerny, Carl/Editor
+  - Scores published by Schirmer
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Tennent, R.D./Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - For 3 recorders (arr)
+  - For 3 players (arr)
+  - Scores featuring the recorder (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A major
+files:
+  - id: "569635"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A major, BWV 864
+      (Bach, Johann Sebastian)/IMSLP569635-PMLP569350-bach_bwv_864.pdf
+    ext: pdf
+  - id: "497260"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Fugue (open score)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A major, BWV 864
+      (Bach, Johann Sebastian)/IMSLP497260-PMLP569350-fugue19_expanded.pdf
+    ext: pdf
+  - id: "497261"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Engraving files (LilyPond)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A major, BWV 864
+      (Bach, Johann Sebastian)/IMSLP497261-PMLP569350-fugue19_expanded.ly.zip
+    ext: zip
+  - id: "01023"
+    tab: Score1
+    tabText: Scores
+    rating: 8.2
+    rateBy: 10
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A major, BWV 864
+      (Bach, Johann Sebastian)/IMSLP01023-Prefug19.pdf
+    ext: pdf
+  - id: "622327"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A major, BWV 864
+      (Bach, Johann Sebastian)/IMSLP622327-PMLP569350-bwv864Prelude.pdf
+    ext: pdf
+  - id: "734665"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A major, BWV 864
+      (Bach, Johann Sebastian)/IMSLP734665-PMLP569350-Bach_WTK_1_19_BWV_864.pdf
+    ext: pdf
+  - id: "410109"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5
+    rateBy: 2
+    group: 0
+    title: Prelude (lossless)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A major, BWV 864
+      (Bach, Johann
+      Sebastian)/IMSLP410109-PMLP569350-Kimiko_Ishizaka_-_Bach-_Well-Tempered_Clavier,_Book_1_-_37_Prelude_No._19_in_A_major,_BWV_864.flac
+    ext: flac
+  - id: "410110"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Fugue (lossless)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A major, BWV 864
+      (Bach, Johann
+      Sebastian)/IMSLP410110-PMLP569350-Kimiko_Ishizaka_-_Bach-_Well-Tempered_Clavier,_Book_1_-_38_Fugue_No._19_in_A_major,_BWV_864.flac
+    ext: flac
+  - id: "410111"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Prelude (lossy)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A major, BWV 864
+      (Bach, Johann
+      Sebastian)/IMSLP410111-PMLP569350-Prelude_No._19_in_A_major,_BWV_864.mp3
+    ext: mp3
+  - id: "410112"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Fugue (lossy)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A major, BWV 864
+      (Bach, Johann
+      Sebastian)/IMSLP410112-PMLP569350-Fugue_No._19_in_A_major,_BWV_864.mp3
+    ext: mp3
+  - id: "622328"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in A major, BWV 864
+      (Bach, Johann Sebastian)/IMSLP622328-PMLP569350-bwv864Prelude.mid
+    ext: mid

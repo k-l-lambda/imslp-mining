@@ -1,0 +1,80 @@
+id: 96632
+title: 6 Polish Songs, S.480
+author: Liszt, Franz
+url: https://imslp.org/wiki/6 Polish Songs, S.480 (Liszt, Franz)
+meta:
+  Work Title: 6 Polish Songs
+  Alternative. Title: 6 Polnische Lieder / 6 Chants polonais / 6 ópiew ïw polskich
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.480 ; LW.A193
+  I-Catalogue NumberI-Cat. No.: IFL 300
+  Movements/SectionsMov'ts/Sec's: |-
+    6 arrangements
+     Mädchens Wunsch (Zyczenie)
+     Frühling (Wiosna)
+     Das Ringlein (Pierócie î)
+     Bacchanal (Hulanka)
+     Meine Freuden (Moja pieszczotka / Mes joies)
+     Die Heimkehr (Narzeczony)
+  Year/Date of CompositionY/D of Comp.: 1857-60
+  First Publication.: "1860"
+  Dedication: Princess Marie zu Hohenlohe
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: Piano (solo)
+categories:
+  - Sauer, Emil von/Editor
+  - Scores published by Edition Peters
+  - Godowsky, Leopold/Editor
+  - Scores published by Art Publication Society
+  - MIT project
+  - Scores from the University of Louisville Music Library
+  - Philipp, Isidor/Editor
+  - Scores published by Costallat
+  - Joseffy, Rafael/Editor
+  - Scores published by Schirmer
+  - Sibley Mirroring Project
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Songs
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1860
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+files:
+  - id: "100521"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 10
+    group: 0
+    title: Complete Score (scan)
+    path: (1811)Franz Liszt/(1857)6 Polish Songs, S.480 (Liszt,
+      Franz)/IMSLP100521-PMLP13727-Liszt_Klavierwerke_Peters_Sauer_Band_9_25-30_Chopin_6_Lieder_scan.pdf
+    ext: pdf
+  - id: "11077"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 1
+    group: 1
+    title: 1. Życzenie (The Maiden's Wish)
+    path: (1811)Franz Liszt/(1857)6 Polish Songs, S.480 (Liszt,
+      Franz)/IMSLP11077-Godowsky_APS_25_Chopin-Liszt_The_Maiden's_Wish.pdf
+    ext: pdf
+  - id: "267940"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 2
+    group: 2
+    title: 5. Moja pieszczotka (My Darling)US-R
+    path: (1811)Franz Liszt/(1857)6 Polish Songs, S.480 (Liszt,
+      Franz)/IMSLP267940-SIBLEY1802.20291.2009-39087012867125score.pdf
+    ext: pdf

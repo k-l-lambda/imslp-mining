@@ -1,0 +1,115 @@
+id: 65956
+title: Fantasie in C major, D.934
+author: Schubert, Franz
+url: https://imslp.org/wiki/Fantasie in C major, D.934 (Schubert, Franz)
+meta:
+  Work Title: Fantasia in C major
+  Alternative. Title: ""
+  Name Translations: ヴァイオリンとピアノのための幻想曲; Fantasie C-Dur; Fantasie in C major;
+    Fantasia per a violí i piano (Schubert); Fantaisie pour violon et piano;
+    Fantasía para violín y piano (Schubert)
+  Name Aliases: Fantasie in C-Dur; Fantasie für Violine und Klavier; Fantasie
+    C-Dur für Violine und Klavier; Fantasie for violin and piano; Fantasie in C
+    major for violin and piano; Fantasy for Violin and Piano in C Major, D. 934;
+    Fantasy for violin and piano
+  Authorities: "WorldCat; Wikipedia; VIAF: 293977283; LCCN: n82056066; BNF: 13911253q"
+  Composer: Schubert, Franz
+  Opus/Catalogue NumberOp./Cat. No.: D.934 ; Op.159
+  I-Catalogue NumberI-Cat. No.: IFS 205
+  Movements/SectionsMov'ts/Sec's: |-
+    6 sections:
+    Andante molto
+    Allegretto
+    Andantino
+    Allegro
+    Allegretto
+    Presto
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: violin, piano
+  External Links: MusicBrainz
+categories:
+  - Szigeti, Joseph/Performer
+  - Levine, Joseph/Performer
+  - Recordings published in 1950
+  - Recordings published in the 20th century
+  - Scores from the Internet Archive
+  - Recordings
+  - Manuscripts
+  - Scores from Bayerische Staatsbibliothek
+  - Scores published by Breitkopf und Härtel
+  - Scores published by Schott
+  - Scores published by Muzgiz
+  - David, Ferdinand/Editor
+  - Scores published by Edition Peters
+  - Wilhelmj, August/Arranger
+  - Scores published by Litolff
+  - Sibley Mirroring Project
+  - Scores
+  - Schubert, Franz
+  - Romantic style
+  - Romantic
+  - Fantasias
+  - For violin, piano
+  - Scores featuring the violin
+  - Scores featuring the piano
+  - For 2 players
+  - For violin, piano (arr)
+  - For 2 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the piano (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with accompaniments for purchase
+files:
+  - id: "73300"
+    tab: Score1
+    tabText: Scores
+    rating: 6.8709677419355
+    rateBy: 31
+    group: 0
+    title: Complete ScoreD-Mbs
+    path: (1797)Franz Schubert/Fantasie in C major, D.934 (Schubert,
+      Franz)/IMSLP73300-PMLP24422-FS57.pdf
+    ext: pdf
+  - id: "09962"
+    tab: Score1
+    tabText: Scores
+    rating: 5.1428571428571
+    rateBy: 21
+    group: 1
+    title: Complete Score
+    path: (1797)Franz Schubert/Fantasie in C major, D.934 (Schubert,
+      Franz)/IMSLP09962-D.934_-_Fantasia_in_C_for_piano_and_violin.pdf
+    ext: pdf
+  - id: "662555"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1797)Franz Schubert/Fantasie in C major, D.934 (Schubert,
+      Franz)/IMSLP662555-PMLP24422-Fantasie_fu-r_Klavier_und_Violine_C-Dur_D_934_MS_(Schubert).pdf
+    ext: pdf
+  - id: "64276"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 5.8
+    rateBy: 5
+    group: 0
+    title: Complete Score
+    path: (1797)Franz Schubert/Fantasie in C major, D.934 (Schubert,
+      Franz)/IMSLP64276-PMLP24422-Schubert_Phantasie_op159_Piano.pdf
+    ext: pdf
+  - id: "732486"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Performance
+    path: (1797)Franz Schubert/Fantasie in C major, D.934 (Schubert,
+      Franz)/IMSLP732486-PMLP24422-01.01._Fantasia_For_Violin_And_Piano,_Op._159.mp3
+    ext: mp3

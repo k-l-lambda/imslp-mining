@@ -1,0 +1,135 @@
+id: 17364
+title: Prelude and Fugue in C major, BWV 553
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in C major, BWV 553 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in C major
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 553 ; BC.J28
+  I-Catalogue NumberI-Cat. No.: IJB 975
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 sections:
+    Praeludium (57 bars)
+    Fuga (26 bars)
+  First Publication.: 1852 in 8 Kleine Präludien und Fugen (No.1)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ
+  Primary Sources: Bach Digital (source list)
+categories:
+  - Brezhestovski, Max/Performer
+  - WIMA files
+  - Naumann, Ernst/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Borchert, Tobias/Editor
+  - Gouin, Pierre/Editor
+  - Olschewski, Maximilian/Arranger
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - For 4 recorders (arr)
+  - Scores featuring the recorder (arr)
+  - For 4 players (arr)
+  - For 2 trumpets, 2 trombones (arr)
+  - Scores featuring the trumpet (arr)
+  - Scores featuring the trombone (arr)
+  - Pages with arrangements
+  - Works first published in 1852
+  - Works first published in the 19th century
+  - C major
+files:
+  - id: "129114"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in C major, BWV 553
+      (Bach, Johann
+      Sebastian)/IMSLP129114-WIMA.050d-Bach_Kleine_Praeludien_1.pdf
+    ext: pdf
+  - id: "90293"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 10
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in C major, BWV 553
+      (Bach, Johann
+      Sebastian)/IMSLP90293-PMLP10674-Praeludium_und_Fuge_in_C_BWV_553.pdf
+    ext: pdf
+  - id: "739684"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in C major, BWV 553
+      (Bach, Johann
+      Sebastian)/IMSLP739684-PMLP1175745-E4322_1-4-Bach_-_BGA_-_BWV_553-560.pdf
+    ext: pdf
+  - id: "297638"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 8.5
+    rateBy: 16
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in C major, BWV 553
+      (Bach, Johann Sebastian)/IMSLP297638-PMLP10674-Fuge_in_C.pdf
+    ext: pdf
+  - id: "200202"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in C major, BWV 553
+      (Bach, Johann Sebastian)/IMSLP200202-WIMA.bc75-PFSco.pdf
+    ext: pdf
+  - id: "296274"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 9.3333333333333
+    rateBy: 12
+    group: 0
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in C major, BWV 553
+      (Bach, Johann Sebastian)/IMSLP296274-PMLP10674-BWV_553.mp3
+    ext: mp3
+  - id: "175575"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 4.3333333333333
+    rateBy: 6
+    group: 1
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in C major, BWV 553
+      (Bach, Johann Sebastian)/IMSLP175575-WIMA.03e8-BWV553-fugue.mp3
+    ext: mp3
+  - id: "200297"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 2
+    rateBy: 1
+    group: 2
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in C major, BWV 553
+      (Bach, Johann Sebastian)/IMSLP200297-WIMA.f921-PFSco.mid
+    ext: mid

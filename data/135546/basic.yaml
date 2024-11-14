@@ -1,0 +1,101 @@
+id: 135546
+title: Elegy No.2, S.197
+author: Liszt, Franz
+url: https://imslp.org/wiki/Elegy No.2, S.197 (Liszt, Franz)
+meta:
+  Work Title: Elegy No.2
+  Alternative. Title: Zweite Elegie
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.197 ; LW.A277
+  I-Catalogue NumberI-Cat. No.: IFL 90
+  Movements/SectionsMov'ts/Sec's: "1"
+  Year/Date of CompositionY/D of Comp.: "1877"
+  First Publication.: "1878 – Leipzig: C.F. Kahnt Nachfolger"
+  Dedication: Lina Ramann
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: Piano (solo)
+categories:
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Vianna da Motta, José/Editor
+  - Scores published by Breitkopf und Härtel
+  - Mező, Imre/Editor
+  - Sulyok, Imre/Editor
+  - Scores published by Editio Musica Budapest
+  - Scores from Herzogin Anna Amalia Bibliothek
+  - Pages with First Editions
+  - Scores engraved by F.W. Garbrecht
+  - Scores published by C.F. Kahnt
+  - Pages with References to Hofmeister's Monatsbericht
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Elegies
+  - Funeral music
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For violin, piano (arr)
+  - For 2 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the piano (arr)
+  - For cello, piano (arr)
+  - Scores featuring the cello (arr)
+  - Works first published in 1878
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Ramann, Lina/Dedicatee
+files:
+  - id: "105700"
+    tab: Score1
+    tabText: Scores
+    rating: 4
+    rateBy: 1
+    group: 0
+    title: Complete Score (scan)
+    path: (1811)Franz Liszt/(1877)Elegy No.2, S.197 (Liszt,
+      Franz)/IMSLP105700-PMLP11061-Liszt_NLA_Serie_I_Band_10_04_Zweite_Elegie_S.197_scan.pdf
+    ext: pdf
+  - id: "56252"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score (S.197)D-Mbs
+    path: (1811)Franz Liszt/(1877)Elegy No.2, S.197 (Liszt,
+      Franz)/IMSLP56252-PMLP11061-Liszt_Musikalische_Werke_2_Band_9_72.pdf
+    ext: pdf
+  - id: "24667"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 2
+    rateBy: 1
+    group: 0
+    title: Violin (or Cello) and Piano Score, Cello Part (S.131 and S.131bis)
+    path: (1811)Franz Liszt/(1877)Elegy No.2, S.197 (Liszt,
+      Franz)/IMSLP24667-PMLP55581-Liszt_Elegie_No.2_S197_Cello_Piano.pdf
+    ext: pdf
+  - id: "267365"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Violin Part (S.131bis)D-WRz
+    path: (1811)Franz Liszt/(1877)Elegy No.2, S.197 (Liszt,
+      Franz)/IMSLP267365-PMLP11061-FLiszt_Elegie_No.2,_S.131bis_violinpart.pdf
+    ext: pdf
+  - id: "99588"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.5
+    rateBy: 4
+    group: 0
+    title: Complete Performance
+    path: (1811)Franz Liszt/(1877)Elegy No.2, S.197 (Liszt,
+      Franz)/IMSLP99588-PMLP11061-05-Elegia_II.mp3
+    ext: mp3

@@ -1,0 +1,115 @@
+id: 93952
+title: Keyboard Sonata in C major, K.95
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in C major, K.95 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in C major
+  Alternative. Title: ""
+  Name Translations: Sonate K. 95; Sonata K. 95; Sonat K. 95
+  Authorities: "WorldCat; VIAF: 293039120; LCCN: no2003116913; GND: 1045326402;
+    BNF: 139146390"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.95 ; L.358 ; CZ.83
+  I-Catalogue NumberI-Cat. No.: IDS 149
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: (No Tempo)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Presman, Matvey/Editor
+  - Scores published by P. Jurgenson
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - C major
+files:
+  - id: "626951"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.95 (Scarlatti,
+      Domenico)/IMSLP626951-PMLP335164-Sonata_K._95_(as_L._358).pdf
+    ext: pdf
+  - id: "282911"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 2
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.95 (Scarlatti,
+      Domenico)/IMSLP282911-PMLP335164-Scarlatti_Sonate_K.95.pdf
+    ext: pdf
+  - id: "591448"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 1
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.95 (Scarlatti,
+      Domenico)/IMSLP591448-PMLP335164-Scarlatti_2_movements.pdf
+    ext: pdf
+  - id: "195547"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.95 (Scarlatti,
+      Domenico)/IMSLP195547-WIMA.98c1-Scar95Sco.pdf
+    ext: pdf
+  - id: "195556"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.95 (Scarlatti,
+      Domenico)/IMSLP195556-WIMA.fa75-Scar95Sco.mp3
+    ext: mp3
+  - id: "195557"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.95 (Scarlatti,
+      Domenico)/IMSLP195557-WIMA.fc0a-Scar95Sco.mid
+    ext: mid
+  - id: "282912"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.95 (Scarlatti,
+      Domenico)/IMSLP282912-PMLP335164-Scarlatti_Sonate_K.95.mid
+    ext: mid

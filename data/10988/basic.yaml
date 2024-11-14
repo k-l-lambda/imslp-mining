@@ -1,0 +1,150 @@
+id: 10988
+title: Keyboard Sonata in F major, K.6
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in F major, K.6 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in F major
+  Alternative. Title: ""
+  Name Translations: Sonate K. 6; Sonata K. 6; Sonat K. 6
+  Authorities: "WorldCat; VIAF: 293153065; GND: 300653530; BNF: 13914600z"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.6 ; L.479 ; P.62 ; CZ.11
+  I-Catalogue NumberI-Cat. No.: IDS 384
+  Key: F major
+  Movements/SectionsMov'ts/Sec's: Allegro
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.6)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Apke, Stefan/Arranger
+  - Höger, Anton/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 2 guitars (arr)
+  - For 2 players (arr)
+  - Scores featuring the guitar (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - F major
+files:
+  - id: "133067"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F major, K.6 (Scarlatti,
+      Domenico)/IMSLP133067-WIMA.b0cd-Scarlatti_Sonate_K.6.pdf
+    ext: pdf
+  - id: "313336"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 2
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F major, K.6 (Scarlatti,
+      Domenico)/IMSLP313336-PMLP330403-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_06_K.6_scan.pdf
+    ext: pdf
+  - id: "626414"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F major, K.6 (Scarlatti,
+      Domenico)/IMSLP626414-PMLP330403-Sonata_K._6_(as_L._479).pdf
+    ext: pdf
+  - id: "191856"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F major, K.6 (Scarlatti,
+      Domenico)/IMSLP191856-WIMA.a8fe-ScaK6Sco.pdf
+    ext: pdf
+  - id: "759829"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F major, K.6 (Scarlatti,
+      Domenico)/IMSLP759829-PMLP330403-Scarlatti_D-K006-2G+mid.pdf
+    ext: pdf
+  - id: "353404"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F major, K.6 (Scarlatti,
+      Domenico)/IMSLP353404-PMLP330403-Scarlatti_-_Sonate_K_006_(Orig_in_F).pdf
+    ext: pdf
+  - id: "279391"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 8
+    rateBy: 2
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F major, K.6 (Scarlatti,
+      Domenico)/IMSLP279391-PMLP257047-Scarlatti_Sonate_K.6.mid
+    ext: mid
+  - id: "191856"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F major, K.6 (Scarlatti,
+      Domenico)/IMSLP191856-WIMA.a8fe-ScaK6Sco.pdf
+    ext: pdf
+  - id: "353406"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F major, K.6 (Scarlatti,
+      Domenico)/IMSLP353406-PMLP330403-Scarlatti_-_Sonate_K_006_(Orig_in_F).mp3
+    ext: mp3
+  - id: "353407"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Synthesized performance (simpler Version)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F major, K.6 (Scarlatti,
+      Domenico)/IMSLP353407-PMLP330403-Scarlatti_-_Sonate_K_006_(einfacher).mp3
+    ext: mp3

@@ -1,0 +1,271 @@
+id: 5820
+title: Etudes
+author: Debussy, Claude
+url: https://imslp.org/wiki/Etudes (Debussy, Claude)
+meta:
+  Work Title: Douze Etudes
+  Alternative. Title: ""
+  Name Translations: ピアノのための12の練習曲; Études de Debussy; 연습곡; Études; Етюди; Études
+    (Debussy); Estudis de Debussy
+  Name Aliases: 八本の指のための; Douze Études pour piano; Estudios; Estudios de Debussy;
+    Etudes (Debussy)
+  Authorities: "WorldCat; Wikipedia; VIAF: 185089865; LCCN: n81149902; GND:
+    1002623308; BNF: 139853929; NLA: 35371046"
+  Composer: Debussy, Claude
+  Opus/Catalogue NumberOp./Cat. No.: CD 143 ; L.136
+  I-Catalogue NumberI-Cat. No.: ICD 29
+  Movements/SectionsMov'ts/Sec's: |-
+    12 studies in 2 volumes:
+    Livre I
+
+    1. Pour les cinq doigts (after M. Czerny)
+    2. Pour les tierces
+    3. Pour les quartes
+    4. Pour les sixtes
+    5. Pour les octaves
+    6. Pour les huit doigts
+
+    Livre II
+
+    7. Pour les degrés chromatiques
+    8. Pour les agréments
+    9. Pour les notes répétées
+    10. Pour les sonorités opposées
+    11. Pour les arpèges composés
+    12. Pour les accords
+  Year/Date of CompositionY/D of Comp.: 1915 (July 23 to September 29)
+  First Publication.: "1916"
+  Dedication: A la mémoire de Frédéric Chopin (1810-1849)
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Centre de documentation Claude DebussyA study of Debussy's Douze
+    études for piano (thesis for U. Rochester by Betty Jeanne Wicklund,
+    1945)MusicBrainz
+categories:
+  - Rosen, Charles/Performer
+  - Recordings published in 1951
+  - Recordings published in the 20th century
+  - Seitzer, Janet/Performer
+  - Ishizaka, Kimiko/Performer
+  - Recordings
+  - Pages with First Editions
+  - Scores published by Durand
+  - Scores published by Dover Publications
+  - Scores with links to Amazon
+  - Klemm, Eberhardt/Editor
+  - Scores with links to Sheet Music Plus
+  - Scores published by Muzgiz
+  - Alston, Ray/Editor
+  - Scores from the Morgan Library
+  - Manuscripts from the 1900s
+  - Composers' holographs from the 1900s
+  - Pages with MssAu template
+  - Submission Project
+  - Manuscripts
+  - Work pages with links to recordings
+  - Scores
+  - Debussy, Claude
+  - Romantic style
+  - Romantic
+  - Studies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1916
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Chopin, Frédéric/Dedicatee
+files:
+  - id: "533543"
+    tab: Score1
+    tabText: Scores
+    rating: 8.6666666666667
+    rateBy: 3
+    group: 0
+    title: 7. Pour les degrés chromatiques
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP533543-PMLP02389-Pour_les_degrés_chromatiques.pdf
+    ext: pdf
+  - id: "533545"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 2
+    group: 0
+    title: 8. Pour les agréments
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP533545-PMLP02389-Pour_les_agréments.pdf
+    ext: pdf
+  - id: "246284"
+    tab: Score1
+    tabText: Scores
+    rating: 7.5555555555556
+    rateBy: 9
+    group: 1
+    title: Complete Score (scan)
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP246284-PMLP02389-Debussy,_Claude-Klavierwerke_Peters_Klemm_Band_V_01_Etudes_scan.pdf
+    ext: pdf
+  - id: "61429"
+    tab: Score1
+    tabText: Scores
+    rating: 6.4
+    rateBy: 10
+    group: 2
+    title: Complete Score
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP61429-PMLP02389-Debussy--12Etudes--Muzyka-1975.pdf
+    ext: pdf
+  - id: "745534"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 2
+    group: 0
+    title: 1. Pour les cinq doigts
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP745534-PMLP2389-01.01._ETUDES_1.mp3
+    ext: mp3
+  - id: "745535"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 2. Pour les tierces
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP745535-PMLP2389-01.02._ETUDES_2.mp3
+    ext: mp3
+  - id: "745536"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 3. Pour les quartes
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP745536-PMLP2389-01.03._ETUDES_3.mp3
+    ext: mp3
+  - id: "745537"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 4. Pour les sixtes
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP745537-PMLP2389-01.04._ETUDES_4.mp3
+    ext: mp3
+  - id: "745538"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 5. Pour les octaves
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP745538-PMLP2389-01.05._ETUDES_5.mp3
+    ext: mp3
+  - id: "745539"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 6. Pour les huit doigts
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP745539-PMLP2389-01.06._ETUDES_6.mp3
+    ext: mp3
+  - id: "745540"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 7. Pour les degrés chromatiques
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP745540-PMLP2389-02.01._ETUDES_7.mp3
+    ext: mp3
+  - id: "745541"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 8. Pour les agréments
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP745541-PMLP2389-02.02._ETUDES_8.mp3
+    ext: mp3
+  - id: "745542"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 9. Pour les notes répétées
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP745542-PMLP2389-02.03._ETUDES_9.mp3
+    ext: mp3
+  - id: "745543"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 10. Pour les sonorités opposées
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP745543-PMLP2389-02.04._ETUDES_10.mp3
+    ext: mp3
+  - id: "745544"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 11. Pour les arpèges composés
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP745544-PMLP2389-02.05._ETUDES_11.mp3
+    ext: mp3
+  - id: "745545"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 12. Pour les accords
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP745545-PMLP2389-02.06._ETUDES_12.mp3
+    ext: mp3
+  - id: "86653"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.0588235294118
+    rateBy: 17
+    group: 1
+    title: 11. Pour les arpèges composés
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP86653-PMLP02389-05-debussy.mp3
+    ext: mp3
+  - id: "114163"
+    tab: Audio1
+    tabText: Recordings
+    rating: 4.1
+    rateBy: 20
+    group: 2
+    title: 10. Pour les sonorités opposées
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP114163-PMLP02389-Debussy-EtudeNo10-Seitzer.ogg
+    ext: ogg
+  - id: "114164"
+    tab: Audio1
+    tabText: Recordings
+    rating: 4.1428571428571
+    rateBy: 14
+    group: 2
+    title: 11. Pour les arpèges composés
+    path: (1862)Claude Debussy/(1915)Etudes (Debussy,
+      Claude)/IMSLP114164-PMLP02389-Debussy-EtudeNo11-Seitzer1987.ogg
+    ext: ogg

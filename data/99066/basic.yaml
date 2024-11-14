@@ -1,0 +1,152 @@
+id: 99066
+title: 3 Organ Sonatas
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/3 Organ Sonatas (Scarlatti, Domenico)
+meta:
+  Work Title: 3 Organ Sonatas
+  Alternative. Title: ""
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.287-288, 328
+  I-Catalogue NumberI-Cat. No.: None [force assignment]
+  Movements/SectionsMov'ts/Sec's: |-
+    3 pieces
+     Sonata in D major, K.287
+     Sonata in D major, K.288
+     Sonata in G major, K.328
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ, harpsichord
+categories:
+  - WIMA files
+  - Gouin, Pierre/Editor
+  - Work-PD-US-notrenewed
+  - Stella, Simone/Editor
+  - Scores
+  - Scarlatti, Domenico/Collections
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+files:
+  - id: "133349"
+    tab: Score1
+    tabText: Scores
+    rating: 6.3333333333333
+    rateBy: 6
+    group: 0
+    title: Sonata in D major, K.287
+    path: (1947)Pierre Gouin/3 Organ Sonatas (Scarlatti,
+      Domenico)/IMSLP133349-WIMA.38ff-Scarlatti_Sonate_K.287.pdf
+    ext: pdf
+  - id: "133350"
+    tab: Score1
+    tabText: Scores
+    rating: 4
+    rateBy: 1
+    group: 0
+    title: Sonata in D major, K.288
+    path: (1947)Pierre Gouin/3 Organ Sonatas (Scarlatti,
+      Domenico)/IMSLP133350-WIMA.05c4-Scarlatti_Sonate_K.288.pdf
+    ext: pdf
+  - id: "133351"
+    tab: Score1
+    tabText: Scores
+    rating: 3
+    rateBy: 2
+    group: 0
+    title: Sonata in G major, K.328
+    path: (1947)Pierre Gouin/3 Organ Sonatas (Scarlatti,
+      Domenico)/IMSLP133351-WIMA.a0a0-Scarlatti_Sonate_K.328.pdf
+    ext: pdf
+  - id: "141074"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Sonata in D major, K.287
+    path: (1947)Pierre Gouin/3 Organ Sonatas (Scarlatti,
+      Domenico)/IMSLP141074-WIMA.a740-scarlatti_organ_sonata_k287.pdf
+    ext: pdf
+  - id: "132972"
+    tab: Score1
+    tabText: Scores
+    rating: 2
+    rateBy: 1
+    group: 1
+    title: Sonata in D major, K.288
+    path: (1947)Pierre Gouin/3 Organ Sonatas (Scarlatti,
+      Domenico)/IMSLP132972-WIMA.3ffe-scarlatti_organ_sonata_k288.pdf
+    ext: pdf
+  - id: "233019"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Engraving files (Finale)
+    path: (1947)Pierre Gouin/3 Organ Sonatas (Scarlatti,
+      Domenico)/IMSLP233019-WIMA.cf4c-Sonatas.zip
+    ext: zip
+  - id: "359632"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1947)Pierre Gouin/3 Organ Sonatas (Scarlatti,
+      Domenico)/IMSLP359632-PMLP580777-Scarlatti_Two_Organ_Sonatas_(ed._Goldsbrough).pdf
+    ext: pdf
+  - id: "323704"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Sonata in D major, K.287
+    path: (1947)Pierre Gouin/3 Organ Sonatas (Scarlatti,
+      Domenico)/IMSLP323704-PMLP257477-Scarlatti_Sonate_K.287.mid
+    ext: mid
+  - id: "323705"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Sonata in D major, K.288
+    path: (1947)Pierre Gouin/3 Organ Sonatas (Scarlatti,
+      Domenico)/IMSLP323705-PMLP257477-Scarlatti_Sonate_K.288.mid
+    ext: mid
+  - id: "323706"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Sonata in G major, K.328
+    path: (1947)Pierre Gouin/3 Organ Sonatas (Scarlatti,
+      Domenico)/IMSLP323706-PMLP257477-Scarlatti_Sonate_K.328.mid
+    ext: mid
+  - id: "233028"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Sonata in D major, K.287
+    path: (1947)Pierre Gouin/3 Organ Sonatas (Scarlatti,
+      Domenico)/IMSLP233028-WIMA.62fc-scarlatti_organ_sonata_k287.mid
+    ext: mid
+  - id: "233029"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Sonata in D major, K.288
+    path: (1947)Pierre Gouin/3 Organ Sonatas (Scarlatti,
+      Domenico)/IMSLP233029-WIMA.7818-scarlatti_organ_sonata_k288.mid
+    ext: mid

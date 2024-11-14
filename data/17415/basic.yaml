@@ -1,0 +1,74 @@
+id: 17415
+title: Prelude and Fugue in A major, BWV 896
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in A major, BWV 896 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue
+  Alternative. Title: Präludium und Fuge
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 896 ; BC L128
+  I-Catalogue NumberI-Cat. No.: IJB 483
+  Key: A major
+  Movements/SectionsMov'ts/Sec's: "2"
+  Year/Date of CompositionY/D of Comp.: 1710?
+  First Publication.: 1912 (Prelude), 1866 (Fugue)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Clavier
+categories:
+  - Spanyi, Miklos Mikael/Editor
+  - Naumann, Ernst/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Czerny, Carl/Editor
+  - Griepenkerl, Friedrich Conrad/Editor
+  - Roitzsch, Friedrich August/Editor
+  - Sibley Mirroring Project
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - Works first published in 1912
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - A major
+files:
+  - id: "03221"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 1
+    group: 0
+    title: Fugue (only)
+    path: (1685)Johann Sebastian Bach/(1710)Prelude and Fugue in A major, BWV 896
+      (Bach, Johann Sebastian)/IMSLP03221-Bach_-_BGA_-_BWV_896_fugue.pdf
+    ext: pdf
+  - id: "654409"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Prelude
+    path: (1685)Johann Sebastian Bach/(1710)Prelude and Fugue in A major, BWV 896
+      (Bach, Johann Sebastian)/IMSLP654409-PMLP180439-BWV896.1.pdf
+    ext: pdf
+  - id: "109059"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Fugue (only)US-R
+    path: (1685)Johann Sebastian Bach/(1710)Prelude and Fugue in A major, BWV 896
+      (Bach, Johann
+      Sebastian)/IMSLP109059-PMLP180439-Sibley.1802.1316.bach896.pdf
+    ext: pdf

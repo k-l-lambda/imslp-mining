@@ -1,0 +1,89 @@
+id: 42042
+title: Fugue in A minor, B.144
+author: Chopin, Frédéric
+url: https://imslp.org/wiki/Fugue in A minor, B.144 (Chopin, Frédéric)
+meta:
+  Work Title: Fugue in A minor
+  Alternative. Title: ""
+  Name Translations: Fuga para piano (Chopin); Fugue in A minor, B. 144; Fuga; フーガ イ短調
+  Composer: Chopin, Frédéric
+  Opus/Catalogue NumberOp./Cat. No.: B.144
+  I-Catalogue NumberI-Cat. No.: IFC 25
+  Key: A minor
+  Movements/SectionsMov'ts/Sec's: Andante
+  Year/Date of CompositionY/D of Comp.: 1840/1841
+  First Publication.: "1898"
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Instytut Fryderyka ChopinaAll Music Guide
+categories:
+  - Higuchi, Aya/Performer
+  - Recordings
+  - Paderewski, Ignacy Jan/Editor
+  - Bronarski, Ludwik/Editor
+  - Turczyński, Józef/Editor
+  - Scores published by Polskie Wydawnictwo Muzyczne
+  - Pages with items from Chopin Works PWM
+  - Mandozzi, Orfeo/Arranger
+  - Scores
+  - Chopin, Frédéric
+  - Romantic style
+  - Romantic
+  - Fugues
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For clarinet, cello (arr)
+  - Scores featuring the clarinet (arr)
+  - Scores featuring the cello (arr)
+  - For 2 players (arr)
+  - For violin, cello (arr)
+  - Scores featuring the violin (arr)
+  - Pages with arrangements
+  - Works first published in 1898
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - A minor
+files:
+  - id: "09518"
+    tab: Score1
+    tabText: Scores
+    rating: 7.125
+    rateBy: 16
+    group: 0
+    title: Complete Score
+    path: (1810)Frédéric Chopin/(1840)Fugue in A minor, B.144 (Chopin,
+      Frédéric)/IMSLP09518-Chopin,_Fuga_in_a-minor.pdf
+    ext: pdf
+  - id: "599654"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score (Clarinet in Bb)
+    path: (1810)Frédéric Chopin/(1840)Fugue in A minor, B.144 (Chopin,
+      Frédéric)/IMSLP599654-PMLP23501-Chopin_Fugue_Mandozzi_Duo_Kl_in_B_Vc_-_Partitur.pdf
+    ext: pdf
+  - id: "599651"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1810)Frédéric Chopin/(1840)Fugue in A minor, B.144 (Chopin,
+      Frédéric)/IMSLP599651-PMLP23501-Chopin_Fugue_Mandozzi_Duo_Vl_Vc_-_Partitur.pdf
+    ext: pdf
+  - id: "476836"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.6666666666667
+    rateBy: 3
+    group: 0
+    title: Complete Performance
+    path: (1810)Frédéric Chopin/(1840)Fugue in A minor, B.144 (Chopin,
+      Frédéric)/IMSLP476836-PMLP23501-Fugue_in_A_minor_B._144.mp3
+    ext: mp3

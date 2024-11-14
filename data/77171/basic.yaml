@@ -1,0 +1,123 @@
+id: 77171
+title: Piano Sonata in A minor, D.784
+author: Schubert, Franz
+url: https://imslp.org/wiki/Piano Sonata in A minor, D.784 (Schubert, Franz)
+meta:
+  Work Title: Piano Sonata in A minor, Grande Sonate
+  Alternative. Title: Piano Sonata No.8; Piano Sonata No.14
+  Composer: Schubert, Franz
+  Opus/Catalogue NumberOp./Cat. No.: D.784 (published as Op.posth.143)
+  I-Catalogue NumberI-Cat. No.: IFS 587
+  Key: A minor
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements:
+    Allegro giusto (A minor)
+    Andante (F major)
+    Allegro vivace (A minor)
+  Year/Date of CompositionY/D of Comp.: 1823 February
+  First Publication.: 1839 – Diabelli
+  Average DurationAvg. Duration: 23 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  Extra Information: The work is numbered as Piano Sonata No.8 in the Breitkopf &
+    Härtel edition and as Piano Sonata No.14 in both Classical Archives and the
+    Wiener Urtext Edition.
+categories:
+  - Pitman, Paul/Performer
+  - Smullyan, Raymond/Performer
+  - Pages with recordings from Pandora/Goldstein Archive
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Epstein, Julius/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Girtain IV, Edgar/Arranger
+  - Scores
+  - Schubert, Franz
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Works first published in 1839
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A minor
+files:
+  - id: "55376"
+    tab: Score1
+    tabText: Scores
+    rating: 6.5454545454545
+    rateBy: 22
+    group: 0
+    title: Complete ScoreD-Mbs
+    path: (1797)Franz Schubert/(1823)Piano Sonata in A minor, D.784 (Schubert,
+      Franz)/IMSLP55376-PMLP02035-Schubert_Werke_Breitkopf_Serie_10_No_100_Op_143.pdf
+    ext: pdf
+  - id: "663605"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score and Parts
+    path: (1797)Franz Schubert/(1823)Piano Sonata in A minor, D.784 (Schubert,
+      Franz)/IMSLP663605-PMLP2035-Schubert-Girtain-_Sonata_in_a_minor_for_string_orchestra_(Score_and_parts).pdf
+    ext: pdf
+  - id: "246997"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.8181818181818
+    rateBy: 11
+    group: 0
+    title: I. Allegro giusto
+    path: (1797)Franz Schubert/(1823)Piano Sonata in A minor, D.784 (Schubert,
+      Franz)/IMSLP246997-PMLP02035-Sonata_in_A_Minor,_D._784_-_I._Allegro_giusto.mp3
+    ext: mp3
+  - id: "246998"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.8
+    rateBy: 5
+    group: 0
+    title: II. Andante
+    path: (1797)Franz Schubert/(1823)Piano Sonata in A minor, D.784 (Schubert,
+      Franz)/IMSLP246998-PMLP02035-Sonata_in_A_Minor,_D._784_-_II._Andante.mp3
+    ext: mp3
+  - id: "246999"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.4285714285714
+    rateBy: 7
+    group: 0
+    title: III. Allegro vivace
+    path: (1797)Franz Schubert/(1823)Piano Sonata in A minor, D.784 (Schubert,
+      Franz)/IMSLP246999-PMLP02035-Sonata_in_A_Minor,_D._784_-_III._Allegro_vivace.mp3
+    ext: mp3
+  - id: "336565"
+    tab: Audio1
+    tabText: Recordings
+    rating: 2
+    rateBy: 2
+    group: 1
+    title: I. Allegro giusto
+    path: (1797)Franz Schubert/(1823)Piano Sonata in A minor, D.784 (Schubert,
+      Franz)/IMSLP336565-PMLP02035-10Schubert_Sonata_1stMovment_A_minor.mp3
+    ext: mp3
+  - id: "336566"
+    tab: Audio1
+    tabText: Recordings
+    rating: 2
+    rateBy: 1
+    group: 1
+    title: I. Allegro giusto
+    path: (1797)Franz Schubert/(1823)Piano Sonata in A minor, D.784 (Schubert,
+      Franz)/IMSLP336566-PMLP02035-10Schubert_Sonata_1stMovment_A_minor.ogg
+    ext: ogg

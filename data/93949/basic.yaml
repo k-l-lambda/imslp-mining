@@ -1,0 +1,112 @@
+id: 93949
+title: Keyboard Sonata in C major, K.49
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in C major, K.49 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in C major
+  Alternative. Title: ""
+  Name Translations: Sonate K. 49; Sonata K. 49; Sonat K. 49
+  Authorities: "WorldCat; VIAF: 293674566; LCCN: no2014155111; BNF: 139145220"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.49 ; L.301 ; P.178
+  I-Catalogue NumberI-Cat. No.: IDS 146
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: Presto
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - C major
+files:
+  - id: "277833"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.49 (Scarlatti,
+      Domenico)/IMSLP277833-PMLP332836-Scarlatti_Sonate_K.49.pdf
+    ext: pdf
+  - id: "626457"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.49 (Scarlatti,
+      Domenico)/IMSLP626457-PMLP332836-Sonata_K._49_(as_L._301).pdf
+    ext: pdf
+  - id: "313877"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.49 (Scarlatti,
+      Domenico)/IMSLP313877-PMLP332836-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_49_K.49_scan.pdf
+    ext: pdf
+  - id: "193733"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.49 (Scarlatti,
+      Domenico)/IMSLP193733-WIMA.a701-Sca49Sco.pdf
+    ext: pdf
+  - id: "277834"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.49 (Scarlatti,
+      Domenico)/IMSLP277834-PMLP332836-Scarlatti_Sonate_K.49.mid
+    ext: mid
+  - id: "193741"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.49 (Scarlatti,
+      Domenico)/IMSLP193741-WIMA.a627-Sca49Sco.mp3
+    ext: mp3
+  - id: "193742"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in C major, K.49 (Scarlatti,
+      Domenico)/IMSLP193742-WIMA.bcc3-Sca49Sco.mid
+    ext: mid

@@ -1,0 +1,78 @@
+id: 111002
+title: Piano Concerto in E minor, MWV O 13
+author: Mendelssohn, Felix
+url: https://imslp.org/wiki/Piano Concerto in E minor, MWV O 13 (Mendelssohn, Felix)
+meta:
+  Work Title: Piano Concerto in E minor
+  Alternative. Title: Piano Concerto No.3
+  Composer: Mendelssohn, Felix
+  Opus/Catalogue NumberOp./Cat. No.: MWV O 13
+  I-Catalogue NumberI-Cat. No.: IFM 123
+  Key: E minor
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements:
+    I. Allegro molto vivace (ca. 416 bars)
+    II. Andante (ca. 200 bars)
+    III. ?
+  Year/Date of CompositionY/D of Comp.: 1844?
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano, orchestra
+  InstrDetail: >-
+    Solo: pianoOrchestra:
+
+    flutes, oboes, clarinets (C), bassoonshorns (C), trumpets (E♭), timpani,
+    strings
+  External Links: All Music Guide
+categories:
+  - Scores from the Morgan Library
+  - Henschke, Eduard/Copyist
+  - Manuscripts from the 1800s
+  - Manuscripts
+  - Work pages with links to recordings
+  - Scores
+  - Mendelssohn, Felix
+  - Romantic style
+  - Romantic
+  - Concertos
+  - For piano, orchestra
+  - Scores featuring the piano
+  - Scores featuring the orchestra
+  - For orchestra with soloists
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - E minor
+files:
+  - id: "267267"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Sketch 1 (Piano score)US-NYpm
+    path: (1809)Felix Mendelssohn/(1844)Piano Concerto in E minor, MWV O 13
+      (Mendelssohn,
+      Felix)/IMSLP267267-PMLP432911-FMendelssohn_Piano_Concerto_in_E_minor,_MWV_O_13_sketch1.pdf
+    ext: pdf
+  - id: "267268"
+    tab: Score1
+    tabText: Scores
+    rating: 2
+    rateBy: 1
+    group: 0
+    title: Sketch 2 (Orchestra score)US-NYpm
+    path: (1809)Felix Mendelssohn/(1844)Piano Concerto in E minor, MWV O 13
+      (Mendelssohn,
+      Felix)/IMSLP267268-PMLP432911-FMendelssohn_Piano_Concerto_in_E_minor,_MWV_O_13_sketch2.pdf
+    ext: pdf
+  - id: "267269"
+    tab: Score1
+    tabText: Scores
+    rating: 2
+    rateBy: 1
+    group: 0
+    title: Statement of Cornelius RybnerUS-NYpm
+    path: (1809)Felix Mendelssohn/(1844)Piano Concerto in E minor, MWV O 13
+      (Mendelssohn,
+      Felix)/IMSLP267269-PMLP432911-Statement_of_Cornelius_Rybner.pdf
+    ext: pdf

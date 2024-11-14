@@ -1,0 +1,145 @@
+id: 48434
+title: Piano Trio in G major
+author: Debussy, Claude
+url: https://imslp.org/wiki/Piano Trio in G major (Debussy, Claude)
+meta:
+  Work Title: Piano Trio in G major
+  Alternative. Title: Premier Trio en Sol
+  Name Translations: Piano Trio; Trio en Sol; Trio en Sol M; ピアノ三重奏; Trío para
+    piano; Klaviertrio G-Dur; Trio per pianoforte e archi (Debussy)
+  Name Aliases: Trio para piano; Klaviertrio in G-Dur; Klaviertrio; L 3; ピアノ三重奏曲;
+    Premier trio en sol majeur; Trio avec piano
+  Authorities: "WorldCat; Wikipedia; VIAF: 181648432; BNF: 13911460j"
+  Composer: Debussy, Claude
+  Opus/Catalogue NumberOp./Cat. No.: CD 5 ; L.5
+  I-Catalogue NumberI-Cat. No.: ICD 63
+  Key: G major
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements:
+    I. Andantino con moto allegro
+    II. Scherzo. Intermezzo. Moderato con allegro
+    III Andante espressivo
+    IV. Finale. Appassionato
+  Year/Date of CompositionY/D of Comp.: "1880"
+  First Publication.: "1986 - Munich: G. Henle Verlag"
+  Dedication: Emile Durand
+  Average DurationAvg. Duration: 20 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: violin, cello, piano
+  Discography: MusicBrainz
+  External Links: Centre de documentation Claude DebussyWikipedia article
+categories:
+  - Works not in public domain
+  - Claremont Trio/Performer
+  - Gardner Museum Recordings
+  - Recordings
+  - Pages with First Editions
+  - Scores published by G. Henle Verlag
+  - Urtext
+  - Scores from the Morgan Library
+  - Manuscripts from the 1800s
+  - Composers' holographs from the 1800s
+  - Pages with MssAu template
+  - Submission Project
+  - Manuscripts
+  - Mandozzi, Orfeo/Editor
+  - Cameron, Liam/Arranger
+  - Wolfson, Boris/Arranger
+  - Work pages with links to recordings
+  - Scores from the Internet Archive
+  - Scores
+  - Debussy, Claude
+  - Romantic style
+  - Romantic
+  - Trios
+  - For violin, cello, piano
+  - Scores featuring the violin
+  - Scores featuring the cello
+  - Scores featuring the piano
+  - For 3 players
+  - For flute, cello, piano (arr)
+  - Scores featuring the flute (arr)
+  - Scores featuring the cello (arr)
+  - Scores featuring the piano (arr)
+  - For 3 players (arr)
+  - For 2 pianos (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1986
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - G major
+  - Durand, Emile/Dedicatee
+files:
+  - id: "314384"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 7.3333333333333
+    rateBy: 15
+    group: 0
+    title: Cello Part Version A (fully edited)
+    path: (1862)Claude Debussy/(1880)Piano Trio in G major (Debussy,
+      Claude)/IMSLP314384-PMLP388538-Debussy_Piano_Trio_Mandozzi_VC_0002.pdf
+    ext: pdf
+  - id: "314627"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 7.5
+    rateBy: 4
+    group: 0
+    title: Cello Part Version B (medium editing)
+    path: (1862)Claude Debussy/(1880)Piano Trio in G major (Debussy,
+      Claude)/IMSLP314627-PMLP388538-Debussy_Klaviertrio_VC_Mandozzi_Version_B.pdf
+    ext: pdf
+  - id: "314694"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 7.0769230769231
+    rateBy: 13
+    group: 1
+    title: Violin Part (edited with fingerings and bowings)
+    path: (1862)Claude Debussy/(1880)Piano Trio in G major (Debussy,
+      Claude)/IMSLP314694-PMLP388538-Debussy_Trio_Vl_Mandozzi_Kuschnir.pdf
+    ext: pdf
+  - id: "239985"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 5.6521739130435
+    rateBy: 23
+    group: 2
+    title: Complete Score
+    path: (1862)Claude Debussy/(1880)Piano Trio in G major (Debussy,
+      Claude)/IMSLP239985-PMLP388538-Debussy_-_Piano_Trio_in_G_(score).pdf
+    ext: pdf
+  - id: "749544"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Flute (Violin)
+    path: (1862)Claude Debussy/(1880)Piano Trio in G major (Debussy,
+      Claude)/IMSLP749544-PMLP388538-triofluteupdated-Flûte.pdf
+    ext: pdf
+  - id: "515709"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1862)Claude Debussy/(1880)Piano Trio in G major (Debussy,
+      Claude)/IMSLP515709-PMLP388538-Debussy_L3-III_arr_2pf_Wolfson_2017.pdf
+    ext: pdf
+  - id: "478645"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9
+    rateBy: 2
+    group: 0
+    title: Complete Recording
+    path: (1862)Claude Debussy/(1880)Piano Trio in G major (Debussy,
+      Claude)/IMSLP478645-PMLP388538-debussy_TrioinG.mp3
+    ext: mp3

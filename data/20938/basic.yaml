@@ -1,0 +1,64 @@
+id: 20938
+title: Le promenoir des deux amants
+author: Debussy, Claude
+url: https://imslp.org/wiki/Le promenoir des deux amants (Debussy, Claude)
+meta:
+  Work Title: Le Promenoir des deux Amants
+  Alternative. Title: ""
+  Name Translations: Le Promenoir des deux amants; 恋人たちの散歩道
+  Name Aliases: 二人の恋人の散歩道; 2人の恋人たちの散歩道
+  Authorities: "WorldCat; VIAF: 175579535; BNF: 139114340"
+  Composer: Debussy, Claude
+  Opus/Catalogue NumberOp./Cat. No.: L 118
+  I-Catalogue NumberI-Cat. No.: ICD 75
+  Movements/SectionsMov'ts/Sec's: 3 songs
+  Year/Date of CompositionY/D of Comp.: 1904 (No.1); 1910 (2-3)
+  First Publication.: "1910"
+  Librettist: François Tristan L'Hermite (ca. 1601-1655)
+  Language: French
+  Dedication: Emma Claude Debussy (Emma Bardac)
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Early 20th century
+  Instrumentation: voice, piano
+  External Links: MusicBrainz
+categories:
+  - Recordings
+  - Cox, Nita/Translator
+  - Scores
+  - Debussy, Claude
+  - Early 20th century style
+  - Romantic
+  - Songs
+  - For voice, piano
+  - For voices with keyboard
+  - Scores featuring the voice
+  - Scores featuring the piano
+  - French language
+  - Works first published in 1910
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Tristan L'Hermite, François/Librettist
+  - Bardac, Emma/Dedicatee
+files:
+  - id: "84128"
+    tab: Score1
+    tabText: Scores
+    rating: 7.5
+    rateBy: 4
+    group: 0
+    title: Complete Score (scan)
+    path: (1862)Claude Debussy/(1904)Le promenoir des deux amants (Debussy,
+      Claude)/IMSLP84128-PMLP21475-Debussy_Le_Promenoir_de_deux_Amants_Durand_7819_scan.pdf
+    ext: pdf
+  - id: "733542"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 1. Auprès de cette grotte sombre
+    path: (1862)Claude Debussy/(1904)Le promenoir des deux amants (Debussy,
+      Claude)/IMSLP733542-PMLP21475-Claude_Debussy_-_Auprès_de_cette_grotte_sombre.flac
+    ext: flac

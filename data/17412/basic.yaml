@@ -1,0 +1,130 @@
+id: 17412
+title: Prelude and Fugue in B minor, BWV 893
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in B minor, BWV 893 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in B minor
+  Alternative. Title: ""
+  Name Translations: Präludium und Fuge h-Moll BWV 893; Prélude et fugue en si mineur (BWV 893)
+  Authorities: "WorldCat; Wikipedia; VIAF: 294149778; BNF: 140114368"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 893
+  I-Catalogue NumberI-Cat. No.: IJB 496
+  Key: B minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 sections:
+    Prelude
+    Fugue
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.24)
+  First Publication.: "1799 - London: Kollman"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Moshkin, Evgeniy E./Editor
+  - Rother, Kyle/Editor
+  - Wiebes, Jaap/Arranger
+  - Besseling, Peter/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 6 recorders (arr)
+  - Scores featuring the recorder (arr)
+  - For 6 players (arr)
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1799
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+  - B minor
+files:
+  - id: "02201"
+    tab: Score1
+    tabText: Scores
+    rating: 6.375
+    rateBy: 16
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B minor, BWV 893
+      (Bach, Johann Sebastian)/IMSLP02201-BWV0893.pdf
+    ext: pdf
+  - id: "485664"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 2
+    group: 1
+    title: Complete Score with fingering
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B minor, BWV 893
+      (Bach, Johann Sebastian)/IMSLP485664-PMLP786915-bwv_893_-_.pdf
+    ext: pdf
+  - id: "569792"
+    tab: Score1
+    tabText: Scores
+    rating: 4
+    rateBy: 1
+    group: 2
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B minor, BWV 893
+      (Bach, Johann Sebastian)/IMSLP569792-PMLP786915-bach_bwv_893.pdf
+    ext: pdf
+  - id: "503800"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B minor, BWV 893
+      (Bach, Johann Sebastian)/IMSLP503800-PMLP786915-Bach_BWV893.pdf
+    ext: pdf
+  - id: "738408"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B minor, BWV 893
+      (Bach, Johann Sebastian)/IMSLP738408-PMLP786915-Bach_WTK_2_24_BWV_893.pdf
+    ext: pdf
+  - id: "462464"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.7142857142857
+    rateBy: 7
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in B minor, BWV 893
+      (Bach, Johann
+      Sebastian)/IMSLP462464-PMLP05899-Book_2_-_Prelude_and_Fugue_in_B_min.mp3
+    ext: mp3

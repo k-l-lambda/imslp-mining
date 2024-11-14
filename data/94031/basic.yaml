@@ -1,0 +1,132 @@
+id: 94031
+title: Keyboard Sonata in D major, K.23
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in D major, K.23 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in D major
+  Alternative. Title: ""
+  Name Translations: sonate K. 23; Sonata K. 23; Sonate K. 23; Sonat K. 23
+  Authorities: "WorldCat; VIAF: 293454361; LCCN: no2007109528; GND: 300715765;
+    BNF: 139142345"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.23 ; L.411 ; P.79 ; CZ.29
+  I-Catalogue NumberI-Cat. No.: IDS 235
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: Allegro
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.23)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Höger, Anton/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 2 guitars (arr)
+  - For 2 players (arr)
+  - Scores featuring the guitar (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - D major
+files:
+  - id: "132958"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.23
+      (Scarlatti, Domenico)/IMSLP132958-WIMA.f3a9-Scarlatti_Sonate_K.23.pdf
+    ext: pdf
+  - id: "313842"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 1
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.23
+      (Scarlatti,
+      Domenico)/IMSLP313842-PMLP331970-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_23_K.23_scan.pdf
+    ext: pdf
+  - id: "626432"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.23
+      (Scarlatti, Domenico)/IMSLP626432-PMLP331970-Sonata_K._23_(as_L._411).pdf
+    ext: pdf
+  - id: "193048"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.23
+      (Scarlatti, Domenico)/IMSLP193048-WIMA.ba2d-Sca23Sco.pdf
+    ext: pdf
+  - id: "220538"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.23
+      (Scarlatti, Domenico)/IMSLP220538-PMLP331970-Scarlatti_-_Sonate_K.23.pdf
+    ext: pdf
+  - id: "279759"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.23
+      (Scarlatti, Domenico)/IMSLP279759-PMLP257047-Scarlatti_Sonate_K.23.mid
+    ext: mid
+  - id: "193056"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.23
+      (Scarlatti, Domenico)/IMSLP193056-WIMA.64fc-Sca23Sco.mp3
+    ext: mp3
+  - id: "193057"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.23
+      (Scarlatti, Domenico)/IMSLP193057-WIMA.febc-Sca23Sco.mid
+    ext: mid

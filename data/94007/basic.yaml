@@ -1,0 +1,116 @@
+id: 94007
+title: Keyboard Sonata in C minor, K.22
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in C minor, K.22 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in C minor
+  Alternative. Title: ""
+  Name Translations: Sonate K. 22; Sonata K. 22; Sonat K. 22
+  Authorities: "GND: 1060125927"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.22 ; L.360 ; P.78 ; CZ.28
+  I-Catalogue NumberI-Cat. No.: IDS 208
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: Allegro
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.22)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - C minor
+files:
+  - id: "132957"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.22
+      (Scarlatti, Domenico)/IMSLP132957-WIMA.408d-Scarlatti_Sonate_K.22.pdf
+    ext: pdf
+  - id: "313840"
+    tab: Score1
+    tabText: Scores
+    rating: 7.3333333333333
+    rateBy: 3
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.22
+      (Scarlatti,
+      Domenico)/IMSLP313840-PMLP331956-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_22_K.22_scan.pdf
+    ext: pdf
+  - id: "626431"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.22
+      (Scarlatti, Domenico)/IMSLP626431-PMLP331956-Sonata_K._22_(as_L._360).pdf
+    ext: pdf
+  - id: "193035"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.22
+      (Scarlatti, Domenico)/IMSLP193035-WIMA.ec9e-Sca22Sco.pdf
+    ext: pdf
+  - id: "279758"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.22
+      (Scarlatti, Domenico)/IMSLP279758-PMLP257047-Scarlatti_Sonate_K.22.mid
+    ext: mid
+  - id: "193043"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.22
+      (Scarlatti, Domenico)/IMSLP193043-WIMA.022c-Sca22Sco.mp3
+    ext: mp3
+  - id: "193044"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.22
+      (Scarlatti, Domenico)/IMSLP193044-WIMA.2dfd-Sca22Sco.mid
+    ext: mid

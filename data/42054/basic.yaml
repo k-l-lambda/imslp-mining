@@ -1,0 +1,84 @@
+id: 42054
+title: Waltz in E-flat major, B.46
+author: Chopin, Frédéric
+url: https://imslp.org/wiki/Waltz in E-flat major, B.46 (Chopin, Frédéric)
+meta:
+  Work Title: Waltz in E-flat
+  Alternative. Title: ""
+  Name Translations: Waltz No. 17 in E-flat major, Op. posth.; Valzer in mi
+    bemolle maggiore B. 46; 왈츠 17번 내림마장조
+  Name Aliases: 왈츠 17번 내림 E장조; 왈츠 17번 내림E장조; 왈츠 17번 내림 마장조
+  Composer: Chopin, Frédéric
+  Opus/Catalogue NumberOp./Cat. No.: B.46 ; Op.P1-14
+  I-Catalogue NumberI-Cat. No.: IFC 116
+  Key: E-flat major
+  Movements/SectionsMov'ts/Sec's: Waltz
+  Year/Date of CompositionY/D of Comp.: 1829-1830
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: All Music Guide
+categories:
+  - Gurevich, Olga/Performer
+  - Recordings
+  - Paderewski, Ignacy Jan/Editor
+  - Bronarski, Ludwik/Editor
+  - Turczyński, Józef/Editor
+  - Scores published by Polskie Wydawnictwo Muzyczne
+  - Pages with items from Chopin Works PWM
+  - Zimmermann, Ewald/Editor
+  - Scores published by G. Henle Verlag
+  - Scores
+  - Chopin, Frédéric
+  - Romantic style
+  - Romantic
+  - Waltzes
+  - Dances
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - E-flat major
+files:
+  - id: "12513"
+    tab: Score1
+    tabText: Scores
+    rating: 7.1111111111111
+    rateBy: 9
+    group: 0
+    title: Complete Score
+    path: (1810)Frédéric Chopin/(1829)Waltz in E-flat major, B.46 (Chopin,
+      Frédéric)/IMSLP12513-Waltz_nr.17_E-flat-major_Op.posth..pdf
+    ext: pdf
+  - id: "71261"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 2
+    group: 1
+    title: Complete Score (scan)
+    path: (1810)Frédéric Chopin/(1829)Waltz in E-flat major, B.46 (Chopin,
+      Frédéric)/IMSLP71261-PMLP30275-Chopin_Walzer_Henle_Urtext_P1_14_scan.pdf
+    ext: pdf
+  - id: "102316"
+    tab: Score1
+    tabText: Scores
+    rating: 4.8571428571429
+    rateBy: 14
+    group: 2
+    title: Complete Score (scan)
+    path: (1810)Frédéric Chopin/(1829)Waltz in E-flat major, B.46 (Chopin,
+      Frédéric)/IMSLP102316-PMLP30275-Chopin_Werke_Paderewski_09_Walzer_239_17_Es-dur_scan.pdf
+    ext: pdf
+  - id: "473819"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Performance
+    path: (1810)Frédéric Chopin/(1829)Waltz in E-flat major, B.46 (Chopin,
+      Frédéric)/IMSLP473819-PMLP30275-Waltz_B.46_in_E_flat_major.mp3
+    ext: mp3

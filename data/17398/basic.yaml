@@ -1,0 +1,113 @@
+id: 17398
+title: Prelude and Fugue in E minor, BWV 879
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in E minor, BWV 879 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in E minor
+  Alternative. Title: ""
+  Name Translations: Prélude et fugue en mi mineur (BWV 879); Präludium und Fuge e-moll BWV 879
+  Authorities: "WorldCat; VIAF: 317087308; GND: 1076375987; BNF: 15085108r"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 879
+  I-Catalogue NumberI-Cat. No.: IJB 526
+  Key: E minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Prelude -
+    Fugue
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.10)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: clavier
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (complete WTC)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Moshkin, Evgeniy E./Editor
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - E minor
+files:
+  - id: "755822"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score (with fingering and tempo indication)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E minor, BWV 879
+      (Bach, Johann Sebastian)/IMSLP755822-PMLP751224-bwv_879.pdf
+    ext: pdf
+  - id: "02187"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 4
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E minor, BWV 879
+      (Bach, Johann Sebastian)/IMSLP02187-BWV0879.pdf
+    ext: pdf
+  - id: "675678"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (Version A, London MS)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E minor, BWV 879
+      (Bach, Johann
+      Sebastian)/IMSLP675678-PMLP751224-Bach_-_WTC_2_(NBA),_Prelude_and_Fugue_10_(E_minor,_BWV_879)._Version_A_-_London_MS_(full-size).pdf
+    ext: pdf
+  - id: "737624"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E minor, BWV 879
+      (Bach, Johann Sebastian)/IMSLP737624-PMLP751224-Bach_WTK_2_10_BWV_879.pdf
+    ext: pdf
+  - id: "462472"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9.6666666666667
+    rateBy: 6
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E minor, BWV 879
+      (Bach, Johann
+      Sebastian)/IMSLP462472-PMLP05899-Book_2_-_Prelude_and_Fugue_in_E_min.mp3
+    ext: mp3

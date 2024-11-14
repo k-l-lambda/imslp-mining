@@ -1,0 +1,255 @@
+id: 27984
+title: Piano Sonata No.31, Op.110
+author: Beethoven, Ludwig van
+url: https://imslp.org/wiki/Piano Sonata No.31, Op.110 (Beethoven, Ludwig van)
+meta:
+  Work Title: Piano Sonata No.31
+  Alternative. Title: ""
+  Name Translations: Piano Sonata No. 31; Klaviersonate Nr. 31; Sonate pour piano
+    nº 31 de Beethoven; Sonata per pianoforte n. 31; ピアノソナタ第31番; Pianosonate nr.
+    31; Sonata para piano n.º 31; Соната для фортепиано № 31; Соната для
+    фортепіано № 31; Σονάτα για πιάνο No. 31; Pianoarentzako 31. Sonata; Sonata
+    per a piano núm. 31; 피아노 소나타 31번; 贝多芬31号钢琴奏鸣曲; سونات شماره ۳۱ پیانو (بتهوون)
+  Name Aliases: Piano Sonata No. 31 in A-flat Major, Op. 110; Piano Sonata in A
+    flat major, Op. 110; Pianosonate nr. 31 (Beethoven)
+  Authorities: "WorldCat; Wikipedia; LCCN: n84227022; GND: 300016883; BNF: 13908131m"
+  Composer: Beethoven, Ludwig van
+  Opus/Catalogue NumberOp./Cat. No.: Op.110
+  I-Catalogue NumberI-Cat. No.: ILB 192
+  Key: A-flat major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements:
+    Moderato cantabile molto espressivo (A♭ major)
+    Allegro molto (F minor)
+    Adagio ma non troppo (B♭ minor)
+    Arioso dolente (A♭ minor)
+    Fuga. Allegro ma non troppo (A♭ major)
+  Year/Date of CompositionY/D of Comp.: "1821"
+  First Publication.: "1822"
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia article
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Jank, Fritz/Performer
+  - Hess, Myra/Performer
+  - Recordings published in 1954
+  - Recordings published in the 20th century
+  - Recordings
+  - Scores from Staatsbibliothek zu Berlin
+  - Manuscripts from the 1800s
+  - Composers' holographs from the 1800s
+  - Pages with MssAu template
+  - Pages with RISM references
+  - Manuscripts
+  - Scores from CBN Polona
+  - Pages with First Editions
+  - Scores published by Diabelli
+  - Scores from the University of Louisville Music Library
+  - Scores published by Schlesinger
+  - Scores from the Gaylord Music Library
+  - Gaylord Files
+  - Scores from the Internet Archive
+  - Scores published by Tobias Haslinger
+  - Scores from the Royal College of Music Library of London
+  - Scores from Bayerische Staatsbibliothek
+  - Brahms, Johannes/Editor
+  - Pages with items from edition "Ludwig van Beethovens Werke"
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Bülow, Hans von/Editor
+  - Cornell, John Henry/Translator
+  - Scores published by Cotta
+  - Scores published by Schuberth & Co.
+  - Sibley Mirroring Project
+  - Schenker, Heinrich/Editor
+  - Scores published by Universal Edition
+  - Pages with links to Aerbook
+  - Scores published by Dover Publications
+  - Lamond, Frederic/Editor
+  - Scores published by Ullstein
+  - Scores with links to Sheet Music Plus
+  - Scores published by Muzgiz
+  - Casella, Alfredo/Editor
+  - Scores published by Ricordi
+  - Pauer, Max/Editor
+  - Martienssen, Carl Adolf/Editor
+  - Scores published by Edition Peters
+  - Schnabel, Artur/Editor
+  - Scores published by Curci
+  - Wallner, Bertha Antonia/Editor
+  - Scores published by G. Henle Verlag
+  - Urtext
+  - Choe, Joshua/Arranger
+  - Besseling, Peter/Arranger
+  - Nemerovsky, Aleksandr/Arranger
+  - Scores published by P. Jurgenson
+  - Scores
+  - Beethoven, Ludwig van
+  - Romantic style
+  - Classical
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1822
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A-flat major
+files:
+  - id: "502801"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig van)/IMSLP502801-PMLP1488-Beethoven_(ed._Schnabel)_.110.pdf
+    ext: pdf
+  - id: "728768"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 2
+    group: 1
+    title: Complete Score (600dpi)
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig van)/IMSLP728768-PMLP1488-Beeth_op110_EB4342.pdf
+    ext: pdf
+  - id: "396226"
+    tab: Score1
+    tabText: Scores
+    rating: 5.8095238095238
+    rateBy: 21
+    group: 2
+    title: 1. Moderato cantabile molto espressivoD-B
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig
+      van)/IMSLP396226-PMLP01488--Mus.ms.autogr._Beethoven,_L._v.,_Artaria_196-_Sonata_Op.110_01.pdf
+    ext: pdf
+  - id: "396225"
+    tab: Score1
+    tabText: Scores
+    rating: 7.4285714285714
+    rateBy: 7
+    group: 2
+    title: 2. Allegro moltoD-B
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig
+      van)/IMSLP396225-PMLP01488--Mus.ms.autogr._Beethoven,_L._v.,_Artaria_196-_Sonata_Op.110_02.pdf
+    ext: pdf
+  - id: "396224"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 8
+    group: 2
+    title: 3. Adagio ma non troppoD-B
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig
+      van)/IMSLP396224-PMLP01488--Mus.ms.autogr._Beethoven,_L._v.,_Artaria_196-_Sonata_Op.110_03.pdf
+    ext: pdf
+  - id: "396223"
+    tab: Score1
+    tabText: Scores
+    rating: 5.3846153846154
+    rateBy: 13
+    group: 2
+    title: 4. Fuga. Allegro ma non troppoD-B
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig
+      van)/IMSLP396223-PMLP01488--Mus.ms.autogr._Beethoven,_L._v.,_Artaria_196-_Sonata_Op.110_04.pdf
+    ext: pdf
+  - id: "243967"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 3
+    group: 0
+    title: Complete Score and PartsRUS-Mrg
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig van)/IMSLP243967-PMLP01488-Beet_arr_v_or_vc_p_op_110.pdf
+    ext: pdf
+  - id: "731029"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig van)/IMSLP731029-PMLP1488-Score_1_(etc).pdf
+    ext: pdf
+  - id: "770484"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig van)/IMSLP770484-PMLP1488-Beethoven_Sonate_Opus_110.pdf
+    ext: pdf
+  - id: "579928"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.25
+    rateBy: 8
+    group: 0
+    title: Complete Performance
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig van)/IMSLP579928-PMLP01488-Beethoven_Op110_complete.mp3
+    ext: mp3
+  - id: "706078"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 1
+    group: 1
+    title: Complete Performance
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig van)/IMSLP706078-PMLP1488-Beethoven_-_Sonata_No.31_(Op.110).mp3
+    ext: mp3
+  - id: "716349"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: 1. Moderato cantabile molto Espressivo
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig
+      van)/IMSLP716349-PMLP1488-02.01._Piano_Sonata_No._31_In_A-Flat,_Op._110_-_First_Movement-_Moderato_Cantabile_Molto_Espressivo.mp3
+    ext: mp3
+  - id: "716350"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: 2. Allegro molto
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig
+      van)/IMSLP716350-PMLP1488-02.02._Piano_Sonata_No._31_In_A-Flat,_Op._110_-_Second_Movement-_Allegro_Nolto.mp3
+    ext: mp3
+  - id: "716351"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: 3. Adagio, ma non troppo
+    path: (1770)Ludwig van Beethoven/(1821)Piano Sonata No.31, Op.110 (Beethoven,
+      Ludwig
+      van)/IMSLP716351-PMLP1488-02.03._Piano_Sonata_No._31_In_A-Flat,_Op._110_-_Third_Movement-_Adagio,_Ma_Non_Troppo-_Fugue.mp3
+    ext: mp3

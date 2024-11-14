@@ -1,0 +1,77 @@
+id: 105136
+title: "7"
+author: Liszt, Franz
+url: https://imslp.org/wiki/Hungarian Rhapsody No.7, S.244/7 (Liszt, Franz)
+meta:
+  Work Title: Hungarian Rhapsody No.7
+  Alternative. Title: Lento
+  Name Translations: Hungarian Rhapsody No. 7; Ungarische Rhapsodie Nr. 7;
+    第7號匈牙利狂想曲; უნგრული რაფსოდია №7
+  Authorities: Wikipedia
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.244/7 ; LW.A132/7
+  I-Catalogue NumberI-Cat. No.: IFL 169
+  Key: D minor
+  Movements/SectionsMov'ts/Sec's: 1 piece
+  Year/Date of CompositionY/D of Comp.: "1847"
+  First Publication.: "1853"
+  Dedication: Baron Fery Orczy
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Pages with First Editions
+  - Scores published by Tobias Haslinger
+  - Sauer, Emil von/Editor
+  - Scores published by Edition Peters
+  - Raabe, Peter/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Gárdonyi, Zoltán/Editor
+  - Szelényi, István/Editor
+  - Scores published by Editio Musica Budapest
+  - Urtext
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Rhapsodies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1853
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (BnF collection)
+  - D minor
+files:
+  - id: "300591"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 3
+    group: 0
+    title: Complete Score (scan)
+    path: (1811)Franz Liszt/(1847)7 (Liszt,
+      Franz)/IMSLP300591-PMLP12458-Liszt_Klavierwerke_Peters_Sauer_Band_1_07_Ungarische_Rhapsodie_No_7_scan.pdf
+    ext: pdf
+  - id: "183375"
+    tab: Score1
+    tabText: Scores
+    rating: 8.4
+    rateBy: 5
+    group: 1
+    title: Complete Score (S.244/7) (scan)
+    path: (1811)Franz Liszt/(1847)7 (Liszt,
+      Franz)/IMSLP183375-PMLP12458-Liszt_NLA_Serie_I_Band_03_07_Rhapsodie_hongroise_S.244_7_scan.pdf
+    ext: pdf
+  - id: "38992"
+    tab: Score1
+    tabText: Scores
+    rating: 7.25
+    rateBy: 4
+    group: 2
+    title: Complete Score (S.244/7)BSB
+    path: (1811)Franz Liszt/(1847)7 (Liszt,
+      Franz)/IMSLP38992-PMLP12458-Liszt_Musikalische_Werke_2_Band_12_123_Ungarische_Rhapsodie_7.pdf
+    ext: pdf

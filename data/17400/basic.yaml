@@ -1,0 +1,168 @@
+id: 17400
+title: Prelude and Fugue in F minor, BWV 881
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in F minor, BWV 881 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in F minor
+  Alternative. Title: ""
+  Name Translations: Prélude et fugue en fa mineur (BWV 881)
+  Authorities: "WorldCat; Wikipedia; VIAF: 189360368; GND: 300842023; BNF: 14008556n"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 881
+  I-Catalogue NumberI-Cat. No.: IJB 536
+  Key: F minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Prelude
+    Fugue
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.12)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Reale, Federica/Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Bartók, Béla/Editor
+  - Scores published by Editio Musica Budapest
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Peterpiano/Editor
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Sanchez, William R./Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - For violin, viola, cello (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the viola (arr)
+  - Scores featuring the cello (arr)
+  - For 3 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - F minor
+files:
+  - id: "504001"
+    tab: Score1
+    tabText: Scores
+    rating: 7.3333333333333
+    rateBy: 3
+    group: 0
+    title: 1. Prelude
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F minor, BWV 881
+      (Bach, Johann
+      Sebastian)/IMSLP504001-PMLP786971-12_--------_--_-----_BWV_881_-_------_---------.pdf
+    ext: pdf
+  - id: "504002"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: 2. Fugue
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F minor, BWV 881
+      (Bach, Johann
+      Sebastian)/IMSLP504002-PMLP786971-12_----_--_-----_-_------_---------.pdf
+    ext: pdf
+  - id: "569782"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 1
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F minor, BWV 881
+      (Bach, Johann Sebastian)/IMSLP569782-PMLP786971-bach_bwv_881.pdf
+    ext: pdf
+  - id: "02189"
+    tab: Score1
+    tabText: Scores
+    rating: 7.4
+    rateBy: 20
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F minor, BWV 881
+      (Bach, Johann Sebastian)/IMSLP02189-BWV0881.pdf
+    ext: pdf
+  - id: "737823"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F minor, BWV 881
+      (Bach, Johann Sebastian)/IMSLP737823-PMLP786971-Bach_WTK_2_12_BWV_881.pdf
+    ext: pdf
+  - id: "569487"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F minor, BWV 881
+      (Bach, Johann
+      Sebastian)/IMSLP569487-PMLP786971-Fugue_in_F_Minor,_BWV_881.pdf
+    ext: pdf
+  - id: "579665"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F minor, BWV 881
+      (Bach, Johann
+      Sebastian)/IMSLP579665-PMLP786971-Bach_Prelude_&_Fugue_no.12_BWV881.mp3
+    ext: mp3
+  - id: "462473"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.5555555555556
+    rateBy: 9
+    group: 1
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F minor, BWV 881
+      (Bach, Johann
+      Sebastian)/IMSLP462473-PMLP05899-Book_2_-_Prelude_and_Fugue_in_F_min.mp3
+    ext: mp3
+  - id: "80620"
+    tab: Audio1
+    tabText: Recordings
+    rating: 4.7272727272727
+    rateBy: 11
+    group: 2
+    title: 1. Prelude
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F minor, BWV 881
+      (Bach, Johann Sebastian)/IMSLP80620-PMLP05899-Prelude,_Bach.mp3
+    ext: mp3

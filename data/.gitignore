@@ -1,10 +1,10 @@
-*.yaml
-*.json
+#*.yaml
+#*.json
 *.log
 
 *.wav
-*.midi
-*.webp
+#*.midi
+#*.webp
 *.rvq
 
 *.csv

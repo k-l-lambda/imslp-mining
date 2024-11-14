@@ -1,0 +1,134 @@
+id: 94209
+title: Keyboard Sonata in F minor, K.19
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in F minor, K.19 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in F minor
+  Alternative. Title: ""
+  Name Translations: sonate K. 19; Sonata K. 19; Sonate K. 19; Sonat K. 19
+  Authorities: "WorldCat; VIAF: 293714791; LCCN: n2006097090; GND: 1060136996;
+    BNF: 13914188t"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.19 ; L.383 ; P.75 ; CZ.25
+  I-Catalogue NumberI-Cat. No.: IDS 439
+  Key: F minor
+  Movements/SectionsMov'ts/Sec's: Allegro
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.19)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by D. Rahter
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Höger, Anton/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 2 guitars (arr)
+  - For 2 players (arr)
+  - Scores featuring the guitar (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - F minor
+files:
+  - id: "313835"
+    tab: Score1
+    tabText: Scores
+    rating: 6.8
+    rateBy: 5
+    group: 0
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F minor, K.19
+      (Scarlatti,
+      Domenico)/IMSLP313835-PMLP330561-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_19_K.19_scan.pdf
+    ext: pdf
+  - id: "376343"
+    tab: Score1
+    tabText: Scores
+    rating: 3.4285714285714
+    rateBy: 7
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F minor, K.19
+      (Scarlatti,
+      Domenico)/IMSLP376343-PMLP330561-Sibley1802.22722_-_No._7_-_Sonata_in_F_minor,_K._19.pdf
+    ext: pdf
+  - id: "626428"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F minor, K.19
+      (Scarlatti, Domenico)/IMSLP626428-PMLP330561-Sonata_K._19_(as_L._383).pdf
+    ext: pdf
+  - id: "191998"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F minor, K.19
+      (Scarlatti, Domenico)/IMSLP191998-WIMA.dbc3-Sca19Sco.pdf
+    ext: pdf
+  - id: "220535"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 1
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F minor, K.19
+      (Scarlatti, Domenico)/IMSLP220535-PMLP330561-Scarlatti_-_Sonate_K.19.pdf
+    ext: pdf
+  - id: "279657"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F minor, K.19
+      (Scarlatti, Domenico)/IMSLP279657-PMLP257047-Scarlatti_Sonate_K.19.mid
+    ext: mid
+  - id: "192006"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F minor, K.19
+      (Scarlatti, Domenico)/IMSLP192006-WIMA.cdee-Sca19Sco.mp3
+    ext: mp3
+  - id: "192012"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in F minor, K.19
+      (Scarlatti, Domenico)/IMSLP192012-WIMA.ff02-Sca19Sco.mid
+    ext: mid

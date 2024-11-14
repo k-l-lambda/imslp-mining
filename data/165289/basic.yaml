@@ -1,0 +1,67 @@
+id: 165289
+title: Suite in C major
+author: Purcell, Henry
+url: https://imslp.org/wiki/Suite in C major (Purcell, Henry)
+meta:
+  Work Title: Suite in C major
+  Alternative. Title: ""
+  Composer: Purcell, Henry
+  I-Catalogue NumberI-Cat. No.: None [force assignment]
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Trumpet and organ
+categories:
+  - Rondeau, Michel/Performer
+  - WIMA files
+  - Recordings
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Purcell, Henry/Collections
+  - Baroque style
+  - Baroque
+  - Suites
+  - For trumpet, organ
+  - Scores featuring the trumpet
+  - Scores featuring the organ
+  - For 2 players
+files:
+  - id: "272337"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 5
+    rateBy: 4
+    group: 0
+    title: Complete Score, Trumpet part
+    path: (1948)Michel Rondeau/Suite in C major (Purcell,
+      Henry)/IMSLP272337-PMLP441891-Pur3Marchall.pdf
+    ext: pdf
+  - id: "272339"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.3333333333333
+    rateBy: 3
+    group: 0
+    title: I. Marche
+    path: (1948)Michel Rondeau/Suite in C major (Purcell,
+      Henry)/IMSLP272339-PMLP441891-1PurMarch.mp3
+    ext: mp3
+  - id: "272340"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: 2. Marche (Prelude)
+    path: (1948)Michel Rondeau/Suite in C major (Purcell,
+      Henry)/IMSLP272340-PMLP441891-2PurMarc.mp3
+    ext: mp3
+  - id: "272341"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 2
+    group: 0
+    title: 3. Marche (Z.631,No.5)
+    path: (1948)Michel Rondeau/Suite in C major (Purcell,
+      Henry)/IMSLP272341-PMLP441891-Pur3MaZ6315.mp3
+    ext: mp3

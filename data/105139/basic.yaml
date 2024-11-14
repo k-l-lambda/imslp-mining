@@ -1,0 +1,90 @@
+id: 105139
+title: "11"
+author: Liszt, Franz
+url: https://imslp.org/wiki/Hungarian Rhapsody No.11, S.244/11 (Liszt, Franz)
+meta:
+  Work Title: Hungarian Rhapsody No.11
+  Alternative. Title: Lento a capriccio
+  Name Translations: Hungarian Rhapsody No. 11; Ungarsk rapsodi nr. 11; Ungarische
+    Rhapsodie Nr. 11; 第11號匈牙利狂想曲; უნგრული რაფსოდია №11
+  Name Aliases: Hungarian Rhapsody No. 11 in A Minor, S. 244/11
+  Authorities: "WorldCat; Wikipedia; LCCN: no97073526"
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.244/11 ; LW.A132/11
+  I-Catalogue NumberI-Cat. No.: IFL 173
+  Key: A minor
+  Movements/SectionsMov'ts/Sec's: 1 piece
+  Year/Date of CompositionY/D of Comp.: "1847"
+  First Publication.: "1853"
+  Dedication: Baron Fery Orczy
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Recordings
+  - Pages with First Editions
+  - Scores published by Schlesinger
+  - Sauer, Emil von/Editor
+  - Scores published by Edition Peters
+  - Scores from Bayerische Staatsbibliothek
+  - Raabe, Peter/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Gárdonyi, Zoltán/Editor
+  - Szelényi, István/Editor
+  - Scores published by Editio Musica Budapest
+  - Urtext
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Rhapsodies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1853
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A minor
+files:
+  - id: "185481"
+    tab: Score1
+    tabText: Scores
+    rating: 7.5
+    rateBy: 4
+    group: 0
+    title: Complete Score (S.244/11) (scan)
+    path: (1811)Franz Liszt/(1847)11 (Liszt,
+      Franz)/IMSLP185481-PMLP12462-Liszt_NLA_Serie_I_Band_04_02_Rhapsodie_hongroise_S.244_11_scan.pdf
+    ext: pdf
+  - id: "45761"
+    tab: Score1
+    tabText: Scores
+    rating: 6.6666666666667
+    rateBy: 3
+    group: 1
+    title: Complete Score (S.244/11)D-Mbs
+    path: (1811)Franz Liszt/(1847)11 (Liszt,
+      Franz)/IMSLP45761-PMLP12462-Liszt_Musikalische_Werke_2_Band_12_127_Ungarische_Rhapsodie_11.pdf
+    ext: pdf
+  - id: "67724"
+    tab: Score1
+    tabText: Scores
+    rating: 5.2
+    rateBy: 5
+    group: 2
+    title: Complete Score (S.244/11)Juilliard
+    path: (1811)Franz Liszt/(1847)11 (Liszt, Franz)/IMSLP67724-PMLP136737-s244.11.pdf
+    ext: pdf
+  - id: "518193"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Recording
+    path: (1811)Franz Liszt/(1847)11 (Liszt,
+      Franz)/IMSLP518193-PMLP476418-Rhapsodie_hongroise,_S._244,_no._11_in_A_minor_(Franz_Liszt)_CND_30.mp3
+    ext: mp3

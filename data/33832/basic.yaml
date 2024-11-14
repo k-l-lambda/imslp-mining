@@ -1,0 +1,188 @@
+id: 33832
+title: Arabeske, Op.18
+author: Schumann, Robert
+url: https://imslp.org/wiki/Arabeske, Op.18 (Schumann, Robert)
+meta:
+  Work Title: Arabeske
+  Alternative. Title: Arabeske in C major
+  Name Translations: Arabeske op. 18; アラベスク (シューマン); Arabeszk; Arabesk i C-dur, op. 18
+  Name Aliases: Arabeske, Op. 18
+  Authorities: "WorldCat; Wikipedia; VIAF: 180961626; LCCN: nr92024576; GND:
+    300144474; BNF: 13918953b"
+  Composer: Schumann, Robert
+  Opus/Catalogue NumberOp./Cat. No.: Op.18
+  I-Catalogue NumberI-Cat. No.: IRS 9
+  Key: C major
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Biss, Jonathan/Performer
+  - Gardner Museum Recordings
+  - Novaes, Guiomar/Performer
+  - Recordings published in 1961
+  - Recordings published in the 20th century
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Schumann, Clara/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with items from Schumann's Werke
+  - Scores with links to Amazon
+  - Scores published by Edition Peters
+  - Scores published by Muzgiz
+  - Larocque, Jacques/Arranger
+  - Scores
+  - Schumann, Robert
+  - Romantic style
+  - Romantic
+  - Arabesques
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For flute, piano (arr)
+  - For 2 players (arr)
+  - Scores featuring the flute (arr)
+  - Scores featuring the piano (arr)
+  - For oboe, piano (arr)
+  - Scores featuring the oboe (arr)
+  - For clarinet, piano (arr)
+  - Scores featuring the clarinet (arr)
+  - For soprano saxophone, piano (arr)
+  - Scores featuring the soprano saxophone (arr)
+  - For alto saxophone, piano (arr)
+  - Scores featuring the alto saxophone (arr)
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C major
+files:
+  - id: "18714"
+    tab: Score1
+    tabText: Scores
+    rating: 5.9230769230769
+    rateBy: 26
+    group: 0
+    title: Complete Score
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP18714-Arabesque.pdf
+    ext: pdf
+  - id: "289794"
+    tab: Score1
+    tabText: Scores
+    rating: 5.5161290322581
+    rateBy: 62
+    group: 1
+    title: Complete Score (scan)
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP289794-PMLP02766-Schumann,_Robert_Werke_Breitkopf_Gregg_Serie_7_Band_3_RS_56_Op_18_scan.pdf
+    ext: pdf
+  - id: "109492"
+    tab: Score1
+    tabText: Scores
+    rating: 3.4285714285714
+    rateBy: 7
+    group: 2
+    title: Complete Scorenlib.org.ua
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP109492-PMLP02766-Arabeske_-_Opus_18.pdf
+    ext: pdf
+  - id: "282864"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6
+    rateBy: 2
+    group: 0
+    title: Piano Score (Flute or Oboe)
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP282864-PMLP02766-SCHUMANN-Arabeske_Op.18-flûte-pno_-_Piano_Score.pdf
+    ext: pdf
+  - id: "384676"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Piano Score (Clarinet in F, C and A♭ major)
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP384676-PMLP02766-SCHUMANN-Arabeske_Op.18-clar-pno_-_Piano_Score.pdf
+    ext: pdf
+  - id: "343407"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Piano Score (Soprano sax)
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP343407-PMLP02766-SCHUMANN-Arabeske_Op.18_=_sax_sop-pno_-_Piano_Score.pdf
+    ext: pdf
+  - id: "343413"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Piano Score (Alto sax)
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP343413-PMLP02766-MOZART-Sonate_K.304_-_sax_alt-pno_-_Piano_Score.pdf
+    ext: pdf
+  - id: "282865"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 2
+    group: 0
+    title: Flute or Oboe
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP282865-PMLP02766-SCHUMANN-Arabeske_Op.18-flûte-pno_-_Flute.pdf
+    ext: pdf
+  - id: "384677"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Clarinet (in F, C and A♭ major)
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP384677-PMLP02766-SCHUMANN-Arabeske_Op.18-clar-pno_-_Clarinet_part.pdf
+    ext: pdf
+  - id: "343408"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Soprano sax
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP343408-PMLP02766-SCHUMANN-Arabeske_Op.18_=_sax_sop-pno_-_Soprano_sax.pdf
+    ext: pdf
+  - id: "343414"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Alto sax
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP343414-PMLP02766-MOZART-Sonate_K.304_-_sax_alt-pno_-_Alto_sax.pdf
+    ext: pdf
+  - id: "707472"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9
+    rateBy: 2
+    group: 0
+    title: Complete Performance
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP707472-PMLP2766-Schumann_-_Arabeske,_Op.18.mp3
+    ext: mp3
+  - id: "78144"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.5
+    rateBy: 28
+    group: 1
+    title: Complete Performance
+    path: (1810)Robert Schumann/Arabeske, Op.18 (Schumann,
+      Robert)/IMSLP78144-PMLP02766-schumann_op18.mp3
+    ext: mp3

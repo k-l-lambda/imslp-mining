@@ -1,0 +1,98 @@
+id: 17361
+title: Prelude and Fugue in C minor, BWV 549
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in C minor, BWV 549 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in C minor
+  Alternative. Title: Arnstadt
+  Name Translations: Preludio e fuga, BWV 549; Preludio y fuga en do menor, BWV 549
+  Authorities: "BNF: 139096704"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 549 ; BC.J14
+  I-Catalogue NumberI-Cat. No.: IJB 508
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: 2 sections
+  Year/Date of CompositionY/D of Comp.: 1705, revised 1723?
+  First Publication.: |-
+    1845 or earlier
+    WorldCat
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ
+  External Links: Wikipedia article (Spanish)
+categories:
+  - Schopen, Michael/Performer
+  - Recordings
+  - Naumann, Ernst/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Kilian, Dietrich/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Ekman, Karl/Arranger
+  - Work pages with links to recordings
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - For piano (arr)
+  - For 1 player (arr)
+  - Scores featuring the piano (arr)
+  - Pages with arrangements
+  - Works first published in 1845
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C minor
+files:
+  - id: "558725"
+    tab: Score1
+    tabText: Scores
+    rating: 6.8
+    rateBy: 5
+    group: 0
+    title: Complete Score (600dpi)
+    path: (1685)Johann Sebastian Bach/(1705)Prelude and Fugue in C minor, BWV 549
+      (Bach, Johann
+      Sebastian)/IMSLP558725-PMLP153037-Bach,_Johann_Sebastian-Werke_(Breitkopf)-Band_38-BWV_549.pdf
+    ext: pdf
+  - id: "533122"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 5
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1705)Prelude and Fugue in C minor, BWV 549
+      (Bach, Johann
+      Sebastian)/IMSLP533122-PMLP153037-Bach-orgelwerke05_praeludium-et-fuga-C-minor_BWV549_pp30-34.pdf
+    ext: pdf
+  - id: "97344"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6.6666666666667
+    rateBy: 6
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1705)Prelude and Fugue in C minor, BWV 549
+      (Bach, Johann
+      Sebastian)/IMSLP97344-PMLP153037-Bach-Ekman_prelude-fugue_c-minor_BWV549.pdf
+    ext: pdf
+  - id: "390772"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 2
+    group: 0
+    title: Complete performance
+    path: (1685)Johann Sebastian Bach/(1705)Prelude and Fugue in C minor, BWV 549
+      (Bach, Johann Sebastian)/IMSLP390772-PMLP153037-bwv549.mp3
+    ext: mp3

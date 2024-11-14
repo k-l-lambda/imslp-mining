@@ -1,0 +1,112 @@
+id: 93829
+title: Keyboard Sonata in A major, K.65
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in A major, K.65 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in A major
+  Alternative. Title: ""
+  Name Translations: sonate K. 65; Sonata K. 65; Sonate K. 65; Sonat K. 65
+  Authorities: "WorldCat; VIAF: 294488827; BNF: 139146061"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.65 ; L.195 ; P.142
+  I-Catalogue NumberI-Cat. No.: IDS 12
+  Key: A major
+  Movements/SectionsMov'ts/Sec's: Allegro
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - A major
+files:
+  - id: "280716"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.65 (Scarlatti,
+      Domenico)/IMSLP280716-PMLP333800-Scarlatti_Sonate_K.65.pdf
+    ext: pdf
+  - id: "626855"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.65 (Scarlatti,
+      Domenico)/IMSLP626855-PMLP333800-Sonata_K._65_(as_L._195).pdf
+    ext: pdf
+  - id: "353919"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.65 (Scarlatti,
+      Domenico)/IMSLP353919-PMLP333800-Scarlatti,_Domenico-Sonates_Heugel_32.522_Volume_2_13_K.65_scan.pdf
+    ext: pdf
+  - id: "194474"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.65 (Scarlatti,
+      Domenico)/IMSLP194474-WIMA.00f8-Sca65Sco.pdf
+    ext: pdf
+  - id: "280717"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.65 (Scarlatti,
+      Domenico)/IMSLP280717-PMLP333800-Scarlatti_Sonate_K.65.mid
+    ext: mid
+  - id: "194482"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.65 (Scarlatti,
+      Domenico)/IMSLP194482-WIMA.0180-Sca65Sco.mp3
+    ext: mp3
+  - id: "194483"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in A major, K.65 (Scarlatti,
+      Domenico)/IMSLP194483-WIMA.373b-Sca65Sco.mid
+    ext: mid

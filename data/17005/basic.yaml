@@ -1,0 +1,102 @@
+id: 17005
+title: French Suite No.3 in B minor, BWV 814
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/French Suite No.3 in B minor, BWV 814 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: French Suite No.3 in B minor
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 814 ; BC L 21
+  I-Catalogue NumberI-Cat. No.: IJB 172
+  Key: B minor
+  Movements/SectionsMov'ts/Sec's: |-
+    6 movements:
+     Allemande
+     Courante
+     Sarabande
+     Menuet - Trio
+     Anglaise
+     Gigue
+  Year/Date of CompositionY/D of Comp.: "1722"
+  First Publication.: 1802-03 in 6 French Suites (No.3)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (French Suites)
+categories:
+  - Naumann, Ernst/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Scores from Bibliothèque nationale de France
+  - Pages with items from series "Album Musica"
+  - Scores published by Pierre Lafitte
+  - Bartoli, Russ/Arranger
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Suites
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For violin, cello (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the cello (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1802
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - B minor
+files:
+  - id: "499989"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 2
+    group: 0
+    title: "Version A: Later version (after Altnikol's copy)"
+    path: (1685)Johann Sebastian Bach/(1722)French Suite No.3 in B minor, BWV 814
+      (Bach, Johann
+      Sebastian)/IMSLP499989-PMLP772457-bachdiesechsfranzoesischesuite3BWV814fassungA.pdf
+    ext: pdf
+  - id: "499990"
+    tab: Score1
+    tabText: Scores
+    rating: 5.6666666666667
+    rateBy: 6
+    group: 0
+    title: "Version B: Earlier version"
+    path: (1685)Johann Sebastian Bach/(1722)French Suite No.3 in B minor, BWV 814
+      (Bach, Johann
+      Sebastian)/IMSLP499990-PMLP772457-bachdiesechsfranzoesischesuite3BWV814fassungB.pdf
+    ext: pdf
+  - id: "02102"
+    tab: Score1
+    tabText: Scores
+    rating: 5.625
+    rateBy: 48
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)French Suite No.3 in B minor, BWV 814
+      (Bach, Johann Sebastian)/IMSLP02102-BWV0814.pdf
+    ext: pdf
+  - id: "364105"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)French Suite No.3 in B minor, BWV 814
+      (Bach, Johann Sebastian)/IMSLP364105-PMLP05771-BWV814_-_Full_Score.pdf
+    ext: pdf

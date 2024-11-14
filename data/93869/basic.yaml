@@ -1,0 +1,105 @@
+id: 93869
+title: Keyboard Sonata in A minor, K.3
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in A minor, K.3 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in A minor
+  Alternative. Title: ""
+  Name Translations: Sonate K. 3; Sonata K. 3; Sonat K. 3
+  Authorities: "WorldCat; VIAF: 292516333; LCCN: n00067492; GND: 300748108; BNF: 13914311s"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.3 ; L.378 ; P.59 ; CZ.8
+  I-Catalogue NumberI-Cat. No.: IDS 58
+  Key: A minor
+  Movements/SectionsMov'ts/Sec's: "1"
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.3)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - A minor
+files:
+  - id: "132938"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A minor, K.3 (Scarlatti,
+      Domenico)/IMSLP132938-WIMA.aa90-Scarlatti_Sonate_K.3.pdf
+    ext: pdf
+  - id: "313333"
+    tab: Score1
+    tabText: Scores
+    rating: 6.4
+    rateBy: 5
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A minor, K.3 (Scarlatti,
+      Domenico)/IMSLP313333-PMLP330367-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_03_K.3_scan.pdf
+    ext: pdf
+  - id: "461755"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 1
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A minor, K.3 (Scarlatti,
+      Domenico)/IMSLP461755-PMLP330367-DScarlatti-K003-facsimile.pdf
+    ext: pdf
+  - id: "191825"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 5.5
+    rateBy: 4
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A minor, K.3 (Scarlatti,
+      Domenico)/IMSLP191825-WIMA.2f4e-ScaK3Sco.pdf
+    ext: pdf
+  - id: "279334"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A minor, K.3 (Scarlatti,
+      Domenico)/IMSLP279334-PMLP257047-Scarlatti_Sonate_K.3.mid
+    ext: mid
+  - id: "191833"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in A minor, K.3 (Scarlatti,
+      Domenico)/IMSLP191833-WIMA.4461-ScaK3Sco.mp3
+    ext: mp3

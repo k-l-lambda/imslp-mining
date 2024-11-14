@@ -1,0 +1,115 @@
+id: 5825
+title: Humoreske, Op.20
+author: Schumann, Robert
+url: https://imslp.org/wiki/Humoreske, Op.20 (Schumann, Robert)
+meta:
+  Work Title: Humoreske
+  Alternative. Title: ""
+  Name Translations: Humoreske (Schumann); Grande Humoresque; フモレスケ (シューマン); Юмореска
+  Name Aliases: Юмореска (Шуман); Humoreske, op. 20
+  Authorities: "WorldCat; Wikipedia; VIAF: 292916407; BNF: 13918956c"
+  Composer: Schumann, Robert
+  Opus/Catalogue NumberOp./Cat. No.: Op.20
+  I-Catalogue NumberI-Cat. No.: IRS 61
+  Key: B-flat major
+  Movements/SectionsMov'ts/Sec's: 7 sections
+  Year/Date of CompositionY/D of Comp.: "1839"
+  First Publication.: 1839 by Pietro Mechetti
+  Dedication: Frau Julie von Webenau, geb. Baroni-Cavalcabò (1813–1887)
+  Average DurationAvg. Duration: 25-30 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia articleA Study of Schumann's Humoreske (1942
+    dissertation, by B.M. Ferris)
+categories:
+  - Jumppanen, Paavali/Performer
+  - Gardner Museum Recordings
+  - Gerželj-Donaldson, Saša/Performer
+  - Richter, Sviatoslav/Performer
+  - Recordings published in 1958
+  - Recordings published in the 20th century
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Schumann, Clara/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with items from Schumann's Werke
+  - Scores with links to Amazon
+  - Alston, Ray/Editor
+  - Work pages with links to recordings
+  - Scores
+  - Schumann, Robert
+  - Romantic style
+  - Romantic
+  - Humoresques
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1839
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - B-flat major
+  - Baroni-Cavalcabó, Julie/Dedicatee
+files:
+  - id: "765545"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete score
+    path: (1810)Robert Schumann/(1839)Humoreske, Op.20 (Schumann,
+      Robert)/IMSLP765545-PMLP2779-Humoreske_Op_20.pdf
+    ext: pdf
+  - id: "289727"
+    tab: Score1
+    tabText: Scores
+    rating: 5.8181818181818
+    rateBy: 22
+    group: 1
+    title: Complete Score (scan)
+    path: (1810)Robert Schumann/(1839)Humoreske, Op.20 (Schumann,
+      Robert)/IMSLP289727-PMLP02779-Schumann,_Robert_Werke_Breitkopf_Gregg_Serie_7_Band_4_RS_58_Op_20_scan.pdf
+    ext: pdf
+  - id: "99339"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.8888888888889
+    rateBy: 18
+    group: 0
+    title: Complete Performance
+    path: (1810)Robert Schumann/(1839)Humoreske, Op.20 (Schumann,
+      Robert)/IMSLP99339-PMLP02779-Robert_Schumann_-_Humoreske_Op_20_-_Sasa_Gerzelj_Donaldson.mp3
+    ext: mp3
+  - id: "99311"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.1428571428571
+    rateBy: 7
+    group: 0
+    title: Complete Performance
+    path: (1810)Robert Schumann/(1839)Humoreske, Op.20 (Schumann,
+      Robert)/IMSLP99311-PMLP02779-Robert_Schumann_-_Humoreske_Op_20_-_Saša_Gerželj_Donaldson.ogg
+    ext: ogg
+  - id: "355602"
+    tab: Audio1
+    tabText: Recordings
+    rating: 4.6666666666667
+    rateBy: 3
+    group: 1
+    title: Complete Recording
+    path: (1810)Robert Schumann/(1839)Humoreske, Op.20 (Schumann,
+      Robert)/IMSLP355602-PMLP02779-schumann_op20_jumppanen.mp3
+    ext: mp3
+  - id: "720943"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Performance
+    path: (1810)Robert Schumann/(1839)Humoreske, Op.20 (Schumann,
+      Robert)/IMSLP720943-PMLP2779-01.01._Humoresque,_Op._20.mp3
+    ext: mp3

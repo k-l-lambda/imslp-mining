@@ -1,0 +1,157 @@
+id: 32614
+title: Keyboard Sonata in G minor, K.8
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in G minor, K.8 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in G minor
+  Alternative. Title: ""
+  Name Translations: sonate K. 8; Sonata K. 8; Sonate K. 8; Sonat K. 8
+  Authorities: "WorldCat; VIAF: 294380954; LCCN: no2004105914; GND: 1063988012;
+    BNF: 139146228"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.8 ; L.488 ; P.64 ; CZ.13
+  I-Catalogue NumberI-Cat. No.: IDS 540
+  Key: G minor
+  Movements/SectionsMov'ts/Sec's: 1 movement
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.8)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - Marlowe, Sylvia/Performer
+  - Recordings published in 1956
+  - Recordings published in the 20th century
+  - Scores from the Internet Archive
+  - WIMA files
+  - Recordings
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Peterpiano/Editor
+  - Gouin, Pierre/Arranger
+  - Rondeau, Michel/Arranger
+  - Beuming, Ben/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - Exercises
+  - Studies
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 violins, viola, cello (arr)
+  - For 4 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the viola (arr)
+  - Scores featuring the cello (arr)
+  - For 2 violins, viola, double bass (arr)
+  - Scores featuring the double bass (arr)
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For guitar (arr)
+  - Scores featuring the guitar (arr)
+  - For 1 player (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - G minor
+files:
+  - id: "313338"
+    tab: Score1
+    tabText: Scores
+    rating: 8.2857142857143
+    rateBy: 7
+    group: 0
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.8 (Scarlatti,
+      Domenico)/IMSLP313338-PMLP330426-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_08_K.8_scan.pdf
+    ext: pdf
+  - id: "469148"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 5
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.8 (Scarlatti,
+      Domenico)/IMSLP469148-PMLP330426-------_-_008_----_-----_-_------_---------.pdf
+    ext: pdf
+  - id: "133069"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 2
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.8 (Scarlatti,
+      Domenico)/IMSLP133069-WIMA.a6b4-Scarlatti_Sonate_K.8.pdf
+    ext: pdf
+  - id: "139354"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.8 (Scarlatti,
+      Domenico)/IMSLP139354-PMLP257047-Scarlatti_Sinfonia_Fuga.pdf
+    ext: pdf
+  - id: "191876"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.8 (Scarlatti,
+      Domenico)/IMSLP191876-WIMA.753c-ScaK8Sco.pdf
+    ext: pdf
+  - id: "563377"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.8 (Scarlatti,
+      Domenico)/IMSLP563377-PMLP330426-Domenico_Scarlatti_Sonata_K_8.pdf
+    ext: pdf
+  - id: "731104"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.8 (Scarlatti,
+      Domenico)/IMSLP731104-PMLP330426-02.03._Sonata_In_G_Minor_(L._488).mp3
+    ext: mp3
+  - id: "279421"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.8 (Scarlatti,
+      Domenico)/IMSLP279421-PMLP257047-Scarlatti_Sonate_K.8.mid
+    ext: mid
+  - id: "191884"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.8 (Scarlatti,
+      Domenico)/IMSLP191884-WIMA.4cf3-ScaK8Sco.mp3
+    ext: mp3

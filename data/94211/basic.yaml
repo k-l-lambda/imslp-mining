@@ -1,0 +1,113 @@
+id: 94211
+title: Keyboard Sonata in F minor, K.69
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in F minor, K.69 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in F minor
+  Alternative. Title: Sonata in F minor
+  Name Translations: sonate K. 69; Sonata K. 69; Sonate K. 69; Sonat K. 69
+  Authorities: "WorldCat; VIAF: 293512839; LCCN: no98056932; GND: 1111566631; BNF:
+    139146108"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.69 ; L.382 ; P.42 ; CZ.115
+  I-Catalogue NumberI-Cat. No.: IDS 441
+  Key: F minor
+  Movements/SectionsMov'ts/Sec's: (No Tempo)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - F minor
+files:
+  - id: "281024"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.69 (Scarlatti,
+      Domenico)/IMSLP281024-PMLP333847-Scarlatti_Sonate_K.69.pdf
+    ext: pdf
+  - id: "353923"
+    tab: Score1
+    tabText: Scores
+    rating: 4
+    rateBy: 2
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.69 (Scarlatti,
+      Domenico)/IMSLP353923-PMLP333847-Scarlatti,_Domenico-Sonates_Heugel_32.522_Volume_2_17_K.69_scan.pdf
+    ext: pdf
+  - id: "626858"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.69 (Scarlatti,
+      Domenico)/IMSLP626858-PMLP333847-Sonata_K._69_(as_L._382).pdf
+    ext: pdf
+  - id: "194518"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.69 (Scarlatti,
+      Domenico)/IMSLP194518-WIMA.969a-Scar69Sco.pdf
+    ext: pdf
+  - id: "281025"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.69 (Scarlatti,
+      Domenico)/IMSLP281025-PMLP333847-Scarlatti_Sonate_K.69.mid
+    ext: mid
+  - id: "194525"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.69 (Scarlatti,
+      Domenico)/IMSLP194525-WIMA.3ad6-Scar69Sco.mp3
+    ext: mp3
+  - id: "194526"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.69 (Scarlatti,
+      Domenico)/IMSLP194526-WIMA.043e-Scar69Sco.mid
+    ext: mid

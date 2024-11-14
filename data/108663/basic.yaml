@@ -1,0 +1,130 @@
+id: 108663
+title: Keyboard Sonata in C minor, Hob.XVI:20
+author: Haydn, Joseph
+url: https://imslp.org/wiki/Keyboard Sonata in C minor, Hob.XVI:20 (Haydn, Joseph)
+meta:
+  Work Title: Keyboard Sonata
+  Alternative. Title: Klaviersonate Nr.33
+  Name Translations: Piano Sonata Hob. XVI/20; Sonate pour piano nº 33 de Joseph
+    Haydn; Klaviersonate Nr. 33; ピアノソナタ第20番 (ハイドン)
+  Name Aliases: Klaviersonate Nr. 33 Hob.XVI:20 in c-Moll; Sonate in c-Moll;
+    Sonata in C minor
+  Authorities: "WorldCat; Wikipedia; VIAF: 293247559; BNF: 14796988z"
+  Composer: Haydn, Joseph
+  Opus/Catalogue NumberOp./Cat. No.: Hob.XVI:20 ; Op.30 No.6
+  I-Catalogue NumberI-Cat. No.: IJH 265
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements:
+    Moderato (C minor)
+    Andante con moto (A♭ major)
+    Finale. Allegro (C minor)
+  Year/Date of CompositionY/D of Comp.: 1771 ca
+  First Publication.: "1780"
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: piano or harpsichord
+categories:
+  - Gardner Museum Recordings
+  - Richter, Sviatoslav/Performer
+  - Recordings published in 1961
+  - Recordings published in the 20th century
+  - Recordings
+  - Scores from the Internet Archive
+  - Scores published by Breitkopf und Härtel
+  - Scores from the Drs. Whitby Music Collection
+  - Roitzsch, Friedrich August/Editor
+  - Scores published by Edition Peters
+  - Päsler, Karl/Editor
+  - Martienssen, Carl Adolf/Editor
+  - Landon, Christa/Editor
+  - Scores published by Wiener Urtext Edition
+  - Urtext
+  - Work pages with links to recordings
+  - Scores
+  - Haydn, Joseph
+  - Classical style
+  - Classical
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For harpsichord
+  - Scores featuring the harpsichord
+  - Works first published in 1780
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C minor
+files:
+  - id: "371124"
+    tab: Score1
+    tabText: Scores
+    rating: 6.9090909090909
+    rateBy: 11
+    group: 0
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1771)Keyboard Sonata in C minor, Hob.XVI20 (Haydn,
+      Joseph)/IMSLP371124-PMLP01676-Haydn_-_Sonata_No._33,_Hob._XVI_20_(Wiener_Urtext).pdf
+    ext: pdf
+  - id: "70231"
+    tab: Score1
+    tabText: Scores
+    rating: 6.4666666666667
+    rateBy: 15
+    group: 1
+    title: Complete Score (scan)
+    path: (1732)Joseph Haydn/(1771)Keyboard Sonata in C minor, Hob.XVI20 (Haydn,
+      Joseph)/IMSLP70231-PMLP01684-Haydn_Sonaten_Klavier_Band_3_25_Peters_11261_scan.pdf
+    ext: pdf
+  - id: "109686"
+    tab: Score1
+    tabText: Scores
+    rating: 6.3636363636364
+    rateBy: 22
+    group: 2
+    title: Complete ScoreUS-PRV
+    path: (1732)Joseph Haydn/(1771)Keyboard Sonata in C minor, Hob.XVI20 (Haydn,
+      Joseph)/IMSLP109686-PMLP01676-Haydn-Piano_Sonate_No33-XVI20-Roitzsch.pdf
+    ext: pdf
+  - id: "367451"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 3
+    group: 0
+    title: Complete Performance
+    path: (1732)Joseph Haydn/(1771)Keyboard Sonata in C minor, Hob.XVI20 (Haydn,
+      Joseph)/IMSLP367451-PMLP01676-haydn_sonata_no33_chan.mp3
+    ext: mp3
+  - id: "720595"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: 1. Allegro moderato
+    path: (1732)Joseph Haydn/(1771)Keyboard Sonata in C minor, Hob.XVI20 (Haydn,
+      Joseph)/IMSLP720595-PMLP1676-01.01._Sonata_No._20_In_C_Minor-_I._Allegro_Moderato.mp3
+    ext: mp3
+  - id: "720596"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: 2. Andante con moto
+    path: (1732)Joseph Haydn/(1771)Keyboard Sonata in C minor, Hob.XVI20 (Haydn,
+      Joseph)/IMSLP720596-PMLP1676-01.02._Sonata_No._20_In_C_Minor-_II._Andante_Con_Moto.mp3
+    ext: mp3
+  - id: "720597"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: 3. Finale. Allegro
+    path: (1732)Joseph Haydn/(1771)Keyboard Sonata in C minor, Hob.XVI20 (Haydn,
+      Joseph)/IMSLP720597-PMLP1676-01.03._Sonata_No._20_In_C_Minor-_III._Finale-_Allegro.mp3
+    ext: mp3

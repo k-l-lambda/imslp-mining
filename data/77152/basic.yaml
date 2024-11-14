@@ -1,0 +1,115 @@
+id: 77152
+title: 9 Variations on a Minuet by Duport, K.573
+author: Mozart, Wolfgang Amadeus
+url: https://imslp.org/wiki/9 Variations on a Minuet by Duport, K.573 (Mozart,
+  Wolfgang Amadeus)
+meta:
+  Work Title: 9 Variations on a Minuet by Duport
+  Alternative. Title: Variazionen über einen Menuett vom Duport ; Duport
+    Variationen ; Duport Variations
+  Name Translations: Neuf variations sur un Menuet de Duport; Variations on a
+    Minuet by Duport, K. 573
+  Name Aliases: KV 573; Nine Variations on a Minuet by Duport, K. 573
+  Authorities: "WorldCat; VIAF: 185894562; LCCN: n83153251; GND: 30011186X; BNF: 13923260p"
+  Composer: Mozart, Wolfgang Amadeus
+  Opus/Catalogue NumberOp./Cat. No.: K.573
+  I-Catalogue NumberI-Cat. No.: IWM 618
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: "10"
+  Year/Date of CompositionY/D of Comp.: "1789"
+  First Publication.: 1792 (Artaria) or earlier
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: piano
+  External Links: NMA scoreNMA report (German)
+  Extra Locations: Also in collection Variations pour le Piano
+  Extra Information: Based on the final minuet from Cello Sonata Op. 4, No. 6 by
+    Jean-Pierre Duport (1741–1818).
+categories:
+  - Epstein, Estelinha/Performer
+  - Recordings published in 1958
+  - Recordings published in the 20th century
+  - Recordings published in 1965
+  - Haskil, Clara/Performer
+  - Recordings
+  - Scores from Łódź University Library
+  - Goldschmidt, Otto/Editor
+  - Joachim, Joseph/Editor
+  - Reinecke, Carl/Editor
+  - Rudorff, Ernst/Editor
+  - Waldersee, Paul/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores published by Muzgiz
+  - Fischer, Kurt von/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Pages with files from the Neue Mozart-Ausgabe
+  - Scores
+  - Mozart, Wolfgang Amadeus
+  - Classical style
+  - Classical
+  - Variations
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1792
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - D major
+files:
+  - id: "190339"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 8
+    group: 0
+    title: Complete Score (scan)
+    path: (1756)Wolfgang Amadeus Mozart/(1789)9 Variations on a Minuet by Duport,
+      K.573 (Mozart, Wolfgang
+      Amadeus)/IMSLP190339-PMLP57127-Mozart,_Wofgang_Amadeus-NMA_09_26_13_KV_573_scan.pdf
+    ext: pdf
+  - id: "86728"
+    tab: Score1
+    tabText: Scores
+    rating: 6.4
+    rateBy: 5
+    group: 1
+    title: Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1789)9 Variations on a Minuet by Duport,
+      K.573 (Mozart, Wolfgang Amadeus)/IMSLP86728-PMLP57127-moz-var-10.pdf
+    ext: pdf
+  - id: "25460"
+    tab: Score1
+    tabText: Scores
+    rating: 5.6428571428571
+    rateBy: 14
+    group: 2
+    title: Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1789)9 Variations on a Minuet by Duport,
+      K.573 (Mozart, Wolfgang
+      Amadeus)/IMSLP25460-PMLP57127-Mozart_9_Variations_K573.pdf
+    ext: pdf
+  - id: "704823"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Performance
+    path: (1756)Wolfgang Amadeus Mozart/(1789)9 Variations on a Minuet by Duport,
+      K.573 (Mozart, Wolfgang
+      Amadeus)/IMSLP704823-PMLP57127-07_-_Tema_e_Variações_sobre_um_Minueto_de_Duport_K573_-_Wolfgang_Amadeus_Mozart.mp3
+    ext: mp3
+  - id: "527066"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Recording
+    path: (1756)Wolfgang Amadeus Mozart/(1789)9 Variations on a Minuet by Duport,
+      K.573 (Mozart, Wolfgang
+      Amadeus)/IMSLP527066-PMLP57127-Nine_Variations_in_D,_K_573_on_a_minuet_by_J.P._Duport_(Wolfgang_Amadeus_Mozart)_Philips_1954.MP3
+    ext: mp3

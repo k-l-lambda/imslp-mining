@@ -1,0 +1,140 @@
+id: 17408
+title: Prelude and Fugue in A minor, BWV 889
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in A minor, BWV 889 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in A minor
+  Alternative. Title: Praeludium et Fuga
+  Name Translations: Präludium und Fuge a-Moll BWV 889; Prélude et fugue en la mineur (BWV 889)
+  Authorities: "WorldCat; VIAF: 293505058; GND: 1076376193; BNF: 14815341x"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 889
+  I-Catalogue NumberI-Cat. No.: IJB 487
+  Key: A minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.20)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (WTC)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - WIMA files
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Hamon, Pierre/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - For 2 saxophones (arr)
+  - Scores featuring the saxophone (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A minor
+files:
+  - id: "569789"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A minor, BWV 889
+      (Bach, Johann Sebastian)/IMSLP569789-PMLP787005-bach_bwv_889.pdf
+    ext: pdf
+  - id: "675656"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Complete Score (Version A, London MS)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A minor, BWV 889
+      (Bach, Johann
+      Sebastian)/IMSLP675656-PMLP787005-Bach_-_WTC_2_(NBA),_Prelude_and_Fugue_20_(A_minor,_BWV_889)._Version_A_-_London_MS_(full-size).pdf
+    ext: pdf
+  - id: "02197"
+    tab: Score1
+    tabText: Scores
+    rating: 6.6
+    rateBy: 20
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A minor, BWV 889
+      (Bach, Johann Sebastian)/IMSLP02197-BWV0889.pdf
+    ext: pdf
+  - id: "738318"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A minor, BWV 889
+      (Bach, Johann Sebastian)/IMSLP738318-PMLP787005-Bach_WTK_2_20_BWV_889.pdf
+    ext: pdf
+  - id: "199813"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A minor, BWV 889
+      (Bach, Johann Sebastian)/IMSLP199813-WIMA.5ca4-prelude_n_20_J_S_Bach.pdf
+    ext: pdf
+  - id: "462462"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9
+    rateBy: 6
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A minor, BWV 889
+      (Bach, Johann
+      Sebastian)/IMSLP462462-PMLP05899-Book_2_-_Prelude_and_Fugue_in_A_min.mp3
+    ext: mp3
+  - id: "199821"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 1. Praeludium
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in A minor, BWV 889
+      (Bach, Johann
+      Sebastian)/IMSLP199821-WIMA.c9c9-Bach-Prelude-No-20-sax-duo2.mid
+    ext: mid

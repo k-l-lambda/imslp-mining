@@ -1,0 +1,128 @@
+id: 17406
+title: Prelude and Fugue in G-sharp minor, BWV 887
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in G-sharp minor, BWV 887 (Bach,
+  Johann Sebastian)
+meta:
+  Work Title: Prelude and Fugue in G-sharp minor
+  Alternative. Title: ""
+  Name Translations: Präludium und Fuge gis-Moll BWV 887; Prélude et fugue en sol
+    dièse mineur (BWV 887)
+  Authorities: "WorldCat; Wikipedia; VIAF: 317087319; GND: 1076376150; BNF: 139934313"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 887
+  I-Catalogue NumberI-Cat. No.: IJB 550
+  Key: G-sharp minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.18)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (WTC)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - G-sharp minor
+files:
+  - id: "02195"
+    tab: Score1
+    tabText: Scores
+    rating: 5.7
+    rateBy: 10
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G-sharp minor, BWV
+      887 (Bach, Johann Sebastian)/IMSLP02195-BWV0887.pdf
+    ext: pdf
+  - id: "569786"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G-sharp minor, BWV
+      887 (Bach, Johann Sebastian)/IMSLP569786-PMLP787003-bach_bwv_887.pdf
+    ext: pdf
+  - id: "675660"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (Version A, London MS)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G-sharp minor, BWV
+      887 (Bach, Johann
+      Sebastian)/IMSLP675660-PMLP787003-Bach_-_WTC_2_(NBA),_Prelude_and_Fugue_18_(G-sharp_minor,_BWV_887)._Version_A_-_London_MS_(full-size).pdf
+    ext: pdf
+  - id: "738292"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G-sharp minor, BWV
+      887 (Bach, Johann
+      Sebastian)/IMSLP738292-PMLP787003-Bach_WTK_2_18_BWV_887.pdf
+    ext: pdf
+  - id: "738295"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score (G minor)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G-sharp minor, BWV
+      887 (Bach, Johann
+      Sebastian)/IMSLP738295-PMLP787003-Bach_WTK_2_18_BWV_887_g.pdf
+    ext: pdf
+  - id: "462275"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 8
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in G-sharp minor, BWV
+      887 (Bach, Johann
+      Sebastian)/IMSLP462275-PMLP05899-Bach_-_Prelude_&_Fugue_in_G-_Min_Book_2.mp3
+    ext: mp3

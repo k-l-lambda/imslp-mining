@@ -1,0 +1,150 @@
+id: 39965
+title: Piano Sonata in A major, D.664
+author: Schubert, Franz
+url: https://imslp.org/wiki/Piano Sonata in A major, D.664 (Schubert, Franz)
+meta:
+  Work Title: Piano Sonata in A major
+  Alternative. Title: Piano Sonata No.10; Piano Sonata No.13
+  Name Translations: Sonate pour piano nº 13 de Schubert; Piano Sonata in A major,
+    D. 664; ピアノソナタ第13番 (シューベルト); Sonata per pianoforte n. 13; Sonata per a piano
+    núm. 13 en la major, D 664; 钢琴奏鸣曲奏鸣曲（A大调，D 664）
+  Name Aliases: Sonate pour piano n° 13 (Schubert); Sonate pour piano n° 13 de
+    schubert; Sonate pour piano no 13 de Schubert; Sonate pour piano n° 13 de
+    Schubert
+  Authorities: "WorldCat; Wikipedia; LCCN: n83175857"
+  Composer: Schubert, Franz
+  Opus/Catalogue NumberOp./Cat. No.: D.664 (published as Op.posth.120)
+  I-Catalogue NumberI-Cat. No.: IFS 586
+  Key: A major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements:
+    Allegro moderato (A major)
+    Andante (D major)
+    Allegro (A major)
+  Year/Date of CompositionY/D of Comp.: 1819 or 1825
+  First Publication.: 1829 – J. Czerny
+  Average DurationAvg. Duration: 24 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia article
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Pitman, Paul/Performer
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Epstein, Julius/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Mies, Paul/Editor
+  - Scores published by G. Henle Verlag
+  - Urtext
+  - Choe, Joshua/Arranger
+  - Scores
+  - Schubert, Franz
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Works first published in 1829
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A major
+files:
+  - id: "374197"
+    tab: Score1
+    tabText: Scores
+    rating: 6.4347826086957
+    rateBy: 23
+    group: 0
+    title: Complete Score
+    path: (1797)Franz Schubert/(1819)Piano Sonata in A major, D.664 (Schubert,
+      Franz)/IMSLP374197-PMLP02034-Schubert_-_Sonata_in_A_major,_D._664_(Henle).pdf
+    ext: pdf
+  - id: "55379"
+    tab: Score1
+    tabText: Scores
+    rating: 6.3387096774194
+    rateBy: 62
+    group: 1
+    title: Complete ScoreD-Mbs
+    path: (1797)Franz Schubert/(1819)Piano Sonata in A major, D.664 (Schubert,
+      Franz)/IMSLP55379-PMLP02034-Schubert_Werke_Breitkopf_Serie_10_No_102_Op_120.pdf
+    ext: pdf
+  - id: "734254"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1797)Franz Schubert/(1819)Piano Sonata in A major, D.664 (Schubert,
+      Franz)/IMSLP734254-PMLP2034-Score_1_(etc).pdf
+    ext: pdf
+  - id: "362568"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.3571428571429
+    rateBy: 28
+    group: 0
+    title: I. Allegro moderato
+    path: (1797)Franz Schubert/(1819)Piano Sonata in A major, D.664 (Schubert,
+      Franz)/IMSLP362568-PMLP02034-Sonata_Op120_-_Schubert_!st_Movt.mp3
+    ext: mp3
+  - id: "362569"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.8571428571429
+    rateBy: 14
+    group: 0
+    title: II. Andante
+    path: (1797)Franz Schubert/(1819)Piano Sonata in A major, D.664 (Schubert,
+      Franz)/IMSLP362569-PMLP02034-Sonata_Op120_-_Schubert_2nd_Movt.mp3
+    ext: mp3
+  - id: "362570"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.1111111111111
+    rateBy: 18
+    group: 0
+    title: III. Allegro
+    path: (1797)Franz Schubert/(1819)Piano Sonata in A major, D.664 (Schubert,
+      Franz)/IMSLP362570-PMLP02034-Sonata_Op120_-_Schubert_3rd_Movt.mp3
+    ext: mp3
+  - id: "246994"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 19
+    group: 1
+    title: I. Allegro moderato
+    path: (1797)Franz Schubert/(1819)Piano Sonata in A major, D.664 (Schubert,
+      Franz)/IMSLP246994-PMLP02034-Sonata_A_Major,_D._664_-_I._Allegro_moderato.mp3
+    ext: mp3
+  - id: "246995"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.4444444444444
+    rateBy: 9
+    group: 1
+    title: II. Andante
+    path: (1797)Franz Schubert/(1819)Piano Sonata in A major, D.664 (Schubert,
+      Franz)/IMSLP246995-PMLP02034-Sonata_A_Major,_D._664_-_II._Andante.mp3
+    ext: mp3
+  - id: "246996"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.75
+    rateBy: 8
+    group: 1
+    title: III. Allegro
+    path: (1797)Franz Schubert/(1819)Piano Sonata in A major, D.664 (Schubert,
+      Franz)/IMSLP246996-PMLP02034-Sonata_A_Major,_D._664_-_III._Allegro.mp3
+    ext: mp3

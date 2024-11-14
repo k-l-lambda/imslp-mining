@@ -1,0 +1,176 @@
+id: 17402
+title: Prelude and Fugue in F-sharp minor, BWV 883
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in F-sharp minor, BWV 883 (Bach,
+  Johann Sebastian)
+meta:
+  Work Title: Prelude and Fugue in F-sharp minor
+  Alternative. Title: ""
+  Name Translations: Präludium und Fuge fis-Moll BWV 883 (Das Wohltemperierte
+    Klavier, II. Teil); Prélude et fugue en fa dièse mineur (BWV 883)
+  Authorities: "WorldCat; VIAF: 294509162; GND: 300842015; BNF: 139099552"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 883
+  I-Catalogue NumberI-Cat. No.: IJB 540
+  Key: F-sharp minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.14)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (complete WTC)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Moshkin, Evgeniy E./Performer
+  - Rondeau, Michel/Performer
+  - WIMA files
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Moshkin, Evgeniy E./Editor
+  - Rother, Kyle/Editor
+  - Rondeau, Michel/Arranger
+  - Besseling, Peter/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 trumpets, 2 trombones (arr)
+  - Scores featuring the trumpet (arr)
+  - Scores featuring the trombone (arr)
+  - For 4 players (arr)
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - F-sharp minor
+files:
+  - id: "564004"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score (with fingering and tempo indication)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F-sharp minor, BWV
+      883 (Bach, Johann Sebastian)/IMSLP564004-PMLP738833-bwv_883.pdf
+    ext: pdf
+  - id: "02191"
+    tab: Score1
+    tabText: Scores
+    rating: 7.0769230769231
+    rateBy: 13
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F-sharp minor, BWV
+      883 (Bach, Johann Sebastian)/IMSLP02191-BWV0883.pdf
+    ext: pdf
+  - id: "569783"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 2
+    group: 2
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F-sharp minor, BWV
+      883 (Bach, Johann Sebastian)/IMSLP569783-PMLP738833-bach_bwv_883.pdf
+    ext: pdf
+  - id: "454590"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score and Parts
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F-sharp minor, BWV
+      883 (Bach, Johann
+      Sebastian)/IMSLP454590-PMLP738833-E213440_etc-WIMA.75ba-P14Sco.pdf
+    ext: pdf
+  - id: "738035"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F-sharp minor, BWV
+      883 (Bach, Johann
+      Sebastian)/IMSLP738035-PMLP738833-Bach_WTK_2_14_BWV_883.pdf
+    ext: pdf
+  - id: "564005"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Recording (Harpsichord)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F-sharp minor, BWV
+      883 (Bach, Johann Sebastian)/IMSLP564005-PMLP738833-bwv883.ogg
+    ext: ogg
+  - id: "462474"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9.6
+    rateBy: 5
+    group: 1
+    title: Complete Recording (Piano)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F-sharp minor, BWV
+      883 (Bach, Johann
+      Sebastian)/IMSLP462474-PMLP05899-Book_2_-_Prelude_and_Fugue_in_F-_min.mp3
+    ext: mp3
+  - id: "213452"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.5
+    rateBy: 4
+    group: 2
+    title: Prelude in F-sharp minor
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F-sharp minor, BWV
+      883 (Bach, Johann Sebastian)/IMSLP213452-PMLP05899-BWV883.mp3
+    ext: mp3
+  - id: "213453"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 6
+    rateBy: 4
+    group: 0
+    title: Prelude
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F-sharp minor, BWV
+      883 (Bach, Johann Sebastian)/IMSLP213453-PMLP05899-P14Sco.mid
+    ext: mid
+  - id: "213454"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Fugue
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in F-sharp minor, BWV
+      883 (Bach, Johann Sebastian)/IMSLP213454-WIMA.db19-883Sco.mid
+    ext: mid

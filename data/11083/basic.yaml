@@ -1,0 +1,290 @@
+id: 11083
+title: Suite in G minor, BWV 995
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Suite in G minor, BWV 995 (Bach, Johann Sebastian)
+meta:
+  Work Title: Suite
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 995
+  I-Catalogue NumberI-Cat. No.: IJB 619
+  Key: G minor
+  Movements/SectionsMov'ts/Sec's: |-
+    7 movements:
+     Prelude
+     Allemande
+     Courante
+     Sarabande
+     Gavotte I
+     Gavotte II en Rondeau
+     Gigue
+  Year/Date of CompositionY/D of Comp.: 1727–31?
+  First Publication.: 1921 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: lute
+  Related Works: Bach's own arrangement of his Cello Suite No.5 in C minor, BWV 1011
+categories:
+  - WIMA files
+  - Recordings
+  - Manuscripts from the 00s
+  - Composers' holographs from the 00s
+  - Pages with MssAu template
+  - Scores from Det Kongelige Bibliotek
+  - Bruger, Hans Dagobert/Editor
+  - Mège, Antonin/Editor
+  - Russo, Daniele/Editor
+  - Ward, Robin/Arranger
+  - Apke, Stefan/Arranger
+  - Beuming, Ben/Arranger
+  - Fine, Elaine/Arranger
+  - Simons, Don/Arranger
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Suites
+  - For lute
+  - Scores featuring the lute
+  - For 1 player
+  - For harp (arr)
+  - For 1 player (arr)
+  - Scores featuring the harp (arr)
+  - For harpsichord (arr)
+  - Scores featuring the harpsichord (arr)
+  - For guitar (arr)
+  - Scores featuring the guitar (arr)
+  - For viola damore (arr)
+  - Scores featuring the viola damore (arr)
+  - For cello (arr)
+  - Scores featuring the cello (arr)
+  - For keyboard (arr)
+  - Scores featuring keyboard soloists (arr)
+  - Pages with arrangements
+  - Works first published in 1921
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - G minor
+files:
+  - id: "23805"
+    tab: Score1
+    tabText: Scores
+    rating: 7.7142857142857
+    rateBy: 7
+    group: 0
+    title: Complete Score(includes BWV 999, 996, 997, 998, 995, 1006a, 1000)DK-Kk
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP23805-PMLP08790-Bach_-_Compositions_for_the_Lute.pdf
+    ext: pdf
+  - id: "36477"
+    tab: Score1
+    tabText: Scores
+    rating: 6.9230769230769
+    rateBy: 39
+    group: 1
+    title: Complete ScoreBelgian Royal Lib.
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP36477-PMLP08790-Bach_-_Lute_Pieces_-_ms.pdf
+    ext: pdf
+  - id: "154011"
+    tab: Score1
+    tabText: Scores
+    rating: 5.2
+    rateBy: 5
+    group: 2
+    title: 4. Sarabande
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP154011-PMLP181057-Bach_-_suite_per_liuto_Sol_min_BWV_995_-_liuto_-_004_sarabanda.pdf
+    ext: pdf
+  - id: "218572"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 3
+    group: 0
+    title: 1. Prelude
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218572-WIMA.b707-SuiteBWV995Prelude.pdf
+    ext: pdf
+  - id: "218573"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 8
+    rateBy: 3
+    group: 0
+    title: 2. Allemande
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218573-WIMA.ae70-SuiteBWV995Allemande.pdf
+    ext: pdf
+  - id: "218574"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: 3. Courante
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218574-WIMA.d9fa-SuiteBWV995Courante.pdf
+    ext: pdf
+  - id: "218582"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: 4. Sarabande
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218582-WIMA.73f2-SuiteBWV995Sarabande.pdf
+    ext: pdf
+  - id: "218576"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6
+    rateBy: 3
+    group: 0
+    title: 5. Gavotte I
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218576-WIMA.4856-SuiteBWV995GavotteI.pdf
+    ext: pdf
+  - id: "218577"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6
+    rateBy: 3
+    group: 0
+    title: 6. Gavotte II en Rondeau
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218577-WIMA.f5ae-SuiteBWV995GavotteII.pdf
+    ext: pdf
+  - id: "218578"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6.6666666666667
+    rateBy: 3
+    group: 0
+    title: 7. Gigue
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218578-WIMA.37f9-SuiteBWV995Gigue.pdf
+    ext: pdf
+  - id: "218579"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Engraving files (Finale)
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218579-WIMA.19a9-bwv995_ward.zip
+    ext: zip
+  - id: "554265"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP554265-PMLP181057-Bach_J_S-LS_3_BWV_995+mid.pdf
+    ext: pdf
+  - id: "219373"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6.6666666666667
+    rateBy: 3
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP219373-PMLP181057-bwv995pch.pdf
+    ext: pdf
+  - id: "245451"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.3333333333333
+    rateBy: 12
+    group: 0
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP245451-PMLP181057-LuteSuite.mp3
+    ext: mp3
+  - id: "763491"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: 1. Prelude
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP763491-PMLP181057-y2meta.com_-_J.S.BACH_LUTE_SUITE_III(BWV_995)Prelude._guitar_Luciano_Tavares_(128_kbps).mp3
+    ext: mp3
+  - id: "218585"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 4
+    rateBy: 2
+    group: 0
+    title: 1. Prelude
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218585-WIMA.8c25-SuiteBWV995Prelude.mid
+    ext: mid
+  - id: "218586"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 2. Allemande
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218586-WIMA.79ef-SuiteBWV995Allemande.mid
+    ext: mid
+  - id: "218587"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 3. Courante
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218587-WIMA.5c01-SuiteBWV995Courante.mid
+    ext: mid
+  - id: "218588"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 2
+    rateBy: 1
+    group: 0
+    title: 4. Sarabande
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218588-WIMA.672f-SuiteBWV995Sarabande.mid
+    ext: mid
+  - id: "218589"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: 5. Gavotte I
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218589-WIMA.6eb3-SuiteBWV995GavotteI.mid
+    ext: mid
+  - id: "218590"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 6. Gavotte II en Rondeau
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218590-WIMA.ba3b-SuiteBWV995GavotteII.mid
+    ext: mid
+  - id: "218591"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 7. Gigue
+    path: (1685)Johann Sebastian Bach/(1727)Suite in G minor, BWV 995 (Bach, Johann
+      Sebastian)/IMSLP218591-WIMA.c9ed-SuiteBWV995Gigue.mid
+    ext: mid

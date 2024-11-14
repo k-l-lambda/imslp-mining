@@ -1,0 +1,149 @@
+id: 5828
+title: L'Isle joyeuse
+author: Debussy, Claude
+url: https://imslp.org/wiki/L'Isle joyeuse (Debussy, Claude)
+meta:
+  Work Title: L'Isle Joyeuse
+  Alternative. Title: ""
+  Name Translations: L’Isle Joyeuse; 喜びの島; L'isle joyeuse; Остров радости (Дебюсси); 快樂島; 기쁨의 섬
+  Name Aliases: L'Isle joyeuse de Claude Debussy
+  Authorities: WikidataVIAF
+  Composer: Debussy, Claude
+  Opus/Catalogue NumberOp./Cat. No.: CD 109 ; L.106
+  I-Catalogue NumberI-Cat. No.: ICD 39
+  Movements/SectionsMov'ts/Sec's: 1 piece
+  Year/Date of CompositionY/D of Comp.: "1904"
+  First Performance.: |-
+    1905-02-10 in Paris. Salle Aeolian
+    Concert Parent. Ricardo Viñes (piano)
+  First Publication.: "1904 - Paris: Durand"
+  Average DurationAvg. Duration: 6-7 minutes
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Early 20th century
+  Instrumentation: piano
+  Discography: MusicBrainzAll Music Guide
+  External Links: Centre de documentation Claude DebussyWikipedia article
+categories:
+  - Salvatori, Jacopo/Performer
+  - Scores from the Internet Archive
+  - Zhang, Shuwen/Performer
+  - Seitzer, Janet/Performer
+  - Richter, Sviatoslav/Performer
+  - Recordings published in 1962
+  - Recordings published in the 20th century
+  - Ringeissen, Bernard/Performer
+  - Recordings
+  - Scores from Bibliothèque nationale de France
+  - Manuscripts from the 1900s
+  - Composers' holographs from the 1900s
+  - Pages with MssAu template
+  - Manuscripts
+  - Pages with First Editions
+  - Scores published by Durand
+  - Pages with links to Aerbook
+  - Scores published by Dover Publications
+  - Scores with links to Amazon
+  - Klemm, Eberhardt/Editor
+  - Scores with links to Sheet Music Plus
+  - Alston, Ray/Editor
+  - Molinari, Bernardino/Arranger
+  - Sibley Mirroring Project
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Debussy, Claude
+  - Early 20th century style
+  - Romantic
+  - Pieces
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For orchestra (arr)
+  - Scores featuring the orchestra (arr)
+  - Pages with arrangements
+  - Works first published in 1904
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+files:
+  - id: "57805"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 14
+    group: 0
+    title: Complete Score (scan)
+    path: (1862)Claude Debussy/(1904)L'Isle joyeuse (Debussy,
+      Claude)/IMSLP57805-PMLP05499-Debussy_Klavierwerke_Band_6_Peters_L_Isle_Joyeuse_scan.pdf
+    ext: pdf
+  - id: "254513"
+    tab: Score1
+    tabText: Scores
+    rating: 6.3478260869565
+    rateBy: 23
+    group: 1
+    title: Complete Score (scan)
+    path: (1862)Claude Debussy/(1904)L'Isle joyeuse (Debussy,
+      Claude)/IMSLP254513-PMLP05499-Debussy,_Claude-L_isle_joyeuse_Durand_6446_scan.pdf
+    ext: pdf
+  - id: "01981"
+    tab: Score1
+    tabText: Scores
+    rating: 6.2380952380952
+    rateBy: 21
+    group: 2
+    title: Complete Score
+    path: (1862)Claude Debussy/(1904)L'Isle joyeuse (Debussy,
+      Claude)/IMSLP01981-Debussy_-_L'Isle_Joyeuse.pdf
+    ext: pdf
+  - id: "506788"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete ScoreUS-R
+    path: (1862)Claude Debussy/(1904)L'Isle joyeuse (Debussy,
+      Claude)/IMSLP506788-PMLP05499-E82490_etc-SIBLEY1802.13051.c450-39087009479496score_pp_1-40.pdf
+    ext: pdf
+  - id: "484777"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 4
+    group: 0
+    title: Complete Performance
+    path: (1862)Claude Debussy/(1904)L'Isle joyeuse (Debussy,
+      Claude)/IMSLP484777-PMLP5499-claudeDebussy-IsleJoyeuse-matthieuJacquot.ogg
+    ext: ogg
+  - id: "368945"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.6666666666667
+    rateBy: 6
+    group: 1
+    title: Complete Performance
+    path: (1862)Claude Debussy/(1904)L'Isle joyeuse (Debussy,
+      Claude)/IMSLP368945-PMLP05499-Claude_Debussy-L'Isle_Joyeuse.ogg
+    ext: ogg
+  - id: "113785"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.3333333333333
+    rateBy: 9
+    group: 2
+    title: Complete Performance
+    path: (1862)Claude Debussy/(1904)L'Isle joyeuse (Debussy,
+      Claude)/IMSLP113785-PMLP05499-Debussy-Lisle-joyeuse-Seitzer1982.ogg
+    ext: ogg
+  - id: "113786"
+    tab: Audio1
+    tabText: Recordings
+    rating: 3.4285714285714
+    rateBy: 7
+    group: 2
+    title: Complete Performance
+    path: (1862)Claude Debussy/(1904)L'Isle joyeuse (Debussy,
+      Claude)/IMSLP113786-PMLP05499-Debussy-Lisle-joyeuse-Seitzer1988.ogg
+    ext: ogg

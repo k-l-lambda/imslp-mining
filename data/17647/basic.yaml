@@ -1,0 +1,70 @@
+id: 17647
+title: A Bach Book
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/A Bach Book (Bach, Johann Sebastian)
+meta:
+  Work Title: A Bach Book
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  I-Catalogue NumberI-Cat. No.: None [force assignment]
+  Movements/SectionsMov'ts/Sec's: |-
+    12 pieces:
+    Bantock: Choral Prelude from Cantata: BWV 140
+    Bax: Fantasia
+    Tyrwhitt (Lord Berners): Choral Prelude
+    Bliss: Choral Prelude
+    Bridge: Air, from the Schemelli Gesangbuch
+    Goossens: Andante
+    Howells: Choral Prelude
+    Ireland: Choral Prelude
+    Lambert: Choral Prelude
+    Vaughan Williams: Choral and Choral Prelude
+    Walton: Choral Prelude
+    Whittaker: Choral Prelude
+  Copyright Information: The arrangements by Arthur Bliss (1891-1975), Herbert
+    Howells (1892-1983) and William Walton (1902-1983) are all under copyright
+    until more than 50 years since their deathhas passed before these can be
+    uploaded.
+  Dedication: Harriet Cohen
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: piano (arranged)
+categories:
+  - Scores published by Oxford University Press
+  - Scores
+  - Bach, Johann Sebastian/Collections
+  - Baroque style
+  - Baroque
+  - Chorale preludes
+  - Fantasias
+  - Airs
+  - Chorales
+  - Religious works
+  - For piano (arr)
+  - For 1 player (arr)
+  - Scores featuring the piano (arr)
+  - Cohen, Harriet/Dedicatee
+  - Bantock, Granville/Collections
+  - Collections
+  - Bax, Arnold/Collections
+  - Tyrwhitt, Gerald/Collections
+  - Bliss, Arthur/Collections
+  - Bridge, Frank/Collections
+  - Goossens, Eugene/Collections
+  - Howells, Herbert/Collections
+  - Ireland, John/Collections
+  - Lambert, Constant/Collections
+  - Vaughan Williams, Ralph/Collections
+  - Walton, William/Collections
+  - Whittaker, William Gillies/Collections
+files:
+  - id: "493688"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1895)Harriet Cohen/A Bach Book (Bach, Johann
+      Sebastian)/IMSLP493688-PMLP799319-A_Bach_book_for_Harriet_Cohen.pdf
+    ext: pdf

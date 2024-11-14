@@ -1,0 +1,100 @@
+id: 121314
+title: Piano Sonata No.1, Op.11
+author: Schumann, Robert
+url: https://imslp.org/wiki/Piano Sonata No.1, Op.11 (Schumann, Robert)
+meta:
+  Work Title: Piano Sonata No.1
+  Alternative. Title: Pianoforte-Sonate
+  Name Translations: Соната для фортепиано № 1 (Шуман); Sonate pour piano nº 1;
+    ピアノソナタ第1番 (シューマン); Piano Sonata No. 1 (Schumann); Pianosonaatti nro 1
+    (Schumann); Klaviersonate fis-Moll op. 11; 피아노 소나타 1번
+  Name Aliases: Соната для фортепиано № 1
+  Authorities: "WorldCat; Wikipedia; VIAF: 293353157; BNF: 13918909v"
+  Composer: Schumann, Robert
+  Opus/Catalogue NumberOp./Cat. No.: Op.11
+  I-Catalogue NumberI-Cat. No.: IRS 111
+  Key: F-sharp minor
+  Movements/SectionsMov'ts/Sec's: |-
+    4 movements
+    Introduzione: Un poco Adagio - Allegro vivace
+    Aria (A major)
+    Scherzo: Allegrissimo - intermezzo: Lento
+    Finale: Allegro, un poco maestoso
+  Year/Date of CompositionY/D of Comp.: 1832-35
+  First Publication.: "1836 – Leipzig: KistnerHofmeister's Monatsbericht (1836), p.54"
+  Dedication: |-
+    Clara Schumann (Wieck)
+    "Clara zugeignet von Florestan & Eusebius"
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: Piano
+  External Links: Wikipedia article
+categories:
+  - Jumppanen, Paavali/Performer
+  - Gardner Museum Recordings
+  - Recordings
+  - Scores from Bayerische Staatsbibliothek
+  - Schumann, Clara/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with items from Schumann's Werke
+  - Scores with links to Amazon
+  - Ruthardt, Adolf/Editor
+  - Scores published by Edition Peters
+  - Work pages with links to recordings
+  - Scores
+  - Schumann, Robert
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1836
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - F-sharp minor
+  - Pages with References to Hofmeister's Monatsbericht
+  - Schumann, Clara/Dedicatee
+files:
+  - id: "78923"
+    tab: Score1
+    tabText: Piano Scores
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Complete Score (scan)
+    path: (1810)Robert Schumann/(1832)Piano Sonata No.1, Op.11 (Schumann,
+      Robert)/IMSLP78923-PMLP02193-Schumann_Werke_5_Peters_Op_11_scan.pdf
+    ext: pdf
+  - id: "289803"
+    tab: Score1
+    tabText: Piano Scores
+    rating: 5.8064516129032
+    rateBy: 31
+    group: 1
+    title: Complete Score (scan)
+    path: (1810)Robert Schumann/(1832)Piano Sonata No.1, Op.11 (Schumann,
+      Robert)/IMSLP289803-PMLP02193-Schumann,_Robert_Werke_Breitkopf_Gregg_Serie_7_Band_2_RS_49_Op_11_scan.pdf
+    ext: pdf
+  - id: "417955"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 6
+    group: 0
+    title: Complete Performance
+    path: (1810)Robert Schumann/(1832)Piano Sonata No.1, Op.11 (Schumann,
+      Robert)/IMSLP417955-PMLP02193-schumann_sonatainfsharpminor_jumppanen.mp3
+    ext: mp3
+  - id: "208021"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.4
+    rateBy: 10
+    group: 1
+    title: Complete Performance
+    path: (1810)Robert Schumann/(1832)Piano Sonata No.1, Op.11 (Schumann,
+      Robert)/IMSLP208021-PMLP02193-RSchumann_Piano_Sonata_No.1_Op11_Yunjie_Chen.mp3
+    ext: mp3

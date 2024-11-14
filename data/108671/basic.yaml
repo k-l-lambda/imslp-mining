@@ -1,0 +1,83 @@
+id: 108671
+title: Keyboard Sonata in E-flat major, Hob.XVI:38
+author: Haydn, Joseph
+url: https://imslp.org/wiki/Keyboard Sonata in E-flat major, Hob.XVI:38 (Haydn,
+  Joseph)
+meta:
+  Work Title: Keyboard Sonata
+  Alternative. Title: Klaviersonate Nr.51
+  Name Translations: Piano Sonata Hob. XVI/38; ピアノソナタ第38番
+  Authorities: Wikipedia
+  Composer: Haydn, Joseph
+  Opus/Catalogue NumberOp./Cat. No.: Hob.XVI:38 ; Op.30 No.4
+  I-Catalogue NumberI-Cat. No.: IJH 278
+  Key: E-flat major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements:
+    Allegro moderato (E♭ major)
+    Adagio (C minor)
+    Finale. Allegro (E♭ major) - Trio (A♭ major)
+  Year/Date of CompositionY/D of Comp.: 1780 or before
+  First Publication.: "1780"
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: harpsichord or piano
+categories:
+  - Scores from the Internet Archive
+  - Scores published by Breitkopf und Härtel
+  - Scores from the Drs. Whitby Music Collection
+  - Moscheles, Ignaz/Editor
+  - Scores published by Hallberger
+  - Sibley Mirroring Project
+  - Roitzsch, Friedrich August/Editor
+  - Scores published by Edition Peters
+  - Päsler, Karl/Editor
+  - Martienssen, Carl Adolf/Editor
+  - Scores
+  - Haydn, Joseph
+  - Classical style
+  - Classical
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For harpsichord
+  - Scores featuring the harpsichord
+  - Works first published in 1780
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - E-flat major
+files:
+  - id: "00154"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 3
+    group: 0
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1780)Keyboard Sonata in E-flat major, Hob.XVI38
+      (Haydn, Joseph)/IMSLP00154-Haydn_-_Piano_Sonata_No_38_in_Eb.pdf
+    ext: pdf
+  - id: "72161"
+    tab: Score1
+    tabText: Scores
+    rating: 6.6
+    rateBy: 5
+    group: 1
+    title: Complete Score (scan)
+    path: (1732)Joseph Haydn/(1780)Keyboard Sonata in E-flat major, Hob.XVI38
+      (Haydn,
+      Joseph)/IMSLP72161-PMLP01718-Haydn_Sonaten_Klavier_Band_4_35_Peters_11304_scan.pdf
+    ext: pdf
+  - id: "109674"
+    tab: Score1
+    tabText: Scores
+    rating: 5.6
+    rateBy: 10
+    group: 2
+    title: Complete ScoreUS-PRV
+    path: (1732)Joseph Haydn/(1780)Keyboard Sonata in E-flat major, Hob.XVI38
+      (Haydn,
+      Joseph)/IMSLP109674-PMLP01718-Haydn-Piano_Sonate_No51-XVI38-Roitzsch.pdf
+    ext: pdf

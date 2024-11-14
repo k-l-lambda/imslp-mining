@@ -1,0 +1,184 @@
+id: 17380
+title: Prelude and Fugue in G major, BWV 860
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in G major, BWV 860 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue No.15 in G major
+  Alternative. Title: Praeludium et Fuga a 3 voci
+  Name Translations: Präludium und Fuge G-Dur BWV 860; Prélude et fugue en sol
+    majeur (BWV 860); Прелюдия и фуга соль мажор, BWV 860
+  Authorities: "GND: 30032572X"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 860
+  I-Catalogue NumberI-Cat. No.: IJB 543
+  Key: G major
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1722 in Das wohltemperierte Klavier I, BWV 846-869 (No.15)
+  First Publication.: "1801"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: clavier (keyboard)
+  External Links: Wikipedia article (on Das wohltemperierte Klavier)Bach Digital (source list)
+categories:
+  - Ishizaka, Kimiko/Performer
+  - Recordings
+  - Pages with items from Bach Digital
+  - Manuscripts from the 1700s
+  - Manuscripts
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Czerny, Carl/Editor
+  - Scores published by Schirmer
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Roth, Rainer Grant/Arranger
+  - Rondeau, Michel/Arranger
+  - WIMA files
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - For clarinet (arr)
+  - Scores featuring the clarinet (arr)
+  - For 1 player (arr)
+  - For 2 trumpets, 2 trombones (arr)
+  - Scores featuring the trumpet (arr)
+  - Scores featuring the trombone (arr)
+  - For 4 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - G major
+files:
+  - id: "01019"
+    tab: Score1
+    tabText: Scores
+    rating: 7.7142857142857
+    rateBy: 14
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in G major, BWV 860
+      (Bach, Johann Sebastian)/IMSLP01019-Prefug15.pdf
+    ext: pdf
+  - id: "02220"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 16
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in G major, BWV 860
+      (Bach, Johann Sebastian)/IMSLP02220-BWV0860.pdf
+    ext: pdf
+  - id: "81783"
+    tab: Score1
+    tabText: Scores
+    rating: 6.9333333333333
+    rateBy: 30
+    group: 2
+    title: Complete ScoreBach Digital
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in G major, BWV 860
+      (Bach, Johann Sebastian)/IMSLP81783-PMLP05948-BWV_860.pdf
+    ext: pdf
+  - id: "210769"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 7
+    rateBy: 4
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in G major, BWV 860
+      (Bach, Johann Sebastian)/IMSLP210769-WIMA.8e98-860Sco.pdf
+    ext: pdf
+  - id: "734099"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in G major, BWV 860
+      (Bach, Johann Sebastian)/IMSLP734099-PMLP543424-Bach_WTK_1_15_BWV_860.pdf
+    ext: pdf
+  - id: "697523"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in G major, BWV 860
+      (Bach, Johann
+      Sebastian)/IMSLP697523-PMLP543424-Bach_BWV_860_Well_Tempered_Clavier_Prelude_-15_In_G_Clarinet_in_C_IMSLP.pdf
+    ext: pdf
+  - id: "410080"
+    tab: Audio1
+    tabText: Recordings
+    rating: 3
+    rateBy: 2
+    group: 0
+    title: 1. Prelude (lossless)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in G major, BWV 860
+      (Bach, Johann
+      Sebastian)/IMSLP410080-PMLP543424-Kimiko_Ishizaka_-_Bach-_Well-Tempered_Clavier,_Book_1_-_29_Prelude_No._15_in_G_major,_BWV_860.flac
+    ext: flac
+  - id: "410081"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 2. Fugue (lossless)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in G major, BWV 860
+      (Bach, Johann
+      Sebastian)/IMSLP410081-PMLP543424-Kimiko_Ishizaka_-_Bach-_Well-Tempered_Clavier,_Book_1_-_30_Fugue_No._15_in_G_major,_BWV_860.flac
+    ext: flac
+  - id: "410082"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 1. Prelude (lossy)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in G major, BWV 860
+      (Bach, Johann
+      Sebastian)/IMSLP410082-PMLP543424-Prelude_No._15_in_G_major,_BWV_860.mp3
+    ext: mp3
+  - id: "410083"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: 2. Fugue (lossy)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in G major, BWV 860
+      (Bach, Johann
+      Sebastian)/IMSLP410083-PMLP543424-Fugue_No._15_in_G_major,_BWV_860.mp3
+    ext: mp3

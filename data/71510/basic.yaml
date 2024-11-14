@@ -1,0 +1,282 @@
+id: 71510
+title: "9"
+author: Liszt, Franz
+url: https://imslp.org/wiki/Hungarian Rhapsody No.9, S.244/9 (Liszt, Franz)
+meta:
+  Work Title: Hungarian Rhapsody No.9
+  Alternative. Title: Pesther Carneval / Le carnaval de Pesth
+  Name Translations: Hungarian Rhapsody No. 9; Ungarische Rhapsodie Nr. 9;
+    第9號匈牙利狂想曲; უნგრული რაფსოდია №9
+  Name Aliases: Pesther Carneval; Le carnaval de Pesth
+  Authorities: Wikipedia
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.244/9 ; LW.A132/9b
+  I-Catalogue NumberI-Cat. No.: IFL 171
+  Key: E-flat major
+  Movements/SectionsMov'ts/Sec's: 1 piece
+  Year/Date of CompositionY/D of Comp.: "1847"
+  First Publication.: "1853"
+  Dedication: Heinrich Wilhelm Ernst (1812-1865)
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Pages with First Editions
+  - Scores published by Schott
+  - Sauer, Emil von/Editor
+  - Scores published by Edition Peters
+  - Scores from Bayerische Staatsbibliothek
+  - Raabe, Peter/Editor
+  - Scores published by Breitkopf und Härtel
+  - Gárdonyi, Zoltán/Editor
+  - Szelényi, István/Editor
+  - Scores published by Editio Musica Budapest
+  - Urtext
+  - Doppler, Franz/Arranger
+  - Scores published by Schuberth & Co.
+  - Works reprinted by Edwin F. Kalmus
+  - OM Parts
+  - Scores from the Juilliard Manuscript Collection
+  - Manuscripts from the 1800s
+  - Composers' holographs from the 1800s
+  - Manuscripts
+  - Volbach, Fritz/Editor
+  - Sibley Mirroring Project
+  - Kronke, Emil/Arranger
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Rhapsodies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For orchestra (arr)
+  - Scores featuring the orchestra (arr)
+  - For violin, cello, piano (arr)
+  - For 3 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the cello (arr)
+  - Scores featuring the piano (arr)
+  - For 2 pianos 8 hands (arr)
+  - For 4 players (arr)
+  - Pages with arrangements
+  - Works first published in 1853
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+  - E-flat major
+  - Ernst, Heinrich Wilhelm/Dedicatee
+files:
+  - id: "44753"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete ScoreD-Mbs
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP44753-PMLP12460-Liszt_Musikalische_Werke_2_Band_12_125_Ungarische_Rhapsodie_9.pdf
+    ext: pdf
+  - id: "160393"
+    tab: Score1
+    tabText: Scores
+    rating: 6.5
+    rateBy: 4
+    group: 1
+    title: Complete Score (scan)
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP160393-PMLP12460-Liszt_Klavierwerke_Peters_Sauer_Band_2_09_Ungarische_Rhapsodie_No_9_scan.pdf
+    ext: pdf
+  - id: "183382"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 2
+    group: 2
+    title: Complete Score (scan)
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP183382-PMLP12460-Liszt_NLA_Serie_I_Band_03_09_Rhapsodie_hongroise_S.244_9_scan.pdf
+    ext: pdf
+  - id: "60459"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 7.5
+    rateBy: 4
+    group: 0
+    title: Piano 1US-R
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP60459-SIBLEY1802.10103.36d9-39087012932275piano1.pdf
+    ext: pdf
+  - id: "60460"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6
+    rateBy: 2
+    group: 0
+    title: Piano 2US-R
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP60460-SIBLEY1802.10103.2ff2-39087012932275piano2.pdf
+    ext: pdf
+  - id: "60461"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Color CoverUS-R
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP60461-SIBLEY1802.10103.c9db-39087012932275color_cover.pdf
+    ext: pdf
+  - id: "53168"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Flute 1, 2, Piccolo
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP53168-PMLP12460-Liszt-HunRhap06.Flute.pdf
+    ext: pdf
+  - id: "53169"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Oboe 1, 2
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP53169-PMLP12460-Liszt-HunRhap06.Oboe.pdf
+    ext: pdf
+  - id: "53170"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Clarinet 1, 2 (A, B♭)
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP53170-PMLP12460-Liszt-HunRhap06.Clarinet.pdf
+    ext: pdf
+  - id: "53171"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Bassoon 1, 2
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP53171-PMLP12460-Liszt-HunRhap06.Bassoon.pdf
+    ext: pdf
+  - id: "53172"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Horn 1, 2, 3, 4 (D, F)
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP53172-PMLP12460-Liszt-HunRhap06.Horn.pdf
+    ext: pdf
+  - id: "53173"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Trumpet 1, 2 (D, F)
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP53173-PMLP12460-Liszt-HunRhap06.Trumpet.pdf
+    ext: pdf
+  - id: "53174"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Trombone 1, 2, 3, Tuba
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP53174-PMLP12460-Liszt-HunRhap06.LowBrass.pdf
+    ext: pdf
+  - id: "53175"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Timpani, Cymbals/Bass Drum, Triangle
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP53175-PMLP12460-Liszt-HunRhap06.TimpPerc.pdf
+    ext: pdf
+  - id: "53176"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 2
+    rateBy: 1
+    group: 1
+    title: Harp
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP53176-PMLP12460-Liszt-HunRhap06.Harp.pdf
+    ext: pdf
+  - id: "581975"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Violins I
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP581975-PMLP12460-Liszt-HunRhap06.ViolinsI.pdf
+    ext: pdf
+  - id: "581976"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Violins II
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP581976-PMLP12460-Liszt-HunRhap06.ViolinsII.pdf
+    ext: pdf
+  - id: "53178"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 1
+    group: 1
+    title: Violas
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP53178-PMLP12460-Liszt-HunRhap06.Viola.pdf
+    ext: pdf
+  - id: "26620"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Cellos
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP26620-PMLP12460-Liszt_-_Hungarian_Rhapsody_No9_(cello-part)a.pdf
+    ext: pdf
+  - id: "53179"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Basses
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP53179-PMLP12460-Liszt-HunRhap06.Bass.pdf
+    ext: pdf
+  - id: "115852"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 1
+    group: 2
+    title: Complete Score
+    path: (1811)Franz Liszt/(1847)9 (Liszt,
+      Franz)/IMSLP115852-PMLP12460-Liszt_HungarianRhapsody9_Piano.pdf
+    ext: pdf

@@ -1,0 +1,110 @@
+id: 7132
+title: Prelude and Fugue in G minor, BWV 558
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in G minor, BWV 558 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in G minor
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 558 ; BC.J33
+  I-Catalogue NumberI-Cat. No.: IJB 983
+  Key: G minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 sections:
+    Praeludium (37 bars)
+    Fuga (45 bars)
+  First Publication.: 1852 in 8 Kleine Präludien und Fugen, BWV 553-560 (No.6)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: organ
+  Primary Sources: Bach Digital (source list)
+categories:
+  - WIMA files
+  - Mondrup Recorder Collection
+  - Naumann, Ernst/Editor
+  - Scores published by Breitkopf und Härtel
+  - Gouin, Pierre/Editor
+  - Andreola, Giacomo/Arranger
+  - Kuipers, Albert H./Arranger
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For organ
+  - Scores featuring the organ
+  - For 1 player
+  - For 4 recorders (arr)
+  - Scores featuring the recorder (arr)
+  - For 4 players (arr)
+  - Pages with arrangements
+  - Works first published in 1852
+  - Works first published in the 19th century
+  - G minor
+files:
+  - id: "129119"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in G minor, BWV 558
+      (Bach, Johann
+      Sebastian)/IMSLP129119-PMLP10674-Bach_Kleine_Praeludien_6.pdf
+    ext: pdf
+  - id: "739708"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in G minor, BWV 558
+      (Bach, Johann
+      Sebastian)/IMSLP739708-PMLP266850-E4322_17-19-Bach_-_BGA_-_BWV_553-560.pdf
+    ext: pdf
+  - id: "161481"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in G minor, BWV 558
+      (Bach, Johann Sebastian)/IMSLP161481-WIMA.a42f-Fuga558-SATB.pdf
+    ext: pdf
+  - id: "141197"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in G minor, BWV 558
+      (Bach, Johann
+      Sebastian)/IMSLP141197-WIMA.2509-BWV-558-Prelude-and-Fugue-recorders-original-key-score-pdf.pdf
+    ext: pdf
+  - id: "161496"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in G minor, BWV 558
+      (Bach, Johann Sebastian)/IMSLP161496-WIMA.c6fb-FugaBWV558-SATB.mid
+    ext: mid
+  - id: "200299"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Synthesized Performance
+    path: (1685)Johann Sebastian Bach/(1852)Prelude and Fugue in G minor, BWV 558
+      (Bach, Johann
+      Sebastian)/IMSLP200299-WIMA.3938-Bach-BWV-558-recorders-original-key-mp3.mp3
+    ext: mp3

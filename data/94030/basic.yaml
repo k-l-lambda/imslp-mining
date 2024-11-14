@@ -1,0 +1,131 @@
+id: 94030
+title: Keyboard Sonata in D major, K.21
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in D major, K.21 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in D major
+  Alternative. Title: ""
+  Name Translations: sonate K. 21; Sonata K. 21; Sonate K. 21; Sonat K. 21
+  Authorities: "WorldCat; VIAF: 293768831; LCCN: no97057286; BNF: 13914212v"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.21 ; L.363 ; P.77 ; CZ.27
+  I-Catalogue NumberI-Cat. No.: IDS 234
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: Allegro
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.21)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Höger, Anton/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 2 guitars (arr)
+  - For 2 players (arr)
+  - Scores featuring the guitar (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - D major
+files:
+  - id: "132956"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.21
+      (Scarlatti, Domenico)/IMSLP132956-WIMA.f829-Scarlatti_Sonate_K.21.pdf
+    ext: pdf
+  - id: "313838"
+    tab: Score1
+    tabText: Scores
+    rating: 6.6666666666667
+    rateBy: 3
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.21
+      (Scarlatti,
+      Domenico)/IMSLP313838-PMLP331942-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_21_K.21_scan.pdf
+    ext: pdf
+  - id: "626430"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.21
+      (Scarlatti, Domenico)/IMSLP626430-PMLP331942-Sonata_K._21_(as_L._363).pdf
+    ext: pdf
+  - id: "193022"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 2
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.21
+      (Scarlatti, Domenico)/IMSLP193022-WIMA.aa53-Sca21Sco.pdf
+    ext: pdf
+  - id: "353838"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.21
+      (Scarlatti,
+      Domenico)/IMSLP353838-PMLP331942-Scarlatti_-_Sonate_K_021_(Orig_in_Hm).pdf
+    ext: pdf
+  - id: "279757"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.21
+      (Scarlatti, Domenico)/IMSLP279757-PMLP257047-Scarlatti_Sonate_K.21.mid
+    ext: mid
+  - id: "193031"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.21
+      (Scarlatti, Domenico)/IMSLP193031-WIMA.03ff-Sca21Sco.mp3
+    ext: mp3
+  - id: "193032"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D major, K.21
+      (Scarlatti, Domenico)/IMSLP193032-WIMA.8bbe-Sca21Sco.mid
+    ext: mid

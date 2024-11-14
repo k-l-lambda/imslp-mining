@@ -1,0 +1,141 @@
+id: 17390
+title: Prelude and Fugue in C minor, BWV 871
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in C minor, BWV 871 (Bach, Johann
+  Sebastian)
+meta:
+  Work Title: Prelude and Fugue in C minor
+  Alternative. Title: ""
+  Name Translations: Präludium und Fuge c-Moll BWV 871; Prelude and Fugue No. 2 in
+    C minor, BWV 871; Prélude et fugue en ut mineur (BWV 871)
+  Authorities: "Wikipedia; BNF: 13909953c"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 871
+  I-Catalogue NumberI-Cat. No.: IJB 510
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements:
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.2)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (complete WTC)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Czerny, Carl/Editor
+  - Scores published by Schirmer
+  - Schweitzer, Albert/Editor
+  - Scores published by Universal Edition
+  - Sibley Mirroring Project
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Moshkin, Evgeniy E./Editor
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C minor
+files:
+  - id: "487041"
+    tab: Score1
+    tabText: Scores
+    rating: 6.6666666666667
+    rateBy: 3
+    group: 0
+    title: Complete Score (with fingering)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C minor, BWV 871
+      (Bach, Johann Sebastian)/IMSLP487041-PMLP738799-bwv_871.pdf
+    ext: pdf
+  - id: "02179"
+    tab: Score1
+    tabText: Scores
+    rating: 6.2413793103448
+    rateBy: 29
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C minor, BWV 871
+      (Bach, Johann Sebastian)/IMSLP02179-BWV0871.pdf
+    ext: pdf
+  - id: "29931"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 11
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C minor, BWV 871
+      (Bach, Johann
+      Sebastian)/IMSLP29931-PMLP05899-Prelude_and_Fugue_No.2_c_minor,_BWV_871.pdf
+    ext: pdf
+  - id: "736918"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C minor, BWV 871
+      (Bach, Johann Sebastian)/IMSLP736918-PMLP738799-Bach_WTK_2_02_BWV_871.pdf
+    ext: pdf
+  - id: "462465"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.75
+    rateBy: 8
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C minor, BWV 871
+      (Bach, Johann
+      Sebastian)/IMSLP462465-PMLP05899-Book_2_-_Prelude_and_Fugue_in_C_min.mp3
+    ext: mp3
+  - id: "360688"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C minor, BWV 871
+      (Bach, Johann
+      Sebastian)/IMSLP360688-PMLP05899-2-2BACH-Sonatina_Symphonic_Orchestra.mp3
+    ext: mp3
+  - id: "654607"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Fuga in C minor
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in C minor, BWV 871
+      (Bach, Johann
+      Sebastian)/IMSLP654607-PMLP738799-Fuga_in_C_minor(BWV871).mid
+    ext: mid

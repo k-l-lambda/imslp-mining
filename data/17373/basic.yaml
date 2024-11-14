@@ -1,0 +1,174 @@
+id: 17373
+title: Prelude and Fugue in E-flat major, BWV 852
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in E-flat major, BWV 852 (Bach,
+  Johann Sebastian)
+meta:
+  Work Title: Prelude and Fugue No.7 in E-flat major
+  Alternative. Title: Praeludium et Fuga a 3 voci
+  Name Translations: Präludium und Fuge Es-Dur BWV 852; Prélude et fugue en mi
+    bémol majeur (BWV 852); Прелюдия и фуга ми-бемоль мажор, BWV 852
+  Authorities: "GND: 1076375103; BNF: 139448573"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 852
+  I-Catalogue NumberI-Cat. No.: IJB 528
+  Key: E-flat major
+  Movements/SectionsMov'ts/Sec's: "2"
+  Year/Date of CompositionY/D of Comp.: 1722 in Das wohltemperierte Klavier I, BWV 846-869 (No.7)
+  First Publication.: "1801"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: clavier (keyboard)
+  External Links: Wikipedia article (on Das wohltemperierte Klavier)Bach Digital (source list)
+categories:
+  - Ishizaka, Kimiko/Performer
+  - Bradley-Fulgoni, Peter/Performer
+  - Gould, Glenn/Performer
+  - Recordings published in 1963
+  - Recordings published in the 20th century
+  - Recordings
+  - Pages with items from Bach Digital
+  - Manuscripts
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Czerny, Carl/Editor
+  - Scores published by Schirmer
+  - Moshkin, Evgeniy E./Editor
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - E-flat major
+files:
+  - id: "763999"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score (with fingering and tempo indication)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in E-flat major, BWV
+      852 (Bach, Johann Sebastian)/IMSLP763999-PMLP534093-bwv_852.pdf
+    ext: pdf
+  - id: "01011"
+    tab: Score1
+    tabText: Scores
+    rating: 8.5
+    rateBy: 10
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in E-flat major, BWV
+      852 (Bach, Johann Sebastian)/IMSLP01011-Pre_fug7.pdf
+    ext: pdf
+  - id: "02212"
+    tab: Score1
+    tabText: Scores
+    rating: 8.4285714285714
+    rateBy: 14
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in E-flat major, BWV
+      852 (Bach, Johann Sebastian)/IMSLP02212-BWV0852.pdf
+    ext: pdf
+  - id: "733186"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in E-flat major, BWV
+      852 (Bach, Johann
+      Sebastian)/IMSLP733186-PMLP534093-Bach_WTK_1_07_BWV_852.pdf
+    ext: pdf
+  - id: "439294"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: complete performance
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in E-flat major, BWV
+      852 (Bach, Johann
+      Sebastian)/IMSLP439294-PMLP534093-Bach_-_Prelude_&_Fugue_in_E_flet_major.mp3
+    ext: mp3
+  - id: "410018"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6
+    rateBy: 1
+    group: 1
+    title: Prelude (lossless)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in E-flat major, BWV
+      852 (Bach, Johann
+      Sebastian)/IMSLP410018-PMLP534093-Kimiko_Ishizaka_-_Bach-_Well-Tempered_Clavier,_Book_1_-_13_Prelude_No._7_in_E-flat_major,_BWV_852.flac
+    ext: flac
+  - id: "410019"
+    tab: Audio1
+    tabText: Recordings
+    rating: 2
+    rateBy: 1
+    group: 1
+    title: Fugue (lossless)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in E-flat major, BWV
+      852 (Bach, Johann
+      Sebastian)/IMSLP410019-PMLP534093-Kimiko_Ishizaka_-_Bach-_Well-Tempered_Clavier,_Book_1_-_14_Fugue_No._7_in_E-flat_major,_BWV_852.flac
+    ext: flac
+  - id: "410020"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Prelude (lossy)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in E-flat major, BWV
+      852 (Bach, Johann
+      Sebastian)/IMSLP410020-PMLP534093-Prelude_No._7_in_E-flat_major,_BWV_852.mp3
+    ext: mp3
+  - id: "410021"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Fugue (lossy)
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in E-flat major, BWV
+      852 (Bach, Johann
+      Sebastian)/IMSLP410021-PMLP534093-Fugue_No._7_in_E-flat_major,_BWV_852.mp3
+    ext: mp3
+  - id: "717189"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1722)Prelude and Fugue in E-flat major, BWV
+      852 (Bach, Johann
+      Sebastian)/IMSLP717189-PMLP5948-02.02._The_Well-Tempered_Clavier,_Book_I-_Prelude_And_Fugue_In_E-Flat_Major.mp3
+    ext: mp3

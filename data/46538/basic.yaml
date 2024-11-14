@@ -1,0 +1,141 @@
+id: 46538
+title: Keyboard Sonata in G major, Hob.XVI:27
+author: Haydn, Joseph
+url: https://imslp.org/wiki/Keyboard Sonata in G major, Hob.XVI:27 (Haydn, Joseph)
+meta:
+  Work Title: Keyboard Sonata
+  Alternative. Title: Klaviersonate Nr.42
+  Composer: Haydn, Joseph
+  Opus/Catalogue NumberOp./Cat. No.: Hob.XVI:27 ; Op.14 No.1
+  I-Catalogue NumberI-Cat. No.: IJH 284
+  Key: G major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements:
+    Allegro con brio (G major)
+    Minuet (G major) - Trio (G minor)
+    Finale. Presto (G major)
+  Year/Date of CompositionY/D of Comp.: 1774-76 ca
+  First Publication.: "1778"
+  Average DurationAvg. Duration: 10–15 minutes
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: keyboard
+  External Links: All Music Guide
+categories:
+  - Hernandez Romero, Gabriel Antonio/Performer
+  - Sarro, Felipe/Performer
+  - Recordings
+  - Moscheles, Ignaz/Editor
+  - Scores published by Hallberger
+  - Sibley Mirroring Project
+  - Scores from the Internet Archive
+  - Köhler, Louis/Editor
+  - Scores published by Edition Peters
+  - Lebert, Sigmund/Editor
+  - Faisst, Immanuel/Editor
+  - Scores published by Cotta
+  - Klee, Ludwig/Editor
+  - Scores published by Schirmer
+  - Bülow, Hans von/Editor
+  - Päsler, Karl/Editor
+  - Scores published by Breitkopf und Härtel
+  - Martienssen, Carl Adolf/Editor
+  - Höger, Anton/Arranger
+  - Scores
+  - Haydn, Joseph
+  - Classical style
+  - Classical
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 guitars (arr)
+  - For 2 players (arr)
+  - Scores featuring the guitar (arr)
+  - Pages with arrangements
+  - Works first published in 1778
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - G major
+files:
+  - id: "76026"
+    tab: Score1
+    tabText: Scores
+    rating: 6.625
+    rateBy: 8
+    group: 0
+    title: Complete Score (scan)
+    path: (1732)Joseph Haydn/(1774)Keyboard Sonata in G major, Hob.XVI27 (Haydn,
+      Joseph)/IMSLP76026-PMLP01703-Haydn_Sonaten_Klavier_Band_2_12_Peters_11333_scan.pdf
+    ext: pdf
+  - id: "00143"
+    tab: Score1
+    tabText: Scores
+    rating: 6.5714285714286
+    rateBy: 7
+    group: 1
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1774)Keyboard Sonata in G major, Hob.XVI27 (Haydn,
+      Joseph)/IMSLP00143-Haydn_-_Piano_Sonata_No_27_in_G.pdf
+    ext: pdf
+  - id: "52251"
+    tab: Score1
+    tabText: Scores
+    rating: 6.3076923076923
+    rateBy: 13
+    group: 2
+    title: Complete Score (scan)
+    path: (1732)Joseph Haydn/(1774)Keyboard Sonata in G major, Hob.XVI27 (Haydn,
+      Joseph)/IMSLP52251-PMLP01703-Haydn_Klaviersonate_Hob_XVI_27_Cotta_1888_scan.pdf
+    ext: pdf
+  - id: "295346"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1774)Keyboard Sonata in G major, Hob.XVI27 (Haydn,
+      Joseph)/IMSLP295346-PMLP01703-Haydn,_Joseph_-_Keyboard_Sonata_I._Allegro_con_brio_Hob.XVI-27.pdf
+    ext: pdf
+  - id: "518228"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9.0588235294118
+    rateBy: 17
+    group: 0
+    title: Complete Performance
+    path: (1732)Joseph Haydn/(1774)Keyboard Sonata in G major, Hob.XVI27 (Haydn,
+      Joseph)/IMSLP518228-PMLP1703-Haydn_Sonate_in_Gmajor_MP3-_2018.mp3
+    ext: mp3
+  - id: "292402"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.3478260869565
+    rateBy: 23
+    group: 1
+    title: 1. Allegro con brio
+    path: (1732)Joseph Haydn/(1774)Keyboard Sonata in G major, Hob.XVI27 (Haydn,
+      Joseph)/IMSLP292402-PMLP01703-JHaydn_Sonata_Hob.16_No.27_mvt_1.mp3
+    ext: mp3
+  - id: "292403"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.5
+    rateBy: 4
+    group: 1
+    title: 2. Menuetto
+    path: (1732)Joseph Haydn/(1774)Keyboard Sonata in G major, Hob.XVI27 (Haydn,
+      Joseph)/IMSLP292403-PMLP01703-JHaydn_Sonata_Hob.16_No.27_mvt_2.mp3
+    ext: mp3
+  - id: "292404"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.75
+    rateBy: 8
+    group: 1
+    title: 3. Finale. Presto
+    path: (1732)Joseph Haydn/(1774)Keyboard Sonata in G major, Hob.XVI27 (Haydn,
+      Joseph)/IMSLP292404-PMLP01703-JHaydn_Sonata_Hob.16_No.27_mvt_3.mp3
+    ext: mp3

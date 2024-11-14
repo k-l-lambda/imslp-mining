@@ -1,0 +1,151 @@
+id: 42038
+title: Ballade No.3, Op.47
+author: Chopin, Frédéric
+url: https://imslp.org/wiki/Ballade No.3, Op.47 (Chopin, Frédéric)
+meta:
+  Work Title: Ballade No.3
+  Alternative. Title: ""
+  Name Translations: Ballade No. 3 in A-flat major, Op. 47; Ballade Nr. 3; Balada
+    n.º 3 op.47; Ballata n. 3 op. 47; Balada em Lá bemol maior (Chopin); バラード第3番
+    (ショパン); Ballada op. 47 (Chopin); 발라드 3번; Μπαλάντα αρ. 3 σε Λα ύφεση μείζονα,
+    έργο 47
+  Name Aliases: Balada n.º 3
+  Authorities: "WorldCat; Wikipedia; VIAF: 301552296; LCCN: no97074811; GND: 300036787"
+  Composer: Chopin, Frédéric
+  Opus/Catalogue NumberOp./Cat. No.: Op.47
+  I-Catalogue NumberI-Cat. No.: IFC 7
+  Key: A-flat major
+  Movements/SectionsMov'ts/Sec's: 1 ballad (Allegretto)
+  Year/Date of CompositionY/D of Comp.: "1841"
+  First Publication.: "1841"
+  Dedication: A Mlle. Pauline de Noailles
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Instytut Fryderyka ChopinaWikipedia articleAll Music Guide
+categories:
+  - Cortot, Alfred/Performer
+  - Lévy, Frank/Performer
+  - Recordings
+  - Scores from Bibliothèque nationale de France
+  - Pages with First Editions
+  - Scores published by Schlesinger
+  - Scores from Uniwersytet Warszawski
+  - Köhler, Louis/Editor
+  - Scores published by Litolff
+  - Scores from HathiTrust
+  - Rudorff, Ernst/Editor
+  - Klindworth, Karl/Editor
+  - Scholtz, Herrmann/Editor
+  - Scores published by Edition Peters
+  - Pages with ChopinScholtzEP
+  - Scores from the Library of Congress
+  - Kullak, Theodor/Editor
+  - Parsons, Albert Ross/Translator
+  - Mikuli, Carl/Editor
+  - Joseffy, Rafael/Editor
+  - Scores published by Schirmer
+  - Kreutzer, Leonid/Editor
+  - Scores published by Ullstein
+  - Cortot, Alfred/Editor
+  - Scores published by Salabert
+  - Scores published by Maurice Senart
+  - Pachmann, Vladimir de/Editor
+  - Labori, Marguerite/Editor
+  - Scores published by Augener
+  - Paderewski, Ignacy Jan/Editor
+  - Bronarski, Ludwik/Editor
+  - Turczyński, Józef/Editor
+  - Scores published by Polskie Wydawnictwo Muzyczne
+  - Pages with items from Chopin Works PWM
+  - Choe, Joshua/Arranger
+  - Scores
+  - Chopin, Frédéric
+  - Romantic style
+  - Romantic
+  - Ballades
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For orchestra (arr)
+  - Scores featuring the orchestra (arr)
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Works first published in 1841
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - A-flat major
+files:
+  - id: "64112"
+    tab: Score1
+    tabText: Scores
+    rating: 7.8333333333333
+    rateBy: 12
+    group: 0
+    title: Complete Score (scan)
+    path: (1810)Frédéric Chopin/(1841)Ballade No.3, Op.47 (Chopin,
+      Frédéric)/IMSLP64112-PMLP01648-Chopin_Balades_Schirmer_Mikuli_Op_47_scan.pdf
+    ext: pdf
+  - id: "73962"
+    tab: Score1
+    tabText: Scores
+    rating: 7.25
+    rateBy: 8
+    group: 1
+    title: Complete Score (scan)
+    path: (1810)Frédéric Chopin/(1841)Ballade No.3, Op.47 (Chopin,
+      Frédéric)/IMSLP73962-PMLP01648-Chopin_Paderewski_No_3_Ballades_Op_47_scan.pdf
+    ext: pdf
+  - id: "80320"
+    tab: Score1
+    tabText: Scores
+    rating: 7.1764705882353
+    rateBy: 17
+    group: 2
+    title: Complete ScoreUS-Wc
+    path: (1810)Frédéric Chopin/(1841)Ballade No.3, Op.47 (Chopin,
+      Frédéric)/IMSLP80320-PMLP01648-FChopin_Ballade_No3_Op47.pdf
+    ext: pdf
+  - id: "731554"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1810)Frédéric Chopin/(1841)Ballade No.3, Op.47 (Chopin,
+      Frédéric)/IMSLP731554-PMLP1648-Score.pdf
+    ext: pdf
+  - id: "731543"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1810)Frédéric Chopin/(1841)Ballade No.3, Op.47 (Chopin,
+      Frédéric)/IMSLP731543-PMLP1648-ScoreS.pdf
+    ext: pdf
+  - id: "470609"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8.6666666666667
+    rateBy: 3
+    group: 0
+    title: Complete Recording
+    path: (1810)Frédéric Chopin/(1841)Ballade No.3, Op.47 (Chopin,
+      Frédéric)/IMSLP470609-PMLP1648-27-11_Chopin_Ballade_-3_In_A_Flat,_Op._47,_CT_4.mp3
+    ext: mp3
+  - id: "473656"
+    tab: Audio1
+    tabText: Recordings
+    rating: 8
+    rateBy: 1
+    group: 1
+    title: Complete Performance
+    path: (1810)Frédéric Chopin/(1841)Ballade No.3, Op.47 (Chopin,
+      Frédéric)/IMSLP473656-PMLP01648-Ballade_no._3_-_Op._47.mp3
+    ext: mp3

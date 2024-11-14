@@ -1,0 +1,98 @@
+id: 28059
+title: 6 Variations in F major, Op.34
+author: Beethoven, Ludwig van
+url: https://imslp.org/wiki/6 Variations in F major, Op.34 (Beethoven, Ludwig van)
+meta:
+  Work Title: 6 Variations in F major
+  Alternative. Title: Six variations for piano on an original theme in F major
+  Composer: Beethoven, Ludwig van
+  Opus/Catalogue NumberOp./Cat. No.: Op.34
+  I-Catalogue NumberI-Cat. No.: ILB 297
+  Key: F major
+  Movements/SectionsMov'ts/Sec's: |-
+    theme, 6 variations, coda:
+     Theme. Adagio, cantabile (F major)
+     Variation 1 (D major)
+     Variation 2. Allegro, ma non troppo (B♭ major)
+     Variation 3. Allegretto (G major)
+     Variation 4. Tempo di Minuet (E♭ major)
+     Variation 5. Marcia. Allgretto (C minor)
+     Variation 6. Allegretto (F major)
+     Coda. [Allegretto] - Adagio molto (F major)
+  Year/Date of CompositionY/D of Comp.: "1802"
+  First Publication.: "1803"
+  Dedication: Anna Luise Barbara Odescalchi, geb. Gräfin von Keglevics
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: piano
+categories:
+  - Lipkin, Seymour/Performer
+  - Gardner Museum Recordings
+  - Recordings
+  - Manuscripts from the 00s
+  - Composers' holographs from the 00s
+  - Pages with MssAu template
+  - Manuscripts
+  - Scores from Det Kongelige Bibliotek
+  - Pages with First Editions
+  - Scores published by Breitkopf und Härtel
+  - Scores published by Johann André
+  - Sibley Mirroring Project
+  - Scores from Bayerische Staatsbibliothek
+  - Pages with items from edition "Ludwig van Beethovens Werke"
+  - Scores with links to Amazon
+  - Scores
+  - Beethoven, Ludwig van
+  - Classical style
+  - Classical
+  - Variations
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1803
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - F major
+files:
+  - id: "51106"
+    tab: Score1
+    tabText: Scores
+    rating: 5.5
+    rateBy: 12
+    group: 0
+    title: Complete ScoreD-BNba
+    path: (1770)Ludwig van Beethoven/(1802)6 Variations in F major, Op.34
+      (Beethoven, Ludwig van)/IMSLP51106-PMLP12221-Op.34_Manuscript.pdf
+    ext: pdf
+  - id: "52945"
+    tab: Score1
+    tabText: Scores
+    rating: 5.3333333333333
+    rateBy: 6
+    group: 1
+    title: Complete ScoreD-Mbs
+    path: (1770)Ludwig van Beethoven/(1802)6 Variations in F major, Op.34
+      (Beethoven, Ludwig
+      van)/IMSLP52945-PMLP12221-Beethoven_Werke_Breitkopf_Serie_17_No_162_Op_34.pdf
+    ext: pdf
+  - id: "51107"
+    tab: Score1
+    tabText: Scores
+    rating: 4
+    rateBy: 4
+    group: 2
+    title: Complete ScoreD-BNba
+    path: (1770)Ludwig van Beethoven/(1802)6 Variations in F major, Op.34
+      (Beethoven, Ludwig van)/IMSLP51107-PMLP12221-Op.34.pdf
+    ext: pdf
+  - id: "367453"
+    tab: Audio1
+    tabText: Recordings
+    rating: 4
+    rateBy: 1
+    group: 0
+    title: Complete Performance
+    path: (1770)Ludwig van Beethoven/(1802)6 Variations in F major, Op.34
+      (Beethoven, Ludwig van)/IMSLP367453-PMLP12221-beethoven_op34_lipkin.mp3
+    ext: mp3

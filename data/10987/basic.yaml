@@ -1,0 +1,90 @@
+id: 10987
+title: Keyboard Sonata in E-flat major, Hob.XVI:28
+author: Haydn, Joseph
+url: https://imslp.org/wiki/Keyboard Sonata in E-flat major, Hob.XVI:28 (Haydn,
+  Joseph)
+meta:
+  Work Title: Piano Sonata No.28
+  Alternative. Title: Klaviersonate Nr.43
+  Composer: Haydn, Joseph
+  Opus/Catalogue NumberOp./Cat. No.: Hob.XVI:28
+  I-Catalogue NumberI-Cat. No.: IJH 277
+  Key: E-flat major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements
+    Allegro moderato (E♭ major)
+    Minuet (E♭ major) - Trio (E♭ minor) - Minuet (E♭ major)
+    Finale. Presto (E♭ major)
+  Year/Date of CompositionY/D of Comp.: 1774-76 ca
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: keyboard
+categories:
+  - Scores from the Internet Archive
+  - Köhler, Louis/Editor
+  - Scores published by Edition Peters
+  - Klee, Ludwig/Editor
+  - Lebert, Sigmund/Editor
+  - Scores published by Schirmer
+  - Bülow, Hans von/Editor
+  - Päsler, Karl/Editor
+  - Scores published by Breitkopf und Härtel
+  - Martienssen, Carl Adolf/Editor
+  - Apke, Stefan/Arranger
+  - Scores
+  - Haydn, Joseph
+  - Classical style
+  - Classical
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For guitar (arr)
+  - Scores featuring the guitar (arr)
+  - For 1 player (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - E-flat major
+files:
+  - id: "76300"
+    tab: Score1
+    tabText: Scores
+    rating: 5.625
+    rateBy: 8
+    group: 0
+    title: Complete Score (scan)
+    path: (1732)Joseph Haydn/(1774)Keyboard Sonata in E-flat major, Hob.XVI28
+      (Haydn,
+      Joseph)/IMSLP76300-PMLP01704-Haydn_Sonaten_Klavier_Band_2_13_Peters_11333_scan.pdf
+    ext: pdf
+  - id: "00144"
+    tab: Score1
+    tabText: Scores
+    rating: 5
+    rateBy: 8
+    group: 1
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1774)Keyboard Sonata in E-flat major, Hob.XVI28
+      (Haydn, Joseph)/IMSLP00144-Haydn_-_Piano_Sonata_No_28_in_Eb.pdf
+    ext: pdf
+  - id: "475105"
+    tab: Score1
+    tabText: Scores
+    rating: 2
+    rateBy: 1
+    group: 2
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1774)Keyboard Sonata in E-flat major, Hob.XVI28
+      (Haydn, Joseph)/IMSLP475105-PMLP1704-haydn20pianosonatasBk.2Hob.XVI28.pdf
+    ext: pdf
+  - id: "658265"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1774)Keyboard Sonata in E-flat major, Hob.XVI28
+      (Haydn, Joseph)/IMSLP658265-PMLP1704-Haydn_J-Menuetto_Hob_XVI_28+mid.pdf
+    ext: pdf

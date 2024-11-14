@@ -1,0 +1,152 @@
+id: 13763
+title: Keyboard Sonata in C major, Hob.XVI:50
+author: Haydn, Joseph
+url: https://imslp.org/wiki/Keyboard Sonata in C major, Hob.XVI:50 (Haydn, Joseph)
+meta:
+  Work Title: Keyboard Sonata
+  Alternative. Title: Klaviersonate Nr.60
+  Name Translations: Keyboard Sonata No. 50 (Haydn); Sonate pour piano nº 60 de
+    Joseph Haydn; ピアノソナタ第50番
+  Name Aliases: Sonate n°60 en do majeur pour piano (Joseph Haydn); Sonate n°60 en
+    do majeur pour piano de Joseph Haydn; Sonate n° 60 en do majeur pour piano
+    de Joseph Haydn
+  Authorities: "WorldCat; Wikipedia; VIAF: 294786217; BNF: 13913485c"
+  Composer: Haydn, Joseph
+  Opus/Catalogue NumberOp./Cat. No.: Hob.XVI:50 ; Op.79
+  I-Catalogue NumberI-Cat. No.: IJH 264
+  Key: C major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements
+    Allegro (C major)
+    Adagio (F major)
+    Allegro molto (C major)
+  Year/Date of CompositionY/D of Comp.: 1794–95
+  Dedication: For Therese Jansen
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: piano
+  Discography: All Music Guide
+  External Links: Wikipedia article
+categories:
+  - Gardner Museum Recordings
+  - Hernandez Romero, Gabriel Antonio/Performer
+  - Okonsar, Mehmet K./Performer
+  - Scores with links to Amazon
+  - Richter, Sviatoslav/Performer
+  - Recordings published in 1962
+  - Recordings published in the 20th century
+  - Armstrong, Peter McKenzie/Performer
+  - Recordings
+  - Päsler, Karl/Editor
+  - Scores published by Breitkopf und Härtel
+  - Martienssen, Carl Adolf/Editor
+  - Scores published by Edition Peters
+  - Landon, Christa/Editor
+  - Scores published by Wiener Urtext Edition
+  - Urtext
+  - Choe, Joshua/Arranger
+  - Scores
+  - Haydn, Joseph
+  - Classical style
+  - Classical
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - C major
+files:
+  - id: "370563"
+    tab: Score1
+    tabText: Scores
+    rating: 7.1666666666667
+    rateBy: 12
+    group: 0
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in C major, Hob.XVI50 (Haydn,
+      Joseph)/IMSLP370563-PMLP01730-Haydn_-_Sonata_No._60,_Hob._XVI_50_(Wiener_Urtext).pdf
+    ext: pdf
+  - id: "00166"
+    tab: Score1
+    tabText: Scores
+    rating: 5.9166666666667
+    rateBy: 48
+    group: 1
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in C major, Hob.XVI50 (Haydn,
+      Joseph)/IMSLP00166-Haydn_-_Piano_Sonata_No_50_in_C.pdf
+    ext: pdf
+  - id: "72286"
+    tab: Score1
+    tabText: Scores
+    rating: 5.6
+    rateBy: 25
+    group: 2
+    title: Complete Score (scan)
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in C major, Hob.XVI50 (Haydn,
+      Joseph)/IMSLP72286-PMLP01730-Haydn_Sonaten_Klavier_Band_4_42_Peters_11304_scan.pdf
+    ext: pdf
+  - id: "733993"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in C major, Hob.XVI50 (Haydn,
+      Joseph)/IMSLP733993-PMLP1730-Score_1_(etc).pdf
+    ext: pdf
+  - id: "518428"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9.5
+    rateBy: 12
+    group: 0
+    title: Complete Performance
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in C major, Hob.XVI50 (Haydn,
+      Joseph)/IMSLP518428-PMLP1730-HAYDN_Hob._50_in_C_Major_-_Complete_MP3_2018.mp3
+    ext: mp3
+  - id: "275634"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.3103448275862
+    rateBy: 58
+    group: 1
+    title: I. Allegro
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in C major, Hob.XVI50 (Haydn,
+      Joseph)/IMSLP275634-PMLP01730-04-HaydnSonatas-C_Maj_HBK_XVI-50_01-Allegro.mp3
+    ext: mp3
+  - id: "275635"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.6363636363636
+    rateBy: 11
+    group: 1
+    title: II. Adagio
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in C major, Hob.XVI50 (Haydn,
+      Joseph)/IMSLP275635-PMLP01730-05-HaydnSonatas-C_Maj_HBK_XVI-50_02-Adagio.mp3
+    ext: mp3
+  - id: "275636"
+    tab: Audio1
+    tabText: Recordings
+    rating: 9
+    rateBy: 12
+    group: 1
+    title: III. Allegro molto
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in C major, Hob.XVI50 (Haydn,
+      Joseph)/IMSLP275636-PMLP01730-06-HaydnSonatas-C_Maj_HBK_XVI-50_03-Allegromolto.mp3
+    ext: mp3
+  - id: "479591"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.5
+    rateBy: 4
+    group: 2
+    title: Complete Performance
+    path: (1732)Joseph Haydn/(1794)Keyboard Sonata in C major, Hob.XVI50 (Haydn,
+      Joseph)/IMSLP479591-PMLP01730-haydn_hobxvi50_li.mp3
+    ext: mp3

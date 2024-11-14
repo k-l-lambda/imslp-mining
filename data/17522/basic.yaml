@@ -1,0 +1,135 @@
+id: 17522
+title: Toccata in D minor, BWV 913
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Toccata in D minor, BWV 913 (Bach, Johann Sebastian)
+meta:
+  Work Title: Toccata
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 913 ; BC L 144
+  I-Catalogue NumberI-Cat. No.: IJB 631
+  Key: D minor
+  Movements/SectionsMov'ts/Sec's: "[No tempo] - 276 bars"
+  Year/Date of CompositionY/D of Comp.: 1708?
+  First Publication.: "1801"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+  Primary Sources: Bach Digital (source list)
+categories:
+  - Recordings
+  - Naumann, Ernst/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Keller, Hermann/Editor
+  - Scores published by Edition Peters
+  - Peterpiano/Editor
+  - Kowalewski, Jakub/Arranger
+  - Bartoli, Russ/Arranger
+  - Reger, Max/Arranger
+  - Scores published by Aibl
+  - Scores engraved by Eberle
+  - Scores published by Universal Edition
+  - Stradal, August/Arranger
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Toccatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For violin, viola, cello (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the viola (arr)
+  - Scores featuring the cello (arr)
+  - For 3 players (arr)
+  - For organ (arr)
+  - For 1 player (arr)
+  - Scores featuring the organ (arr)
+  - For piano (arr)
+  - Scores featuring the piano (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - D minor
+files:
+  - id: "529403"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1708)Toccata in D minor, BWV 913 (Bach,
+      Johann
+      Sebastian)/IMSLP529403-PMLP180546--------_BWV_913_--_-----_-_------_---------.pdf
+    ext: pdf
+  - id: "485254"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 3
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1708)Toccata in D minor, BWV 913 (Bach,
+      Johann Sebastian)/IMSLP485254-PMLP180546-Bach-BWV913keller.pdf
+    ext: pdf
+  - id: "03203"
+    tab: Score1
+    tabText: Scores
+    rating: 4.9230769230769
+    rateBy: 13
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1708)Toccata in D minor, BWV 913 (Bach,
+      Johann Sebastian)/IMSLP03203-Bach_-_BGA_-_BWV_913.pdf
+    ext: pdf
+  - id: "416214"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete score and parts
+    path: (1685)Johann Sebastian Bach/(1708)Toccata in D minor, BWV 913 (Bach,
+      Johann
+      Sebastian)/IMSLP416214-PMLP180546-Bach_-_toccata_d-moll_bwv_913_-_partytura_i_głosy_-_22-03-2016.pdf
+    ext: pdf
+  - id: "17144"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 8.3333333333333
+    rateBy: 3
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1708)Toccata in D minor, BWV 913 (Bach,
+      Johann Sebastian)/IMSLP17144-Bach_-_Toccata_-_Stradal.pdf
+    ext: pdf
+  - id: "44905"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 8
+    rateBy: 2
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1708)Toccata in D minor, BWV 913 (Bach,
+      Johann
+      Sebastian)/IMSLP44905-PMLP96371-Reger,_Max,_Organ_Transcription_of_Bach's_Piano_Toccata_in_d.pdf
+    ext: pdf
+  - id: "268112"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.8
+    rateBy: 10
+    group: 0
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1708)Toccata in D minor, BWV 913 (Bach,
+      Johann Sebastian)/IMSLP268112-PMLP434325-01-Toccata-1_Dmin_BWV913.mp3
+    ext: mp3

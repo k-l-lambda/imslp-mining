@@ -1,0 +1,94 @@
+id: 105134
+title: "3"
+author: Liszt, Franz
+url: https://imslp.org/wiki/Hungarian Rhapsody No.3, S.244/3 (Liszt, Franz)
+meta:
+  Work Title: Hungarian Rhapsody No.3
+  Alternative. Title: Andante
+  Name Translations: Hungarian Rhapsody No. 3; Ungarische Rhapsodie Nr. 3;
+    第3號匈牙利狂想曲; უნგრული რაფსოდია №3
+  Authorities: Wikipedia
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.244/3 ; LW.A132/3
+  I-Catalogue NumberI-Cat. No.: IFL 165
+  Key: B-flat major
+  Movements/SectionsMov'ts/Sec's: 1 rhapsody
+  Year/Date of CompositionY/D of Comp.: "1847"
+  First Publication.: "1853"
+  Dedication: Count Leo Festetics (1800–1884)
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Recordings
+  - Pages with First Editions
+  - Scores published by Tobias Haslinger
+  - Sauer, Emil von/Editor
+  - Scores published by Edition Peters
+  - Scores from Bayerische Staatsbibliothek
+  - Raabe, Peter/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Milstein, Yakov/Editor
+  - Scores published by Muzgiz
+  - Gárdonyi, Zoltán/Editor
+  - Szelényi, István/Editor
+  - Scores published by Editio Musica Budapest
+  - Urtext
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Rhapsodies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For orchestra (arr)
+  - Scores featuring the orchestra (arr)
+  - Pages with arrangements
+  - Works first published in 1853
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (BnF collection)
+  - B-flat major
+files:
+  - id: "183370"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 6
+    group: 0
+    title: Complete Score (S.244/3) (scan)
+    path: (1811)Franz Liszt/(1847)3 (Liszt,
+      Franz)/IMSLP183370-PMLP12454-Liszt_NLA_Serie_I_Band_03_03_Rhapsodie_hongroise_S.244_3_scan.pdf
+    ext: pdf
+  - id: "33513"
+    tab: Score1
+    tabText: Scores
+    rating: 6.75
+    rateBy: 4
+    group: 1
+    title: Complete Score (S.244/3)D-Mbs
+    path: (1811)Franz Liszt/(1847)3 (Liszt,
+      Franz)/IMSLP33513-PMLP12454-Liszt_Musikalische_Werke_2_Band_12_119_Ungarische_Rhapsodie_3.pdf
+    ext: pdf
+  - id: "300585"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 6
+    group: 2
+    title: Complete Score (scan)
+    path: (1811)Franz Liszt/(1847)3 (Liszt,
+      Franz)/IMSLP300585-PMLP12454-Liszt_Klavierwerke_Peters_Sauer_Band_1_03_Ungarische_Rhapsodie_No_3_scan.pdf
+    ext: pdf
+  - id: "518191"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7
+    rateBy: 2
+    group: 0
+    title: Complete Recording
+    path: (1811)Franz Liszt/(1847)3 (Liszt,
+      Franz)/IMSLP518191-PMLP476418-Rhapsodie_hongroise,_S._244,_no._3_in_B-flat_major_(Franz_Liszt)_CND_30.mp3
+    ext: mp3

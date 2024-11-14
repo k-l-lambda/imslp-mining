@@ -1,0 +1,181 @@
+id: 57550
+title: Violin Sonata in D major, K.7
+author: Mozart, Wolfgang Amadeus
+url: https://imslp.org/wiki/Violin Sonata in D major, K.7 (Mozart, Wolfgang Amadeus)
+meta:
+  Work Title: Violin Sonata
+  Alternative. Title: Violin Sonata No.2
+  Name Translations: Sonata per violino K 7; Violin Sonata K 7
+  Name Aliases: K 7; KV 7
+  Authorities: "WorldCat; VIAF: 186536868"
+  Composer: Mozart, Wolfgang Amadeus
+  Opus/Catalogue NumberOp./Cat. No.: K.7 ; Op.1 No.2
+  I-Catalogue NumberI-Cat. No.: IWM 656
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements
+    Allegro molto
+    Adagio
+    Minuets 1 and 2
+  Year/Date of CompositionY/D of Comp.: 1763–64
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: violin, piano
+  Related Works: Nannerl's Music Book (No.47)
+categories:
+  - WIMA files
+  - Scores from Łódź University Library
+  - Goldschmidt, Otto/Editor
+  - Joachim, Joseph/Editor
+  - Reinecke, Carl/Editor
+  - Rudorff, Ernst/Editor
+  - Waldersee, Paul/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with scores from the Digital Mozart Edition
+  - Reeser, Eduard/Editor
+  - Scores published by Bärenreiter
+  - Urtext
+  - Pages with files from the Neue Mozart-Ausgabe
+  - Cohn, Brian/Editor
+  - RSB/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Mozart, Wolfgang Amadeus
+  - Classical style
+  - Classical
+  - Sonatas
+  - For violin, piano
+  - Scores featuring the violin
+  - Scores featuring the piano
+  - For 2 players
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - Pages with parts for purchase
+  - D major
+files:
+  - id: "30907"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 6.6666666666667
+    rateBy: 3
+    group: 0
+    title: Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1763)Violin Sonata in D major, K.7 (Mozart,
+      Wolfgang Amadeus)/IMSLP30907-PMLP70425-Finale_2006_-_-mozart-k.7ps.pdf
+    ext: pdf
+  - id: "57712"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 6.2857142857143
+    rateBy: 7
+    group: 1
+    title: Complete ScorePL-LZu
+    path: (1756)Wolfgang Amadeus Mozart/(1763)Violin Sonata in D major, K.7 (Mozart,
+      Wolfgang
+      Amadeus)/IMSLP57712-PMLP70425-Mozart_Werke_Breitkopf_Serie_18_KV7_Piano.pdf
+    ext: pdf
+  - id: "110589"
+    tab: Score1
+    tabText: Scores and Parts
+    rating: 4
+    rateBy: 1
+    group: 2
+    title: Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1763)Violin Sonata in D major, K.7 (Mozart,
+      Wolfgang
+      Amadeus)/IMSLP110589-PMLP70425-KV_7_Complete_Score_(Transc.RSB).pdf
+    ext: pdf
+  - id: "223365"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: IIIa. Minuet 1 - Complete Score
+    path: (1756)Wolfgang Amadeus Mozart/(1763)Violin Sonata in D major, K.7 (Mozart,
+      Wolfgang Amadeus)/IMSLP223365-WIMA.fcc5-KV7Sco.pdf
+    ext: pdf
+  - id: "223366"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Violins I
+    path: (1756)Wolfgang Amadeus Mozart/(1763)Violin Sonata in D major, K.7 (Mozart,
+      Wolfgang Amadeus)/IMSLP223366-WIMA.c424-KV7Vl1.pdf
+    ext: pdf
+  - id: "223367"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Violins II
+    path: (1756)Wolfgang Amadeus Mozart/(1763)Violin Sonata in D major, K.7 (Mozart,
+      Wolfgang Amadeus)/IMSLP223367-WIMA.30ac-KV7Vl2.pdf
+    ext: pdf
+  - id: "223368"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Violas
+    path: (1756)Wolfgang Amadeus Mozart/(1763)Violin Sonata in D major, K.7 (Mozart,
+      Wolfgang Amadeus)/IMSLP223368-WIMA.98f4-KV7Vla.pdf
+    ext: pdf
+  - id: "223369"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Violins III (Violas)
+    path: (1756)Wolfgang Amadeus Mozart/(1763)Violin Sonata in D major, K.7 (Mozart,
+      Wolfgang Amadeus)/IMSLP223369-WIMA.7d22-KV7Vl3.pdf
+    ext: pdf
+  - id: "223370"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Cellos
+    path: (1756)Wolfgang Amadeus Mozart/(1763)Violin Sonata in D major, K.7 (Mozart,
+      Wolfgang Amadeus)/IMSLP223370-WIMA.b7a6-KV7Vc.pdf
+    ext: pdf
+  - id: "223371"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Basses
+    path: (1756)Wolfgang Amadeus Mozart/(1763)Violin Sonata in D major, K.7 (Mozart,
+      Wolfgang Amadeus)/IMSLP223371-WIMA.0f71-KV7Db.pdf
+    ext: pdf
+  - id: "188852"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 7
+    rateBy: 2
+    group: 0
+    title: Engraving files (Finale)
+    path: (1756)Wolfgang Amadeus Mozart/(1763)Violin Sonata in D major, K.7 (Mozart,
+      Wolfgang Amadeus)/IMSLP188852-WIMA.e418-LM.zip
+    ext: zip
+  - id: "223401"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: IIIa. Minuet 1
+    path: (1756)Wolfgang Amadeus Mozart/(1763)Violin Sonata in D major, K.7 (Mozart,
+      Wolfgang Amadeus)/IMSLP223401-WIMA.f61d-KV7Sco.mp3
+    ext: mp3

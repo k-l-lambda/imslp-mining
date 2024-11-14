@@ -1,0 +1,74 @@
+id: 5839
+title: Piano Sonata No.3, Op.14
+author: Schumann, Robert
+url: https://imslp.org/wiki/Piano Sonata No.3, Op.14 (Schumann, Robert)
+meta:
+  Work Title: Grand Sonata No.3
+  Alternative. Title: Concert sans Orchestre
+  Composer: Schumann, Robert
+  Opus/Catalogue NumberOp./Cat. No.: Op.14
+  I-Catalogue NumberI-Cat. No.: IRS 113
+  Key: F minor
+  Movements/SectionsMov'ts/Sec's: 5 originally, then 3
+  Year/Date of CompositionY/D of Comp.: 1836, revised 1853
+  First Publication.: "1836"
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  Extra Information: 1853 revised restored a scherzo and retitled as Piano Sonata No.3
+categories:
+  - Scores from Bayerische Staatsbibliothek
+  - Schumann, Clara/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with items from Schumann's Werke
+  - Scores with links to Amazon
+  - Ruthardt, Adolf/Editor
+  - Scores published by Edition Peters
+  - Vogrich, Max/Editor
+  - Scores published by Schirmer
+  - Sibley Mirroring Project
+  - Alston, Ray/Editor
+  - Scores
+  - Schumann, Robert
+  - Romantic style
+  - Romantic
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - Works first published in 1836
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - F minor
+files:
+  - id: "745084"
+    tab: Score1
+    tabText: Scores
+    rating: 8.6666666666667
+    rateBy: 3
+    group: 0
+    title: Complete Score
+    path: (1810)Robert Schumann/(1836)Piano Sonata No.3, Op.14 (Schumann,
+      Robert)/IMSLP745084-PMLP2195-Variations_on_a_theme_of_Clara_Wieck_Op_14_.pdf
+    ext: pdf
+  - id: "289790"
+    tab: Score1
+    tabText: Scores
+    rating: 6.5
+    rateBy: 20
+    group: 1
+    title: Complete Score (scan)
+    path: (1810)Robert Schumann/(1836)Piano Sonata No.3, Op.14 (Schumann,
+      Robert)/IMSLP289790-PMLP02195-Schumann,_Robert_Werke_Breitkopf_Gregg_Serie_7_Band_3_RS_52_Op_14_scan.pdf
+    ext: pdf
+  - id: "30326"
+    tab: Score1
+    tabText: Scores
+    rating: 5.8333333333333
+    rateBy: 6
+    group: 2
+    title: Complete score
+    path: (1810)Robert Schumann/(1836)Piano Sonata No.3, Op.14 (Schumann,
+      Robert)/IMSLP30326-PMLP02195-Schumann-Op014sch.pdf
+    ext: pdf

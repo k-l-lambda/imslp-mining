@@ -1,0 +1,126 @@
+id: 65958
+title: Keyboard Sonata in A-flat major, Hob.XVI:43
+author: Haydn, Joseph
+url: https://imslp.org/wiki/Keyboard Sonata in A-flat major, Hob.XVI:43 (Haydn,
+  Joseph)
+meta:
+  Work Title: Keyboard Sonata
+  Alternative. Title: Klaviersonate Nr.35
+  Name Translations: Sonate pour piano nº 35 de Joseph Haydn
+  Authorities: "WorldCat; VIAF: 293635897; BNF: 139415713"
+  Composer: Haydn, Joseph
+  Opus/Catalogue NumberOp./Cat. No.: Hob.XVI:43
+  I-Catalogue NumberI-Cat. No.: IJH 256
+  Key: A-flat major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements:
+    Moderato (A♭ major)
+    Minuet I - Minuet II (A♭ major)
+    Rondo. Presto (A♭ major)
+  First Publication.: 1783 (Beardmore & Birchall)
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: piano or harpsichord
+  Primary Sources: D-B Mus.ms. 10117D-LEm Poel.mus.Ms.135 (1797 abschrift by
+    Poelitz, part of an "Op.41" pair of copies so probably from the Le Duc
+    (1785) or Pleyel printings which also have this work as part of an "Op.41"
+    set of sonatas)
+categories:
+  - Scores from Bibliothèque nationale de France
+  - Päsler, Karl/Editor
+  - Scores published by Breitkopf und Härtel
+  - Martienssen, Carl Adolf/Editor
+  - Scores published by Edition Peters
+  - David, Ferdinand/Editor
+  - Scores published by Litolff
+  - Sibley Mirroring Project
+  - MIT project
+  - Grützmacher, Friedrich/Arranger
+  - Scores
+  - Haydn, Joseph
+  - Classical style
+  - Classical
+  - Sonatas
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For harpsichord
+  - Scores featuring the harpsichord
+  - For violin, piano (arr)
+  - For 2 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the piano (arr)
+  - For cello, piano (arr)
+  - Scores featuring the cello (arr)
+  - Pages with arrangements
+  - Works first published in 1783
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - A-flat major
+  - Pages with RISM citations
+files:
+  - id: "00159"
+    tab: Score1
+    tabText: Scores
+    rating: 7.25
+    rateBy: 8
+    group: 0
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1783)Keyboard Sonata in A-flat major, Hob.XVI43
+      (Haydn, Joseph)/IMSLP00159-Haydn_-_Piano_Sonata_No_43_in_Ab.pdf
+    ext: pdf
+  - id: "72279"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 7
+    group: 1
+    title: Complete Score (scan)
+    path: (1732)Joseph Haydn/(1783)Keyboard Sonata in A-flat major, Hob.XVI43
+      (Haydn,
+      Joseph)/IMSLP72279-PMLP01723-Haydn_Sonaten_Klavier_Band_4_41_Peters_11304_scan.pdf
+    ext: pdf
+  - id: "545353"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete ScoreF-Pn
+    path: (1732)Joseph Haydn/(1783)Keyboard Sonata in A-flat major, Hob.XVI43
+      (Haydn,
+      Joseph)/IMSLP545353-PMLP1723-Trois_Sonates_pour_le_clavecin_-...-Haydn_Joseph_btv1b90829022.pdf
+    ext: pdf
+  - id: "11701"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 6
+    rateBy: 6
+    group: 0
+    title: Complete Score and Violin Part
+    path: (1732)Joseph Haydn/(1783)Keyboard Sonata in A-flat major, Hob.XVI43
+      (Haydn, Joseph)/IMSLP11701-Haydn_-_Violin_Sonata_No.5_in_G_Major.pdf
+    ext: pdf
+  - id: "479535"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete ScoreRUS-Mrg
+    path: (1732)Joseph Haydn/(1783)Keyboard Sonata in A-flat major, Hob.XVI43
+      (Haydn,
+      Joseph)/IMSLP479535-PMLP01723-41_IMSLP244000-PMLP28620-Haydn_Vl_Sons.pdf
+    ext: pdf
+  - id: "479558"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete ScoreUS-R
+    path: (1732)Joseph Haydn/(1783)Keyboard Sonata in A-flat major, Hob.XVI43
+      (Haydn,
+      Joseph)/IMSLP479558-PMLP01723-43_IMSLP344937-SIBLEY1802.10076.3ca0-39087004843670score.pdf
+    ext: pdf

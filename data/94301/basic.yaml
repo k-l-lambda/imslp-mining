@@ -1,0 +1,130 @@
+id: 94301
+title: Keyboard Sonata in G minor, K.4
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in G minor, K.4 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in G minor
+  Alternative. Title: ""
+  Name Translations: Sonate K. 4; Sonata K. 4; Sonat K. 4
+  Authorities: "WorldCat; VIAF: 292628173; LCCN: n00067490; GND: 1071155237; BNF: 13914422q"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.4 ; L.390; P.60 ; CZ.9
+  I-Catalogue NumberI-Cat. No.: IDS 539
+  Key: G minor
+  Movements/SectionsMov'ts/Sec's: Allegro
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.4)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Höger, Anton/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Exercises
+  - Studies
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For 2 guitars (arr)
+  - For 2 players (arr)
+  - Scores featuring the guitar (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - G minor
+files:
+  - id: "133065"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.4 (Scarlatti,
+      Domenico)/IMSLP133065-WIMA.d228-Scarlatti_Sonate_K.4.pdf
+    ext: pdf
+  - id: "313334"
+    tab: Score1
+    tabText: Scores
+    rating: 8.6666666666667
+    rateBy: 3
+    group: 1
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.4 (Scarlatti,
+      Domenico)/IMSLP313334-PMLP297357-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_04_K.4_scan.pdf
+    ext: pdf
+  - id: "81137"
+    tab: Score1
+    tabText: Scores
+    rating: 2
+    rateBy: 1
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.4 (Scarlatti,
+      Domenico)/IMSLP81137-PMLP11024-DScarlatti.pdf
+    ext: pdf
+  - id: "191836"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.4 (Scarlatti,
+      Domenico)/IMSLP191836-WIMA.c0c4-ScaK4Sco.pdf
+    ext: pdf
+  - id: "353269"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.4 (Scarlatti,
+      Domenico)/IMSLP353269-PMLP297357-Scarlatti_-_Sonate_K.4.pdf
+    ext: pdf
+  - id: "279375"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.4 (Scarlatti,
+      Domenico)/IMSLP279375-PMLP257047-Scarlatti_Sonate_K.4.mid
+    ext: mid
+  - id: "191844"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.4 (Scarlatti,
+      Domenico)/IMSLP191844-WIMA.7476-ScaK4Sco.mp3
+    ext: mp3
+  - id: "353272"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in G minor, K.4 (Scarlatti,
+      Domenico)/IMSLP353272-PMLP297357-Scarlatti_-_Sonate_K.4.mp3
+    ext: mp3

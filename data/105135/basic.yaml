@@ -1,0 +1,83 @@
+id: 105135
+title: "4"
+author: Liszt, Franz
+url: https://imslp.org/wiki/Hungarian Rhapsody No.4, S.244/4 (Liszt, Franz)
+meta:
+  Work Title: Hungarian Rhapsody No.4
+  Alternative. Title: Quasi adagio, altiermamente
+  Name Translations: Hungarian Rhapsody No. 4; Ungarische Rhapsodie Nr. 4;
+    第4號匈牙利狂想曲; უნგრული რაფსოდია №4
+  Authorities: Wikipedia
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.244/4 ; LW.A132/4
+  I-Catalogue NumberI-Cat. No.: IFL 166
+  Key: E-flat major
+  Movements/SectionsMov'ts/Sec's: 1 rhapsody
+  Year/Date of CompositionY/D of Comp.: "1847"
+  First Publication.: "1853"
+  Dedication: Count Casimir Esterházy
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Pages with First Editions
+  - Scores published by Tobias Haslinger
+  - Sauer, Emil von/Editor
+  - Scores published by Edition Peters
+  - Scores from Bayerische Staatsbibliothek
+  - Raabe, Peter/Editor
+  - Scores published by Breitkopf und Härtel
+  - Scores with links to Amazon
+  - Milstein, Yakov/Editor
+  - Scores published by Muzgiz
+  - Gárdonyi, Zoltán/Editor
+  - Szelényi, István/Editor
+  - Scores published by Editio Musica Budapest
+  - Urtext
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Rhapsodies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For orchestra (arr)
+  - Scores featuring the orchestra (arr)
+  - Pages with arrangements
+  - Works first published in 1853
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (BnF collection)
+  - E-flat major
+files:
+  - id: "300586"
+    tab: Score1
+    tabText: Scores
+    rating: 8.5
+    rateBy: 4
+    group: 0
+    title: Complete Score (scan)
+    path: (1811)Franz Liszt/(1847)4 (Liszt,
+      Franz)/IMSLP300586-PMLP12455-Liszt_Klavierwerke_Peters_Sauer_Band_1_04_Ungarische_Rhapsodie_No_4_scan.pdf
+    ext: pdf
+  - id: "38928"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 2
+    group: 1
+    title: Complete Score (S.244/4)D-Mbs
+    path: (1811)Franz Liszt/(1847)4 (Liszt,
+      Franz)/IMSLP38928-PMLP12455-Liszt_Musikalische_Werke_2_Band_12_120_Ungarische_Rhapsodie_4.pdf
+    ext: pdf
+  - id: "183372"
+    tab: Score1
+    tabText: Scores
+    rating: 7.3333333333333
+    rateBy: 3
+    group: 2
+    title: Complete Score (S.244/4) (scan)
+    path: (1811)Franz Liszt/(1847)4 (Liszt,
+      Franz)/IMSLP183372-PMLP12455-Liszt_NLA_Serie_I_Band_03_04_Rhapsodie_hongroise_S.244_4_scan.pdf
+    ext: pdf

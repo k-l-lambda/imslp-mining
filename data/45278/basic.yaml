@@ -1,0 +1,91 @@
+id: 45278
+title: "19"
+author: Liszt, Franz
+url: https://imslp.org/wiki/Hungarian Rhapsody No.19, S.244/19 (Liszt, Franz)
+meta:
+  Work Title: Hungarian Rhapsody No.19
+  Alternative. Title: Lento
+  Name Translations: Rhapsodie hongroise nº 19 de Liszt; Hungarian Rhapsody No.
+    19; Ungarische Rhapsodie Nr. 19; 第19號匈牙利狂想曲
+  Authorities: Wikipedia
+  Composer: Liszt, Franz
+  Opus/Catalogue NumberOp./Cat. No.: S.244/19 ; LW.A132/19
+  I-Catalogue NumberI-Cat. No.: IFL 181
+  Key: D minor
+  Movements/SectionsMov'ts/Sec's: 1 rhapsody
+  Year/Date of CompositionY/D of Comp.: "1885"
+  First Publication.: "1886"
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+categories:
+  - Scores from Bayerische Staatsbibliothek
+  - Raabe, Peter/Editor
+  - Scores published by Breitkopf und Härtel
+  - Milstein, Yakov/Editor
+  - Scores published by Muzgiz
+  - Scores with links to Amazon
+  - Gárdonyi, Zoltán/Editor
+  - Szelényi, István/Editor
+  - Scores published by Editio Musica Budapest
+  - Urtext
+  - Busoni, Ferruccio/Arranger
+  - Scores
+  - Liszt, Franz
+  - Romantic style
+  - Romantic
+  - Rhapsodies
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For piano (arr)
+  - For 1 player (arr)
+  - Scores featuring the piano (arr)
+  - Pages with arrangements
+  - Works first published in 1886
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - D minor
+files:
+  - id: "58325"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score (S.244/19)D-Mbs
+    path: (1811)Franz Liszt/(1885)19 (Liszt,
+      Franz)/IMSLP58325-PMLP12470-Liszt_Musikalische_Werke_2_Band_12_135.pdf
+    ext: pdf
+  - id: "186123"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 1
+    title: Complete Score (S.244/19) (scan)
+    path: (1811)Franz Liszt/(1885)19 (Liszt,
+      Franz)/IMSLP186123-PMLP12470-Liszt_NLA_Serie_I_Band_04_10_Rhapsodie_hongroise_S.244_19_scan.pdf
+    ext: pdf
+  - id: "05085"
+    tab: Score1
+    tabText: Scores
+    rating: 9
+    rateBy: 4
+    group: 2
+    title: Complete Score (S.244/19)
+    path: (1811)Franz Liszt/(1885)19 (Liszt,
+      Franz)/IMSLP05085-Liszt_-_S244_Hungarian_Rhapsody_No19_(edition_b).PDF
+    ext: pdf
+  - id: "08310"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1811)Franz Liszt/(1885)19 (Liszt,
+      Franz)/IMSLP08310-Liszt_-_S244_Hungarian_Rhapsody_No19_(busoni).pdf
+    ext: pdf

@@ -1,0 +1,170 @@
+id: 10976
+title: Keyboard Sonata in D minor, K.1
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in D minor, K.1 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in D minor
+  Alternative. Title: ""
+  Name Translations: Sonata K. 1 (Scarlatti); Sonate K. 1; Sonata K. 1; Sonat K. 1
+  Authorities: "WorldCat; VIAF: 178852701; GND: 300653522; BNF: 13914088j; BNE: XX2446757"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.1 ; L.366 ; P.57 ; CZ.6
+  I-Catalogue NumberI-Cat. No.: IDS 302
+  Key: D minor
+  Movements/SectionsMov'ts/Sec's: Allegro (31 bars)
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.1)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - Mantione, Carmelo/Performer
+  - WIMA files
+  - Recordings
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Pages with items from the 'Opere complete per clavicembalo' (Longo edition)
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Peterpiano/Editor
+  - Rondeau, Michel/Arranger
+  - Snuggs, Colin Peter/Arranger
+  - Höger, Anton/Arranger
+  - Apke, Stefan/Arranger
+  - Beuming, Ben/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - Exercises
+  - Studies
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For clarinet, violin, cello (arr)
+  - Scores featuring the clarinet (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the cello (arr)
+  - For 3 players (arr)
+  - For 2 saxophones (arr)
+  - Scores featuring the saxophone (arr)
+  - For 2 players (arr)
+  - For 2 guitars (arr)
+  - Scores featuring the guitar (arr)
+  - For guitar (arr)
+  - For 1 player (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - D minor
+files:
+  - id: "132936"
+    tab: Score1
+    tabText: Scores
+    rating: 7.6
+    rateBy: 5
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.1 (Scarlatti,
+      Domenico)/IMSLP132936-WIMA.6865-Scarlatti_Sonate_K.1.pdf
+    ext: pdf
+  - id: "466973"
+    tab: Score1
+    tabText: Scores
+    rating: 6.9230769230769
+    rateBy: 13
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.1 (Scarlatti,
+      Domenico)/IMSLP466973-PMLP330125-------_-_001_L_366_--_-----_-_------_---------.pdf
+    ext: pdf
+  - id: "311236"
+    tab: Score1
+    tabText: Scores
+    rating: 6.1081081081081
+    rateBy: 37
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.1 (Scarlatti,
+      Domenico)/IMSLP311236-PMLP330125-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_01_K.1_scan.pdf
+    ext: pdf
+  - id: "191658"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 5.1428571428571
+    rateBy: 21
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.1 (Scarlatti,
+      Domenico)/IMSLP191658-WIMA.8689-ScaK1Sco.pdf
+    ext: pdf
+  - id: "450482"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 2
+    rateBy: 1
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.1 (Scarlatti,
+      Domenico)/IMSLP450482-PMLP732641-Scarlatti_K1_arrangement_for_Trio_C_Snuggs.pdf
+    ext: pdf
+  - id: "292780"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.1 (Scarlatti,
+      Domenico)/IMSLP292780-PMLP330125-Domenico_Scarlatti_-_Sonata_no._I_Dm_for_Alto_&_Tenor_Sax..pdf
+    ext: pdf
+  - id: "694860"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Recording
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.1 (Scarlatti,
+      Domenico)/IMSLP694860-PMLP330125-D_Scarlatti_D_minor_Sonata_L366_K_1_Carmelo_Mantione_live_2010_Bologna-hdmp3converter.com-.mp3
+    ext: mp3
+  - id: "353263"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 6
+    rateBy: 1
+    group: 0
+    title: Synthesized Performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.1 (Scarlatti,
+      Domenico)/IMSLP353263-PMLP330125-Scarlatti_-_Sonata_K.1_(_in_Dm).mp3
+    ext: mp3
+  - id: "191666"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual Performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.1 (Scarlatti,
+      Domenico)/IMSLP191666-WIMA.0c3f-ScaK1Sco.mp3
+    ext: mp3
+  - id: "279309"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Synthesized Performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in D minor, K.1 (Scarlatti,
+      Domenico)/IMSLP279309-PMLP257047-Scarlatti_Sonate_K.1.mid
+    ext: mid

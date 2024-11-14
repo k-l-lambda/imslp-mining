@@ -1,0 +1,127 @@
+id: 10970
+title: Keyboard Sonata in D major, Hob.XVI:33
+author: Haydn, Joseph
+url: https://imslp.org/wiki/Keyboard Sonata in D major, Hob.XVI:33 (Haydn, Joseph)
+meta:
+  Work Title: Keyboard Sonata
+  Alternative. Title: Klaviersonate Nr.34
+  Composer: Haydn, Joseph
+  Opus/Catalogue NumberOp./Cat. No.: Hob.XVI:33 ; Op.41 No.2
+  I-Catalogue NumberI-Cat. No.: IJH 268
+  Key: D major
+  Movements/SectionsMov'ts/Sec's: |-
+    3 movements:
+    Allegro (D major)
+    Adagio (D minor)
+    Tempo di Minuet (D major)
+  Year/Date of CompositionY/D of Comp.: "1778"
+  First Publication.: "1783"
+  Composer Time PeriodComp. Period: Classical
+  Piece Style: Classical
+  Instrumentation: harpsichord (or piano)
+categories:
+  - Reichgott, Heather W./Performer
+  - Recordings
+  - Scores from Bibliothèque nationale de France
+  - Scores from the Internet Archive
+  - Köhler, Louis/Editor
+  - Scores published by Edition Peters
+  - Klee, Ludwig/Editor
+  - Lebert, Sigmund/Editor
+  - Scores published by Schirmer
+  - Päsler, Karl/Editor
+  - Scores published by Breitkopf und Härtel
+  - Martienssen, Carl Adolf/Editor
+  - Apke, Stefan/Arranger
+  - Tárrega, Francisco/Arranger
+  - Apke, Stefan/Editor
+  - Scores
+  - Haydn, Joseph
+  - Classical style
+  - Classical
+  - Sonatas
+  - For harpsichord
+  - Scores featuring the harpsichord
+  - For 1 player
+  - For piano
+  - Scores featuring the piano
+  - For guitar (arr)
+  - Scores featuring the guitar (arr)
+  - For 1 player (arr)
+  - Pages with arrangements
+  - Works first published in 1783
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - D major
+files:
+  - id: "76731"
+    tab: Score1
+    tabText: Scores
+    rating: 7.4
+    rateBy: 15
+    group: 0
+    title: Complete Score (scan)
+    path: (1732)Joseph Haydn/(1778)Keyboard Sonata in D major, Hob.XVI33 (Haydn,
+      Joseph)/IMSLP76731-PMLP01713-Haydn_Sonaten_Klavier_Band_2_20_Peters_11333_scan.pdf
+    ext: pdf
+  - id: "471801"
+    tab: Score1
+    tabText: Scores
+    rating: 6.4
+    rateBy: 5
+    group: 1
+    title: Complete ScoreUS-PRV
+    path: (1732)Joseph Haydn/(1778)Keyboard Sonata in D major, Hob.XVI33 (Haydn,
+      Joseph)/IMSLP471801-PMLP01713-163_IMSLP457528-PMLP743656-sonaten12hayd_bw.pdf
+    ext: pdf
+  - id: "00149"
+    tab: Score1
+    tabText: Scores
+    rating: 5.375
+    rateBy: 8
+    group: 2
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1778)Keyboard Sonata in D major, Hob.XVI33 (Haydn,
+      Joseph)/IMSLP00149-Haydn_-_Piano_Sonata_No_33_in_D.pdf
+    ext: pdf
+  - id: "655433"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1778)Keyboard Sonata in D major, Hob.XVI33 (Haydn,
+      Joseph)/IMSLP655433-PMLP1713-Haydn_J-Tempo_di_Minuetto_Hob_XVI_33+mid.pdf
+    ext: pdf
+  - id: "490501"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1732)Joseph Haydn/(1778)Keyboard Sonata in D major, Hob.XVI33 (Haydn,
+      Joseph)/IMSLP490501-PMLP794196-Tarrega_F-Haydn-Minueto_Hob_XVI_33+mid.pdf
+    ext: pdf
+  - id: "262827"
+    tab: Audio1
+    tabText: Recordings
+    rating: 5.0909090909091
+    rateBy: 11
+    group: 0
+    title: 1. Allegro
+    path: (1732)Joseph Haydn/(1778)Keyboard Sonata in D major, Hob.XVI33 (Haydn,
+      Joseph)/IMSLP262827-PMLP01713-haydn-sonata-34-i-reichgott.mp3
+    ext: mp3
+  - id: "262836"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.5
+    rateBy: 4
+    group: 0
+    title: 2. Adagio; 3. Tempo di Menuetto
+    path: (1732)Joseph Haydn/(1778)Keyboard Sonata in D major, Hob.XVI33 (Haydn,
+      Joseph)/IMSLP262836-PMLP01713-haydn-sonata-34-ii-iii-reichgott.mp3
+    ext: mp3

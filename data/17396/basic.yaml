@@ -1,0 +1,177 @@
+id: 17396
+title: Prelude and Fugue in E-flat minor, BWV 877
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Prelude and Fugue in E-flat minor, BWV 877 (Bach,
+  Johann Sebastian)
+meta:
+  Work Title: Prelude and Fugue in D-sharp minor
+  Alternative. Title: Prelude and Fugue in E-flat minor
+  Name Translations: Prélude et fugue en ré dièse mineur (BWV 877)
+  Authorities: "BNF: 150850899"
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 877
+  I-Catalogue NumberI-Cat. No.: IJB 531
+  Key: D-sharp minor
+  Movements/SectionsMov'ts/Sec's: |-
+    2 movements
+    Praeludium
+    Fuga
+  Year/Date of CompositionY/D of Comp.: 1740 ca. in Das wohltemperierte Klavier II (No.8)
+  First Publication.: 1801 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: clavier
+  Primary Sources: Bach Digital (source list)
+  External Links: Wikipedia article (complete WTC)
+categories:
+  - Bradley-Fulgoni, Peter/Performer
+  - Recordings
+  - Kroll, Franz/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Dürr, Alfred/Editor
+  - Pages with items from edition "Neue Bach-Ausgabe (Bach, Johann Sebastian)"
+  - Scores published by Bärenreiter
+  - Urtext
+  - Rother, Kyle/Editor
+  - Besseling, Peter/Arranger
+  - Gouin, Pierre/Arranger
+  - Höger, Anton/Arranger
+  - Work pages with links to recordings
+  - Pages linked to Piano Society
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Preludes
+  - Fugues
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For 2 pianos (arr)
+  - Scores featuring the piano (arr)
+  - For 2 players (arr)
+  - For organ (arr)
+  - For 1 player (arr)
+  - Scores featuring the organ (arr)
+  - For 4 guitars (arr)
+  - Scores featuring the guitar (arr)
+  - For 4 players (arr)
+  - Pages with arrangements
+  - Works first published in 1801
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - D-sharp minor
+files:
+  - id: "02185"
+    tab: Score1
+    tabText: Scores
+    rating: 6.3333333333333
+    rateBy: 6
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat minor, BWV
+      877 (Bach, Johann Sebastian)/IMSLP02185-BWV0877.pdf
+    ext: pdf
+  - id: "675851"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score (Version A, London MS)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat minor, BWV
+      877 (Bach, Johann
+      Sebastian)/IMSLP675851-PMLP750928-Bach_-_WTC_2_(NBA),_Prelude_and_Fugue_8_(D-sharp_minor,_BWV_877)._Version_A_-_London_MS_(full-size).pdf
+    ext: pdf
+  - id: "822525"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat minor, BWV
+      877 (Bach, Johann
+      Sebastian)/IMSLP822525-PMLP05899-E821763_45-50-Bach--WTK2.pdf
+    ext: pdf
+  - id: "305857"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Prelude
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat minor, BWV
+      877 (Bach, Johann
+      Sebastian)/IMSLP305857-PMLP05899-Bach_JS_CBT_II_Prelude_8_BWV877_Dm.pdf
+    ext: pdf
+  - id: "305858"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Fugue
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat minor, BWV
+      877 (Bach, Johann
+      Sebastian)/IMSLP305858-PMLP05899-Bach_JS_CBT_II_Fugue_8_BWV877_Dm.pdf
+    ext: pdf
+  - id: "737411"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat minor, BWV
+      877 (Bach, Johann
+      Sebastian)/IMSLP737411-PMLP750928-Bach_WTK_2_08_BWV_877.pdf
+    ext: pdf
+  - id: "737415"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (D minor)
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat minor, BWV
+      877 (Bach, Johann
+      Sebastian)/IMSLP737415-PMLP750928-Bach_WTK_2_08_BWV_877_d.pdf
+    ext: pdf
+  - id: "428849"
+    tab: Audio1
+    tabText: Recordings
+    rating: 10
+    rateBy: 8
+    group: 0
+    title: Complete Recording
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat minor, BWV
+      877 (Bach, Johann
+      Sebastian)/IMSLP428849-PMLP05899-PBF_Prelude_&_Fugue_BWV_877.mp3
+    ext: mp3
+  - id: "305860"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 2
+    rateBy: 1
+    group: 0
+    title: Prelude
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat minor, BWV
+      877 (Bach, Johann
+      Sebastian)/IMSLP305860-PMLP05899-Bach_JS_CBT_II_Prelude_8_BWV877_Dm.mid
+    ext: mid
+  - id: "305861"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Fugue
+    path: (1685)Johann Sebastian Bach/(1740)Prelude and Fugue in E-flat minor, BWV
+      877 (Bach, Johann
+      Sebastian)/IMSLP305861-PMLP05899-Bach_JS_CBT_II_Fugue_8_BWV877_Dm.mid
+    ext: mid

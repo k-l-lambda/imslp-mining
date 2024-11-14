@@ -1,0 +1,117 @@
+id: 42972
+title: Chaconne in F minor, P.43
+author: Pachelbel, Johann
+url: https://imslp.org/wiki/Chaconne in F minor, P.43 (Pachelbel, Johann)
+meta:
+  Work Title: Chaconne in F minor
+  Alternative. Title: Ciacona in F minor
+  Name Translations: Chaconne f-Moll; Chaconne en fa mineur
+  Name Aliases: P. 43; PWC 43; T. 206; POP 16; PC 149
+  Authorities: "WorldCat; Wikipedia; VIAF: 182887763; GND: 300116306; BNF: 139278295"
+  Composer: Pachelbel, Johann
+  Opus/Catalogue NumberOp./Cat. No.: P.43 ; T.206
+  I-Catalogue NumberI-Cat. No.: IJP 32
+  Key: F minor
+  Movements/SectionsMov'ts/Sec's: 22 variations
+  First Publication.: 1901 or before
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard (organ)
+categories:
+  - WIMA files
+  - Scores from Bayerische Staatsbibliothek
+  - Seiffert, Max/Editor
+  - Scores published by Breitkopf und Härtel
+  - Pages with items from Denkmäler deutscher Tonkunst
+  - Scores from Anne Potter Wilson Music Library
+  - Matthaei, Karl/Editor
+  - Stockmeier, Wolfgang/Editor
+  - Works reprinted by Edwin F. Kalmus
+  - Gouin, Pierre/Editor
+  - Sakamachi, Jashiin/Editor
+  - Roose, Patrick/Editor
+  - De Wael, Johan/Editor
+  - Brunet, Alain/Editor
+  - Höger, Anton/Arranger
+  - Scores
+  - Pachelbel, Johann
+  - Baroque style
+  - Baroque
+  - Chaconnes
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For organ
+  - Scores featuring the organ
+  - For guitar, violin (arr)
+  - For 2 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the guitar (arr)
+  - Pages with arrangements
+  - Works first published in 1901
+  - Works first published in the 20th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - F minor
+files:
+  - id: "598416"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score (E minor)
+    path: (1653)Johann Pachelbel/(1901)Chaconne in F minor, P.43 (Pachelbel,
+      Johann)/IMSLP598416-PMLP299351-Pachelbel_P.43_Ciacona_Emin.pdf
+    ext: pdf
+  - id: "132187"
+    tab: Score1
+    tabText: Scores
+    rating: 8.25
+    rateBy: 8
+    group: 1
+    title: Complete Score
+    path: (1653)Johann Pachelbel/(1901)Chaconne in F minor, P.43 (Pachelbel,
+      Johann)/IMSLP132187-WIMA.49a9-Pachelbel_Ciacona_Fmin.pdf
+    ext: pdf
+  - id: "28812"
+    tab: Score1
+    tabText: Scores
+    rating: 6.4444444444444
+    rateBy: 9
+    group: 2
+    title: Complete Score
+    path: (1653)Johann Pachelbel/(1901)Chaconne in F minor, P.43 (Pachelbel,
+      Johann)/IMSLP28812-PMLP63859-PachebelCiaconaFMinor.pdf
+    ext: pdf
+  - id: "328987"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1653)Johann Pachelbel/(1901)Chaconne in F minor, P.43 (Pachelbel,
+      Johann)/IMSLP328987-PMLP299351-Pachelbel,_Johann_-_Ciacona_(F_Minor).pdf
+    ext: pdf
+  - id: "168164"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 8
+    rateBy: 2
+    group: 0
+    title: MIDI Performance
+    path: (1653)Johann Pachelbel/(1901)Chaconne in F minor, P.43 (Pachelbel,
+      Johann)/IMSLP168164-WIMA.8e71-PACHELBEL,Ciacona,fmoll.mid
+    ext: mid
+  - id: "451615"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 6
+    rateBy: 2
+    group: 1
+    title: Synthesized Performance (organ)
+    path: (1653)Johann Pachelbel/(1901)Chaconne in F minor, P.43 (Pachelbel,
+      Johann)/IMSLP451615-PMLP299351-Pachelbel_P.43_Ciacona_Fmin.mid
+    ext: mid

@@ -1,0 +1,141 @@
+id: 17520
+title: Toccata in C minor, BWV 911
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Toccata in C minor, BWV 911 (Bach, Johann Sebastian)
+meta:
+  Work Title: Toccata
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 911 ; BC L142
+  I-Catalogue NumberI-Cat. No.: IJB 629
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: "[No tempo] - 175 bars"
+  Year/Date of CompositionY/D of Comp.: 1714?
+  First Publication.: "1839"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - Okonsar, Mehmet K./Performer
+  - Scores with links to Amazon
+  - Freire, Nelson/Performer
+  - Recordings
+  - Becker, Carl Ferdinand/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Moszkowski, Moritz/Editor
+  - Sibley Mirroring Project
+  - Keller, Hermann/Editor
+  - Scores published by Edition Peters
+  - Kowalewski, Jakub/Arranger
+  - Bartoli, Russ/Arranger
+  - Reger, Max/Arranger
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Toccatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For violin, viola, cello (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the viola (arr)
+  - Scores featuring the cello (arr)
+  - For 3 players (arr)
+  - For organ (arr)
+  - For 1 player (arr)
+  - Scores featuring the organ (arr)
+  - Pages with arrangements
+  - Works first published in 1839
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C minor
+files:
+  - id: "485251"
+    tab: Score1
+    tabText: Scores
+    rating: 7.6666666666667
+    rateBy: 6
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1714)Toccata in C minor, BWV 911 (Bach,
+      Johann Sebastian)/IMSLP485251-PMLP180533-Bach-BWV911keller.pdf
+    ext: pdf
+  - id: "109380"
+    tab: Score1
+    tabText: Scores
+    rating: 5.8461538461538
+    rateBy: 13
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1714)Toccata in C minor, BWV 911 (Bach,
+      Johann
+      Sebastian)/IMSLP109380-PMLP180533-Sibley.1802.1525.toccata.cminor.pdf
+    ext: pdf
+  - id: "00832"
+    tab: Score1
+    tabText: Scores
+    rating: 5.6190476190476
+    rateBy: 21
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1714)Toccata in C minor, BWV 911 (Bach,
+      Johann Sebastian)/IMSLP00832-BWV0911.pdf
+    ext: pdf
+  - id: "415486"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score and Parts
+    path: (1685)Johann Sebastian Bach/(1714)Toccata in C minor, BWV 911 (Bach,
+      Johann
+      Sebastian)/IMSLP415486-PMLP180533-Bach_-_toccata_c-moll_-_partytura_i_głosy_-_16-03-2016.pdf
+    ext: pdf
+  - id: "106360"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 1
+    group: 1
+    title: Complete ScoreUS-R
+    path: (1685)Johann Sebastian Bach/(1714)Toccata in C minor, BWV 911 (Bach,
+      Johann Sebastian)/IMSLP106360-PMLP180533-Toccata_Cminor-911-ue1294.pdf
+    ext: pdf
+  - id: "485131"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1714)Toccata in C minor, BWV 911 (Bach,
+      Johann Sebastian)/IMSLP485131-PMLP180533-bach_911_s3_-_Full_Score.pdf
+    ext: pdf
+  - id: "275817"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.1111111111111
+    rateBy: 9
+    group: 0
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1714)Toccata in C minor, BWV 911 (Bach,
+      Johann Sebastian)/IMSLP275817-PMLP180533-06-Toccata-6_Cmin_BWV911.mp3
+    ext: mp3
+  - id: "730015"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Incomplete Performance
+    path: (1685)Johann Sebastian Bach/(1714)Toccata in C minor, BWV 911 (Bach,
+      Johann Sebastian)/IMSLP730015-PMLP180533-nelson_freire_bwv_911.mp3
+    ext: mp3

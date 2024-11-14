@@ -1,0 +1,153 @@
+id: 10968
+title: Keyboard Sonata in C minor, K.11
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in C minor, K.11 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in C minor
+  Alternative. Title: ""
+  Name Translations: Sonate K. 11; Sonata K. 11; Sonat K. 11
+  Authorities: "WorldCat; VIAF: 182664459; LCCN: n82101562; GND: 300184352; BNF: 13914100k"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.11 ; L.352 ; P.67 ; CZ.17
+  I-Catalogue NumberI-Cat. No.: IDS 207
+  Key: C minor
+  Movements/SectionsMov'ts/Sec's: Allegro
+  First Publication.: 1738 in Essercizi per Gravicembalo (No.11)
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - Fou, Ts'ong/Performer
+  - Recordings published in 1962
+  - Recordings published in the 20th century
+  - Scores from the Internet Archive
+  - WIMA files
+  - Recordings
+  - Longo, Alessandro/Editor
+  - Scores published by D. Rahter
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Feller, Paul-Gustav/Editor
+  - Peterpiano/Editor
+  - Rondeau, Michel/Arranger
+  - Apke, Stefan/Arranger
+  - Hanson, Andrew/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - For guitar (arr)
+  - Scores featuring the guitar (arr)
+  - For 1 player (arr)
+  - For recorder (arr)
+  - Scores featuring the recorder (arr)
+  - Pages with arrangements
+  - Works first published in 1738
+  - Works first published in the 18th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - C minor
+files:
+  - id: "133072"
+    tab: Score1
+    tabText: Scores
+    rating: 7
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.11
+      (Scarlatti, Domenico)/IMSLP133072-WIMA.4d35-Scarlatti_Sonate_K.11.pdf
+    ext: pdf
+  - id: "473741"
+    tab: Score1
+    tabText: Scores
+    rating: 6.5
+    rateBy: 4
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.11
+      (Scarlatti,
+      Domenico)/IMSLP473741-PMLP330459-------_-_011_--_-----_-_------_---------.pdf
+    ext: pdf
+  - id: "626418"
+    tab: Score1
+    tabText: Scores
+    rating: 6
+    rateBy: 1
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.11
+      (Scarlatti, Domenico)/IMSLP626418-PMLP330459-Sonata_K._11_(as_L._352).pdf
+    ext: pdf
+  - id: "191906"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 2
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.11
+      (Scarlatti, Domenico)/IMSLP191906-WIMA.e389-ScaK11Sco.pdf
+    ext: pdf
+  - id: "632094"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.11
+      (Scarlatti, Domenico)/IMSLP632094-PMLP330459-Scarlatti_D-K011+mid.pdf
+    ext: pdf
+  - id: "798965"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.11
+      (Scarlatti,
+      Domenico)/IMSLP798965-PMLP330459-Scarlatti,_D._Essercizio_11_(1738)-Default_Score_Layout.pdf
+    ext: pdf
+  - id: "731314"
+    tab: Audio1
+    tabText: Recordings
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.11
+      (Scarlatti, Domenico)/IMSLP731314-PMLP330459-02.05._Longo_352.mp3
+    ext: mp3
+  - id: "279568"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Synthesized performance (harpsichord)
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.11
+      (Scarlatti, Domenico)/IMSLP279568-PMLP257047-Scarlatti_Sonate_K.11.mid
+    ext: mid
+  - id: "191915"
+    tab: Audio2
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/(1738)Keyboard Sonata in C minor, K.11
+      (Scarlatti, Domenico)/IMSLP191915-WIMA.2b58-ScaK11Sco.mp3
+    ext: mp3

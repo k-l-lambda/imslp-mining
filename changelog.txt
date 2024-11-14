@@ -1,5 +1,10 @@
 
 
+2024.11.14
+
+	+	Data folder initialized for maestro v3 works.
+
+
 2024.10.9
 
 	+	parseSingleScore.ts: added argv optino of solveSpartito.

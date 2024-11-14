@@ -1,0 +1,95 @@
+id: 23383
+title: Prélude, Aria et Final
+author: Franck, César
+url: https://imslp.org/wiki/Prélude, Aria et Final (Franck, César)
+meta:
+  Work Title: Prelude, Aria et Final
+  Alternative. Title: ""
+  Name Translations: Прелюдия, ария и финал; 前奏曲、アリアと終曲
+  Name Aliases: Prelude, Aria and Finale; Prélude, Aria et Final in E major;
+    Prélude, Aria et Final E-Dur
+  Authorities: Wikipedia
+  Composer: Franck, César
+  Opus/Catalogue NumberOp./Cat. No.: CFF 26; FWV 23
+  I-Catalogue NumberI-Cat. No.: ICF 52
+  Key: E major
+  Movements/SectionsMov'ts/Sec's: 3 movements
+  Year/Date of CompositionY/D of Comp.: "1887"
+  Dedication: à Madame Bordes-Pène
+  Composer Time PeriodComp. Period: Romantic
+  Piece Style: Romantic
+  Instrumentation: piano
+  External Links: Wikipedia article
+categories:
+  - Scores published by Hamelle
+  - Sibley Mirroring Project
+  - Scores from the Internet Archive
+  - Bauer, Harold/Editor
+  - Scores published by Boston Music Co.
+  - Scores published by Ditson
+  - Scores published by Dover Publications
+  - Woollett, Henry/Arranger
+  - Scores
+  - Franck, César
+  - Romantic style
+  - Romantic
+  - Preludes
+  - Airs
+  - Finales
+  - For piano
+  - Scores featuring the piano
+  - For 1 player
+  - For violin, cello, piano (arr)
+  - For 3 players (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the cello (arr)
+  - Scores featuring the piano (arr)
+  - For violin, piano (arr)
+  - For 2 players (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - E major
+  - Bordes-Pène, Marie-Léontine/Dedicatee
+files:
+  - id: "03212"
+    tab: Score1
+    tabText: Scores
+    rating: 4.75
+    rateBy: 4
+    group: 0
+    title: Complete ScoreGutenberg
+    path: (1822)César Franck/(1887)Prélude, Aria et Final (Franck,
+      César)/IMSLP03212-Franck-Prelude,Aria,et_Final.pdf
+    ext: pdf
+  - id: "99145"
+    tab: Score1
+    tabText: Scores
+    rating: 4
+    rateBy: 3
+    group: 1
+    title: Complete ScoreCDN-Tu
+    path: (1822)César Franck/(1887)Prélude, Aria et Final (Franck,
+      César)/IMSLP99145-PMLP08044-Franck_-_Prelude_aria_et_final_PS.pdf
+    ext: pdf
+  - id: "231282"
+    tab: Score1
+    tabText: Scores
+    rating: 3
+    rateBy: 2
+    group: 2
+    title: Complete ScoreUS-R
+    path: (1822)César Franck/(1887)Prélude, Aria et Final (Franck,
+      César)/IMSLP231282-SIBLEY1802.19951.f236-39087012760775score.pdf
+    ext: pdf
+  - id: "705954"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score and Violin Part
+    path: (1822)César Franck/(1887)Prélude, Aria et Final (Franck,
+      César)/IMSLP705954-PMLP8044-Franck_C_-_Prelude,_aria_et_final.pdf
+    ext: pdf

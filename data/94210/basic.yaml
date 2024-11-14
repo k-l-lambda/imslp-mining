@@ -1,0 +1,112 @@
+id: 94210
+title: Keyboard Sonata in F minor, K.50
+author: Scarlatti, Domenico
+url: https://imslp.org/wiki/Keyboard Sonata in F minor, K.50 (Scarlatti, Domenico)
+meta:
+  Work Title: Keyboard Sonata in F minor
+  Alternative. Title: ""
+  Name Translations: sonate K. 50; Sonata K. 50; Sonate K. 50; Sonat K. 50
+  Authorities: "WorldCat; VIAF: 292877386; BNF: 139145340"
+  Composer: Scarlatti, Domenico
+  Opus/Catalogue NumberOp./Cat. No.: K.50 ; L.440 ; P.144 ; CZ.181
+  I-Catalogue NumberI-Cat. No.: IDS 440
+  Key: F minor
+  Movements/SectionsMov'ts/Sec's: Allegro
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: Keyboard
+categories:
+  - WIMA files
+  - Longo, Alessandro/Editor
+  - Scores published by Ricordi
+  - Gilbert, Kenneth/Editor
+  - Scores published by Heugel
+  - Urtext
+  - Pages with items from the 'Le Pupitre' series
+  - Gouin, Pierre/Editor
+  - Rondeau, Michel/Arranger
+  - Scores
+  - Scarlatti, Domenico
+  - Baroque style
+  - Baroque
+  - Sonatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For strings (arr)
+  - Scores featuring string ensemble (arr)
+  - Pages with arrangements
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - F minor
+files:
+  - id: "277988"
+    tab: Score1
+    tabText: Scores
+    rating: 10
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.50 (Scarlatti,
+      Domenico)/IMSLP277988-PMLP332847-Scarlatti_Sonate_K.50.pdf
+    ext: pdf
+  - id: "626407"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.50 (Scarlatti,
+      Domenico)/IMSLP626407-PMLP332847-Sonata_K._50_(as_L._440).pdf
+    ext: pdf
+  - id: "313878"
+    tab: Score1
+    tabText: Scores
+    rating: 0
+    rateBy: 0
+    group: 2
+    title: Complete Score (scan)
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.50 (Scarlatti,
+      Domenico)/IMSLP313878-PMLP332847-Scarlatti,_Domenico-Sonates_Heugel_32.645_Volume_1_50_K.50_scan.pdf
+    ext: pdf
+  - id: "193744"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 4
+    rateBy: 1
+    group: 0
+    title: Complete Score
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.50 (Scarlatti,
+      Domenico)/IMSLP193744-WIMA.6da8-Sca50Sco.pdf
+    ext: pdf
+  - id: "278003"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Synthesized performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.50 (Scarlatti,
+      Domenico)/IMSLP278003-PMLP332847-Scarlatti_Sonate_K.50.mid
+    ext: mid
+  - id: "193752"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.50 (Scarlatti,
+      Domenico)/IMSLP193752-WIMA.a93c-Sca50Sco.mp3
+    ext: mp3
+  - id: "193753"
+    tab: Audio1
+    tabText: Synthesized/MIDI
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Virtual performance
+    path: (1685)Domenico Scarlatti/Keyboard Sonata in F minor, K.50 (Scarlatti,
+      Domenico)/IMSLP193753-WIMA.e22a-Sca50Sco.mid
+    ext: mid

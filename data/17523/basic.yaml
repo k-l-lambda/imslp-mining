@@ -1,0 +1,141 @@
+id: 17523
+title: Toccata in E minor, BWV 914
+author: Bach, Johann Sebastian
+url: https://imslp.org/wiki/Toccata in E minor, BWV 914 (Bach, Johann Sebastian)
+meta:
+  Work Title: Toccata
+  Alternative. Title: ""
+  Composer: Bach, Johann Sebastian
+  Opus/Catalogue NumberOp./Cat. No.: BWV 914 ; BC L145, L163
+  I-Catalogue NumberI-Cat. No.: IJB 632
+  Key: E minor
+  Movements/SectionsMov'ts/Sec's: "[No tempo] - 142 bars"
+  Year/Date of CompositionY/D of Comp.: "1710"
+  First Publication.: "1826"
+  Composer Time PeriodComp. Period: Baroque
+  Piece Style: Baroque
+  Instrumentation: keyboard
+categories:
+  - Ligoratti, Stefano/Performer
+  - Okonsar, Mehmet K./Performer
+  - Scores with links to Amazon
+  - Recordings
+  - Naumann, Ernst/Editor
+  - Pages with items from edition "Bach-Gesellschaft Ausgabe (Bach, Johann
+    Sebastian)"
+  - Scores published by Breitkopf und Härtel
+  - Hughes, Edwin/Editor
+  - Scores published by Schirmer
+  - Keller, Hermann/Editor
+  - Scores published by Edition Peters
+  - Scores from Bibliothèque nationale de France
+  - Pages with items from series "Album Musica"
+  - Scores published by Pierre Lafitte
+  - Bartoli, Russ/Arranger
+  - Beuming, Ben/Arranger
+  - Scores
+  - Bach, Johann Sebastian
+  - Baroque style
+  - Baroque
+  - Toccatas
+  - For keyboard
+  - Scores featuring keyboard soloists
+  - For 1 player
+  - For violin, cello (arr)
+  - Scores featuring the violin (arr)
+  - Scores featuring the cello (arr)
+  - For 2 players (arr)
+  - For guitar (arr)
+  - For 1 player (arr)
+  - Scores featuring the guitar (arr)
+  - Pages with arrangements
+  - Works first published in 1826
+  - Works first published in the 19th century
+  - Pages with commercial recordings
+  - Pages with commercial recordings (Naxos collection)
+  - Pages with commercial recordings (BnF collection)
+  - E minor
+files:
+  - id: "601668"
+    tab: Score1
+    tabText: Scores
+    rating: 8
+    rateBy: 1
+    group: 0
+    title: Incomplete ScoreF-Pn
+    path: (1685)Johann Sebastian Bach/(1710)Toccata in E minor, BWV 914 (Bach,
+      Johann Sebastian)/IMSLP601668-PMLP180548-Bach_Toccata.pdf
+    ext: pdf
+  - id: "03204"
+    tab: Score1
+    tabText: Scores
+    rating: 5.6818181818182
+    rateBy: 44
+    group: 1
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1710)Toccata in E minor, BWV 914 (Bach,
+      Johann Sebastian)/IMSLP03204-Bach_-_BGA_-_BWV_914.pdf
+    ext: pdf
+  - id: "485255"
+    tab: Score1
+    tabText: Scores
+    rating: 5.25
+    rateBy: 8
+    group: 2
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1710)Toccata in E minor, BWV 914 (Bach,
+      Johann Sebastian)/IMSLP485255-PMLP180548-Bach-BWV914keller.pdf
+    ext: pdf
+  - id: "485151"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 0
+    title: Complete Score
+    path: (1685)Johann Sebastian Bach/(1710)Toccata in E minor, BWV 914 (Bach,
+      Johann
+      Sebastian)/IMSLP485151-PMLP180548-bach_914_s2_vn_vc_-_Full_Score.pdf
+    ext: pdf
+  - id: "731283"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: '"Prelude"'
+    path: (1685)Johann Sebastian Bach/(1710)Toccata in E minor, BWV 914 (Bach,
+      Johann Sebastian)/IMSLP731283-PMLP180548-Bach_Toccata_Prelude_BWV_914.pdf
+    ext: pdf
+  - id: "731287"
+    tab: ArrTrans
+    tabText: Arrangements and Transcriptions
+    rating: 0
+    rateBy: 0
+    group: 1
+    title: Adagio and "Fuga" (Fughetta)
+    path: (1685)Johann Sebastian Bach/(1710)Toccata in E minor, BWV 914 (Bach,
+      Johann
+      Sebastian)/IMSLP731287-PMLP180548-Bach_Toccata_Adagio_BWV_914_(etc).pdf
+    ext: pdf
+  - id: "292151"
+    tab: Audio1
+    tabText: Recordings
+    rating: 7.3333333333333
+    rateBy: 9
+    group: 0
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1710)Toccata in E minor, BWV 914 (Bach,
+      Johann Sebastian)/IMSLP292151-PMLP180548-02-Toccata-2_Emin_BWV914.mp3
+    ext: mp3
+  - id: "71666"
+    tab: Audio1
+    tabText: Recordings
+    rating: 6.952380952381
+    rateBy: 21
+    group: 1
+    title: Complete Performance
+    path: (1685)Johann Sebastian Bach/(1710)Toccata in E minor, BWV 914 (Bach,
+      Johann
+      Sebastian)/IMSLP71666-PMLP08022-MP3-28-bach.toccatamimin.stefanoligoratti.BWV914-128.mp3
+    ext: mp3
