@@ -41,6 +41,11 @@ const parseIdRangeStr = (ids: string): [number, number?] => ids.split("-").map(x
 
 // left close, right open
 const idRange2Filter = (ids: string): (n: number) => boolean => {
+	if (ids.includes(",")) {
+		const idList = ids.split(",").map(x => x ? parseInt(x) : null) as any;
+		return id => idList.includes(id);
+	}
+
 	const [begin, end] = parseIdRangeStr(ids);
 	if (end !== undefined)
 		return id => id >= begin && (!end || id < end);

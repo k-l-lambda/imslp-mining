@@ -1,5 +1,10 @@
 
 
+2024.11.15
+
+	+	utils.ts: added comma list support for idRange2Filter.
+
+
 2024.11.14
 
 	+	Data folder initialized for maestro v3 works.
