@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import md5 from "spark-md5";
 
-import { IMAGE_BED } from "./constants";
+import { IMAGE_BED, DATE_LOCALE, TIMEZONE } from "./constants";
 
 
 
@@ -84,6 +84,9 @@ Date.prototype.format = function (fmt: string): string {
 };
 
 
+const datetime = () => new Date().toLocaleString(DATE_LOCALE, { timeZone: TIMEZONE });
+
+
 
 export {
 	ensureDir,
@@ -92,4 +95,5 @@ export {
 	parseIdRangeStr,
 	idRange2Filter,
 	pageRange2Filter,
+	datetime,
 };

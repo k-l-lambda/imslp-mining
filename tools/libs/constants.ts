@@ -42,6 +42,10 @@ export const STAFF_PADDING_LEFT = 32;
 export const BEAD_PICKER_URL = process.env.BEAD_PICKER_URL;
 
 
+export const DATE_LOCALE = process.env.DATE_LOCALE;
+export const TIMEZONE = process.env.TIMEZONE;
+
+
 export const PRIMARY_CATEGORIES = {
 	Baroque: "baroque",
 	Classical: "classical",
