@@ -12,7 +12,7 @@ import "../env";
 import { DATA_DIR, MINHASH_BANDSIZE } from "./libs/constants";
 import walkDir from "./libs/walkDir";
 import * as midiHash from "./libs/midiHash";
-import { idRange2Filter } from "./libs/utils";
+import { idRange2Filter, datetime } from "./libs/utils";
 import * as minhashSerializer from "./libs/minhashSerializer";
 
 
@@ -77,7 +77,7 @@ const main = () => {
 		if (!midiFiles.length)
 			continue;
 
-		console.log(String.fromCodePoint(0x1f4d5), `[${workId}]`, midiFiles.length, "MIDI files.");
+		console.log(datetime(), String.fromCodePoint(0x1f4d5), `[${workId}]`, midiFiles.length, "MIDI files.");
 
 		const hashes = midiFiles.map(file => hashMidiFile(file, work));
 		//console.log("hashes:", hashes);

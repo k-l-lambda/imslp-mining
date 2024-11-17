@@ -10,7 +10,7 @@ import "../env";
 import { WorkBasic, PageLayoutResult } from "./libs/types";
 import { DATA_DIR } from "./libs/constants";
 import walkDir from "./libs/walkDir";
-import { loadImage, idRange2Filter } from "./libs/utils";
+import { loadImage, idRange2Filter, datetime } from "./libs/utils";
 import pyClients from "./libs/pyClients";
 
 
@@ -53,7 +53,7 @@ const main = async () => {
 			if (!layout || !layout.length)
 				continue;
 
-			console.log(String.fromCodePoint(0x1f3bc), `[${workId}/${file.id}]`, file.path);
+			console.log(datetime(), String.fromCodePoint(0x1f3bc), `[${workId}/${file.id}]`, file.path);
 
 			const omrStatePath = path.join(work, file.id, "omr.yaml");
 			const omrState = fs.existsSync(omrStatePath) ? YAML.parse(fs.readFileSync(omrStatePath).toString()) : {};

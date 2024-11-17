@@ -12,7 +12,7 @@ import { DATA_DIR, BEAD_PICKER_URL, SPARTITO_ROOT } from "./libs/constants";
 import { starry, regulateWithBeadSolver } from "./libs/omr";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
 import walkDir from "./libs/walkDir";
-import { idRange2Filter } from "./libs/utils";
+import { idRange2Filter, datetime } from "./libs/utils";
 import solutionStore from "./libs/solutionStore";
 
 
@@ -90,7 +90,7 @@ const main = async () => {
 		const workId = path.basename(work);
 
 		const basic = YAML.parse(fs.readFileSync(path.join(work, "basic.yaml")).toString()) as WorkBasic;
-		console.log(String.fromCodePoint(0x1f4d5), basic.id, basic.title);
+		console.log(datetime(), String.fromCodePoint(0x1f4d5), basic.id, basic.title);
 
 		const files = basic.files.filter(file => file.ext === "pdf");
 		for (const file of files) {
@@ -107,7 +107,7 @@ const main = async () => {
 				if (!fs.existsSync(spartitoPath))
 					continue;
 				//console.log("--------------------------------------");
-				console.log(String.fromCodePoint(0x1d11e), `${basic.id}/${file.id}/${item.id}`);
+				console.log(datetime(), String.fromCodePoint(0x1d11e), `${basic.id}/${file.id}/${item.id}`);
 
 				const targetName = omrState.spartito.length > 1 ? `${workId}-${file.id}-${item.id}.spartito.json` : `${workId}-${file.id}.spartito.json`;
 				const targetPath = path.join(targetDir, targetName);

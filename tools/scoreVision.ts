@@ -12,7 +12,7 @@ import "../env";
 import { WorkBasic } from "./libs/types";
 import { DATA_DIR, SCORE_FILTER_CONDITION, VIEWPORT_UNIT, GAUGE_VISION_SPEC, SEMANTIC_VISION_SPEC, STAFF_PADDING_LEFT } from "./libs/constants";
 import walkDir from "./libs/walkDir";
-import { loadImage, saveImage, idRange2Filter } from "./libs/utils";
+import { loadImage, saveImage, idRange2Filter, datetime } from "./libs/utils";
 import { starry } from "./libs/omr";
 import pyClients from "./libs/pyClients";
 import { shootPageCanvas, shootStaffCanvas } from "./libs/canvasUtilities";
@@ -73,7 +73,7 @@ const main = async () => {
 				fs.writeFileSync(scorePath, JSON.stringify(score));
 			};
 
-			console.log(String.fromCodePoint(0x1f3bc), `[${workId}/${file.id}]`, score.title);
+			console.log(datetime(), String.fromCodePoint(0x1f3bc), `[${workId}/${file.id}]`, score.title);
 
 			try {
 				if (!omrState.score?.brackets) {

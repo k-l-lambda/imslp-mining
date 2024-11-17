@@ -11,7 +11,7 @@ import { WorkBasic } from "./libs/types";
 import { IMAGE_BED, DATA_DIR, IMSLP_FILES_DIR, TORCH_DEVICE, PROCESS_PREDICTOR_DIR, PROCESS_PREDICTOR_CMD } from "./libs/constants";
 import ProcessPredictor from "./libs/processPredictor";
 import walkDir from "./libs/walkDir";
-import { ensureDir, idRange2Filter } from "./libs/utils";
+import { ensureDir, idRange2Filter, datetime } from "./libs/utils";
 
 
 
@@ -53,7 +53,7 @@ const main = async () => {
 
 		const files = basic.files.filter(file => file.ext === "pdf");
 		for (const file of files) {
-			console.log(String.fromCodePoint(0x1f3bc), `[${workId}/${file.id}]`, file.path);
+			console.log(datetime(), String.fromCodePoint(0x1f3bc), `[${workId}/${file.id}]`, file.path);
 			if (file.path.includes("manuscript")) {
 				console.log("Skip manuscript.", );
 				continue;
