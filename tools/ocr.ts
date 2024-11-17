@@ -91,7 +91,7 @@ const main = async () => {
 
 			omrState.ocr = omrState.ocr || {done: true, logs: []};
 			omrState.ocr.done = true;
-			omrState.ocr.logs.push(`[${new Date().toLocaleString()}] ${n_text} texts of ${layout.length} pages.`);
+			omrState.ocr.logs.push(`[${datetime()}] ${n_text} texts of ${layout.length} pages.`);
 			fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
 		}
 	}

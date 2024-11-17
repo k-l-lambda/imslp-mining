@@ -17,7 +17,7 @@ import {
 } from "./libs/constants";
 import ProcessPredictor from "./libs/processPredictor";
 //import walkDir from "./libs/walkDir";
-import { ensureDir, loadImage, saveImage, pageRange2Filter } from "./libs/utils";
+import { ensureDir, loadImage, saveImage, pageRange2Filter, datetime } from "./libs/utils";
 import { starry, measureLayout, regulateWithBeadSolver, beadSolver } from "./libs/omr";
 import { constructSystem } from "./libs/scoreSystem";
 import pyClients from "./libs/pyClients";
@@ -146,7 +146,7 @@ const ocr = async (targetDir: string): Promise<void> => {
 
 	omrState.ocr = omrState.ocr || { done: true, logs: [] };
 	omrState.ocr.done = true;
-	omrState.ocr.logs.push(`[${new Date().toLocaleString()}] ${n_text} texts of ${layout.length} pages.`);
+	omrState.ocr.logs.push(`[${datetime()}] ${n_text} texts of ${layout.length} pages.`);
 	fs.writeFileSync(omrStatePath, YAML.stringify(omrState));
 };
 
