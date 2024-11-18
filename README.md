@@ -48,3 +48,19 @@ yarn ts ./tools/midiIndexing.ts
 
 yarn ts ./tools/maestroIndexer.ts
 ```
+
+
+## Data dependencies of scripts
+
+script | input | output
+| - | - | - |
+dataInit			| db									| basic.yaml
+copyMIDI			| basic.yaml							| origin.midi
+audioSplitter		| .mp3, .ogg, .flac						| spleeter.log, .wav
+spectrumPlotter		| .wav									| spectrum.log, .wav(delete)
+pianoTranscriber	| .wav									| .midi
+pageReader			| basic.yaml, .pdf, image-bed			| layout.json
+ocr					| basic.yaml, layout.json, image-bed	| omr.yaml, layout.json, image-bed
+scoreInit			| basic.yaml, layout.json				| omr.yaml, score.json
+scoreVision			| basic.yaml, score.json, image-bed		| omr.yaml, score.json, image-bed(if enabled gauge)
+spartitoConstructor	| basic.yaml, score.json				| omr.yaml, .spartito.json, .spartito.midi
