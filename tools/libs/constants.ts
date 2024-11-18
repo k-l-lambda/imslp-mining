@@ -19,6 +19,9 @@ export const PROCESS_PREDICTOR_CMD = process.env.PROCESS_PREDICTOR_CMD;
 
 export const SCORE_FILTER_CONDITION = process.env.SCORE_FILTER_CONDITION as ("single_piano"|"1or2pianos");
 
+export const ENABLED_VISION_GAUGE = !!process.env.ENABLED_VISION_GAUGE;
+export const ENABLED_VISION_MASK = !!process.env.ENABLED_VISION_MASK;
+
 
 export const VIEWPORT_UNIT = 8;
 

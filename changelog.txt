@@ -1,5 +1,10 @@
 
 
+2024.11.18
+
+	+	tools/scoreInit.ts: added env config of ENABLED_VISION_GAUGE.
+
+
 2024.11.17
 
 	+	Added datetime function of locale string.

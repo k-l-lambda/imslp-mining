@@ -245,6 +245,8 @@ const main = async () => {
 
 					page.systems.forEach(system => system.clearTokens());
 
+					// TODO: predict mask if ENABLED_VISION_MASK on
+
 					const semanticRes = await pyClients.predictScoreImages("semantic", staves.map(staff => staff.strightBuffer));
 					console.assert(semanticRes.length === staves.length, "invalid semantic response:", semanticRes);
 					if (semanticRes?.length !== staves.length)

@@ -8,7 +8,7 @@ import { hideBin } from "yargs/helpers";
 import "../env";
 
 import { WorkBasic, PageLayoutResult, LayoutArea } from "./libs/types";
-import { DATA_DIR, SCORE_FILTER_CONDITION } from "./libs/constants";
+import { DATA_DIR, SCORE_FILTER_CONDITION, ENABLED_VISION_GAUGE } from "./libs/constants";
 import walkDir from "./libs/walkDir";
 import { idRange2Filter } from "./libs/utils";
 import { starry } from "./libs/omr";
@@ -163,7 +163,7 @@ const main = async () => {
 				},
 				instrumentDict: {},
 				settings: {
-					enabledGauge: true,
+					enabledGauge: ENABLED_VISION_GAUGE,
 					semanticConfidenceThreshold: 1,
 				},
 				pages,
