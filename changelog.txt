@@ -2,6 +2,8 @@
 
 2024.11.19
 
+	>	tools/scoreVision.ts: fixed system background missing when predict semantics with brackets finished.
+
 	+	tools/spartitoConstructor.ts: added env config of ORT_SESSION_OPTIONS.
 
 

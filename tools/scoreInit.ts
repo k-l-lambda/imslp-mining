@@ -84,7 +84,7 @@ const main = async () => {
 			const omrStatePath = path.join(work, file.id, "omr.yaml");
 			const scorePath = path.join(work, file.id, "score.json");
 
-			const omrState = fs.existsSync(omrStatePath) ? YAML.parse(fs.readFileSync(omrStatePath).toString()) : {};
+			const omrState = fs.existsSync(omrStatePath) ? YAML.parse(fs.readFileSync(omrStatePath).toString()) ?? {} : {};
 			if (omrState?.score?.init && fs.existsSync(scorePath)) {
 				console.log("Score initilization already done, skip");
 				continue;
