@@ -1,5 +1,10 @@
 
 
+2024.11.19
+
+	+	tools/spartitoConstructor.ts: added env config of ORT_SESSION_OPTIONS.
+
+
 2024.11.18
 
 	+	tools/scoreInit.ts: added env config of ENABLED_VISION_GAUGE.

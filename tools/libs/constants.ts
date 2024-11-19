@@ -59,3 +59,6 @@ export const PRIMARY_CATEGORIES = {
 
 
 export const SOLUTION_STORE_OPTIONS = JSON.parse(process.env.SOLUTION_STORE ?? "null");
+
+
+export const ORT_SESSION_OPTIONS = process.env.ORT_SESSION_OPTIONS ? JSON.parse(process.env.ORT_SESSION_OPTIONS) : undefined;
