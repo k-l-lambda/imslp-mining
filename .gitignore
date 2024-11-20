@@ -13,3 +13,5 @@ package-lock.json
 
 *.pyc
 *.log
+
+/pretrained_models/
