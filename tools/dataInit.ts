@@ -87,7 +87,7 @@ const main = async () => {
 			files,
 		};
 
-		fs.writeFileSync(path.join(dir, "basic.yaml"), YAML.stringify(basic));
+		fs.writeFileSync(path.join(dir, "basic.yaml"), YAML.stringify(basic, null, {lineWidth: -1}));
 	});
 
 	console.log("Done:", works.length);

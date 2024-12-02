@@ -1,5 +1,10 @@
 
 
+2024.12.2
+
+	+	tools/scoreInit.ts: avoid auto wrapping line in basic yaml files.
+
+
 2024.11.19
 
 	>	tools/scoreVision.ts: fixed system background missing when predict semantics with brackets finished.
