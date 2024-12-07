@@ -1,5 +1,10 @@
 
 
+2024.12.7
+
+	>	tools/spartitoSolver.ts: fixed OnnxBeadPicker constructor options.
+
+
 2024.12.2
 
 	+	tools/scoreInit.ts: avoid auto wrapping line in basic yaml files.

@@ -8,7 +8,7 @@ import { hideBin } from "yargs/helpers";
 import "../env";
 
 import { WorkBasic } from "./libs/types";
-import { DATA_DIR, BEAD_PICKER_URL, SPARTITO_ROOT } from "./libs/constants";
+import { DATA_DIR, BEAD_PICKER_URL, SPARTITO_ROOT, ORT_SESSION_OPTIONS } from "./libs/constants";
 import { starry, regulateWithBeadSolver } from "./libs/omr";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
 import walkDir from "./libs/walkDir";
@@ -42,6 +42,7 @@ const main = async () => {
 		n_seq,
 		usePivotX: true,
 		onLoad: promise => loadings.push(promise.catch(err => console.warn("error to load BeadPicker:", err))),
+		sessionOptions: ORT_SESSION_OPTIONS,
 	}));
 
 	let works = walkDir(DATA_DIR, /\/$/);
