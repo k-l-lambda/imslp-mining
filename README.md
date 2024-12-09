@@ -64,3 +64,4 @@ ocr					| basic.yaml, layout.json, image-bed	| omr.yaml, layout.json, image-bed
 scoreInit			| basic.yaml, layout.json				| omr.yaml, score.json
 scoreVision			| basic.yaml, score.json, image-bed		| omr.yaml, score.json, image-bed(if enabled gauge)
 spartitoConstructor	| basic.yaml, score.json				| omr.yaml, .spartito.json, .spartito.midi
+spartitoSolver		| basic.yaml, omr.yaml, .spartito.json	| .spartito.midi (in target directory)
