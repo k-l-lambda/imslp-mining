@@ -3,9 +3,28 @@
 
 ## Prerequisites
 
-Config file in project root direcotry: `config.local.yaml`
+* Clone [IMSLP Crawling](https://huggingface.co/datasets/k-l-lambda/imslp-crawling) dataset.
 
-+	*pyclients*, the OMR python clients.
+	And configure env variables in `.env`:
+	```ini
+	DATABASE_URL=file:/path-to-imslp-crawling/data.db
+	IMSLP_FILES_DIR=/path-to-imslp-crawling/files
+	```
+
+* Config file in project root direcotry: `config.local.yaml`
+
+	+	*pyclients*, the OMR python hosts.
+		E.g.
+		```yaml
+		pyclients:
+		  layout:   tcp://localhost:12022
+		  semantic: tcp://localhost:12025
+		  textLoc:  tcp://localhost:12026
+		  textOcr: tcp://localhost:12027
+		  brackets: tcp://localhost:12028
+		```
+
+* Copy `OMR` node package to `./tools/libs/omr`.
 
 
 ## Data Pipeline
@@ -64,4 +83,4 @@ ocr					| basic.yaml, layout.json, image-bed	| omr.yaml, layout.json, image-bed
 scoreInit			| basic.yaml, layout.json				| omr.yaml, score.json
 scoreVision			| basic.yaml, score.json, image-bed		| omr.yaml, score.json, image-bed(if enabled gauge)
 spartitoConstructor	| basic.yaml, score.json				| omr.yaml, .spartito.json, .spartito.midi
-spartitoSolver		| basic.yaml, omr.yaml, .spartito.json	| .spartito.midi (in target directory)
+spartitoSolver		| basic.yaml, omr.yaml, .spartito.json	| .spartito.json (in target directory)
