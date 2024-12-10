@@ -17,7 +17,6 @@
 		E.g.
 		```yaml
 		pyclients:
-		  layout:   tcp://localhost:12022
 		  semantic: tcp://localhost:12025
 		  textLoc:  tcp://localhost:12026
 		  textOcr: tcp://localhost:12027
