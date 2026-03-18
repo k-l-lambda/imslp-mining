@@ -1,8 +1,9 @@
 
 import fs from "fs";
+import os from "os";
 import path from "path";
+import { spawnSync } from "child_process";
 import fetch from "isomorphic-fetch";
-import sharp from "sharp";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
@@ -32,8 +33,8 @@ const argv = yargs(hideBin(process.argv))
 
 const PICKER_SEQS = [32, 64, 128, 512];
 
-// Annotation API config (OpenAI-compatible)
-const ANNOTATION_BASE_URL = process.env.ANNOTATION_BASE_URL || "https://api.ppinfra.com/v3/openai";
+// Annotation config (Anthropic-compatible, used via claude -p)
+const ANNOTATION_BASE_URL = process.env.ANNOTATION_BASE_URL || "https://api.ppinfra.com/anthropic/";
 const ANNOTATION_API_KEY = process.env.ANNOTATION_API_KEY;
 const ANNOTATION_MODEL = argv.annotationModel || process.env.ANNOTATION_MODEL || "moonshotai/kimi-k2.5";
 const ANNOTATION_MAX_TOKENS = Number(process.env.ANNOTATION_MAX_TOKENS) || 200000;
@@ -67,39 +68,20 @@ const resolveImageSource = (url: string): { type: "local"; path: string } | { ty
 };
 
 
-const fetchImageAsBase64DataUrl = async (source: { type: "local"; path: string } | { type: "remote"; url: string }): Promise<string | null> => {
+/** Download a remote image to a local file. Returns null if already local. */
+const downloadImageToFile = async (
+	source: { type: "local"; path: string } | { type: "remote"; url: string },
+	destPath: string,
+): Promise<string | null> => {
+	if (source.type === "local")
+		return source.path;
 	try {
-		let buf: Buffer;
-		let ext: string;
-
-		if (source.type === "local") {
-			ext = path.extname(source.path).slice(1) || "png";
-			try {
-				buf = await sharp(source.path).png().toBuffer();
-				ext = "png";
-			}
-			catch {
-				buf = fs.readFileSync(source.path);
-			}
-		}
-		else {
-			// Fetch from remote URL
-			const resp = await fetch(source.url);
-			if (!resp.ok)
-				return null;
-			const arrayBuf = await resp.arrayBuffer();
-			buf = Buffer.from(arrayBuf);
-			ext = source.url.match(/\.(\w+)$/)?.[1] || "png";
-			// Convert to PNG for consistency
-			try {
-				buf = await sharp(buf).png().toBuffer();
-				ext = "png";
-			}
-			catch {}
-		}
-
-		const mime = ext === "webp" ? "image/webp" : ext === "jpg" || ext === "jpeg" ? "image/jpeg" : "image/png";
-		return `data:${mime};base64,${buf.toString("base64")}`;
+		const resp = await fetch(source.url);
+		if (!resp.ok)
+			return null;
+		const buf = Buffer.from(await resp.arrayBuffer());
+		fs.writeFileSync(destPath, buf);
+		return destPath;
 	}
 	catch {
 		return null;
@@ -144,8 +126,6 @@ const serializeMeasureForAnnotation = (measure: starry.SpartitoMeasure) => {
 		voices: measure.voices,
 		events,
 		evaluation,
-		position: measure.position,
-		regulationHash: measure.regulationHash,
 	};
 };
 
@@ -337,9 +317,11 @@ Output ONLY a JSON block with fixes. Think carefully about each measure before w
 - When computing ticks, write them out explicitly: tick_n = tick_(n-1) + duration_(n-1)`;
 
 
-const buildMeasureMessages = async (
+/** Build text prompt with image file paths for claude -p. Downloads remote images to tmpDir. */
+const buildAnnotationPrompt = async (
 	issueMeasures: IssueMeasureInfo[],
-): Promise<any[]> => {
+	tmpDir: string,
+): Promise<string> => {
 	// Sort: error measures first
 	const sorted = [...issueMeasures].sort((a, b) => {
 		const evalA = starry.evaluateMeasure(a.measure);
@@ -349,54 +331,47 @@ const buildMeasureMessages = async (
 		return errA - errB || a.measureIndex - b.measureIndex;
 	});
 
-	const contentParts: any[] = [];
+	const lines: string[] = [];
+	lines.push(`${sorted.length} measures need annotation. For each measure, I provide the event data JSON and staff background image file paths.`);
+	lines.push(`View each staff image file with the Read tool to see the actual sheet music before analyzing.\n`);
 
-	contentParts.push({
-		type: "text",
-		text: `${sorted.length} measures need annotation. For each measure, I provide the event data JSON and staff background images.\n\n`,
-	});
+	let imageCount = 0;
 
 	for (const issue of sorted) {
 		const measure = issue.measure;
 		const mi = issue.measureIndex;
 		const measureData = serializeMeasureForAnnotation(measure);
 
-		// Add measure header + data as text
-		contentParts.push({
-			type: "text",
-			text: `--- Measure ${mi} (status=${issue.status}, error=${measureData.evaluation?.error}, fine=${measureData.evaluation?.fine}, tickTwist=${measureData.evaluation?.tickTwist?.toFixed(3)}) ---\n\`\`\`json\n${JSON.stringify(measureData, null, 2)}\n\`\`\`\n`,
-		});
+		lines.push(`--- Measure ${mi} (status=${issue.status}, error=${measureData.evaluation?.error}, fine=${measureData.evaluation?.fine}, tickTwist=${measureData.evaluation?.tickTwist?.toFixed(3)}) ---`);
+		lines.push("```json");
+		lines.push(JSON.stringify(measureData, null, 2));
+		lines.push("```");
 
-		// Add staff images inline as base64
+		// Resolve staff images to local file paths
 		if (measure.backgroundImages?.length) {
 			for (let si = 0; si < measure.backgroundImages.length; si++) {
 				const bgImg = measure.backgroundImages[si];
 				const source = resolveImageSource(bgImg.url);
 				if (source) {
-					const dataUrl = await fetchImageAsBase64DataUrl(source);
-					if (dataUrl) {
-						contentParts.push({
-							type: "text",
-							text: `Staff ${si} image:`,
-						});
-						contentParts.push({
-							type: "image_url",
-							image_url: { url: dataUrl },
-						});
+					const ext = bgImg.url.match(/\.(\w+)$/)?.[1] || "webp";
+					const destPath = path.join(tmpDir, `m${mi}_s${si}.${ext}`);
+					const imgPath = await downloadImageToFile(source, destPath);
+					if (imgPath) {
+						lines.push(`Staff ${si} image: ${imgPath}`);
+						imageCount++;
 					}
 				}
 			}
 		}
 
-		contentParts.push({ type: "text", text: "\n" });
+		lines.push("");
 	}
 
-	contentParts.push({
-		type: "text",
-		text: "Analyze each measure above (check images against event data, look for false graces, wrong divisions, missing dots, voice separation issues). Output ONLY the JSON fixes block.",
-	});
+	lines.push("Read each staff image file listed above to view the actual sheet music. Analyze each measure (check images against event data, look for false graces, wrong divisions, missing dots, voice separation issues). Output ONLY the JSON fixes block.");
 
-	return contentParts;
+	console.log(`  Prepared ${sorted.length} measures with ${imageCount} staff images`);
+
+	return lines.join("\n");
 };
 
 
@@ -426,6 +401,21 @@ const parseFixes = (output: string): any[] => {
 			return parsed.fixes || [];
 		}
 		catch {}
+	}
+
+	// Fallback for truncated output: extract individual fix objects
+	const fixObjects: any[] = [];
+	const fixPattern = /\{\s*"measureIndex"\s*:\s*\d+[\s\S]*?"status"\s*:\s*-?\d+\s*\}/g;
+	let match;
+	while ((match = fixPattern.exec(output)) !== null) {
+		try {
+			fixObjects.push(JSON.parse(match[0]));
+		}
+		catch {}
+	}
+	if (fixObjects.length > 0) {
+		console.log(`  Parsed ${fixObjects.length} fixes from truncated output`);
+		return fixObjects;
 	}
 
 	console.warn("Failed to parse annotation fixes from output");
@@ -505,8 +495,10 @@ const applyFixes = (spartito: starry.Spartito, fixes: any[]) => {
 };
 
 
-const callAnnotationAPI = async (
-	contentParts: any[],
+const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 2;
+
+const callAnnotationClaude = async (
+	issueMeasures: IssueMeasureInfo[],
 	roundNum: number,
 ): Promise<any[]> => {
 	if (!ANNOTATION_API_KEY) {
@@ -514,60 +506,91 @@ const callAnnotationAPI = async (
 		return [];
 	}
 
-	console.log(`\n  Calling ${ANNOTATION_MODEL} (round ${roundNum})...`);
-	console.log("  ────────────────────────────────────────");
+	// Split into batches to stay within token limits
+	const allFixes: any[] = [];
+	const batches: IssueMeasureInfo[][] = [];
+	for (let i = 0; i < issueMeasures.length; i += BATCH_SIZE)
+		batches.push(issueMeasures.slice(i, i + BATCH_SIZE));
 
-	const body = {
-		model: ANNOTATION_MODEL,
-		max_tokens: ANNOTATION_MAX_TOKENS,
-		messages: [
-			{ role: "system", content: SYSTEM_PROMPT },
-			{ role: "user", content: contentParts },
-		],
-		// Enable thinking/reasoning mode with maximum effort
-		chat_template_kwargs: { thinking: true },
-	};
-
-	try {
-		const resp = await fetch(`${ANNOTATION_BASE_URL}/chat/completions`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				"Authorization": `Bearer ${ANNOTATION_API_KEY}`,
-			},
-			body: JSON.stringify(body),
-		});
-
-		if (!resp.ok) {
-			const errText = await resp.text();
-			console.warn(`  API error ${resp.status}: ${errText.slice(0, 300)}`);
-			return [];
-		}
-
-		const result = await resp.json();
-		const message = result.choices?.[0]?.message;
-		const output = message?.content || "";
-		const reasoning = message?.reasoning_content;
-		const usage = result.usage;
-
+	for (let bi = 0; bi < batches.length; bi++) {
+		const batch = batches[bi];
+		console.log(`\n  Batch ${bi + 1}/${batches.length} (${batch.length} measures, round ${roundNum})...`);
 		console.log("  ────────────────────────────────────────");
-		if (usage)
-			console.log(`  Tokens: ${usage.prompt_tokens} in / ${usage.completion_tokens} out`);
-		if (reasoning)
-			console.log(`  Thinking: ${reasoning.length} chars`);
 
-		if (argv.logger) {
-			if (reasoning)
-				console.log("  Reasoning:\n", reasoning.slice(0, 2000), reasoning.length > 2000 ? "..." : "");
-			console.log("  Raw output:\n", output);
+		// Prepare temp dir for downloaded images
+		const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-annotate-"));
+
+		try {
+			// Build text prompt with image file paths
+			const prompt = await buildAnnotationPrompt(batch, tmpDir);
+
+			if (argv.logger)
+				console.log(`  Prompt length: ${prompt.length} chars`);
+
+			const env: Record<string, string> = {
+				...process.env as Record<string, string>,
+				ANTHROPIC_BASE_URL: ANNOTATION_BASE_URL,
+				ANTHROPIC_AUTH_TOKEN: ANNOTATION_API_KEY!,
+				ANTHROPIC_MODEL: ANNOTATION_MODEL,
+				ANTHROPIC_SMALL_FAST_MODEL: ANNOTATION_MODEL,
+			};
+
+			const args = [
+				"-p",
+				"--append-system-prompt", SYSTEM_PROMPT,
+				"--allowedTools", "Read",
+				"--dangerously-skip-permissions",
+				"--effort", "max",
+			];
+
+			const result = spawnSync("claude", args, {
+				input: prompt,
+				env,
+				encoding: "utf-8",
+				maxBuffer: 50 * 1024 * 1024,
+				timeout: 15 * 60 * 1000,
+			});
+
+			const output = result.stdout || "";
+			const stderr = result.stderr || "";
+
+			console.log("  ────────────────────────────────────────");
+
+			if (result.error) {
+				console.warn(`  spawn error: ${result.error.message}`);
+				continue;
+			}
+
+			if (result.status !== 0) {
+				console.warn(`  claude -p exited with code ${result.status}`);
+				if (stderr)
+					console.warn(`  stderr: ${stderr.slice(0, 1000)}`);
+				if (output)
+					console.warn(`  stdout: ${output.slice(0, 1000)}`);
+				// Still try to parse output - claude may have produced partial results
+				if (output) {
+					const fixes = parseFixes(output);
+					allFixes.push(...fixes);
+				}
+				continue;
+			}
+
+			console.log(`  Output: ${output.length} chars`);
+
+			if (argv.logger)
+				console.log("  Raw output:\n", output);
+
+			allFixes.push(...parseFixes(output));
 		}
+		catch (err: any) {
+			console.warn("  claude -p failed:", err.message?.slice(0, 200));
+		}
+		finally {
+			fs.rmSync(tmpDir, { recursive: true, force: true });
+		}
+	}
 
-		return parseFixes(output);
-	}
-	catch (err: any) {
-		console.warn("  API call failed:", err.message?.slice(0, 200));
-		return [];
-	}
+	return allFixes;
 };
 
 
@@ -660,11 +683,8 @@ const main = async () => {
 
 			console.log(`\nRound ${round}/${maxRounds}: ${currentIssues.length} measures to annotate`);
 
-			// Build multimodal message with inline images
-			const contentParts = await buildMeasureMessages(currentIssues);
-
-			// Call annotation API
-			const fixes = await callAnnotationAPI(contentParts, round);
+			// Call claude -p for annotation
+			const fixes = await callAnnotationClaude(currentIssues, round);
 
 			if (fixes.length === 0) {
 				console.log("No fixes returned, stopping annotation.");
