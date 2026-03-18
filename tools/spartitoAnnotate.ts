@@ -4,6 +4,7 @@ import os from "os";
 import path from "path";
 import { spawnSync } from "child_process";
 import fetch from "isomorphic-fetch";
+import sharp from "sharp";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
@@ -25,6 +26,7 @@ const argv = yargs(hideBin(process.argv))
 			.option("output", { alias: "o", type: "string", describe: "Output path (default: overwrite input)" })
 			.option("logger", { alias: "l", type: "boolean", describe: "Enable verbose logging" })
 			.option("skip-annotation", { type: "boolean", describe: "Skip the annotation step" })
+			.option("force-regulate", { type: "boolean", describe: "Force re-regulation even if already regulated" })
 			.option("annotation-model", { type: "string", describe: "Model for annotation (overrides ANNOTATION_MODEL env)" })
 			.option("max-rounds", { type: "number", default: 3, describe: "Max annotation rounds" })
 		,
@@ -86,6 +88,113 @@ const downloadImageToFile = async (
 	catch {
 		return null;
 	}
+};
+
+
+/** Composite a single focused measure image from all staff backgrounds.
+ *  Crops each staff image to the measure's horizontal range (+ padding),
+ *  then stacks them vertically. Returns the output path. */
+const MEASURE_IMAGE_PADDING = 4; // interval units on each side
+
+/** Fetch image buffer from local path or remote URL, with retry for transient errors. */
+const FETCH_RETRIES = 3;
+const FETCH_RETRY_DELAY = 500; // ms
+
+const fetchImageBuffer = async (
+	source: { type: "local"; path: string } | { type: "remote"; url: string },
+): Promise<Buffer | null> => {
+	if (source.type === "local")
+		return fs.readFileSync(source.path);
+	for (let attempt = 1; attempt <= FETCH_RETRIES; attempt++) {
+		try {
+			const resp = await fetch(source.url);
+			if (!resp.ok) {
+				console.warn(`    fetch failed (${resp.status}): ${source.url} [attempt ${attempt}/${FETCH_RETRIES}]`);
+				if (attempt < FETCH_RETRIES)
+					await new Promise(r => setTimeout(r, FETCH_RETRY_DELAY * attempt));
+				continue;
+			}
+			return Buffer.from(await resp.arrayBuffer());
+		}
+		catch (err: any) {
+			console.warn(`    fetch error: ${source.url} — ${err.message} [attempt ${attempt}/${FETCH_RETRIES}]`);
+			if (attempt < FETCH_RETRIES)
+				await new Promise(r => setTimeout(r, FETCH_RETRY_DELAY * attempt));
+		}
+	}
+	return null;
+};
+
+const compositeMeasureImage = async (
+	measure: starry.SpartitoMeasure,
+	destPath: string,
+): Promise<string | null> => {
+	if (!measure.backgroundImages?.length || !measure.position)
+		return null;
+
+	const pos = measure.position;
+	const bgImgs = measure.backgroundImages;
+
+	// Measure crop range in unit coords
+	const padUnits = MEASURE_IMAGE_PADDING;
+	const cropLeftUnit = pos.left - padUnits;
+	const cropRightUnit = pos.right + padUnits;
+
+	// Process each staff image: crop to measure range
+	const crops: { buffer: Buffer; width: number; height: number }[] = [];
+	const GAP = 4; // pixels gap between staves in composite
+
+	for (const bgImg of bgImgs) {
+		const source = resolveImageSource(bgImg.url);
+		if (!source)
+			continue;
+
+		const buf = await fetchImageBuffer(source);
+		if (!buf)
+			continue;
+
+		const meta = await sharp(buf).metadata();
+		if (!meta.width || !meta.height)
+			continue;
+
+		const imgPpu = meta.width / bgImg.position.width;
+
+		// Crop coordinates in pixels (relative to this image)
+		const leftPx = Math.max(0, Math.round((cropLeftUnit - bgImg.position.x) * imgPpu));
+		const rightPx = Math.min(meta.width, Math.round((cropRightUnit - bgImg.position.x) * imgPpu));
+		const w = rightPx - leftPx;
+		if (w <= 0)
+			continue;
+
+		const cropped = await sharp(buf)
+			.extract({ left: leftPx, top: 0, width: w, height: meta.height })
+			.toBuffer();
+
+		crops.push({ buffer: cropped, width: w, height: meta.height });
+	}
+
+	if (crops.length === 0)
+		return null;
+
+	// Stack vertically with small gap
+	const totalWidth = Math.max(...crops.map(c => c.width));
+	const totalHeight = crops.reduce((sum, c) => sum + c.height, 0) + GAP * (crops.length - 1);
+
+	const compositeInputs: sharp.OverlayOptions[] = [];
+	let y = 0;
+	for (const crop of crops) {
+		compositeInputs.push({ input: crop.buffer, left: 0, top: y });
+		y += crop.height + GAP;
+	}
+
+	await sharp({
+		create: { width: totalWidth, height: totalHeight, channels: 3, background: { r: 255, g: 255, b: 255 } },
+	})
+		.composite(compositeInputs)
+		.webp({ quality: 90 })
+		.toFile(destPath);
+
+	return destPath;
 };
 
 
@@ -210,8 +319,8 @@ These are NOT regulation failures — they are upstream misclassifications that 
 
 For each measure, follow this workflow:
 
-### 1. View Staff Images
-Examine the provided staff background images carefully. Compare what you see with event data to detect:
+### 1. View Measure Image
+Examine the provided composite image (all staves stacked vertically, cropped to the measure range) carefully. Compare what you see with event data to detect:
 - Missing dots (image shows dot but event.dots=0)
 - Wrong note values (image shows half note but event.division=3)
 - False grace notes (image shows normal note but event.grace="grace")
@@ -332,8 +441,8 @@ const buildAnnotationPrompt = async (
 	});
 
 	const lines: string[] = [];
-	lines.push(`${sorted.length} measures need annotation. For each measure, I provide the event data JSON and staff background image file paths.`);
-	lines.push(`View each staff image file with the Read tool to see the actual sheet music before analyzing.\n`);
+	lines.push(`${sorted.length} measures need annotation. For each measure, I provide the event data JSON and a composite image showing all staves cropped to the measure range.`);
+	lines.push(`View the measure image with the Read tool to see the actual sheet music before analyzing.\n`);
 
 	let imageCount = 0;
 
@@ -347,27 +456,18 @@ const buildAnnotationPrompt = async (
 		lines.push(JSON.stringify(measureData, null, 2));
 		lines.push("```");
 
-		// Resolve staff images to local file paths
-		if (measure.backgroundImages?.length) {
-			for (let si = 0; si < measure.backgroundImages.length; si++) {
-				const bgImg = measure.backgroundImages[si];
-				const source = resolveImageSource(bgImg.url);
-				if (source) {
-					const ext = bgImg.url.match(/\.(\w+)$/)?.[1] || "webp";
-					const destPath = path.join(tmpDir, `m${mi}_s${si}.${ext}`);
-					const imgPath = await downloadImageToFile(source, destPath);
-					if (imgPath) {
-						lines.push(`Staff ${si} image: ${imgPath}`);
-						imageCount++;
-					}
-				}
-			}
+		// Composite a single focused measure image
+		const imgPath = path.join(tmpDir, `m${mi}.webp`);
+		const composited = await compositeMeasureImage(measure, imgPath);
+		if (composited) {
+			lines.push(`Measure image (all staves, cropped to measure range): ${composited}`);
+			imageCount++;
 		}
 
 		lines.push("");
 	}
 
-	lines.push("Read each staff image file listed above to view the actual sheet music. Analyze each measure (check images against event data, look for false graces, wrong divisions, missing dots, voice separation issues). Output ONLY the JSON fixes block.");
+	lines.push("Read each measure image listed above to view the actual sheet music. Analyze each measure (check images against event data, look for false graces, wrong divisions, missing dots, voice separation issues). Output ONLY the JSON fixes block.");
 
 	console.log(`  Prepared ${sorted.length} measures with ${imageCount} staff images`);
 
@@ -434,6 +534,17 @@ const applyFixes = (spartito: starry.Spartito, fixes: any[]) => {
 			continue;
 		}
 
+		// Evaluate before fix
+		const evalBefore = starry.evaluateMeasure(measure);
+		const twistBefore = evalBefore?.tickTwist ?? Infinity;
+
+		// Save original state for rollback
+		const snapshot = JSON.stringify({
+			events: measure.events,
+			voices: measure.voices,
+			duration: measure.duration,
+		});
+
 		// Clear grace flags
 		if (fix.clearGrace?.length) {
 			for (const idx of fix.clearGrace) {
@@ -484,11 +595,23 @@ const applyFixes = (spartito: starry.Spartito, fixes: any[]) => {
 		}
 		catch {}
 
-		applied++;
-
-		const evaluation = starry.evaluateMeasure(measure);
+		const evalAfter = starry.evaluateMeasure(measure);
+		const twistAfter = evalAfter?.tickTwist ?? Infinity;
 		const statusLabel = fix.status === 0 ? "Solved" : fix.status === -1 ? "Discard" : "Issue";
-		console.log(`  m${mi}: ${statusLabel}, fine=${evaluation?.fine}, error=${evaluation?.error}, tickTwist=${evaluation?.tickTwist?.toFixed(3)}`);
+
+		// Rollback if tickTwist got worse
+		if (twistAfter > twistBefore) {
+			const saved = JSON.parse(snapshot);
+			measure.events = saved.events;
+			measure.voices = saved.voices;
+			measure.duration = saved.duration;
+			try { measure.postRegulate(); } catch {}
+			console.log(`  m${mi}: REVERTED (tickTwist ${twistBefore.toFixed(3)} → ${twistAfter.toFixed(3)}, worse)`);
+			continue;
+		}
+
+		applied++;
+		console.log(`  m${mi}: ${statusLabel}, fine=${evalAfter?.fine}, error=${evalAfter?.error}, tickTwist=${twistBefore.toFixed(3)}→${twistAfter.toFixed(3)}`);
 	}
 
 	return applied;
@@ -500,6 +623,7 @@ const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 2;
 const callAnnotationClaude = async (
 	issueMeasures: IssueMeasureInfo[],
 	roundNum: number,
+	logDir?: string,
 ): Promise<any[]> => {
 	if (!ANNOTATION_API_KEY) {
 		console.warn("ANNOTATION_API_KEY not set, skipping annotation.");
@@ -524,6 +648,12 @@ const callAnnotationClaude = async (
 			// Build text prompt with image file paths
 			const prompt = await buildAnnotationPrompt(batch, tmpDir);
 
+			// Save prompt to log
+			if (logDir) {
+				const promptFile = path.join(logDir, `r${roundNum}_b${bi + 1}_prompt.txt`);
+				fs.writeFileSync(promptFile, prompt);
+			}
+
 			if (argv.logger)
 				console.log(`  Prompt length: ${prompt.length} chars`);
 
@@ -537,10 +667,11 @@ const callAnnotationClaude = async (
 
 			const args = [
 				"-p",
+				"--output-format", "json",
 				"--append-system-prompt", SYSTEM_PROMPT,
 				"--allowedTools", "Read",
-				"--dangerously-skip-permissions",
 				"--effort", "max",
+				"--verbose",
 			];
 
 			const result = spawnSync("claude", args, {
@@ -551,8 +682,19 @@ const callAnnotationClaude = async (
 				timeout: 15 * 60 * 1000,
 			});
 
-			const output = result.stdout || "";
+			const rawOutput = result.stdout || "";
 			const stderr = result.stderr || "";
+
+			// Save full JSON output to log file
+			if (logDir) {
+				const logFile = path.join(logDir, `r${roundNum}_b${bi + 1}.json`);
+				fs.writeFileSync(logFile, rawOutput);
+				if (stderr) {
+					const stderrFile = path.join(logDir, `r${roundNum}_b${bi + 1}.stderr.txt`);
+					fs.writeFileSync(stderrFile, stderr);
+				}
+				console.log(`  Log saved: ${logFile}`);
+			}
 
 			console.log("  ────────────────────────────────────────");
 
@@ -561,26 +703,74 @@ const callAnnotationClaude = async (
 				continue;
 			}
 
+			// Parse JSON output format (stream-json: array of events; json: single object)
+			let textOutput = "";
+			try {
+				const jsonResult = JSON.parse(rawOutput);
+
+				if (Array.isArray(jsonResult)) {
+					// stream-json format: array of event objects
+					const lastItem = jsonResult[jsonResult.length - 1];
+					textOutput = lastItem?.result || "";
+
+					// Log usage stats from last item
+					if (lastItem?.usage) {
+						const u = lastItem.usage;
+						console.log(`  Tokens: ${u.input_tokens || 0} in / ${u.output_tokens || 0} out`);
+					}
+					if (lastItem?.total_cost_usd !== undefined) {
+						console.log(`  Cost: $${lastItem.total_cost_usd.toFixed(4)}`);
+					}
+
+					// Log tool calls and thinking from message events
+					if (argv.logger) {
+						for (const item of jsonResult) {
+							const msg = item.message;
+							if (msg?.role === "assistant" && Array.isArray(msg.content)) {
+								for (const block of msg.content) {
+									if (block.type === "tool_use")
+										console.log(`  [tool_use] ${block.name}: ${JSON.stringify(block.input).slice(0, 200)}`);
+									if (block.type === "thinking")
+										console.log(`  [thinking] ${(block.thinking || "").slice(0, 300)}`);
+								}
+							}
+						}
+					}
+				}
+				else {
+					// Single object format
+					textOutput = jsonResult.result || "";
+					if (jsonResult.usage) {
+						const u = jsonResult.usage;
+						console.log(`  Tokens: ${u.input_tokens || 0} in / ${u.output_tokens || 0} out`);
+					}
+					if (jsonResult.cost_usd !== undefined) {
+						console.log(`  Cost: $${jsonResult.cost_usd.toFixed(4)}`);
+					}
+				}
+			}
+			catch {
+				// Fallback: treat as plain text
+				textOutput = rawOutput;
+			}
+
 			if (result.status !== 0) {
 				console.warn(`  claude -p exited with code ${result.status}`);
 				if (stderr)
 					console.warn(`  stderr: ${stderr.slice(0, 1000)}`);
-				if (output)
-					console.warn(`  stdout: ${output.slice(0, 1000)}`);
-				// Still try to parse output - claude may have produced partial results
-				if (output) {
-					const fixes = parseFixes(output);
+				if (textOutput) {
+					const fixes = parseFixes(textOutput);
 					allFixes.push(...fixes);
 				}
 				continue;
 			}
 
-			console.log(`  Output: ${output.length} chars`);
+			console.log(`  Result text: ${textOutput.length} chars`);
 
 			if (argv.logger)
-				console.log("  Raw output:\n", output);
+				console.log("  Raw result:\n", textOutput);
 
-			allFixes.push(...parseFixes(output));
+			allFixes.push(...parseFixes(textOutput));
 		}
 		catch (err: any) {
 			console.warn("  claude -p failed:", err.message?.slice(0, 200));
@@ -605,17 +795,6 @@ const main = async () => {
 		process.exit(1);
 	}
 
-	// Load bead picker models
-	const loadings = [] as Promise<void>[];
-	const pickers = PICKER_SEQS.map(n_seq => new OnnxBeadPicker(BEAD_PICKER_URL.replace(/seq\d+/, `seq${n_seq}`), {
-		n_seq,
-		usePivotX: true,
-		onLoad: promise => loadings.push(promise.catch(err => console.warn("error to load BeadPicker:", err))),
-		sessionOptions: ORT_SESSION_OPTIONS,
-	}));
-
-	await Promise.all(loadings);
-
 	// Read and deserialize spartito
 	const content = fs.readFileSync(inputPath).toString();
 	const spartito = starry.recoverJSON<starry.Spartito>(content, starry);
@@ -623,36 +802,76 @@ const main = async () => {
 	console.log("Input:", inputPath);
 	console.log("Measures:", spartito.measures.length);
 
-	// Collect issue measures during regulation
+	// Check if already regulated
+	const alreadyRegulated = spartito.measures.some(m => m.regulated);
+
+	// Collect issue measures
 	const issueMeasures: IssueMeasureInfo[] = [];
 
-	// Create dummy score wrapper
-	const dummyScore = {
-		assemble () {},
-		makeSpartito () { return spartito },
-		assignBackgroundForMeasure (_: starry.SpartitoMeasure) {},
-	} as starry.Score;
+	if (!alreadyRegulated || argv.forceRegulate) {
+		if (alreadyRegulated)
+			console.log("Force re-regulation requested.");
 
-	// Run regulation
-	const stat = await regulateWithBeadSolver(dummyScore, {
-		logger: argv.logger ? console : undefined,
-		pickers,
-		solutionStore: remoteSolutionStore,
-		onSaveIssueMeasure: (data) => {
-			issueMeasures.push({
-				measureIndex: data.measureIndex,
-				status: data.status,
-				measure: data.measure,
-			});
-		},
-	});
+		// Load bead picker models
+		const loadings = [] as Promise<void>[];
+		const pickers = PICKER_SEQS.map(n_seq => new OnnxBeadPicker(BEAD_PICKER_URL.replace(/seq\d+/, `seq${n_seq}`), {
+			n_seq,
+			usePivotX: true,
+			onLoad: promise => loadings.push(promise.catch(err => console.warn("error to load BeadPicker:", err))),
+			sessionOptions: ORT_SESSION_OPTIONS,
+		}));
 
-	// Print regulation stats
-	console.log("\n--- Regulation Stats ---");
-	console.log("measures:", `(${stat.measures.cached})${stat.measures.simple}->${stat.measures.solved}->${stat.measures.issue}->${stat.measures.fatal}/${spartito.measures.length}`);
-	console.log("qualityScore:", spartito.qualityScore);
-	console.log("totalCost:", stat.totalCost, "ms");
-	console.log("pickerCost:", stat.pickerCost, "ms");
+		await Promise.all(loadings);
+
+		// Create dummy score wrapper
+		const dummyScore = {
+			assemble () {},
+			makeSpartito () { return spartito },
+			assignBackgroundForMeasure (_: starry.SpartitoMeasure) {},
+		} as starry.Score;
+
+		// Run regulation
+		const stat = await regulateWithBeadSolver(dummyScore, {
+			logger: argv.logger ? console : undefined,
+			pickers,
+			solutionStore: remoteSolutionStore,
+			onSaveIssueMeasure: (data) => {
+				issueMeasures.push({
+					measureIndex: data.measureIndex,
+					status: data.status,
+					measure: data.measure,
+				});
+			},
+		});
+
+		// Print regulation stats
+		console.log("\n--- Regulation Stats ---");
+		console.log("measures:", `(${stat.measures.cached})${stat.measures.simple}->${stat.measures.solved}->${stat.measures.issue}->${stat.measures.fatal}/${spartito.measures.length}`);
+		console.log("qualityScore:", spartito.qualityScore);
+		console.log("totalCost:", stat.totalCost, "ms");
+		console.log("pickerCost:", stat.pickerCost, "ms");
+	}
+	else {
+		console.log("Spartito already regulated, skipping regulation (use --force-regulate to override).");
+
+		// Collect issue measures from existing regulation
+		for (const m of spartito.measures) {
+			if (!m.regulated || m.events.length === 0)
+				continue;
+			const ev = starry.evaluateMeasure(m);
+			if (ev && !ev.fine) {
+				issueMeasures.push({
+					measureIndex: m.measureIndex,
+					status: ev.error ? 2 : 1,
+					measure: m,
+				});
+			}
+		}
+
+		console.log(`\n--- Existing Regulation ---`);
+		const solved = spartito.measures.filter(m => m.regulated && m.events.length > 0 && starry.evaluateMeasure(m)?.fine).length;
+		console.log(`Solved: ${solved}, Issue: ${issueMeasures.filter(m => m.status === 1).length}, Fatal: ${issueMeasures.filter(m => m.status === 2).length}`);
+	}
 
 	// ── Annotation phase ────────────────────────────────────────────────────
 
@@ -660,6 +879,13 @@ const main = async () => {
 		console.log(`\n--- Annotation Phase ---`);
 		console.log(`${issueMeasures.length} issue measures to annotate`);
 		console.log(`Model: ${ANNOTATION_MODEL}`);
+
+		// Create log directory for this run
+		const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+		const inputBasename = path.basename(inputPath, ".spartito.json");
+		const runLogDir = path.join(__dirname, "..", "logs", `${timestamp}_${inputBasename}`);
+		fs.mkdirSync(runLogDir, { recursive: true });
+		console.log(`Log dir: ${runLogDir}`);
 
 		const maxRounds = argv.maxRounds!;
 
@@ -684,7 +910,7 @@ const main = async () => {
 			console.log(`\nRound ${round}/${maxRounds}: ${currentIssues.length} measures to annotate`);
 
 			// Call claude -p for annotation
-			const fixes = await callAnnotationClaude(currentIssues, round);
+			const fixes = await callAnnotationClaude(currentIssues, round, runLogDir);
 
 			if (fixes.length === 0) {
 				console.log("No fixes returned, stopping annotation.");
