@@ -94,7 +94,7 @@ const downloadImageToFile = async (
 /** Composite a single focused measure image from all staff backgrounds.
  *  Crops each staff image to the measure's horizontal range (+ padding),
  *  then stacks them vertically. Returns the output path. */
-const MEASURE_IMAGE_PADDING = 4; // interval units on each side
+const MEASURE_IMAGE_PADDING = 2; // interval units on each side
 
 /** Fetch image buffer from local path or remote URL, with retry for transient errors. */
 const FETCH_RETRIES = 3;
@@ -618,7 +618,7 @@ const applyFixes = (spartito: starry.Spartito, fixes: any[]) => {
 };
 
 
-const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 2;
+const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 1;
 
 const callAnnotationClaude = async (
 	issueMeasures: IssueMeasureInfo[],
