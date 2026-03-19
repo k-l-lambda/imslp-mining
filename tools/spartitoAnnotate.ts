@@ -339,6 +339,11 @@ For each event, compare:
 4. **X-position**: Events at same x but different stems → different voices.
 5. **Vertical position** (\`event.ys\`): Smooth pitch progressions belong together.
 
+**IMPORTANT — stem direction does NOT always mean separate voices:**
+- Only split by stem direction when events **overlap in time** (same or overlapping tick positions on the same staff).
+- Sequential non-overlapping events on the same staff should stay in **one voice** even if stem direction changes partway through. Stem flips are normal when notes cross the middle staff line — this does NOT indicate a new voice.
+- When in doubt, prefer **fewer voices** (merge) over more voices (split).
+
 ### 4. Verify Against Time Signature
 Calculate total duration for each proposed voice:
 - Duration = \`1920 * 2^(-division) * (2 - 2^(-dots))\`
