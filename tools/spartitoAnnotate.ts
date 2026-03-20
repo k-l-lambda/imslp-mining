@@ -59,7 +59,7 @@ const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<an
 		const text = await res.text().catch(() => "");
 		throw new Error(`API ${options.method ?? "GET"} ${endpoint} → ${res.status}: ${text.substring(0, 200)}`);
 	}
-	const json = await res.json();
+	const json: any = await res.json();
 	// Unwrap { code, data } envelope if present
 	return json?.data !== undefined ? json.data : json;
 };
@@ -702,10 +702,12 @@ const callAnnotationClaude = async (
 
 			// Write MCP config pointing to measureQualityMcp.ts
 			const mcpConfig = {
-				"measure-quality": {
-					command: "npx",
-					args: ["tsx", path.resolve(__dirname, "measureQualityMcp.ts")],
-					env: { SPARTITO_PATH: spartitoTmpPath },
+				mcpServers: {
+					"measure-quality": {
+						command: "npx",
+						args: ["tsx", path.resolve(__dirname, "measureQualityMcp.ts")],
+						env: { SPARTITO_PATH: spartitoTmpPath },
+					},
 				},
 			};
 			const mcpConfigPath = path.join(tmpDir, "mcp.json");
@@ -715,8 +717,8 @@ const callAnnotationClaude = async (
 				...process.env as Record<string, string>,
 				ANTHROPIC_BASE_URL: ANNOTATION_BASE_URL,
 				ANTHROPIC_AUTH_TOKEN: ANNOTATION_API_KEY!,
-				ANTHROPIC_MODEL: ANNOTATION_MODEL,
-				ANTHROPIC_SMALL_FAST_MODEL: ANNOTATION_MODEL,
+				ANTHROPIC_MODEL: ANNOTATION_MODEL as string,
+				ANTHROPIC_SMALL_FAST_MODEL: ANNOTATION_MODEL as string,
 			};
 
 			const args = [
