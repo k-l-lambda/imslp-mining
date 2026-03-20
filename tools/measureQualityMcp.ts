@@ -131,8 +131,8 @@ server.tool(
 		// Evaluate original
 		const evalBefore = starry.evaluateMeasure(originalMeasure);
 
-		// Deep-clone measure via JSON round-trip, preserving staffGroups (needed by tickTwist)
-		const cloned = new starry.SpartitoMeasure(JSON.parse(JSON.stringify(originalMeasure.toJSON())));
+		// Deep-clone measure via recoverJSON (preserves EventTerm class instances needed by duration getter)
+		const cloned: starry.SpartitoMeasure = starry.recoverJSON(JSON.parse(JSON.stringify(originalMeasure.toJSON())), starry);
 		cloned.staffGroups = originalMeasure.staffGroups;
 
 		// Apply fix to clone

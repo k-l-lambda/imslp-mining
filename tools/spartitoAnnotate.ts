@@ -303,12 +303,21 @@ Your task is to verify and fix these assignments where the algorithm failed.
 - Triplets: \`{ numerator: 2, denominator: 3 }\` (3 notes in the time of 2)
 
 ### Quality Metrics
-- **tickTwist**: Time-position non-linearity. <0.2=good, >=1.0=error (fatal)
-- **fine**: Acceptable quality (no fatal errors, tickTwist<0.3, no beam broken, no surplus time)
-- **error**: Fatal problems (tickTwist>=1.0, tick overlap, voice rugged, etc.)
-- **spaceTime**: Unused time in voices (gaps). Allowed for fine, but must be 0 for perfect.
-- **surplusTime**: Time exceeding measure duration. Must be 0.
-- **beamBroken**: Beam Open/Continue/Close sequence split across voices.
+- **fine**: Acceptable quality (no fatal errors, tickTwist<0.3, no fractional warp, no irregular tick, no surplus time, no beam broken, no grace in voice)
+- **error**: Fatal problems (tickTwist>=1.0, tick overlap, voice rugged, corrupted events, null events>2, overranged, bad timewarp ratio)
+- **perfect**: Ideal regulation. Requires fine=true PLUS tickTwist<0.2, spaceTime=0, no irregular warps, no grace dominant.
+- **qualityScore**: 0-1 composite score. 0 = error, 1 = perfect. Factors: spaceTime loss, duration rate, irregular warps, tickTwist². Patched measures get 1.0.
+- **tickTwist**: Time-position non-linearity (how well tick order matches x-position order). <0.2=good, <0.3=fine, >=1.0=error (fatal)
+- **spaceTime**: Unused time in voices (gaps), in whole-note units. Allowed for fine, but must be 0 for perfect.
+- **surplusTime**: Total time exceeding measure duration across all voices. Must be 0.
+- **beamBroken**: Beam Open/Continue/Close sequence is invalid within a voice (status doesn't return to 0, or goes negative).
+- **voiceRugged**: Same event ID appears in multiple voices. Fatal error.
+- **tickOverlapped**: Events within a voice overlap in time (next tick < previous tick + duration). Fatal error.
+- **validEvents**: Events assigned to voices (sounding events).
+- **fakeEvents**: Non-grace, non-rest events not in any voice (detected but not sounding).
+- **nullEvents**: Events with non-finite tick values. >2 is fatal error.
+- **graceInVoice**: Grace notes incorrectly included in a voice. Prevents fine.
+- **durationRate**: measure.duration / expected duration. Should be close to 1.0.
 
 ### Feature Confidence (ML Classifier)
 - **feature.divisions**: Array of 7 floats (indices 0-6 = whole through 64th). The index with highest value is ML's best guess. Compare with assigned \`event.division\` — if they disagree, the higher-confidence value is usually correct.
