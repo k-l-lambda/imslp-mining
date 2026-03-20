@@ -84,7 +84,8 @@ const formatEvaluation = (label: string, ev: any, measure: starry.SpartitoMeasur
 	if (!ev) return `${label}: (no evaluation)`;
 	const lines: string[] = [];
 	lines.push(`${label}: fine=${ev.fine}, error=${ev.error}, tickTwist=${ev.tickTwist?.toFixed(3)}`);
-	lines.push(`  qualityScore=${ev.qualityScore?.toFixed(3)}, spaceTime=${ev.spaceTime}, surplusTime=${ev.surplusTime}, beamBroken=${ev.beamBroken}`);
+	const qs = Number.isFinite(ev.qualityScore) ? ev.qualityScore.toFixed(3) : "N/A";
+	lines.push(`  qualityScore=${qs}, spaceTime=${ev.spaceTime}, surplusTime=${ev.surplusTime}, beamBroken=${ev.beamBroken}`);
 	lines.push(`  Events: ${ev.events} total, ${ev.validEvents} valid, ${ev.fakeEvents} fake, ${ev.nullEvents} null`);
 	if (ev.voiceRugged) lines.push(`  voiceRugged=true`);
 	if (ev.tickOverlapped) lines.push(`  tickOverlapped=true`);
@@ -130,8 +131,9 @@ server.tool(
 		// Evaluate original
 		const evalBefore = starry.evaluateMeasure(originalMeasure);
 
-		// Deep-clone measure via JSON round-trip
+		// Deep-clone measure via JSON round-trip, preserving staffGroups (needed by tickTwist)
 		const cloned = new starry.SpartitoMeasure(JSON.parse(JSON.stringify(originalMeasure.toJSON())));
+		cloned.staffGroups = originalMeasure.staffGroups;
 
 		// Apply fix to clone
 		applyFixToMeasure(cloned, fix);
@@ -149,11 +151,10 @@ server.tool(
 		if (evalBefore && evalAfter) {
 			lines.push("");
 			const twistDelta = evalAfter.tickTwist - evalBefore.tickTwist;
-			const qDelta = evalAfter.qualityScore - evalBefore.qualityScore;
 			const improved = evalAfter.fine && !evalBefore.fine ? "FIXED!" :
 				twistDelta < 0 ? "improved" :
 				twistDelta > 0 ? "WORSE" : "unchanged";
-			lines.push(`Δ tickTwist=${twistDelta >= 0 ? "+" : ""}${twistDelta.toFixed(3)}, Δ quality=${qDelta >= 0 ? "+" : ""}${qDelta.toFixed(3)} → ${improved}`);
+			lines.push(`Δ tickTwist=${twistDelta >= 0 ? "+" : ""}${twistDelta.toFixed(3)} → ${improved}`);
 		}
 
 		return { content: [{ type: "text" as const, text: lines.join("\n") }] };
