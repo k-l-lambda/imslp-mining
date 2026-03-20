@@ -574,6 +574,27 @@ const parseFixes = (output: string): any[] => {
 };
 
 
+/** Merge a partial fix (from annotation agent) with the base solution from the original measure.
+ *  Events in the fix override the base; events only in the base are preserved as-is. */
+const mergeWithBaseSolution = (measure: starry.SpartitoMeasure, fix: any): any => {
+	const base = measure.asSolution();
+	if (!base) return fix;
+
+	const fixEventMap = new Map<number, any>();
+	if (fix.events) {
+		for (const e of fix.events) fixEventMap.set(e.id, e);
+	}
+
+	const mergedEvents = base.events.map((baseEvent: any) => {
+		const fixEvent = fixEventMap.get(baseEvent.id);
+		if (fixEvent) return { ...baseEvent, ...fixEvent };
+		return baseEvent;
+	});
+
+	return { ...base, ...fix, events: mergedEvents };
+};
+
+
 const applyFixes = (spartito: starry.Spartito, fixes: any[]): Set<number> => {
 	const appliedIndices = new Set<number>();
 
@@ -592,9 +613,12 @@ const applyFixes = (spartito: starry.Spartito, fixes: any[]): Set<number> => {
 		// Save original solution for rollback
 		const snapshot = measure.asSolution();
 
+		// Merge partial fix with base solution so events not in fix keep their ticks
+		const mergedFix = mergeWithBaseSolution(measure, fix);
+
 		// Apply fix as RegulationSolution (includes postRegulate)
 		try {
-			measure.applySolution(fix);
+			measure.applySolution(mergedFix);
 		}
 		catch (err: any) {
 			console.warn(`  m${mi}: applySolution failed: ${err.message}`);

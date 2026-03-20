@@ -85,9 +85,25 @@ server.tool(
 		const cloned: starry.SpartitoMeasure = starry.recoverJSON(JSON.parse(JSON.stringify(originalMeasure.toJSON())), starry);
 		cloned.staffGroups = originalMeasure.staffGroups;
 
+		// Merge partial fix with base solution so events not in fix keep their ticks
+		const base = cloned.asSolution();
+		const mergedFix = (() => {
+			if (!base) return fix;
+			const fixEventMap = new Map<number, any>();
+			if ((fix as any).events) {
+				for (const e of (fix as any).events) fixEventMap.set(e.id, e);
+			}
+			const mergedEvents = base.events.map((baseEvent: any) => {
+				const fixEvent = fixEventMap.get(baseEvent.id);
+				if (fixEvent) return { ...baseEvent, ...fixEvent };
+				return baseEvent;
+			});
+			return { ...base, ...fix, events: mergedEvents };
+		})();
+
 		// Apply fix as RegulationSolution via applySolution (includes postRegulate)
 		try {
-			cloned.applySolution(fix as any);
+			cloned.applySolution(mergedFix as any);
 		}
 		catch (err: any) {
 			return { content: [{ type: "text" as const, text: `Error applying solution to m${mi}: ${err.message}` }] };
