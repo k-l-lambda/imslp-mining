@@ -23,7 +23,8 @@ const argv = yargs(hideBin(process.argv))
 		"Regulate and annotate a single spartito file.",
 		yargs => yargs
 			.positional("input", { type: "string", demandOption: true, describe: "Path to .spartito.json file" })
-			.option("output", { alias: "o", type: "string", describe: "Output path (default: overwrite input)" })
+			.option("output", { alias: "o", type: "string", describe: "Output path (no file written if omitted)" })
+			.option("api-base", { type: "string", describe: "OMR service API base URL (e.g. http://localhost:3080/api)" })
 			.option("logger", { alias: "l", type: "boolean", describe: "Enable verbose logging" })
 			.option("skip-annotation", { type: "boolean", describe: "Skip the annotation step" })
 			.option("force-regulate", { type: "boolean", describe: "Force re-regulation even if already regulated" })
@@ -43,6 +44,25 @@ const ANNOTATION_MAX_TOKENS = Number(process.env.ANNOTATION_MAX_TOKENS) || 20000
 
 // Image API for fetching staff images when local IMAGE_BED is unavailable
 const IMAGE_API_BASE = process.env.IMAGE_API_BASE;
+
+// API integration
+const API_BASE = argv.apiBase as string | undefined;
+
+/** Fetch JSON from the OMR service API. */
+const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<any> => {
+	const url = `${API_BASE}${endpoint}`;
+	const res = await fetch(url, {
+		...options,
+		headers: { "Content-Type": "application/json", ...options.headers as Record<string, string> },
+	});
+	if (!res.ok) {
+		const text = await res.text().catch(() => "");
+		throw new Error(`API ${options.method ?? "GET"} ${endpoint} → ${res.status}: ${text.substring(0, 200)}`);
+	}
+	const json = await res.json();
+	// Unwrap { code, data } envelope if present
+	return json?.data !== undefined ? json.data : json;
+};
 
 
 // ── Image helpers ───────────────────────────────────────────────────────────
@@ -428,7 +448,20 @@ Output ONLY a JSON block with fixes. Think carefully about each measure before w
 - voices arrays use event.id values; clearGrace/setDivision use 0-based array indices
 - Do NOT include a "comment" field — only the fix fields listed above
 - ALWAYS provide voices and events together — voices alone without tick corrections rarely work
-- When computing ticks, write them out explicitly: tick_n = tick_(n-1) + duration_(n-1)`;
+- When computing ticks, write them out explicitly: tick_n = tick_(n-1) + duration_(n-1)
+
+## Evaluation Tool
+
+You have access to the \`evaluate_fix\` tool (via MCP). Use it to test your proposed fixes BEFORE including them in the final JSON output.
+
+Workflow for each measure:
+1. Analyze the measure data and image
+2. Propose a fix
+3. Call evaluate_fix with your proposed fix to check quality metrics
+4. If fine=false or tickTwist is high, adjust your fix and re-evaluate
+5. Once satisfied (fine=true or best achievable), include the fix in your final JSON output
+
+Always call evaluate_fix at least once per measure before finalizing.`;
 
 
 /** Build text prompt with image file paths for claude -p. Downloads remote images to tmpDir. */
@@ -627,6 +660,7 @@ const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 1;
 
 const callAnnotationClaude = async (
 	issueMeasures: IssueMeasureInfo[],
+	spartito: starry.Spartito,
 	roundNum: number,
 	logDir?: string,
 ): Promise<any[]> => {
@@ -662,6 +696,21 @@ const callAnnotationClaude = async (
 			if (argv.logger)
 				console.log(`  Prompt length: ${prompt.length} chars`);
 
+			// Write current spartito to temp file for MCP server
+			const spartitoTmpPath = path.join(tmpDir, "spartito.json");
+			fs.writeFileSync(spartitoTmpPath, JSON.stringify(spartito));
+
+			// Write MCP config pointing to measureQualityMcp.ts
+			const mcpConfig = {
+				"measure-quality": {
+					command: "npx",
+					args: ["tsx", path.resolve(__dirname, "measureQualityMcp.ts")],
+					env: { SPARTITO_PATH: spartitoTmpPath },
+				},
+			};
+			const mcpConfigPath = path.join(tmpDir, "mcp.json");
+			fs.writeFileSync(mcpConfigPath, JSON.stringify(mcpConfig));
+
 			const env: Record<string, string> = {
 				...process.env as Record<string, string>,
 				ANTHROPIC_BASE_URL: ANNOTATION_BASE_URL,
@@ -674,7 +723,8 @@ const callAnnotationClaude = async (
 				"-p",
 				"--output-format", "json",
 				"--append-system-prompt", SYSTEM_PROMPT,
-				"--allowedTools", "Read",
+				"--allowedTools", "Read,mcp__measure-quality__evaluate_fix",
+				"--mcp-config", mcpConfigPath,
 				"--effort", "max",
 				"--verbose",
 			];
@@ -793,7 +843,8 @@ const callAnnotationClaude = async (
 
 const main = async () => {
 	const inputPath = path.resolve(argv.input!);
-	const outputPath = argv.output ? path.resolve(argv.output) : inputPath;
+	const outputPath = argv.output ? path.resolve(argv.output) : null;
+	const scoreId = path.basename(inputPath).replace(/\.spartito\.json$/i, "").replace(/\.json$/i, "");
 
 	if (!fs.existsSync(inputPath)) {
 		console.error("Input file not found:", inputPath);
@@ -878,6 +929,49 @@ const main = async () => {
 		console.log(`Solved: ${solved}, Issue: ${issueMeasures.filter(m => m.status === 1).length}, Fatal: ${issueMeasures.filter(m => m.status === 2).length}`);
 	}
 
+	// ── Pre-annotation: fetch existing server annotations ────────────────────
+	if (API_BASE) {
+		const hashes = spartito.measures
+			.filter(m => m.regulated && m.regulationHash0)
+			.map(m => m.regulationHash0!);
+
+		if (hashes.length > 0) {
+			try {
+				const fetched: any[] = await apiFetch("/issueMeasures/batchGet", {
+					method: "POST",
+					body: JSON.stringify({ hashes }),
+				});
+
+				let serverResolved = 0;
+				if (fetched?.length) {
+					for (const remote of fetched) {
+						if (!remote.hash || !remote.measure) continue;
+
+						// Find the local measure by hash
+						const localIdx = spartito.measures.findIndex(m => m.regulationHash0 === remote.hash);
+						if (localIdx < 0) continue;
+
+						if (remote.status === 0) {
+							// Server says solved — replace local measure with server's corrected version
+							const serverMeasure = starry.recoverJSON(remote.measure, starry);
+							spartito.measures[localIdx] = new starry.SpartitoMeasure(serverMeasure);
+							serverResolved++;
+
+							// Remove from issue list if present
+							const issueIdx = issueMeasures.findIndex(im => im.measureIndex === spartito.measures[localIdx].measureIndex);
+							if (issueIdx >= 0) issueMeasures.splice(issueIdx, 1);
+						}
+					}
+					console.log(`\nServer: ${fetched.length} records fetched, ${serverResolved} solved measures applied`);
+					if (serverResolved > 0)
+						console.log(`Remaining issues: ${issueMeasures.length}`);
+				}
+			} catch (err: any) {
+				console.warn("Failed to fetch server annotations:", err.message);
+			}
+		}
+	}
+
 	// ── Annotation phase ────────────────────────────────────────────────────
 
 	if (!argv.skipAnnotation && issueMeasures.length > 0) {
@@ -915,7 +1009,7 @@ const main = async () => {
 			console.log(`\nRound ${round}/${maxRounds}: ${currentIssues.length} measures to annotate`);
 
 			// Call claude -p for annotation
-			const fixes = await callAnnotationClaude(currentIssues, round, runLogDir);
+			const fixes = await callAnnotationClaude(currentIssues, spartito, round, runLogDir);
 
 			if (fixes.length === 0) {
 				console.log("No fixes returned, stopping annotation.");
@@ -950,9 +1044,40 @@ const main = async () => {
 		console.log(`\nSkipping annotation (${issueMeasures.length} issue measures).`);
 	}
 
-	// Write output
-	fs.writeFileSync(outputPath, JSON.stringify(spartito));
-	console.log("\nOutput:", outputPath);
+	// ── Post-annotation: save all regulated measures to API ──────────────────
+	if (API_BASE) {
+		console.log(`\n--- Saving to API (scoreId=${scoreId}) ---`);
+		let saved = 0, errors = 0;
+		for (const m of spartito.measures) {
+			if (!m.regulated || !m.events?.length) continue;
+			const ev = starry.evaluateMeasure(m);
+			const status = !ev ? 1 : ev.error ? 2 : ev.fine ? 0 : 1;
+			try {
+				await apiFetch(`/scores/${scoreId}/issueMeasures`, {
+					method: "PUT",
+					body: JSON.stringify({
+						measureIndex: m.measureIndex,
+						measure: m.toJSON(),
+						status,
+						annotator: ANNOTATION_MODEL,
+					}),
+				});
+				saved++;
+			} catch (err: any) {
+				console.warn(`  Failed to save measure ${m.measureIndex}: ${err.message}`);
+				errors++;
+			}
+		}
+		console.log(`Saved: ${saved} measures${errors > 0 ? ` (${errors} errors)` : ""}`);
+	}
+
+	// Write output (optional)
+	if (outputPath) {
+		fs.writeFileSync(outputPath, JSON.stringify(spartito));
+		console.log("\nOutput:", outputPath);
+	} else if (!API_BASE) {
+		console.log("\n(No --output or --api-base specified, results not persisted)");
+	}
 };
 
 
