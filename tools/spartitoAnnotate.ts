@@ -10,7 +10,7 @@ import { hideBin } from "yargs/helpers";
 
 import "../env";
 
-import { BEAD_PICKER_URL, IMAGE_BED, OMR_API_BASE, ORT_SESSION_OPTIONS } from "./libs/constants";
+import { ANNOTATION_API_KEY, ANNOTATION_BASE_URL, ANNOTATION_MAX_TOKENS, ANNOTATION_MODEL as DEFAULT_ANNOTATION_MODEL, BEAD_PICKER_URL, IMAGE_BED, OMR_API_BASE, ORT_SESSION_OPTIONS } from "./libs/constants";
 import { starry, regulateWithBeadSolver } from "./libs/omr";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
 import remoteSolutionStore from "./libs/remoteSolutionStore";
@@ -36,11 +36,8 @@ const argv = yargs(hideBin(process.argv))
 
 const PICKER_SEQS = [32, 64, 128, 512];
 
-// Annotation config (Anthropic-compatible, used via claude -p)
-const ANNOTATION_BASE_URL = process.env.ANNOTATION_BASE_URL || "https://api.ppinfra.com/anthropic/";
-const ANNOTATION_API_KEY = process.env.ANNOTATION_API_KEY;
-const ANNOTATION_MODEL = argv.annotationModel || process.env.ANNOTATION_MODEL || "moonshotai/kimi-k2.5";
-const ANNOTATION_MAX_TOKENS = Number(process.env.ANNOTATION_MAX_TOKENS) || 200000;
+// Annotation config — CLI --annotation-model overrides env
+const ANNOTATION_MODEL = argv.annotationModel || DEFAULT_ANNOTATION_MODEL;
 
 // Image API for fetching staff images when local IMAGE_BED is unavailable
 const IMAGE_API_BASE = process.env.IMAGE_API_BASE;

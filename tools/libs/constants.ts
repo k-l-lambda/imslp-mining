@@ -65,3 +65,8 @@ export const ORT_SESSION_OPTIONS = process.env.ORT_SESSION_OPTIONS ? JSON.parse(
 
 
 export const OMR_API_BASE = process.env.OMR_API_BASE || "http://localhost:3080/api";
+
+export const ANNOTATION_BASE_URL = process.env.ANNOTATION_BASE_URL || "https://api.ppinfra.com/anthropic/";
+export const ANNOTATION_API_KEY = process.env.ANNOTATION_API_KEY;
+export const ANNOTATION_MODEL = process.env.ANNOTATION_MODEL || "moonshotai/kimi-k2.5";
+export const ANNOTATION_MAX_TOKENS = Number(process.env.ANNOTATION_MAX_TOKENS) || 200000;
