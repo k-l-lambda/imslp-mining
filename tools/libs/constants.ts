@@ -62,3 +62,6 @@ export const SOLUTION_STORE_OPTIONS = JSON.parse(process.env.SOLUTION_STORE ?? "
 
 
 export const ORT_SESSION_OPTIONS = process.env.ORT_SESSION_OPTIONS ? JSON.parse(process.env.ORT_SESSION_OPTIONS) : undefined;
+
+
+export const OMR_API_BASE = process.env.OMR_API_BASE || "http://localhost:3080/api";

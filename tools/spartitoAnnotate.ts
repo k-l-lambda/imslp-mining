@@ -10,7 +10,7 @@ import { hideBin } from "yargs/helpers";
 
 import "../env";
 
-import { BEAD_PICKER_URL, IMAGE_BED, ORT_SESSION_OPTIONS } from "./libs/constants";
+import { BEAD_PICKER_URL, IMAGE_BED, OMR_API_BASE, ORT_SESSION_OPTIONS } from "./libs/constants";
 import { starry, regulateWithBeadSolver } from "./libs/omr";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
 import remoteSolutionStore from "./libs/remoteSolutionStore";
@@ -24,7 +24,7 @@ const argv = yargs(hideBin(process.argv))
 		yargs => yargs
 			.positional("input", { type: "string", demandOption: true, describe: "Path to .spartito.json file" })
 			.option("output", { alias: "o", type: "string", describe: "Output path (no file written if omitted)" })
-			.option("api-base", { type: "string", describe: "OMR service API base URL (e.g. http://localhost:3080/api)" })
+			.option("fetch-server", { type: "boolean", default: false, describe: "Fetch existing server annotations before annotating" })
 			.option("logger", { alias: "l", type: "boolean", describe: "Enable verbose logging" })
 			.option("skip-annotation", { type: "boolean", describe: "Skip the annotation step" })
 			.option("force-regulate", { type: "boolean", describe: "Force re-regulation even if already regulated" })
@@ -46,7 +46,7 @@ const ANNOTATION_MAX_TOKENS = Number(process.env.ANNOTATION_MAX_TOKENS) || 20000
 const IMAGE_API_BASE = process.env.IMAGE_API_BASE;
 
 // API integration
-const API_BASE = argv.apiBase as string | undefined;
+const API_BASE = OMR_API_BASE;
 
 /** Fetch JSON from the OMR service API. */
 const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<any> => {
@@ -932,7 +932,7 @@ const main = async () => {
 	}
 
 	// ── Pre-annotation: fetch existing server annotations ────────────────────
-	if (API_BASE) {
+	if (API_BASE && argv.fetchServer) {
 		const hashes = spartito.measures
 			.filter(m => m.regulated && m.regulationHash0)
 			.map(m => m.regulationHash0!);
@@ -1077,8 +1077,6 @@ const main = async () => {
 	if (outputPath) {
 		fs.writeFileSync(outputPath, JSON.stringify(spartito));
 		console.log("\nOutput:", outputPath);
-	} else if (!API_BASE) {
-		console.log("\n(No --output or --api-base specified, results not persisted)");
 	}
 };
 
