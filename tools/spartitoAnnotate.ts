@@ -574,8 +574,8 @@ const parseFixes = (output: string): any[] => {
 };
 
 
-const applyFixes = (spartito: starry.Spartito, fixes: any[]) => {
-	let applied = 0;
+const applyFixes = (spartito: starry.Spartito, fixes: any[]): Set<number> => {
+	const appliedIndices = new Set<number>();
 
 	for (const fix of fixes) {
 		const mi = fix.measureIndex;
@@ -615,11 +615,11 @@ const applyFixes = (spartito: starry.Spartito, fixes: any[]) => {
 			continue;
 		}
 
-		applied++;
+		appliedIndices.add(mi);
 		console.log(`  m${mi}: ${statusLabel}, fine=${evalAfter?.fine}, error=${evalAfter?.error}, tickTwist=${twistBefore.toFixed(3)}→${twistAfter.toFixed(3)}`);
 	}
 
-	return applied;
+	return appliedIndices;
 };
 
 
@@ -973,6 +973,9 @@ const main = async () => {
 		console.log(`\nFiltered measures: ${[...measureFilter].join(",")} (${before} → ${issueMeasures.length})`);
 	}
 
+	// Track which measures were actually modified by annotation
+	let annotatedMeasures = new Set<number>();
+
 	if (!argv.skipAnnotation && issueMeasures.length > 0) {
 		console.log(`\n--- Annotation Phase ---`);
 		console.log(`${issueMeasures.length} issue measures to annotate`);
@@ -1017,8 +1020,9 @@ const main = async () => {
 
 			// Apply fixes
 			console.log(`\nApplying ${fixes.length} fixes:`);
-			const applied = applyFixes(spartito, fixes);
-			console.log(`Applied ${applied} fixes.`);
+			const appliedIndices = applyFixes(spartito, fixes);
+			annotatedMeasures = new Set([...annotatedMeasures, ...appliedIndices]);
+			console.log(`Applied ${appliedIndices.size} fixes.`);
 
 			// Post-apply summaries: only for batches where fixes actually achieved fine=true
 			for (const br of batchResults) {
@@ -1103,12 +1107,13 @@ const main = async () => {
 		console.log(`\nSkipping annotation (${issueMeasures.length} issue measures).`);
 	}
 
-	// ── Post-annotation: save all regulated measures to API ──────────────────
-	if (API_BASE) {
-		console.log(`\n--- Saving to API (scoreId=${scoreId}) ---`);
+	// ── Post-annotation: save only annotated measures to API ──────────────────
+	if (API_BASE && annotatedMeasures.size > 0) {
+		console.log(`\n--- Saving to API (scoreId=${scoreId}, ${annotatedMeasures.size} annotated measures) ---`);
 		let saved = 0, errors = 0;
-		for (const m of spartito.measures) {
-			if (!m.regulated || !m.events?.length) continue;
+		for (const mi of annotatedMeasures) {
+			const m = spartito.measures[mi];
+			if (!m?.regulated || !m.events?.length) continue;
 			const ev = starry.evaluateMeasure(m);
 			const status = !ev ? 1 : ev.error ? 2 : ev.fine ? 0 : 1;
 			try {
