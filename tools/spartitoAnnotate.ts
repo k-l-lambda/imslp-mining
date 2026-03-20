@@ -326,17 +326,16 @@ Your task is to verify and fix these assignments where the algorithm failed.
 - **feature.grace**: Float confidence score. NOT the same as \`event.grace\` (which is the string "grace" or null). No reliable threshold — **always verify against the background image**.
 
 ### Event ID vs Array Index (CRITICAL)
-- \`clearGrace\` and \`setDivision\` use **0-based array indices** into \`measure.events[]\`
-- \`voices\` arrays contain **event ID values** (\`event.id\`, typically 1-based)
-- \`events\` patches match by event **id**
-- **These are DIFFERENT numbering systems!**
+- All fields use **event ID values** (\`event.id\`, typically 1-based), NOT array indices.
+- \`voices\` arrays contain event IDs.
+- \`events\` array entries match by event \`id\`.
 
 ## Recognition Data Issues (Upstream Errors)
 
 These are NOT regulation failures — they are upstream misclassifications that propagate:
 
-- **False grace notes**: Events incorrectly tagged with \`grace="grace"\`. A non-grace note marked as grace is excluded from regulation. Fix: clear the grace flag via \`clearGrace\` (array indices).
-- **Wrong division/dots**: Note value misrecognized (e.g., quarter detected as eighth). Causes tick calculation to over/under-fill. Fix: correct via \`setDivision\` (array indices) or \`events\` patches (by ID).
+- **False grace notes**: Events incorrectly tagged with \`grace="grace"\`. A non-grace note marked as grace is excluded from regulation. Fix: set \`grace: false\` in the event's solution entry.
+- **Wrong division/dots**: Note value misrecognized (e.g., quarter detected as eighth). Causes tick calculation to over/under-fill. Fix: set correct \`division\` and \`dots\` in the event's solution entry.
 - **Missing dots**: ML sometimes fails to detect augmentation dots, especially on half notes. Check \`feature.dots\` confidence vs background image.
 - **Phantom/duplicate events**: Two events at nearly the same \`x\` with same staff/stemDirection but slightly different \`ys\`. Keep the more complete one in voices; leave the duplicate out.
 - **Missing events**: Events visible in the image but not detected. Cannot fix through annotation — mark as status=-1.
@@ -417,43 +416,50 @@ Far too many events for time signature. Total duration greatly exceeds expected.
 
 ## Output Format
 
-Output ONLY a JSON block with fixes. Think carefully about each measure before writing the fix.
+Output ONLY a JSON block with fixes. Each fix is a \`RegulationSolution\` plus \`measureIndex\` and \`status\`. Think carefully about each measure before writing the fix.
 
 \`\`\`json
 {"fixes": [
   {
     "measureIndex": 5,
-    "clearGrace": [2, 3],
-    "setDivision": {"2": {"division": 2, "dots": 0}},
+    "events": [
+      {"id": 1, "tick": 0, "tickGroup": 0, "timeWarp": null, "division": 2, "dots": 0},
+      {"id": 2, "tick": 480, "tickGroup": 1, "timeWarp": null},
+      {"id": 3, "tick": 960, "tickGroup": 2, "timeWarp": null, "grace": false}
+    ],
     "voices": [[1, 2, 3], [4, 5, 6]],
-    "events": [{"id": 1, "tick": 0, "division": 2, "dots": 0, "timeWarp": null}],
     "duration": 1920,
     "status": 0
   }
 ]}
 \`\`\`
 
-### Fix fields (all optional per measure):
-- **clearGrace**: 0-based event **array indices** to clear grace flag
-- **setDivision**: map of 0-based event **array index** → {division, dots}
-- **voices**: array of voice arrays (each voice = array of event **ID** values, NOT indices)
-- **events**: partial event patches matched by event **id** (tick/division/dots/timeWarp/beam)
-- **duration**: corrected measure duration
+### Fix fields:
+- **measureIndex**: Index of the measure in the spartito
+- **events**: Array of RegulationSolutionEvent objects. Every event in every voice MUST be included. Each event has:
+  - **id** (required): Event ID (matches \`event.id\`)
+  - **tick** (required): Absolute position in measure (0 = start)
+  - **tickGroup** (required): Tick group index (usually same as voice-internal order, or null)
+  - **timeWarp** (required): \`{numerator, denominator}\` for tuplets, or \`null\`
+  - **division** (optional): Override note value (0=whole..6=64th). Only include if changing from original.
+  - **dots** (optional): Override dot count. Only include if changing.
+  - **beam** (optional): Override beam ("Open"/"Continue"/"Close"). Only include if changing.
+  - **grace** (optional): \`false\` to clear a false grace flag. Only include if changing.
+- **voices**: Array of voice arrays (each voice = array of event **ID** values). Events not in any voice become fake events.
+- **duration**: Measure duration in ticks
 - **status**: 0=Solved, 1=Issue (can't fix), -1=Discard (upstream error)
 
 ### Rules:
 - You MUST output a fix entry for EVERY measure provided
-- You MUST attempt to fix each measure — do NOT just describe the problem. Provide concrete voices, events, and division corrections.
+- You MUST attempt to fix each measure — do NOT just describe the problem. Provide concrete voices, events, and duration.
+- The \`events\` array must include ALL events that appear in \`voices\`. Events not in voices can be omitted.
 - status=0 only if you're confident the fix is correct AND you've verified:
   - Each voice's durations sum to ≤ measure duration (no surplusTime)
   - Events in the same voice do not overlap: next_tick >= prev_tick + prev_duration
   - No tick overlap within a voice
 - status=1 only as last resort if the measure is genuinely too complex
 - status=-1 for upstream issues (missing barline, missing events, merged measures)
-- When setting ticks manually, clear ALL timeWarp to null (unless genuine tuplets confirmed by image)
-- voices arrays use event.id values; clearGrace/setDivision use 0-based array indices
-- Do NOT include a "comment" field — only the fix fields listed above
-- ALWAYS provide voices and events together — voices alone without tick corrections rarely work
+- When setting ticks manually, set ALL timeWarp to null (unless genuine tuplets confirmed by image)
 - When computing ticks, write them out explicitly: tick_n = tick_(n-1) + duration_(n-1)
 
 ## Evaluation Tool
@@ -582,74 +588,28 @@ const applyFixes = (spartito: starry.Spartito, fixes: any[]) => {
 		const evalBefore = starry.evaluateMeasure(measure);
 		const twistBefore = evalBefore?.tickTwist ?? Infinity;
 
-		// Save original state for rollback
-		const snapshot = JSON.stringify({
-			events: measure.events,
-			voices: measure.voices,
-			duration: measure.duration,
-		});
+		// Save original solution for rollback
+		const snapshot = measure.asSolution();
 
-		// Clear grace flags
-		if (fix.clearGrace?.length) {
-			for (const idx of fix.clearGrace) {
-				if (measure.events[idx]) {
-					measure.events[idx].grace = null as any;
-				}
-			}
-		}
-
-		// Set division/dots
-		if (fix.setDivision) {
-			for (const [idx, val] of Object.entries(fix.setDivision)) {
-				const event = measure.events[Number(idx)];
-				if (event && val) {
-					event.division = (val as any).division;
-					event.dots = (val as any).dots;
-				}
-			}
-		}
-
-		// Apply corrected event fields (tick, division, dots, timeWarp)
-		if (fix.events?.length) {
-			const eventMap = new Map(measure.events.map(e => [e.id, e]));
-			for (const patch of fix.events) {
-				const event = eventMap.get(patch.id);
-				if (!event)
-					continue;
-				if (patch.tick !== undefined) event.tick = patch.tick;
-				if (patch.division !== undefined) event.division = patch.division;
-				if (patch.dots !== undefined) event.dots = patch.dots;
-				if (patch.timeWarp !== undefined) event.timeWarp = patch.timeWarp;
-			}
-		}
-
-		// Set voices
-		if (fix.voices) {
-			measure.voices = fix.voices;
-		}
-
-		// Set duration
-		if (fix.duration !== undefined) {
-			measure.duration = fix.duration;
-		}
-
-		// Post-regulate to update computed fields
+		// Apply fix as RegulationSolution (includes postRegulate)
 		try {
-			measure.postRegulate();
+			measure.applySolution(fix);
 		}
-		catch {}
+		catch (err: any) {
+			console.warn(`  m${mi}: applySolution failed: ${err.message}`);
+			if (snapshot) {
+				try { measure.applySolution(snapshot); } catch {}
+			}
+			continue;
+		}
 
 		const evalAfter = starry.evaluateMeasure(measure);
 		const twistAfter = evalAfter?.tickTwist ?? Infinity;
 		const statusLabel = fix.status === 0 ? "Solved" : fix.status === -1 ? "Discard" : "Issue";
 
 		// Rollback if tickTwist got worse
-		if (twistAfter > twistBefore) {
-			const saved = JSON.parse(snapshot);
-			measure.events = saved.events;
-			measure.voices = saved.voices;
-			measure.duration = saved.duration;
-			try { measure.postRegulate(); } catch {}
+		if (twistAfter > twistBefore && snapshot) {
+			try { measure.applySolution(snapshot); } catch {}
 			console.log(`  m${mi}: REVERTED (tickTwist ${twistBefore.toFixed(3)} → ${twistAfter.toFixed(3)}, worse)`);
 			continue;
 		}

@@ -27,60 +27,9 @@ const spartitoJSON = JSON.parse(fs.readFileSync(spartitoPath, "utf-8"));
 const spartito = starry.recoverJSON<starry.Spartito>(spartitoJSON, starry);
 
 
-// ── Fix application logic (mirrors applyFixes in spartitoAnnotate.ts) ───────
+// ── Helpers ─────────────────────────────────────────────────────────────────
 
-const applyFixToMeasure = (measure: starry.SpartitoMeasure, fix: any): void => {
-	// Clear grace flags (by array index)
-	if (fix.clearGrace?.length) {
-		for (const idx of fix.clearGrace) {
-			if (measure.events[idx])
-				measure.events[idx].grace = null as any;
-		}
-	}
-
-	// Set division/dots (by array index)
-	if (fix.setDivision) {
-		for (const [idx, val] of Object.entries(fix.setDivision)) {
-			const event = measure.events[Number(idx)];
-			if (event && val) {
-				event.division = (val as any).division;
-				event.dots = (val as any).dots;
-			}
-		}
-	}
-
-	// Apply event patches (by event id)
-	if (fix.events?.length) {
-		const eventMap = new Map(measure.events.map(e => [e.id, e]));
-		for (const patch of fix.events) {
-			const event = eventMap.get(patch.id);
-			if (!event) continue;
-			if (patch.tick !== undefined) event.tick = patch.tick;
-			if (patch.division !== undefined) event.division = patch.division;
-			if (patch.dots !== undefined) event.dots = patch.dots;
-			if (patch.timeWarp !== undefined) event.timeWarp = patch.timeWarp;
-		}
-	}
-
-	// Set voices
-	if (fix.voices) {
-		measure.voices = fix.voices;
-	}
-
-	// Set duration
-	if (fix.duration !== undefined) {
-		measure.duration = fix.duration;
-	}
-
-	// Post-regulate to update computed fields
-	try {
-		measure.postRegulate();
-	}
-	catch {}
-};
-
-
-const formatEvaluation = (label: string, ev: any, measure: starry.SpartitoMeasure): string => {
+const formatEvaluation = (label: string, ev: any): string => {
 	if (!ev) return `${label}: (no evaluation)`;
 	const lines: string[] = [];
 	lines.push(`${label}: fine=${ev.fine}, error=${ev.error}, tickTwist=${ev.tickTwist?.toFixed(3)}`);
@@ -101,25 +50,26 @@ const server = new McpServer({
 	version: "1.0.0",
 });
 
+// Schema mirrors RegulationSolution + measureIndex
+const solutionEventSchema = z.object({
+	id: z.number(),
+	tick: z.number(),
+	tickGroup: z.number().nullable(),
+	timeWarp: z.object({ numerator: z.number(), denominator: z.number() }).nullable(),
+	division: z.number().optional(),
+	dots: z.number().optional(),
+	beam: z.string().optional(),
+	grace: z.boolean().optional(),
+});
+
 server.tool(
 	"evaluate_fix",
-	"Apply a proposed fix to a measure (deep-cloned, read-only) and return quality metrics. Use this to test fixes before including them in the final JSON output.",
+	"Apply a RegulationSolution to a measure (deep-cloned, read-only) and return quality metrics. Use this to test fixes before including them in the final JSON output.",
 	{
 		measureIndex: z.number().describe("Index of the measure to evaluate"),
-		clearGrace: z.array(z.number()).optional().describe("0-based event array indices to clear grace flag"),
-		setDivision: z.record(z.string(), z.object({
-			division: z.number(),
-			dots: z.number(),
-		})).optional().describe("Map of 0-based event array index → {division, dots}"),
-		voices: z.array(z.array(z.number())).optional().describe("Voice arrays (each = array of event IDs)"),
-		events: z.array(z.object({
-			id: z.number(),
-			tick: z.number().optional(),
-			division: z.number().optional(),
-			dots: z.number().optional(),
-			timeWarp: z.any().optional(),
-		})).optional().describe("Event patches matched by event id"),
-		duration: z.number().optional().describe("Corrected measure duration"),
+		events: z.array(solutionEventSchema).describe("RegulationSolution events: each must have id, tick, tickGroup, timeWarp; optional: division, dots, beam, grace"),
+		voices: z.array(z.array(z.number())).describe("Voice arrays (each = array of event IDs)"),
+		duration: z.number().describe("Measure duration in ticks"),
 	},
 	async (fix) => {
 		const mi = fix.measureIndex;
@@ -131,21 +81,26 @@ server.tool(
 		// Evaluate original
 		const evalBefore = starry.evaluateMeasure(originalMeasure);
 
-		// Deep-clone measure via recoverJSON (preserves EventTerm class instances needed by duration getter)
+		// Deep-clone measure via recoverJSON (preserves EventTerm class instances)
 		const cloned: starry.SpartitoMeasure = starry.recoverJSON(JSON.parse(JSON.stringify(originalMeasure.toJSON())), starry);
 		cloned.staffGroups = originalMeasure.staffGroups;
 
-		// Apply fix to clone
-		applyFixToMeasure(cloned, fix);
+		// Apply fix as RegulationSolution via applySolution (includes postRegulate)
+		try {
+			cloned.applySolution(fix as any);
+		}
+		catch (err: any) {
+			return { content: [{ type: "text" as const, text: `Error applying solution to m${mi}: ${err.message}` }] };
+		}
 
 		// Evaluate after fix
 		const evalAfter = starry.evaluateMeasure(cloned);
 
 		// Format comparison
 		const lines: string[] = [];
-		lines.push(formatEvaluation(`BEFORE (m${mi})`, evalBefore, originalMeasure));
+		lines.push(formatEvaluation(`BEFORE (m${mi})`, evalBefore));
 		lines.push("");
-		lines.push(formatEvaluation(`AFTER  (m${mi})`, evalAfter, cloned));
+		lines.push(formatEvaluation(`AFTER  (m${mi})`, evalAfter));
 
 		// Summary delta
 		if (evalBefore && evalAfter) {

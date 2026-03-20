@@ -3,10 +3,11 @@
  *
  * Spawns the MCP server and sends JSON-RPC requests via stdio to verify:
  * 1. Server initializes correctly
- * 2. tools/list returns evaluate_fix
- * 3. evaluate_fix with no-op returns valid evaluation (unchanged)
- * 4. evaluate_fix with a real fix returns before/after comparison
+ * 2. tools/list returns evaluate_fix with RegulationSolution schema
+ * 3. evaluate_fix with original solution returns unchanged
+ * 4. evaluate_fix with modified voices returns comparison
  * 5. evaluate_fix with invalid measureIndex returns error message
+ * 6. evaluate_fix with division override returns comparison
  */
 
 import { spawn } from "child_process";
@@ -41,7 +42,6 @@ const run = async () => {
 
 	child.stdout!.on("data", (chunk: Buffer) => {
 		buffer += chunk.toString();
-		// MCP uses newline-delimited JSON-RPC
 		let nl: number;
 		while ((nl = buffer.indexOf("\n")) >= 0) {
 			const line = buffer.slice(0, nl).trim();
@@ -60,9 +60,7 @@ const run = async () => {
 		}
 	});
 
-	child.stderr!.on("data", (chunk: Buffer) => {
-		// Suppress stderr (starry banner etc.)
-	});
+	child.stderr!.on("data", () => {});
 
 	const send = (id: number, method: string, params: any = {}) => {
 		const msg = JSON.stringify({ jsonrpc: "2.0", id, method, params });
@@ -75,6 +73,22 @@ const run = async () => {
 			waiters[id] = resolve;
 			setTimeout(() => reject(new Error(`Timeout waiting for response ${id}`)), timeoutMs);
 		});
+	};
+
+	// Original solution for m2 (from asSolution)
+	const m2Solution = {
+		events: [
+			{ id: 1, tick: 0, tickGroup: 0, timeWarp: null },
+			{ id: 2, tick: 480, tickGroup: 1, timeWarp: null },
+			{ id: 3, tick: 960, tickGroup: 2, timeWarp: null },
+			{ id: 4, tick: 1320, tickGroup: 3, timeWarp: null },
+			{ id: 5, tick: 0, tickGroup: 0, timeWarp: null },
+			{ id: 6, tick: 480, tickGroup: 1, timeWarp: null },
+			{ id: 7, tick: 960, tickGroup: 2, timeWarp: null },
+			{ id: 9, tick: 1320, tickGroup: 3, timeWarp: null },
+		],
+		voices: [[1, 2, 3, 4], [5, 6, 7, 9]],
+		duration: 1440,
 	};
 
 	try {
@@ -90,8 +104,7 @@ const run = async () => {
 		assert(!initResp.error, "no error on initialize");
 
 		// Send initialized notification
-		const notif = JSON.stringify({ jsonrpc: "2.0", method: "notifications/initialized" });
-		child.stdin!.write(notif + "\n");
+		child.stdin!.write(JSON.stringify({ jsonrpc: "2.0", method: "notifications/initialized" }) + "\n");
 
 		// 2. List tools
 		console.log("\nTest 2: tools/list");
@@ -103,12 +116,13 @@ const run = async () => {
 		assert(!!evalTool?.inputSchema?.properties?.measureIndex, "tool has measureIndex param");
 		assert(!!evalTool?.inputSchema?.properties?.voices, "tool has voices param");
 		assert(!!evalTool?.inputSchema?.properties?.events, "tool has events param");
+		assert(!!evalTool?.inputSchema?.properties?.duration, "tool has duration param");
 
-		// 3. evaluate_fix — no-op (just measureIndex, no changes)
-		console.log("\nTest 3: evaluate_fix no-op");
+		// 3. evaluate_fix — original solution (should be unchanged)
+		console.log("\nTest 3: evaluate_fix with original solution");
 		send(3, "tools/call", {
 			name: "evaluate_fix",
-			arguments: { measureIndex: 2 },
+			arguments: { measureIndex: 2, ...m2Solution },
 		});
 		const noopResp = await waitFor(3);
 		const noopText = noopResp.result?.content?.[0]?.text || "";
@@ -116,16 +130,19 @@ const run = async () => {
 		assert(noopText.includes("AFTER  (m2)"), "output contains AFTER label");
 		assert(noopText.includes("fine="), "output contains fine metric");
 		assert(noopText.includes("tickTwist="), "output contains tickTwist metric");
-		assert(noopText.includes("unchanged"), "no-op yields 'unchanged' delta");
+		assert(noopText.includes("unchanged"), "original solution yields 'unchanged' delta");
+		assert(!noopText.includes("N/A"), "no N/A in output (qualityScore computed)");
 		console.log("  Output preview:", noopText.split("\n")[0]);
 
-		// 4. evaluate_fix — with actual fix (change voices)
-		console.log("\nTest 4: evaluate_fix with voices change");
+		// 4. evaluate_fix — merge all into one voice
+		console.log("\nTest 4: evaluate_fix with modified voices");
 		send(4, "tools/call", {
 			name: "evaluate_fix",
 			arguments: {
 				measureIndex: 2,
-				voices: [[1, 2, 3, 4, 5, 6, 7, 9]],  // merge all into one voice
+				events: m2Solution.events,
+				voices: [[1, 2, 3, 4, 5, 6, 7, 9]],
+				duration: 1440,
 			},
 		});
 		const fixResp = await waitFor(4);
@@ -139,7 +156,7 @@ const run = async () => {
 		console.log("\nTest 5: evaluate_fix invalid measureIndex");
 		send(5, "tools/call", {
 			name: "evaluate_fix",
-			arguments: { measureIndex: 9999 },
+			arguments: { measureIndex: 9999, events: [], voices: [], duration: 0 },
 		});
 		const errResp = await waitFor(5);
 		const errText = errResp.result?.content?.[0]?.text || "";
@@ -147,18 +164,24 @@ const run = async () => {
 		assert(errText.includes("9999"), "error mentions the bad index");
 		console.log("  Output:", errText);
 
-		// 6. evaluate_fix — with event patches
-		console.log("\nTest 6: evaluate_fix with event patches");
+		// 6. evaluate_fix — with division override (grace: false to clear false grace)
+		console.log("\nTest 6: evaluate_fix with division override");
+		const modifiedEvents = m2Solution.events.map(e =>
+			e.id === 1 ? { ...e, division: 2, dots: 0 } : e
+		);
 		send(6, "tools/call", {
 			name: "evaluate_fix",
 			arguments: {
 				measureIndex: 2,
-				events: [{ id: 1, tick: 0, division: 2, dots: 0 }],
+				events: modifiedEvents,
+				voices: m2Solution.voices,
+				duration: 1440,
 			},
 		});
 		const patchResp = await waitFor(6);
 		const patchText = patchResp.result?.content?.[0]?.text || "";
-		assert(patchText.includes("BEFORE") && patchText.includes("AFTER"), "event patch returns comparison");
+		assert(patchText.includes("BEFORE") && patchText.includes("AFTER"), "division override returns comparison");
+		assert(!patchText.includes("N/A"), "no N/A in division override output");
 		console.log("  Output preview:", patchText.split("\n").slice(-1)[0]);
 
 	} catch (err: any) {
