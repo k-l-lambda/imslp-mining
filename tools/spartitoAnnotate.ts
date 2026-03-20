@@ -323,7 +323,7 @@ Your task is to verify and fix these assignments where the algorithm failed.
 ### Feature Confidence (ML Classifier)
 - **feature.divisions**: Array of 7 floats (indices 0-6 = whole through 64th). The index with highest value is ML's best guess. Compare with assigned \`event.division\` — if they disagree, the higher-confidence value is usually correct.
   - Common pattern: ML assigns division=3 (eighth) because of a beam, but feature.divisions[2] (quarter) is much higher → should be quarter note.
-- **feature.dots**: \`[no_dot_conf, dot_conf]\`. If \`feature.dots[1] > 0.1\` but \`event.dots = 0\`, a dot was likely missed.
+- **feature.dots**: \`[dot1_conf, dot2_conf]\`. If \`feature.dots[1] > 0.1\` but \`event.dots = 0\`, a dot was likely missed.
 - **feature.grace**: Float confidence score. NOT the same as \`event.grace\` (which is the string "grace" or null). No reliable threshold — **always verify against the background image**.
 
 ### Event ID vs Array Index (CRITICAL)
@@ -471,7 +471,7 @@ Workflow for each measure:
 1. Analyze the measure data and image
 2. Propose a fix
 3. Call evaluate_fix with your proposed fix to check quality metrics
-4. If fine=false or tickTwist is high, adjust your fix and re-evaluate
+4. If fine=false or other bad signals, adjust your fix and re-evaluate
 5. Once satisfied (fine=true or best achievable), include the fix in your final JSON output
 
 Always call evaluate_fix at least once per measure before finalizing.`;
@@ -625,19 +625,27 @@ const applyFixes = (spartito: starry.Spartito, fixes: any[]) => {
 
 const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 1;
 
+interface BatchResult {
+	fixes: any[];
+	sessionId: string;
+	measureIndices: number[];
+	env: Record<string, string>;
+}
+
 const callAnnotationClaude = async (
 	issueMeasures: IssueMeasureInfo[],
 	spartito: starry.Spartito,
 	roundNum: number,
 	logDir?: string,
-): Promise<any[]> => {
+): Promise<{ fixes: any[], batchResults: BatchResult[] }> => {
 	if (!ANNOTATION_API_KEY) {
 		console.warn("ANNOTATION_API_KEY not set, skipping annotation.");
-		return [];
+		return { fixes: [], batchResults: [] };
 	}
 
 	// Split into batches to stay within token limits
 	const allFixes: any[] = [];
+	const batchResults: BatchResult[] = [];
 	const batches: IssueMeasureInfo[][] = [];
 	for (let i = 0; i < issueMeasures.length; i += BATCH_SIZE)
 		batches.push(issueMeasures.slice(i, i + BATCH_SIZE));
@@ -729,6 +737,7 @@ const callAnnotationClaude = async (
 
 			// Parse JSON output format (stream-json: array of events; json: single object)
 			let textOutput = "";
+			let sessionId = "";
 			try {
 				const jsonResult = JSON.parse(rawOutput);
 
@@ -736,6 +745,7 @@ const callAnnotationClaude = async (
 					// stream-json format: array of event objects
 					const lastItem = jsonResult[jsonResult.length - 1];
 					textOutput = lastItem?.result || "";
+					sessionId = lastItem?.session_id || "";
 
 					// Log usage stats from last item
 					if (lastItem?.usage) {
@@ -764,6 +774,7 @@ const callAnnotationClaude = async (
 				else {
 					// Single object format
 					textOutput = jsonResult.result || "";
+					sessionId = jsonResult.session_id || "";
 					if (jsonResult.usage) {
 						const u = jsonResult.usage;
 						console.log(`  Tokens: ${u.input_tokens || 0} in / ${u.output_tokens || 0} out`);
@@ -794,7 +805,18 @@ const callAnnotationClaude = async (
 			if (argv.logger)
 				console.log("  Raw result:\n", textOutput);
 
-			allFixes.push(...parseFixes(textOutput));
+			const batchFixes = parseFixes(textOutput);
+			allFixes.push(...batchFixes);
+
+			// Save batch info for post-apply summary
+			if (sessionId && batchFixes.some(f => f.status === 0)) {
+				batchResults.push({
+					fixes: batchFixes,
+					sessionId,
+					measureIndices: batch.map(m => m.measureIndex),
+					env,
+				});
+			}
 		}
 		catch (err: any) {
 			console.warn("  claude -p failed:", err.message?.slice(0, 200));
@@ -804,7 +826,7 @@ const callAnnotationClaude = async (
 		}
 	}
 
-	return allFixes;
+	return { fixes: allFixes, batchResults };
 };
 
 
@@ -986,7 +1008,7 @@ const main = async () => {
 			console.log(`\nRound ${round}/${maxRounds}: ${currentIssues.length} measures to annotate`);
 
 			// Call claude -p for annotation
-			const fixes = await callAnnotationClaude(currentIssues, spartito, round, runLogDir);
+			const { fixes, batchResults } = await callAnnotationClaude(currentIssues, spartito, round, runLogDir);
 
 			if (fixes.length === 0) {
 				console.log("No fixes returned, stopping annotation.");
@@ -997,6 +1019,66 @@ const main = async () => {
 			console.log(`\nApplying ${fixes.length} fixes:`);
 			const applied = applyFixes(spartito, fixes);
 			console.log(`Applied ${applied} fixes.`);
+
+			// Post-apply summaries: only for batches where fixes actually achieved fine=true
+			for (const br of batchResults) {
+				const anyFixed = br.measureIndices.some(mi => {
+					const ev = starry.evaluateMeasure(spartito.measures[mi]);
+					return ev && ev.fine;
+				});
+				if (!anyFixed) continue;
+
+				const fixedIndices = br.measureIndices.filter(mi => {
+					const ev = starry.evaluateMeasure(spartito.measures[mi]);
+					return ev && ev.fine;
+				});
+
+				const summaryPrompt = [
+					`The following measures were successfully fixed (fine=true): ${fixedIndices.map(i => "m" + i).join(", ")}.`,
+					"Based on your annotation experience just now, please provide a brief summary:",
+					"1. Which principles in the system prompt were most helpful for your annotation work?",
+					"2. What additional guidelines or tips would you suggest adding to the system prompt that are not currently covered?",
+					"3. What common patterns or pitfalls did you encounter during this annotation session?",
+					"Keep it concise and actionable.",
+				].join("\n");
+
+				console.log(`  Requesting summary for ${fixedIndices.map(i => "m" + i).join(",")}...`);
+				const summaryResult = spawnSync("claude", [
+					"-p",
+					"--output-format", "json",
+					"--resume", br.sessionId,
+					"--verbose",
+				], {
+					input: summaryPrompt,
+					env: br.env,
+					encoding: "utf-8",
+					maxBuffer: 10 * 1024 * 1024,
+					timeout: 3 * 60 * 1000,
+				});
+
+				let summaryText = "";
+				try {
+					const summaryJson = JSON.parse(summaryResult.stdout || "");
+					if (Array.isArray(summaryJson)) {
+						summaryText = summaryJson[summaryJson.length - 1]?.result || "";
+					} else {
+						summaryText = summaryJson.result || "";
+					}
+				} catch {
+					summaryText = summaryResult.stdout || "";
+				}
+
+				if (summaryText) {
+					console.log("\n  ── Agent Summary ──");
+					console.log(summaryText.split("\n").map((l: string) => "  " + l).join("\n"));
+					console.log("  ──────────────────\n");
+
+					if (runLogDir) {
+						const summaryFile = path.join(runLogDir, `r${round}_summary_m${fixedIndices.join("_")}.txt`);
+						fs.writeFileSync(summaryFile, summaryText);
+					}
+				}
+			}
 		}
 
 		// Final evaluation
