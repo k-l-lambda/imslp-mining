@@ -30,6 +30,7 @@ const argv = yargs(hideBin(process.argv))
 			.option("force-regulate", { type: "boolean", describe: "Force re-regulation even if already regulated" })
 			.option("annotation-model", { type: "string", describe: "Model for annotation (overrides ANNOTATION_MODEL env)" })
 			.option("max-rounds", { type: "number", default: 3, describe: "Max annotation rounds" })
+			.option("measures", { type: "string", describe: "Comma-separated measure indices to annotate (e.g. '16,70,83')" })
 		,
 	).help().argv;
 
@@ -941,6 +942,14 @@ const main = async () => {
 	}
 
 	// ── Annotation phase ────────────────────────────────────────────────────
+
+	// Filter by --measures if specified
+	const measureFilter = argv.measures ? new Set(argv.measures.split(",").map(Number)) : null;
+	if (measureFilter) {
+		const before = issueMeasures.length;
+		issueMeasures.splice(0, issueMeasures.length, ...issueMeasures.filter(m => measureFilter.has(m.measureIndex)));
+		console.log(`\nFiltered measures: ${[...measureFilter].join(",")} (${before} → ${issueMeasures.length})`);
+	}
 
 	if (!argv.skipAnnotation && issueMeasures.length > 0) {
 		console.log(`\n--- Annotation Phase ---`);
