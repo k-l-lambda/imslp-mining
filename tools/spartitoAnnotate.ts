@@ -733,7 +733,7 @@ const runOneBatch = async (
 			"--mcp-config", mcpConfigPath,
 			"--effort", "max",
 			"--verbose",
-		], prompt, env, 15 * 60 * 1000);
+		], prompt, env, 20 * 60 * 1000);
 
 		if (logDir) {
 			fs.writeFileSync(path.join(logDir, `r${roundNum}_${batchLabel}.json`), rawOutput);
@@ -835,7 +835,7 @@ const callAnnotationClaude = async (
 
 					if (!r.ok) {
 						consecutiveHardFails++;
-						if (consecutiveHardFails >= CONCURRENCY) {
+						if (consecutiveHardFails >= CONCURRENCY * 2) {
 							console.warn(`  ${consecutiveHardFails} consecutive hard failures, aborting remaining batches.`);
 							aborted = true;
 						}
