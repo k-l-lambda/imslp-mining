@@ -628,7 +628,16 @@ const applyFixes = (spartito: starry.Spartito, fixes: any[]): Set<number> => {
 			continue;
 		}
 
-		const evalAfter = starry.evaluateMeasure(measure);
+		let evalAfter: any;
+		try {
+			evalAfter = starry.evaluateMeasure(measure);
+		} catch (err: any) {
+			console.warn(`  m${mi}: evaluateMeasure crashed after fix: ${err.message}, reverting`);
+			if (snapshot) {
+				try { measure.applySolution(snapshot); } catch {}
+			}
+			continue;
+		}
 		const twistAfter = evalAfter?.tickTwist ?? Infinity;
 		const statusLabel = fix.status === 0 ? "Solved" : fix.status === -1 ? "Discard" : "Issue";
 
