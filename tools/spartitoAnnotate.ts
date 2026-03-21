@@ -29,7 +29,7 @@ const argv = yargs(hideBin(process.argv))
 			.option("skip-annotation", { type: "boolean", describe: "Skip the annotation step" })
 			.option("force-regulate", { type: "boolean", describe: "Force re-regulation even if already regulated" })
 			.option("annotation-model", { type: "string", describe: "Model for annotation (overrides ANNOTATION_MODEL env)" })
-			.option("max-rounds", { type: "number", default: 3, describe: "Max annotation rounds" })
+			.option("max-rounds", { type: "number", default: 1, describe: "Max annotation rounds" })
 			.option("measures", { type: "string", describe: "Comma-separated measure indices to annotate (e.g. '16,70,83')" })
 		,
 	).help().argv;
@@ -647,7 +647,7 @@ const applyFixes = (spartito: starry.Spartito, fixes: any[]): Set<number> => {
 };
 
 
-const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 1;
+const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 3;
 
 interface BatchResult {
 	fixes: any[];
@@ -673,6 +673,9 @@ const callAnnotationClaude = async (
 	const batches: IssueMeasureInfo[][] = [];
 	for (let i = 0; i < issueMeasures.length; i += BATCH_SIZE)
 		batches.push(issueMeasures.slice(i, i + BATCH_SIZE));
+
+	let consecutiveEmpty = 0;
+	const MAX_CONSECUTIVE_EMPTY = 3;
 
 	for (let bi = 0; bi < batches.length; bi++) {
 		const batch = batches[bi];
@@ -756,6 +759,11 @@ const callAnnotationClaude = async (
 
 			if (result.error) {
 				console.warn(`  spawn error: ${result.error.message}`);
+				consecutiveEmpty++;
+				if (consecutiveEmpty >= MAX_CONSECUTIVE_EMPTY) {
+					console.warn(`  ${MAX_CONSECUTIVE_EMPTY} consecutive empty responses, aborting remaining batches.`);
+					break;
+				}
 				continue;
 			}
 
@@ -820,6 +828,14 @@ const callAnnotationClaude = async (
 				if (textOutput) {
 					const fixes = parseFixes(textOutput);
 					allFixes.push(...fixes);
+					if (fixes.length > 0) consecutiveEmpty = 0;
+					else consecutiveEmpty++;
+				} else {
+					consecutiveEmpty++;
+				}
+				if (consecutiveEmpty >= MAX_CONSECUTIVE_EMPTY) {
+					console.warn(`  ${MAX_CONSECUTIVE_EMPTY} consecutive empty responses, aborting remaining batches.`);
+					break;
 				}
 				continue;
 			}
@@ -831,6 +847,14 @@ const callAnnotationClaude = async (
 
 			const batchFixes = parseFixes(textOutput);
 			allFixes.push(...batchFixes);
+
+			if (batchFixes.length > 0) consecutiveEmpty = 0;
+			else consecutiveEmpty++;
+
+			if (consecutiveEmpty >= MAX_CONSECUTIVE_EMPTY) {
+				console.warn(`  ${MAX_CONSECUTIVE_EMPTY} consecutive empty responses, aborting remaining batches.`);
+				break;
+			}
 
 			// Save batch info for post-apply summary
 			if (sessionId && batchFixes.some(f => f.status === 0)) {
