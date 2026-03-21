@@ -647,7 +647,8 @@ const applyFixes = (spartito: starry.Spartito, fixes: any[]): Set<number> => {
 };
 
 
-const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 3;
+const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 1;
+const CONCURRENCY = Number(process.env.ANNOTATION_CONCURRENCY) || 3;
 
 interface BatchResult {
 	fixes: any[];
@@ -655,6 +656,121 @@ interface BatchResult {
 	measureIndices: number[];
 	env: Record<string, string>;
 }
+
+/** Run one batch (one or more measures) through claude -p. Returns fixes and optional sessionId. */
+const runOneBatch = async (
+	batch: IssueMeasureInfo[],
+	spartito: starry.Spartito,
+	roundNum: number,
+	batchLabel: string,
+	logDir?: string,
+): Promise<{ fixes: any[]; sessionId: string; measureIndices: number[]; env: Record<string, string>; failed: boolean }> => {
+	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-annotate-"));
+	try {
+		const prompt = await buildAnnotationPrompt(batch, tmpDir);
+
+		if (logDir) {
+			const promptFile = path.join(logDir, `r${roundNum}_${batchLabel}_prompt.txt`);
+			fs.writeFileSync(promptFile, prompt);
+		}
+
+		const spartitoTmpPath = path.join(tmpDir, "spartito.json");
+		fs.writeFileSync(spartitoTmpPath, JSON.stringify(spartito));
+
+		const mcpConfig = {
+			mcpServers: {
+				"measure-quality": {
+					command: "npx",
+					args: ["tsx", path.resolve(__dirname, "measureQualityMcp.ts")],
+					env: { SPARTITO_PATH: spartitoTmpPath },
+				},
+			},
+		};
+		const mcpConfigPath = path.join(tmpDir, "mcp.json");
+		fs.writeFileSync(mcpConfigPath, JSON.stringify(mcpConfig));
+
+		const env: Record<string, string> = {
+			...process.env as Record<string, string>,
+			ANTHROPIC_BASE_URL: ANNOTATION_BASE_URL,
+			ANTHROPIC_AUTH_TOKEN: ANNOTATION_API_KEY!,
+			ANTHROPIC_MODEL: ANNOTATION_MODEL as string,
+			ANTHROPIC_SMALL_FAST_MODEL: ANNOTATION_MODEL as string,
+		};
+
+		const result = spawnSync("claude", [
+			"-p",
+			"--output-format", "json",
+			"--append-system-prompt", SYSTEM_PROMPT,
+			"--allowedTools", "Read,mcp__measure-quality__evaluate_fix",
+			"--mcp-config", mcpConfigPath,
+			"--effort", "max",
+			"--verbose",
+		], {
+			input: prompt,
+			env,
+			encoding: "utf-8",
+			maxBuffer: 50 * 1024 * 1024,
+			timeout: 15 * 60 * 1000,
+		});
+
+		const rawOutput = result.stdout || "";
+		const stderr = result.stderr || "";
+
+		if (logDir) {
+			const logFile = path.join(logDir, `r${roundNum}_${batchLabel}.json`);
+			fs.writeFileSync(logFile, rawOutput);
+			if (stderr) fs.writeFileSync(path.join(logDir, `r${roundNum}_${batchLabel}.stderr.txt`), stderr);
+		}
+
+		if (result.error) {
+			console.warn(`  [${batchLabel}] spawn error: ${result.error.message}`);
+			return { fixes: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), env, failed: true };
+		}
+
+		let textOutput = "";
+		let sessionId = "";
+		try {
+			const jsonResult = JSON.parse(rawOutput);
+			if (Array.isArray(jsonResult)) {
+				const lastItem = jsonResult[jsonResult.length - 1];
+				textOutput = lastItem?.result || "";
+				sessionId = lastItem?.session_id || "";
+				if (lastItem?.usage) {
+					const u = lastItem.usage;
+					console.log(`  [${batchLabel}] Tokens: ${u.input_tokens || 0} in / ${u.output_tokens || 0} out, Cost: $${lastItem.total_cost_usd?.toFixed(4) ?? "?"}`);
+				}
+			} else {
+				textOutput = jsonResult.result || "";
+				sessionId = jsonResult.session_id || "";
+				if (jsonResult.usage) {
+					const u = jsonResult.usage;
+					console.log(`  [${batchLabel}] Tokens: ${u.input_tokens || 0} in / ${u.output_tokens || 0} out`);
+				}
+			}
+		} catch {
+			textOutput = rawOutput;
+		}
+
+		if (result.status !== 0) {
+			console.warn(`  [${batchLabel}] claude -p exited with code ${result.status}`);
+			if (stderr) console.warn(`  stderr: ${stderr.slice(0, 500)}`);
+		}
+
+		if (!textOutput) {
+			console.warn(`  [${batchLabel}] empty result`);
+			return { fixes: [], sessionId, measureIndices: batch.map(m => m.measureIndex), env, failed: true };
+		}
+
+		console.log(`  [${batchLabel}] Result text: ${textOutput.length} chars`);
+		const fixes = parseFixes(textOutput);
+		return { fixes, sessionId, measureIndices: batch.map(m => m.measureIndex), env, failed: fixes.length === 0 };
+	} catch (err: any) {
+		console.warn(`  [${batchLabel}] failed: ${err.message?.slice(0, 200)}`);
+		return { fixes: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), env: {}, failed: true };
+	} finally {
+		fs.rmSync(tmpDir, { recursive: true, force: true });
+	}
+};
 
 const callAnnotationClaude = async (
 	issueMeasures: IssueMeasureInfo[],
@@ -667,210 +783,48 @@ const callAnnotationClaude = async (
 		return { fixes: [], batchResults: [] };
 	}
 
-	// Split into batches to stay within token limits
 	const allFixes: any[] = [];
 	const batchResults: BatchResult[] = [];
 	const batches: IssueMeasureInfo[][] = [];
 	for (let i = 0; i < issueMeasures.length; i += BATCH_SIZE)
 		batches.push(issueMeasures.slice(i, i + BATCH_SIZE));
 
-	let consecutiveEmpty = 0;
-	const MAX_CONSECUTIVE_EMPTY = 3;
+	const total = batches.length;
+	console.log(`  ${total} batches, concurrency=${CONCURRENCY}`);
 
-	for (let bi = 0; bi < batches.length; bi++) {
-		const batch = batches[bi];
-		console.log(`\n  Batch ${bi + 1}/${batches.length} (${batch.length} measures, round ${roundNum})...`);
-		console.log("  ────────────────────────────────────────");
+	// Run batches in concurrent groups
+	for (let start = 0; start < total; start += CONCURRENCY) {
+		const chunk = batches.slice(start, start + CONCURRENCY);
+		const chunkPromises = chunk.map((batch, ci) => {
+			const bi = start + ci;
+			const label = `b${bi + 1}`;
+			const measureIds = batch.map(m => `m${m.measureIndex}`).join(",");
+			console.log(`\n  Batch ${bi + 1}/${total} [${measureIds}] starting...`);
+			return runOneBatch(batch, spartito, roundNum, label, logDir);
+		});
 
-		// Prepare temp dir for downloaded images
-		const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-annotate-"));
+		const results = await Promise.all(chunkPromises);
 
-		try {
-			// Build text prompt with image file paths
-			const prompt = await buildAnnotationPrompt(batch, tmpDir);
-
-			// Save prompt to log
-			if (logDir) {
-				const promptFile = path.join(logDir, `r${roundNum}_b${bi + 1}_prompt.txt`);
-				fs.writeFileSync(promptFile, prompt);
-			}
-
-			if (argv.logger)
-				console.log(`  Prompt length: ${prompt.length} chars`);
-
-			// Write current spartito to temp file for MCP server
-			const spartitoTmpPath = path.join(tmpDir, "spartito.json");
-			fs.writeFileSync(spartitoTmpPath, JSON.stringify(spartito));
-
-			// Write MCP config pointing to measureQualityMcp.ts
-			const mcpConfig = {
-				mcpServers: {
-					"measure-quality": {
-						command: "npx",
-						args: ["tsx", path.resolve(__dirname, "measureQualityMcp.ts")],
-						env: { SPARTITO_PATH: spartitoTmpPath },
-					},
-				},
-			};
-			const mcpConfigPath = path.join(tmpDir, "mcp.json");
-			fs.writeFileSync(mcpConfigPath, JSON.stringify(mcpConfig));
-
-			const env: Record<string, string> = {
-				...process.env as Record<string, string>,
-				ANTHROPIC_BASE_URL: ANNOTATION_BASE_URL,
-				ANTHROPIC_AUTH_TOKEN: ANNOTATION_API_KEY!,
-				ANTHROPIC_MODEL: ANNOTATION_MODEL as string,
-				ANTHROPIC_SMALL_FAST_MODEL: ANNOTATION_MODEL as string,
-			};
-
-			const args = [
-				"-p",
-				"--output-format", "json",
-				"--append-system-prompt", SYSTEM_PROMPT,
-				"--allowedTools", "Read,mcp__measure-quality__evaluate_fix",
-				"--mcp-config", mcpConfigPath,
-				"--effort", "max",
-				"--verbose",
-			];
-
-			const result = spawnSync("claude", args, {
-				input: prompt,
-				env,
-				encoding: "utf-8",
-				maxBuffer: 50 * 1024 * 1024,
-				timeout: 15 * 60 * 1000,
-			});
-
-			const rawOutput = result.stdout || "";
-			const stderr = result.stderr || "";
-
-			// Save full JSON output to log file
-			if (logDir) {
-				const logFile = path.join(logDir, `r${roundNum}_b${bi + 1}.json`);
-				fs.writeFileSync(logFile, rawOutput);
-				if (stderr) {
-					const stderrFile = path.join(logDir, `r${roundNum}_b${bi + 1}.stderr.txt`);
-					fs.writeFileSync(stderrFile, stderr);
-				}
-				console.log(`  Log saved: ${logFile}`);
-			}
-
-			console.log("  ────────────────────────────────────────");
-
-			if (result.error) {
-				console.warn(`  spawn error: ${result.error.message}`);
-				consecutiveEmpty++;
-				if (consecutiveEmpty >= MAX_CONSECUTIVE_EMPTY) {
-					console.warn(`  ${MAX_CONSECUTIVE_EMPTY} consecutive empty responses, aborting remaining batches.`);
-					break;
-				}
+		let failCount = 0;
+		for (const r of results) {
+			if (r.failed) {
+				failCount++;
 				continue;
 			}
-
-			// Parse JSON output format (stream-json: array of events; json: single object)
-			let textOutput = "";
-			let sessionId = "";
-			try {
-				const jsonResult = JSON.parse(rawOutput);
-
-				if (Array.isArray(jsonResult)) {
-					// stream-json format: array of event objects
-					const lastItem = jsonResult[jsonResult.length - 1];
-					textOutput = lastItem?.result || "";
-					sessionId = lastItem?.session_id || "";
-
-					// Log usage stats from last item
-					if (lastItem?.usage) {
-						const u = lastItem.usage;
-						console.log(`  Tokens: ${u.input_tokens || 0} in / ${u.output_tokens || 0} out`);
-					}
-					if (lastItem?.total_cost_usd !== undefined) {
-						console.log(`  Cost: $${lastItem.total_cost_usd.toFixed(4)}`);
-					}
-
-					// Log tool calls and thinking from message events
-					if (argv.logger) {
-						for (const item of jsonResult) {
-							const msg = item.message;
-							if (msg?.role === "assistant" && Array.isArray(msg.content)) {
-								for (const block of msg.content) {
-									if (block.type === "tool_use")
-										console.log(`  [tool_use] ${block.name}: ${JSON.stringify(block.input).slice(0, 200)}`);
-									if (block.type === "thinking")
-										console.log(`  [thinking] ${(block.thinking || "").slice(0, 300)}`);
-								}
-							}
-						}
-					}
-				}
-				else {
-					// Single object format
-					textOutput = jsonResult.result || "";
-					sessionId = jsonResult.session_id || "";
-					if (jsonResult.usage) {
-						const u = jsonResult.usage;
-						console.log(`  Tokens: ${u.input_tokens || 0} in / ${u.output_tokens || 0} out`);
-					}
-					if (jsonResult.cost_usd !== undefined) {
-						console.log(`  Cost: $${jsonResult.cost_usd.toFixed(4)}`);
-					}
-				}
-			}
-			catch {
-				// Fallback: treat as plain text
-				textOutput = rawOutput;
-			}
-
-			if (result.status !== 0) {
-				console.warn(`  claude -p exited with code ${result.status}`);
-				if (stderr)
-					console.warn(`  stderr: ${stderr.slice(0, 1000)}`);
-				if (textOutput) {
-					const fixes = parseFixes(textOutput);
-					allFixes.push(...fixes);
-					if (fixes.length > 0) consecutiveEmpty = 0;
-					else consecutiveEmpty++;
-				} else {
-					consecutiveEmpty++;
-				}
-				if (consecutiveEmpty >= MAX_CONSECUTIVE_EMPTY) {
-					console.warn(`  ${MAX_CONSECUTIVE_EMPTY} consecutive empty responses, aborting remaining batches.`);
-					break;
-				}
-				continue;
-			}
-
-			console.log(`  Result text: ${textOutput.length} chars`);
-
-			if (argv.logger)
-				console.log("  Raw result:\n", textOutput);
-
-			const batchFixes = parseFixes(textOutput);
-			allFixes.push(...batchFixes);
-
-			if (batchFixes.length > 0) consecutiveEmpty = 0;
-			else consecutiveEmpty++;
-
-			if (consecutiveEmpty >= MAX_CONSECUTIVE_EMPTY) {
-				console.warn(`  ${MAX_CONSECUTIVE_EMPTY} consecutive empty responses, aborting remaining batches.`);
-				break;
-			}
-
-			// Save batch info for post-apply summary
-			if (sessionId && batchFixes.some(f => f.status === 0)) {
+			allFixes.push(...r.fixes);
+			if (r.sessionId && r.fixes.some(f => f.status === 0)) {
 				batchResults.push({
-					fixes: batchFixes,
-					sessionId,
-					measureIndices: batch.map(m => m.measureIndex),
-					env,
+					fixes: r.fixes,
+					sessionId: r.sessionId,
+					measureIndices: r.measureIndices,
+					env: r.env,
 				});
 			}
 		}
-		catch (err: any) {
-			console.warn("  claude -p failed:", err.message?.slice(0, 200));
-		}
-		finally {
-			fs.rmSync(tmpDir, { recursive: true, force: true });
+
+		if (failCount === chunk.length) {
+			console.warn(`  All ${chunk.length} batches in this group failed, aborting.`);
+			break;
 		}
 	}
 
