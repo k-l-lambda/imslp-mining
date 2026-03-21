@@ -2,7 +2,7 @@
 import fs from "fs";
 import os from "os";
 import path from "path";
-import { spawnSync } from "child_process";
+import { spawnSync, spawn } from "child_process";
 import fetch from "isomorphic-fetch";
 import sharp from "sharp";
 import yargs from "yargs/yargs";
@@ -657,6 +657,35 @@ interface BatchResult {
 	env: Record<string, string>;
 }
 
+/** Async wrapper around claude -p subprocess. Returns stdout/stderr on completion. */
+const spawnClaude = (args: string[], input: string, env: Record<string, string>, timeoutMs: number): Promise<{ stdout: string; stderr: string; code: number | null; signal: NodeJS.Signals | null; timedOut: boolean }> => {
+	return new Promise((resolve) => {
+		const child = spawn("claude", args, { env, stdio: ["pipe", "pipe", "pipe"] });
+		let stdout = "";
+		let stderr = "";
+		let timedOut = false;
+
+		child.stdout.setEncoding("utf8");
+		child.stderr.setEncoding("utf8");
+		child.stdout.on("data", (d: string) => { stdout += d; });
+		child.stderr.on("data", (d: string) => { stderr += d; });
+		child.on("error", (err) => { stderr += `\nspawn error: ${err.message}`; });
+
+		const timer = setTimeout(() => {
+			timedOut = true;
+			child.kill("SIGTERM");
+			setTimeout(() => { try { child.kill("SIGKILL"); } catch {} }, 5000);
+		}, timeoutMs);
+
+		child.on("close", (code, signal) => {
+			clearTimeout(timer);
+			resolve({ stdout, stderr, code, signal, timedOut });
+		});
+
+		child.stdin.end(input);
+	});
+};
+
 /** Run one batch (one or more measures) through claude -p. Returns fixes and optional sessionId. */
 const runOneBatch = async (
 	batch: IssueMeasureInfo[],
@@ -664,25 +693,23 @@ const runOneBatch = async (
 	roundNum: number,
 	batchLabel: string,
 	logDir?: string,
-): Promise<{ fixes: any[]; sessionId: string; measureIndices: number[]; env: Record<string, string>; failed: boolean }> => {
+): Promise<{ fixes: any[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasFixes: boolean }> => {
 	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-annotate-"));
 	try {
 		const prompt = await buildAnnotationPrompt(batch, tmpDir);
 
 		if (logDir) {
-			const promptFile = path.join(logDir, `r${roundNum}_${batchLabel}_prompt.txt`);
-			fs.writeFileSync(promptFile, prompt);
+			fs.writeFileSync(path.join(logDir, `r${roundNum}_${batchLabel}_prompt.txt`), prompt);
 		}
 
-		const spartitoTmpPath = path.join(tmpDir, "spartito.json");
-		fs.writeFileSync(spartitoTmpPath, JSON.stringify(spartito));
+		fs.writeFileSync(path.join(tmpDir, "spartito.json"), JSON.stringify(spartito));
 
 		const mcpConfig = {
 			mcpServers: {
 				"measure-quality": {
 					command: "npx",
 					args: ["tsx", path.resolve(__dirname, "measureQualityMcp.ts")],
-					env: { SPARTITO_PATH: spartitoTmpPath },
+					env: { SPARTITO_PATH: path.join(tmpDir, "spartito.json") },
 				},
 			},
 		};
@@ -697,7 +724,8 @@ const runOneBatch = async (
 			ANTHROPIC_SMALL_FAST_MODEL: ANNOTATION_MODEL as string,
 		};
 
-		const result = spawnSync("claude", [
+		// Use async spawn so multiple batches can truly run in parallel
+		const { stdout: rawOutput, stderr, code, signal, timedOut } = await spawnClaude([
 			"-p",
 			"--output-format", "json",
 			"--append-system-prompt", SYSTEM_PROMPT,
@@ -705,26 +733,20 @@ const runOneBatch = async (
 			"--mcp-config", mcpConfigPath,
 			"--effort", "max",
 			"--verbose",
-		], {
-			input: prompt,
-			env,
-			encoding: "utf-8",
-			maxBuffer: 50 * 1024 * 1024,
-			timeout: 15 * 60 * 1000,
-		});
-
-		const rawOutput = result.stdout || "";
-		const stderr = result.stderr || "";
+		], prompt, env, 15 * 60 * 1000);
 
 		if (logDir) {
-			const logFile = path.join(logDir, `r${roundNum}_${batchLabel}.json`);
-			fs.writeFileSync(logFile, rawOutput);
+			fs.writeFileSync(path.join(logDir, `r${roundNum}_${batchLabel}.json`), rawOutput);
 			if (stderr) fs.writeFileSync(path.join(logDir, `r${roundNum}_${batchLabel}.stderr.txt`), stderr);
 		}
 
-		if (result.error) {
-			console.warn(`  [${batchLabel}] spawn error: ${result.error.message}`);
-			return { fixes: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), env, failed: true };
+		if (timedOut) {
+			console.warn(`  [${batchLabel}] timed out`);
+			return { fixes: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: env, ok: false, hasFixes: false };
+		}
+		if (signal) {
+			console.warn(`  [${batchLabel}] killed by signal ${signal}`);
+			return { fixes: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: env, ok: false, hasFixes: false };
 		}
 
 		let textOutput = "";
@@ -751,22 +773,22 @@ const runOneBatch = async (
 			textOutput = rawOutput;
 		}
 
-		if (result.status !== 0) {
-			console.warn(`  [${batchLabel}] claude -p exited with code ${result.status}`);
+		if (code !== 0) {
+			console.warn(`  [${batchLabel}] claude exited with code ${code}`);
 			if (stderr) console.warn(`  stderr: ${stderr.slice(0, 500)}`);
 		}
 
 		if (!textOutput) {
 			console.warn(`  [${batchLabel}] empty result`);
-			return { fixes: [], sessionId, measureIndices: batch.map(m => m.measureIndex), env, failed: true };
+			return { fixes: [], sessionId, measureIndices: batch.map(m => m.measureIndex), sessionEnv: env, ok: false, hasFixes: false };
 		}
 
 		console.log(`  [${batchLabel}] Result text: ${textOutput.length} chars`);
 		const fixes = parseFixes(textOutput);
-		return { fixes, sessionId, measureIndices: batch.map(m => m.measureIndex), env, failed: fixes.length === 0 };
+		return { fixes, sessionId, measureIndices: batch.map(m => m.measureIndex), sessionEnv: env, ok: true, hasFixes: fixes.length > 0 };
 	} catch (err: any) {
 		console.warn(`  [${batchLabel}] failed: ${err.message?.slice(0, 200)}`);
-		return { fixes: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), env: {}, failed: true };
+		return { fixes: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false, hasFixes: false };
 	} finally {
 		fs.rmSync(tmpDir, { recursive: true, force: true });
 	}
@@ -792,41 +814,57 @@ const callAnnotationClaude = async (
 	const total = batches.length;
 	console.log(`  ${total} batches, concurrency=${CONCURRENCY}`);
 
-	// Run batches in concurrent groups
-	for (let start = 0; start < total; start += CONCURRENCY) {
-		const chunk = batches.slice(start, start + CONCURRENCY);
-		const chunkPromises = chunk.map((batch, ci) => {
-			const bi = start + ci;
-			const label = `b${bi + 1}`;
-			const measureIds = batch.map(m => `m${m.measureIndex}`).join(",");
-			console.log(`\n  Batch ${bi + 1}/${total} [${measureIds}] starting...`);
-			return runOneBatch(batch, spartito, roundNum, label, logDir);
-		});
+	// Concurrency pool: up to CONCURRENCY batches run truly in parallel (using async spawn)
+	let consecutiveHardFails = 0;
+	let aborted = false;
+	let active = 0;
+	let nextBatch = 0;
 
-		const results = await Promise.all(chunkPromises);
+	await new Promise<void>((resolve) => {
+		const tryLaunch = () => {
+			while (!aborted && active < CONCURRENCY && nextBatch < total) {
+				const bi = nextBatch++;
+				const batch = batches[bi];
+				const label = `b${bi + 1}`;
+				const measureIds = batch.map(m => `m${m.measureIndex}`).join(",");
+				console.log(`\n  Batch ${bi + 1}/${total} [${measureIds}] starting...`);
+				active++;
 
-		let failCount = 0;
-		for (const r of results) {
-			if (r.failed) {
-				failCount++;
-				continue;
-			}
-			allFixes.push(...r.fixes);
-			if (r.sessionId && r.fixes.some(f => f.status === 0)) {
-				batchResults.push({
-					fixes: r.fixes,
-					sessionId: r.sessionId,
-					measureIndices: r.measureIndices,
-					env: r.env,
+				runOneBatch(batch, spartito, roundNum, label, logDir).then((r) => {
+					active--;
+
+					if (!r.ok) {
+						consecutiveHardFails++;
+						if (consecutiveHardFails >= CONCURRENCY) {
+							console.warn(`  ${consecutiveHardFails} consecutive hard failures, aborting remaining batches.`);
+							aborted = true;
+						}
+					} else {
+						consecutiveHardFails = 0;
+						allFixes.push(...r.fixes);
+						if (r.sessionId && r.fixes.some(f => f.status === 0)) {
+							batchResults.push({
+								fixes: r.fixes,
+								sessionId: r.sessionId,
+								measureIndices: r.measureIndices,
+								env: r.sessionEnv,
+							});
+						}
+					}
+
+					if (active === 0 && (nextBatch >= total || aborted)) {
+						resolve();
+					} else {
+						tryLaunch();
+					}
 				});
 			}
-		}
 
-		if (failCount === chunk.length) {
-			console.warn(`  All ${chunk.length} batches in this group failed, aborting.`);
-			break;
-		}
-	}
+			if (active === 0 && nextBatch >= total) resolve();
+		};
+
+		tryLaunch();
+	});
 
 	return { fixes: allFixes, batchResults };
 };
@@ -1049,29 +1087,23 @@ const main = async () => {
 				].join("\n");
 
 				console.log(`  Requesting summary for ${fixedIndices.map(i => "m" + i).join(",")}...`);
-				const summaryResult = spawnSync("claude", [
+				const { stdout: summaryStdout } = await spawnClaude([
 					"-p",
 					"--output-format", "json",
 					"--resume", br.sessionId,
 					"--verbose",
-				], {
-					input: summaryPrompt,
-					env: br.env,
-					encoding: "utf-8",
-					maxBuffer: 10 * 1024 * 1024,
-					timeout: 3 * 60 * 1000,
-				});
+				], summaryPrompt, br.env, 3 * 60 * 1000);
 
 				let summaryText = "";
 				try {
-					const summaryJson = JSON.parse(summaryResult.stdout || "");
+					const summaryJson = JSON.parse(summaryStdout || "");
 					if (Array.isArray(summaryJson)) {
 						summaryText = summaryJson[summaryJson.length - 1]?.result || "";
 					} else {
 						summaryText = summaryJson.result || "";
 					}
 				} catch {
-					summaryText = summaryResult.stdout || "";
+					summaryText = summaryStdout || "";
 				}
 
 				if (summaryText) {
