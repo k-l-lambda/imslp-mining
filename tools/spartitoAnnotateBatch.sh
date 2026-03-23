@@ -24,7 +24,7 @@ for f in "$DIR"/*.spartito.json; do
 	[ -f "$f" ] || continue
 	total=$((total + 1))
 	echo "=== [$total] $(basename "$f") ==="
-	if (cd "$PROJECT_DIR" && npx tsx tools/spartitoAnnotate.ts "$f" $EXTRA_ARGS); then
+	if (cd "$PROJECT_DIR" && npx tsx tools/annotator/claude.ts "$f" $EXTRA_ARGS); then
 		success=$((success + 1))
 	else
 		fail=$((fail + 1))

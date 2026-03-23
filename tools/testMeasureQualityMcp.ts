@@ -31,7 +31,7 @@ const assert = (condition: boolean, msg: string) => {
 const run = async () => {
 	console.log(`Using spartito: ${SPARTITO_PATH}\n`);
 
-	const child = spawn("npx", ["tsx", path.resolve(__dirname, "measureQualityMcp.ts")], {
+	const child = spawn("npx", ["tsx", path.resolve(__dirname, "annotator/measureQualityMcp.ts")], {
 		env: { ...process.env, SPARTITO_PATH },
 		stdio: ["pipe", "pipe", "pipe"],
 	});

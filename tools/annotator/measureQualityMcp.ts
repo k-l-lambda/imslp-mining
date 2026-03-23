@@ -1,7 +1,7 @@
 /**
  * MCP stdio server providing an `evaluate_fix` tool for the spartito annotation agent.
  *
- * Run: SPARTITO_PATH=<path> npx tsx tools/measureQualityMcp.ts
+ * Run: SPARTITO_PATH=<path> npx tsx tools/annotator/measureQualityMcp.ts
  *
  * The server is read-only: it deep-clones measures before applying fixes,
  * so the loaded spartito is never mutated.
@@ -12,7 +12,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 
-import { starry } from "./libs/omr";
+import { starry } from "../libs/omr";
 
 
 // ── Load spartito from env ──────────────────────────────────────────────────
