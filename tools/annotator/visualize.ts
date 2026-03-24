@@ -27,6 +27,7 @@ interface PromptEvent {
 	grace: any;
 	beam: string | null;
 	stemDirection: string;
+	tipY?: number;
 	tick: number;
 	timeWarp?: any;
 	feature?: any;
@@ -346,9 +347,10 @@ function mergeEventsWithFix(promptMeasure: PromptMeasure, fix?: Fix): { events: 
 	if (fix?.events) {
 		for (const e of fix.events) fixEventMap.set(e.id, e);
 	}
+	// voices[] contains event ids (1-based)
 	const voiceLookup = new Map<number, number>();
 	for (let vi = 0; vi < voices.length; vi++) {
-		for (const eid of voices[vi]) voiceLookup.set(eid, vi);
+		for (const id of voices[vi]) voiceLookup.set(id, vi);
 	}
 	const events: MergedEvent[] = promptMeasure.events.map(pe => {
 		const fe = fixEventMap.get(pe.id);
@@ -427,7 +429,7 @@ function drawNote(
 	const headRy = 3.5 * scale;
 	const division = e.division ?? 2;
 	const stemDir = e.stemDirection === "d" ? 1 : -1; // 1=down, -1=up
-	const stemLen = 3.5 * lineSpacing * scale; // 3.5 staff spaces
+	const defaultStemLen = 3.5 * lineSpacing * scale;
 
 	if (isRest) {
 		// Rest: filled rectangle
@@ -449,9 +451,21 @@ function drawNote(
 
 		// Stem (division >= 1, i.e. half note or shorter)
 		if (division >= 1) {
+			const sortedYs = [...ys].sort((a, b) => a - b);
+			// Stem origin: note closest to stem tip direction
+			const stemOriginYs = stemDir === 1 ? sortedYs[sortedYs.length - 1] : sortedYs[0];
+			const stemOriginY = y + (stemOriginYs - primaryYs) * lineSpacing;
 			const stemX = stemDir === -1 ? x + headRx - 0.5 : x - headRx + 0.5;
-			const stemEndY = y + stemDir * stemLen;
-			lines.push(`<line x1="${stemX}" y1="${y}" x2="${stemX}" y2="${stemEndY}" stroke="${color}" stroke-width="1.2" opacity="${opacity}"/>`);
+			// Use tipY from data if available, otherwise fallback to default length
+			let stemEndY: number;
+			if (e.tipY !== undefined && e.tipY !== null) {
+				stemEndY = y + (e.tipY - primaryYs) * lineSpacing;
+			} else {
+				const chordSpan = (sortedYs[sortedYs.length - 1] - sortedYs[0]) * lineSpacing;
+				const stemLen = Math.max(defaultStemLen, chordSpan + defaultStemLen);
+				stemEndY = stemOriginY + stemDir * stemLen;
+			}
+			lines.push(`<line x1="${stemX}" y1="${stemOriginY}" x2="${stemX}" y2="${stemEndY}" stroke="${color}" stroke-width="1.2" opacity="${opacity}"/>`);
 
 			if (isBeamed && e.beam && division >= 3) {
 				// Beam stubs: short local lines at stem tip (like ScoreCluster ├ ┼ ┤)
@@ -466,6 +480,15 @@ function drawNote(
 					else /* Continue */        { x1 = stemX - stubLen / 2; x2 = stemX + stubLen / 2; } // ┼ both
 					lines.push(`<line x1="${x1}" y1="${by}" x2="${x2}" y2="${by}" stroke="${color}" stroke-width="2.5" opacity="0.8"/>`);
 				}
+			} else if (isBeamed && e.beam && division < 3) {
+				// Beam indicator for half notes (div < 3): colored dot at stem tip
+				const stubLen = 8 * scale;
+				const by = stemEndY;
+				let x1 = stemX, x2 = stemX;
+				if (e.beam === "Open")    { x2 = stemX + stubLen; }
+				else if (e.beam === "Close") { x1 = stemX - stubLen; }
+				else /* Continue */        { x1 = stemX - stubLen / 2; x2 = stemX + stubLen / 2; }
+				lines.push(`<line x1="${x1}" y1="${by}" x2="${x2}" y2="${by}" stroke="${color}" stroke-width="2.5" opacity="0.8"/>`);
 			} else if (!isBeamed && !e.beam && division >= 3) {
 				// Flags: curved tails for non-beamed notes
 				const flagCount = division - 2;
@@ -522,7 +545,7 @@ function generateTopologySvg(
 	const plotWidth = W - MARGIN_LEFT - MARGIN_RIGHT;
 
 	const lineSpacing = STAFF_LINE_SPAN / (STAFF_LINE_COUNT - 1); // 10px per 1 staff-line unit
-	const stemLen = 3.5 * lineSpacing;
+	const defaultStemLen = 3.5 * lineSpacing;
 
 	// Resolve absolute staff center Y in original units, then convert to px
 	// staffYs from measure.position gives center Y of each staff in unit coords
@@ -559,12 +582,22 @@ function generateTopologySvg(
 		maxY = Math.max(maxY, cy + STAFF_LINE_SPAN / 2);
 	}
 	for (const e of events) {
-		const primaryYs = e.ys?.length ? e.ys[0] : 0;
+		const ys = e.ys?.length ? e.ys : [0];
+		const primaryYs = ys[0];
 		const ey = staffY(e.staff) + primaryYs * lineSpacing;
 		const isRest = e.rest !== null && e.rest !== undefined;
 		if (!isRest && (e.division ?? 2) >= 1) {
 			const dir = e.stemDirection === "d" ? 1 : -1;
-			const stemTip = ey + dir * stemLen;
+			let stemTip: number;
+			if (e.tipY !== undefined && e.tipY !== null) {
+				stemTip = staffY(e.staff) + e.tipY * lineSpacing;
+			} else {
+				const sortedYs = [...ys].sort((a, b) => a - b);
+				const stemOriginYs = dir === 1 ? sortedYs[sortedYs.length - 1] : sortedYs[0];
+				const chordSpan = (sortedYs[sortedYs.length - 1] - sortedYs[0]) * lineSpacing;
+				const stemLen = Math.max(defaultStemLen, chordSpan + defaultStemLen);
+				stemTip = staffY(e.staff) + stemOriginYs * lineSpacing + dir * stemLen;
+			}
 			minY = Math.min(minY, stemTip - 8);
 			maxY = Math.max(maxY, stemTip + 8);
 		}
@@ -634,13 +667,13 @@ function generateTopologySvg(
 
 	// Voice connections: quadratic Bezier curves with arrows between adjacent events
 	for (let vi = 0; vi < voices.length; vi++) {
-		const voiceEventIds = voices[vi];
-		if (voiceEventIds.length < 2) continue;
+		const voiceEventIndices = voices[vi];
+		if (voiceEventIndices.length < 2) continue;
 
 		const color = voiceColor(vi);
 
 		// Sort events in this voice by tick
-		const sorted = voiceEventIds
+		const sorted = voiceEventIndices
 			.map(id => events.find(e => e.id === id))
 			.filter((e): e is MergedEvent => !!e)
 			.sort((a, b) => a.tick - b.tick || a.index - b.index);

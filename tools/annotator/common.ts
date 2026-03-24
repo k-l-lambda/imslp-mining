@@ -314,6 +314,7 @@ export const serializeMeasureForAnnotation = (measure: starry.SpartitoMeasure) =
 		grace: e.grace,
 		beam: e.beam,
 		stemDirection: e.stemDirection,
+		tipY: e.tip ? e.tip.y : e.ys?.[0] ?? 0,
 		tick: e.tick,
 		timeWarp: e.timeWarp,
 		tremolo: e.tremolo,
