@@ -7,8 +7,10 @@ import { spawn, spawnSync } from "child_process";
 import {
 	type IssueMeasureInfo,
 	type BatchResult,
+	type Fix,
 	type AnnotationBackend,
 	parseFixes,
+	parseCodexJsonl,
 	parseArgs,
 	runAnnotationPipeline,
 	starry,
@@ -22,16 +24,19 @@ import { SYSTEM_PROMPT, buildAnnotationPrompt } from "./prompt";
 const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 1;
 const CONCURRENCY = Number(process.env.ANNOTATION_CONCURRENCY) || 3;
 
-/** MCP server name used for the evaluate_fix tool */
-const MCP_SERVER_NAME = "measure-quality";
+/** MCP server base name for the evaluate_fix tool */
+const MCP_SERVER_BASE = "measure-quality";
+
+/** Counter for unique MCP server names to avoid concurrent registration races */
+let mcpCounter = 0;
 
 
 // ── MCP server management ────────────────────────────────────────────────────
 
-/** Register the measure-quality MCP server with codex (global config). */
-const registerMcpServer = (spartitoPath: string): void => {
-	// Remove any existing registration first (ignore errors)
-	spawnSync("codex", ["mcp", "remove", MCP_SERVER_NAME], { stdio: "ignore" });
+/** Register a uniquely-named measure-quality MCP server with codex (global config).
+ *  Returns the server name for later unregistration. */
+const registerMcpServer = (spartitoPath: string): string => {
+	const serverName = `${MCP_SERVER_BASE}-${process.pid}-${mcpCounter++}`;
 
 	const mcpCommand = "npx";
 	// Use --require suppressBanner.cjs to redirect the starry-omr stdout banner
@@ -45,19 +50,21 @@ const registerMcpServer = (spartitoPath: string): void => {
 	const result = spawnSync("codex", [
 		"mcp", "add",
 		"--env", `SPARTITO_PATH=${spartitoPath}`,
-		MCP_SERVER_NAME,
+		serverName,
 		"--",
 		mcpCommand, ...mcpArgs,
 	], { stdio: "pipe", encoding: "utf8" });
 
 	if (result.status !== 0) {
-		console.warn(`  Warning: failed to register MCP server: ${result.stderr?.slice(0, 200)}`);
+		console.warn(`  Warning: failed to register MCP server ${serverName}: ${result.stderr?.slice(0, 200)}`);
 	}
+
+	return serverName;
 };
 
-/** Unregister the measure-quality MCP server from codex. */
-const unregisterMcpServer = (): void => {
-	spawnSync("codex", ["mcp", "remove", MCP_SERVER_NAME], { stdio: "ignore" });
+/** Unregister a measure-quality MCP server from codex. */
+const unregisterMcpServer = (serverName: string): void => {
+	spawnSync("codex", ["mcp", "remove", serverName], { stdio: "ignore" });
 };
 
 
@@ -92,42 +99,6 @@ const spawnCodex = (args: string[], input: string, env: Record<string, string>, 
 };
 
 
-/** Parse JSONL output from codex --json. Collects all agent_message texts and returns them concatenated. */
-const parseCodexJsonl = (output: string): { text: string; sessionId: string } => {
-	const lines = output.trim().split("\n").filter(Boolean);
-	const texts: string[] = [];
-	let sessionId = "";
-
-	for (const line of lines) {
-		try {
-			const event = JSON.parse(line);
-
-			// codex JSONL: item.completed with item.type === "agent_message"
-			if (event.type === "item.completed" && event.item?.type === "agent_message" && event.item.text) {
-				texts.push(event.item.text);
-			}
-
-			// thread.started has thread_id (usable as session ID for resume)
-			if (event.type === "thread.started" && event.thread_id) {
-				sessionId = event.thread_id;
-			}
-
-			// Fallback: some formats use "result" directly
-			if (event.result) {
-				texts.push(event.result);
-			}
-		} catch {
-			// Not JSON, might be raw text
-		}
-	}
-
-	// Concatenate all message texts; if nothing parsed, fall back to raw output
-	const text = texts.length > 0 ? texts.join("\n") : output;
-
-	return { text, sessionId };
-};
-
-
 /** Run one batch through codex exec. */
 const runOneBatch = async (
 	batch: IssueMeasureInfo[],
@@ -136,7 +107,7 @@ const runOneBatch = async (
 	batchLabel: string,
 	annotationModel: string,
 	logDir?: string,
-): Promise<{ fixes: any[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasFixes: boolean }> => {
+): Promise<{ fixes: Fix[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasFixes: boolean }> => {
 	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-annotate-codex-"));
 	try {
 		const { text: prompt, imagePaths } = await buildAnnotationPrompt(batch, tmpDir, { imageMode: "attached" });
@@ -150,7 +121,7 @@ const runOneBatch = async (
 		fs.writeFileSync(spartitoPath, JSON.stringify(spartito));
 
 		// Register MCP server with this batch's spartito path
-		registerMcpServer(spartitoPath);
+		const mcpServerName = registerMcpServer(spartitoPath);
 
 		const env: Record<string, string> = {
 			...process.env as Record<string, string>,
@@ -219,7 +190,7 @@ const runOneBatch = async (
 		return { fixes: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false, hasFixes: false };
 	} finally {
 		// Clean up MCP server registration and temp dir
-		unregisterMcpServer();
+		unregisterMcpServer(mcpServerName);
 		fs.rmSync(tmpDir, { recursive: true, force: true });
 	}
 };
@@ -233,8 +204,8 @@ const createCodexBackend = (annotationModel: string): AnnotationBackend => ({
 		spartito: starry.Spartito,
 		roundNum: number,
 		logDir?: string,
-	): Promise<{ fixes: any[]; batchResults: BatchResult[] }> {
-		const allFixes: any[] = [];
+	): Promise<{ fixes: Fix[]; batchResults: BatchResult[] }> {
+		const allFixes: Fix[] = [];
 		const batchResults: BatchResult[] = [];
 		const batches: IssueMeasureInfo[][] = [];
 		for (let i = 0; i < issueMeasures.length; i += BATCH_SIZE)

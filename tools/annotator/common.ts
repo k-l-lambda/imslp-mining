@@ -29,10 +29,29 @@ export interface IssueMeasureInfo {
 }
 
 export interface BatchResult {
-	fixes: any[];
+	fixes: Fix[];
 	sessionId: string;
 	measureIndices: number[];
 	env: Record<string, string>;
+}
+
+export interface FixEvent {
+	id: number;
+	tick: number;
+	tickGroup: number | null;
+	timeWarp: { numerator: number; denominator: number } | null;
+	division?: number;
+	dots?: number;
+	beam?: string;
+	grace?: boolean;
+}
+
+export interface Fix {
+	measureIndex: number;
+	events: FixEvent[];
+	voices: number[][];
+	duration: number;
+	status: number;
 }
 
 export interface AnnotationBackend {
@@ -41,7 +60,7 @@ export interface AnnotationBackend {
 		spartito: starry.Spartito,
 		round: number,
 		logDir?: string,
-	): Promise<{ fixes: any[]; batchResults: BatchResult[] }>;
+	): Promise<{ fixes: Fix[]; batchResults: BatchResult[] }>;
 
 	requestSummary(
 		br: BatchResult,
@@ -99,20 +118,27 @@ const API_BASE = OMR_API_BASE;
 
 // ── API helper ───────────────────────────────────────────────────────────────
 
+const API_TIMEOUT_MS = 30_000;
+
 /** Fetch JSON from the OMR service API. */
 const apiFetch = async (endpoint: string, options: RequestInit = {}): Promise<any> => {
 	const url = `${API_BASE}${endpoint}`;
-	const res = await fetch(url, {
-		...options,
-		headers: { "Content-Type": "application/json", ...options.headers as Record<string, string> },
-	});
-	if (!res.ok) {
-		const text = await res.text().catch(() => "");
-		throw new Error(`API ${options.method ?? "GET"} ${endpoint} → ${res.status}: ${text.substring(0, 200)}`);
+	const controller = new AbortController();
+	const timer = setTimeout(() => controller.abort(), API_TIMEOUT_MS);
+	const headers: Record<string, string> = { ...(options.headers as Record<string, string>) };
+	if (options.body) headers["Content-Type"] = "application/json";
+	try {
+		const res = await fetch(url, { ...options, headers, signal: controller.signal });
+		if (!res.ok) {
+			const text = await res.text().catch(() => "");
+			throw new Error(`API ${options.method ?? "GET"} ${endpoint} → ${res.status}: ${text.substring(0, 200)}`);
+		}
+		const json: any = await res.json();
+		// Unwrap { code, data } envelope if present
+		return json?.data !== undefined ? json.data : json;
+	} finally {
+		clearTimeout(timer);
 	}
-	const json: any = await res.json();
-	// Unwrap { code, data } envelope if present
-	return json?.data !== undefined ? json.data : json;
 };
 
 
@@ -124,6 +150,11 @@ export const resolveImageSource = (url: string): { type: "local"; path: string }
 	const match = url.match(/^(\w+):(.*)/);
 	if (match?.[1] === "md5") {
 		const filename = match[2];
+		// Path traversal protection: reject filenames with directory components
+		if (filename.includes("/") || filename.includes("\\") || filename.includes("..")) {
+			console.warn(`  resolveImageSource: rejecting suspicious md5 filename: ${filename}`);
+			return null;
+		}
 		// Try local IMAGE_BED first
 		if (IMAGE_BED) {
 			const localPath = path.join(IMAGE_BED, filename);
@@ -308,7 +339,15 @@ export const serializeMeasureForAnnotation = (measure: starry.SpartitoMeasure) =
 
 // ── Fix processing ──────────────────────────────────────────────────────────
 
-export const parseFixes = (output: string): any[] => {
+/** Validate that a parsed fix object has the required shape. */
+const isValidFix = (fix: any): fix is Fix =>
+	typeof fix?.measureIndex === "number"
+	&& Array.isArray(fix.events)
+	&& Array.isArray(fix.voices)
+	&& typeof fix.duration === "number"
+	&& typeof fix.status === "number";
+
+export const parseFixes = (output: string): Fix[] => {
 	// Try to extract JSON block from markdown code fence
 	const jsonMatch = output.match(/```(?:json)?\s*\n?([\s\S]*?)\n?```/);
 	if (jsonMatch) {
@@ -326,8 +365,10 @@ export const parseFixes = (output: string): any[] => {
 	}
 	catch {}
 
-	// Fallback: find first { ... } that contains "fixes"
-	const braceMatch = output.match(/\{[\s\S]*"fixes"\s*:\s*\[[\s\S]*\]\s*\}/);
+	// Fallback: find the last complete { ... } block that contains "fixes"
+	// Use non-greedy to prefer smaller matches first, then pick the one with "fixes"
+	const braceMatch = output.match(/\{[^{}]*"fixes"\s*:\s*\[[\s\S]*?\]\s*\}/)
+		|| output.match(/\{[\s\S]*"fixes"\s*:\s*\[[\s\S]*?\]\s*\}/);
 	if (braceMatch) {
 		try {
 			const parsed = JSON.parse(braceMatch[0]);
@@ -356,9 +397,45 @@ export const parseFixes = (output: string): any[] => {
 };
 
 
+/** Parse JSONL output from codex --json. Collects all agent_message texts and returns them concatenated. */
+export const parseCodexJsonl = (output: string): { text: string; sessionId: string } => {
+	const lines = output.trim().split("\n").filter(Boolean);
+	const texts: string[] = [];
+	let sessionId = "";
+
+	for (const line of lines) {
+		try {
+			const event = JSON.parse(line);
+
+			// codex JSONL: item.completed with item.type === "agent_message"
+			if (event.type === "item.completed" && event.item?.type === "agent_message" && event.item.text) {
+				texts.push(event.item.text);
+			}
+
+			// thread.started has thread_id (usable as session ID for resume)
+			if (event.type === "thread.started" && event.thread_id) {
+				sessionId = event.thread_id;
+			}
+
+			// Fallback: some formats use "result" directly
+			if (event.result) {
+				texts.push(event.result);
+			}
+		} catch {
+			// Not JSON, might be raw text
+		}
+	}
+
+	// Concatenate all message texts; if nothing parsed, fall back to raw output
+	const text = texts.length > 0 ? texts.join("\n") : output;
+
+	return { text, sessionId };
+};
+
+
 /** Merge a partial fix (from annotation agent) with the base solution from the original measure.
  *  Events in the fix override the base; events only in the base are preserved as-is. */
-export const mergeWithBaseSolution = (measure: starry.SpartitoMeasure, fix: any): any => {
+export const mergeWithBaseSolution = (measure: starry.SpartitoMeasure, fix: Partial<Fix> & { measureIndex: number }): any => {
 	const base = measure.asSolution();
 	if (!base) return fix;
 
@@ -377,7 +454,7 @@ export const mergeWithBaseSolution = (measure: starry.SpartitoMeasure, fix: any)
 };
 
 
-export const applyFixes = (spartito: starry.Spartito, fixes: any[]): Set<number> => {
+export const applyFixes = (spartito: starry.Spartito, fixes: Fix[]): Set<number> => {
 	const appliedIndices = new Set<number>();
 
 	for (const fix of fixes) {
@@ -385,6 +462,12 @@ export const applyFixes = (spartito: starry.Spartito, fixes: any[]): Set<number>
 		const measure = spartito.measures[mi];
 		if (!measure) {
 			console.warn(`Measure ${mi} not found, skipping fix`);
+			continue;
+		}
+
+		// Basic fix validation
+		if (!isValidFix(fix)) {
+			console.warn(`  m${mi}: invalid fix shape, skipping`);
 			continue;
 		}
 
@@ -423,10 +506,12 @@ export const applyFixes = (spartito: starry.Spartito, fixes: any[]): Set<number>
 		const twistAfter = evalAfter?.tickTwist ?? Infinity;
 		const statusLabel = fix.status === 0 ? "Solved" : fix.status === -1 ? "Discard" : "Issue";
 
-		// Rollback if tickTwist got worse
-		if (twistAfter > twistBefore && snapshot) {
+		// Rollback if quality got worse (tickTwist increased or new error introduced)
+		const newError = evalAfter?.error && !evalBefore?.error;
+		if ((twistAfter > twistBefore || newError) && snapshot) {
 			try { measure.applySolution(snapshot); } catch {}
-			console.log(`  m${mi}: REVERTED (tickTwist ${twistBefore.toFixed(3)} → ${twistAfter.toFixed(3)}, worse)`);
+			const reason = newError ? "introduced error" : `tickTwist ${twistBefore.toFixed(3)} → ${twistAfter.toFixed(3)}, worse`;
+			console.log(`  m${mi}: REVERTED (${reason})`);
 			continue;
 		}
 

@@ -7,6 +7,7 @@ import { spawn } from "child_process";
 import {
 	type IssueMeasureInfo,
 	type BatchResult,
+	type Fix,
 	type AnnotationBackend,
 	parseFixes,
 	parseArgs,
@@ -62,7 +63,7 @@ const runOneBatch = async (
 	batchLabel: string,
 	annotationModel: string,
 	logDir?: string,
-): Promise<{ fixes: any[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasFixes: boolean }> => {
+): Promise<{ fixes: Fix[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasFixes: boolean }> => {
 	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-annotate-"));
 	try {
 		const { text: prompt } = await buildAnnotationPrompt(batch, tmpDir, { imageMode: "path" });
@@ -175,13 +176,13 @@ const createClaudeBackend = (annotationModel: string): AnnotationBackend => ({
 		spartito: starry.Spartito,
 		roundNum: number,
 		logDir?: string,
-	): Promise<{ fixes: any[]; batchResults: BatchResult[] }> {
+	): Promise<{ fixes: Fix[]; batchResults: BatchResult[] }> {
 		if (!ANNOTATION_API_KEY) {
 			console.warn("ANNOTATION_API_KEY not set, skipping annotation.");
 			return { fixes: [], batchResults: [] };
 		}
 
-		const allFixes: any[] = [];
+		const allFixes: Fix[] = [];
 		const batchResults: BatchResult[] = [];
 		const batches: IssueMeasureInfo[][] = [];
 		for (let i = 0; i < issueMeasures.length; i += BATCH_SIZE)
