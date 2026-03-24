@@ -922,11 +922,28 @@ function renderMarkdownReport(report: LogReport): string {
 			}
 		}
 
+		// Extract system init turns (log metadata) → render before conversation
+		const systemInits = mr.conversation.filter(t => t.role === "system");
+		const nonSystemTurns = mr.conversation.filter(t => t.role !== "system");
+		for (const si of systemInits) {
+			const text = si.text || "";
+			const siLines = text.split("\n");
+			const preview = escMd(siLines[0]);
+			lines.push(`<details><summary><b>[System Init]</b> ${preview}…</summary>`);
+			lines.push("");
+			for (const line of siLines) {
+				lines.push(`> ${escMd(line)}`);
+			}
+			lines.push("");
+			lines.push(`</details>`);
+			lines.push("");
+		}
+
 		// Render conversation (with system prompt prepended)
-		if (mr.conversation.length > 0) {
+		if (nonSystemTurns.length > 0) {
 			const fullConv: ConversationTurn[] = [
 				{ role: "system", text: SYSTEM_PROMPT },
-				...mr.conversation,
+				...nonSystemTurns,
 			];
 			lines.push("### Conversation");
 			lines.push("");
