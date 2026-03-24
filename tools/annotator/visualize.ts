@@ -575,7 +575,14 @@ function generateTopologySvg(
 	const MARGIN_TOP = 20; // for title
 	const yOffset = MARGIN_TOP - minY; // shift everything so minY maps to MARGIN_TOP
 	const plotHeight = maxY - minY;
-	const totalH = MARGIN_TOP + plotHeight + 20 + LEGEND_HEIGHT;
+
+	// Voice duration bar chart dimensions
+	const BAR_BAND_HEIGHT = 16;
+	const BAR_GAP = 2;
+	const BAR_CHART_TOP_PAD = 12; // space between topo and bar chart
+	const barChartHeight = voices.length * (BAR_BAND_HEIGHT + BAR_GAP) + BAR_CHART_TOP_PAD + 10; // +10 for tick ruler
+
+	const totalH = MARGIN_TOP + plotHeight + 20 + barChartHeight + LEGEND_HEIGHT;
 
 	// Shifted staffY for rendering
 	const renderStaffY = (staffIdx: number): number => staffY(staffIdx) + yOffset;
@@ -674,6 +681,59 @@ function generateTopologySvg(
 		const triH = 8;
 		const triW = 4;
 		lines.push(`<path d="M${eosX} ${cy + STAFF_LINE_SPAN / 2} L${eosX - triW} ${cy + STAFF_LINE_SPAN / 2 + triH} L${eosX + triW} ${cy + STAFF_LINE_SPAN / 2 + triH} Z" fill="#999"/>`);
+	}
+
+	// ── Voice Duration Bar Chart ──
+	const barChartY0 = MARGIN_TOP + plotHeight + 20;
+	const barWidth = svgRight - svgLeft;
+	const tickToPx = (tick: number): number => duration > 0 ? (tick / duration) * barWidth : 0;
+
+	// Tick ruler
+	const rulerY = barChartY0;
+	const beatTicks = 1920 / timeSig.denominator;
+	for (let beat = 0; beat <= timeSig.numerator; beat++) {
+		const tick = beat * beatTicks;
+		if (tick > duration) break;
+		const x = svgLeft + tickToPx(tick);
+		const isEdge = beat === 0 || tick >= duration;
+		const h = isEdge ? 8 : 5;
+		lines.push(`<line x1="${x}" y1="${rulerY}" x2="${x}" y2="${rulerY + h}" stroke="#999" stroke-width="0.5"/>`);
+		if (tick % 480 === 0) {
+			lines.push(`<text x="${x}" y="${rulerY + h + 8}" text-anchor="middle" font-size="6" fill="#999">${tick}</text>`);
+		}
+	}
+
+	// Voice bands
+	const bandsY0 = rulerY + 10;
+	for (let vi = 0; vi < voices.length; vi++) {
+		const bandY = bandsY0 + vi * (BAR_BAND_HEIGHT + BAR_GAP);
+		const color = voiceColor(vi);
+
+		// Background track
+		lines.push(`<rect x="${svgLeft}" y="${bandY}" width="${barWidth}" height="${BAR_BAND_HEIGHT}" fill="#f5f5f5" rx="2"/>`);
+
+		// Voice label
+		lines.push(`<text x="${svgLeft - 4}" y="${bandY + BAR_BAND_HEIGHT / 2 + 3}" text-anchor="end" font-size="7" fill="#999">V${vi}</text>`);
+
+		// Event blocks
+		const voiceEvents = voices[vi]
+			.map(id => events.find(e => e.id === id))
+			.filter((e): e is MergedEvent => !!e)
+			.sort((a, b) => a.tick - b.tick);
+
+		for (const e of voiceEvents) {
+			const eDuration = 1920 * Math.pow(2, -(e.division ?? 2)) * (2 - Math.pow(2, -(e.dots ?? 0)));
+			const ex = svgLeft + tickToPx(e.tick);
+			const ew = Math.max(2, tickToPx(eDuration));
+			lines.push(`<rect x="${ex}" y="${bandY + 1}" width="${ew}" height="${BAR_BAND_HEIGHT - 2}" fill="${color}" opacity="0.7" rx="1"/>`);
+			// Event ID inside block
+			if (ew > 12) {
+				lines.push(`<text x="${ex + ew / 2}" y="${bandY + BAR_BAND_HEIGHT / 2 + 3}" text-anchor="middle" font-size="6" fill="white" font-weight="bold">${e.id}</text>`);
+			}
+		}
+
+		// Measure duration boundary
+		lines.push(`<line x1="${svgLeft + barWidth}" y1="${bandY}" x2="${svgLeft + barWidth}" y2="${bandY + BAR_BAND_HEIGHT}" stroke="#999" stroke-width="0.5"/>`);
 	}
 
 	// Legend
