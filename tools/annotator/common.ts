@@ -510,22 +510,16 @@ export const applyFixes = (spartito: starry.Spartito, fixes: Fix[]): Set<number>
 		const twistAfter = evalAfter?.tickTwist ?? Infinity;
 		const statusLabel = fix.status === 0 ? "Solved" : fix.status === -1 ? "Discard" : "Issue";
 
-		// Decide whether to keep the fix based on quality evaluation:
-		// - Accept if fine improved (false→true), even if tickTwist increased
-		// - Accept if fine stayed true and no new error
-		// - Revert if new error introduced
-		// - Revert if fine didn't improve and tickTwist got worse
-		const fineBefore = evalBefore?.fine ?? false;
+		// Decide whether to keep the fix:
+		// - Accept only if fine=true after fix
+		// - Revert otherwise (fine=false means the fix didn't solve the problem)
 		const fineAfter = evalAfter?.fine ?? false;
-		const newError = evalAfter?.error && !evalBefore?.error;
-		const fineImproved = fineAfter && !fineBefore;
-		const shouldRevert = newError || (!fineImproved && twistAfter > twistBefore);
 
-		if (shouldRevert && snapshot) {
+		if (!fineAfter && snapshot) {
 			try { measure.applySolution(snapshot); } catch {}
-			const reason = newError
+			const reason = evalAfter?.error
 				? "introduced error"
-				: `tickTwist ${twistBefore.toFixed(3)} → ${twistAfter.toFixed(3)}, worse (fine still ${fineAfter})`;
+				: `fine=false, tickTwist=${twistBefore.toFixed(3)}→${twistAfter.toFixed(3)}`;
 			console.log(`  m${mi}: REVERTED (${reason})`);
 			continue;
 		}
