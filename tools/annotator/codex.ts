@@ -34,7 +34,13 @@ const registerMcpServer = (spartitoPath: string): void => {
 	spawnSync("codex", ["mcp", "remove", MCP_SERVER_NAME], { stdio: "ignore" });
 
 	const mcpCommand = "npx";
-	const mcpArgs = ["tsx", path.resolve(__dirname, "measureQualityMcp.ts")];
+	// Use --require suppressBanner.cjs to redirect the starry-omr stdout banner
+	// to stderr, keeping the JSON-RPC stdio stream clean for MCP protocol.
+	const mcpArgs = [
+		"tsx",
+		"--require", path.resolve(__dirname, "suppressBanner.cjs"),
+		path.resolve(__dirname, "measureQualityMcp.ts"),
+	];
 
 	const result = spawnSync("codex", [
 		"mcp", "add",
@@ -160,8 +166,9 @@ const runOneBatch = async (
 			"exec",
 			"--json",
 			"--dangerously-bypass-approvals-and-sandbox",
-			// Set high reasoning effort for deeper analysis
+			// High reasoning effort + original image resolution for sheet music details
 			"-c", 'model_reasoning_effort="high"',
+			"--enable", "image_detail_original",
 		];
 
 		// Add model if specified and not a third-party model

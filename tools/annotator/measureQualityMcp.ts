@@ -51,15 +51,32 @@ const server = new McpServer({
 });
 
 // Schema mirrors RegulationSolution + measureIndex
+// LLMs often pass numbers as strings, null as "null", or use non-standard shorthands.
+// Use coerce + preprocessors to be permissive.
+const coerceNullableNum = z.preprocess(
+	v => (v === "null" || v === null || v === "" ? null : v),
+	z.coerce.number().nullable(),
+);
+
+// timeWarp: null | {numerator, denominator}. LLMs sometimes pass "1", "null", or a number.
+// Treat anything non-object as null.
+const timeWarpSchema = z.preprocess(
+	v => {
+		if (v === null || v === "null" || v === "" || typeof v === "number" || typeof v === "string") return null;
+		return v;
+	},
+	z.object({ numerator: z.coerce.number(), denominator: z.coerce.number() }).nullable(),
+);
+
 const solutionEventSchema = z.object({
-	id: z.number(),
-	tick: z.number(),
-	tickGroup: z.number().nullable(),
-	timeWarp: z.object({ numerator: z.number(), denominator: z.number() }).nullable(),
-	division: z.number().optional(),
-	dots: z.number().optional(),
-	beam: z.string().optional(),
-	grace: z.boolean().optional(),
+	id: z.coerce.number(),
+	tick: z.coerce.number(),
+	tickGroup: coerceNullableNum,
+	timeWarp: timeWarpSchema,
+	division: z.coerce.number().optional(),
+	dots: z.coerce.number().optional(),
+	beam: z.preprocess(v => v === null || v === "null" ? undefined : v, z.string().optional()),
+	grace: z.union([z.boolean(), z.string().transform(s => s === "true")]).optional(),
 });
 
 server.tool(

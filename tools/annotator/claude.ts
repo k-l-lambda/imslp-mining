@@ -77,7 +77,11 @@ const runOneBatch = async (
 			mcpServers: {
 				"measure-quality": {
 					command: "npx",
-					args: ["tsx", path.resolve(__dirname, "measureQualityMcp.ts")],
+					args: [
+					"tsx",
+					"--require", path.resolve(__dirname, "suppressBanner.cjs"),
+					path.resolve(__dirname, "measureQualityMcp.ts"),
+				],
 					env: { SPARTITO_PATH: path.join(tmpDir, "spartito.json") },
 				},
 			},
