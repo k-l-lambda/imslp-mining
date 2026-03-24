@@ -507,7 +507,6 @@ function generateTopologySvg(
 	const W = options.width ?? 600;
 	const MARGIN_LEFT = 40;
 	const MARGIN_RIGHT = 20;
-	const MARGIN_TOP = 30;
 	const STAFF_HEIGHT = 70;
 	const STAFF_GAP = 24;
 	const LEGEND_HEIGHT = 24;
@@ -518,10 +517,35 @@ function generateTopologySvg(
 	const staves = [...staffSet].sort();
 	const staffCount = staves.length || 1;
 	const plotWidth = W - MARGIN_LEFT - MARGIN_RIGHT;
-	const plotHeight = staffCount * STAFF_HEIGHT + (staffCount - 1) * STAFF_GAP;
-	const totalH = MARGIN_TOP + plotHeight + 20 + LEGEND_HEIGHT;
 
 	const lineSpacing = STAFF_LINE_SPAN / (STAFF_LINE_COUNT - 1); // 10px per staff unit
+	const stemLen = 3.5 * lineSpacing; // stem length in pixels
+
+	// Compute MARGIN_TOP dynamically: find how far above the first staff center the highest element reaches
+	// Staff 0 center (relative) = STAFF_HEIGHT / 2
+	// Event pixel Y (relative) = staffRelCenter + ys[0] * lineSpacing
+	// Stem tip (relative) = eventY - stemLen (for stem-up notes)
+	// We need this to be >= 20 (room for title + padding)
+	let minRelY = Infinity;
+	for (const e of events) {
+		const staffIdx = staves.indexOf(e.staff);
+		if (staffIdx < 0) continue;
+		const staffRelCenter = staffIdx * (STAFF_HEIGHT + STAFF_GAP) + STAFF_HEIGHT / 2;
+		const primaryYs = e.ys?.length ? e.ys[0] : 0;
+		const eventRelY = staffRelCenter + primaryYs * lineSpacing;
+		const isRest = e.rest !== null && e.rest !== undefined;
+		if (!isRest && (e.division ?? 2) >= 1 && e.stemDirection !== "d") {
+			// Stem up: tip is above event; flags/stubs extend further
+			const flagExtra = (e.division ?? 2) >= 3 ? ((e.division ?? 2) - 2) * 3.5 : 0;
+			minRelY = Math.min(minRelY, eventRelY - stemLen - flagExtra);
+		}
+		// ID label is above note head
+		minRelY = Math.min(minRelY, eventRelY - 10);
+	}
+	const MARGIN_TOP = Math.max(24, 20 - Math.min(0, minRelY));
+
+	const plotHeight = staffCount * STAFF_HEIGHT + (staffCount - 1) * STAFF_GAP;
+	const totalH = MARGIN_TOP + plotHeight + 20 + LEGEND_HEIGHT;
 
 	const staffY = (staffIdx: number): number => {
 		const i = staves.indexOf(staffIdx);
@@ -562,7 +586,6 @@ function generateTopologySvg(
 	// Staff lines
 	for (const si of staves) {
 		const cy = staffY(si);
-		const lineSpacing = STAFF_LINE_SPAN / (STAFF_LINE_COUNT - 1);
 		const topLine = cy - STAFF_LINE_SPAN / 2;
 		for (let l = 0; l < STAFF_LINE_COUNT; l++) {
 			const y = topLine + l * lineSpacing;
