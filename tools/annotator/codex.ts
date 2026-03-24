@@ -128,8 +128,8 @@ const runOneBatch = async (
 			...process.env as Record<string, string>,
 		};
 
-		// Codex model: use CODEX_MODEL env or default from config.toml
-		const codexModel = process.env.CODEX_MODEL || annotationModel;
+		// Codex model: use CODEX_MODEL env, or leave to codex default
+		const codexModel = process.env.CODEX_MODEL || "";
 
 		// Build codex args — prepend system prompt to user prompt
 		const fullPrompt = SYSTEM_PROMPT + "\n\n---\n\n" + prompt;
@@ -143,8 +143,8 @@ const runOneBatch = async (
 			"--enable", "image_detail_original",
 		];
 
-		// Add model if specified and not a third-party model
-		if (codexModel && !codexModel.includes("/")) {
+		// Add model
+		if (codexModel) {
 			codexArgs.push("-m", codexModel);
 		}
 
@@ -289,7 +289,8 @@ const createCodexBackend = (annotationModel: string): AnnotationBackend => ({
 
 const main = async () => {
 	const argv = parseArgs();
-	const annotationModel = argv.annotationModel || DEFAULT_ANNOTATION_MODEL;
+	const codexModel = process.env.CODEX_MODEL;
+	const annotationModel = argv.annotationModel || codexModel || "codex";
 	const backend = createCodexBackend(annotationModel as string);
 	await runAnnotationPipeline(backend, argv);
 };
