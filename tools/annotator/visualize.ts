@@ -76,6 +76,7 @@ interface MeasureReport {
 	evaluateFixCalls: EvaluateFixCall[];
 	summaryText?: string;
 	conversation: ConversationTurn[];
+	staffYs?: number[];
 }
 
 interface LogReport {
@@ -372,6 +373,7 @@ function mergeEventsWithFix(promptMeasure: PromptMeasure, fix?: Fix): { events: 
 interface SvgOptions {
 	width?: number;
 	title?: string;
+	staffYs?: number[]; // absolute staff center Y coords from measure.position.staffYs
 }
 
 const CURVE_ANGLE = -Math.PI / 3;
@@ -507,67 +509,81 @@ function generateTopologySvg(
 	const W = options.width ?? 600;
 	const MARGIN_LEFT = 40;
 	const MARGIN_RIGHT = 20;
-	const STAFF_HEIGHT = 70;
-	const STAFF_GAP = 24;
 	const LEGEND_HEIGHT = 24;
 	const STAFF_LINE_COUNT = 5;
-	const STAFF_LINE_SPAN = 40;
+	const STAFF_LINE_SPAN = 40; // pixels for 4 staff-line intervals
 
 	const staffSet = new Set(events.map(e => e.staff));
 	const staves = [...staffSet].sort();
-	const staffCount = staves.length || 1;
 	const plotWidth = W - MARGIN_LEFT - MARGIN_RIGHT;
 
-	const lineSpacing = STAFF_LINE_SPAN / (STAFF_LINE_COUNT - 1); // 10px per staff unit
-	const stemLen = 3.5 * lineSpacing; // stem length in pixels
+	const lineSpacing = STAFF_LINE_SPAN / (STAFF_LINE_COUNT - 1); // 10px per 1 staff-line unit
+	const stemLen = 3.5 * lineSpacing;
 
-	// Compute MARGIN_TOP dynamically: find how far above the first staff center the highest element reaches
-	// Staff 0 center (relative) = STAFF_HEIGHT / 2
-	// Event pixel Y (relative) = staffRelCenter + ys[0] * lineSpacing
-	// Stem tip (relative) = eventY - stemLen (for stem-up notes)
-	// We need this to be >= 20 (room for title + padding)
-	let minRelY = Infinity;
-	for (const e of events) {
-		const staffIdx = staves.indexOf(e.staff);
-		if (staffIdx < 0) continue;
-		const staffRelCenter = staffIdx * (STAFF_HEIGHT + STAFF_GAP) + STAFF_HEIGHT / 2;
-		const primaryYs = e.ys?.length ? e.ys[0] : 0;
-		const eventRelY = staffRelCenter + primaryYs * lineSpacing;
-		const isRest = e.rest !== null && e.rest !== undefined;
-		if (!isRest && (e.division ?? 2) >= 1 && e.stemDirection !== "d") {
-			// Stem up: tip is above event; flags/stubs extend further
-			const flagExtra = (e.division ?? 2) >= 3 ? ((e.division ?? 2) - 2) * 3.5 : 0;
-			minRelY = Math.min(minRelY, eventRelY - stemLen - flagExtra);
-		}
-		// ID label is above note head
-		minRelY = Math.min(minRelY, eventRelY - 10);
+	// Resolve absolute staff center Y in original units, then convert to px
+	// staffYs from measure.position gives center Y of each staff in unit coords
+	const staffCenterPx: Map<number, number> = new Map();
+	for (let i = 0; i < staves.length; i++) {
+		const si = staves[i];
+		const absUnit = (options.staffYs && options.staffYs[si] !== undefined)
+			? options.staffYs[si]
+			: i * 14; // fallback
+		staffCenterPx.set(si, absUnit * lineSpacing);
 	}
-	const MARGIN_TOP = Math.max(24, 20 - Math.min(0, minRelY));
 
-	const plotHeight = staffCount * STAFF_HEIGHT + (staffCount - 1) * STAFF_GAP;
-	const totalH = MARGIN_TOP + plotHeight + 20 + LEGEND_HEIGHT;
-
-	const staffY = (staffIdx: number): number => {
-		const i = staves.indexOf(staffIdx);
-		if (i < 0) return MARGIN_TOP + STAFF_HEIGHT / 2;
-		return MARGIN_TOP + i * (STAFF_HEIGHT + STAFF_GAP) + STAFF_HEIGHT / 2;
-	};
+	const staffY = (staffIdx: number): number => staffCenterPx.get(staffIdx) ?? 0;
 
 	// Map original event.x to SVG x coordinate
 	const allXs = events.map(e => e.x).filter(x => Number.isFinite(x));
 	const minEventX = Math.min(...allXs);
 	const maxEventX = Math.max(...allXs);
 	const xRange = maxEventX - minEventX;
-	const barlineLeft = MARGIN_LEFT; // start barline
-	const barlineRight = MARGIN_LEFT + plotWidth; // end barline (EOS)
-	const noteAreaLeft = barlineLeft + 12; // events start after barline padding
-	const noteAreaRight = barlineRight - 12; // events end before EOS padding
+	const barlineLeft = MARGIN_LEFT;
+	const barlineRight = MARGIN_LEFT + plotWidth;
+	const noteAreaLeft = barlineLeft + 12;
+	const noteAreaRight = barlineRight - 12;
 	const noteAreaWidth = noteAreaRight - noteAreaLeft;
 	const eventXToSvg = (ex: number): number => {
 		if (xRange <= 0) return noteAreaLeft + noteAreaWidth / 2;
 		return noteAreaLeft + ((ex - minEventX) / xRange) * noteAreaWidth;
 	};
 	const eosX = barlineRight;
+
+	// Compute Y bounds from staff lines and event positions
+	let minY = Infinity, maxY = -Infinity;
+	for (const si of staves) {
+		const cy = staffY(si);
+		minY = Math.min(minY, cy - STAFF_LINE_SPAN / 2);
+		maxY = Math.max(maxY, cy + STAFF_LINE_SPAN / 2);
+	}
+	for (const e of events) {
+		const primaryYs = e.ys?.length ? e.ys[0] : 0;
+		const ey = staffY(e.staff) + primaryYs * lineSpacing;
+		const isRest = e.rest !== null && e.rest !== undefined;
+		if (!isRest && (e.division ?? 2) >= 1) {
+			const dir = e.stemDirection === "d" ? 1 : -1;
+			const stemTip = ey + dir * stemLen;
+			minY = Math.min(minY, stemTip - 8);
+			maxY = Math.max(maxY, stemTip + 8);
+		}
+		minY = Math.min(minY, ey - 12); // ID label
+		maxY = Math.max(maxY, ey + 16); // tick label
+	}
+
+	const MARGIN_TOP = 20; // for title
+	const yOffset = MARGIN_TOP - minY; // shift everything so minY maps to MARGIN_TOP
+	const plotHeight = maxY - minY;
+	const totalH = MARGIN_TOP + plotHeight + 20 + LEGEND_HEIGHT;
+
+	// Shifted staffY for rendering
+	const renderStaffY = (staffIdx: number): number => staffY(staffIdx) + yOffset;
+
+	// Build event position lookup
+	const eventPos = new Map<number, { x: number; y: number }>();
+	for (const e of events) {
+		const primaryYs = e.ys?.length ? e.ys[0] : 0;
+		eventPos.set(e.id, { x: eventXToSvg(e.x), y: renderStaffY(e.staff) + primaryYs * lineSpacing });
+	}
 
 	const lines: string[] = [];
 	lines.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${totalH}" viewBox="0 0 ${W} ${totalH}">`);
@@ -586,8 +602,10 @@ function generateTopologySvg(
 	}
 
 	// Staff lines
+	const staffTop = renderStaffY(staves[0]) - STAFF_LINE_SPAN / 2;
+	const staffBottom = renderStaffY(staves[staves.length - 1]) + STAFF_LINE_SPAN / 2;
 	for (const si of staves) {
-		const cy = staffY(si);
+		const cy = renderStaffY(si);
 		const topLine = cy - STAFF_LINE_SPAN / 2;
 		for (let l = 0; l < STAFF_LINE_COUNT; l++) {
 			const y = topLine + l * lineSpacing;
@@ -597,15 +615,8 @@ function generateTopologySvg(
 	}
 
 	// Start barline
-	lines.push(`<line x1="${barlineLeft}" y1="${MARGIN_TOP}" x2="${barlineLeft}" y2="${MARGIN_TOP + plotHeight}" stroke="#ccc" stroke-width="1"/>`);
-	lines.push(`<text x="${barlineLeft}" y="${MARGIN_TOP + plotHeight + 10}" text-anchor="middle" font-size="7" fill="#999">0</text>`);
-
-	// Build event position lookup (use original event.x for positioning)
-	const eventPos = new Map<number, { x: number; y: number }>();
-	for (const e of events) {
-		const primaryYs = e.ys?.length ? e.ys[0] : 0;
-		eventPos.set(e.id, { x: eventXToSvg(e.x), y: staffY(e.staff) + primaryYs * lineSpacing });
-	}
+	lines.push(`<line x1="${barlineLeft}" y1="${staffTop}" x2="${barlineLeft}" y2="${staffBottom}" stroke="#ccc" stroke-width="1"/>`);
+	lines.push(`<text x="${barlineLeft}" y="${staffBottom + 12}" text-anchor="middle" font-size="7" fill="#999">0</text>`);
 
 	// Collect beamed event IDs (any event with beam !== null)
 	const beamedIds = new Set<number>();
@@ -640,7 +651,7 @@ function generateTopologySvg(
 		if (sorted.length > 0) {
 			const last = sorted[sorted.length - 1];
 			const lp = eventPos.get(last.id)!;
-			const eosCy = staffY(last.staff);
+			const eosCy = renderStaffY(last.staff);
 			const { path: d } = bezierPath(lp.x, lp.y, eosX, eosCy);
 			lines.push(`<path d="${d}" fill="none" stroke="${color}" stroke-width="1.5" opacity="0.25" stroke-dasharray="4,3" marker-end="url(#ah${vi})"/>`);
 		}
@@ -655,7 +666,7 @@ function generateTopologySvg(
 
 	// EOS (end-of-measure barline marker) — inverted triangle like ScoreEventCluster
 	for (const si of staves) {
-		const cy = staffY(si);
+		const cy = renderStaffY(si);
 		// Barline
 		lines.push(`<line x1="${eosX}" y1="${cy - STAFF_LINE_SPAN / 2}" x2="${eosX}" y2="${cy + STAFF_LINE_SPAN / 2}" stroke="#999" stroke-width="1.5"/>`);
 		// EOS triangle (pointing down)
@@ -664,10 +675,10 @@ function generateTopologySvg(
 		lines.push(`<path d="M${eosX} ${cy + STAFF_LINE_SPAN / 2} L${eosX - triW} ${cy + STAFF_LINE_SPAN / 2 + triH} L${eosX + triW} ${cy + STAFF_LINE_SPAN / 2 + triH} Z" fill="#999"/>`);
 	}
 	// EOS tick label
-	lines.push(`<text x="${eosX}" y="${MARGIN_TOP + plotHeight + 10}" text-anchor="middle" font-size="7" fill="#999">${duration}</text>`);
+	lines.push(`<text x="${eosX}" y="${staffBottom + 12}" text-anchor="middle" font-size="7" fill="#999">${duration}</text>`);
 
 	// Legend
-	const legendY = MARGIN_TOP + plotHeight + 14;
+	const legendY = totalH - LEGEND_HEIGHT + 10;
 	let legendX = MARGIN_LEFT;
 	for (let vi = 0; vi < voices.length; vi++) {
 		const color = voiceColor(vi);
@@ -891,14 +902,15 @@ function renderMarkdownReport(report: LogReport): string {
 
 		// Pre-generate SVGs
 		const { events: beforeEvents, voices: beforeVoices } = mergeEventsWithFix(pm);
-		const beforeSvg = generateTopologySvg(beforeEvents, beforeVoices, pm.duration, pm.timeSignature, { title: `Before — M${mr.measureIndex}` });
+		const svgOpts = { staffYs: mr.staffYs };
+		const beforeSvg = generateTopologySvg(beforeEvents, beforeVoices, pm.duration, pm.timeSignature, { ...svgOpts, title: `Before — M${mr.measureIndex}` });
 		let afterSvg: string | undefined;
 		let afterHeader = "";
 		if (mr.fix) {
 			const statusLabel = mr.fix.status === 0 ? "Solved" : mr.fix.status === -1 ? "Discard" : `Issue(${mr.fix.status})`;
 			afterHeader = `**Fix (status=${mr.fix.status} ${statusLabel})** Voices: ${JSON.stringify(mr.fix.voices)}`;
 			const { events: afterEvents, voices: afterVoices } = mergeEventsWithFix(pm, mr.fix);
-			afterSvg = generateTopologySvg(afterEvents, afterVoices, mr.fix.duration || pm.duration, pm.timeSignature, { title: `After — M${mr.measureIndex}` });
+			afterSvg = generateTopologySvg(afterEvents, afterVoices, mr.fix.duration || pm.duration, pm.timeSignature, { ...svgOpts, title: `After — M${mr.measureIndex}` });
 		}
 
 		if (report.backend === "codex") {
@@ -974,7 +986,7 @@ function renderMarkdownReport(report: LogReport): string {
 									status: 0,
 								};
 								const { events: ae, voices: av } = mergeEventsWithFix(pm, attemptFix);
-								const svg = generateTopologySvg(ae, av, attemptFix.duration, pm.timeSignature, { title: `Attempt ${efIdx}`, width: 500 });
+								const svg = generateTopologySvg(ae, av, attemptFix.duration, pm.timeSignature, { ...svgOpts, title: `Attempt ${efIdx}`, width: 500 });
 								turn.attachedSvg = (turn.attachedSvg ? turn.attachedSvg + "\n\n" : "") + svg;
 							} catch {}
 						}
@@ -1106,10 +1118,14 @@ async function main() {
 			const summaryText = summaryKey ? summaries.get(summaryKey) : undefined;
 
 			let backgroundBase64: string | undefined;
+			let staffYs: number[] | undefined;
 			if (spartito && !argv["no-images"]) {
 				try {
 					backgroundBase64 = (await generateMeasureBackgroundBase64(spartito, mi, tmpDir)) ?? undefined;
 				} catch {}
+			}
+			if (spartito?.measures[mi]?.position?.staffYs) {
+				staffYs = spartito.measures[mi].position.staffYs;
 			}
 
 			const existing = measureReports.get(mi);
@@ -1118,6 +1134,7 @@ async function main() {
 				if (mCalls.length) existing.evaluateFixCalls.push(...mCalls);
 				if (summaryText) existing.summaryText = summaryText;
 				if (backgroundBase64) existing.backgroundBase64 = backgroundBase64;
+				if (staffYs) existing.staffYs = staffYs;
 				if (conversation.length) existing.conversation.push(...conversation);
 			} else {
 				measureReports.set(mi, {
@@ -1127,6 +1144,7 @@ async function main() {
 					evaluateFixCalls: mCalls,
 					summaryText,
 					backgroundBase64,
+					staffYs,
 					conversation,
 				});
 			}
