@@ -501,10 +501,12 @@ function drawNote(
 		}
 	}
 
-	// Dots — only when actually > 0
+	// Dots
 	if (e.dots > 0) {
+		const dotX0 = isRest ? x + 4 * scale + 3 : x + headRx + 3;
+		const dotY = isRest ? y - 2 * scale : y - 1;
 		for (let d = 0; d < e.dots; d++) {
-			lines.push(`<circle cx="${x + headRx + 3 + d * 4}" cy="${y - 1}" r="1.2" fill="${color}" opacity="${opacity}"/>`);
+			lines.push(`<circle cx="${dotX0 + d * 4}" cy="${dotY}" r="1.5" fill="${color}" opacity="${opacity}"/>`);
 		}
 	}
 
@@ -658,6 +660,14 @@ function generateTopologySvg(
 
 	// Start barline
 	lines.push(`<line x1="${svgLeft}" y1="${staffTop}" x2="${svgLeft}" y2="${staffBottom}" stroke="#ccc" stroke-width="1"/>`);
+
+	// Time signature (fraction form on first staff)
+	{
+		const tsX = svgLeft + 10;
+		const firstStaffCy = renderStaffY(staves[0]);
+		lines.push(`<text x="${tsX}" y="${firstStaffCy - 2}" text-anchor="middle" font-size="14" font-weight="bold" fill="#888">${timeSig.numerator}</text>`);
+		lines.push(`<text x="${tsX}" y="${firstStaffCy + 12}" text-anchor="middle" font-size="14" font-weight="bold" fill="#888">${timeSig.denominator}</text>`);
+	}
 
 	// Collect beamed event IDs (any event with beam !== null)
 	const beamedIds = new Set<number>();
