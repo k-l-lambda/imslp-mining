@@ -728,9 +728,7 @@ function renderConversation(turns: ConversationTurn[]): string {
 				const preview = escMd(lines[0]);
 				out.push(`<details><summary><b>[System]</b> ${preview}…</summary>`);
 				out.push("");
-				out.push("```");
 				out.push(text);
-				out.push("```");
 				out.push("");
 				out.push(`</details>`);
 			} else {
