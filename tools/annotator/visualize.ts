@@ -558,14 +558,16 @@ function generateTopologySvg(
 	const minEventX = Math.min(...allXs);
 	const maxEventX = Math.max(...allXs);
 	const xRange = maxEventX - minEventX;
+	const barlineLeft = MARGIN_LEFT; // start barline
+	const barlineRight = MARGIN_LEFT + plotWidth; // end barline (EOS)
+	const noteAreaLeft = barlineLeft + 12; // events start after barline padding
+	const noteAreaRight = barlineRight - 12; // events end before EOS padding
+	const noteAreaWidth = noteAreaRight - noteAreaLeft;
 	const eventXToSvg = (ex: number): number => {
-		if (xRange <= 0) return MARGIN_LEFT + plotWidth / 2;
-		// Reserve 10% on right for EOS
-		const usable = plotWidth * 0.9;
-		return MARGIN_LEFT + ((ex - minEventX) / xRange) * usable;
+		if (xRange <= 0) return noteAreaLeft + noteAreaWidth / 2;
+		return noteAreaLeft + ((ex - minEventX) / xRange) * noteAreaWidth;
 	};
-	// EOS x position: right edge of plot
-	const eosX = MARGIN_LEFT + plotWidth;
+	const eosX = barlineRight;
 
 	const lines: string[] = [];
 	lines.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${totalH}" viewBox="0 0 ${W} ${totalH}">`);
@@ -589,14 +591,14 @@ function generateTopologySvg(
 		const topLine = cy - STAFF_LINE_SPAN / 2;
 		for (let l = 0; l < STAFF_LINE_COUNT; l++) {
 			const y = topLine + l * lineSpacing;
-			lines.push(`<line x1="${MARGIN_LEFT}" y1="${y}" x2="${W - MARGIN_RIGHT}" y2="${y}" stroke="#ddd" stroke-width="0.5"/>`);
+			lines.push(`<line x1="${barlineLeft}" y1="${y}" x2="${barlineRight}" y2="${y}" stroke="#ddd" stroke-width="0.5"/>`);
 		}
-		lines.push(`<text x="${MARGIN_LEFT - 4}" y="${cy + 4}" text-anchor="end" font-size="9" fill="#999">S${si}</text>`);
+		lines.push(`<text x="${barlineLeft - 4}" y="${cy + 4}" text-anchor="end" font-size="9" fill="#999">S${si}</text>`);
 	}
 
 	// Start barline
-	lines.push(`<line x1="${MARGIN_LEFT}" y1="${MARGIN_TOP}" x2="${MARGIN_LEFT}" y2="${MARGIN_TOP + plotHeight}" stroke="#ccc" stroke-width="1"/>`);
-	lines.push(`<text x="${MARGIN_LEFT}" y="${MARGIN_TOP + plotHeight + 10}" text-anchor="middle" font-size="7" fill="#999">0</text>`);
+	lines.push(`<line x1="${barlineLeft}" y1="${MARGIN_TOP}" x2="${barlineLeft}" y2="${MARGIN_TOP + plotHeight}" stroke="#ccc" stroke-width="1"/>`);
+	lines.push(`<text x="${barlineLeft}" y="${MARGIN_TOP + plotHeight + 10}" text-anchor="middle" font-size="7" fill="#999">0</text>`);
 
 	// Build event position lookup (use original event.x for positioning)
 	const eventPos = new Map<number, { x: number; y: number }>();
