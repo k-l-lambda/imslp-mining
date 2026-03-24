@@ -718,6 +718,7 @@ function scanLogDir(logDir: string): { batches: LogBatch[]; summaries: Map<strin
 
 function renderConversation(turns: ConversationTurn[]): string {
 	const out: string[] = [];
+	let prevRole = "";
 
 	for (const turn of turns) {
 		if (turn.role === "system") {
@@ -730,12 +731,15 @@ function renderConversation(turns: ConversationTurn[]): string {
 			out.push("");
 			out.push(`</details>`);
 			out.push("");
+			prevRole = "system";
 			continue;
 		}
 
 		if (turn.role === "assistant") {
-			out.push(`**[Assistant]**`);
-			out.push("");
+			if (prevRole !== "assistant") {
+				out.push(`**[Assistant]**`);
+				out.push("");
+			}
 			if (turn.thinking) {
 				out.push(`<details><summary><i>💭 Thinking</i></summary>`);
 				out.push("");
@@ -766,10 +770,12 @@ function renderConversation(turns: ConversationTurn[]): string {
 				out.push(turn.attachedSvg);
 				out.push("");
 			}
+			prevRole = "assistant";
 			continue;
 		}
 
 		if (turn.role === "user") {
+			prevRole = "user";
 			if (turn.toolResult) {
 				out.push(`**[Tool Result]**`);
 				out.push("```");
@@ -950,9 +956,16 @@ function renderMarkdownReport(report: LogReport): string {
 		if (mr.summaryText) {
 			lines.push("### Agent Feedback");
 			lines.push("");
-			for (const line of mr.summaryText.split("\n")) {
-				lines.push(`> ${line}`);
-			}
+			lines.push("**[User]**");
+			lines.push("");
+			lines.push("> Based on your annotation experience just now, please provide a brief summary:");
+			lines.push("> 1. Which principles in the system prompt were most helpful for your annotation work?");
+			lines.push("> 2. What additional guidelines or tips would you suggest adding to the system prompt that are not currently covered?");
+			lines.push("> 3. What common patterns or pitfalls did you encounter during this annotation session?");
+			lines.push("");
+			lines.push("**[Assistant]**");
+			lines.push("");
+			lines.push(mr.summaryText);
 			lines.push("");
 		}
 
