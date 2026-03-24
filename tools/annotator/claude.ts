@@ -146,6 +146,11 @@ const runOneBatch = async (
 			textOutput = rawOutput;
 		}
 
+		if (rawOutput.includes("usage limit") || stderr.includes("usage limit")) {
+			console.error(`\n  FATAL: API usage limit hit. Aborting.`);
+			process.exit(1);
+		}
+
 		if (code !== 0) {
 			console.warn(`  [${batchLabel}] claude exited with code ${code}`);
 			if (stderr) console.warn(`  stderr: ${stderr.slice(0, 500)}`);

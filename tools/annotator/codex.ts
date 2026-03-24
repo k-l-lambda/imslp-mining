@@ -171,6 +171,11 @@ const runOneBatch = async (
 			return { fixes: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: env, ok: false, hasFixes: false };
 		}
 
+		if (rawOutput.includes("usage limit") || stderr.includes("usage limit")) {
+			console.error(`\n  FATAL: API usage limit hit. Aborting.`);
+			process.exit(1);
+		}
+
 		const { text: textOutput, sessionId } = parseCodexJsonl(rawOutput);
 
 		if (code !== 0) {
