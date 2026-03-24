@@ -488,6 +488,13 @@ function drawNote(
 		lines.push(`<text x="${x + headRx + 2}" y="${labelY + 1}" font-size="7" fill="#e44" font-weight="bold">×</text>`);
 	}
 
+	// Tick label below event
+	if (Number.isFinite(e.tick)) {
+		const isRest2 = e.rest !== null && e.rest !== undefined;
+		const tickLabelY = isRest2 ? y + 4 * scale + 10 : y + headRy + 12;
+		lines.push(`<text x="${x}" y="${tickLabelY}" text-anchor="middle" font-size="6" fill="#999">${e.tick}</text>`);
+	}
+
 }
 
 function generateTopologySvg(
@@ -521,10 +528,20 @@ function generateTopologySvg(
 		if (i < 0) return MARGIN_TOP + STAFF_HEIGHT / 2;
 		return MARGIN_TOP + i * (STAFF_HEIGHT + STAFF_GAP) + STAFF_HEIGHT / 2;
 	};
-	const tickToX = (tick: number): number => {
-		if (duration <= 0) return MARGIN_LEFT;
-		return MARGIN_LEFT + (tick / duration) * plotWidth;
+
+	// Map original event.x to SVG x coordinate
+	const allXs = events.map(e => e.x).filter(x => Number.isFinite(x));
+	const minEventX = Math.min(...allXs);
+	const maxEventX = Math.max(...allXs);
+	const xRange = maxEventX - minEventX;
+	const eventXToSvg = (ex: number): number => {
+		if (xRange <= 0) return MARGIN_LEFT + plotWidth / 2;
+		// Reserve 10% on right for EOS
+		const usable = plotWidth * 0.9;
+		return MARGIN_LEFT + ((ex - minEventX) / xRange) * usable;
 	};
+	// EOS x position: right edge of plot
+	const eosX = MARGIN_LEFT + plotWidth;
 
 	const lines: string[] = [];
 	lines.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${totalH}" viewBox="0 0 ${W} ${totalH}">`);
@@ -554,24 +571,15 @@ function generateTopologySvg(
 		lines.push(`<text x="${MARGIN_LEFT - 4}" y="${cy + 4}" text-anchor="end" font-size="9" fill="#999">S${si}</text>`);
 	}
 
-	// Beat grid
-	const beatTicks = 1920 / timeSig.denominator;
-	for (let beat = 0; beat <= timeSig.numerator; beat++) {
-		const tick = beat * beatTicks;
-		if (tick > duration) break;
-		const x = tickToX(tick);
-		const isEdge = beat === 0 || tick === duration;
-		lines.push(`<line x1="${x}" y1="${MARGIN_TOP}" x2="${x}" y2="${MARGIN_TOP + plotHeight}" stroke="#eee" stroke-width="${isEdge ? 1 : 0.5}" stroke-dasharray="${isEdge ? "" : "3,3"}"/>`);
-		if (beat < timeSig.numerator) {
-			lines.push(`<text x="${x + 2}" y="${MARGIN_TOP - 3}" font-size="7" fill="#bbb">${beat + 1}</text>`);
-		}
-	}
+	// Start barline
+	lines.push(`<line x1="${MARGIN_LEFT}" y1="${MARGIN_TOP}" x2="${MARGIN_LEFT}" y2="${MARGIN_TOP + plotHeight}" stroke="#ccc" stroke-width="1"/>`);
+	lines.push(`<text x="${MARGIN_LEFT}" y="${MARGIN_TOP + plotHeight + 10}" text-anchor="middle" font-size="7" fill="#999">0</text>`);
 
-	// Build event position lookup (ys[0] in staff-line units → pixel offset)
+	// Build event position lookup (use original event.x for positioning)
 	const eventPos = new Map<number, { x: number; y: number }>();
 	for (const e of events) {
 		const primaryYs = e.ys?.length ? e.ys[0] : 0;
-		eventPos.set(e.id, { x: tickToX(e.tick), y: staffY(e.staff) + primaryYs * lineSpacing });
+		eventPos.set(e.id, { x: eventXToSvg(e.x), y: staffY(e.staff) + primaryYs * lineSpacing });
 	}
 
 	// Collect beamed event IDs (any event with beam !== null)
@@ -602,6 +610,15 @@ function generateTopologySvg(
 			const { path: d } = bezierPath(ap.x, ap.y, bp.x, bp.y);
 			lines.push(`<path d="${d}" fill="none" stroke="${color}" stroke-width="1.5" opacity="0.45" marker-end="url(#ah${vi})"/>`);
 		}
+
+		// Connect last event in voice to EOS
+		if (sorted.length > 0) {
+			const last = sorted[sorted.length - 1];
+			const lp = eventPos.get(last.id)!;
+			const eosCy = staffY(last.staff);
+			const { path: d } = bezierPath(lp.x, lp.y, eosX, eosCy);
+			lines.push(`<path d="${d}" fill="none" stroke="${color}" stroke-width="1.5" opacity="0.25" stroke-dasharray="4,3" marker-end="url(#ah${vi})"/>`);
+		}
 	}
 
 	// Draw events (notes/rests)
@@ -610,6 +627,19 @@ function generateTopologySvg(
 		const color = e.voiceIndex >= 0 ? voiceColor(e.voiceIndex) : UNVOICED_COLOR;
 		drawNote(pos.x, pos.y, e, color, lines, { lineSpacing, isBeamed: beamedIds.has(e.id) });
 	}
+
+	// EOS (end-of-measure barline marker) — inverted triangle like ScoreEventCluster
+	for (const si of staves) {
+		const cy = staffY(si);
+		// Barline
+		lines.push(`<line x1="${eosX}" y1="${cy - STAFF_LINE_SPAN / 2}" x2="${eosX}" y2="${cy + STAFF_LINE_SPAN / 2}" stroke="#999" stroke-width="1.5"/>`);
+		// EOS triangle (pointing down)
+		const triH = 8;
+		const triW = 4;
+		lines.push(`<path d="M${eosX} ${cy + STAFF_LINE_SPAN / 2} L${eosX - triW} ${cy + STAFF_LINE_SPAN / 2 + triH} L${eosX + triW} ${cy + STAFF_LINE_SPAN / 2 + triH} Z" fill="#999"/>`);
+	}
+	// EOS tick label
+	lines.push(`<text x="${eosX}" y="${MARGIN_TOP + plotHeight + 10}" text-anchor="middle" font-size="7" fill="#999">${duration}</text>`);
 
 	// Legend
 	const legendY = MARGIN_TOP + plotHeight + 14;
