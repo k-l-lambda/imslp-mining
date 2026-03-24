@@ -722,27 +722,20 @@ function renderConversation(turns: ConversationTurn[]): string {
 	for (const turn of turns) {
 		if (turn.role === "system") {
 			const text = turn.text || "";
-			const lines = text.split("\n");
-			if (lines.length > 10) {
-				// Long system prompt — collapsible
-				const preview = escMd(lines[0]);
-				out.push(`<details><summary><b>[System]</b> ${preview}…</summary>`);
-				out.push("");
-				out.push(text);
-				out.push("");
-				out.push(`</details>`);
-			} else {
-				out.push(`**[System Init]**`);
-				out.push("");
-				for (const line of lines) {
-					out.push(`> ${escMd(line)}`);
-				}
-			}
+			const sysLines = text.split("\n");
+			const preview = escMd(sysLines[0]);
+			out.push(`<details><summary><b>[System]</b> ${preview}…</summary>`);
+			out.push("");
+			out.push(text);
+			out.push("");
+			out.push(`</details>`);
 			out.push("");
 			continue;
 		}
 
 		if (turn.role === "assistant") {
+			out.push(`**[Assistant]**`);
+			out.push("");
 			if (turn.thinking) {
 				out.push(`<details><summary><i>💭 Thinking</i></summary>`);
 				out.push("");
@@ -754,8 +747,6 @@ function renderConversation(turns: ConversationTurn[]): string {
 				out.push("");
 			}
 			if (turn.text) {
-				out.push(`**[Assistant]**`);
-				out.push("");
 				out.push(turn.text);
 				out.push("");
 			}
@@ -931,7 +922,7 @@ function renderMarkdownReport(report: LogReport): string {
 			}
 		}
 
-		// Render conversation (prepend system prompt from prompt.ts)
+		// Render conversation (with system prompt prepended)
 		if (mr.conversation.length > 0) {
 			const fullConv: ConversationTurn[] = [
 				{ role: "system", text: SYSTEM_PROMPT },
