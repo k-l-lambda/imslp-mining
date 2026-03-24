@@ -39,8 +39,12 @@ Your task is to verify and fix these assignments where the algorithm failed.
 - **Cross-staff voices**: Events on different staves belong to different voices.
 
 ### Time Warp (Tuplets)
-- \`timeWarp: { numerator, denominator }\` — tuplet ratio
-- Triplets: \`{ numerator: 2, denominator: 3 }\` (3 notes in the time of 2)
+- \`timeWarp: { numerator, denominator }\` — tuplet ratio. Effective duration = \`baseDuration * numerator / denominator\`.
+- Formula: N notes in the time of M → each note gets \`timeWarp: { numerator: M, denominator: N }\`.
+- Common ratios: triplet \`{2,3}\`, quintuplet \`{4,5}\`, sextuplet \`{4,6}\`, octuplet in compound meter \`{3,4}\` (8 in place of 6).
+- Example: 8 sixteenths filling a 3/8 bar (720 ticks) → each = 120×3/4 = 90, total = 8×90 = 720. Use \`{numerator:3, denominator:4}\`.
+- Constraints: \`numerator/denominator\` must be > 0.5 (≤0.5 triggers error). Only \`2/3\` is treated as "regular"; other ratios reduce qualityScore.
+- Within a voice, a tuplet group's total tick sum must be divisible by its denominator, otherwise \`fractionalWarp=true\` → fine=false.
 
 ### Quality Metrics
 - **fine**: Acceptable quality (no fatal errors, tickTwist<0.3, no fractional warp, no irregular tick, no surplus time, no beam broken, no grace in voice)
