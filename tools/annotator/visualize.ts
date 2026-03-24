@@ -39,7 +39,6 @@ interface PromptMeasure {
 	voices: number[][];
 	events: PromptEvent[];
 	evaluation?: any;
-	// Parsed from header
 	status?: number;
 	error?: boolean;
 	fine?: boolean;
@@ -53,14 +52,28 @@ interface EvaluateFixCall {
 	resultText: string;
 }
 
+/** A single turn in the agent conversation */
+interface ConversationTurn {
+	role: "system" | "assistant" | "user" | "result";
+	thinking?: string;
+	text?: string;
+	toolUse?: { name: string; input: any };
+	toolResult?: string;
+	imageData?: string; // base64 image in tool result
+	model?: string;
+	usage?: any;
+	costUSD?: number;
+	durationMs?: number;
+}
+
 interface MeasureReport {
 	measureIndex: number;
 	prompt: PromptMeasure;
 	backgroundBase64?: string;
 	fix?: Fix;
-	fixStatus?: string;
 	evaluateFixCalls: EvaluateFixCall[];
 	summaryText?: string;
+	conversation: ConversationTurn[];
 }
 
 interface LogReport {
@@ -106,27 +119,19 @@ const UNVOICED_COLOR = "#ccc";
 
 function parsePromptFile(text: string): PromptMeasure[] {
 	const measures: PromptMeasure[] = [];
-	// Split on "--- Measure N (...) ---"
 	const parts = text.split(/^--- Measure /m);
 	for (let i = 1; i < parts.length; i++) {
 		const part = parts[i];
-		// Parse header line: "28 (status=1, error=false, fine=false, tickTwist=0.006) ---"
 		const headerMatch = part.match(/^(\d+)\s*\(([^)]*)\)\s*---/);
 		if (!headerMatch) continue;
-
 		const measureIndex = parseInt(headerMatch[1]);
 		const headerParams = headerMatch[2];
-
-		// Extract header fields
 		const statusMatch = headerParams.match(/status=(\d+)/);
 		const errorMatch = headerParams.match(/error=(true|false)/);
 		const fineMatch = headerParams.match(/fine=(true|false)/);
 		const twistMatch = headerParams.match(/tickTwist=([\d.]+)/);
-
-		// Extract JSON block
 		const jsonMatch = part.match(/```json\s*\n([\s\S]*?)\n```/);
 		if (!jsonMatch) continue;
-
 		try {
 			const data = JSON.parse(jsonMatch[1]) as PromptMeasure;
 			data.status = statusMatch ? parseInt(statusMatch[1]) : undefined;
@@ -149,66 +154,171 @@ function detectBackend(files: string[]): "claude" | "codex" {
 	return "claude";
 }
 
-function parseClaudeOutput(raw: string): { resultText: string; fixes: Fix[] } {
-	// Claude output is a JSON array of messages or a single JSON object
+/** Parse Claude JSON output into conversation turns + fixes */
+function parseClaudeOutput(raw: string): { conversation: ConversationTurn[]; fixes: Fix[]; evaluateFixCalls: EvaluateFixCall[] } {
+	const conversation: ConversationTurn[] = [];
+	const evaluateFixCalls: EvaluateFixCall[] = [];
+	const allTexts: string[] = [];
+
 	try {
-		const parsed = JSON.parse(raw);
-		// Format: array with {type, content} or single object with .result
-		if (Array.isArray(parsed)) {
-			// Look for the last assistant message with text
-			const texts: string[] = [];
-			for (const item of parsed) {
-				if (item.type === "assistant" && item.message?.content) {
-					for (const block of item.message.content) {
-						if (block.type === "text" && block.text) texts.push(block.text);
+		const items = JSON.parse(raw);
+		if (!Array.isArray(items)) {
+			// Single result object
+			const text = items.result || JSON.stringify(items);
+			allTexts.push(text);
+			conversation.push({ role: "result", text });
+			return { conversation, fixes: parseFixes(text), evaluateFixCalls };
+		}
+
+		for (const item of items) {
+			if (item.type === "system") {
+				conversation.push({
+					role: "system",
+					text: `Session: ${item.session_id || "?"}, Model: ${item.model || "?"}, CWD: ${item.cwd || "?"}`,
+					model: item.model,
+				});
+				continue;
+			}
+
+			if (item.type === "assistant" && item.message?.content) {
+				for (const block of item.message.content) {
+					if (block.type === "thinking" && block.thinking) {
+						conversation.push({ role: "assistant", thinking: block.thinking, model: item.message.model });
+					}
+					if (block.type === "text" && block.text) {
+						conversation.push({ role: "assistant", text: block.text, model: item.message.model });
+						allTexts.push(block.text);
+					}
+					if (block.type === "tool_use") {
+						conversation.push({ role: "assistant", toolUse: { name: block.name, input: block.input }, model: item.message.model });
+
+						// Collect evaluate_fix calls
+						if (block.name === "mcp__measure-quality__evaluate_fix") {
+							evaluateFixCalls.push({
+								arguments: block.input,
+								beforeText: "",
+								afterText: "",
+								resultText: "", // filled when we see the result
+							});
+						}
 					}
 				}
-				if (item.type === "result" && item.result) texts.push(item.result);
+				continue;
 			}
-			const resultText = texts.join("\n");
-			return { resultText, fixes: parseFixes(resultText) };
+
+			if (item.type === "user" && item.message?.content) {
+				for (const block of item.message.content) {
+					if (block.type === "tool_result") {
+						let resultText = "";
+						let imageData: string | undefined;
+						const content = block.content;
+						if (Array.isArray(content)) {
+							for (const c of content) {
+								if (c.type === "text") resultText += c.text;
+								if (c.type === "image") imageData = c.source?.data;
+							}
+						} else if (typeof content === "string") {
+							resultText = content;
+						}
+						conversation.push({ role: "user", toolResult: resultText, imageData });
+
+						// Fill evaluate_fix result text
+						if (resultText && evaluateFixCalls.length > 0) {
+							const lastCall = evaluateFixCalls[evaluateFixCalls.length - 1];
+							if (!lastCall.resultText) {
+								lastCall.resultText = resultText;
+								const beforeMatch = resultText.match(/BEFORE[^:]*:\s*(.*)/);
+								const afterMatch = resultText.match(/AFTER[^:]*:\s*(.*)/);
+								lastCall.beforeText = beforeMatch ? beforeMatch[1].trim() : "";
+								lastCall.afterText = afterMatch ? afterMatch[1].trim() : "";
+							}
+						}
+					}
+				}
+				continue;
+			}
+
+			if (item.type === "result") {
+				conversation.push({
+					role: "result",
+					text: item.result,
+					costUSD: item.total_cost_usd,
+					durationMs: item.duration_ms,
+					usage: item.usage,
+				});
+				if (item.result) allTexts.push(item.result);
+			}
 		}
-		if (parsed.result) {
-			return { resultText: parsed.result, fixes: parseFixes(parsed.result) };
-		}
-		const text = JSON.stringify(parsed);
-		return { resultText: text, fixes: parseFixes(text) };
 	} catch {
-		return { resultText: raw, fixes: parseFixes(raw) };
+		allTexts.push(raw);
+		conversation.push({ role: "result", text: raw });
 	}
+
+	const resultText = allTexts.join("\n");
+	return { conversation, fixes: parseFixes(resultText), evaluateFixCalls };
 }
 
-function parseCodexJsonlFull(raw: string): { resultText: string; fixes: Fix[]; evaluateFixCalls: EvaluateFixCall[] } {
-	const { text, sessionId } = parseCodexJsonl(raw);
-	const fixes = parseFixes(text);
+/** Parse Codex JSONL output into conversation turns + fixes + evaluate_fix calls */
+function parseCodexJsonlFull(raw: string): { conversation: ConversationTurn[]; fixes: Fix[]; evaluateFixCalls: EvaluateFixCall[] } {
+	const conversation: ConversationTurn[] = [];
 	const evaluateFixCalls: EvaluateFixCall[] = [];
-
-	// Extract evaluate_fix MCP tool calls with results
+	const allTexts: string[] = [];
 	const lines = raw.trim().split("\n").filter(Boolean);
+
 	for (const line of lines) {
 		try {
 			const event = JSON.parse(line);
-			if (event.type === "item.completed" && event.item?.type === "mcp_tool_call" && event.item?.tool === "evaluate_fix") {
+
+			if (event.type === "thread.started") {
+				conversation.push({ role: "system", text: `Thread: ${event.thread_id}` });
+				continue;
+			}
+
+			if (event.type === "item.completed" && event.item?.type === "agent_message" && event.item.text) {
+				conversation.push({ role: "assistant", text: event.item.text });
+				allTexts.push(event.item.text);
+				continue;
+			}
+
+			if (event.type === "item.completed" && event.item?.type === "mcp_tool_call") {
+				const tool = event.item.tool;
+				const args = event.item.arguments;
 				const resultContent = event.item.result?.content;
 				const resultText = Array.isArray(resultContent)
 					? resultContent.map((c: any) => c.text || "").join("\n")
 					: (typeof resultContent === "string" ? resultContent : "");
 
-				// Parse BEFORE/AFTER from result text
-				const beforeMatch = resultText.match(/BEFORE[^:]*:\s*(.*)/);
-				const afterMatch = resultText.match(/AFTER[^:]*:\s*(.*)/);
+				conversation.push({ role: "assistant", toolUse: { name: `mcp:${event.item.server}/${tool}`, input: args } });
+				if (resultText) {
+					conversation.push({ role: "user", toolResult: resultText });
+				}
 
-				evaluateFixCalls.push({
-					arguments: event.item.arguments,
-					beforeText: beforeMatch ? beforeMatch[1].trim() : "",
-					afterText: afterMatch ? afterMatch[1].trim() : "",
-					resultText,
-				});
+				if (tool === "evaluate_fix") {
+					const beforeMatch = resultText.match(/BEFORE[^:]*:\s*(.*)/);
+					const afterMatch = resultText.match(/AFTER[^:]*:\s*(.*)/);
+					evaluateFixCalls.push({
+						arguments: args,
+						beforeText: beforeMatch ? beforeMatch[1].trim() : "",
+						afterText: afterMatch ? afterMatch[1].trim() : "",
+						resultText,
+					});
+				}
+				continue;
+			}
+
+			if (event.type === "turn.completed" && event.usage) {
+				conversation.push({ role: "result", usage: event.usage });
+				continue;
+			}
+
+			if (event.type === "item.completed" && event.item?.type === "error") {
+				conversation.push({ role: "system", text: `Error: ${event.item.message}` });
 			}
 		} catch {}
 	}
 
-	return { resultText: text, fixes, evaluateFixCalls };
+	const { text } = parseCodexJsonl(raw);
+	return { conversation, fixes: parseFixes(text), evaluateFixCalls };
 }
 
 
@@ -225,13 +335,10 @@ function mergeEventsWithFix(promptMeasure: PromptMeasure, fix?: Fix): { events: 
 	if (fix?.events) {
 		for (const e of fix.events) fixEventMap.set(e.id, e);
 	}
-
-	// Build voice lookup: eventId -> voiceIndex
 	const voiceLookup = new Map<number, number>();
 	for (let vi = 0; vi < voices.length; vi++) {
 		for (const eid of voices[vi]) voiceLookup.set(eid, vi);
 	}
-
 	const events: MergedEvent[] = promptMeasure.events.map(pe => {
 		const fe = fixEventMap.get(pe.id);
 		const merged: MergedEvent = {
@@ -248,7 +355,6 @@ function mergeEventsWithFix(promptMeasure: PromptMeasure, fix?: Fix): { events: 
 		}
 		return merged;
 	});
-
 	return { events, voices };
 }
 
@@ -258,6 +364,101 @@ function mergeEventsWithFix(promptMeasure: PromptMeasure, fix?: Fix): { events: 
 interface SvgOptions {
 	width?: number;
 	title?: string;
+}
+
+const CURVE_ANGLE = -Math.PI / 3;
+
+/** Quadratic Bezier arrow path from SvgArrow.vue */
+function bezierPath(sx: number, sy: number, tx: number, ty: number): { path: string; cx: number; cy: number } {
+	const dx = tx - sx;
+	const dy = ty - sy;
+	const cosB = Math.cos(CURVE_ANGLE);
+	const sinB = Math.sin(CURVE_ANGLE);
+	const cx = sx + (dx * cosB - dy * sinB) * 0.4;
+	const cy = sy + (dx * sinB + dy * cosB) * 0.4;
+	return { path: `M ${sx} ${sy} Q ${cx} ${cy} ${tx} ${ty}`, cx, cy };
+}
+
+/** Arrow tip polygon points, rotated to face from source to target */
+function arrowTip(tx: number, ty: number, sx: number, sy: number, scale: number = 6): string {
+	const dx = tx - sx;
+	const dy = ty - sy;
+	const angle = Math.atan2(dy, dx) + 24 * Math.PI / 180;
+	const cos = Math.cos(angle);
+	const sin = Math.sin(angle);
+	// Triangle: tip at (0,0), two points behind
+	const points = [
+		[0, 0],
+		[-scale, scale * 0.35],
+		[-scale * 0.65, 0],
+	];
+	return points.map(([px, py]) => {
+		const rx = px * cos - py * sin + tx;
+		const ry = px * sin + py * cos + ty;
+		return `${rx.toFixed(1)},${ry.toFixed(1)}`;
+	}).join(" ");
+}
+
+/** Draw a note symbol: head + stem + flags */
+function drawNote(x: number, y: number, e: MergedEvent, color: string, lines: string[]): void {
+	const isRest = e.rest !== null && e.rest !== undefined;
+	const isGrace = e.grace !== null && e.grace !== undefined && e.grace !== false;
+	const scale = isGrace ? 0.6 : 1;
+	const opacity = isGrace ? 0.6 : 1;
+	const headRx = 5 * scale;
+	const headRy = 3.5 * scale;
+	const stemLen = 22 * scale;
+	const division = e.division ?? 2;
+	const stemDir = e.stemDirection === "d" ? 1 : -1; // 1=down, -1=up
+
+	if (isRest) {
+		// Rest: filled rectangle
+		const s = 4 * scale;
+		lines.push(`<rect x="${x - s}" y="${y - s}" width="${s * 2}" height="${s * 2}" fill="${color}" opacity="${opacity}" rx="1"/>`);
+	} else {
+		// Note head: ellipse, filled (div>=2) or hollow (div<=1)
+		const filled = division >= 2;
+		if (filled) {
+			lines.push(`<ellipse cx="${x}" cy="${y}" rx="${headRx}" ry="${headRy}" fill="${color}" opacity="${opacity}" transform="rotate(-15 ${x} ${y})"/>`);
+		} else {
+			lines.push(`<ellipse cx="${x}" cy="${y}" rx="${headRx}" ry="${headRy}" fill="white" stroke="${color}" stroke-width="1.5" opacity="${opacity}" transform="rotate(-15 ${x} ${y})"/>`);
+		}
+
+		// Stem (division >= 1, i.e. half note or shorter)
+		if (division >= 1) {
+			const stemX = stemDir === -1 ? x + headRx - 0.5 : x - headRx + 0.5;
+			const stemEndY = y + stemDir * stemLen;
+			lines.push(`<line x1="${stemX}" y1="${y}" x2="${stemX}" y2="${stemEndY}" stroke="${color}" stroke-width="1.2" opacity="${opacity}"/>`);
+
+			// Flags (division >= 3: eighth=1 flag, 16th=2 flags, 32nd=3 flags)
+			const flagCount = Math.max(0, division - 2);
+			if (flagCount > 0 && !e.beam) {
+				const flagDir = stemDir;
+				for (let f = 0; f < flagCount; f++) {
+					const fy = stemEndY - flagDir * f * 4;
+					const fcx = stemX + 8 * scale;
+					const fcy = fy + flagDir * 8 * scale;
+					lines.push(`<path d="M ${stemX} ${fy} Q ${fcx} ${fcy} ${stemX + 3 * scale} ${fy + flagDir * 12 * scale}" fill="none" stroke="${color}" stroke-width="1.2" opacity="${opacity}"/>`);
+				}
+			}
+		}
+	}
+
+	// Dots
+	if (e.dots) {
+		for (let d = 0; d < e.dots; d++) {
+			lines.push(`<circle cx="${x + headRx + 3 + d * 4}" cy="${y - 1}" r="1.2" fill="${color}" opacity="${opacity}"/>`);
+		}
+	}
+
+	// Event ID label
+	const labelY = isRest ? y - 4 * scale - 5 : y - headRy - 4;
+	lines.push(`<text x="${x}" y="${labelY}" text-anchor="middle" font-size="7" fill="#666">${e.id}</text>`);
+
+	// Fix marker
+	if (e.fixApplied) {
+		lines.push(`<circle cx="${x + headRx + 2}" cy="${labelY}" r="1.5" fill="#e44"/>`);
+	}
 }
 
 function generateTopologySvg(
@@ -271,51 +472,50 @@ function generateTopologySvg(
 	const MARGIN_LEFT = 40;
 	const MARGIN_RIGHT = 20;
 	const MARGIN_TOP = 30;
-	const STAFF_HEIGHT = 60;
-	const STAFF_GAP = 20;
+	const STAFF_HEIGHT = 70;
+	const STAFF_GAP = 24;
 	const LEGEND_HEIGHT = 24;
 	const STAFF_LINE_COUNT = 5;
-	const STAFF_LINE_SPAN = 40; // pixels for 5 lines
+	const STAFF_LINE_SPAN = 40;
 
-	// Determine staves
 	const staffSet = new Set(events.map(e => e.staff));
 	const staves = [...staffSet].sort();
 	const staffCount = staves.length || 1;
-
 	const plotWidth = W - MARGIN_LEFT - MARGIN_RIGHT;
 	const plotHeight = staffCount * STAFF_HEIGHT + (staffCount - 1) * STAFF_GAP;
 	const totalH = MARGIN_TOP + plotHeight + 20 + LEGEND_HEIGHT;
 
-	// Staff Y center for each staff index
 	const staffY = (staffIdx: number): number => {
 		const i = staves.indexOf(staffIdx);
 		if (i < 0) return MARGIN_TOP + STAFF_HEIGHT / 2;
 		return MARGIN_TOP + i * (STAFF_HEIGHT + STAFF_GAP) + STAFF_HEIGHT / 2;
 	};
-
-	// Tick to X
 	const tickToX = (tick: number): number => {
 		if (duration <= 0) return MARGIN_LEFT;
 		return MARGIN_LEFT + (tick / duration) * plotWidth;
 	};
-
-	// Ys offset within staff (pitch position, smaller = higher)
 	const ysToOffset = (ys: number[]): number => {
 		if (!ys?.length) return 0;
-		const avg = ys.reduce((a, b) => a + b, 0) / ys.length;
-		return avg * 3; // scale: each step ~3px
+		return (ys.reduce((a, b) => a + b, 0) / ys.length) * 3;
 	};
 
 	const lines: string[] = [];
 	lines.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${totalH}" viewBox="0 0 ${W} ${totalH}">`);
 	lines.push(`<rect width="${W}" height="${totalH}" fill="white"/>`);
 
-	// Title
+	// Arrow marker defs
+	lines.push(`<defs>`);
+	for (let vi = 0; vi < voices.length; vi++) {
+		const c = voiceColor(vi);
+		lines.push(`<marker id="ah${vi}" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="${c}" opacity="0.6"/></marker>`);
+	}
+	lines.push(`</defs>`);
+
 	if (options.title) {
 		lines.push(`<text x="${W / 2}" y="14" text-anchor="middle" font-size="11" font-weight="bold" fill="#333">${escXml(options.title)}</text>`);
 	}
 
-	// Draw staff lines
+	// Staff lines
 	for (const si of staves) {
 		const cy = staffY(si);
 		const lineSpacing = STAFF_LINE_SPAN / (STAFF_LINE_COUNT - 1);
@@ -324,88 +524,57 @@ function generateTopologySvg(
 			const y = topLine + l * lineSpacing;
 			lines.push(`<line x1="${MARGIN_LEFT}" y1="${y}" x2="${W - MARGIN_RIGHT}" y2="${y}" stroke="#ddd" stroke-width="0.5"/>`);
 		}
-		// Staff label
 		lines.push(`<text x="${MARGIN_LEFT - 4}" y="${cy + 4}" text-anchor="end" font-size="9" fill="#999">S${si}</text>`);
 	}
 
-	// Beat grid (dashed vertical lines)
+	// Beat grid
 	const beatTicks = 1920 / timeSig.denominator;
 	for (let beat = 0; beat <= timeSig.numerator; beat++) {
 		const tick = beat * beatTicks;
 		if (tick > duration) break;
 		const x = tickToX(tick);
-		lines.push(`<line x1="${x}" y1="${MARGIN_TOP}" x2="${x}" y2="${MARGIN_TOP + plotHeight}" stroke="#eee" stroke-width="${beat === 0 || tick === duration ? 1 : 0.5}" stroke-dasharray="${beat === 0 || tick === duration ? "" : "3,3"}"/>`);
+		const isEdge = beat === 0 || tick === duration;
+		lines.push(`<line x1="${x}" y1="${MARGIN_TOP}" x2="${x}" y2="${MARGIN_TOP + plotHeight}" stroke="#eee" stroke-width="${isEdge ? 1 : 0.5}" stroke-dasharray="${isEdge ? "" : "3,3"}"/>`);
 		if (beat < timeSig.numerator) {
 			lines.push(`<text x="${x + 2}" y="${MARGIN_TOP - 3}" font-size="7" fill="#bbb">${beat + 1}</text>`);
 		}
 	}
 
-	// Beam connections: draw lines between Open→Continue→Close events within each voice
+	// Build event position lookup
+	const eventPos = new Map<number, { x: number; y: number }>();
+	for (const e of events) {
+		eventPos.set(e.id, { x: tickToX(e.tick), y: staffY(e.staff) + ysToOffset(e.ys) });
+	}
+
+	// Voice connections: quadratic Bezier curves with arrows between adjacent events
 	for (let vi = 0; vi < voices.length; vi++) {
-		const voiceEvents = events
-			.filter(e => e.voiceIndex === vi && e.beam)
-			.sort((a, b) => a.tick - b.tick);
+		const voiceEventIds = voices[vi];
+		if (voiceEventIds.length < 2) continue;
 
 		const color = voiceColor(vi);
-		let beamGroup: MergedEvent[] = [];
 
-		for (const e of voiceEvents) {
-			if (e.beam === "Open") {
-				beamGroup = [e];
-			} else if (e.beam === "Continue" || e.beam === "Close") {
-				beamGroup.push(e);
-				if (e.beam === "Close") {
-					// Draw beam group
-					for (let j = 0; j < beamGroup.length - 1; j++) {
-						const a = beamGroup[j];
-						const b = beamGroup[j + 1];
-						const ax = tickToX(a.tick);
-						const ay = staffY(a.staff) + ysToOffset(a.ys);
-						const bx = tickToX(b.tick);
-						const by = staffY(b.staff) + ysToOffset(b.ys);
-						lines.push(`<line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="${color}" stroke-width="2" opacity="0.5"/>`);
-					}
-					beamGroup = [];
-				}
-			}
-		}
-		// Broken beam (no Close) — still draw what we have
-		if (beamGroup.length > 1) {
-			for (let j = 0; j < beamGroup.length - 1; j++) {
-				const a = beamGroup[j];
-				const b = beamGroup[j + 1];
-				const ax = tickToX(a.tick);
-				const ay = staffY(a.staff) + ysToOffset(a.ys);
-				const bx = tickToX(b.tick);
-				const by = staffY(b.staff) + ysToOffset(b.ys);
-				lines.push(`<line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="${color}" stroke-width="2" opacity="0.3" stroke-dasharray="3,2"/>`);
-			}
+		// Sort events in this voice by tick
+		const sorted = voiceEventIds
+			.map(id => events.find(e => e.id === id))
+			.filter((e): e is MergedEvent => !!e)
+			.sort((a, b) => a.tick - b.tick || a.index - b.index);
+
+		for (let j = 0; j < sorted.length - 1; j++) {
+			const a = sorted[j];
+			const b = sorted[j + 1];
+			const ap = eventPos.get(a.id)!;
+			const bp = eventPos.get(b.id)!;
+
+			const { path: d } = bezierPath(ap.x, ap.y, bp.x, bp.y);
+			lines.push(`<path d="${d}" fill="none" stroke="${color}" stroke-width="1.5" opacity="0.45" marker-end="url(#ah${vi})"/>`);
 		}
 	}
 
-	// Draw events
+	// Draw events (notes/rests)
 	for (const e of events) {
-		const x = tickToX(e.tick);
-		const y = staffY(e.staff) + ysToOffset(e.ys);
+		const pos = eventPos.get(e.id)!;
 		const color = e.voiceIndex >= 0 ? voiceColor(e.voiceIndex) : UNVOICED_COLOR;
-		const isRest = e.rest !== null && e.rest !== undefined;
-		const isGrace = e.grace !== null && e.grace !== undefined && e.grace !== false;
-		const r = isGrace ? 3 : 5;
-		const opacity = isGrace ? 0.6 : 1;
-
-		if (isRest) {
-			lines.push(`<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${color}" stroke-width="1.5" opacity="${opacity}"/>`);
-		} else {
-			lines.push(`<circle cx="${x}" cy="${y}" r="${r}" fill="${color}" opacity="${opacity}"/>`);
-		}
-
-		// Event ID label
-		lines.push(`<text x="${x}" y="${y - r - 2}" text-anchor="middle" font-size="7" fill="#666">${e.id}</text>`);
-
-		// Mark fixed events with a small dot
-		if (e.fixApplied) {
-			lines.push(`<circle cx="${x + r + 2}" cy="${y - r}" r="1.5" fill="#e44"/>`);
-		}
+		drawNote(pos.x, pos.y, e, color, lines);
 	}
 
 	// Legend
@@ -435,45 +604,31 @@ const PICKER_SEQS = [32, 64, 128, 512];
 async function loadSpartito(spartitoPath: string, skipRegulate = false): Promise<starry.Spartito> {
 	const content = fs.readFileSync(spartitoPath).toString();
 	const spartito = starry.recoverJSON<starry.Spartito>(content, starry);
-
 	if (!skipRegulate && !spartito.measures.some(m => m.regulated)) {
 		console.log("Regulating spartito...");
 		const loadings: Promise<void>[] = [];
 		const pickers = PICKER_SEQS.map(n_seq => new OnnxBeadPicker(BEAD_PICKER_URL.replace(/seq\d+/, `seq${n_seq}`), {
-			n_seq,
-			usePivotX: true,
+			n_seq, usePivotX: true,
 			onLoad: (promise: Promise<void>) => loadings.push(promise.catch(err => console.warn("error to load BeadPicker:", err))),
 			sessionOptions: ORT_SESSION_OPTIONS,
 		}));
 		await Promise.all(loadings);
-
 		const dummyScore = {
 			assemble() {},
 			makeSpartito() { return spartito; },
 			assignBackgroundForMeasure(_: starry.SpartitoMeasure) {},
 		} as starry.Score;
-
-		await regulateWithBeadSolver(dummyScore, {
-			pickers,
-			solutionStore: remoteSolutionStore,
-		});
+		await regulateWithBeadSolver(dummyScore, { pickers, solutionStore: remoteSolutionStore });
 	}
-
 	return spartito;
 }
 
-async function generateMeasureBackgroundBase64(
-	spartito: starry.Spartito,
-	measureIndex: number,
-	tmpDir: string,
-): Promise<string | null> {
+async function generateMeasureBackgroundBase64(spartito: starry.Spartito, measureIndex: number, tmpDir: string): Promise<string | null> {
 	const measure = spartito.measures[measureIndex];
 	if (!measure) return null;
-
 	const destPath = path.join(tmpDir, `m${measureIndex}.webp`);
 	const result = await compositeMeasureImage(measure, destPath);
 	if (!result) return null;
-
 	const buf = fs.readFileSync(destPath);
 	return `data:image/webp;base64,${buf.toString("base64")}`;
 }
@@ -492,11 +647,9 @@ interface LogBatch {
 function scanLogDir(logDir: string): { batches: LogBatch[]; summaries: Map<string, string>; backend: "claude" | "codex" } {
 	const files = fs.readdirSync(logDir);
 	const backend = detectBackend(files);
-
 	const batches: LogBatch[] = [];
 	const summaries = new Map<string, string>();
 
-	// Match r{R}_b{B}_prompt.txt
 	const promptPattern = /^r(\d+)_b(\d+)_prompt\.txt$/;
 	for (const f of files) {
 		const m = f.match(promptPattern);
@@ -506,7 +659,6 @@ function scanLogDir(logDir: string): { batches: LogBatch[]; summaries: Map<strin
 		const ext = backend === "codex" ? ".jsonl" : ".json";
 		const outputFile = `r${round}_b${batch}${ext}`;
 		if (!files.includes(outputFile)) continue;
-
 		const stderrFile = `r${round}_b${batch}.stderr.txt`;
 		batches.push({
 			round, batch,
@@ -516,17 +668,93 @@ function scanLogDir(logDir: string): { batches: LogBatch[]; summaries: Map<strin
 		});
 	}
 
-	// Summaries: r{R}_summary_m{N}.txt
 	const summaryPattern = /^r(\d+)_summary_m(.+)\.txt$/;
 	for (const f of files) {
 		const m = f.match(summaryPattern);
 		if (!m) continue;
-		const indices = m[2]; // e.g. "28" or "28_30"
-		summaries.set(indices, fs.readFileSync(path.join(logDir, f), "utf-8"));
+		summaries.set(m[2], fs.readFileSync(path.join(logDir, f), "utf-8"));
 	}
 
 	batches.sort((a, b) => a.round - b.round || a.batch - b.batch);
 	return { batches, summaries, backend };
+}
+
+
+// ── Conversation rendering ───────────────────────────────────────────────────
+
+function renderConversation(turns: ConversationTurn[]): string {
+	const out: string[] = [];
+	out.push(`<details><summary>Agent Conversation (${turns.length} turns)</summary>`);
+	out.push("");
+
+	for (const turn of turns) {
+		if (turn.role === "system") {
+			out.push(`> **[System]** ${escMd(turn.text || "")}`);
+			out.push("");
+			continue;
+		}
+
+		if (turn.role === "assistant") {
+			if (turn.thinking) {
+				out.push(`<details><summary><b>[Thinking]</b></summary>`);
+				out.push("");
+				out.push(escMd(turn.thinking));
+				out.push("");
+				out.push(`</details>`);
+				out.push("");
+			}
+			if (turn.text) {
+				out.push(`**[Assistant]**`);
+				out.push("");
+				out.push(turn.text);
+				out.push("");
+			}
+			if (turn.toolUse) {
+				const argStr = JSON.stringify(turn.toolUse.input, null, 2);
+				out.push(`**[Tool Call]** \`${turn.toolUse.name}\``);
+				out.push("```json");
+				out.push(argStr.length > 500 ? argStr.substring(0, 500) + "\n..." : argStr);
+				out.push("```");
+				out.push("");
+			}
+			continue;
+		}
+
+		if (turn.role === "user") {
+			if (turn.toolResult) {
+				out.push(`**[Tool Result]**`);
+				out.push("```");
+				out.push(turn.toolResult);
+				out.push("```");
+				out.push("");
+			}
+			if (turn.imageData) {
+				out.push(`![tool-result-image](data:image/webp;base64,${turn.imageData.substring(0, 60)}...)`);
+				out.push("");
+			}
+			continue;
+		}
+
+		if (turn.role === "result") {
+			const parts: string[] = [];
+			if (turn.durationMs) parts.push(`${(turn.durationMs / 1000).toFixed(1)}s`);
+			if (turn.costUSD) parts.push(`$${turn.costUSD.toFixed(4)}`);
+			if (turn.usage?.input_tokens) parts.push(`${turn.usage.input_tokens} in`);
+			if (turn.usage?.output_tokens) parts.push(`${turn.usage.output_tokens} out`);
+			if (parts.length) {
+				out.push(`> **[Result]** ${parts.join(", ")}`);
+				out.push("");
+			}
+		}
+	}
+
+	out.push(`</details>`);
+	out.push("");
+	return out.join("\n");
+}
+
+function escMd(s: string): string {
+	return s.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 
@@ -544,7 +772,6 @@ function renderMarkdownReport(report: LogReport): string {
 		lines.push(`## Measure ${mr.measureIndex}`);
 		lines.push("");
 
-		// Background image
 		if (mr.backgroundBase64) {
 			lines.push(`![background](${mr.backgroundBase64})`);
 			lines.push("");
@@ -559,7 +786,6 @@ function renderMarkdownReport(report: LogReport): string {
 		lines.push(`### Before (status=${pm.status ?? "?"})`);
 		lines.push(`| ${evalFields} |`);
 		lines.push("");
-
 		const { events: beforeEvents, voices: beforeVoices } = mergeEventsWithFix(pm);
 		lines.push(generateTopologySvg(beforeEvents, beforeVoices, pm.duration, pm.timeSignature, { title: `Before — M${mr.measureIndex}` }));
 		lines.push("");
@@ -570,7 +796,6 @@ function renderMarkdownReport(report: LogReport): string {
 			lines.push(`### Fix (status=${mr.fix.status} ${statusLabel})`);
 			lines.push(`Voices: ${JSON.stringify(mr.fix.voices)}`);
 			lines.push("");
-
 			const { events: afterEvents, voices: afterVoices } = mergeEventsWithFix(pm, mr.fix);
 			lines.push(generateTopologySvg(afterEvents, afterVoices, mr.fix.duration || pm.duration, pm.timeSignature, { title: `After — M${mr.measureIndex}` }));
 			lines.push("");
@@ -580,7 +805,7 @@ function renderMarkdownReport(report: LogReport): string {
 			lines.push("");
 		}
 
-		// Evaluate fix attempts (Codex)
+		// Evaluate fix attempts
 		if (mr.evaluateFixCalls.length > 0) {
 			lines.push("### Evaluate Fix Attempts");
 			lines.push("");
@@ -592,8 +817,6 @@ function renderMarkdownReport(report: LogReport): string {
 				lines.push(call.resultText);
 				lines.push("```");
 				lines.push("");
-
-				// Try to render SVG for this attempt
 				if (call.arguments) {
 					try {
 						const attemptFix: Fix = {
@@ -603,12 +826,19 @@ function renderMarkdownReport(report: LogReport): string {
 							duration: call.arguments.duration || pm.duration,
 							status: 0,
 						};
-						const { events: attemptEvents, voices: attemptVoices } = mergeEventsWithFix(pm, attemptFix);
-						lines.push(generateTopologySvg(attemptEvents, attemptVoices, attemptFix.duration, pm.timeSignature, { title: `Attempt ${i + 1}`, width: 500 }));
+						const { events: ae, voices: av } = mergeEventsWithFix(pm, attemptFix);
+						lines.push(generateTopologySvg(ae, av, attemptFix.duration, pm.timeSignature, { title: `Attempt ${i + 1}`, width: 500 }));
 						lines.push("");
 					} catch {}
 				}
 			}
+		}
+
+		// Conversation
+		if (mr.conversation.length > 0) {
+			lines.push("### Conversation");
+			lines.push("");
+			lines.push(renderConversation(mr.conversation));
 		}
 
 		// Summary
@@ -649,7 +879,6 @@ async function main() {
 		process.exit(1);
 	}
 
-	// Extract score ID and timestamp from dir name
 	const dirName = path.basename(logDir);
 	const dirMatch = dirName.match(/^(\d{4}-\d{2}-\d{2}T[\d-]+)_(.+)$/);
 	const timestamp = dirMatch ? dirMatch[1] : dirName;
@@ -659,7 +888,6 @@ async function main() {
 	const { batches, summaries, backend } = scanLogDir(logDir);
 	console.log(`Backend: ${backend}, ${batches.length} batches found`);
 
-	// Load spartito for background images
 	let spartito: starry.Spartito | null = null;
 	if (argv.spartito && !argv["no-images"]) {
 		try {
@@ -671,46 +899,39 @@ async function main() {
 		}
 	}
 
-	// Temp dir for background images
 	const tmpDir = fs.mkdtempSync(path.join(require("os").tmpdir(), "viz-"));
-
-	// Process batches
 	const measureReports = new Map<number, MeasureReport>();
 
 	for (const batch of batches) {
 		console.log(`Processing r${batch.round}_b${batch.batch}...`);
 
-		// Parse prompt
 		const promptText = fs.readFileSync(batch.promptFile, "utf-8");
 		const promptMeasures = parsePromptFile(promptText);
 
-		// Parse output
 		const outputRaw = fs.readFileSync(batch.outputFile, "utf-8");
 		let fixes: Fix[] = [];
 		let evaluateFixCalls: EvaluateFixCall[] = [];
+		let conversation: ConversationTurn[] = [];
 
 		if (backend === "codex") {
 			const result = parseCodexJsonlFull(outputRaw);
 			fixes = result.fixes;
 			evaluateFixCalls = result.evaluateFixCalls;
+			conversation = result.conversation;
 		} else {
 			const result = parseClaudeOutput(outputRaw);
 			fixes = result.fixes;
+			evaluateFixCalls = result.evaluateFixCalls;
+			conversation = result.conversation;
 		}
 
-		// Match fixes to prompt measures
 		for (const pm of promptMeasures) {
 			const mi = pm.measureIndex;
 			const fix = fixes.find(f => f.measureIndex === mi);
-
-			// Filter evaluate_fix calls for this measure
 			const mCalls = evaluateFixCalls.filter(c => c.arguments?.measureIndex === mi);
-
-			// Find summary
 			const summaryKey = [...summaries.keys()].find(k => k.split("_").includes(String(mi)));
 			const summaryText = summaryKey ? summaries.get(summaryKey) : undefined;
 
-			// Background image
 			let backgroundBase64: string | undefined;
 			if (spartito && !argv["no-images"]) {
 				try {
@@ -718,14 +939,13 @@ async function main() {
 				} catch {}
 			}
 
-			// Merge if already exists from previous round
 			const existing = measureReports.get(mi);
 			if (existing) {
-				// Later round overrides
 				if (fix) existing.fix = fix;
 				if (mCalls.length) existing.evaluateFixCalls.push(...mCalls);
 				if (summaryText) existing.summaryText = summaryText;
 				if (backgroundBase64) existing.backgroundBase64 = backgroundBase64;
+				if (conversation.length) existing.conversation.push(...conversation);
 			} else {
 				measureReports.set(mi, {
 					measureIndex: mi,
@@ -734,29 +954,23 @@ async function main() {
 					evaluateFixCalls: mCalls,
 					summaryText,
 					backgroundBase64,
+					conversation,
 				});
 			}
 		}
 	}
 
-	// Build report
 	const report: LogReport = {
-		scoreId,
-		backend,
-		timestamp,
-		logDir,
+		scoreId, backend, timestamp, logDir,
 		measures: [...measureReports.values()].sort((a, b) => a.measureIndex - b.measureIndex),
 	};
 
 	const markdown = renderMarkdownReport(report);
-
-	// Output
 	const outputPath = argv.o || path.join(logDir, "report.md");
 	fs.writeFileSync(outputPath, markdown);
 	console.log(`Report written to: ${outputPath}`);
 	console.log(`${report.measures.length} measures visualized`);
 
-	// Cleanup tmp
 	try { fs.rmSync(tmpDir, { recursive: true }); } catch {}
 }
 
