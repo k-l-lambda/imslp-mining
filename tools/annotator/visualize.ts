@@ -723,8 +723,9 @@ function generateTopologySvg(
 
 		for (const e of voiceEvents) {
 			const eDuration = 1920 * Math.pow(2, -(e.division ?? 2)) * (2 - Math.pow(2, -(e.dots ?? 0)));
-			const ex = svgLeft + tickToPx(e.tick);
-			const ew = Math.max(2, tickToPx(eDuration));
+			const BAR_INSET = 1;
+			const ex = svgLeft + tickToPx(e.tick) + BAR_INSET;
+			const ew = Math.max(2, tickToPx(eDuration) - BAR_INSET * 2);
 			lines.push(`<rect x="${ex}" y="${bandY + 1}" width="${ew}" height="${BAR_BAND_HEIGHT - 2}" fill="${color}" opacity="0.7" rx="1"/>`);
 			// Event ID inside block
 			if (ew > 12) {
@@ -868,9 +869,7 @@ function renderConversation(turns: ConversationTurn[]): string {
 			if (turn.thinking) {
 				out.push(`<details><summary><i>💭 Thinking</i></summary>`);
 				out.push("");
-				out.push("```");
 				out.push(turn.thinking);
-				out.push("```");
 				out.push("");
 				out.push(`</details>`);
 				out.push("");
@@ -1144,10 +1143,10 @@ async function main() {
 	}
 
 	const tmpDir = fs.mkdtempSync(path.join(require("os").tmpdir(), "viz-"));
-	const measureReports = new Map<number, MeasureReport>();
 
 	for (const batch of batches) {
-		console.log(`Processing r${batch.round}_b${batch.batch}...`);
+		const batchName = `r${batch.round}_b${batch.batch}`;
+		console.log(`Processing ${batchName}...`);
 
 		const promptText = fs.readFileSync(batch.promptFile, "utf-8");
 		const promptMeasures = parsePromptFile(promptText);
@@ -1168,6 +1167,8 @@ async function main() {
 			evaluateFixCalls = result.evaluateFixCalls;
 			conversation = result.conversation;
 		}
+
+		const measureReports = new Map<number, MeasureReport>();
 
 		for (const pm of promptMeasures) {
 			const mi = pm.measureIndex;
@@ -1193,43 +1194,31 @@ async function main() {
 				measureRight = spartito.measures[mi].position.right;
 			}
 
-			const existing = measureReports.get(mi);
-			if (existing) {
-				if (fix) existing.fix = fix;
-				if (mCalls.length) existing.evaluateFixCalls.push(...mCalls);
-				if (summaryText) existing.summaryText = summaryText;
-				if (backgroundBase64) existing.backgroundBase64 = backgroundBase64;
-				if (staffYs) existing.staffYs = staffYs;
-				if (measureLeft !== undefined) existing.measureLeft = measureLeft;
-				if (measureRight !== undefined) existing.measureRight = measureRight;
-				if (conversation.length) existing.conversation.push(...conversation);
-			} else {
-				measureReports.set(mi, {
-					measureIndex: mi,
-					prompt: pm,
-					fix,
-					evaluateFixCalls: mCalls,
-					summaryText,
-					backgroundBase64,
-					staffYs,
-					measureLeft,
-					measureRight,
-					conversation,
-				});
-			}
+			measureReports.set(mi, {
+				measureIndex: mi,
+				prompt: pm,
+				fix,
+				evaluateFixCalls: mCalls,
+				summaryText,
+				backgroundBase64,
+				staffYs,
+				measureLeft,
+				measureRight,
+				conversation,
+			});
 		}
+
+		const report: LogReport = {
+			scoreId, backend, timestamp, logDir,
+			measures: [...measureReports.values()].sort((a, b) => a.measureIndex - b.measureIndex),
+		};
+
+		const markdown = renderMarkdownReport(report);
+		const outputPath = argv.o || path.join(logDir, `${batchName}.md`);
+		fs.writeFileSync(outputPath, markdown);
+		console.log(`Report written to: ${outputPath}`);
+		console.log(`${report.measures.length} measures visualized`);
 	}
-
-	const report: LogReport = {
-		scoreId, backend, timestamp, logDir,
-		measures: [...measureReports.values()].sort((a, b) => a.measureIndex - b.measureIndex),
-	};
-
-	const markdown = renderMarkdownReport(report);
-	const outputPath = argv.o || path.join(logDir, "report.md");
-	fs.writeFileSync(outputPath, markdown);
-	console.log(`Report written to: ${outputPath}`);
-	console.log(`${report.measures.length} measures visualized`);
 
 	try { fs.rmSync(tmpDir, { recursive: true }); } catch {}
 }

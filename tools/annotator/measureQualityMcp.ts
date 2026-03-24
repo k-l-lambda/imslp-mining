@@ -75,7 +75,7 @@ const solutionEventSchema = z.object({
 	timeWarp: timeWarpSchema,
 	division: z.coerce.number().optional(),
 	dots: z.coerce.number().optional(),
-	beam: z.preprocess(v => v === null || v === "null" ? undefined : v, z.string().optional()),
+	beam: z.preprocess(v => (v === null || v === "null" || v === "None" || v === "none" || v === "") ? undefined : v, z.string().optional()),
 	grace: z.union([z.boolean(), z.string().transform(s => s === "true")]).optional(),
 });
 
