@@ -406,12 +406,11 @@ function arrowTip(tx: number, ty: number, sx: number, sy: number, scale: number 
 	}).join(" ");
 }
 
-/** Draw a note symbol: head + stem + flags.
- *  Returns stem tip position for beam rendering, or null. */
+/** Draw a note symbol: head + stem + flags/beam stubs. */
 function drawNote(
 	x: number, y: number, e: MergedEvent, color: string, lines: string[],
 	opts: { lineSpacing: number; isBeamed: boolean },
-): { stemTipX: number; stemTipY: number } | null {
+): void {
 	const { lineSpacing, isBeamed } = opts;
 	const isRest = e.rest !== null && e.rest !== undefined;
 	const isGrace = e.grace !== null && e.grace !== undefined && e.grace !== false;
@@ -422,7 +421,6 @@ function drawNote(
 	const division = e.division ?? 2;
 	const stemDir = e.stemDirection === "d" ? 1 : -1; // 1=down, -1=up
 	const stemLen = 3.5 * lineSpacing * scale; // 3.5 staff spaces
-	let stemTip: { stemTipX: number; stemTipY: number } | null = null;
 
 	if (isRest) {
 		// Rest: filled rectangle
@@ -447,12 +445,24 @@ function drawNote(
 			const stemX = stemDir === -1 ? x + headRx - 0.5 : x - headRx + 0.5;
 			const stemEndY = y + stemDir * stemLen;
 			lines.push(`<line x1="${stemX}" y1="${y}" x2="${stemX}" y2="${stemEndY}" stroke="${color}" stroke-width="1.2" opacity="${opacity}"/>`);
-			stemTip = { stemTipX: stemX, stemTipY: stemEndY };
 
-			// Flags: only for non-beamed notes with division >= 3
-			if (!isBeamed && !e.beam && division >= 3) {
+			if (isBeamed && e.beam && division >= 3) {
+				// Beam stubs: short local lines at stem tip (like ScoreCluster ├ ┼ ┤)
+				const beamCount = division - 2;
+				const stubLen = 8 * scale;
+				const flagYDir = -stemDir; // stack toward note head
+				for (let bl = 0; bl < beamCount; bl++) {
+					const by = stemEndY + flagYDir * bl * 3.5;
+					let x1 = stemX, x2 = stemX;
+					if (e.beam === "Open")    { x2 = stemX + stubLen; }       // ├ extends right
+					else if (e.beam === "Close") { x1 = stemX - stubLen; }    // ┤ extends left
+					else /* Continue */        { x1 = stemX - stubLen / 2; x2 = stemX + stubLen / 2; } // ┼ both
+					lines.push(`<line x1="${x1}" y1="${by}" x2="${x2}" y2="${by}" stroke="${color}" stroke-width="2.5" opacity="0.8"/>`);
+				}
+			} else if (!isBeamed && !e.beam && division >= 3) {
+				// Flags: curved tails for non-beamed notes
 				const flagCount = division - 2;
-				const flagYDir = -stemDir; // flags droop toward note head
+				const flagYDir = -stemDir;
 				for (let f = 0; f < flagCount; f++) {
 					const fy = stemEndY + flagYDir * f * 4;
 					lines.push(`<path d="M ${stemX} ${fy} Q ${stemX + 8 * scale} ${fy + flagYDir * 8 * scale} ${stemX + 3 * scale} ${fy + flagYDir * 12 * scale}" fill="none" stroke="${color}" stroke-width="1.2" opacity="${opacity}"/>`);
@@ -477,7 +487,6 @@ function drawNote(
 		lines.push(`<text x="${x + headRx + 2}" y="${labelY + 1}" font-size="7" fill="#e44" font-weight="bold">×</text>`);
 	}
 
-	return stemTip;
 }
 
 function generateTopologySvg(
@@ -564,34 +573,11 @@ function generateTopologySvg(
 		eventPos.set(e.id, { x: tickToX(e.tick), y: staffY(e.staff) + primaryYs * lineSpacing });
 	}
 
-	// Detect beam groups (Open → Continue* → Close) per voice
-	interface BeamGroup { eventIds: number[]; voiceIndex: number; }
-	const beamGroups: BeamGroup[] = [];
+	// Collect beamed event IDs (any event with beam !== null)
 	const beamedIds = new Set<number>();
-	for (let vi = 0; vi < voices.length; vi++) {
-		const sorted = voices[vi]
-			.map(id => events.find(e => e.id === id))
-			.filter((e): e is MergedEvent => !!e)
-			.sort((a, b) => a.tick - b.tick || a.index - b.index);
-		let group: number[] = [];
-		for (const e of sorted) {
-			if (e.beam === "Open") {
-				if (group.length >= 2) beamGroups.push({ eventIds: group, voiceIndex: vi });
-				group = [e.id];
-			} else if (e.beam === "Continue" || e.beam === "Close") {
-				group.push(e.id);
-				if (e.beam === "Close") {
-					if (group.length >= 2) beamGroups.push({ eventIds: group, voiceIndex: vi });
-					group = [];
-				}
-			} else {
-				if (group.length >= 2) beamGroups.push({ eventIds: group, voiceIndex: vi });
-				group = [];
-			}
-		}
-		if (group.length >= 2) beamGroups.push({ eventIds: group, voiceIndex: vi });
+	for (const e of events) {
+		if (e.beam) beamedIds.add(e.id);
 	}
-	for (const bg of beamGroups) for (const id of bg.eventIds) beamedIds.add(id);
 
 	// Voice connections: quadratic Bezier curves with arrows between adjacent events
 	for (let vi = 0; vi < voices.length; vi++) {
@@ -617,32 +603,11 @@ function generateTopologySvg(
 		}
 	}
 
-	// Draw events (notes/rests) and collect stem tips for beam rendering
-	const stemTips = new Map<number, { x: number; y: number }>();
+	// Draw events (notes/rests)
 	for (const e of events) {
 		const pos = eventPos.get(e.id)!;
 		const color = e.voiceIndex >= 0 ? voiceColor(e.voiceIndex) : UNVOICED_COLOR;
-		const tip = drawNote(pos.x, pos.y, e, color, lines, { lineSpacing, isBeamed: beamedIds.has(e.id) });
-		if (tip) stemTips.set(e.id, { x: tip.stemTipX, y: tip.stemTipY });
-	}
-
-	// Draw beam lines (thick connecting lines between stem tips)
-	for (const bg of beamGroups) {
-		const color = voiceColor(bg.voiceIndex);
-		const tips = bg.eventIds.map(id => stemTips.get(id)).filter((t): t is { x: number; y: number } => !!t);
-		if (tips.length < 2) continue;
-		for (let i = 0; i < tips.length - 1; i++) {
-			const a = tips[i];
-			const b = tips[i + 1];
-			const aEvent = events.find(e => e.id === bg.eventIds[i])!;
-			const bEvent = events.find(e => e.id === bg.eventIds[i + 1])!;
-			const beamCount = Math.max(1, Math.min(aEvent.division ?? 2, bEvent.division ?? 2) - 2);
-			const stemDir = aEvent.stemDirection === "d" ? 1 : -1;
-			for (let bl = 0; bl < beamCount; bl++) {
-				const offset = -stemDir * bl * 4; // stack toward note heads
-				lines.push(`<line x1="${a.x}" y1="${a.y + offset}" x2="${b.x}" y2="${b.y + offset}" stroke="${color}" stroke-width="3" opacity="0.7"/>`);
-			}
-		}
+		drawNote(pos.x, pos.y, e, color, lines, { lineSpacing, isBeamed: beamedIds.has(e.id) });
 	}
 
 	// Legend
