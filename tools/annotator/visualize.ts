@@ -774,7 +774,7 @@ function renderConversation(turns: ConversationTurn[]): string {
 				out.push("");
 			}
 			if (turn.imageData) {
-				out.push(`![tool-result-image](data:image/webp;base64,${turn.imageData.substring(0, 60)}...)`);
+				out.push(`![tool-result-image](data:image/webp;base64,${turn.imageData})`);
 				out.push("");
 			}
 			continue;
