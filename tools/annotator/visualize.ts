@@ -77,6 +77,8 @@ interface MeasureReport {
 	summaryText?: string;
 	conversation: ConversationTurn[];
 	staffYs?: number[];
+	measureLeft?: number;
+	measureRight?: number;
 }
 
 interface LogReport {
@@ -374,6 +376,8 @@ interface SvgOptions {
 	width?: number;
 	title?: string;
 	staffYs?: number[]; // absolute staff center Y coords from measure.position.staffYs
+	measureLeft?: number; // measure position.left in original units
+	measureRight?: number; // measure position.right in original units
 }
 
 const CURVE_ANGLE = -Math.PI / 3;
@@ -533,21 +537,19 @@ function generateTopologySvg(
 
 	const staffY = (staffIdx: number): number => staffCenterPx.get(staffIdx) ?? 0;
 
-	// Map original event.x to SVG x coordinate
+	// Map original x coordinates to SVG x
+	// Use measure position bounds (left/right) if available, else event bounds
 	const allXs = events.map(e => e.x).filter(x => Number.isFinite(x));
-	const minEventX = Math.min(...allXs);
-	const maxEventX = Math.max(...allXs);
-	const xRange = maxEventX - minEventX;
-	const barlineLeft = MARGIN_LEFT;
-	const barlineRight = MARGIN_LEFT + plotWidth;
-	const noteAreaLeft = barlineLeft + 12;
-	const noteAreaRight = barlineRight - 12;
-	const noteAreaWidth = noteAreaRight - noteAreaLeft;
+	const measureLeft = options.measureLeft ?? Math.min(...allXs);
+	const measureRight = options.measureRight ?? Math.max(...allXs);
+	const xRange = measureRight - measureLeft;
+	const svgLeft = MARGIN_LEFT;
+	const svgRight = MARGIN_LEFT + plotWidth;
 	const eventXToSvg = (ex: number): number => {
-		if (xRange <= 0) return noteAreaLeft + noteAreaWidth / 2;
-		return noteAreaLeft + ((ex - minEventX) / xRange) * noteAreaWidth;
+		if (xRange <= 0) return svgLeft + plotWidth / 2;
+		return svgLeft + ((ex - measureLeft) / xRange) * plotWidth;
 	};
-	const eosX = barlineRight;
+	const eosX = svgRight; // EOS at right edge
 
 	// Compute Y bounds from staff lines and event positions
 	let minY = Infinity, maxY = -Infinity;
@@ -609,14 +611,13 @@ function generateTopologySvg(
 		const topLine = cy - STAFF_LINE_SPAN / 2;
 		for (let l = 0; l < STAFF_LINE_COUNT; l++) {
 			const y = topLine + l * lineSpacing;
-			lines.push(`<line x1="${barlineLeft}" y1="${y}" x2="${barlineRight}" y2="${y}" stroke="#ddd" stroke-width="0.5"/>`);
+			lines.push(`<line x1="${svgLeft}" y1="${y}" x2="${svgRight}" y2="${y}" stroke="#ddd" stroke-width="0.5"/>`);
 		}
-		lines.push(`<text x="${barlineLeft - 4}" y="${cy + 4}" text-anchor="end" font-size="9" fill="#999">S${si}</text>`);
+		lines.push(`<text x="${svgLeft - 4}" y="${cy + 4}" text-anchor="end" font-size="9" fill="#999">S${si}</text>`);
 	}
 
 	// Start barline
-	lines.push(`<line x1="${barlineLeft}" y1="${staffTop}" x2="${barlineLeft}" y2="${staffBottom}" stroke="#ccc" stroke-width="1"/>`);
-	lines.push(`<text x="${barlineLeft}" y="${staffBottom + 12}" text-anchor="middle" font-size="7" fill="#999">0</text>`);
+	lines.push(`<line x1="${svgLeft}" y1="${staffTop}" x2="${svgLeft}" y2="${staffBottom}" stroke="#ccc" stroke-width="1"/>`);
 
 	// Collect beamed event IDs (any event with beam !== null)
 	const beamedIds = new Set<number>();
@@ -674,8 +675,6 @@ function generateTopologySvg(
 		const triW = 4;
 		lines.push(`<path d="M${eosX} ${cy + STAFF_LINE_SPAN / 2} L${eosX - triW} ${cy + STAFF_LINE_SPAN / 2 + triH} L${eosX + triW} ${cy + STAFF_LINE_SPAN / 2 + triH} Z" fill="#999"/>`);
 	}
-	// EOS tick label
-	lines.push(`<text x="${eosX}" y="${staffBottom + 12}" text-anchor="middle" font-size="7" fill="#999">${duration}</text>`);
 
 	// Legend
 	const legendY = totalH - LEGEND_HEIGHT + 10;
@@ -902,7 +901,7 @@ function renderMarkdownReport(report: LogReport): string {
 
 		// Pre-generate SVGs
 		const { events: beforeEvents, voices: beforeVoices } = mergeEventsWithFix(pm);
-		const svgOpts = { staffYs: mr.staffYs };
+		const svgOpts = { staffYs: mr.staffYs, measureLeft: mr.measureLeft, measureRight: mr.measureRight };
 		const beforeSvg = generateTopologySvg(beforeEvents, beforeVoices, pm.duration, pm.timeSignature, { ...svgOpts, title: `Before — M${mr.measureIndex}` });
 		let afterSvg: string | undefined;
 		let afterHeader = "";
@@ -1127,6 +1126,12 @@ async function main() {
 			if (spartito?.measures[mi]?.position?.staffYs) {
 				staffYs = spartito.measures[mi].position.staffYs;
 			}
+			let measureLeft: number | undefined;
+			let measureRight: number | undefined;
+			if (spartito?.measures[mi]?.position) {
+				measureLeft = spartito.measures[mi].position.left;
+				measureRight = spartito.measures[mi].position.right;
+			}
 
 			const existing = measureReports.get(mi);
 			if (existing) {
@@ -1135,6 +1140,8 @@ async function main() {
 				if (summaryText) existing.summaryText = summaryText;
 				if (backgroundBase64) existing.backgroundBase64 = backgroundBase64;
 				if (staffYs) existing.staffYs = staffYs;
+				if (measureLeft !== undefined) existing.measureLeft = measureLeft;
+				if (measureRight !== undefined) existing.measureRight = measureRight;
 				if (conversation.length) existing.conversation.push(...conversation);
 			} else {
 				measureReports.set(mi, {
@@ -1145,6 +1152,8 @@ async function main() {
 					summaryText,
 					backgroundBase64,
 					staffYs,
+					measureLeft,
+					measureRight,
 					conversation,
 				});
 			}
