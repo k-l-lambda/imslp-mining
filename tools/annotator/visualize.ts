@@ -64,6 +64,7 @@ interface ConversationTurn {
 	usage?: any;
 	costUSD?: number;
 	durationMs?: number;
+	attachedSvg?: string; // SVG to render inline after this turn
 }
 
 interface MeasureReport {
@@ -172,9 +173,15 @@ function parseClaudeOutput(raw: string): { conversation: ConversationTurn[]; fix
 
 		for (const item of items) {
 			if (item.type === "system") {
+				const parts: string[] = [];
+				if (item.model) parts.push(`Model: ${item.model}`);
+				if (item.cwd) parts.push(`CWD: ${item.cwd}`);
+				if (item.session_id) parts.push(`Session: ${item.session_id}`);
+				if (item.tools?.length) parts.push(`Tools: ${item.tools.join(", ")}`);
+				if (item.mcp_servers?.length) parts.push(`MCP: ${item.mcp_servers.map((s: any) => `${s.name}(${s.status})`).join(", ")}`);
 				conversation.push({
 					role: "system",
-					text: `Session: ${item.session_id || "?"}, Model: ${item.model || "?"}, CWD: ${item.cwd || "?"}`,
+					text: parts.join("\n"),
 					model: item.model,
 				});
 				continue;
@@ -399,29 +406,40 @@ function arrowTip(tx: number, ty: number, sx: number, sy: number, scale: number 
 	}).join(" ");
 }
 
-/** Draw a note symbol: head + stem + flags */
-function drawNote(x: number, y: number, e: MergedEvent, color: string, lines: string[]): void {
+/** Draw a note symbol: head + stem + flags.
+ *  Returns stem tip position for beam rendering, or null. */
+function drawNote(
+	x: number, y: number, e: MergedEvent, color: string, lines: string[],
+	opts: { lineSpacing: number; isBeamed: boolean },
+): { stemTipX: number; stemTipY: number } | null {
+	const { lineSpacing, isBeamed } = opts;
 	const isRest = e.rest !== null && e.rest !== undefined;
 	const isGrace = e.grace !== null && e.grace !== undefined && e.grace !== false;
 	const scale = isGrace ? 0.6 : 1;
 	const opacity = isGrace ? 0.6 : 1;
 	const headRx = 5 * scale;
 	const headRy = 3.5 * scale;
-	const stemLen = 22 * scale;
 	const division = e.division ?? 2;
 	const stemDir = e.stemDirection === "d" ? 1 : -1; // 1=down, -1=up
+	const stemLen = 3.5 * lineSpacing * scale; // 3.5 staff spaces
+	let stemTip: { stemTipX: number; stemTipY: number } | null = null;
 
 	if (isRest) {
 		// Rest: filled rectangle
 		const s = 4 * scale;
 		lines.push(`<rect x="${x - s}" y="${y - s}" width="${s * 2}" height="${s * 2}" fill="${color}" opacity="${opacity}" rx="1"/>`);
 	} else {
-		// Note head: ellipse, filled (div>=2) or hollow (div<=1)
-		const filled = division >= 2;
-		if (filled) {
-			lines.push(`<ellipse cx="${x}" cy="${y}" rx="${headRx}" ry="${headRy}" fill="${color}" opacity="${opacity}" transform="rotate(-15 ${x} ${y})"/>`);
-		} else {
-			lines.push(`<ellipse cx="${x}" cy="${y}" rx="${headRx}" ry="${headRy}" fill="white" stroke="${color}" stroke-width="1.5" opacity="${opacity}" transform="rotate(-15 ${x} ${y})"/>`);
+		// Note heads — draw one per ys value (chord support)
+		const ys = e.ys?.length ? e.ys : [0];
+		const primaryYs = ys[0];
+		for (const yVal of ys) {
+			const headY = y + (yVal - primaryYs) * lineSpacing;
+			const filled = division >= 2;
+			if (filled) {
+				lines.push(`<ellipse cx="${x}" cy="${headY}" rx="${headRx}" ry="${headRy}" fill="${color}" opacity="${opacity}" transform="rotate(-15 ${x} ${headY})"/>`);
+			} else {
+				lines.push(`<ellipse cx="${x}" cy="${headY}" rx="${headRx}" ry="${headRy}" fill="white" stroke="${color}" stroke-width="1.5" opacity="${opacity}" transform="rotate(-15 ${x} ${headY})"/>`);
+			}
 		}
 
 		// Stem (division >= 1, i.e. half note or shorter)
@@ -429,23 +447,22 @@ function drawNote(x: number, y: number, e: MergedEvent, color: string, lines: st
 			const stemX = stemDir === -1 ? x + headRx - 0.5 : x - headRx + 0.5;
 			const stemEndY = y + stemDir * stemLen;
 			lines.push(`<line x1="${stemX}" y1="${y}" x2="${stemX}" y2="${stemEndY}" stroke="${color}" stroke-width="1.2" opacity="${opacity}"/>`);
+			stemTip = { stemTipX: stemX, stemTipY: stemEndY };
 
-			// Flags (division >= 3: eighth=1 flag, 16th=2 flags, 32nd=3 flags)
-			const flagCount = Math.max(0, division - 2);
-			if (flagCount > 0 && !e.beam) {
-				const flagDir = stemDir;
+			// Flags: only for non-beamed notes with division >= 3
+			if (!isBeamed && !e.beam && division >= 3) {
+				const flagCount = division - 2;
+				const flagYDir = -stemDir; // flags droop toward note head
 				for (let f = 0; f < flagCount; f++) {
-					const fy = stemEndY - flagDir * f * 4;
-					const fcx = stemX + 8 * scale;
-					const fcy = fy + flagDir * 8 * scale;
-					lines.push(`<path d="M ${stemX} ${fy} Q ${fcx} ${fcy} ${stemX + 3 * scale} ${fy + flagDir * 12 * scale}" fill="none" stroke="${color}" stroke-width="1.2" opacity="${opacity}"/>`);
+					const fy = stemEndY + flagYDir * f * 4;
+					lines.push(`<path d="M ${stemX} ${fy} Q ${stemX + 8 * scale} ${fy + flagYDir * 8 * scale} ${stemX + 3 * scale} ${fy + flagYDir * 12 * scale}" fill="none" stroke="${color}" stroke-width="1.2" opacity="${opacity}"/>`);
 				}
 			}
 		}
 	}
 
-	// Dots
-	if (e.dots) {
+	// Dots — only when actually > 0
+	if (e.dots > 0) {
 		for (let d = 0; d < e.dots; d++) {
 			lines.push(`<circle cx="${x + headRx + 3 + d * 4}" cy="${y - 1}" r="1.2" fill="${color}" opacity="${opacity}"/>`);
 		}
@@ -455,10 +472,12 @@ function drawNote(x: number, y: number, e: MergedEvent, color: string, lines: st
 	const labelY = isRest ? y - 4 * scale - 5 : y - headRy - 4;
 	lines.push(`<text x="${x}" y="${labelY}" text-anchor="middle" font-size="7" fill="#666">${e.id}</text>`);
 
-	// Fix marker
+	// Fix marker — use × to avoid confusion with augmentation dots
 	if (e.fixApplied) {
-		lines.push(`<circle cx="${x + headRx + 2}" cy="${labelY}" r="1.5" fill="#e44"/>`);
+		lines.push(`<text x="${x + headRx + 2}" y="${labelY + 1}" font-size="7" fill="#e44" font-weight="bold">×</text>`);
 	}
+
+	return stemTip;
 }
 
 function generateTopologySvg(
@@ -485,6 +504,8 @@ function generateTopologySvg(
 	const plotHeight = staffCount * STAFF_HEIGHT + (staffCount - 1) * STAFF_GAP;
 	const totalH = MARGIN_TOP + plotHeight + 20 + LEGEND_HEIGHT;
 
+	const lineSpacing = STAFF_LINE_SPAN / (STAFF_LINE_COUNT - 1); // 10px per staff unit
+
 	const staffY = (staffIdx: number): number => {
 		const i = staves.indexOf(staffIdx);
 		if (i < 0) return MARGIN_TOP + STAFF_HEIGHT / 2;
@@ -493,10 +514,6 @@ function generateTopologySvg(
 	const tickToX = (tick: number): number => {
 		if (duration <= 0) return MARGIN_LEFT;
 		return MARGIN_LEFT + (tick / duration) * plotWidth;
-	};
-	const ysToOffset = (ys: number[]): number => {
-		if (!ys?.length) return 0;
-		return (ys.reduce((a, b) => a + b, 0) / ys.length) * 3;
 	};
 
 	const lines: string[] = [];
@@ -540,11 +557,41 @@ function generateTopologySvg(
 		}
 	}
 
-	// Build event position lookup
+	// Build event position lookup (ys[0] in staff-line units → pixel offset)
 	const eventPos = new Map<number, { x: number; y: number }>();
 	for (const e of events) {
-		eventPos.set(e.id, { x: tickToX(e.tick), y: staffY(e.staff) + ysToOffset(e.ys) });
+		const primaryYs = e.ys?.length ? e.ys[0] : 0;
+		eventPos.set(e.id, { x: tickToX(e.tick), y: staffY(e.staff) + primaryYs * lineSpacing });
 	}
+
+	// Detect beam groups (Open → Continue* → Close) per voice
+	interface BeamGroup { eventIds: number[]; voiceIndex: number; }
+	const beamGroups: BeamGroup[] = [];
+	const beamedIds = new Set<number>();
+	for (let vi = 0; vi < voices.length; vi++) {
+		const sorted = voices[vi]
+			.map(id => events.find(e => e.id === id))
+			.filter((e): e is MergedEvent => !!e)
+			.sort((a, b) => a.tick - b.tick || a.index - b.index);
+		let group: number[] = [];
+		for (const e of sorted) {
+			if (e.beam === "Open") {
+				if (group.length >= 2) beamGroups.push({ eventIds: group, voiceIndex: vi });
+				group = [e.id];
+			} else if (e.beam === "Continue" || e.beam === "Close") {
+				group.push(e.id);
+				if (e.beam === "Close") {
+					if (group.length >= 2) beamGroups.push({ eventIds: group, voiceIndex: vi });
+					group = [];
+				}
+			} else {
+				if (group.length >= 2) beamGroups.push({ eventIds: group, voiceIndex: vi });
+				group = [];
+			}
+		}
+		if (group.length >= 2) beamGroups.push({ eventIds: group, voiceIndex: vi });
+	}
+	for (const bg of beamGroups) for (const id of bg.eventIds) beamedIds.add(id);
 
 	// Voice connections: quadratic Bezier curves with arrows between adjacent events
 	for (let vi = 0; vi < voices.length; vi++) {
@@ -570,11 +617,32 @@ function generateTopologySvg(
 		}
 	}
 
-	// Draw events (notes/rests)
+	// Draw events (notes/rests) and collect stem tips for beam rendering
+	const stemTips = new Map<number, { x: number; y: number }>();
 	for (const e of events) {
 		const pos = eventPos.get(e.id)!;
 		const color = e.voiceIndex >= 0 ? voiceColor(e.voiceIndex) : UNVOICED_COLOR;
-		drawNote(pos.x, pos.y, e, color, lines);
+		const tip = drawNote(pos.x, pos.y, e, color, lines, { lineSpacing, isBeamed: beamedIds.has(e.id) });
+		if (tip) stemTips.set(e.id, { x: tip.stemTipX, y: tip.stemTipY });
+	}
+
+	// Draw beam lines (thick connecting lines between stem tips)
+	for (const bg of beamGroups) {
+		const color = voiceColor(bg.voiceIndex);
+		const tips = bg.eventIds.map(id => stemTips.get(id)).filter((t): t is { x: number; y: number } => !!t);
+		if (tips.length < 2) continue;
+		for (let i = 0; i < tips.length - 1; i++) {
+			const a = tips[i];
+			const b = tips[i + 1];
+			const aEvent = events.find(e => e.id === bg.eventIds[i])!;
+			const bEvent = events.find(e => e.id === bg.eventIds[i + 1])!;
+			const beamCount = Math.max(1, Math.min(aEvent.division ?? 2, bEvent.division ?? 2) - 2);
+			const stemDir = aEvent.stemDirection === "d" ? 1 : -1;
+			for (let bl = 0; bl < beamCount; bl++) {
+				const offset = -stemDir * bl * 4; // stack toward note heads
+				lines.push(`<line x1="${a.x}" y1="${a.y + offset}" x2="${b.x}" y2="${b.y + offset}" stroke="${color}" stroke-width="3" opacity="0.7"/>`);
+			}
+		}
 	}
 
 	// Legend
@@ -684,21 +752,25 @@ function scanLogDir(logDir: string): { batches: LogBatch[]; summaries: Map<strin
 
 function renderConversation(turns: ConversationTurn[]): string {
 	const out: string[] = [];
-	out.push(`<details><summary>Agent Conversation (${turns.length} turns)</summary>`);
-	out.push("");
 
 	for (const turn of turns) {
 		if (turn.role === "system") {
-			out.push(`> **[System]** ${escMd(turn.text || "")}`);
+			out.push(`**[System Init]**`);
+			out.push("");
+			for (const line of (turn.text || "").split("\n")) {
+				out.push(`> ${escMd(line)}`);
+			}
 			out.push("");
 			continue;
 		}
 
 		if (turn.role === "assistant") {
 			if (turn.thinking) {
-				out.push(`<details><summary><b>[Thinking]</b></summary>`);
+				out.push(`<details><summary><i>💭 Thinking</i></summary>`);
 				out.push("");
-				out.push(escMd(turn.thinking));
+				out.push("```");
+				out.push(turn.thinking);
+				out.push("```");
 				out.push("");
 				out.push(`</details>`);
 				out.push("");
@@ -712,9 +784,13 @@ function renderConversation(turns: ConversationTurn[]): string {
 			if (turn.toolUse) {
 				const argStr = JSON.stringify(turn.toolUse.input, null, 2);
 				out.push(`**[Tool Call]** \`${turn.toolUse.name}\``);
+				out.push(`<details><summary>Arguments</summary>`);
+				out.push("");
 				out.push("```json");
-				out.push(argStr.length > 500 ? argStr.substring(0, 500) + "\n..." : argStr);
+				out.push(argStr.length > 2000 ? argStr.substring(0, 2000) + "\n..." : argStr);
 				out.push("```");
+				out.push("");
+				out.push(`</details>`);
 				out.push("");
 			}
 			continue;
@@ -724,8 +800,12 @@ function renderConversation(turns: ConversationTurn[]): string {
 			if (turn.toolResult) {
 				out.push(`**[Tool Result]**`);
 				out.push("```");
-				out.push(turn.toolResult);
+				out.push(turn.toolResult.length > 2000 ? turn.toolResult.substring(0, 2000) + "\n..." : turn.toolResult);
 				out.push("```");
+				out.push("");
+			}
+			if (turn.attachedSvg) {
+				out.push(turn.attachedSvg);
 				out.push("");
 			}
 			if (turn.imageData) {
@@ -748,8 +828,6 @@ function renderConversation(turns: ConversationTurn[]): string {
 		}
 	}
 
-	out.push(`</details>`);
-	out.push("");
 	return out.join("\n");
 }
 
@@ -805,31 +883,29 @@ function renderMarkdownReport(report: LogReport): string {
 			lines.push("");
 		}
 
-		// Evaluate fix attempts
+		// Annotate evaluate_fix tool results with inline SVGs
 		if (mr.evaluateFixCalls.length > 0) {
-			lines.push("### Evaluate Fix Attempts");
-			lines.push("");
-			for (let i = 0; i < mr.evaluateFixCalls.length; i++) {
-				const call = mr.evaluateFixCalls[i];
-				lines.push(`**Attempt ${i + 1}**`);
-				lines.push("");
-				lines.push("```");
-				lines.push(call.resultText);
-				lines.push("```");
-				lines.push("");
-				if (call.arguments) {
-					try {
-						const attemptFix: Fix = {
-							measureIndex: pm.measureIndex,
-							events: call.arguments.events || [],
-							voices: call.arguments.voices || pm.voices,
-							duration: call.arguments.duration || pm.duration,
-							status: 0,
-						};
-						const { events: ae, voices: av } = mergeEventsWithFix(pm, attemptFix);
-						lines.push(generateTopologySvg(ae, av, attemptFix.duration, pm.timeSignature, { title: `Attempt ${i + 1}`, width: 500 }));
-						lines.push("");
-					} catch {}
+			let efIdx = 0;
+			for (let i = 0; i < mr.conversation.length; i++) {
+				const turn = mr.conversation[i];
+				if (turn.role === "user" && turn.toolResult && efIdx < mr.evaluateFixCalls.length) {
+					const prev = i > 0 ? mr.conversation[i - 1] : null;
+					if (prev?.toolUse?.name?.includes("evaluate_fix")) {
+						const call = mr.evaluateFixCalls[efIdx++];
+						if (call.arguments) {
+							try {
+								const attemptFix: Fix = {
+									measureIndex: pm.measureIndex,
+									events: call.arguments.events || [],
+									voices: call.arguments.voices || pm.voices,
+									duration: call.arguments.duration || pm.duration,
+									status: 0,
+								};
+								const { events: ae, voices: av } = mergeEventsWithFix(pm, attemptFix);
+								turn.attachedSvg = generateTopologySvg(ae, av, attemptFix.duration, pm.timeSignature, { title: `Attempt ${efIdx}`, width: 500 });
+							} catch {}
+						}
+					}
 				}
 			}
 		}
