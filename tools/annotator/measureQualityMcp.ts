@@ -139,10 +139,14 @@ server.tool(
 		if (evalBefore && evalAfter) {
 			lines.push("");
 			const twistDelta = evalAfter.tickTwist - evalBefore.tickTwist;
-			const improved = evalAfter.fine && !evalBefore.fine ? "FIXED!" :
+			const fineImproved = evalAfter.fine && !evalBefore.fine;
+			const improved = fineImproved ? "FIXED!" :
+				evalAfter.error && !evalBefore.error ? "WORSE (new error)" :
 				twistDelta < 0 ? "improved" :
-				twistDelta > 0 ? "WORSE" : "unchanged";
+				twistDelta > 0 ? "WORSE (tickTwist)" : "unchanged";
 			lines.push(`Δ tickTwist=${twistDelta >= 0 ? "+" : ""}${twistDelta.toFixed(3)} → ${improved}`);
+			if (fineImproved && twistDelta > 0)
+				lines.push(`  Note: tickTwist increased but fine=true achieved, fix WILL be accepted`);
 		}
 
 		return { content: [{ type: "text" as const, text: lines.join("\n") }] };
