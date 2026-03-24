@@ -927,15 +927,11 @@ function renderMarkdownReport(report: LogReport): string {
 		const nonSystemTurns = mr.conversation.filter(t => t.role !== "system");
 		for (const si of systemInits) {
 			const text = si.text || "";
-			const siLines = text.split("\n");
-			const preview = escMd(siLines[0]);
-			lines.push(`<details><summary><b>[System Init]</b> ${preview}…</summary>`);
+			lines.push(`**[System Init]**`);
 			lines.push("");
-			for (const line of siLines) {
+			for (const line of text.split("\n")) {
 				lines.push(`> ${escMd(line)}`);
 			}
-			lines.push("");
-			lines.push(`</details>`);
 			lines.push("");
 		}
 
