@@ -6,6 +6,7 @@ import { hideBin } from "yargs/helpers";
 
 import { parseFixes, parseCodexJsonl, compositeMeasureImage, starry, regulateWithBeadSolver, BEAD_PICKER_URL, ORT_SESSION_OPTIONS } from "./common";
 import type { Fix, FixEvent } from "./common";
+import { SYSTEM_PROMPT } from "./prompt";
 import OnnxBeadPicker from "../libs/onnxBeadPicker";
 import remoteSolutionStore from "../libs/remoteSolutionStore";
 
@@ -720,10 +721,24 @@ function renderConversation(turns: ConversationTurn[]): string {
 
 	for (const turn of turns) {
 		if (turn.role === "system") {
-			out.push(`**[System Init]**`);
-			out.push("");
-			for (const line of (turn.text || "").split("\n")) {
-				out.push(`> ${escMd(line)}`);
+			const text = turn.text || "";
+			const lines = text.split("\n");
+			if (lines.length > 10) {
+				// Long system prompt — collapsible
+				const preview = escMd(lines[0]);
+				out.push(`<details><summary><b>[System]</b> ${preview}…</summary>`);
+				out.push("");
+				out.push("```");
+				out.push(text);
+				out.push("```");
+				out.push("");
+				out.push(`</details>`);
+			} else {
+				out.push(`**[System Init]**`);
+				out.push("");
+				for (const line of lines) {
+					out.push(`> ${escMd(line)}`);
+				}
 			}
 			out.push("");
 			continue;
@@ -875,11 +890,15 @@ function renderMarkdownReport(report: LogReport): string {
 			}
 		}
 
-		// Conversation
+		// Conversation (prepend system prompt from prompt.ts)
 		if (mr.conversation.length > 0) {
+			const fullConv: ConversationTurn[] = [
+				{ role: "system", text: SYSTEM_PROMPT },
+				...mr.conversation,
+			];
 			lines.push("### Conversation");
 			lines.push("");
-			lines.push(renderConversation(mr.conversation));
+			lines.push(renderConversation(fullConv));
 		}
 
 		// Summary
