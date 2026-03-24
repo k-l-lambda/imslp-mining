@@ -782,6 +782,18 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 		}
 		console.log(`\n--- Post-Annotation Stats ---`);
 		console.log(`Solved: ${solved}, Issue: ${issue}, Fatal: ${fatal}`);
+
+		// Auto-visualize logs
+		try {
+			const vizScript = path.join(__dirname, "visualize.ts");
+			if (fs.existsSync(vizScript)) {
+				const { execSync } = await import("child_process");
+				const cmd = `npx tsx ${vizScript} ${runLogDir} --spartito ${inputPath}`;
+				execSync(cmd, { stdio: "inherit", cwd: path.join(__dirname, "..", "..") });
+			}
+		} catch (err: any) {
+			console.warn(`Visualization failed: ${err.message}`);
+		}
 	}
 	else if (issueMeasures.length === 0) {
 		console.log("\nNo issue measures found, skipping annotation.");

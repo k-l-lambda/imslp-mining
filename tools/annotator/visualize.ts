@@ -682,6 +682,14 @@ function generateTopologySvg(
 		const triW = 4;
 		lines.push(`<path d="M${eosX} ${cy + STAFF_LINE_SPAN / 2} L${eosX - triW} ${cy + STAFF_LINE_SPAN / 2 + triH} L${eosX + triW} ${cy + STAFF_LINE_SPAN / 2 + triH} Z" fill="#999"/>`);
 	}
+	// EOS tick label (below last staff's triangle)
+	{
+		const lastStaff = staves[staves.length - 1];
+		const cy = renderStaffY(lastStaff);
+		const triH = 8;
+		const tickLabelY = cy + STAFF_LINE_SPAN / 2 + triH + 10;
+		lines.push(`<text x="${eosX}" y="${tickLabelY}" text-anchor="middle" font-size="6" fill="#999">${duration}</text>`);
+	}
 
 	// ── Voice Duration Bar Chart ──
 	const barChartY0 = MARGIN_TOP + plotHeight + 20;
