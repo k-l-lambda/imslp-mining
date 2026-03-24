@@ -773,6 +773,10 @@ function renderConversation(turns: ConversationTurn[]): string {
 				out.push(`</details>`);
 				out.push("");
 			}
+			if (turn.attachedSvg) {
+				out.push(turn.attachedSvg);
+				out.push("");
+			}
 			continue;
 		}
 
@@ -830,41 +834,79 @@ function renderMarkdownReport(report: LogReport): string {
 		lines.push(`## Measure ${mr.measureIndex}`);
 		lines.push("");
 
-		if (mr.backgroundBase64) {
-			lines.push(`![background](${mr.backgroundBase64})`);
-			lines.push("");
-		}
-
 		const pm = mr.prompt;
 		const evalFields = pm.evaluation
 			? `fine=${pm.evaluation.fine}, error=${pm.evaluation.error}, tickTwist=${(pm.evaluation.tickTwist ?? 0).toFixed(3)}, beamBroken=${pm.evaluation.beamBroken}, qualityScore=${(pm.evaluation.qualityScore ?? 0).toFixed(3)}`
 			: `fine=${pm.fine}, error=${pm.error}, tickTwist=${(pm.tickTwist ?? 0).toFixed(3)}`;
 
-		// BEFORE
-		lines.push(`### Before (status=${pm.status ?? "?"})`);
-		lines.push(`| ${evalFields} |`);
-		lines.push("");
+		// Pre-generate SVGs
 		const { events: beforeEvents, voices: beforeVoices } = mergeEventsWithFix(pm);
-		lines.push(generateTopologySvg(beforeEvents, beforeVoices, pm.duration, pm.timeSignature, { title: `Before — M${mr.measureIndex}` }));
-		lines.push("");
-
-		// FIX (AFTER)
+		const beforeSvg = generateTopologySvg(beforeEvents, beforeVoices, pm.duration, pm.timeSignature, { title: `Before — M${mr.measureIndex}` });
+		let afterSvg: string | undefined;
+		let afterHeader = "";
 		if (mr.fix) {
 			const statusLabel = mr.fix.status === 0 ? "Solved" : mr.fix.status === -1 ? "Discard" : `Issue(${mr.fix.status})`;
-			lines.push(`### Fix (status=${mr.fix.status} ${statusLabel})`);
-			lines.push(`Voices: ${JSON.stringify(mr.fix.voices)}`);
-			lines.push("");
+			afterHeader = `**Fix (status=${mr.fix.status} ${statusLabel})** Voices: ${JSON.stringify(mr.fix.voices)}`;
 			const { events: afterEvents, voices: afterVoices } = mergeEventsWithFix(pm, mr.fix);
-			lines.push(generateTopologySvg(afterEvents, afterVoices, mr.fix.duration || pm.duration, pm.timeSignature, { title: `After — M${mr.measureIndex}` }));
-			lines.push("");
-		} else {
-			lines.push("### Fix");
-			lines.push("_No fix produced._");
-			lines.push("");
+			afterSvg = generateTopologySvg(afterEvents, afterVoices, mr.fix.duration || pm.duration, pm.timeSignature, { title: `After — M${mr.measureIndex}` });
 		}
 
-		// Annotate evaluate_fix tool results with inline SVGs
-		if (mr.evaluateFixCalls.length > 0) {
+		if (report.backend === "codex") {
+			// Codex: images passed at init → show background + Before/After upfront
+			if (mr.backgroundBase64) {
+				lines.push(`![background](${mr.backgroundBase64})`);
+				lines.push("");
+			}
+			lines.push(`### Before (status=${pm.status ?? "?"})`);
+			lines.push(`| ${evalFields} |`);
+			lines.push("");
+			lines.push(beforeSvg);
+			lines.push("");
+			if (afterSvg) {
+				lines.push(`### ${afterHeader}`);
+				lines.push("");
+				lines.push(afterSvg);
+				lines.push("");
+			}
+		}
+		// Claude: no upfront diagrams — Before/After SVGs are inlined in conversation
+
+		// Annotate conversation turns with inline SVGs
+		if (mr.conversation.length > 0) {
+			// Attach Before SVG after the first image tool result (Claude reads measure image)
+			// Attach After SVG after the last assistant text containing the fix JSON
+			if (report.backend === "claude") {
+				let beforeAttached = false;
+				let lastFixTextIdx = -1;
+				for (let i = 0; i < mr.conversation.length; i++) {
+					const turn = mr.conversation[i];
+					// Attach Before SVG + background after first image read result
+					if (!beforeAttached && turn.role === "user" && turn.imageData) {
+						turn.attachedSvg = `| ${evalFields} |\n\n` + beforeSvg;
+						beforeAttached = true;
+					}
+					// Track last assistant text that looks like it contains the fix JSON
+					if (turn.role === "assistant" && turn.text?.includes('"fixes"')) {
+						lastFixTextIdx = i;
+					}
+				}
+				// If no image read found, attach Before SVG after first tool result
+				if (!beforeAttached) {
+					for (let i = 0; i < mr.conversation.length; i++) {
+						if (mr.conversation[i].role === "user" && mr.conversation[i].toolResult) {
+							mr.conversation[i].attachedSvg = `| ${evalFields} |\n\n` + beforeSvg;
+							break;
+						}
+					}
+				}
+				// Attach After SVG after the last fix text
+				if (afterSvg && lastFixTextIdx >= 0) {
+					const turn = mr.conversation[lastFixTextIdx];
+					turn.attachedSvg = (turn.attachedSvg ? turn.attachedSvg + "\n\n" : "") + afterHeader + "\n\n" + afterSvg;
+				}
+			}
+
+			// Attach evaluate_fix attempt SVGs
 			let efIdx = 0;
 			for (let i = 0; i < mr.conversation.length; i++) {
 				const turn = mr.conversation[i];
@@ -882,7 +924,8 @@ function renderMarkdownReport(report: LogReport): string {
 									status: 0,
 								};
 								const { events: ae, voices: av } = mergeEventsWithFix(pm, attemptFix);
-								turn.attachedSvg = generateTopologySvg(ae, av, attemptFix.duration, pm.timeSignature, { title: `Attempt ${efIdx}`, width: 500 });
+								const svg = generateTopologySvg(ae, av, attemptFix.duration, pm.timeSignature, { title: `Attempt ${efIdx}`, width: 500 });
+								turn.attachedSvg = (turn.attachedSvg ? turn.attachedSvg + "\n\n" : "") + svg;
 							} catch {}
 						}
 					}
@@ -890,7 +933,7 @@ function renderMarkdownReport(report: LogReport): string {
 			}
 		}
 
-		// Conversation (prepend system prompt from prompt.ts)
+		// Render conversation (prepend system prompt from prompt.ts)
 		if (mr.conversation.length > 0) {
 			const fullConv: ConversationTurn[] = [
 				{ role: "system", text: SYSTEM_PROMPT },
