@@ -109,6 +109,7 @@ const runOneBatch = async (
 	logDir?: string,
 ): Promise<{ fixes: Fix[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasFixes: boolean }> => {
 	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-annotate-codex-"));
+	let mcpServerName = "";
 	try {
 		const { text: prompt, imagePaths } = await buildAnnotationPrompt(batch, tmpDir, { imageMode: "attached" });
 
@@ -121,7 +122,7 @@ const runOneBatch = async (
 		fs.writeFileSync(spartitoPath, JSON.stringify(spartito));
 
 		// Register MCP server with this batch's spartito path
-		const mcpServerName = registerMcpServer(spartitoPath);
+		mcpServerName = registerMcpServer(spartitoPath);
 
 		const env: Record<string, string> = {
 			...process.env as Record<string, string>,
@@ -190,7 +191,7 @@ const runOneBatch = async (
 		return { fixes: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false, hasFixes: false };
 	} finally {
 		// Clean up MCP server registration and temp dir
-		unregisterMcpServer(mcpServerName);
+		if (mcpServerName) unregisterMcpServer(mcpServerName);
 		fs.rmSync(tmpDir, { recursive: true, force: true });
 	}
 };
