@@ -239,8 +239,7 @@ export const compositeMeasureImage = async (
 	const cropRightUnit = pos.right + padUnits;
 
 	// Process each staff image: crop to measure range
-	const crops: { buffer: Buffer; width: number; height: number }[] = [];
-	const GAP = 4; // pixels gap between staves in composite
+	const crops: { buffer: Buffer; width: number; height: number; yUnit: number; ppuY: number }[] = [];
 
 	for (const bgImg of bgImgs) {
 		const source = resolveImageSource(bgImg.url);
@@ -268,21 +267,25 @@ export const compositeMeasureImage = async (
 			.extract({ left: leftPx, top: 0, width: w, height: meta.height })
 			.toBuffer();
 
-		crops.push({ buffer: cropped, width: w, height: meta.height });
+		const ppuY = meta.height / bgImg.position.height;
+		crops.push({ buffer: cropped, width: w, height: meta.height, yUnit: bgImg.position.y, ppuY });
 	}
 
 	if (crops.length === 0)
 		return null;
 
-	// Stack vertically with small gap
+	// Composite using y-offset from position data to handle overlapping staff images.
+	// Background images are fixed-height windows centered on each staff, often with
+	// significant overlap. Use their unit y-coordinates to place them correctly.
+	const minY = Math.min(...crops.map(c => c.yUnit));
+	const ppuY = crops[0].ppuY;
 	const totalWidth = Math.max(...crops.map(c => c.width));
-	const totalHeight = crops.reduce((sum, c) => sum + c.height, 0) + GAP * (crops.length - 1);
+	const totalHeight = Math.round(Math.max(...crops.map(c => (c.yUnit - minY) * ppuY + c.height)));
 
 	const compositeInputs: sharp.OverlayOptions[] = [];
-	let y = 0;
 	for (const crop of crops) {
-		compositeInputs.push({ input: crop.buffer, left: 0, top: y });
-		y += crop.height + GAP;
+		const top = Math.round((crop.yUnit - minY) * ppuY);
+		compositeInputs.push({ input: crop.buffer, left: 0, top });
 	}
 
 	await sharp({
