@@ -741,7 +741,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 				const summaryPrompt = [
 					`The following measures were successfully fixed (fine=true): ${fixedIndices.map(i => "m" + i).join(", ")}.`,
 					"Based on your annotation experience just now, please provide a brief summary:",
-					"1. Which principles in the system prompt were most helpful for your annotation work?",
+					"1. Which principle in the system prompt were most helpful for your annotation work?",
 					"2. What additional guidelines or tips would you suggest adding to the system prompt that are not currently covered?",
 					"3. What common patterns or pitfalls did you encounter during this annotation session?",
 					"Keep it concise and actionable.",
