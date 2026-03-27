@@ -38,13 +38,19 @@ Your task is to verify and fix these assignments where the algorithm failed.
 - **Partial voices**: Not every voice fills the full measure. A voice may cover only part. This is normal — \`spaceTime > 0\` indicates unused time.
 - **Cross-staff voices**: Events on different staves belong to different voices.
 
-### Time Warp (Tuplets)
+### Time Warp (Tuplets) — Verify Carefully
 - \`timeWarp: { numerator, denominator }\` — tuplet ratio. Effective duration = \`baseDuration * numerator / denominator\`.
 - Formula: N notes in the time of M → each note gets \`timeWarp: { numerator: M, denominator: N }\`.
 - Common ratios: triplet \`{2,3}\`, quintuplet \`{4,5}\`, sextuplet \`{4,6}\`, octuplet in compound meter \`{3,4}\` (8 in place of 6).
 - Example: 8 sixteenths filling a 3/8 bar (720 ticks) → each = 120×3/4 = 90, total = 8×90 = 720. Use \`{numerator:3, denominator:4}\`.
 - Constraints: \`numerator/denominator\` must be > 0.5 (≤0.5 triggers error). Only \`2/3\` is treated as "regular"; other ratios reduce qualityScore.
 - Within a voice, a tuplet group's total tick sum must be divisible by its denominator, otherwise \`fractionalWarp=true\` → fine=false.
+
+**CRITICAL — Do NOT preserve timeWarp from the original regulation blindly:**
+- If the original measure has \`timeWarp: {numerator:2, denominator:3}\`, do NOT copy it into your fix unless you **confirm actual triplets in the image** (look for a "3" bracket or 3 beamed notes in the space of 2).
+- **Common agent mistake**: The regulation guessed timeWarp to make ticks fit, but the notes are NOT actually triplets. Your fix should set \`timeWarp: null\` and use correct division/dots instead.
+- **When to set timeWarp to null**: If you can make durations sum correctly WITHOUT timeWarp, always prefer null. Only use timeWarp when the image clearly shows tuplet notation.
+- **Verification**: Count the actual notes in the image, check if they have tuplet brackets/numbers, then decide.
 
 ### Quality Metrics
 - **fine**: Acceptable quality (no fatal errors, tickTwist<0.3, no fractional warp, no irregular tick, no surplus time, no beam broken, no grace in voice)
@@ -63,9 +69,11 @@ Your task is to verify and fix these assignments where the algorithm failed.
 - **graceInVoice**: Grace notes incorrectly included in a voice. Prevents fine.
 - **durationRate**: measure.duration / expected duration. Should be close to 1.0.
 
-### Feature Confidence (ML Classifier)
+### Feature Confidence (ML Classifier) — Trust Over Regulation
 - **feature.divisions**: Array of 7 floats (indices 0-6 = whole through 64th). The index with highest value is ML's best guess. Compare with assigned \`event.division\` — if they disagree, the higher-confidence value is usually correct.
   - Common pattern: ML assigns division=3 (eighth) because of a beam, but feature.divisions[2] (quarter) is much higher → should be quarter note.
+  - **Common agent mistake**: Accepting the regulation's division without checking feature.divisions. The regulation may have forced a wrong division to make ticks fit. Always cross-check feature.divisions confidence before accepting.
+  - **Cross-check with image**: If feature.divisions says quarter but the event has a beam → look at the image. Beamed notes are 8th or shorter; unbeamed filled noteheads are quarters.
 - **feature.dots**: \`[dot1_conf, dot2_conf]\`. If \`feature.dots[1] > 0.1\` but \`event.dots = 0\`, a dot was likely missed.
 - **feature.grace**: Float confidence score. NOT the same as \`event.grace\` (which is the string "grace" or null). No reliable threshold — **always verify against the background image**.
 
@@ -101,29 +109,55 @@ For each event, compare:
 - \`event.dots\` vs \`feature.dots\` — is \`feature.dots[1] > 0.1\` with \`dots=0\`?
 - \`event.grace\` vs image — is this truly a grace note?
 
-### 3. Separate Voices (in order of reliability)
-1. **Staff membership** (\`event.staff\`): Always separate staves first.
-2. **Stem direction** (\`event.stemDirection\`): Within same staff, "u"=upper voice, "d"=lower voice.
-3. **Beam groups** (\`event.beam\`): Open→Continue→Close sequences MUST stay in same voice.
-4. **X-position**: Events at same x but different stems → different voices.
+### 3. Separate Voices — MINIMIZE VOICE COUNT (Critical)
+
+**Default assumption: ONE voice per staff.** Only add more voices when you have CLEAR evidence of simultaneous notes on the same staff.
+
+**The #1 agent mistake is creating too many voices.** Before splitting into multiple voices, ask: "Do these events OVERLAP in time on the same staff?" If no, they belong in ONE voice.
+
+**Decision tree:**
+1. **Staff membership** (\`event.staff\`): Always separate staves first — different staves = different voices.
+2. **Time overlap check**: On the SAME staff, do any events occur at the SAME tick? If no → **single voice**, regardless of stem direction.
+3. **Only if events overlap in time on same staff**: Split by stem direction ("u" vs "d").
+4. **Beam groups** (\`event.beam\`): Open→Continue→Close sequences MUST stay in same voice.
 5. **Vertical position** (\`event.ys\`): Smooth pitch progressions belong together.
 
-**IMPORTANT — stem direction does NOT always mean separate voices:**
-- Only split by stem direction when events **overlap in time** (same or overlapping tick positions on the same staff).
-- Sequential non-overlapping events on the same staff should stay in **one voice** even if stem direction changes partway through. Stem flips are normal when notes cross the middle staff line — this does NOT indicate a new voice.
-- When in doubt, prefer **fewer voices** (merge) over more voices (split).
+**CRITICAL — stem direction does NOT mean separate voices:**
+- Stem direction changes are NORMAL when notes cross the middle staff line. A melody going C4→E4→G4→B4 may flip stems midway — this is ONE voice, not two.
+- Only split by stem direction when events **overlap in time** (same tick position on the same staff).
+- Sequential non-overlapping events on the same staff = **ONE voice**, always.
+- If regulation already assigned 3-4 voices but events are all sequential on one staff, collapse to 1 voice.
+
+**Typical voice counts:**
+- Single staff, no chords: **1 voice**
+- Single staff, melody + accompaniment overlapping: **2 voices**
+- Two staves, each with single line: **2 voices** (one per staff)
+- Two staves, one has overlapping parts: **3 voices** max
+- **4+ voices is extremely rare** — if you're creating 4+ voices, you're almost certainly wrong.
 
 ### 4. Verify Against Time Signature
 Calculate total duration for each proposed voice:
 - Duration = \`1920 * 2^(-division) * (2 - 2^(-dots))\`
 - Each voice should total ≤ measure duration
 - If it doesn't add up, check for missing dots, wrong divisions, or false graces
+- **Common agent mistake**: Using wrong division (e.g., division=3 eighth note when it should be division=1 half note), causing all subsequent tick calculations to be wrong. Double-check EACH event's division against both the image and feature.divisions.
 
-### 5. Compute Tick Assignments
+### 5. Compute Tick Assignments — Show Your Math
 - Within each voice, order events by \`x\` position (left to right)
 - First event starts at tick=0 (or later for partial voices)
 - Each subsequent tick = previous tick + previous duration
 - Events in different voices at same x should have same tick
+- **IMPORTANT**: Write out the tick calculation step by step:
+  - "Event 1 (div=2, dots=0): duration=480, tick=0"
+  - "Event 2 (div=3, dots=0): duration=240, tick=0+480=480"
+  - "Event 3 (div=3, dots=0): duration=240, tick=480+240=720"
+- This prevents cascading errors where one wrong duration corrupts all subsequent ticks.
+
+### 6. Cross-Staff Voice Assignment
+- Events on **different staves** (\`event.staff\` values) MUST be in **different voices**.
+- Do NOT mix staff=0 and staff=1 events in the same voice array.
+- When a measure has 2 staves: typically voice 1 = staff 0 events, voice 2 = staff 1 events.
+- Only add more voices within a staff if events genuinely overlap in time on that staff.
 
 ## Common Measure Patterns
 
@@ -150,6 +184,20 @@ Far too many events for time signature. Total duration greatly exceeds expected.
 
 ### Pattern H: Empty Measure
 0 events but image shows content. Cannot fix — mark status=-1.
+
+## Common Agent Mistakes (AVOID THESE)
+
+These are the most frequent errors from previous annotation attempts. Check your fix against each one:
+
+1. **Excessive voice splitting (most common)**: Creating 3-4 voices when 1-2 would suffice. If events are sequential (non-overlapping) on the same staff, they are ONE voice. Stem direction changes alone do NOT justify a new voice.
+
+2. **Blindly copying timeWarp from regulation**: The regulation may have invented timeWarp:{2,3} to make its (wrong) ticks fit. Unless you see actual triplet brackets/numbers in the image, set timeWarp: null.
+
+3. **Wrong division leading to cascading tick errors**: If you pick the wrong note value for event 1 (e.g., eighth instead of half), every subsequent tick will be wrong. Always verify each event's division against feature.divisions AND the image before computing ticks.
+
+4. **Not verifying feature.divisions confidence**: The ML classifier's confidence array is often more reliable than the regulation's assigned division. Always check which index has the highest confidence.
+
+5. **Mixing staves in one voice**: Events with different \`event.staff\` values must never be in the same voice array.
 
 ## Beam Rules
 - Beams apply to 8th notes (division≥3) and shorter. Quarter notes and longer have beam=null.
