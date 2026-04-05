@@ -452,8 +452,8 @@ function drawNote(
 		// Stem (division >= 1, i.e. half note or shorter)
 		if (division >= 1) {
 			const sortedYs = [...ys].sort((a, b) => a - b);
-			// Stem origin: note closest to stem tip direction
-			const stemOriginYs = stemDir === 1 ? sortedYs[sortedYs.length - 1] : sortedYs[0];
+			// Stem origin: notehead farthest from tip (opposite end of chord)
+			const stemOriginYs = stemDir === 1 ? sortedYs[0] : sortedYs[sortedYs.length - 1];
 			const stemOriginY = y + (stemOriginYs - primaryYs) * lineSpacing;
 			const stemX = stemDir === -1 ? x + headRx - 0.5 : x - headRx + 0.5;
 			// Use tipY from data if available, otherwise fallback to default length
@@ -461,9 +461,10 @@ function drawNote(
 			if (e.tipY !== undefined && e.tipY !== null) {
 				stemEndY = y + (e.tipY - primaryYs) * lineSpacing;
 			} else {
-				const chordSpan = (sortedYs[sortedYs.length - 1] - sortedYs[0]) * lineSpacing;
-				const stemLen = Math.max(defaultStemLen, chordSpan + defaultStemLen);
-				stemEndY = stemOriginY + stemDir * stemLen;
+				// For tip calculation, use the notehead closest to tip direction
+				const tipSideYs = stemDir === 1 ? sortedYs[sortedYs.length - 1] : sortedYs[0];
+				const tipSideY = y + (tipSideYs - primaryYs) * lineSpacing;
+				stemEndY = tipSideY + stemDir * defaultStemLen;
 			}
 			lines.push(`<line x1="${stemX}" y1="${stemOriginY}" x2="${stemX}" y2="${stemEndY}" stroke="${color}" stroke-width="1.2" opacity="${opacity}"/>`);
 
@@ -595,10 +596,8 @@ function generateTopologySvg(
 				stemTip = staffY(e.staff) + e.tipY * lineSpacing;
 			} else {
 				const sortedYs = [...ys].sort((a, b) => a - b);
-				const stemOriginYs = dir === 1 ? sortedYs[sortedYs.length - 1] : sortedYs[0];
-				const chordSpan = (sortedYs[sortedYs.length - 1] - sortedYs[0]) * lineSpacing;
-				const stemLen = Math.max(defaultStemLen, chordSpan + defaultStemLen);
-				stemTip = staffY(e.staff) + stemOriginYs * lineSpacing + dir * stemLen;
+				const tipSideYs = dir === 1 ? sortedYs[sortedYs.length - 1] : sortedYs[0];
+				stemTip = staffY(e.staff) + tipSideYs * lineSpacing + dir * defaultStemLen;
 			}
 			minY = Math.min(minY, stemTip - 8);
 			maxY = Math.max(maxY, stemTip + 8);
