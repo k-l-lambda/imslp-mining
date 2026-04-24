@@ -1182,7 +1182,7 @@ async function main() {
 	console.log(`Backend: ${backend}, ${batches.length} batches found`);
 
 	let spartito: starry.Spartito | null = null;
-	if (argv.spartito && !argv["no-images"]) {
+	if (argv.spartito) {
 		try {
 			console.log(`Loading spartito: ${argv.spartito}`);
 			spartito = await loadSpartito(path.resolve(argv.spartito), true);
