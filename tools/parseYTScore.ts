@@ -16,12 +16,14 @@ import md5 from "spark-md5";
 
 const { starry, PyClients } = require("./libs/omr");
 const { constructSystem } = require("./libs/scoreSystem");
-const { shootStaffCanvas } = require("./libs/canvasUtilities");
+const { shootPageCanvas, shootStaffCanvas } = require("./libs/canvasUtilities");
 const { pyclients } = require("./libs/config");
 const pyClients = new PyClients({
 	...pyclients,
 	gauge: pyclients.gauge || "tcp://localhost:12023",
 	gaugeRenderer: pyclients.gaugeRenderer || "tcp://localhost:15656",
+	textLoc: pyclients.textLoc || "tcp://localhost:12026",
+	textOcr: pyclients.textOcr || "tcp://localhost:12027",
 }, {
 	info: (data) => console.log("PyClients info:", data),
 	error: (err) => console.log("PyClients error:", err),
@@ -237,15 +239,19 @@ const runVision = async (score: any, sampleDir: string): Promise<void> => {
 		const sourceBuffer = await fs.promises.readFile(page.source.url);
 		const pngBuffer = await sharp(sourceBuffer).toFormat("png").toBuffer();
 		const sourceImage = await skc.loadImage(pngBuffer);
+		const correctCanvas = await shootPageCanvas({ page, source: sourceImage });
 
-			const areas = page.layout.areas.filter(area => area.staves?.middleRhos?.length);
-			await Promise.all(page.systems.map(async (system, systemIndex) => {
-				const area = areas[systemIndex];
-				const canvas = new skc.Canvas(area.width, area.height);
-				const context = canvas.getContext("2d");
-				context.drawImage(sourceImage, area.x, area.y, area.width, area.height, 0, 0, canvas.width, canvas.height);
-				system.backgroundImage = canvas.toBufferSync("png") as any;
-			}));
+		const bufferForText = correctCanvas.toBufferSync("png");
+		const resultLoc = await pyClients.predictScoreImages("textLoc", [bufferForText]);
+		const location = resultLoc[0].filter(box => box.score > 0);
+		if (location.length > 0) {
+			const [resultOCR] = await pyClients.predictScoreImages("textOcr", {
+				buffers: [bufferForText],
+				location,
+			});
+			page.assignTexts(resultOCR.areas, resultOCR.imageSize);
+			page.assemble();
+		}
 
 		const staves = (await Promise.all(page.systems.map(async system => {
 			return Promise.all(system.staves.map(async (staff, staffIndex) => {
