@@ -117,6 +117,8 @@ const buildArea = (area: YTArea): LayoutArea => ({
 			height: area.height,
 		},
 	})),
+	bracketsAppearance: area.bracketsAppearance,
+	staffMask: area.staffMask,
 } as LayoutArea);
 
 const extractFrames = async (sampleDir: string, meta: YTMeta): Promise<string[]> => {
@@ -195,9 +197,10 @@ const initScore = async (sampleDir: string, meta: YTMeta, imagePaths: string[]):
 				y: area.y / frame.interval - sourceCenter.y + page.height / 2,
 			};
 			const system = constructSystem({ page, area, position });
-			const sourceArea = frame.areas[systemIndex];
+			const sourceArea = frame.areas.filter(area => area.staff_detection?.middleRhos?.length)[systemIndex];
 			system.bracketsAppearance = sourceArea.bracketsAppearance;
-			system.staffMaskChanged = sourceArea.staffMask;
+			if (Number.isFinite(sourceArea.staffMask))
+				system.staffMaskChanged = sourceArea.staffMask;
 			page.systems.push(system);
 		});
 
@@ -235,18 +238,14 @@ const runVision = async (score: any, sampleDir: string): Promise<void> => {
 		const pngBuffer = await sharp(sourceBuffer).toFormat("png").toBuffer();
 		const sourceImage = await skc.loadImage(pngBuffer);
 
-		await Promise.all(page.systems.map(async (system) => {
-			const sourceRect = {
-				x: -system.imagePosition.x * page.source.interval,
-				y: system.imagePosition.y * page.source.interval,
-				width: system.imagePosition.width * page.source.interval,
-				height: system.imagePosition.height * page.source.interval,
-			};
-			const canvas = new skc.Canvas(sourceRect.width, sourceRect.height);
-			const context = canvas.getContext("2d");
-			context.drawImage(sourceImage, sourceRect.x, sourceRect.y, sourceRect.width, sourceRect.height, 0, 0, canvas.width, canvas.height);
-			system.backgroundImage = canvas.toBufferSync("png") as any;
-		}));
+			const areas = page.layout.areas.filter(area => area.staves?.middleRhos?.length);
+			await Promise.all(page.systems.map(async (system, systemIndex) => {
+				const area = areas[systemIndex];
+				const canvas = new skc.Canvas(area.width, area.height);
+				const context = canvas.getContext("2d");
+				context.drawImage(sourceImage, area.x, area.y, area.width, area.height, 0, 0, canvas.width, canvas.height);
+				system.backgroundImage = canvas.toBufferSync("png") as any;
+			}));
 
 		const staves = (await Promise.all(page.systems.map(async system => {
 			return Promise.all(system.staves.map(async (staff, staffIndex) => {
