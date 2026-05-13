@@ -33,6 +33,7 @@ type LayoutArea = any;
 
 type YTMeta = {
 	video_id: string;
+	video_title?: string;
 	staffLayout?: string;
 	staff_n?: number;
 	layout: {
@@ -176,6 +177,7 @@ const initScore = async (sampleDir: string, meta: YTMeta, imagePaths: string[]):
 		console.log(`Skipping ${skippedPages} frame(s) without layout areas.`);
 
 	const pages = frames.map(({ frame, imagePath }) => {
+		const sourceAreas = frame.areas.filter(area => area.staff_detection?.middleRhos?.length);
 		const page = new starry.Page({
 			source: {
 				url: imagePath,
@@ -184,12 +186,12 @@ const initScore = async (sampleDir: string, meta: YTMeta, imagePaths: string[]):
 				interval: frame.interval,
 				needGauge: true,
 			},
-			layout: { areas: frame.areas.map(buildArea) },
+			layout: { areas: sourceAreas.map(buildArea) },
 			width: pageSize.width / unitSize,
 			height: pageSize.height / unitSize,
 		});
 
-		(page.layout.areas.filter(area => area.staves?.middleRhos?.length) as LayoutArea[]).forEach((area, systemIndex) => {
+		(page.layout.areas as LayoutArea[]).forEach((area, systemIndex) => {
 			const sourceCenter = {
 				x: frame.sourceSize.width / 2 / frame.interval,
 				y: frame.sourceSize.height / 2 / frame.interval,
@@ -199,7 +201,7 @@ const initScore = async (sampleDir: string, meta: YTMeta, imagePaths: string[]):
 				y: area.y / frame.interval - sourceCenter.y + page.height / 2,
 			};
 			const system = constructSystem({ page, area, position });
-			const sourceArea = frame.areas.filter(area => area.staff_detection?.middleRhos?.length)[systemIndex];
+			const sourceArea = sourceAreas[systemIndex];
 			system.bracketsAppearance = sourceArea.bracketsAppearance;
 			if (Number.isFinite(sourceArea.staffMask))
 				system.staffMaskChanged = sourceArea.staffMask;
@@ -210,12 +212,13 @@ const initScore = async (sampleDir: string, meta: YTMeta, imagePaths: string[]):
 	});
 
 	const score = new starry.Score({
-		title: meta.video_id || path.basename(sampleDir),
+		title: meta.video_title || meta.video_id || path.basename(sampleDir),
 		unitSize,
 		pageSize,
 		headers: {
 			Source: "youtube-piano-score",
 			VideoId: meta.video_id,
+			VideoTitle: meta.video_title,
 		},
 		instrumentDict: {},
 		staffLayoutCode: meta.staffLayout,
