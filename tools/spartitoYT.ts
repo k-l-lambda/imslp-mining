@@ -1,12 +1,13 @@
 import fs from "fs";
 import path from "path";
+import { MIDI } from "@k-l-lambda/music-widgets";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 import "../env";
 
 import { BEAD_PICKER_URL, ORT_SESSION_OPTIONS } from "./libs/constants";
-import { starry } from "./libs/omr";
+import { starry, measureLayout } from "./libs/omr";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
 
 
@@ -18,6 +19,7 @@ const argv = yargs(hideBin(process.argv))
 			.positional("source", { type: "string" })
 			.demandOption("source")
 			.option("renew", { alias: "r", type: "boolean", description: "overwrite existing spartito.json" })
+			.option("midi", { type: "boolean", description: "also export spartito.midi" })
 	)
 	.help()
 	.argv;
@@ -38,6 +40,21 @@ const walkScoreFiles = (dir: string): string[] => {
 		}
 	}
 	return files;
+};
+
+
+const exportMidi = (score: starry.Score, spartito: starry.Spartito, midiPath: string): boolean => {
+	const { notation } = spartito.performByEstimation();
+	const mlayout = score.getMeasureLayout();
+	const measureIndices = mlayout?.serialize(measureLayout.LayoutType.Full)
+		?? Array(notation.measures.length).fill(null).map((_, i) => i + 1);
+	const midi = notation.toPerformingMIDI(measureIndices);
+
+	if (!midi)
+		return false;
+
+	fs.writeFileSync(midiPath, Buffer.from(MIDI.encodeMidiFile(midi)));
+	return true;
 };
 
 
@@ -73,6 +90,15 @@ const constructSpartito = async (scorePath: string, beadPicker: OnnxBeadPicker):
 
 	fs.writeFileSync(spartitoPath, JSON.stringify(spartito));
 	console.log("Spartito saved:", spartitoPath, `measures=${spartito.measures.length}`, `glimpsed=${glimpsed}`);
+
+	if (argv.midi) {
+		const midiPath = path.join(dir, "spartito.midi");
+		if (exportMidi(score, spartito, midiPath))
+			console.log("MIDI saved:", midiPath);
+		else
+			console.log("MIDI skipped: empty spartito", scorePath);
+	}
+
 	return true;
 };
 
