@@ -10,14 +10,13 @@ import "../env";
 
 import { SEMANTIC_VISION_SPEC, GAUGE_VISION_SPEC, STAFF_PADDING_LEFT } from "./libs/constants";
 import md5 from "spark-md5";
+import { starry, PyClients } from "./libs/omr";
+import { constructSystem } from "./libs/scoreSystem";
+import { shootPageCanvas, shootStaffCanvas } from "./libs/canvasUtilities";
+import { pyclients } from "./libs/config";
 
 
 (globalThis as any).window = (globalThis as any).window || globalThis;
-
-const { starry, PyClients } = require("./libs/omr");
-const { constructSystem } = require("./libs/scoreSystem");
-const { shootPageCanvas, shootStaffCanvas } = require("./libs/canvasUtilities");
-const { pyclients } = require("./libs/config");
 const pyClients = new PyClients({
 	...pyclients,
 	gauge: pyclients.gauge || "tcp://localhost:12023",
@@ -321,7 +320,7 @@ const runVision = async (score: any, sampleDir: string): Promise<void> => {
 			const webpMaskBuffer = await sharp(maskRes[i].image).toFormat("webp").toBuffer();
 			staff.maskImage = imageDataUrl(webpMaskBuffer, "image/webp");
 
-			const graph = starry.recoverJSON(semanticRes[i], starry);
+			const graph = starry.recoverJSON<any>(semanticRes[i], starry);
 			graph.offset(-STAFF_PADDING_LEFT / SEMANTIC_VISION_SPEC.viewportUnit, 0);
 			system.assignSemantics(staffIndex, graph);
 			staff.assignSemantics(graph);

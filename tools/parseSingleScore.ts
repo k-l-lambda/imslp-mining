@@ -18,7 +18,7 @@ import {
 import ProcessPredictor from "./libs/processPredictor";
 //import walkDir from "./libs/walkDir";
 import { ensureDir, loadImage, saveImage, pageRange2Filter, datetime } from "./libs/utils";
-import { starry, measureLayout, regulateWithBeadSolver, beadSolver } from "./libs/omr";
+import { starry, measureLayout, regulateWithBeadSolver } from "./libs/omr";
 import { constructSystem } from "./libs/scoreSystem";
 import pyClients from "./libs/pyClients";
 import { shootPageCanvas, shootStaffCanvas } from "./libs/canvasUtilities";
@@ -528,7 +528,7 @@ const constructSpartitos = async (targetDir: string, pickers: OnnxBeadPicker[]):
 		for (const measure of spartito.measures)
 			if (measure.events.length + 1 < beadPicker.n_seq) {
 				//console.debug("glimpse:", `${measure.measureIndex}/${spartito.measures.length}`);
-				await beadSolver.glimpseMeasure(measure, { picker: beadPicker });
+				await (starry as any).beadSolver.glimpseMeasure(measure, { picker: beadPicker });
 			}
 
 		const { notation } = spartito.performByEstimation();

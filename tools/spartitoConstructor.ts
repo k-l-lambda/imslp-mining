@@ -11,7 +11,7 @@ import "../env";
 import { WorkBasic } from "./libs/types";
 import { DATA_DIR, BEAD_PICKER_URL, PRIMARY_CATEGORIES, ORT_SESSION_OPTIONS } from "./libs/constants";
 import walkDir from "./libs/walkDir";
-import { starry, beadSolver, measureLayout } from "./libs/omr";
+import { starry, measureLayout } from "./libs/omr";
 import OnnxBeadPicker from "./libs/onnxBeadPicker";
 import { idRange2Filter } from "./libs/utils";
 
@@ -117,7 +117,7 @@ const main = async () => {
 				for (const measure of spartito.measures)
 					if (measure.events.length + 1 < beadPicker.n_seq) {
 						//console.debug("glimpse:", `${measure.measureIndex}/${spartito.measures.length}`);
-						await beadSolver.glimpseMeasure(measure, {picker: beadPicker});
+						await (starry as any).beadSolver.glimpseMeasure(measure, {picker: beadPicker});
 					}
 
 				const { notation } = spartito.performByEstimation();
