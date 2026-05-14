@@ -68,6 +68,13 @@ type SegmentationOutput = {
 	boundaries: BoundaryAnnotation[];
 };
 
+type SegmentationYamlEntry = {
+	measureIndex: number;
+	tick: number;
+	duration: number;
+	confidence: number;
+};
+
 type ParsedArgs = {
 	scoreDir?: string;
 	spartito?: string;
@@ -271,6 +278,27 @@ const saveOutputAtomic = (outputPath: string, output: SegmentationOutput) => {
 	fs.renameSync(tmpPath, outputPath);
 };
 
+const segmentationYamlPath = (scoreDir: string, midiPath: string) => path.join(scoreDir, `${path.basename(midiPath, path.extname(midiPath))}-segmentation.yaml`);
+
+const buildSegmentationYaml = (output: SegmentationOutput, onsets: NoteOnPoint[]): SegmentationYamlEntry[] => {
+	const firstTick = onsets[0]?.[1] ?? 0;
+	const boundaries = [...output.boundaries].sort((a, b) => a.measureIndex - b.measureIndex);
+	return boundaries.map((boundary, index) => {
+		const tick = index === 0 ? firstTick : boundaries[index - 1].endTick;
+		return {
+			measureIndex: boundary.measureIndex,
+			tick,
+			duration: boundary.endTick - tick,
+			confidence: boundary.confidence,
+		};
+	});
+};
+
+const saveSegmentationYaml = (filePath: string, output: SegmentationOutput, onsets: NoteOnPoint[]) => {
+	const entries = buildSegmentationYaml(output, onsets);
+	fs.writeFileSync(filePath, YAML.stringify(entries, { indent: 2, lineWidth: 0 }));
+};
+
 
 const parseClaudeCliJson = (rawOutput: string): ClaudeJsonResult => {
 	try {
@@ -313,6 +341,20 @@ const extractJsonObject = (output: string): any => {
 };
 
 
+const confidenceValue = (value: unknown): number => {
+	if (typeof value === 'string') {
+		const normalized = value.trim().toLowerCase();
+		if (normalized === 'high')
+			return 0.9;
+		if (normalized === 'medium')
+			return 0.6;
+		if (normalized === 'low')
+			return 0.3;
+	}
+	return Number(value);
+};
+
+
 const validateBoundary = (
 	parsed: any,
 	context: RoundContext,
@@ -330,7 +372,7 @@ const validateBoundary = (
 
 	const method = parsed.method as BoundaryMethod;
 	const endTick = Number(parsed.endTick);
-	const confidence = Number(parsed.confidence);
+	const confidence = confidenceValue(parsed.confidence);
 
 	if (parsed.measureIndex !== context.measureIndex)
 		throw new Error(`measureIndex mismatch: expected ${context.measureIndex}, got ${parsed.measureIndex}`);
@@ -486,8 +528,15 @@ ${yaml(context.remainingOnsets)}
 Return the JSON object for this one boundary only.`;
 
 
+const loadExistingOutput = (outputPath: string, legacyOutputPath: string) => {
+	const sourcePath = fs.existsSync(outputPath) ? outputPath : legacyOutputPath;
+	return fs.existsSync(sourcePath) ? JSON.parse(fs.readFileSync(sourcePath).toString()) as SegmentationOutput : undefined;
+};
+
+
 const loadOrCreateOutput = (
 	outputPath: string,
+	legacyOutputPath: string,
 	scoreDir: string,
 	spartitoPath: string,
 	midiPath: string,
@@ -495,11 +544,11 @@ const loadOrCreateOutput = (
 	spartitoMeasureCount: number,
 	onsetCount: number,
 ): SegmentationOutput => {
-	if (fs.existsSync(outputPath)) {
-		const output = JSON.parse(fs.readFileSync(outputPath).toString()) as SegmentationOutput;
-		if (output.kind !== 'formal-midi-segmentation' || output.version !== 1)
-			throw new Error(`unsupported segmentation output: ${outputPath}`);
-		return output;
+	const existing = loadExistingOutput(outputPath, legacyOutputPath);
+	if (existing) {
+		if (existing.kind !== 'formal-midi-segmentation' || existing.version !== 1)
+			throw new Error(`unsupported segmentation output: ${fs.existsSync(outputPath) ? outputPath : legacyOutputPath}`);
+		return existing;
 	}
 
 	const now = new Date().toISOString();
@@ -533,6 +582,9 @@ const getPreviousBoundary = (output: SegmentationOutput, measureIndex: number) =
 
 
 const prepareMeasureImage = async (measure: any, destPath: string) => {
+	if (fs.existsSync(destPath))
+		return destPath;
+
 	try {
 		return await compositeMeasureImage(measure, destPath);
 	}
@@ -546,9 +598,11 @@ const prepareMeasureImage = async (measure: any, destPath: string) => {
 const run = async () => {
 	const argv = parseArgs();
 	const scoreDir = path.resolve(argv.scoreDir ?? path.dirname(path.resolve(argv.spartito ?? '.')));
+	const measuresDir = path.join(scoreDir, '.measures');
 	const spartitoPath = path.resolve(argv.spartito ?? path.join(scoreDir, 'spartito.json'));
 	const midiPath = path.resolve(argv.midi ?? path.join(scoreDir, 'transkun.mid'));
-	const outputPath = path.resolve(argv.output ?? path.join(scoreDir, 'midi-segmentation.json'));
+	const outputPath = path.resolve(argv.output ?? path.join(measuresDir, 'midi-segmentation.json'));
+	const segmentationYaml = segmentationYamlPath(scoreDir, midiPath);
 	const annotationModel = argv.annotationModel || DEFAULT_ANNOTATION_MODEL;
 
 	if (!annotationModel)
@@ -565,10 +619,13 @@ const run = async () => {
 	const toMeasure = Math.min(argv.toMeasure ?? measureCount - 2, measureCount - 2);
 	const logDir = path.resolve(argv.logDir ?? path.join(scoreDir, `.midi-annotator-${timestamp()}`));
 
+	ensureDir(measuresDir);
 	ensureDir(path.dirname(outputPath));
 	ensureDir(logDir);
+	const measureImageDir = measuresDir;
+	ensureDir(measureImageDir);
 
-	const output = loadOrCreateOutput(outputPath, scoreDir, spartitoPath, midiPath, annotationModel, measureCount, onsets.length);
+	const output = loadOrCreateOutput(outputPath, path.join(scoreDir, 'midi-segmentation.json'), scoreDir, spartitoPath, midiPath, annotationModel, measureCount, onsets.length);
 	const existing = new Set(output.boundaries.map(b => b.measureIndex));
 	let rounds = 0;
 	let measureIndex = argv.fromMeasure ?? 0;
@@ -596,8 +653,8 @@ const run = async () => {
 			const currentMeasureRawPoints = spartitoPoints.filter(p => p.measureIndex === measureIndex);
 			const nextMeasureRawPoints = spartitoPoints.filter(p => p.measureIndex === measureIndex + 1);
 			const prefix = `${padMeasure(measureIndex)}_w${remainingWindow}`;
-			const currentImagePath = path.join(logDir, `${prefix}_current.webp`);
-			const nextImagePath = path.join(logDir, `${prefix}_next.webp`);
+			const currentImagePath = path.join(measureImageDir, `${padMeasure(measureIndex)}.webp`);
+			const nextImagePath = path.join(measureImageDir, `${padMeasure(measureIndex + 1)}.webp`);
 			const currentMeasureImage = await prepareMeasureImage(spartito.measures[measureIndex], currentImagePath);
 			const nextMeasureImage = await prepareMeasureImage(spartito.measures[measureIndex + 1], nextImagePath);
 			const context: RoundContext = {
@@ -626,6 +683,8 @@ const run = async () => {
 			if (argv.dryRun) {
 				console.log('dry run prompt:', promptLog);
 				console.log('dry run context:', contextLog);
+				console.log('segmentation json:', outputPath);
+				console.log('segmentation yaml:', segmentationYaml);
 				return;
 			}
 
@@ -718,6 +777,7 @@ const run = async () => {
 			writeJson(resultLog, validated);
 			upsertBoundary(output, validated);
 			saveOutputAtomic(outputPath, output);
+			saveSegmentationYaml(segmentationYaml, output, onsets);
 			console.log(`saved boundary m${measureIndex}: ${validated.endTick} (${validated.method}, confidence=${validated.confidence})`);
 			accepted = true;
 		}
@@ -726,7 +786,9 @@ const run = async () => {
 		++measureIndex;
 	}
 
+	saveSegmentationYaml(segmentationYaml, output, onsets);
 	console.log('done:', outputPath, `boundaries=${output.boundaries.length}`);
+	console.log('yaml saved:', segmentationYaml);
 };
 
 

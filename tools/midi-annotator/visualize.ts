@@ -169,15 +169,21 @@ const main = () => {
 	const sourceDir = path.resolve(source);
 	const spartitoPath = path.join(sourceDir, 'spartito.json');
 	const midiPath = path.join(sourceDir, 'transkun.mid');
-	const outputPath = path.resolve(process.argv[3] ?? path.join(sourceDir, 'midi-annotator-compare.svg'));
+	const measuresDir = path.join(sourceDir, '.measures');
+	const outputPath = path.resolve(process.argv[3] ?? path.join(measuresDir, 'midi-annotator-compare.svg'));
 
 	const spartito = JSON.parse(fs.readFileSync(spartitoPath).toString());
 	const midi = MIDI.parseMidiData(fs.readFileSync(midiPath));
 	const spartitoPoints = extractSpartitoEvents(spartito);
 	const onsets = midiToOnset(midi);
 
-	const segmentationPath = path.join(sourceDir, 'midi-segmentation.json');
-	const segmentation = fs.existsSync(segmentationPath) ? JSON.parse(fs.readFileSync(segmentationPath).toString()) as Segmentation : undefined;
+	const segmentationPath = [
+		path.join(measuresDir, 'midi-segmentation.json'),
+		path.join(sourceDir, 'midi-segmentation.json'),
+	].find(filePath => fs.existsSync(filePath));
+	const segmentation = segmentationPath ? JSON.parse(fs.readFileSync(segmentationPath).toString()) as Segmentation : undefined;
+
+	fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 
 	fs.writeFileSync(outputPath, renderSvg(spartitoPoints, onsets, segmentation));
 
