@@ -108,6 +108,9 @@ export const extractSpartitoEvents = (spartito: any): SpartitoEventPoint[] => {
 		const maxIntX = Math.max(0, ...events.map((event: any) => Number(event.intX ?? 0)));
 
 		events.forEach((event: any, eventIndex: number) => {
+			if (event.rest)
+				return;
+
 			const localTick = maxIntX > 0 ? Number(event.intX ?? 0) / maxIntX * measureDuration : 0;
 			const tick = measureStart + localTick;
 			const pitches = event.pitches?.length ? event.pitches : [];
