@@ -218,7 +218,7 @@ const MIDI_SEGMENTATION_SYSTEM_PROMPT = `You are a careful music-data annotation
 
 Your job is to determine exactly one boundary per request: the end tick of the current measure and the start tick of the next measure in the target MIDI.
 
-Use the current/next measure background images, score-side spartito points, and remaining MIDI onsets provided by the user. The data is noisy:
+Use the current/next measure background images, score-side spartito points, and remaining MIDI onsets provided by the user. When image paths are non-null, call the Read tool on both current and next measure images before deciding the boundary. The data is noisy:
 - Spartito pitches and approximate ticks come from model prediction and may be wrong.
 - The MIDI can contain extra notes, missing notes, arpeggios, ornaments, tremolos, rolled chords, free sustain, expressive timing, and other exceptions.
 - Do not require exact one-to-one correspondence between score noteheads and MIDI onsets.
@@ -635,6 +635,8 @@ const buildPrompt = (context: RoundContext) => `Boundary annotation input for me
 Measure images:
 - Current measure image: ${context.currentMeasureImage ?? 'null'}
 - Next measure image: ${context.nextMeasureImage ?? 'null'}
+
+If both image paths are non-null, first use the Read tool on both image files so you can inspect the visual notehead layout before returning JSON.
 
 Previous state:
 ${yaml({
