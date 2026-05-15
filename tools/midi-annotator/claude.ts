@@ -91,6 +91,14 @@ type ParsedArgs = {
 	dryRun: boolean;
 };
 
+type PageTurnContext = {
+	pageIndex: number;
+	startMeasureIndex: number;
+	seconds: number;
+	tick: number;
+	measuresUntilPageTurn: number;
+};
+
 type RoundContext = {
 	measureIndex: number;
 	nextMeasureIndex: number;
@@ -104,6 +112,7 @@ type RoundContext = {
 	nextMeasureImage: string | null;
 	currentScoreTickRange: { start: number | null; end: number | null };
 	nextScoreTickRange: { start: number | null; end: number | null };
+	nextPageTurn: PageTurnContext | null;
 };
 
 type ClaudeRun = {
@@ -222,6 +231,8 @@ Tau semantics:
 
 If the next measure starts with visible/matched noteheads, prefer their matched MIDI tick as the boundary. If the measure boundary has no notehead event, estimate the boundary tick from nearby matched notes and local beat spacing.
 
+The user may provide nextPageTurn context. This is the next score page start converted from the video page-change time into MIDI ticks using the MIDI tempo map, plus how many measure boundaries remain before that page turn. Treat it as useful global timing guidance, but still prioritize local notehead/onset evidence when they conflict.
+
 Available tool:
 - get_onsets(offset, count): query target MIDI onset elements by absolute onset index. Use it if the default onset context is insufficient.
 
@@ -317,6 +328,41 @@ const parseClaudeCliJson = (rawOutput: string): ClaudeJsonResult => {
 };
 
 
+const recoverTruncatedJsonObject = (output: string): any | null => {
+	const source = output.slice(Math.max(0, output.indexOf('{')));
+	const numberField = (field: string) => {
+		const match = source.match(new RegExp(`"${field}"\\s*:\\s*(-?\\d+(?:\\.\\d+)?)`));
+		return match ? Number(match[1]) : undefined;
+	};
+	const stringField = (field: string) => {
+		const match = source.match(new RegExp(`"${field}"\\s*:\\s*"([^"\\\\]*(?:\\\\.[^"\\\\]*)*)`));
+		if (!match)
+			return undefined;
+		try {
+			return JSON.parse(`"${match[1]}"`);
+		}
+		catch {
+			return match[1];
+		}
+	};
+
+	const measureIndex = numberField('measureIndex');
+	const endTick = numberField('endTick');
+	const confidence = numberField('confidence') ?? stringField('confidence');
+	const method = stringField('method');
+	if (measureIndex === undefined || endTick === undefined || confidence === undefined || !method)
+		return null;
+
+	return {
+		measureIndex,
+		endTick,
+		confidence,
+		method,
+		reason: stringField('reason') ?? 'Recovered from truncated Claude JSON output; see raw response log.',
+	};
+};
+
+
 const extractJsonObject = (output: string): any => {
 	const trimmed = output.trim();
 	try {
@@ -334,8 +380,16 @@ const extractJsonObject = (output: string): any => {
 
 	const start = output.indexOf('{');
 	const end = output.lastIndexOf('}');
-	if (start >= 0 && end > start)
-		return JSON.parse(output.slice(start, end + 1));
+	if (start >= 0 && end > start) {
+		try {
+			return JSON.parse(output.slice(start, end + 1));
+		}
+		catch {}
+	}
+
+	const recovered = recoverTruncatedJsonObject(output);
+	if (recovered)
+		return recovered;
 
 	throw new Error('Claude result did not contain a JSON object');
 };
@@ -495,6 +549,85 @@ const toPromptOnsets = (onsets: NoteOnPoint[], startIndex: number): PromptOnset[
 };
 
 
+const collectTempoMap = (midi: any) => {
+	const ticksPerBeat = Number(midi.header?.ticksPerBeat);
+	if (!Number.isFinite(ticksPerBeat) || ticksPerBeat <= 0)
+		throw new Error('MIDI ticksPerBeat is missing or invalid');
+	const tempos: { tick: number; microsecondsPerBeat: number }[] = [];
+	for (const track of midi.tracks ?? []) {
+		let tick = 0;
+		for (const event of track) {
+			tick += Number(event.deltaTime ?? 0);
+			if (event.type === 'meta' && event.subtype === 'setTempo' && Number.isFinite(Number(event.microsecondsPerBeat)))
+				tempos.push({ tick, microsecondsPerBeat: Number(event.microsecondsPerBeat) });
+		}
+	}
+	tempos.sort((a, b) => a.tick - b.tick);
+	if (!tempos.length)
+		tempos.push({ tick: 0, microsecondsPerBeat: 500000 });
+	if (tempos[0].tick !== 0)
+		tempos.unshift({ tick: 0, microsecondsPerBeat: tempos[0].microsecondsPerBeat });
+	return { ticksPerBeat, tempos };
+};
+
+
+const secondsToTick = (seconds: number, tempoMap: ReturnType<typeof collectTempoMap>) => {
+	let elapsedSeconds = 0;
+	let previousTick = tempoMap.tempos[0].tick;
+	let microsecondsPerBeat = tempoMap.tempos[0].microsecondsPerBeat;
+	for (let i = 1; i < tempoMap.tempos.length; ++i) {
+		const next = tempoMap.tempos[i];
+		const segmentSeconds = (next.tick - previousTick) * microsecondsPerBeat / tempoMap.ticksPerBeat / 1e6;
+		if (seconds < elapsedSeconds + segmentSeconds)
+			return Math.round(previousTick + (seconds - elapsedSeconds) * tempoMap.ticksPerBeat * 1e6 / microsecondsPerBeat);
+		elapsedSeconds += segmentSeconds;
+		previousTick = next.tick;
+		microsecondsPerBeat = next.microsecondsPerBeat;
+	}
+	return Math.round(previousTick + (seconds - elapsedSeconds) * tempoMap.ticksPerBeat * 1e6 / microsecondsPerBeat);
+};
+
+
+const buildPageTurnContexts = (scoreDir: string, midi: any): PageTurnContext[] => {
+	const metaPath = path.join(scoreDir, 'meta.yaml');
+	const scorePath = path.join(scoreDir, 'score.json');
+	if (!fs.existsSync(metaPath) || !fs.existsSync(scorePath))
+		return [];
+	const meta = YAML.parse(fs.readFileSync(metaPath).toString()) as any;
+	const score = JSON.parse(fs.readFileSync(scorePath).toString());
+	const changes = meta?.shot_detection?.changes ?? [];
+	const tempoMap = collectTempoMap(midi);
+	let measureIndex = 0;
+	const result: PageTurnContext[] = [];
+	(score.pages ?? []).forEach((page: any, pageIndex: number) => {
+		const seconds = Number(changes[pageIndex]?.seconds);
+		if (pageIndex > 0 && Number.isFinite(seconds)) {
+			result.push({
+				pageIndex,
+				startMeasureIndex: measureIndex,
+				seconds,
+				tick: secondsToTick(seconds, tempoMap),
+				measuresUntilPageTurn: 0,
+			});
+		}
+		for (const system of page.systems ?? []) {
+			const fallbackMeasureCount = system.staves?.[0]?.measures?.length ?? 0;
+			measureIndex += Number(system.measureCount ?? fallbackMeasureCount ?? 0);
+		}
+	});
+	return result;
+};
+
+
+const getNextPageTurn = (pageTurns: PageTurnContext[], measureIndex: number): PageTurnContext | null => {
+	const next = pageTurns.find(pageTurn => pageTurn.startMeasureIndex > measureIndex);
+	return next ? {
+		...next,
+		measuresUntilPageTurn: next.startMeasureIndex - measureIndex,
+	} : null;
+};
+
+
 const yaml = (data: unknown) => YAML.stringify(data, { indent: 2, lineWidth: 0 }).trim();
 
 const buildPrompt = (context: RoundContext) => `Boundary annotation input for measure ${context.measureIndex} -> ${context.nextMeasureIndex}.
@@ -515,6 +648,9 @@ ${yaml({
 	currentMeasure: context.currentScoreTickRange,
 	nextMeasure: context.nextScoreTickRange,
 })}
+
+Next page-turn timing guidance:
+${yaml(context.nextPageTurn ?? { nextPageTurn: null })}
 
 Current measure spartitoPoints:
 ${yaml(context.currentMeasureSpartitoPoints)}
@@ -613,6 +749,7 @@ const run = async () => {
 	const rawSpartito = JSON.parse(fs.readFileSync(spartitoPath).toString());
 	const spartito = starry.recoverJSON<starry.Spartito>(JSON.stringify(rawSpartito), starry);
 	const midi = MIDI.parseMidiData(fs.readFileSync(midiPath));
+	const pageTurns = buildPageTurnContexts(scoreDir, midi);
 	const spartitoPoints = extractSpartitoEvents(rawSpartito);
 	const onsets = midiToOnset(midi);
 	const measureCount = rawSpartito.measures.length;
@@ -670,6 +807,7 @@ const run = async () => {
 				nextMeasureImage,
 				currentScoreTickRange: getScoreTickRange(currentMeasureRawPoints),
 				nextScoreTickRange: getScoreTickRange(nextMeasureRawPoints),
+				nextPageTurn: getNextPageTurn(pageTurns, measureIndex),
 			};
 
 			const prompt = buildPrompt(context);
@@ -721,27 +859,40 @@ const run = async () => {
 				ANTHROPIC_MODEL: annotationModel,
 				ANTHROPIC_SMALL_FAST_MODEL: annotationModel,
 			};
-			const runResult = await spawnClaude(claudeArgs, prompt, env, 20 * 60 * 1000);
+			let runResult!: ClaudeRun;
+			let cliResult!: ClaudeJsonResult;
+			let validated!: ReturnType<typeof validateBoundary>;
 			const stdoutLog = path.join(logDir, `${prefix}_stdout.json`);
 			const stderrLog = path.join(logDir, `${prefix}_stderr.txt`);
 			const trajectoryLog = path.join(logDir, `${prefix}_trajectory.json`);
-			fs.writeFileSync(stdoutLog, runResult.stdout);
-			if (runResult.stderr)
-				fs.writeFileSync(stderrLog, runResult.stderr);
+			for (let attempt = 1; attempt <= 2; ++attempt) {
+				runResult = await spawnClaude(claudeArgs, prompt, env, 20 * 60 * 1000);
+				fs.writeFileSync(stdoutLog, runResult.stdout);
+				if (runResult.stderr)
+					fs.writeFileSync(stderrLog, runResult.stderr);
 
-			if (runResult.stdout.includes('usage limit') || runResult.stderr.includes('usage limit'))
-				throw new Error('API usage limit hit');
-			if (runResult.timedOut)
-				throw new Error(`Claude timed out for measure ${measureIndex}`);
-			if (runResult.signal)
-				throw new Error(`Claude killed by signal ${runResult.signal}`);
+				try {
+					if (runResult.stdout.includes('usage limit') || runResult.stderr.includes('usage limit'))
+						throw new Error('API usage limit hit');
+					if (runResult.timedOut)
+						throw new Error(`Claude timed out for measure ${measureIndex}`);
+					if (runResult.signal)
+						throw new Error(`Claude killed by signal ${runResult.signal}`);
 
-			const cliResult = parseClaudeCliJson(runResult.stdout);
-			if (runResult.code !== 0 && !cliResult.textOutput)
-				throw new Error(`Claude exited with code ${runResult.code}: ${runResult.stderr.slice(0, 500)}`);
+					cliResult = parseClaudeCliJson(runResult.stdout);
+					if (runResult.code !== 0 && !cliResult.textOutput)
+						throw new Error(`Claude exited with code ${runResult.code}: ${runResult.stderr.slice(0, 500)}`);
 
-			const parsed = extractJsonObject(cliResult.textOutput);
-			const validated = validateBoundary(parsed, context, onsets, previousBoundaryTick);
+					const parsed = extractJsonObject(cliResult.textOutput);
+					validated = validateBoundary(parsed, context, onsets, previousBoundaryTick);
+					break;
+				}
+				catch (err: any) {
+					if (err?.message === 'API usage limit hit' || attempt >= 2)
+						throw err;
+					console.warn(`Claude attempt ${attempt} failed for measure ${measureIndex}: ${err.message}; retrying once`);
+				}
+			}
 
 			writeJson(trajectoryLog, {
 				measureIndex,
