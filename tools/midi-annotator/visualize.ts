@@ -105,12 +105,16 @@ export const renderSvg = (spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPo
 		gridX.push(`<text class="axis-label" x="${sx(tick).toFixed(2)}" y="${height - margin.bottom + 24}" text-anchor="middle">${tick}</text>`);
 	}
 
-	const boundaryNodes = (segmentation?.boundaries ?? []).map(boundary => `
+	const boundaryByMeasure = new Map((segmentation?.boundaries ?? []).map(boundary => [boundary.measureIndex, boundary.endTick]));
+	const boundaryNodes = (segmentation?.boundaries ?? []).map(boundary => {
+		const startTick = boundary.measureIndex === 0 ? 0 : boundaryByMeasure.get(boundary.measureIndex - 1);
+		return `
 		<g class="boundary">
 			<line x1="${sx(boundary.endTick).toFixed(2)}" y1="${margin.top}" x2="${sx(boundary.endTick).toFixed(2)}" y2="${height - margin.bottom}" />
-			<text x="${sx(boundary.endTick).toFixed(2)}" y="${margin.top - 8}" text-anchor="middle">m${boundary.measureIndex}</text>
-			<title>boundary after measure ${boundary.measureIndex}\ntick=${boundary.endTick}\nconfidence=${boundary.confidence ?? ''}\nmethod=${boundary.method ?? ''}</title>
-		</g>`).join('');
+			${startTick === undefined ? '' : `<text x="${sx(startTick).toFixed(2)}" y="${margin.top - 8}" text-anchor="middle">m${boundary.measureIndex}</text>`}
+			<title>measure ${boundary.measureIndex}\nstartTick=${startTick ?? ''}\nendTick=${boundary.endTick}\nconfidence=${boundary.confidence ?? ''}\nmethod=${boundary.method ?? ''}</title>
+		</g>`;
+	}).join('');
 
 	const onsetNodes = onsets.map(([pitch, tick, tau], index) => {
 		const x = sx(tick).toFixed(2);
