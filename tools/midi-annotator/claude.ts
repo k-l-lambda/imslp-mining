@@ -38,6 +38,7 @@ type BoundaryAnnotation = {
 	measureIndex: number;
 	endTick: number;
 	confidence: number;
+	matchScore: number;
 	method: BoundaryMethod;
 	reason: string;
 	remainingOnsetStartIndexBefore: number;
@@ -73,6 +74,7 @@ type SegmentationYamlEntry = {
 	tick: number;
 	duration: number;
 	confidence: number;
+	matchScore: number;
 };
 
 type ParsedArgs = {
@@ -236,10 +238,11 @@ The user may provide nextPageTurn context. This is the next score page start con
 Available tool:
 - get_onsets(offset, count): query target MIDI onset elements by absolute onset index. Use it if the default onset context is insufficient.
 
-Return only a single JSON object with exactly these five fields:
+Return only a single JSON object with exactly these six fields:
 - measureIndex
 - endTick
-- confidence
+- confidence: your confidence in the boundary tick, from 0 to 1
+- matchScore: among the target MIDI onsets before this boundary, the ratio that you can assign to a clear spartito point in the current measure, from 0 to 1. Count only onsets with explicit score-point attribution as matched; divide by the total number of MIDI onsets before the boundary in this round's current-measure span. This measures attribution coverage, not boundary certainty.
 - method: matched-notehead | estimated-beat-spacing | mixed | uncertain
 - reason
 
@@ -301,6 +304,7 @@ const buildSegmentationYaml = (output: SegmentationOutput, onsets: NoteOnPoint[]
 			tick,
 			duration: boundary.endTick - tick,
 			confidence: boundary.confidence,
+			matchScore: boundary.matchScore,
 		};
 	});
 };
@@ -349,6 +353,7 @@ const recoverTruncatedJsonObject = (output: string): any | null => {
 	const measureIndex = numberField('measureIndex');
 	const endTick = numberField('endTick');
 	const confidence = numberField('confidence') ?? stringField('confidence');
+	const matchScore = numberField('matchScore') ?? numberField('matchingScore') ?? numberField('matchDegree');
 	const method = stringField('method');
 	if (measureIndex === undefined || endTick === undefined || confidence === undefined || !method)
 		return null;
@@ -357,6 +362,7 @@ const recoverTruncatedJsonObject = (output: string): any | null => {
 		measureIndex,
 		endTick,
 		confidence,
+		matchScore,
 		method,
 		reason: stringField('reason') ?? 'Recovered from truncated Claude JSON output; see raw response log.',
 	};
@@ -427,6 +433,7 @@ const validateBoundary = (
 	const method = parsed.method as BoundaryMethod;
 	const endTick = Number(parsed.endTick);
 	const confidence = confidenceValue(parsed.confidence);
+	const matchScore = parsed.matchScore === undefined ? confidence : Number(parsed.matchScore);
 
 	if (parsed.measureIndex !== context.measureIndex)
 		throw new Error(`measureIndex mismatch: expected ${context.measureIndex}, got ${parsed.measureIndex}`);
@@ -438,6 +445,8 @@ const validateBoundary = (
 		throw new Error(`invalid method: ${parsed.method}`);
 	if (!Number.isFinite(confidence) || confidence < 0 || confidence > 1)
 		throw new Error('confidence must be within [0, 1]');
+	if (!Number.isFinite(matchScore) || matchScore < 0 || matchScore > 1)
+		throw new Error('matchScore must be within [0, 1]');
 	if (typeof parsed.reason !== 'string' || !parsed.reason.trim())
 		throw new Error('reason must be a non-empty string');
 
@@ -448,6 +457,7 @@ const validateBoundary = (
 		measureIndex: context.measureIndex,
 		endTick,
 		confidence,
+		matchScore,
 		method,
 		reason: parsed.reason,
 		remainingOnsetStartIndexBefore: context.remainingOnsetStartIndex,
@@ -718,6 +728,14 @@ const getPreviousBoundary = (output: SegmentationOutput, measureIndex: number) =
 	.filter(b => b.measureIndex < measureIndex)
 	.sort((a, b) => b.measureIndex - a.measureIndex)[0];
 
+const assertNoConsecutiveLowMatch = (output: SegmentationOutput, boundary: BoundaryAnnotation) => {
+	if (boundary.matchScore >= 0.4)
+		return;
+	const previous = output.boundaries.find(b => b.measureIndex === boundary.measureIndex - 1);
+	if (previous && previous.matchScore < 0.4)
+		throw new Error(`consecutive low matchScore boundaries: m${previous.measureIndex}=${previous.matchScore}, m${boundary.measureIndex}=${boundary.matchScore}`);
+};
+
 
 const prepareMeasureImage = async (measure: any, destPath: string) => {
 	if (fs.existsSync(destPath))
@@ -928,10 +946,11 @@ const run = async () => {
 			validated.usage = cliResult.usage;
 			validated.totalCostUsd = cliResult.totalCostUsd;
 			writeJson(resultLog, validated);
+			assertNoConsecutiveLowMatch(output, validated);
 			upsertBoundary(output, validated);
 			saveOutputAtomic(outputPath, output);
 			saveSegmentationYaml(segmentationYaml, output, onsets);
-			console.log(`saved boundary m${measureIndex}: ${validated.endTick} (${validated.method}, confidence=${validated.confidence})`);
+			console.log(`saved boundary m${measureIndex}: ${validated.endTick} (${validated.method}, confidence=${validated.confidence}, matchScore=${validated.matchScore})`);
 			accepted = true;
 		}
 
