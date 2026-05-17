@@ -43,15 +43,18 @@ const measureScoreRanges = (spartitoPoints: SpartitoEventPoint[]) => {
 };
 
 
-const remapSpartitoPoints = (spartitoPoints: SpartitoEventPoint[], segmentation?: Segmentation): RenderPoint[] => {
+const remapSpartitoPoints = (spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPoint[], segmentation?: Segmentation): RenderPoint[] => {
 	if (!segmentation?.boundaries?.length)
 		return spartitoPoints.map(point => ({ ...point, displayTick: point.tick }));
 
 	const boundaries = [...segmentation.boundaries].sort((a, b) => a.measureIndex - b.measureIndex);
 	const boundaryByMeasure = new Map(boundaries.map(boundary => [boundary.measureIndex, boundary.endTick]));
+	const lastBoundary = boundaries[boundaries.length - 1];
+	const tailMeasureIndex = lastBoundary.measureIndex + 1;
+	const maxOnsetTick = Math.max(lastBoundary.endTick, ...onsets.map(onset => onset[1]));
 	const ranges = measureScoreRanges(spartitoPoints);
 	return spartitoPoints.flatMap(point => {
-		const currentBoundary = boundaryByMeasure.get(point.measureIndex);
+		const currentBoundary = boundaryByMeasure.get(point.measureIndex) ?? (point.measureIndex === tailMeasureIndex ? maxOnsetTick : undefined);
 		if (currentBoundary === undefined)
 			return [];
 
@@ -73,7 +76,7 @@ const remapSpartitoPoints = (spartitoPoints: SpartitoEventPoint[], segmentation?
 
 
 export const renderSvg = (spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPoint[], segmentation?: Segmentation) => {
-	const renderSpartitoPoints = remapSpartitoPoints(spartitoPoints, segmentation);
+	const renderSpartitoPoints = remapSpartitoPoints(spartitoPoints, onsets, segmentation);
 	const boundaryTicks = segmentation?.boundaries?.map(boundary => boundary.endTick) ?? [];
 	const maxTick = Math.max(1, ...renderSpartitoPoints.map(p => p.displayTick), ...onsets.map(p => p[1]), ...boundaryTicks);
 	const margin = { left: 80, right: 40, top: 50, bottom: 70 };
