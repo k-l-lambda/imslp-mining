@@ -950,7 +950,7 @@ const run = async () => {
 			upsertBoundary(output, validated);
 			saveOutputAtomic(outputPath, output);
 			saveSegmentationYaml(segmentationYaml, output, onsets);
-			console.log(`[${path.basename(scoreDir)}] saved boundary m${measureIndex}: ${validated.endTick} (${validated.method}, confidence=${validated.confidence}, matchScore=${validated.matchScore})`);
+			console.log(`[${path.basename(scoreDir)}] saved boundary m${measureIndex}/${toMeasure}: ${validated.endTick} (${validated.method}, confidence=${validated.confidence}, matchScore=${validated.matchScore})`);
 			accepted = true;
 		}
 
