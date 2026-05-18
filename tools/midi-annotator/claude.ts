@@ -551,7 +551,7 @@ const toPromptOnsets = (onsets: NoteOnPoint[], startIndex: number): PromptOnset[
 	const result: PromptOnset[] = [];
 	for (let i = startIndex; i < onsets.length; ++i) {
 		const [pitch, tick, tau] = onsets[i];
-		if (tau - tau0 > 32)
+		if (tau - tau0 > 24)
 			break;
 		result.push({ index: i, pitch, tick, tau: tau1(tau) });
 	}
@@ -869,7 +869,7 @@ const run = async () => {
 				'--append-system-prompt', MIDI_SEGMENTATION_SYSTEM_PROMPT,
 				'--allowedTools', 'Read,mcp__midi-onsets__get_onsets',
 				'--mcp-config', mcpConfigPath,
-				'--effort', 'max',
+				'--effort', 'high',
 				'--verbose',
 			];
 			const env: Record<string, string> = {
@@ -950,7 +950,7 @@ const run = async () => {
 			upsertBoundary(output, validated);
 			saveOutputAtomic(outputPath, output);
 			saveSegmentationYaml(segmentationYaml, output, onsets);
-			console.log(`saved boundary m${measureIndex}: ${validated.endTick} (${validated.method}, confidence=${validated.confidence}, matchScore=${validated.matchScore})`);
+			console.log(`[${path.basename(scoreDir)}] saved boundary m${measureIndex}: ${validated.endTick} (${validated.method}, confidence=${validated.confidence}, matchScore=${validated.matchScore})`);
 			accepted = true;
 		}
 
