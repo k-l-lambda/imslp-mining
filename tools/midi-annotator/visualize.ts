@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { MIDI } from '@k-l-lambda/music-widgets';
+import YAML from 'yaml';
 import { extractSpartitoEvents, midiToOnset, type NoteOnPoint, type SpartitoEventPoint } from './common';
 
 
@@ -13,6 +14,14 @@ type Boundary = {
 
 type Segmentation = {
 	boundaries: Boundary[];
+};
+
+
+type PageTurn = {
+	pageIndex: number;
+	startMeasureIndex: number;
+	seconds: number;
+	tick: number;
 };
 
 
@@ -40,6 +49,75 @@ const measureScoreRanges = (spartitoPoints: SpartitoEventPoint[]) => {
 		}
 	}
 	return ranges;
+};
+
+
+const collectTempoMap = (midi: any) => {
+	const ticksPerBeat = Number(midi.header?.ticksPerBeat);
+	if (!Number.isFinite(ticksPerBeat) || ticksPerBeat <= 0)
+		throw new Error('MIDI ticksPerBeat is missing or invalid');
+	const tempos: { tick: number; microsecondsPerBeat: number }[] = [];
+	for (const track of midi.tracks ?? []) {
+		let tick = 0;
+		for (const event of track) {
+			tick += Number(event.deltaTime ?? 0);
+			if (event.type === 'meta' && event.subtype === 'setTempo' && Number.isFinite(Number(event.microsecondsPerBeat)))
+				tempos.push({ tick, microsecondsPerBeat: Number(event.microsecondsPerBeat) });
+		}
+	}
+		tempos.sort((a, b) => a.tick - b.tick);
+	if (!tempos.length)
+		tempos.push({ tick: 0, microsecondsPerBeat: 500000 });
+	if (tempos[0].tick !== 0)
+		tempos.unshift({ tick: 0, microsecondsPerBeat: tempos[0].microsecondsPerBeat });
+	return { ticksPerBeat, tempos };
+};
+
+
+const secondsToTick = (seconds: number, tempoMap: ReturnType<typeof collectTempoMap>) => {
+	let elapsedSeconds = 0;
+	let previousTick = tempoMap.tempos[0].tick;
+	let microsecondsPerBeat = tempoMap.tempos[0].microsecondsPerBeat;
+	for (let i = 1; i < tempoMap.tempos.length; ++i) {
+		const next = tempoMap.tempos[i];
+		const segmentSeconds = (next.tick - previousTick) * microsecondsPerBeat / tempoMap.ticksPerBeat / 1e6;
+		if (seconds < elapsedSeconds + segmentSeconds)
+			return Math.round(previousTick + (seconds - elapsedSeconds) * tempoMap.ticksPerBeat * 1e6 / microsecondsPerBeat);
+		elapsedSeconds += segmentSeconds;
+		previousTick = next.tick;
+		microsecondsPerBeat = next.microsecondsPerBeat;
+	}
+	return Math.round(previousTick + (seconds - elapsedSeconds) * tempoMap.ticksPerBeat * 1e6 / microsecondsPerBeat);
+};
+
+
+const buildPageTurns = (sourceDir: string, midi: any): PageTurn[] => {
+	const metaPath = path.join(sourceDir, 'meta.yaml');
+	const scorePath = path.join(sourceDir, 'score.json');
+	if (!fs.existsSync(metaPath) || !fs.existsSync(scorePath))
+		return [];
+	const meta = YAML.parse(fs.readFileSync(metaPath).toString()) as any;
+	const score = JSON.parse(fs.readFileSync(scorePath).toString());
+	const changes = meta?.shot_detection?.changes ?? [];
+	const tempoMap = collectTempoMap(midi);
+	let measureIndex = 0;
+	const result: PageTurn[] = [];
+	(score.pages ?? []).forEach((page: any, pageIndex: number) => {
+		const seconds = Number(changes[pageIndex]?.seconds);
+		if (pageIndex > 0 && Number.isFinite(seconds)) {
+			result.push({
+				pageIndex,
+				startMeasureIndex: measureIndex,
+				seconds,
+				tick: secondsToTick(seconds, tempoMap),
+			});
+		}
+		for (const system of page.systems ?? []) {
+			const fallbackMeasureCount = system.staves?.[0]?.measures?.length ?? 0;
+			measureIndex += Number(system.measureCount ?? fallbackMeasureCount ?? 0);
+		}
+	});
+	return result;
 };
 
 
@@ -75,10 +153,11 @@ const remapSpartitoPoints = (spartitoPoints: SpartitoEventPoint[], onsets: NoteO
 };
 
 
-export const renderSvg = (spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPoint[], segmentation?: Segmentation) => {
+export const renderSvg = (spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPoint[], segmentation?: Segmentation, pageTurns: PageTurn[] = []) => {
 	const renderSpartitoPoints = remapSpartitoPoints(spartitoPoints, onsets, segmentation);
 	const boundaryTicks = segmentation?.boundaries?.map(boundary => boundary.endTick) ?? [];
-	const maxTick = Math.max(1, ...renderSpartitoPoints.map(p => p.displayTick), ...onsets.map(p => p[1]), ...boundaryTicks);
+	const pageTurnTicks = pageTurns.map(pageTurn => pageTurn.tick);
+	const maxTick = Math.max(1, ...renderSpartitoPoints.map(p => p.displayTick), ...onsets.map(p => p[1]), ...boundaryTicks, ...pageTurnTicks);
 	const margin = { left: 80, right: 40, top: 50, bottom: 70 };
 	const pxPerTick = 0.1;
 	const width = Math.ceil(maxTick * pxPerTick + margin.left + margin.right);
@@ -116,6 +195,13 @@ export const renderSvg = (spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPo
 		</g>`;
 	}).join('');
 
+	const pageTurnNodes = pageTurns.map(pageTurn => `
+		<g class="page-turn">
+			<line x1="${sx(pageTurn.tick).toFixed(2)}" y1="${margin.top}" x2="${sx(pageTurn.tick).toFixed(2)}" y2="${height - margin.bottom}" />
+			<text x="${sx(pageTurn.tick).toFixed(2)}" y="${margin.top + 18}" text-anchor="middle">p${pageTurn.pageIndex + 1}</text>
+			<title>page ${pageTurn.pageIndex + 1}\nstartMeasure=${pageTurn.startMeasureIndex}\nseconds=${pageTurn.seconds}\ntick=${pageTurn.tick}</title>
+		</g>`).join('');
+
 	const onsetNodes = onsets.map(([pitch, tick, tau], index) => {
 		const x = sx(tick).toFixed(2);
 		const y = sy(pitch).toFixed(2);
@@ -144,6 +230,8 @@ export const renderSvg = (spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPo
 		.legend { fill: #333; font: 14px sans-serif; }
 		.boundary line { stroke: #6a3d9a; stroke-width: 1.5; stroke-dasharray: 6 5; }
 		.boundary text { fill: #6a3d9a; font: 12px sans-serif; font-weight: 600; }
+		.page-turn line { stroke: #ff7f0e; stroke-width: 2; stroke-dasharray: 3 4; }
+		.page-turn text { fill: #ff7f0e; font: 12px sans-serif; font-weight: 700; }
 		.onset { opacity: 1; }
 		.onset line { stroke: #1f77b4; stroke-width: 2; stroke-linecap: round; }
 		.spartito { fill: none; opacity: 0.9; stroke: #d62728; stroke-width: 2; }
@@ -156,11 +244,13 @@ export const renderSvg = (spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPo
 	<line class="axis" x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${height - margin.bottom}" />
 	<line class="axis" x1="${margin.left}" y1="${height - margin.bottom}" x2="${width - margin.right}" y2="${height - margin.bottom}" />
 	<g>${boundaryNodes}</g>
+	<g>${pageTurnNodes}</g>
 	<g>${onsetNodes}</g>
 	<g>${spartitoNodes}</g>
 	<g class="onset" transform="translate(${width - 380} 28)"><line x1="-6" y1="0" x2="6" y2="0" /><line x1="0" y1="-6" x2="0" y2="6" /></g><text class="legend" x="${width - 366}" y="33">transkun.mid noteOn (${onsets.length})</text>
 	<circle class="spartito" cx="${width - 380}" cy="52" r="6" /><text class="legend" x="${width - 366}" y="57">spartito event pitches (${spartitoPoints.length})</text>
 	<g class="boundary"><line x1="${width - 380}" y1="72" x2="${width - 370}" y2="72" /></g><text class="legend" x="${width - 366}" y="77">segmentation boundaries (${segmentation?.boundaries?.length ?? 0})</text>
+	<g class="page-turn"><line x1="${width - 380}" y1="92" x2="${width - 370}" y2="92" /></g><text class="legend" x="${width - 366}" y="97">page turns (${pageTurns.length})</text>
 	<text class="axis-label" x="${margin.left + plotWidth / 2}" y="${height - 18}" text-anchor="middle">tick</text>
 	<text class="axis-label" x="22" y="${margin.top + plotHeight / 2}" transform="rotate(-90 22 ${margin.top + plotHeight / 2})" text-anchor="middle">MIDI pitch</text>
 </svg>
@@ -183,6 +273,7 @@ const main = () => {
 	const midi = MIDI.parseMidiData(fs.readFileSync(midiPath));
 	const spartitoPoints = extractSpartitoEvents(spartito);
 	const onsets = midiToOnset(midi);
+	const pageTurns = buildPageTurns(sourceDir, midi);
 
 	const segmentationPath = [
 		path.join(measuresDir, 'midi-segmentation.json'),
@@ -192,11 +283,12 @@ const main = () => {
 
 	fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 
-	fs.writeFileSync(outputPath, renderSvg(spartitoPoints, onsets, segmentation));
+	fs.writeFileSync(outputPath, renderSvg(spartitoPoints, onsets, segmentation, pageTurns));
 
 	console.log('spartito events:', spartito.measures.reduce((n: number, measure: any) => n + (measure.events?.length ?? 0), 0));
 	console.log('spartito pitch points:', spartitoPoints.length);
 	console.log('transkun onsets:', onsets.length);
+	console.log('page turns:', pageTurns.length);
 	console.log('segmentation boundaries:', segmentation?.boundaries?.length ?? 0);
 	console.log('svg saved:', outputPath);
 };
