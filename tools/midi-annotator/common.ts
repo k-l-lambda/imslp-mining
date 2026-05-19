@@ -27,6 +27,7 @@ export type SpartitoEventPoint = {
 	pitch: number;
 	pitchSource?: Pitch;
 	tick: number;
+	predispositionTick?: number;
 };
 
 
@@ -113,6 +114,8 @@ export const extractSpartitoEvents = (spartito: any): SpartitoEventPoint[] => {
 
 			const localTick = maxIntX > 0 ? Number(event.intX ?? 0) / maxIntX * measureDuration : 0;
 			const tick = measureStart + localTick;
+			const eventPredispositionTick = Number(event.predisposition?.tick);
+			const predispositionTick = Number.isFinite(eventPredispositionTick) ? measureStart + eventPredispositionTick : undefined;
 			const pitches = event.pitches?.length ? event.pitches : [];
 			const ys = event.ys?.length ? event.ys : [];
 
@@ -129,6 +132,7 @@ export const extractSpartitoEvents = (spartito: any): SpartitoEventPoint[] => {
 					pitch: noteToPitch(pitch),
 					pitchSource: pitch,
 					tick,
+					predispositionTick,
 				});
 			});
 		});

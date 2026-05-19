@@ -26,7 +26,14 @@ type PageTurn = {
 
 
 type RenderPoint = SpartitoEventPoint & {
+	sourceTick: number;
 	displayTick: number;
+};
+
+
+type MeasureScoreRange = {
+	start: number;
+	end: number;
 };
 
 
@@ -37,17 +44,28 @@ const escapeXml = (value: unknown) => String(value)
 	.replace(/"/g, '&quot;');
 
 
-const measureScoreRanges = (spartitoPoints: SpartitoEventPoint[]) => {
-	const ranges = new Map<number, { start: number; end: number }>();
-	for (const point of spartitoPoints) {
-		const range = ranges.get(point.measureIndex);
-		if (range) {
-			range.start = Math.min(range.start, point.tick);
-			range.end = Math.max(range.end, point.tick);
-		} else {
-			ranges.set(point.measureIndex, { start: point.tick, end: point.tick });
+const measureScoreRanges = (spartito: any, spartitoPoints: SpartitoEventPoint[]) => {
+	const ranges = new Map<number, MeasureScoreRange>();
+	let measureStart = 0;
+	for (const [measureIndex, measure] of (spartito.measures ?? []).entries()) {
+		const measureDuration = Number(measure.estimatedDuration || measure.duration || 1920);
+		const duration = Number.isFinite(measureDuration) && measureDuration > 0 ? measureDuration : 1920;
+		ranges.set(measureIndex, { start: measureStart, end: measureStart + duration });
+		measureStart += duration;
+	}
+
+	if (!ranges.size) {
+		for (const point of spartitoPoints) {
+			const range = ranges.get(point.measureIndex);
+			if (range) {
+				range.start = Math.min(range.start, point.tick);
+				range.end = Math.max(range.end, point.tick);
+			} else {
+				ranges.set(point.measureIndex, { start: point.tick, end: point.tick });
+			}
 		}
 	}
+
 	return ranges;
 };
 
@@ -121,16 +139,19 @@ const buildPageTurns = (sourceDir: string, midi: any): PageTurn[] => {
 };
 
 
-const remapSpartitoPoints = (spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPoint[], segmentation?: Segmentation): RenderPoint[] => {
+const pointSourceTick = (point: SpartitoEventPoint) => point.predispositionTick ?? point.tick;
+
+
+const remapSpartitoPoints = (spartito: any, spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPoint[], segmentation?: Segmentation): RenderPoint[] => {
 	if (!segmentation?.boundaries?.length)
-		return spartitoPoints.map(point => ({ ...point, displayTick: point.tick }));
+		return spartitoPoints.map(point => ({ ...point, sourceTick: pointSourceTick(point), displayTick: pointSourceTick(point) }));
 
 	const boundaries = [...segmentation.boundaries].sort((a, b) => a.measureIndex - b.measureIndex);
 	const boundaryByMeasure = new Map(boundaries.map(boundary => [boundary.measureIndex, boundary.endTick]));
 	const lastBoundary = boundaries[boundaries.length - 1];
 	const tailMeasureIndex = lastBoundary.measureIndex + 1;
 	const maxOnsetTick = Math.max(lastBoundary.endTick, ...onsets.map(onset => onset[1]));
-	const ranges = measureScoreRanges(spartitoPoints);
+	const ranges = measureScoreRanges(spartito, spartitoPoints);
 	return spartitoPoints.flatMap(point => {
 		const currentBoundary = boundaryByMeasure.get(point.measureIndex) ?? (point.measureIndex === tailMeasureIndex ? maxOnsetTick : undefined);
 		if (currentBoundary === undefined)
@@ -141,20 +162,24 @@ const remapSpartitoPoints = (spartitoPoints: SpartitoEventPoint[], onsets: NoteO
 			return [];
 
 		const range = ranges.get(point.measureIndex);
-		if (!range || range.end <= range.start)
-			return [{ ...point, displayTick: previousBoundary }];
+		if (!range || range.end <= range.start) {
+			const sourceTick = pointSourceTick(point);
+			return [{ ...point, sourceTick, displayTick: previousBoundary }];
+		}
 
-		const alpha = (point.tick - range.start) / (range.end - range.start);
+		const sourceTick = pointSourceTick(point);
+		const alpha = (sourceTick - range.start) / (range.end - range.start);
 		return [{
 			...point,
+			sourceTick,
 			displayTick: previousBoundary + alpha * (currentBoundary - previousBoundary),
 		}];
 	});
 };
 
 
-export const renderSvg = (spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPoint[], segmentation?: Segmentation, pageTurns: PageTurn[] = []) => {
-	const renderSpartitoPoints = remapSpartitoPoints(spartitoPoints, onsets, segmentation);
+export const renderSvg = (spartito: any, spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPoint[], segmentation?: Segmentation, pageTurns: PageTurn[] = []) => {
+	const renderSpartitoPoints = remapSpartitoPoints(spartito, spartitoPoints, onsets, segmentation);
 	const boundaryTicks = segmentation?.boundaries?.map(boundary => boundary.endTick) ?? [];
 	const pageTurnTicks = pageTurns.map(pageTurn => pageTurn.tick);
 	const maxTick = Math.max(1, ...renderSpartitoPoints.map(p => p.displayTick), ...onsets.map(p => p[1]), ...boundaryTicks, ...pageTurnTicks);
@@ -215,7 +240,7 @@ export const renderSvg = (spartitoPoints: SpartitoEventPoint[], onsets: NoteOnPo
 
 	const spartitoNodes = renderSpartitoPoints.map(point => `
 		<circle class="spartito" cx="${sx(point.displayTick).toFixed(2)}" cy="${sy(point.pitch).toFixed(2)}" r="6">
-			<title>spartito event\nmeasure=${point.measureIndex}\nevent=${point.eventIndex}\nid=${escapeXml(point.id)}\nstaff=${point.staff}\npivotX=${point.pivotX}\nintX=${point.intX}\ny=${point.y}\npitch=${point.pitch}\nsourceTick=${point.tick.toFixed(2)}\ndisplayTick=${point.displayTick.toFixed(2)}\npitchSource=${escapeXml(JSON.stringify(point.pitchSource))}</title>
+			<title>spartito event\nmeasure=${point.measureIndex}\nevent=${point.eventIndex}\nid=${escapeXml(point.id)}\nstaff=${point.staff}\npivotX=${point.pivotX}\nintX=${point.intX}\ny=${point.y}\npitch=${point.pitch}\nxMappedTick=${point.tick.toFixed(2)}\npredispositionTick=${point.predispositionTick?.toFixed(2) ?? ''}\nsourceTick=${point.sourceTick.toFixed(2)}\ndisplayTick=${point.displayTick.toFixed(2)}\npitchSource=${escapeXml(JSON.stringify(point.pitchSource))}</title>
 		</circle>`).join('');
 
 	return `<?xml version="1.0" encoding="UTF-8"?>
@@ -283,7 +308,7 @@ const main = () => {
 
 	fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 
-	fs.writeFileSync(outputPath, renderSvg(spartitoPoints, onsets, segmentation, pageTurns));
+	fs.writeFileSync(outputPath, renderSvg(spartito, spartitoPoints, onsets, segmentation, pageTurns));
 
 	console.log('spartito events:', spartito.measures.reduce((n: number, measure: any) => n + (measure.events?.length ?? 0), 0));
 	console.log('spartito pitch points:', spartitoPoints.length);
