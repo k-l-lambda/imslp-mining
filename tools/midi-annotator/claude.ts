@@ -242,7 +242,7 @@ Return only a single JSON object with exactly these six fields:
 - measureIndex
 - endTick
 - confidence: your confidence in the boundary tick, from 0 to 1
-- matchScore: among the target MIDI onsets before this boundary, the ratio that you can assign to a clear spartito point in the current measure, from 0 to 1. Count only onsets with explicit score-point attribution as matched; divide by the total number of MIDI onsets before the boundary in this round's current-measure span. This measures attribution coverage, not boundary certainty.
+- matchScore: among the current measure's spartito points, the ratio that can be reasonably matched to target MIDI onsets before this boundary, from 0 to 1. Use the number of matched spartito points as the numerator and the number of relevant spartito points in the current measure as the denominator. Count flexible matches by pitch, contour, chord shape, relative order, visual grouping, and local timing, including cases where either spartito recognition or MIDI transcription is wrong but the musical correspondence is still clear. This measures spartito-point coverage, not boundary certainty.
 - method: matched-notehead | estimated-beat-spacing | mixed | uncertain
 - reason
 
