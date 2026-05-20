@@ -43,10 +43,10 @@ const mod = (x: number, n: number) => {
 };
 
 
-export const noteToPitch = ({ note, alter, octaveShift = 0 }: Pitch): number => {
+export const noteToPitch = ({ note, alter }: Pitch): number => {
 	const group = Math.floor(note / 7);
 	const gn = mod(note, 7);
-	return MIDDLE_C + group * 12 + GROUP_N_TO_PITCH[gn] + alter + octaveShift * 12;
+	return MIDDLE_C + group * 12 + GROUP_N_TO_PITCH[gn] + alter;
 };
 
 
