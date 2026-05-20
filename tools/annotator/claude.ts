@@ -18,9 +18,9 @@ import {
 	ANNOTATION_BASE_URL,
 	DEFAULT_ANNOTATION_MODEL,
 } from "./common";
-import { type PreprocessPatch, type PreprocessMidiMeasureContext, parsePreprocessPatches } from "./preprocess";
+import { type PreprocessPatch, type PreprocessMidiMeasureContext, parsePreprocessPatches, applyPreprocessPatchToMeasure } from "./preprocess";
 import { SYSTEM_PROMPT, buildAnnotationPrompt } from "./prompt";
-import { PREPROCESS_SYSTEM_PROMPT, PREPROCESS_ALIGNMENT_SYSTEM_PROMPT, PREPROCESS_FINAL_SYSTEM_PROMPT, buildPreprocessPrompt } from "./preprocessPrompt";
+import { PREPROCESS_SYSTEM_PROMPT, PREPROCESS_ALIGNMENT_SYSTEM_PROMPT, PREPROCESS_FINAL_SYSTEM_PROMPT, buildPreprocessPrompt, type PreprocessCarryContext } from "./preprocessPrompt";
 
 
 const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 1;
@@ -77,6 +77,44 @@ const hasMidiForBatch = (batch: IssueMeasureInfo[], midiContexts?: Map<number, P
 const PREPROCESS_MIDI_ALIGNMENT_PROMPT = `Align MIDI evidence to score events for the following measures.`;
 
 const PREPROCESS_FINAL_WITH_ALIGNMENT_PROMPT = `Using the first-pass event/onset alignment plus the original measure image/data in this session, output final sparse preprocessing patches only.`;
+
+const tokenOctaveShift = (tokenType?: string): number | undefined => {
+	if (tokenType === "octave-a") return -1;
+	if (tokenType === "octave-b") return 1;
+	if (tokenType === "octave-0") return 0;
+	return undefined;
+};
+
+const preprocessCarryContextFromMeasure = (measure: starry.SpartitoMeasure): PreprocessCarryContext => ({
+	measureIndex: measure.measureIndex,
+	timeSignature: measure.timeSignature,
+	timeSigNumeric: measure.basics?.find((basic: any) => basic?.timeSigNumeric !== undefined)?.timeSigNumeric,
+	keySignature: measure.keySignature,
+	staffOctaveShifts: (measure.contexts || []).map((contexts, staff) => {
+		const octaveTerms = (contexts || [])
+			.filter((term: any) => typeof term?.tokenType === "string" && term.tokenType.startsWith("octave-"))
+			.sort((a: any, b: any) => (a.tick ?? 0) - (b.tick ?? 0));
+		const last = octaveTerms[octaveTerms.length - 1];
+		return {
+			staff,
+			tokenType: last?.tokenType,
+			octaveShift: last ? tokenOctaveShift(last.tokenType) : 0,
+			tick: last?.tick,
+			x: last?.x,
+			y: last?.y,
+		};
+	}),
+});
+
+const preprocessPatchesTouchCarryContext = (patches: PreprocessPatch[]): boolean => patches.some(patch =>
+	!!patch.basics?.timeSignature
+	|| patch.basics?.timeSigNumeric !== undefined
+	|| patch.basics?.keySignature !== undefined
+	|| (patch.contexts || []).some(contextPatch => {
+		const tokenType = contextPatch.term?.tokenType ?? contextPatch.match?.tokenType;
+		return typeof tokenType === "string" && (tokenType.startsWith("octave-") || tokenType.startsWith("accidentals-") || tokenType.startsWith("timesig-"));
+	}),
+);
 
 
 /** Run one batch (one or more measures) through claude -p. */
@@ -205,11 +243,12 @@ const runOnePreprocessBatch = async (
 	logDir?: string,
 	midiContexts?: Map<number, PreprocessMidiMeasureContext>,
 	measureImagesDir?: string,
+	previousContext?: PreprocessCarryContext,
 ): Promise<{ patches: PreprocessPatch[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasPatches: boolean }> => {
 	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-preprocess-"));
 	try {
 		const hasMidi = hasMidiForBatch(batch, midiContexts);
-		const { text: prompt } = await buildPreprocessPrompt(batch, tmpDir, { imageMode: "path", midiContexts, measureImagesDir });
+		const { text: prompt } = await buildPreprocessPrompt(batch, tmpDir, { imageMode: "path", midiContexts, measureImagesDir, previousContext });
 		const { text: alignmentPrompt } = hasMidi
 			? await buildPreprocessPrompt(batch, tmpDir, { imageMode: "path", midiContexts, measureImagesDir, alignmentOnly: true })
 			: { text: prompt };
@@ -322,7 +361,9 @@ const runOnePreprocessBatch = async (
 };
 
 
-const createClaudeBackend = (annotationModel: string, preprocessModel = annotationModel): AnnotationBackend => ({
+const createClaudeBackend = (annotationModel: string, preprocessModel = annotationModel): AnnotationBackend => {
+	let preprocessCarryContext: PreprocessCarryContext | undefined;
+	return ({
 	async callPreprocess(
 		issueMeasures: IssueMeasureInfo[],
 		spartito: starry.Spartito,
@@ -337,45 +378,46 @@ const createClaudeBackend = (annotationModel: string, preprocessModel = annotati
 
 		const allPatches: PreprocessPatch[] = [];
 		const batchResults: PreprocessBatchResult[] = [];
-		const batches: IssueMeasureInfo[][] = [];
-		for (let i = 0; i < issueMeasures.length; i += BATCH_SIZE)
-			batches.push(issueMeasures.slice(i, i + BATCH_SIZE));
+		const orderedMeasures = [...issueMeasures].sort((a, b) => a.measureIndex - b.measureIndex);
+			const batches: IssueMeasureInfo[][] = orderedMeasures.map(measure => [measure]);
 
 		const total = batches.length;
-		console.log(`  ${total} preprocess batches, concurrency=${CONCURRENCY}`);
+		console.log(`  ${total} preprocess batches, concurrency=1 (context carry-over enabled)`);
 
-		let active = 0;
-		let nextBatch = 0;
-		await new Promise<void>((resolve) => {
-			const tryLaunch = () => {
-				while (active < CONCURRENCY && nextBatch < total) {
-					const bi = nextBatch++;
-					const batch = batches[bi];
-					const label = `b${bi + 1}`;
-					const measureIds = batch.map(m => `m${m.measureIndex}`).join(",");
-					console.log(`\n  Preprocess batch ${bi + 1}/${total} [${measureIds}] starting...`);
-					active++;
+		let previousContext: PreprocessCarryContext | undefined;
+		for (let bi = 0; bi < total; ++bi) {
+			const batch = batches[bi];
+			const label = `b${bi + 1}`;
+			const measureIds = batch.map(m => `m${m.measureIndex}`).join(",");
+			console.log(`\n  Preprocess batch ${bi + 1}/${total} [${measureIds}] starting...`);
 
-					runOnePreprocessBatch(batch, spartito, label, preprocessModel, logDir, midiContexts, measureImagesDir).then((r) => {
-						active--;
-						allPatches.push(...r.patches);
-						if (r.sessionId && r.hasPatches) {
-							batchResults.push({
-								patches: r.patches,
-								sessionId: r.sessionId,
-								measureIndices: r.measureIndices,
-								env: r.sessionEnv,
-							});
-						}
+			const r = await runOnePreprocessBatch(batch, spartito, label, preprocessModel, logDir, midiContexts, measureImagesDir, previousContext);
+			allPatches.push(...r.patches);
+			if (r.sessionId && r.hasPatches) {
+				batchResults.push({
+					patches: r.patches,
+					sessionId: r.sessionId,
+					measureIndices: r.measureIndices,
+					env: r.sessionEnv,
+				});
+			}
 
-						if (active === 0 && nextBatch >= total) resolve();
-						else tryLaunch();
-					});
+			let contextChanged = preprocessPatchesTouchCarryContext(r.patches);
+			for (const patch of r.patches) {
+				const measure = spartito.measures[patch.measureIndex];
+				if (!measure) {
+					console.warn(`  m${patch.measureIndex}: measure not found, skipping preprocessing patch`);
+					continue;
 				}
-				if (active === 0 && nextBatch >= total) resolve();
-			};
-			tryLaunch();
-		});
+				const result = applyPreprocessPatchToMeasure(measure, patch);
+				for (const warning of result.warnings) console.warn(`  m${patch.measureIndex}: ${warning}`);
+				if (result.applied) console.log(`  m${patch.measureIndex}: preprocessing patch applied`);
+			}
+
+			const lastMeasure = batch[batch.length - 1]?.measure;
+			if (lastMeasure && (contextChanged || previousContext))
+				previousContext = preprocessCarryContextFromMeasure(lastMeasure);
+		}
 
 		return { patches: allPatches, batchResults };
 	},
@@ -477,7 +519,8 @@ const createClaudeBackend = (annotationModel: string, preprocessModel = annotati
 
 		return summaryText;
 	},
-});
+	});
+};
 
 
 // ── Main ─────────────────────────────────────────────────────────────────────

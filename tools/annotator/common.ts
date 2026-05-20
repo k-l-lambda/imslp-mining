@@ -13,7 +13,7 @@ import { ANNOTATION_API_KEY, ANNOTATION_BASE_URL, ANNOTATION_MAX_TOKENS, ANNOTAT
 import { starry, regulateWithBeadSolver } from "../libs/omr";
 import OnnxBeadPicker from "../libs/onnxBeadPicker";
 import remoteSolutionStore from "../libs/remoteSolutionStore";
-import { type PreprocessPatch, applyPreprocessPatches, readMidiMeasureContexts } from "./preprocess";
+import { type PreprocessPatch, readMidiMeasureContexts } from "./preprocess";
 
 
 // ── Re-exports for entry points ──────────────────────────────────────────────
@@ -710,40 +710,77 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 		console.log(`Log dir: ${runLogDir}`);
 	}
 
+	// Track which measures were actually modified by annotation
+	let annotatedMeasures = new Set<number>();
+
 	if (argv.preprocess) {
 		if (!backend.callPreprocess) {
 			console.warn("Preprocessing requested, but backend does not support preprocessing; skipping.");
 		} else {
-			console.log(`\n--- Preprocess Phase ---`);
-			const targets = issueMeasures.length > 0
-				? issueMeasures
-				: spartito.measures
-					.filter(m => measureFilter ? measureFilter.has(m.measureIndex) : m.events.length > 0)
-					.map(m => ({ measureIndex: m.measureIndex, status: 0, measure: m }));
-			console.log(`${targets.length} measures to preprocess`);
+			console.log(`\n--- Interleaved Preprocess/Annotation Phase ---`);
+			const targets = (measureFilter
+				? spartito.measures.filter(m => measureFilter.has(m.measureIndex) && m.events.length > 0).map(m => ({ measureIndex: m.measureIndex, status: 0, measure: m }))
+				: (issueMeasures.length > 0
+					? issueMeasures
+					: spartito.measures.filter(m => m.events.length > 0).map(m => ({ measureIndex: m.measureIndex, status: 0, measure: m }))))
+				.sort((a, b) => a.measureIndex - b.measureIndex);
+			console.log(`${targets.length} measures to preprocess${argv.skipAnnotation ? "" : " / annotate if needed"}`);
+
 			const midiContexts = readMidiMeasureContexts(argv.midi, argv.midiSegmentation);
 			if (midiContexts.size > 0)
 				console.log(`MIDI context loaded for ${midiContexts.size} measures. Image evidence takes precedence on conflicts.`);
-			const { patches } = await backend.callPreprocess(targets, spartito, runLogDir, midiContexts, argv.measureImages ? path.resolve(argv.measureImages) : undefined);
-			console.log(`Applying ${patches.length} preprocessing patches:`);
-			const applied = applyPreprocessPatches(spartito, patches);
-			console.log(`Applied ${applied.size} preprocessing patches.`);
+
+			let totalPreprocessPatches = 0;
+			let annotationCallIndex = 0;
+			const maxRounds = argv.maxRounds!;
+
+			for (const target of targets) {
+				console.log(`\n--- Measure m${target.measureIndex} ---`);
+				const { patches } = await backend.callPreprocess([target], spartito, runLogDir, midiContexts, argv.measureImages ? path.resolve(argv.measureImages) : undefined);
+				totalPreprocessPatches += patches.length;
+				console.log(`m${target.measureIndex}: preprocessing returned ${patches.length} patches.`);
+
+				if (argv.skipAnnotation)
+					continue;
+
+				for (let round = 1; round <= maxRounds; ++round) {
+					const measure = spartito.measures[target.measureIndex];
+					if (!measure?.regulated || measure.events.length === 0)
+						break;
+					const ev = starry.evaluateMeasure(measure);
+					if (!ev || ev.fine) {
+						if (round === 1) console.log(`m${target.measureIndex}: fine after preprocessing; skip annotation.`);
+						break;
+					}
+
+					const annotationTarget = { measureIndex: measure.measureIndex, status: ev.error ? 2 : 1, measure };
+					annotationCallIndex++;
+					console.log(`m${target.measureIndex}: annotation round ${round}/${maxRounds}`);
+					const { fixes } = await backend.callAnnotation([annotationTarget], spartito, annotationCallIndex, runLogDir);
+					if (fixes.length === 0) {
+						console.log(`m${target.measureIndex}: no annotation fixes returned.`);
+						break;
+					}
+
+					console.log(`Applying ${fixes.length} fixes for m${target.measureIndex}:`);
+					const appliedIndices = applyFixes(spartito, fixes);
+					annotatedMeasures = new Set([...annotatedMeasures, ...appliedIndices]);
+					console.log(`Applied ${appliedIndices.size} fixes for m${target.measureIndex}.`);
+					if (!appliedIndices.has(target.measureIndex))
+						break;
+				}
+			}
+
+			console.log(`\nInterleaved preprocessing returned ${totalPreprocessPatches} patches.`);
 		}
-	}
-
-	// Track which measures were actually modified by annotation
-	let annotatedMeasures = new Set<number>();
-
-	if (!argv.skipAnnotation && issueMeasures.length > 0) {
+	} else if (!argv.skipAnnotation && issueMeasures.length > 0) {
 		console.log(`\n--- Annotation Phase ---`);
 		console.log(`${issueMeasures.length} issue measures to annotate`);
 		console.log(`Model: ${ANNOTATION_MODEL}`);
 
-		// Create log directory for this run
 		const maxRounds = argv.maxRounds!;
 
 		for (let round = 1; round <= maxRounds; round++) {
-			// Re-evaluate which measures still need annotation
 			const currentIssues = round === 1
 				? issueMeasures
 				: spartito.measures
@@ -761,60 +798,25 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 			}
 
 			console.log(`\nRound ${round}/${maxRounds}: ${currentIssues.length} measures to annotate`);
-
-			// Call backend for annotation
-			const { fixes, batchResults } = await backend.callAnnotation(currentIssues, spartito, round, runLogDir);
+			const { fixes } = await backend.callAnnotation(currentIssues, spartito, round, runLogDir);
 
 			if (fixes.length === 0) {
 				console.log("No fixes returned, stopping annotation.");
 				break;
 			}
 
-			// Apply fixes
 			console.log(`\nApplying ${fixes.length} fixes:`);
 			const appliedIndices = applyFixes(spartito, fixes);
 			annotatedMeasures = new Set([...annotatedMeasures, ...appliedIndices]);
 			console.log(`Applied ${appliedIndices.size} fixes.`);
-
-			// Post-apply summaries: only for batches where fixes actually achieved fine=true
-			for (const br of batchResults) {
-				const anyFixed = br.measureIndices.some(mi => {
-					const ev = starry.evaluateMeasure(spartito.measures[mi]);
-					return ev && ev.fine;
-				});
-				if (!anyFixed) continue;
-
-				const fixedIndices = br.measureIndices.filter(mi => {
-					const ev = starry.evaluateMeasure(spartito.measures[mi]);
-					return ev && ev.fine;
-				});
-
-				const summaryPrompt = [
-					`The following measures were successfully fixed (fine=true): ${fixedIndices.map(i => "m" + i).join(", ")}.`,
-					"Based on your annotation experience just now, please provide a brief summary:",
-					"1. Which principle in the system prompt were most helpful for your annotation work?",
-					"2. What additional guidelines or tips would you suggest adding to the system prompt that are not currently covered?",
-					"3. What common patterns or pitfalls did you encounter during this annotation session?",
-					"Keep it concise and actionable.",
-				].join("\n");
-
-				console.log(`  Requesting summary for ${fixedIndices.map(i => "m" + i).join(",")}...`);
-				const summaryText = await backend.requestSummary(br, summaryPrompt);
-
-				if (summaryText) {
-					console.log("\n  ── Agent Summary ──");
-					console.log(summaryText.split("\n").map((l: string) => "  " + l).join("\n"));
-					console.log("  ──────────────────\n");
-
-					if (runLogDir) {
-						const summaryFile = path.join(runLogDir, `r${round}_summary_m${fixedIndices.join("_")}.txt`);
-						fs.writeFileSync(summaryFile, summaryText);
-					}
-				}
-			}
 		}
+	} else if (issueMeasures.length === 0) {
+		console.log("\nNo issue measures found, skipping annotation.");
+	} else {
+		console.log(`\nSkipping annotation (${issueMeasures.length} issue measures).`);
+	}
 
-		// Final evaluation
+	if ((!argv.skipAnnotation && issueMeasures.length > 0) || argv.preprocess) {
 		let solved = 0, issue = 0, fatal = 0;
 		for (const m of spartito.measures) {
 			if (m.events.length === 0)
@@ -829,10 +831,9 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 		console.log(`\n--- Post-Annotation Stats ---`);
 		console.log(`Solved: ${solved}, Issue: ${issue}, Fatal: ${fatal}`);
 
-		// Auto-visualize logs
 		try {
 			const vizScript = path.join(__dirname, "visualize.ts");
-			if (fs.existsSync(vizScript)) {
+			if (fs.existsSync(vizScript) && runLogDir) {
 				const { execSync } = await import("child_process");
 				const cmd = `npx tsx ${vizScript} ${runLogDir} --spartito ${inputPath}`;
 				execSync(cmd, { stdio: "inherit", cwd: path.join(__dirname, "..", "..") });
@@ -840,12 +841,6 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 		} catch (err: any) {
 			console.warn(`Visualization failed: ${err.message}`);
 		}
-	}
-	else if (issueMeasures.length === 0) {
-		console.log("\nNo issue measures found, skipping annotation.");
-	}
-	else {
-		console.log(`\nSkipping annotation (${issueMeasures.length} issue measures).`);
 	}
 
 	// ── Post-annotation: save only annotated measures to API ──────────────────

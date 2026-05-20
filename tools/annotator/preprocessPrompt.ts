@@ -84,11 +84,20 @@ When a first-pass MIDI alignment is present, use it before any full-measure pitc
 A common octave-shift OMR error is that an 8va/8vb context starts one event too late or ends too early. Check events immediately before/after octave-shift contexts against image brackets and MIDI alignment.
 If image evidence does not support a MIDI mismatch, trust the image and omit the patch.`;
 
+export interface PreprocessCarryContext {
+	measureIndex: number;
+	timeSignature?: { numerator: number; denominator: number };
+	timeSigNumeric?: boolean;
+	keySignature?: number;
+	staffOctaveShifts?: { staff: number; tokenType?: string; octaveShift?: number; tick?: number; x?: number; y?: number }[];
+}
+
 export interface BuildPreprocessPromptOptions {
 	imageMode?: "path" | "attached";
 	midiContexts?: Map<number, PreprocessMidiMeasureContext>;
 	measureImagesDir?: string;
 	alignmentOnly?: boolean;
+	previousContext?: PreprocessCarryContext;
 }
 
 export interface PreprocessPromptResult {
@@ -152,9 +161,17 @@ export const buildPreprocessPrompt = async (
 			options.alignmentOnly ? "Align MIDI onset pitches to existing score events." : "Review the following measures for upstream recognition metadata problems.",
 			options.alignmentOnly ? "Read the image only to disambiguate event ownership or visible octave-shift brackets. Do not explain your reasoning." : "Read each image before deciding. MIDI data, when present, is supporting evidence only; image wins on conflicts.",
 			options.alignmentOnly ? "Return compact alignment JSON only." : "Return sparse JSON patches only for incorrect objects/fields.",
+			options.previousContext ? [
+				"",
+				"Previous accepted preprocessing context from the immediately preceding processed measure:",
+				"```json",
+				JSON.stringify(options.previousContext, null, "\t"),
+				"```",
+				"Use this only as continuity context for key signature, time signature, and staff octave-shift state; the current measure image remains authoritative.",
+			].join("\n") : "",
 			"",
 			...sections,
-		].join("\n"),
+		].filter(part => part !== "").join("\n"),
 		imagePaths,
 	};
 };
