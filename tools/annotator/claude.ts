@@ -385,10 +385,10 @@ const createClaudeBackend = (annotationModel: string, preprocessModel = annotati
 		const total = batches.length;
 		console.log(`  ${total} preprocess batches, concurrency=1 (context carry-over enabled)`);
 
-		let previousContext: PreprocessCarryContext | undefined;
+		let previousContext = preprocessCarryContext;
 		for (let bi = 0; bi < total; ++bi) {
 			const batch = batches[bi];
-			const label = `b${bi + 1}`;
+			const label = `b${++preprocessBatchCounter}`;
 			const measureIds = batch.map(m => `m${m.measureIndex}`).join(",");
 			console.log(`\n  Preprocess batch ${bi + 1}/${total} [${measureIds}] starting...`);
 

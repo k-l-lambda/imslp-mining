@@ -1057,6 +1057,10 @@ function renderConversation(turns: ConversationTurn[]): string {
 	return out.join("\n");
 }
 
+function escHtml(s: string): string {
+	return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
+}
+
 function escMd(s: string): string {
 	return s.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -1071,9 +1075,7 @@ function renderPreprocessReports(reports: PreprocessReport[]): string {
 		if (report.promptText) {
 			lines.push(`<details><summary><b>Full preprocess prompt</b></summary>`);
 			lines.push("");
-			lines.push("```markdown");
-			lines.push(report.promptText);
-			lines.push("```");
+			lines.push(`<pre><code>${escHtml(report.promptText)}</code></pre>`);
 			lines.push("");
 			lines.push(`</details>`);
 			lines.push("");
@@ -1081,9 +1083,7 @@ function renderPreprocessReports(reports: PreprocessReport[]): string {
 		if (report.alignmentPromptText) {
 			lines.push(`<details><summary><b>Full alignment prompt</b></summary>`);
 			lines.push("");
-			lines.push("```markdown");
-			lines.push(report.alignmentPromptText);
-			lines.push("```");
+			lines.push(`<pre><code>${escHtml(report.alignmentPromptText)}</code></pre>`);
 			lines.push("");
 			lines.push(`</details>`);
 			lines.push("");
