@@ -584,7 +584,9 @@ if (spartito) {
 			],
 		}) as any;
 		assertEq(serialized.midi.onsetGroups.length, 2, "preprocess MIDI serialization: nearby onsets grouped");
+		assert(Math.abs(serialized.midi.onsetGroups[0].relativeTick) <= 24, "preprocess MIDI serialization: onset group uses measure-relative tick");
 		assertEq(serialized.midi.onsetGroups[0].pitches, [60, 64], "preprocess MIDI serialization: chord pitches grouped");
+		assert(!serialized.midi.eventEvidence, "preprocess MIDI serialization: rule-based event evidence omitted");
 		assert(!serialized.midi.onsets, "preprocess MIDI serialization: flat onsets omitted from prompt");
 	}
 }

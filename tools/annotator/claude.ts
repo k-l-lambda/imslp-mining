@@ -20,7 +20,7 @@ import {
 } from "./common";
 import { type PreprocessPatch, type PreprocessMidiMeasureContext, parsePreprocessPatches } from "./preprocess";
 import { SYSTEM_PROMPT, buildAnnotationPrompt } from "./prompt";
-import { PREPROCESS_SYSTEM_PROMPT, buildPreprocessPrompt } from "./preprocessPrompt";
+import { PREPROCESS_SYSTEM_PROMPT, PREPROCESS_ALIGNMENT_SYSTEM_PROMPT, PREPROCESS_FINAL_SYSTEM_PROMPT, buildPreprocessPrompt } from "./preprocessPrompt";
 
 
 const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 1;
@@ -56,6 +56,27 @@ const spawnClaude = (args: string[], input: string, env: Record<string, string>,
 		child.stdin.end(input);
 	});
 };
+
+
+const parseClaudeJsonOutput = (rawOutput: string): { textOutput: string; sessionId: string } => {
+	try {
+		const jsonResult = JSON.parse(rawOutput);
+		if (Array.isArray(jsonResult)) {
+			const lastItem = jsonResult[jsonResult.length - 1];
+			return { textOutput: lastItem?.result || "", sessionId: lastItem?.session_id || "" };
+		}
+		return { textOutput: jsonResult.result || "", sessionId: jsonResult.session_id || "" };
+	} catch {
+		return { textOutput: rawOutput, sessionId: "" };
+	}
+};
+
+const hasMidiForBatch = (batch: IssueMeasureInfo[], midiContexts?: Map<number, PreprocessMidiMeasureContext>) =>
+	!!midiContexts && batch.some(issue => midiContexts.has(issue.measureIndex));
+
+const PREPROCESS_MIDI_ALIGNMENT_PROMPT = `Align MIDI evidence to score events for the following measures.`;
+
+const PREPROCESS_FINAL_WITH_ALIGNMENT_PROMPT = `Using the first-pass event/onset alignment plus the original measure image/data in this session, output final sparse preprocessing patches only.`;
 
 
 /** Run one batch (one or more measures) through claude -p. */
@@ -187,10 +208,16 @@ const runOnePreprocessBatch = async (
 ): Promise<{ patches: PreprocessPatch[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasPatches: boolean }> => {
 	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-preprocess-"));
 	try {
+		const hasMidi = hasMidiForBatch(batch, midiContexts);
 		const { text: prompt } = await buildPreprocessPrompt(batch, tmpDir, { imageMode: "path", midiContexts, measureImagesDir });
+		const { text: alignmentPrompt } = hasMidi
+			? await buildPreprocessPrompt(batch, tmpDir, { imageMode: "path", midiContexts, measureImagesDir, alignmentOnly: true })
+			: { text: prompt };
 
-		if (logDir)
+		if (logDir) {
 			fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_prompt.txt`), prompt);
+			if (hasMidi) fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_alignment_prompt.txt`), alignmentPrompt);
+		}
 
 		fs.writeFileSync(path.join(tmpDir, "spartito.json"), JSON.stringify(spartito));
 
@@ -202,14 +229,17 @@ const runOnePreprocessBatch = async (
 			ANTHROPIC_SMALL_FAST_MODEL: preprocessModel,
 		};
 
+		const firstSystemPrompt = hasMidi ? PREPROCESS_ALIGNMENT_SYSTEM_PROMPT : PREPROCESS_SYSTEM_PROMPT;
+		const firstPrompt = hasMidi ? `${PREPROCESS_MIDI_ALIGNMENT_PROMPT}\n\n${alignmentPrompt}` : prompt;
+
 		const { stdout: rawOutput, stderr, code, signal, timedOut } = await spawnClaude([
 			"-p",
 			"--output-format", "json",
-			"--append-system-prompt", PREPROCESS_SYSTEM_PROMPT,
+			"--append-system-prompt", firstSystemPrompt,
 			"--allowedTools", "Read",
-			"--effort", "high",
+			"--effort", "low",
 			"--verbose",
-		], prompt, env, 20 * 60 * 1000);
+		], firstPrompt, env, 20 * 60 * 1000);
 
 		if (logDir) {
 			fs.writeFileSync(path.join(logDir, `pre_${batchLabel}.json`), rawOutput);
@@ -227,18 +257,42 @@ const runOnePreprocessBatch = async (
 
 		let textOutput = "";
 		let sessionId = "";
-		try {
-			const jsonResult = JSON.parse(rawOutput);
-			if (Array.isArray(jsonResult)) {
-				const lastItem = jsonResult[jsonResult.length - 1];
-				textOutput = lastItem?.result || "";
-				sessionId = lastItem?.session_id || "";
-			} else {
-				textOutput = jsonResult.result || "";
-				sessionId = jsonResult.session_id || "";
+		({ textOutput, sessionId } = parseClaudeJsonOutput(rawOutput));
+
+		if (hasMidi && sessionId && textOutput) {
+			if (logDir)
+				fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_alignments.txt`), textOutput);
+			const { stdout: finalRawOutput, stderr: finalStderr, code: finalCode, signal: finalSignal, timedOut: finalTimedOut } = await spawnClaude([
+				"-p",
+				"--output-format", "json",
+				"--resume", sessionId,
+				"--append-system-prompt", PREPROCESS_FINAL_SYSTEM_PROMPT,
+				"--effort", "low",
+				"--verbose",
+			], `${PREPROCESS_FINAL_WITH_ALIGNMENT_PROMPT}\n\n${prompt}`, env, 20 * 60 * 1000);
+			if (logDir) {
+				fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_final.json`), finalRawOutput);
+				if (finalStderr) fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_final.stderr.txt`), finalStderr);
 			}
-		} catch {
-			textOutput = rawOutput;
+			if (finalTimedOut) {
+				console.warn(`  [pre ${batchLabel}] final pass timed out`);
+				return { patches: [], sessionId, measureIndices: batch.map(m => m.measureIndex), sessionEnv: env, ok: false, hasPatches: false };
+			}
+			if (finalSignal) {
+				console.warn(`  [pre ${batchLabel}] final pass killed by signal ${finalSignal}`);
+				return { patches: [], sessionId, measureIndices: batch.map(m => m.measureIndex), sessionEnv: env, ok: false, hasPatches: false };
+			}
+			if (finalRawOutput.includes("usage limit") || finalStderr.includes("usage limit")) {
+				console.error(`\n  FATAL: API usage limit hit. Aborting.`);
+				process.exit(1);
+			}
+			if (finalCode !== 0) {
+				console.warn(`  [pre ${batchLabel}] final claude exited with code ${finalCode}`);
+				if (finalStderr) console.warn(`  final stderr: ${finalStderr.slice(0, 500)}`);
+			}
+			const parsedFinal = parseClaudeJsonOutput(finalRawOutput);
+			textOutput = parsedFinal.textOutput;
+			sessionId = parsedFinal.sessionId || sessionId;
 		}
 
 		if (rawOutput.includes("usage limit") || stderr.includes("usage limit")) {

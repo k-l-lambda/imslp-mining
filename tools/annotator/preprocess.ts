@@ -18,6 +18,7 @@ export interface MidiSegmentationEntry {
 
 export interface PreprocessMidiOnsetGroup {
 	tick: number;
+	relativeTick: number;
 	tau: number;
 	pitches: number[];
 	indices: number[];
@@ -212,7 +213,7 @@ const serializePitch = (pitch: starry.TermPitch) => ({
 	pitchName: termPitchName(pitch),
 });
 
-const groupMidiOnsets = (onsets: PreprocessMidiMeasureContext["onsets"]): PreprocessMidiOnsetGroup[] => {
+const groupMidiOnsets = (onsets: PreprocessMidiMeasureContext["onsets"], measureStartTick: number): PreprocessMidiOnsetGroup[] => {
 	const groups: PreprocessMidiOnsetGroup[] = [];
 	for (const onset of onsets) {
 		const last = groups[groups.length - 1];
@@ -220,10 +221,12 @@ const groupMidiOnsets = (onsets: PreprocessMidiMeasureContext["onsets"]): Prepro
 			last.pitches.push(onset.pitch);
 			last.indices.push(onset.index);
 			last.tick = Math.round((last.tick * (last.indices.length - 1) + onset.tick) / last.indices.length);
+			last.relativeTick = last.tick - measureStartTick;
 			last.tau = Math.round(((last.tau * (last.indices.length - 1) + onset.tau) / last.indices.length) * 1000) / 1000;
 		} else {
 			groups.push({
 				tick: onset.tick,
+				relativeTick: onset.tick - measureStartTick,
 				tau: Math.round(onset.tau * 1000) / 1000,
 				pitches: [onset.pitch],
 				indices: [onset.index],
@@ -236,10 +239,13 @@ const groupMidiOnsets = (onsets: PreprocessMidiMeasureContext["onsets"]): Prepro
 	}));
 };
 
-const serializeMidiContext = (midi?: PreprocessMidiMeasureContext) => midi ? {
-	segmentation: midi.segmentation,
-	onsetGroups: groupMidiOnsets(midi.onsets),
-} : undefined;
+const serializeMidiContext = (midi?: PreprocessMidiMeasureContext) => {
+	if (!midi) return undefined;
+	return {
+		segmentation: midi.segmentation,
+		onsetGroups: groupMidiOnsets(midi.onsets, midi.segmentation.tick),
+	};
+};
 
 export const serializeMeasureForPreprocess = (measure: starry.SpartitoMeasure, midi?: PreprocessMidiMeasureContext) => ({
 	measureIndex: measure.measureIndex,
