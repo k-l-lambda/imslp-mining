@@ -43,6 +43,21 @@ const walkScoreFiles = (dir: string): string[] => {
 };
 
 
+const removeInlineBackgroundImages = (spartito: starry.Spartito): number => {
+	let removed = 0;
+	for (const measure of spartito.measures) {
+		const backgroundImages = measure.backgroundImages ?? [];
+		measure.backgroundImages = backgroundImages.filter((image: any) => {
+			const remove = typeof image.url === "string" && image.url.startsWith("data:");
+			if (remove)
+				++removed;
+			return !remove;
+		});
+	}
+	return removed;
+};
+
+
 const exportMidi = (score: starry.Score, spartito: starry.Spartito, midiPath: string): boolean => {
 	const { notation } = spartito.performByEstimation();
 	const mlayout = score.getMeasureLayout();
@@ -88,8 +103,9 @@ const constructSpartito = async (scorePath: string, beadPicker: OnnxBeadPicker):
 		}
 	}
 
+	const inlineBackgroundImagesRemoved = removeInlineBackgroundImages(spartito);
 	fs.writeFileSync(spartitoPath, JSON.stringify(spartito));
-	console.log("Spartito saved:", spartitoPath, `measures=${spartito.measures.length}`, `glimpsed=${glimpsed}`);
+	console.log("Spartito saved:", spartitoPath, `measures=${spartito.measures.length}`, `glimpsed=${glimpsed}`, `inlineImagesRemoved=${inlineBackgroundImagesRemoved}`);
 
 	if (argv.midi) {
 		const midiPath = path.join(dir, "spartito.midi");
