@@ -13,6 +13,7 @@ import { ANNOTATION_API_KEY, ANNOTATION_BASE_URL, ANNOTATION_MAX_TOKENS, ANNOTAT
 import { starry, regulateWithBeadSolver } from "../libs/omr";
 import OnnxBeadPicker from "../libs/onnxBeadPicker";
 import remoteSolutionStore from "../libs/remoteSolutionStore";
+import { type PreprocessPatch, applyPreprocessPatches, readMidiMeasureContexts } from "./preprocess";
 
 
 // ── Re-exports for entry points ──────────────────────────────────────────────
@@ -30,6 +31,13 @@ export interface IssueMeasureInfo {
 
 export interface BatchResult {
 	fixes: Fix[];
+	sessionId: string;
+	measureIndices: number[];
+	env: Record<string, string>;
+}
+
+export interface PreprocessBatchResult {
+	patches: PreprocessPatch[];
 	sessionId: string;
 	measureIndices: number[];
 	env: Record<string, string>;
@@ -55,6 +63,14 @@ export interface Fix {
 }
 
 export interface AnnotationBackend {
+	callPreprocess?(
+		issues: IssueMeasureInfo[],
+		spartito: starry.Spartito,
+		logDir?: string,
+		midiContexts?: Map<number, any>,
+		measureImagesDir?: string,
+	): Promise<{ patches: PreprocessPatch[]; batchResults: PreprocessBatchResult[] }>;
+
 	callAnnotation(
 		issues: IssueMeasureInfo[],
 		spartito: starry.Spartito,
@@ -76,6 +92,11 @@ export interface ParsedArgs {
 	skipAnnotation: boolean;
 	forceRegulate: boolean;
 	annotationModel?: string;
+	preprocess: boolean;
+	preprocessModel?: string;
+	midi?: string;
+	midiSegmentation?: string;
+	measureImages?: string;
 	maxRounds: number;
 	measures?: string;
 }
@@ -96,6 +117,11 @@ export const parseArgs = (): ParsedArgs => {
 				.option("skip-annotation", { type: "boolean", describe: "Skip the annotation step" })
 				.option("force-regulate", { type: "boolean", describe: "Force re-regulation even if already regulated" })
 				.option("annotation-model", { type: "string", describe: "Model for annotation (overrides ANNOTATION_MODEL env)" })
+				.option("preprocess", { type: "boolean", default: false, describe: "Run agent preprocessing for pitch/basic/accessory recognition fixes before annotation" })
+				.option("preprocess-model", { type: "string", describe: "Model for preprocessing (defaults to annotation model)" })
+				.option("midi", { type: "string", describe: "Optional MIDI file for preprocessing context" })
+				.option("midi-segmentation", { type: "string", describe: "Optional YAML segmentation for MIDI preprocessing context" })
+				.option("measure-images", { type: "string", describe: "Optional directory containing pre-rendered measure images (mNNN.webp) for preprocessing" })
 				.option("max-rounds", { type: "number", default: 1, describe: "Max annotation rounds" })
 				.option("measures", { type: "string", describe: "Comma-separated measure indices to annotate (e.g. '16,70,83')" })
 			,
@@ -674,6 +700,37 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 		console.log(`\nFiltered measures: ${[...measureFilter].join(",")} (${before} → ${issueMeasures.length})`);
 	}
 
+	// Create log directory for agent phases when needed
+	let runLogDir: string | undefined;
+	if ((argv.preprocess && backend.callPreprocess) || (!argv.skipAnnotation && issueMeasures.length > 0)) {
+		const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+		const inputBasename = path.basename(inputPath, ".spartito.json");
+		runLogDir = path.join(__dirname, "..", "..", "logs", `${timestamp}_${inputBasename}`);
+		fs.mkdirSync(runLogDir, { recursive: true });
+		console.log(`Log dir: ${runLogDir}`);
+	}
+
+	if (argv.preprocess) {
+		if (!backend.callPreprocess) {
+			console.warn("Preprocessing requested, but backend does not support preprocessing; skipping.");
+		} else {
+			console.log(`\n--- Preprocess Phase ---`);
+			const targets = issueMeasures.length > 0
+				? issueMeasures
+				: spartito.measures
+					.filter(m => measureFilter ? measureFilter.has(m.measureIndex) : m.events.length > 0)
+					.map(m => ({ measureIndex: m.measureIndex, status: 0, measure: m }));
+			console.log(`${targets.length} measures to preprocess`);
+			const midiContexts = readMidiMeasureContexts(argv.midi, argv.midiSegmentation);
+			if (midiContexts.size > 0)
+				console.log(`MIDI context loaded for ${midiContexts.size} measures. Image evidence takes precedence on conflicts.`);
+			const { patches } = await backend.callPreprocess(targets, spartito, runLogDir, midiContexts, argv.measureImages ? path.resolve(argv.measureImages) : undefined);
+			console.log(`Applying ${patches.length} preprocessing patches:`);
+			const applied = applyPreprocessPatches(spartito, patches);
+			console.log(`Applied ${applied.size} preprocessing patches.`);
+		}
+	}
+
 	// Track which measures were actually modified by annotation
 	let annotatedMeasures = new Set<number>();
 
@@ -683,12 +740,6 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 		console.log(`Model: ${ANNOTATION_MODEL}`);
 
 		// Create log directory for this run
-		const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
-		const inputBasename = path.basename(inputPath, ".spartito.json");
-		const runLogDir = path.join(__dirname, "..", "..", "logs", `${timestamp}_${inputBasename}`);
-		fs.mkdirSync(runLogDir, { recursive: true });
-		console.log(`Log dir: ${runLogDir}`);
-
 		const maxRounds = argv.maxRounds!;
 
 		for (let round = 1; round <= maxRounds; round++) {

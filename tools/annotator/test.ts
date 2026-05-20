@@ -17,6 +17,12 @@ import {
 	resolveImageSource,
 	starry,
 } from "./common";
+import {
+	applyPreprocessPatches,
+	parsePreprocessPatches,
+	readMidiMeasureContexts,
+	serializeMeasureForPreprocess,
+} from "./preprocess";
 
 
 // ── Test harness ─────────────────────────────────────────────────────────────
@@ -354,7 +360,7 @@ if (spartito) {
 		const evalBefore = starry.evaluateMeasure(issueMeasure)!;
 		console.log(`  Issue measure: m${mi} (fine=${evalBefore.fine}, tickTwist=${evalBefore.tickTwist.toFixed(3)})`);
 
-		// Apply identity fix (same as base): should not revert (tickTwist unchanged)
+		// Apply identity fix (same as base): current applyFixes policy reverts if fine remains false
 		{
 			const base = issueMeasure.asSolution();
 			if (base) {
@@ -362,18 +368,18 @@ if (spartito) {
 				const cloneSp = starry.recoverJSON<starry.Spartito>(JSON.parse(JSON.stringify(spartito)), starry);
 				const fix = { ...base, measureIndex: mi, status: 0 };
 				const applied = applyFixes(cloneSp, [fix]);
-				assert(applied.has(mi), "identity fix: accepted (tickTwist not worse)");
+				assert(!applied.has(mi), "identity issue fix: reverted because fine remains false");
 			}
 		}
 
-		// Apply empty fix (no events): should still work via merge
+		// Apply empty fix (no events): should merge, then revert if fine remains false
 		{
 			const cloneSp = starry.recoverJSON<starry.Spartito>(JSON.parse(JSON.stringify(spartito)), starry);
 			const base = cloneSp.measures[mi].asSolution();
 			if (base) {
 				const fix = { measureIndex: mi, events: [], voices: base.voices, duration: base.duration, status: 0 };
 				const applied = applyFixes(cloneSp, [fix]);
-				assert(applied.has(mi), "empty events fix: accepted");
+				assert(!applied.has(mi), "empty events issue fix: reverted because fine remains false");
 			}
 		}
 
@@ -482,6 +488,105 @@ suite("resolveImageSource");
 	const result = resolveImageSource("https://example.com/image.png");
 	// Not a local file, not md5: — resolveImageSource checks fs.existsSync
 	assertEq(result, null, "URL that doesn't exist locally returns null");
+}
+
+
+// ── preprocessing patch tests ─────────────────────────────────────────────────
+
+suite("preprocess patches");
+
+{
+	const output = '```json\n{"patches":[{"measureIndex":2,"events":[{"id":1,"pitches":[{"note":11,"alter":-1}]}]}]}\n```';
+	const patches = parsePreprocessPatches(output);
+	assertEq(patches.length, 1, "preprocess code fence: 1 patch extracted");
+	assertEq(patches[0].measureIndex, 2, "preprocess code fence: measureIndex extracted");
+}
+
+{
+	const patches = parsePreprocessPatches('{"patches":[]}');
+	assertEq(patches.length, 0, "preprocess bare JSON: empty patches extracted");
+}
+
+{
+	const contexts = readMidiMeasureContexts(undefined, undefined);
+	assertEq(contexts.size, 0, "missing optional MIDI args returns empty context map");
+}
+
+if (spartito) {
+	const measure = spartito.measures.find(m => m.events.some(e => !e.rest && e.pitches?.length));
+	if (measure) {
+		const cloneSp = starry.recoverJSON<starry.Spartito>(JSON.parse(JSON.stringify(spartito)), starry);
+		const cloneMeasure = cloneSp.measures[measure.measureIndex];
+		const event = cloneMeasure.events.find(e => !e.rest && e.pitches?.length)!;
+		const originalPitchCount = event.pitches!.length;
+		const applied = applyPreprocessPatches(cloneSp, [{
+			measureIndex: cloneMeasure.measureIndex,
+			events: [{
+				id: event.id!,
+				pitches: [{ note: event.pitches![0].note, alter: event.pitches![0].alter === 0 ? 1 : 0, octaveShift: event.pitches![0].octaveShift }],
+			}],
+		}]);
+		const patchedEvent = cloneSp.measures[measure.measureIndex].events.find(e => e.id === event.id)!;
+		assert(applied.has(measure.measureIndex), "preprocess pitch patch: measure marked applied");
+		assertEq(patchedEvent.pitches!.length, 1, "preprocess pitch patch: replaces pitches only for patched event");
+		assert(originalPitchCount >= 1, "preprocess pitch patch: original event had pitches");
+	}
+
+	const accessoryMeasure = spartito.measures.find(m => m.events.length > 0);
+	if (accessoryMeasure) {
+		const cloneSp = starry.recoverJSON<starry.Spartito>(JSON.parse(JSON.stringify(spartito)), starry);
+		const event = cloneSp.measures[accessoryMeasure.measureIndex].events[0];
+		const before = event.accessories?.length || 0;
+		const applied = applyPreprocessPatches(cloneSp, [{
+			measureIndex: accessoryMeasure.measureIndex,
+			events: [{
+				id: event.id!,
+				accessories: { add: [{ type: "scripts-trill", direction: "^", x: 0.75 }] },
+			}],
+		}]);
+		assert(applied.has(accessoryMeasure.measureIndex), "preprocess accessory add: measure marked applied");
+		assertEq((event.accessories || []).length, before + 1, "preprocess accessory add: accessory appended");
+
+		const removed = applyPreprocessPatches(cloneSp, [{
+			measureIndex: accessoryMeasure.measureIndex,
+			events: [{ id: event.id!, accessories: { remove: [{ type: "scripts-trill" }] } }],
+		}]);
+		assert(removed.has(accessoryMeasure.measureIndex), "preprocess accessory remove: measure marked applied");
+		assert(!(event.accessories || []).some(acc => acc.type === "scripts-trill"), "preprocess accessory remove: trill removed");
+	}
+
+	const contextMeasure = spartito.measures.find(m => m.contexts?.length);
+	if (contextMeasure) {
+		const cloneSp = starry.recoverJSON<starry.Spartito>(JSON.parse(JSON.stringify(spartito)), starry);
+		const m = cloneSp.measures[contextMeasure.measureIndex];
+		const before = (m.contexts[0] || []).length;
+		const applied = applyPreprocessPatches(cloneSp, [{
+			measureIndex: m.measureIndex,
+			contexts: [{
+				action: "add",
+				staff: 0,
+				term: { tokenType: "octave-a", y: -5, tick: 0, staff: 0 },
+			}],
+		}]);
+		assert(applied.has(m.measureIndex), "preprocess context add: measure marked applied");
+		assertEq((m.contexts[0] || []).length, before + 1, "preprocess context add: context appended");
+	}
+
+
+	{
+		const m = spartito.measures.find(mm => mm.events.length > 0)!;
+		const serialized = serializeMeasureForPreprocess(m, {
+			segmentation: { measureIndex: m.measureIndex, tick: 1000, duration: 500 },
+			onsets: [
+				{ index: 0, pitch: 60, tick: 1000, tau: 0 },
+				{ index: 1, pitch: 64, tick: 1012, tau: 0.05 },
+				{ index: 2, pitch: 67, tick: 1100, tau: 0.7 },
+			],
+		}) as any;
+		assertEq(serialized.midi.onsetGroups.length, 2, "preprocess MIDI serialization: nearby onsets grouped");
+		assertEq(serialized.midi.onsetGroups[0].pitches, [60, 64], "preprocess MIDI serialization: chord pitches grouped");
+		assert(!serialized.midi.onsets, "preprocess MIDI serialization: flat onsets omitted from prompt");
+	}
 }
 
 

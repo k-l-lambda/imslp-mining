@@ -7,6 +7,7 @@ import { spawn } from "child_process";
 import {
 	type IssueMeasureInfo,
 	type BatchResult,
+	type PreprocessBatchResult,
 	type Fix,
 	type AnnotationBackend,
 	parseFixes,
@@ -17,7 +18,9 @@ import {
 	ANNOTATION_BASE_URL,
 	DEFAULT_ANNOTATION_MODEL,
 } from "./common";
+import { type PreprocessPatch, type PreprocessMidiMeasureContext, parsePreprocessPatches } from "./preprocess";
 import { SYSTEM_PROMPT, buildAnnotationPrompt } from "./prompt";
+import { PREPROCESS_SYSTEM_PROMPT, buildPreprocessPrompt } from "./preprocessPrompt";
 
 
 const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 1;
@@ -104,7 +107,7 @@ const runOneBatch = async (
 			"--append-system-prompt", SYSTEM_PROMPT,
 			"--allowedTools", "Read,mcp__measure-quality__evaluate_fix",
 			"--mcp-config", mcpConfigPath,
-			"--effort", "max",
+			"--effort", "high",
 			"--verbose",
 		], prompt, env, 20 * 60 * 1000);
 
@@ -172,10 +175,157 @@ const runOneBatch = async (
 	}
 };
 
+/** Run one preprocessing batch through claude -p. */
+const runOnePreprocessBatch = async (
+	batch: IssueMeasureInfo[],
+	spartito: starry.Spartito,
+	batchLabel: string,
+	preprocessModel: string,
+	logDir?: string,
+	midiContexts?: Map<number, PreprocessMidiMeasureContext>,
+	measureImagesDir?: string,
+): Promise<{ patches: PreprocessPatch[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasPatches: boolean }> => {
+	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-preprocess-"));
+	try {
+		const { text: prompt } = await buildPreprocessPrompt(batch, tmpDir, { imageMode: "path", midiContexts, measureImagesDir });
 
-// ── Claude AnnotationBackend ─────────────────────────────────────────────────
+		if (logDir)
+			fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_prompt.txt`), prompt);
 
-const createClaudeBackend = (annotationModel: string): AnnotationBackend => ({
+		fs.writeFileSync(path.join(tmpDir, "spartito.json"), JSON.stringify(spartito));
+
+		const env: Record<string, string> = {
+			...process.env as Record<string, string>,
+			ANTHROPIC_BASE_URL: ANNOTATION_BASE_URL,
+			ANTHROPIC_AUTH_TOKEN: ANNOTATION_API_KEY!,
+			ANTHROPIC_MODEL: preprocessModel,
+			ANTHROPIC_SMALL_FAST_MODEL: preprocessModel,
+		};
+
+		const { stdout: rawOutput, stderr, code, signal, timedOut } = await spawnClaude([
+			"-p",
+			"--output-format", "json",
+			"--append-system-prompt", PREPROCESS_SYSTEM_PROMPT,
+			"--allowedTools", "Read",
+			"--effort", "high",
+			"--verbose",
+		], prompt, env, 20 * 60 * 1000);
+
+		if (logDir) {
+			fs.writeFileSync(path.join(logDir, `pre_${batchLabel}.json`), rawOutput);
+			if (stderr) fs.writeFileSync(path.join(logDir, `pre_${batchLabel}.stderr.txt`), stderr);
+		}
+
+		if (timedOut) {
+			console.warn(`  [pre ${batchLabel}] timed out`);
+			return { patches: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: env, ok: false, hasPatches: false };
+		}
+		if (signal) {
+			console.warn(`  [pre ${batchLabel}] killed by signal ${signal}`);
+			return { patches: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: env, ok: false, hasPatches: false };
+		}
+
+		let textOutput = "";
+		let sessionId = "";
+		try {
+			const jsonResult = JSON.parse(rawOutput);
+			if (Array.isArray(jsonResult)) {
+				const lastItem = jsonResult[jsonResult.length - 1];
+				textOutput = lastItem?.result || "";
+				sessionId = lastItem?.session_id || "";
+			} else {
+				textOutput = jsonResult.result || "";
+				sessionId = jsonResult.session_id || "";
+			}
+		} catch {
+			textOutput = rawOutput;
+		}
+
+		if (rawOutput.includes("usage limit") || stderr.includes("usage limit")) {
+			console.error(`\n  FATAL: API usage limit hit. Aborting.`);
+			process.exit(1);
+		}
+
+		if (code !== 0) {
+			console.warn(`  [pre ${batchLabel}] claude exited with code ${code}`);
+			if (stderr) console.warn(`  stderr: ${stderr.slice(0, 500)}`);
+		}
+
+		if (!textOutput) {
+			console.warn(`  [pre ${batchLabel}] empty result`);
+			return { patches: [], sessionId, measureIndices: batch.map(m => m.measureIndex), sessionEnv: env, ok: false, hasPatches: false };
+		}
+
+		console.log(`  [pre ${batchLabel}] Result text: ${textOutput.length} chars`);
+		const patches = parsePreprocessPatches(textOutput);
+		return { patches, sessionId, measureIndices: batch.map(m => m.measureIndex), sessionEnv: env, ok: true, hasPatches: patches.length > 0 };
+	} catch (err: any) {
+		console.warn(`  [pre ${batchLabel}] failed: ${err.message?.slice(0, 200)}`);
+		return { patches: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false, hasPatches: false };
+	} finally {
+		fs.rmSync(tmpDir, { recursive: true, force: true });
+	}
+};
+
+
+const createClaudeBackend = (annotationModel: string, preprocessModel = annotationModel): AnnotationBackend => ({
+	async callPreprocess(
+		issueMeasures: IssueMeasureInfo[],
+		spartito: starry.Spartito,
+		logDir?: string,
+		midiContexts?: Map<number, PreprocessMidiMeasureContext>,
+		measureImagesDir?: string,
+	): Promise<{ patches: PreprocessPatch[]; batchResults: PreprocessBatchResult[] }> {
+		if (!ANNOTATION_API_KEY) {
+			console.warn("ANNOTATION_API_KEY not set, skipping preprocessing.");
+			return { patches: [], batchResults: [] };
+		}
+
+		const allPatches: PreprocessPatch[] = [];
+		const batchResults: PreprocessBatchResult[] = [];
+		const batches: IssueMeasureInfo[][] = [];
+		for (let i = 0; i < issueMeasures.length; i += BATCH_SIZE)
+			batches.push(issueMeasures.slice(i, i + BATCH_SIZE));
+
+		const total = batches.length;
+		console.log(`  ${total} preprocess batches, concurrency=${CONCURRENCY}`);
+
+		let active = 0;
+		let nextBatch = 0;
+		await new Promise<void>((resolve) => {
+			const tryLaunch = () => {
+				while (active < CONCURRENCY && nextBatch < total) {
+					const bi = nextBatch++;
+					const batch = batches[bi];
+					const label = `b${bi + 1}`;
+					const measureIds = batch.map(m => `m${m.measureIndex}`).join(",");
+					console.log(`\n  Preprocess batch ${bi + 1}/${total} [${measureIds}] starting...`);
+					active++;
+
+					runOnePreprocessBatch(batch, spartito, label, preprocessModel, logDir, midiContexts, measureImagesDir).then((r) => {
+						active--;
+						allPatches.push(...r.patches);
+						if (r.sessionId && r.hasPatches) {
+							batchResults.push({
+								patches: r.patches,
+								sessionId: r.sessionId,
+								measureIndices: r.measureIndices,
+								env: r.sessionEnv,
+							});
+						}
+
+						if (active === 0 && nextBatch >= total) resolve();
+						else tryLaunch();
+					});
+				}
+				if (active === 0 && nextBatch >= total) resolve();
+			};
+			tryLaunch();
+		});
+
+		return { patches: allPatches, batchResults };
+	},
+
 	async callAnnotation(
 		issueMeasures: IssueMeasureInfo[],
 		spartito: starry.Spartito,
@@ -281,7 +431,8 @@ const createClaudeBackend = (annotationModel: string): AnnotationBackend => ({
 const main = async () => {
 	const argv = parseArgs();
 	const annotationModel = argv.annotationModel || DEFAULT_ANNOTATION_MODEL;
-	const backend = createClaudeBackend(annotationModel as string);
+	const preprocessModel = argv.preprocessModel || annotationModel;
+	const backend = createClaudeBackend(annotationModel as string, preprocessModel as string);
 	await runAnnotationPipeline(backend, argv);
 };
 
