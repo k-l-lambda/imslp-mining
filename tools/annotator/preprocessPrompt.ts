@@ -8,12 +8,13 @@ import { PreprocessMidiMeasureContext, serializeMeasureForPreprocess, termPitchT
 
 export const PREPROCESS_SYSTEM_PROMPT = `You are a music notation expert correcting upstream OMR recognition metadata before rhythm/voice annotation.
 
-Your task is NOT to fix rhythm regulation. Do not change ticks, voices, duration, division, dots, beams, or timeWarp. Only output sparse patches for objects and fields that are visibly wrong or strongly contradicted by the notation context.
+Your task is NOT to fix rhythm regulation. Do not change ticks, voices, duration, division, dots, or timeWarp. Only output sparse patches for objects and fields that are visibly wrong or strongly contradicted by the notation context.
 
 Patchable issues:
 - Event pitches, including accidentals and missing octave shift effects.
 - Measure/context basics such as clef, key signature, local accidentals, and octave shift tokens.
 - Event accessories such as scripts-trill, scripts-turn, staccato/tenuto/accent/fermata, dynamics, slurs/ties, pedal marks.
+- Event beam state (Open/Continue/Close/null) when the OMR metadata visibly contradicts the beaming in the image.
 
 MIDI/onsets may be provided as optional supporting evidence for performed pitches and ornaments. If MIDI conflicts with the rendered measure image, trust the image and produce patches that match the image.
 
@@ -42,6 +43,12 @@ Before changing any pitch, verify all three:
 3. image evidence.
 If current pitch already matches MIDI and the image is not clearly contradictory, output no pitch patch.
 
+Beam correction rules:
+- Only patch event.beam when the visual beam/flag evidence is clear. Do not infer beaming from timing alone.
+- Use beam:null for isolated flagged notes, rests, unbeamed notes, and quarter-or-longer notes.
+- Use beam:"Open"/"Continue"/"Close" for visibly connected beamed groups; a two-note beam is Open then Close.
+- Beam metadata should describe visual grouping, not voice assignment. Do not change voices, ticks, duration, division, dots, or timeWarp in preprocessing.
+
 Output ONLY JSON:
 {"patches":[
   {
@@ -56,7 +63,8 @@ Output ONLY JSON:
 Allowed sparse patch fields:
 - measureIndex: number
 - reason: short explanation
-- events: [{ id, pitches?, accessories?, grace? }]
+- events: [{ id, pitches?, accessories?, grace?, beam? }]
+- beam: "Open"|"Continue"|"Close"|null
 - accessories: { add?, remove?, replace? }
 - contexts: [{ action: "add"|"remove"|"replace", staff, index?, match?, term? }]
 - basics: { timeSignature?, timeSigNumeric?, keySignature?, doubtfulTimesig? }
@@ -71,16 +79,17 @@ Output length is limited. Avoid long reasoning, do not list prose analysis, and 
 
 MIDI fields:
 - "midi.onsetGroups[].relativeTick" is measure-local within the MIDI segmentation, but may not be in the same tick scale as event.tick.
+- "midi.onsetGroups[].onsets" is an array of [pitch, relativeTick] tuples. Use these tuples to identify performed onsets; do not refer to hidden/global onset indices.
 - Use onset pitch order, local density, image evidence, and nearby event ordering to decide which onsets belong to each event.
-- "currentMidiPitches" are the current score event pitches; "onsetPitches" are performed MIDI pitches you assign to that event.
+- "currentMidiPitches" are the current score event pitches; "onsets" are the performed MIDI [pitch, relativeTick] tuples you assign to that event.
 
 Output ONLY JSON:
-{"alignments":[{"measureIndex":30,"events":[{"id":12,"currentMidiPitches":[89],"onsetPitches":[77],"onsetIndices":[1133]}]}]}
+{"alignments":[{"measureIndex":30,"events":[{"id":12,"currentMidiPitches":[89],"onsets":[[77,384]]}]}]}
 Include pitched events you can align. Do not include reasons or explanations.`;
 
 export const PREPROCESS_FINAL_SYSTEM_PROMPT = `${PREPROCESS_SYSTEM_PROMPT}
 
-When a first-pass MIDI alignment is present, use it before any full-measure pitch audit. Compare each event's currentMidiPitches with onsetPitches to identify likely pitch or octave-shift errors.
+When a first-pass MIDI alignment is present, use it before any full-measure pitch audit. Compare each event's currentMidiPitches with aligned [pitch, relativeTick] onsets to identify likely pitch or octave-shift errors.
 A common octave-shift OMR error is that an 8va/8vb context starts one event too late or ends too early. Check events immediately before/after octave-shift contexts against image brackets and MIDI alignment.
 If image evidence does not support a MIDI mismatch, trust the image and omit the patch.`;
 

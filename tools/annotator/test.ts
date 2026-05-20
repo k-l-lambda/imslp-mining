@@ -547,6 +547,13 @@ if (spartito) {
 		assert(applied.has(accessoryMeasure.measureIndex), "preprocess accessory add: measure marked applied");
 		assertEq((event.accessories || []).length, before + 1, "preprocess accessory add: accessory appended");
 
+		const beamed = applyPreprocessPatches(cloneSp, [{
+			measureIndex: accessoryMeasure.measureIndex,
+			events: [{ id: event.id!, beam: "Open" }],
+		}]);
+		assert(beamed.has(accessoryMeasure.measureIndex), "preprocess beam patch: measure marked applied");
+		assertEq(event.beam, "Open", "preprocess beam patch: beam updated");
+
 		const removed = applyPreprocessPatches(cloneSp, [{
 			measureIndex: accessoryMeasure.measureIndex,
 			events: [{ id: event.id!, accessories: { remove: [{ type: "scripts-trill" }] } }],
@@ -586,6 +593,8 @@ if (spartito) {
 		assertEq(serialized.midi.onsetGroups.length, 2, "preprocess MIDI serialization: nearby onsets grouped");
 		assert(Math.abs(serialized.midi.onsetGroups[0].relativeTick) <= 24, "preprocess MIDI serialization: onset group uses measure-relative tick");
 		assertEq(serialized.midi.onsetGroups[0].pitches, [60, 64], "preprocess MIDI serialization: chord pitches grouped");
+		assertEq(serialized.midi.onsetGroups[0].onsets, [[60, 0], [64, 12]], "preprocess MIDI serialization: onsets use pitch/relativeTick tuples");
+		assert(!serialized.midi.onsetGroups[0].indices, "preprocess MIDI serialization: onset indices omitted from prompt");
 		assert(!serialized.midi.eventEvidence, "preprocess MIDI serialization: rule-based event evidence omitted");
 		assert(!serialized.midi.onsets, "preprocess MIDI serialization: flat onsets omitted from prompt");
 	}

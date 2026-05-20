@@ -21,7 +21,7 @@ export interface PreprocessMidiOnsetGroup {
 	relativeTick: number;
 	tau: number;
 	pitches: number[];
-	indices: number[];
+	onsets: [number, number][];
 }
 
 export interface PreprocessMidiMeasureContext {
@@ -43,6 +43,7 @@ export interface PreprocessEventPatch {
 	pitches?: starry.TermPitch[];
 	accessories?: AccessoryPatch;
 	grace?: false | "grace" | null;
+	beam?: "Open" | "Continue" | "Close" | null;
 }
 
 export interface AccessoryPatch {
@@ -114,6 +115,7 @@ const isFiniteNumber = (value: unknown): value is number => typeof value === "nu
 const isValidAlter = (value: unknown) => isFiniteInteger(value) && value >= -2 && value <= 2;
 const isValidOctaveShift = (value: unknown) => value === undefined || (isFiniteInteger(value) && value >= -2 && value <= 2);
 const isValidDirection = (value: unknown) => value === undefined || value === null || value === "^" || value === "_" || value === "-";
+const isValidBeam = (value: unknown) => value === undefined || value === null || value === "Open" || value === "Continue" || value === "Close";
 const isValidAccessoryType = (type: unknown) => typeof type === "string" && (ACCESSORY_EXACT.has(type) || ACCESSORY_PREFIXES.some(prefix => type.startsWith(prefix)));
 const isValidContextTokenType = (type: unknown) => typeof type === "string" && (CONTEXT_EXACT.has(type) || CONTEXT_PREFIXES.some(prefix => type.startsWith(prefix)));
 
@@ -216,26 +218,29 @@ const serializePitch = (pitch: starry.TermPitch) => ({
 const groupMidiOnsets = (onsets: PreprocessMidiMeasureContext["onsets"], measureStartTick: number): PreprocessMidiOnsetGroup[] => {
 	const groups: PreprocessMidiOnsetGroup[] = [];
 	for (const onset of onsets) {
+		const relativeTick = onset.tick - measureStartTick;
 		const last = groups[groups.length - 1];
 		if (last && Math.abs(onset.tick - last.tick) <= 24) {
+			const count = last.onsets.length + 1;
 			last.pitches.push(onset.pitch);
-			last.indices.push(onset.index);
-			last.tick = Math.round((last.tick * (last.indices.length - 1) + onset.tick) / last.indices.length);
-			last.relativeTick = last.tick - measureStartTick;
-			last.tau = Math.round(((last.tau * (last.indices.length - 1) + onset.tau) / last.indices.length) * 1000) / 1000;
+			last.onsets.push([onset.pitch, relativeTick]);
+			last.tick = Math.round((last.tick * (count - 1) + onset.tick) / count);
+			last.relativeTick = Math.round((last.relativeTick * (count - 1) + relativeTick) / count);
+			last.tau = Math.round(((last.tau * (count - 1) + onset.tau) / count) * 1000) / 1000;
 		} else {
 			groups.push({
 				tick: onset.tick,
-				relativeTick: onset.tick - measureStartTick,
+				relativeTick,
 				tau: Math.round(onset.tau * 1000) / 1000,
 				pitches: [onset.pitch],
-				indices: [onset.index],
+				onsets: [[onset.pitch, relativeTick]],
 			});
 		}
 	}
 	return groups.map(group => ({
 		...group,
 		pitches: [...group.pitches].sort((a, b) => a - b),
+		onsets: [...group.onsets].sort((a, b) => a[1] - b[1] || a[0] - b[0]),
 	}));
 };
 
@@ -418,6 +423,15 @@ export const applyPreprocessPatchToMeasure = (measure: starry.SpartitoMeasure, p
 			if (eventPatch.grace !== undefined) {
 				(event as any).grace = eventPatch.grace || undefined;
 				changed = true;
+			}
+
+			if (eventPatch.beam !== undefined) {
+				if (!isValidBeam(eventPatch.beam)) {
+					warnings.push(`event ${eventPatch.id} has invalid beam patch: ${eventPatch.beam}`);
+				} else {
+					(event as any).beam = eventPatch.beam || null;
+					changed = true;
+				}
 			}
 
 			const accessoryPatch = eventPatch.accessories;
