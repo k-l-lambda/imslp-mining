@@ -7,6 +7,7 @@ import { hideBin } from "yargs/helpers";
 import { parseFixes, parseCodexJsonl, compositeMeasureImage, starry, regulateWithBeadSolver, BEAD_PICKER_URL, ORT_SESSION_OPTIONS } from "./common";
 import type { Fix, FixEvent } from "./common";
 import { SYSTEM_PROMPT } from "./prompt";
+import { PREPROCESS_SYSTEM_PROMPT, PREPROCESS_ALIGNMENT_SYSTEM_PROMPT, PREPROCESS_FINAL_SYSTEM_PROMPT } from "./preprocessPrompt";
 import OnnxBeadPicker from "../libs/onnxBeadPicker";
 import remoteSolutionStore from "../libs/remoteSolutionStore";
 
@@ -77,9 +78,21 @@ interface MeasureReport {
 	evaluateFixCalls: EvaluateFixCall[];
 	summaryText?: string;
 	conversation: ConversationTurn[];
+	preprocess?: PreprocessReport[];
 	staffYs?: number[];
 	measureLeft?: number;
 	measureRight?: number;
+}
+
+interface PreprocessReport {
+	batch: number;
+	measureIndices: number[];
+	promptText?: string;
+	alignmentPromptText?: string;
+	alignmentText?: string;
+	firstConversation: ConversationTurn[];
+	finalConversation?: ConversationTurn[];
+	patches: any[];
 }
 
 interface LogReport {
@@ -88,6 +101,7 @@ interface LogReport {
 	timestamp: string;
 	logDir: string;
 	measures: MeasureReport[];
+	preprocess?: PreprocessReport[];
 }
 
 
@@ -150,6 +164,28 @@ function parsePromptFile(text: string): PromptMeasure[] {
 		}
 	}
 	return measures;
+}
+
+function parsePreprocessMeasureIndices(promptText: string): number[] {
+	const indices: number[] = [];
+	const pattern = /^## Measure (\d+)\b/gm;
+	let match: RegExpExecArray | null;
+	while ((match = pattern.exec(promptText)))
+		indices.push(parseInt(match[1]));
+	return indices;
+}
+
+function extractJsonObject(text: string): any | undefined {
+	const fenced = text.match(/```json\s*\n([\s\S]*?)\n```/);
+	const source = fenced ? fenced[1] : text;
+	const start = source.indexOf("{");
+	const end = source.lastIndexOf("}");
+	if (start < 0 || end <= start) return undefined;
+	try {
+		return JSON.parse(source.slice(start, end + 1));
+	} catch {
+		return undefined;
+	}
 }
 
 
@@ -854,10 +890,22 @@ interface LogBatch {
 	stderrFile?: string;
 }
 
-function scanLogDir(logDir: string): { batches: LogBatch[]; summaries: Map<string, string>; backend: "claude" | "codex" } {
+interface PreprocessLogBatch {
+	batch: number;
+	promptFile: string;
+	outputFile: string;
+	alignmentPromptFile?: string;
+	alignmentsFile?: string;
+	finalOutputFile?: string;
+	stderrFile?: string;
+	finalStderrFile?: string;
+}
+
+function scanLogDir(logDir: string): { batches: LogBatch[]; preprocessBatches: PreprocessLogBatch[]; summaries: Map<string, string>; backend: "claude" | "codex" } {
 	const files = fs.readdirSync(logDir);
 	const backend = detectBackend(files);
 	const batches: LogBatch[] = [];
+	const preprocessBatches: PreprocessLogBatch[] = [];
 	const summaries = new Map<string, string>();
 
 	const promptPattern = /^r(\d+)_b(\d+)_prompt\.txt$/;
@@ -878,6 +926,30 @@ function scanLogDir(logDir: string): { batches: LogBatch[]; summaries: Map<strin
 		});
 	}
 
+	const preprocessPromptPattern = /^pre_b(\d+)_prompt\.txt$/;
+	for (const f of files) {
+		const m = f.match(preprocessPromptPattern);
+		if (!m) continue;
+		const batch = parseInt(m[1]);
+		const outputFile = `pre_b${batch}.json`;
+		if (!files.includes(outputFile)) continue;
+		const alignmentPromptFile = `pre_b${batch}_alignment_prompt.txt`;
+		const alignmentsFile = `pre_b${batch}_alignments.txt`;
+		const finalOutputFile = `pre_b${batch}_final.json`;
+		const stderrFile = `pre_b${batch}.stderr.txt`;
+		const finalStderrFile = `pre_b${batch}_final.stderr.txt`;
+		preprocessBatches.push({
+			batch,
+			promptFile: path.join(logDir, f),
+			outputFile: path.join(logDir, outputFile),
+			alignmentPromptFile: files.includes(alignmentPromptFile) ? path.join(logDir, alignmentPromptFile) : undefined,
+			alignmentsFile: files.includes(alignmentsFile) ? path.join(logDir, alignmentsFile) : undefined,
+			finalOutputFile: files.includes(finalOutputFile) ? path.join(logDir, finalOutputFile) : undefined,
+			stderrFile: files.includes(stderrFile) ? path.join(logDir, stderrFile) : undefined,
+			finalStderrFile: files.includes(finalStderrFile) ? path.join(logDir, finalStderrFile) : undefined,
+		});
+	}
+
 	const summaryPattern = /^r(\d+)_summary_m(.+)\.txt$/;
 	for (const f of files) {
 		const m = f.match(summaryPattern);
@@ -886,7 +958,8 @@ function scanLogDir(logDir: string): { batches: LogBatch[]; summaries: Map<strin
 	}
 
 	batches.sort((a, b) => a.round - b.round || a.batch - b.batch);
-	return { batches, summaries, backend };
+	preprocessBatches.sort((a, b) => a.batch - b.batch);
+	return { batches, preprocessBatches, summaries, backend };
 }
 
 
@@ -988,8 +1061,98 @@ function escMd(s: string): string {
 	return s.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
+function renderPreprocessReports(reports: PreprocessReport[]): string {
+	const lines: string[] = [];
+	for (const report of reports) {
+		lines.push(`### Preprocess batch ${report.batch}`);
+		lines.push("");
+		lines.push(`Measures: ${report.measureIndices.map(i => `m${i}`).join(", ") || "?"}`);
+		lines.push("");
+		if (report.promptText) {
+			lines.push(`<details><summary><b>Full preprocess prompt</b></summary>`);
+			lines.push("");
+			lines.push("```markdown");
+			lines.push(report.promptText);
+			lines.push("```");
+			lines.push("");
+			lines.push(`</details>`);
+			lines.push("");
+		}
+		if (report.alignmentPromptText) {
+			lines.push(`<details><summary><b>Full alignment prompt</b></summary>`);
+			lines.push("");
+			lines.push("```markdown");
+			lines.push(report.alignmentPromptText);
+			lines.push("```");
+			lines.push("");
+			lines.push(`</details>`);
+			lines.push("");
+		}
+		lines.push(`#### First preprocess pass conversation`);
+		lines.push("");
+		lines.push(renderConversation([
+			{ role: "system", text: report.alignmentPromptText ? PREPROCESS_ALIGNMENT_SYSTEM_PROMPT : PREPROCESS_SYSTEM_PROMPT },
+			...report.firstConversation,
+		]));
+		if (report.alignmentText) {
+			lines.push(`<details><summary><b>Alignment text used by final pass</b></summary>`);
+			lines.push("");
+			lines.push("```json");
+			lines.push(report.alignmentText);
+			lines.push("```");
+			lines.push("");
+			lines.push(`</details>`);
+			lines.push("");
+		}
+		if (report.finalConversation) {
+			lines.push(`#### Final preprocess pass conversation`);
+			lines.push("");
+			lines.push(renderConversation([
+				{ role: "system", text: PREPROCESS_FINAL_SYSTEM_PROMPT },
+				...report.finalConversation,
+			]));
+		}
+		if (report.patches.length > 0) {
+			lines.push(`<details open><summary><b>Preprocess patches</b></summary>`);
+			lines.push("");
+			lines.push("```json");
+			lines.push(JSON.stringify({ patches: report.patches }, null, 2));
+			lines.push("```");
+			lines.push("");
+			lines.push(`</details>`);
+			lines.push("");
+		}
+	}
+	return lines.join("\n");
+}
+
 
 // ── Markdown report rendering ────────────────────────────────────────────────
+
+function buildPreprocessReports(logDir: string, batches: PreprocessLogBatch[]): PreprocessReport[] {
+	const reports: PreprocessReport[] = [];
+	for (const batch of batches) {
+		const promptText = fs.readFileSync(batch.promptFile, "utf-8");
+		const alignmentPromptText = batch.alignmentPromptFile ? fs.readFileSync(batch.alignmentPromptFile, "utf-8") : undefined;
+		const alignmentText = batch.alignmentsFile ? fs.readFileSync(batch.alignmentsFile, "utf-8") : undefined;
+		const firstRaw = fs.readFileSync(batch.outputFile, "utf-8");
+		const firstParsed = parseClaudeOutput(firstRaw);
+		const finalRaw = batch.finalOutputFile ? fs.readFileSync(batch.finalOutputFile, "utf-8") : undefined;
+		const finalParsed = finalRaw ? parseClaudeOutput(finalRaw) : undefined;
+		const patchJson = extractJsonObject(finalRaw ?? firstRaw);
+		reports.push({
+			batch: batch.batch,
+			measureIndices: parsePreprocessMeasureIndices(promptText),
+			promptText,
+			alignmentPromptText,
+			alignmentText,
+			firstConversation: firstParsed.conversation,
+			finalConversation: finalParsed?.conversation,
+			patches: Array.isArray(patchJson?.patches) ? patchJson.patches : [],
+		});
+	}
+	return reports;
+}
 
 function renderMarkdownReport(report: LogReport): string {
 	const lines: string[] = [];
@@ -999,11 +1162,22 @@ function renderMarkdownReport(report: LogReport): string {
 	lines.push(`- **Log dir**: \`${report.logDir}\``);
 	lines.push("");
 
+	if (report.preprocess?.length) {
+		lines.push(`## Preprocess`);
+		lines.push("");
+		lines.push(renderPreprocessReports(report.preprocess));
+		lines.push("");
+	}
+
 	for (const mr of report.measures) {
 		lines.push(`## Measure ${mr.measureIndex}`);
 		lines.push("");
 
 		const pm = mr.prompt;
+		if (mr.preprocess?.length && !report.preprocess?.length) {
+			lines.push(renderPreprocessReports(mr.preprocess));
+			lines.push("");
+		}
 		const evalFields = pm.evaluation
 			? `fine=${pm.evaluation.fine}, error=${pm.evaluation.error}, tickTwist=${(pm.evaluation.tickTwist ?? 0).toFixed(3)}, beamBroken=${pm.evaluation.beamBroken}, qualityScore=${(pm.evaluation.qualityScore ?? 0).toFixed(3)}`
 			: `fine=${pm.fine}, error=${pm.error}, tickTwist=${(pm.tickTwist ?? 0).toFixed(3)}`;
@@ -1178,8 +1352,9 @@ async function main() {
 	const scoreId = dirMatch ? dirMatch[2] : dirName;
 
 	console.log(`Scanning log directory: ${logDir}`);
-	const { batches, summaries, backend } = scanLogDir(logDir);
-	console.log(`Backend: ${backend}, ${batches.length} batches found`);
+	const { batches, preprocessBatches, summaries, backend } = scanLogDir(logDir);
+	console.log(`Backend: ${backend}, ${batches.length} annotation batches, ${preprocessBatches.length} preprocess batches found`);
+	const preprocessReports = buildPreprocessReports(logDir, preprocessBatches);
 
 	let spartito: starry.Spartito | null = null;
 	if (argv.spartito) {
@@ -1193,6 +1368,21 @@ async function main() {
 	}
 
 	const tmpDir = fs.mkdtempSync(path.join(require("os").tmpdir(), "viz-"));
+
+	if (batches.length === 0 && preprocessReports.length > 0) {
+		const report: LogReport = {
+			scoreId, backend, timestamp, logDir,
+			measures: [],
+			preprocess: preprocessReports,
+		};
+		const markdown = renderMarkdownReport(report);
+		const outputPath = argv.o || path.join(logDir, `preprocess.md`);
+		fs.writeFileSync(outputPath, markdown);
+		console.log(`Report written to: ${outputPath}`);
+		console.log(`${preprocessReports.length} preprocess batches visualized`);
+		try { fs.rmSync(tmpDir, { recursive: true }); } catch {}
+		return;
+	}
 
 	for (const batch of batches) {
 		const batchName = `r${batch.round}_b${batch.batch}`;
@@ -1255,12 +1445,14 @@ async function main() {
 				measureLeft,
 				measureRight,
 				conversation,
+				preprocess: preprocessReports.filter(report => report.measureIndices.includes(mi)),
 			});
 		}
 
 		const report: LogReport = {
 			scoreId, backend, timestamp, logDir,
 			measures: [...measureReports.values()].sort((a, b) => a.measureIndex - b.measureIndex),
+			preprocess: preprocessReports,
 		};
 
 		const markdown = renderMarkdownReport(report);

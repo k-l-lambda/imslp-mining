@@ -363,6 +363,7 @@ const runOnePreprocessBatch = async (
 
 const createClaudeBackend = (annotationModel: string, preprocessModel = annotationModel): AnnotationBackend => {
 	let preprocessCarryContext: PreprocessCarryContext | undefined;
+	let preprocessBatchCounter = 0;
 	return ({
 	async callPreprocess(
 		issueMeasures: IssueMeasureInfo[],
@@ -419,6 +420,7 @@ const createClaudeBackend = (annotationModel: string, preprocessModel = annotati
 				previousContext = preprocessCarryContextFromMeasure(lastMeasure);
 		}
 
+		preprocessCarryContext = previousContext;
 		return { patches: allPatches, batchResults };
 	},
 
