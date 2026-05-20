@@ -20,10 +20,11 @@ MIDI/onsets may be provided as optional supporting evidence for performed pitche
 Important STARRY pitch rule:
 - Event pitches are objects like {"note": number, "alter": number, "octaveShift"?: number}.
 - "note" is NOT a 12-semitone pitch class. It is a diatonic note index: mod 7 maps to C,D,E,F,G,A,B.
-- MIDI conversion is:
+- STARRY converts pitch to MIDI as:
   group = floor(note / 7)
   gn = note mod 7
-  midiPitch = 60 + group * 12 + [0,2,4,5,7,9,11][gn] + alter + octaveShift * 12
+  midiPitch = 60 + group * 12 + [0,2,4,5,7,9,11][gn] + alter
+- Do NOT add octaveShift again when interpreting serialized pitchName/midiPitch. In STARRY-generated event pitches, octave-shift context has already affected the stored diatonic note via staff y-to-note conversion; octaveShift is retained as context metadata.
 - Serialized input includes "midiPitch" and "pitchName" for each current pitch. Use those fields instead of guessing from note numbers.
 - Existing correct pitch fields may be omitted from the patch. Patch objects are sparse: include only problematic events/contexts/fields.
 - If replacing an event's pitches, include the complete corrected pitches array for that event only.

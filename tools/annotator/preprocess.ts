@@ -196,14 +196,14 @@ const mod = (x: number, n: number) => {
 export const termPitchToMidi = (pitch: { note: number; alter: number; octaveShift?: number }): number => {
 	const group = Math.floor(pitch.note / 7);
 	const gn = mod(pitch.note, 7);
-	return MIDDLE_C + group * 12 + GROUP_N_TO_PITCH[gn] + pitch.alter + (pitch.octaveShift || 0) * 12;
+	return MIDDLE_C + group * 12 + GROUP_N_TO_PITCH[gn] + pitch.alter;
 };
 
 export const termPitchName = (pitch: { note: number; alter: number; octaveShift?: number }): string => {
 	const group = Math.floor(pitch.note / 7);
 	const gn = mod(pitch.note, 7);
 	const alter = pitch.alter > 0 ? "#".repeat(pitch.alter) : pitch.alter < 0 ? "b".repeat(-pitch.alter) : "";
-	const octave = group + 4 + (pitch.octaveShift || 0);
+	const octave = group + 4;
 	return `${NOTE_STEPS[gn]}${alter}${octave}`;
 };
 

@@ -528,7 +528,7 @@ const pitchSourceName = (pitchSource: any): string | undefined => {
 	const alter = pitchSource.alter;
 	const group = Math.floor(note / 7);
 	const name = letters[((note % 7) + 7) % 7];
-	const octave = 4 + group + (pitchSource.octaveShift ?? 0);
+	const octave = 4 + group;
 	const accidental = alter > 0 ? '#'.repeat(alter) : alter < 0 ? 'b'.repeat(-alter) : '';
 	return `${name}${octave}${accidental}`;
 };
