@@ -64,7 +64,7 @@ const remoteSolutionStore = {
 	async batchGet(keys: string[]): Promise<starry.RegulationSolution[]> {
 		// Try local LMDB first
 		if (db) {
-			const locals = db.getMany(keys);
+			const locals = await db.getMany(keys);
 			const allFound = locals.every(v => v !== undefined);
 			if (allFound)
 				return locals as starry.RegulationSolution[];

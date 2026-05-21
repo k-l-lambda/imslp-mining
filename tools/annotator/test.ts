@@ -597,6 +597,10 @@ if (spartito) {
 		assert(!serialized.midi.onsetGroups[0].indices, "preprocess MIDI serialization: onset indices omitted from prompt");
 		assert(!serialized.midi.eventEvidence, "preprocess MIDI serialization: rule-based event evidence omitted");
 		assert(!serialized.midi.onsets, "preprocess MIDI serialization: flat onsets omitted from prompt");
+		assert(serialized.events.every((event: any) => event.index === undefined), "preprocess serialization: event array indexes omitted");
+		assert(serialized.contexts.every((staffContexts: any[]) => staffContexts.every(term => term.index === undefined)), "preprocess serialization: context indexes omitted");
+		assert(serialized.events.every((event: any) => !event.rest || event.pitches === undefined), "preprocess serialization: rest pitches omitted");
+		assert(serialized.events.every((event: any) => (event.accessories || []).every((acc: any) => acc.id === undefined)), "preprocess serialization: accessory ids omitted");
 	}
 }
 

@@ -17,6 +17,7 @@ Patchable issues:
 - Event beam state (Open/Continue/Close/null) when the OMR metadata visibly contradicts the beaming in the image.
 
 MIDI/onsets may be provided as optional supporting evidence for performed pitches and ornaments. If MIDI conflicts with the rendered measure image, trust the image and produce patches that match the image.
+Extra MIDI onsets may be ornaments, pedal/sustain artifacts, performance asynchrony, or segmentation errors. Do not invent missing score events or change pitches solely because an extra MIDI onset is present.
 
 Important STARRY pitch rule:
 - Event pitches are objects like {"note": number, "alter": number, "octaveShift"?: number}.
@@ -49,6 +50,12 @@ Beam correction rules:
 - Use beam:"Open"/"Continue"/"Close" for visibly connected beamed groups; a two-note beam is Open then Close.
 - Beam metadata should describe visual grouping, not voice assignment. Do not change voices, ticks, duration, division, dots, or timeWarp in preprocessing.
 
+Identifier and token rules:
+- Event id is the stable identifier for event patches. Other indexes are selectors only, not musical evidence.
+- Do not repair slur/tie linkage ids or other internal semantic ids. Patch only visible slur/tie/accessory presence, type, direction, and approximate x placement.
+- Numeric accessory tokens such as one|n1, two|n2, three|n3, and four|n4 may be visual numbers/fingerings/internal tokens. They are not note durations or pitches; ignore them unless the image clearly shows that the accessory itself is wrong.
+- Rest events can carry stale pitch metadata. Do not patch pitches on rests.
+
 Output ONLY JSON:
 {"patches":[
   {
@@ -78,9 +85,10 @@ Use the serialized event pitch data, "midi.onsetGroups", and the measure image w
 Output length is limited. Avoid long reasoning, do not list prose analysis, and do not restart the alignment from scratch. Produce the compact JSON as soon as you identify the mapping.
 
 MIDI fields:
-- "midi.onsetGroups[].relativeTick" is measure-local within the MIDI segmentation, but may not be in the same tick scale as event.tick.
+- "midi.onsetGroups[].relativeTick" is measure-local within the MIDI segmentation, but may not be in the same tick scale as event.tick. Use it for local order and rough density only; do not try to convert it to score ticks.
 - "midi.onsetGroups[].onsets" is an array of [pitch, relativeTick] tuples. Use these tuples to identify performed onsets; do not refer to hidden/global onset indices.
 - Use onset pitch order, local density, image evidence, and nearby event ordering to decide which onsets belong to each event.
+- Extra MIDI onsets may remain unassigned when they look like ornament/performance/sustain/segmentation artifacts.
 - "currentMidiPitches" are the current score event pitches; "onsets" are the performed MIDI [pitch, relativeTick] tuples you assign to that event.
 
 Output ONLY JSON:
@@ -90,6 +98,7 @@ Include pitched events you can align. Do not include reasons or explanations.`;
 export const PREPROCESS_FINAL_SYSTEM_PROMPT = `${PREPROCESS_SYSTEM_PROMPT}
 
 When a first-pass MIDI alignment is present, use it before any full-measure pitch audit. Compare each event's currentMidiPitches with aligned [pitch, relativeTick] onsets to identify likely pitch or octave-shift errors.
+Do not treat unassigned or extra MIDI onsets as score errors unless the measure image independently shows a corresponding missing symbol or wrong pitch.
 A common octave-shift OMR error is that an 8va/8vb context starts one event too late or ends too early. Check events immediately before/after octave-shift contexts against image brackets and MIDI alignment.
 If image evidence does not support a MIDI mismatch, trust the image and omit the patch.`;
 

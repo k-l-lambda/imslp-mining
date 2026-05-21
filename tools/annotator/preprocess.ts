@@ -215,6 +215,13 @@ const serializePitch = (pitch: starry.TermPitch) => ({
 	pitchName: termPitchName(pitch),
 });
 
+const serializeAccessory = (accessory: starry.Accessory) => ({
+	type: accessory.type,
+	direction: accessory.direction,
+	x: accessory.x,
+	parenthesized: accessory.parenthesized,
+});
+
 const groupMidiOnsets = (onsets: PreprocessMidiMeasureContext["onsets"], measureStartTick: number): PreprocessMidiOnsetGroup[] => {
 	const groups: PreprocessMidiOnsetGroup[] = [];
 	for (const onset of onsets) {
@@ -261,8 +268,7 @@ export const serializeMeasureForPreprocess = (measure: starry.SpartitoMeasure, m
 	duration: measure.duration,
 	estimatedDuration: measure.estimatedDuration,
 	basics: measure.basics,
-	contexts: (measure.contexts || []).map((staffContexts, staff) => (staffContexts || []).map((term, index) => ({
-		index,
+	contexts: (measure.contexts || []).map((staffContexts, staff) => (staffContexts || []).map(term => ({
 		staff,
 		tokenType: term.tokenType,
 		type: term.type,
@@ -273,15 +279,14 @@ export const serializeMeasureForPreprocess = (measure: starry.SpartitoMeasure, m
 		alter: term.alter,
 		octaveShift: term.octaveShift,
 	}))),
-	events: measure.events.map((e, index) => ({
-		index,
+	events: measure.events.map(e => ({
 		id: e.id,
 		staff: e.staff,
 		x: e.x,
 		pivotX: e.pivotX,
 		ys: e.ys,
-		pitches: e.pitches?.map(serializePitch),
-		accessories: e.accessories,
+		pitches: e.rest ? undefined : e.pitches?.map(serializePitch),
+		accessories: e.accessories?.map(serializeAccessory),
 		rest: e.rest,
 		division: e.division,
 		dots: e.dots,
