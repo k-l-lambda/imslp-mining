@@ -6,6 +6,7 @@ import fetch from "isomorphic-fetch";
 import {
 	type IssueMeasureInfo,
 	type BatchResult,
+	type PreprocessBatchResult,
 	type Fix,
 	type AnnotationBackend,
 	parseFixes,
@@ -18,6 +19,8 @@ import {
 	DEFAULT_ANNOTATION_MODEL,
 } from "./common";
 import { SYSTEM_PROMPT, buildAnnotationPrompt } from "./prompt";
+import { PREPROCESS_SYSTEM_PROMPT, buildPreprocessPrompt, type PreprocessCarryContext } from "./preprocessPrompt";
+import { type PreprocessPatch, type PreprocessMidiMeasureContext, parsePreprocessPatches, applyPreprocessPatchToMeasure } from "./preprocess";
 import { startMeasureQualityMcp, type AnthropicToolDefinition } from "./mcpStdioTools";
 
 
@@ -88,6 +91,22 @@ const thinkingConfig = () => {
 	return undefined;
 };
 
+const chatTemplateKwargs = () => {
+	const mode = process.env.AGENT_THINKING;
+	if (mode === "off" || mode === "disabled") return { thinking: false, preserve_thinking: false };
+	return undefined;
+};
+
+const reasoningEffortPrompt = () => {
+	if (process.env.AGENT_REASONING_EFFORT === "low") return "Reasoning Effort: Low. Use minimal reasoning. Think briefly and avoid unnecessary intermediate steps. Do not write analysis text. Either call evaluate_fix or output ONLY the final JSON fixes block.";
+	return "";
+};
+
+const systemPrompt = () => {
+	if (process.env.AGENT_REASONING_EFFORT === "low") return [reasoningEffortPrompt(), SYSTEM_PROMPT.replace("Think deeply and analyze each measure carefully before proposing fixes.", "Analyze privately and keep the response minimal.")].filter(Boolean).join("\n\n");
+	return SYSTEM_PROMPT;
+};
+
 const mediaTypeForImage = (imagePath: string) => {
 	const ext = path.extname(imagePath).toLowerCase();
 	if (ext === ".png") return "image/png";
@@ -126,6 +145,52 @@ const redactForLog = (value: any): any => {
 	return Object.fromEntries(Object.entries(value).map(([key, entry]) => [key, redactForLog(entry)]));
 };
 
+const tokenOctaveShift = (tokenType?: string): number | undefined => {
+	if (tokenType === "octave-a") return -1;
+	if (tokenType === "octave-b") return 1;
+	if (tokenType === "octave-0") return 0;
+	return undefined;
+};
+
+const preprocessCarryContextFromMeasure = (measure: starry.SpartitoMeasure): PreprocessCarryContext => ({
+	measureIndex: measure.measureIndex,
+	timeSignature: measure.timeSignature,
+	timeSigNumeric: measure.basics?.find((basic: any) => basic?.timeSigNumeric !== undefined)?.timeSigNumeric,
+	keySignature: measure.keySignature,
+	staffOctaveShifts: (measure.contexts || []).map((contexts, staff) => {
+		const octaveTerms = (contexts || [])
+			.filter((term: any) => typeof term?.tokenType === "string" && term.tokenType.startsWith("octave-"))
+			.sort((a: any, b: any) => (a.tick ?? 0) - (b.tick ?? 0));
+		const last = octaveTerms[octaveTerms.length - 1];
+		return {
+			staff,
+			tokenType: last?.tokenType,
+			octaveShift: last ? tokenOctaveShift(last.tokenType) : 0,
+			tick: last?.tick,
+			x: last?.x,
+			y: last?.y,
+		};
+	}),
+});
+
+const preprocessPatchesTouchCarryContext = (patches: PreprocessPatch[]): boolean => patches.some(patch =>
+	!!patch.basics?.timeSignature
+	|| patch.basics?.timeSigNumeric !== undefined
+	|| patch.basics?.keySignature !== undefined
+	|| (patch.contexts || []).some(contextPatch => {
+		const tokenType = contextPatch.term?.tokenType ?? contextPatch.match?.tokenType;
+		return typeof tokenType === "string" && (tokenType.startsWith("octave-") || tokenType.startsWith("accidentals-") || tokenType.startsWith("timesig-"));
+	}),
+);
+
+const preprocessSystemPrompt = () => {
+	const low = process.env.AGENT_REASONING_EFFORT === "low" ? "Reasoning Effort: Low. Use minimal reasoning. Think briefly and avoid unnecessary intermediate steps. Output ONLY the sparse JSON patches block." : "";
+	const prompt = process.env.AGENT_REASONING_EFFORT === "low"
+		? PREPROCESS_SYSTEM_PROMPT.replace("Think step by step, and inspect the image carefully before producing patches.", "Inspect the image carefully, but keep the response minimal.")
+		: PREPROCESS_SYSTEM_PROMPT;
+	return [low, prompt, "Accessory type tokens must be valid STARRY tokens: use prefixes scripts-, pedal-, arpeggio, fermata, wedge, accidentals-, dynamics-, clefs-, octave-, |slur, |tie, or exact tokens f/p/m/r/s/z. For dynamics text, output dynamics-* (for example dynamics-espr), never bare dynamics or subtype fields. Do not add or preserve numeric fingering/internal tokens such as one|n1, two|n2, three|n3, or four|n4 in accessory patches."].filter(Boolean).join("\n\n");
+};
+
 const runAgentToolLoop = async (
 	userContent: string | any[],
 	model: string,
@@ -139,14 +204,16 @@ const runAgentToolLoop = async (
 
 	for (let turn = 0; turn < MAX_TURNS; ++turn) {
 		const thinking = thinkingConfig();
+		const templateKwargs = chatTemplateKwargs();
 		const request = {
 			model,
 			max_tokens: ANNOTATION_MAX_TOKENS,
 			temperature: 0,
-			system: SYSTEM_PROMPT,
+			system: systemPrompt(),
 			messages,
 			tools,
 			...(thinking ? { thinking } : {}),
+			...(templateKwargs ? { chat_template_kwargs: templateKwargs } : {}),
 		};
 		const response = await messagesCreate(request);
 		lastResponse = response;
@@ -179,7 +246,13 @@ const runAgentToolLoop = async (
 				usage,
 			};
 		}
-		messages.push({ role: "user", content: toolResults });
+		messages.push({
+			role: "user",
+			content: [
+				...toolResults,
+				{ type: "text", text: "Use the evaluation result above. If the fix is acceptable, stop calling tools and output ONLY the final JSON fixes block." },
+			],
+		});
 	}
 
 	return {
@@ -188,6 +261,50 @@ const runAgentToolLoop = async (
 		turns,
 		usage,
 	};
+};
+
+const runOnePreprocessBatch = async (
+	batch: IssueMeasureInfo[],
+	spartito: starry.Spartito,
+	batchLabel: string,
+	preprocessModel: string,
+	logDir?: string,
+	midiContexts?: Map<number, PreprocessMidiMeasureContext>,
+	measureImagesDir?: string,
+	previousContext?: PreprocessCarryContext,
+): Promise<{ patches: PreprocessPatch[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasPatches: boolean }> => {
+	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-agent-preprocess-"));
+	try {
+		const { text: prompt, imagePaths } = await buildPreprocessPrompt(batch, tmpDir, { imageMode: "attached", midiContexts, measureImagesDir, previousContext });
+		if (logDir) fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_prompt.txt`), prompt);
+
+		const request = {
+			model: preprocessModel,
+			max_tokens: Math.min(ANNOTATION_MAX_TOKENS, 2048),
+			temperature: 0,
+			system: preprocessSystemPrompt(),
+			messages: [{ role: "user", content: buildUserContent(prompt, imagePaths) }],
+			...(chatTemplateKwargs() ? { chat_template_kwargs: chatTemplateKwargs() } : {}),
+		};
+		const response = await messagesCreate(request);
+		const text = textFromContent(response.content || []);
+		if (logDir) fs.writeFileSync(path.join(logDir, `pre_${batchLabel}.json`), JSON.stringify({ request: redactForLog(request), response }, null, 2));
+
+		if (response.usage) console.log(`  [pre ${batchLabel}] Tokens: ${response.usage.input_tokens || 0} in / ${response.usage.output_tokens || 0} out`);
+		if (!text) {
+			console.warn(`  [pre ${batchLabel}] empty result`);
+			return { patches: [], sessionId: response.id || "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false, hasPatches: false };
+		}
+
+		console.log(`  [pre ${batchLabel}] Result text: ${text.length} chars`);
+		const patches = parsePreprocessPatches(text);
+		return { patches, sessionId: response.id || `pre-${Date.now()}`, measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: true, hasPatches: patches.length > 0 };
+	} catch (err: any) {
+		console.warn(`  [pre ${batchLabel}] failed: ${err.message?.slice(0, 300)}`);
+		return { patches: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false, hasPatches: false };
+	} finally {
+		fs.rmSync(tmpDir, { recursive: true, force: true });
+	}
 };
 
 const runOneBatch = async (
@@ -234,8 +351,59 @@ const runOneBatch = async (
 	}
 };
 
-export const createAgentBackend = (annotationModel: string): AnnotationBackend => ({
-	async callAnnotation(
+export const createAgentBackend = (annotationModel: string, preprocessModel = annotationModel): AnnotationBackend => {
+	let preprocessCarryContext: PreprocessCarryContext | undefined;
+	let preprocessBatchCounter = 0;
+	return ({
+		async callPreprocess(
+			issueMeasures: IssueMeasureInfo[],
+			spartito: starry.Spartito,
+			logDir?: string,
+			midiContexts?: Map<number, PreprocessMidiMeasureContext>,
+			measureImagesDir?: string,
+		): Promise<{ patches: PreprocessPatch[]; batchResults: PreprocessBatchResult[] }> {
+			if (!ANTHROPIC_AUTH_TOKEN) {
+				console.warn("ANTHROPIC_AUTH_TOKEN not set, skipping preprocessing.");
+				return { patches: [], batchResults: [] };
+			}
+
+			const allPatches: PreprocessPatch[] = [];
+			const batchResults: PreprocessBatchResult[] = [];
+			const batches = [...issueMeasures].sort((a, b) => a.measureIndex - b.measureIndex).map(measure => [measure]);
+			console.log(`  ${batches.length} preprocess batches, concurrency=1 (context carry-over enabled)`);
+
+			let previousContext = preprocessCarryContext;
+			for (let bi = 0; bi < batches.length; ++bi) {
+				const batch = batches[bi];
+				const label = `b${++preprocessBatchCounter}`;
+				const measureIds = batch.map(m => `m${m.measureIndex}`).join(",");
+				console.log(`\n  Preprocess batch ${bi + 1}/${batches.length} [${measureIds}] starting...`);
+
+				const r = await runOnePreprocessBatch(batch, spartito, label, preprocessModel, logDir, midiContexts, measureImagesDir, previousContext);
+				allPatches.push(...r.patches);
+				if (r.sessionId && r.hasPatches) batchResults.push({ patches: r.patches, sessionId: r.sessionId, measureIndices: r.measureIndices, env: r.sessionEnv });
+
+				const contextChanged = preprocessPatchesTouchCarryContext(r.patches);
+				for (const patch of r.patches) {
+					const measure = spartito.measures[patch.measureIndex];
+					if (!measure) {
+						console.warn(`  m${patch.measureIndex}: measure not found, skipping preprocessing patch`);
+						continue;
+					}
+					const result = applyPreprocessPatchToMeasure(measure, patch);
+					for (const warning of result.warnings) console.warn(`  m${patch.measureIndex}: ${warning}`);
+					if (result.applied) console.log(`  m${patch.measureIndex}: preprocessing patch applied`);
+				}
+
+				const lastMeasure = batch[batch.length - 1]?.measure;
+				if (lastMeasure && (contextChanged || previousContext)) previousContext = preprocessCarryContextFromMeasure(lastMeasure);
+			}
+
+			preprocessCarryContext = previousContext;
+			return { patches: allPatches, batchResults };
+		},
+
+		async callAnnotation(
 		issueMeasures: IssueMeasureInfo[],
 		spartito: starry.Spartito,
 		roundNum: number,
@@ -290,14 +458,15 @@ export const createAgentBackend = (annotationModel: string): AnnotationBackend =
 	async requestSummary(): Promise<string> {
 		return "Summary is not implemented for the direct agent backend yet.";
 	},
-});
+	});
+};
 
 const main = async () => {
 	const argv = parseArgs();
-	if (argv.preprocess) console.warn("Direct agent backend does not implement preprocessing yet; continuing with annotation only.");
 	const annotationModel = argv.annotationModel || DEFAULT_ANNOTATION_MODEL;
 	if (!annotationModel) throw new Error("ANNOTATION_MODEL is not set");
-	const backend = createAgentBackend(annotationModel);
+	const preprocessModel = argv.preprocessModel || annotationModel;
+	const backend = createAgentBackend(annotationModel, preprocessModel);
 	await runAnnotationPipeline(backend, argv);
 };
 
