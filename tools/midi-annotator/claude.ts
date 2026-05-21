@@ -946,10 +946,10 @@ const run = async () => {
 			validated.usage = cliResult.usage;
 			validated.totalCostUsd = cliResult.totalCostUsd;
 			writeJson(resultLog, validated);
-			assertNoConsecutiveLowMatch(output, validated);
 			upsertBoundary(output, validated);
 			saveOutputAtomic(outputPath, output);
 			saveSegmentationYaml(segmentationYaml, output, onsets);
+			assertNoConsecutiveLowMatch(output, validated);
 			console.log(`[${path.basename(scoreDir)}] saved boundary m${measureIndex}/${toMeasure}: ${validated.endTick} (${validated.method}, confidence=${validated.confidence}, matchScore=${validated.matchScore})`);
 			accepted = true;
 		}
