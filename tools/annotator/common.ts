@@ -9,7 +9,7 @@ import { hideBin } from "yargs/helpers";
 
 import "../../env";
 
-import { ANNOTATION_API_KEY, ANNOTATION_BASE_URL, ANNOTATION_MAX_TOKENS, ANNOTATION_MODEL as DEFAULT_ANNOTATION_MODEL, BEAD_PICKER_URL, IMAGE_BED, OMR_API_BASE, ORT_SESSION_OPTIONS } from "../libs/constants";
+import { ANTHROPIC_AUTH_TOKEN, ANNOTATION_BASE_URL, ANNOTATION_MAX_TOKENS, ANNOTATION_MODEL as DEFAULT_ANNOTATION_MODEL, BEAD_PICKER_URL, IMAGE_BED, OMR_API_BASE, ORT_SESSION_OPTIONS } from "../libs/constants";
 import { starry, regulateWithBeadSolver } from "../libs/omr";
 import OnnxBeadPicker from "../libs/onnxBeadPicker";
 import remoteSolutionStore from "../libs/remoteSolutionStore";
@@ -18,7 +18,7 @@ import { type PreprocessPatch, readMidiMeasureContexts } from "./preprocess";
 
 // ── Re-exports for entry points ──────────────────────────────────────────────
 export { starry, regulateWithBeadSolver };
-export { ANNOTATION_API_KEY, ANNOTATION_BASE_URL, ANNOTATION_MAX_TOKENS, DEFAULT_ANNOTATION_MODEL, BEAD_PICKER_URL, IMAGE_BED, ORT_SESSION_OPTIONS };
+export { ANTHROPIC_AUTH_TOKEN, ANNOTATION_BASE_URL, ANNOTATION_MAX_TOKENS, DEFAULT_ANNOTATION_MODEL, BEAD_PICKER_URL, IMAGE_BED, ORT_SESSION_OPTIONS };
 
 
 // ── Types ────────────────────────────────────────────────────────────────────

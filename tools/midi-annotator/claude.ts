@@ -10,7 +10,7 @@ import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
 
 import '../../env';
-import { ANNOTATION_API_KEY, ANNOTATION_BASE_URL, ANNOTATION_MODEL as DEFAULT_ANNOTATION_MODEL, IMAGE_BED } from '../libs/constants';
+import { ANTHROPIC_AUTH_TOKEN, ANNOTATION_BASE_URL, ANNOTATION_MODEL as DEFAULT_ANNOTATION_MODEL, IMAGE_BED } from '../libs/constants';
 import { starry } from '../libs/omr';
 import { extractSpartitoEvents, midiToOnset, type NoteOnPoint, type SpartitoEventPoint } from './common';
 
@@ -763,8 +763,8 @@ const run = async () => {
 
 	if (!annotationModel)
 		throw new Error('ANNOTATION_MODEL is not set. Use .env or --annotation-model.');
-	if (!argv.dryRun && !ANNOTATION_API_KEY)
-		throw new Error('ANNOTATION_API_KEY is not set.');
+	if (!argv.dryRun && !ANTHROPIC_AUTH_TOKEN)
+		throw new Error('ANTHROPIC_AUTH_TOKEN is not set.');
 
 	const rawSpartito = JSON.parse(fs.readFileSync(spartitoPath).toString());
 	const spartito = starry.recoverJSON<starry.Spartito>(JSON.stringify(rawSpartito), starry);
@@ -875,7 +875,7 @@ const run = async () => {
 			const env: Record<string, string> = {
 				...process.env as Record<string, string>,
 				ANTHROPIC_BASE_URL: ANNOTATION_BASE_URL ?? '',
-				ANTHROPIC_AUTH_TOKEN: ANNOTATION_API_KEY!,
+				ANTHROPIC_AUTH_TOKEN: ANTHROPIC_AUTH_TOKEN!,
 				ANTHROPIC_MODEL: annotationModel,
 				ANTHROPIC_SMALL_FAST_MODEL: annotationModel,
 			};

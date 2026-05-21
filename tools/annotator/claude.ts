@@ -14,7 +14,7 @@ import {
 	parseArgs,
 	runAnnotationPipeline,
 	starry,
-	ANNOTATION_API_KEY,
+	ANTHROPIC_AUTH_TOKEN,
 	ANNOTATION_BASE_URL,
 	DEFAULT_ANNOTATION_MODEL,
 } from "./common";
@@ -155,7 +155,7 @@ const runOneBatch = async (
 		const env: Record<string, string> = {
 			...process.env as Record<string, string>,
 			ANTHROPIC_BASE_URL: ANNOTATION_BASE_URL,
-			ANTHROPIC_AUTH_TOKEN: ANNOTATION_API_KEY!,
+			ANTHROPIC_AUTH_TOKEN: ANTHROPIC_AUTH_TOKEN!,
 			ANTHROPIC_MODEL: annotationModel,
 			ANTHROPIC_SMALL_FAST_MODEL: annotationModel,
 		};
@@ -263,7 +263,7 @@ const runOnePreprocessBatch = async (
 		const env: Record<string, string> = {
 			...process.env as Record<string, string>,
 			ANTHROPIC_BASE_URL: ANNOTATION_BASE_URL,
-			ANTHROPIC_AUTH_TOKEN: ANNOTATION_API_KEY!,
+			ANTHROPIC_AUTH_TOKEN: ANTHROPIC_AUTH_TOKEN!,
 			ANTHROPIC_MODEL: preprocessModel,
 			ANTHROPIC_SMALL_FAST_MODEL: preprocessModel,
 		};
@@ -372,8 +372,8 @@ const createClaudeBackend = (annotationModel: string, preprocessModel = annotati
 		midiContexts?: Map<number, PreprocessMidiMeasureContext>,
 		measureImagesDir?: string,
 	): Promise<{ patches: PreprocessPatch[]; batchResults: PreprocessBatchResult[] }> {
-		if (!ANNOTATION_API_KEY) {
-			console.warn("ANNOTATION_API_KEY not set, skipping preprocessing.");
+		if (!ANTHROPIC_AUTH_TOKEN) {
+			console.warn("ANTHROPIC_AUTH_TOKEN not set, skipping preprocessing.");
 			return { patches: [], batchResults: [] };
 		}
 
@@ -430,8 +430,8 @@ const createClaudeBackend = (annotationModel: string, preprocessModel = annotati
 		roundNum: number,
 		logDir?: string,
 	): Promise<{ fixes: Fix[]; batchResults: BatchResult[] }> {
-		if (!ANNOTATION_API_KEY) {
-			console.warn("ANNOTATION_API_KEY not set, skipping annotation.");
+		if (!ANTHROPIC_AUTH_TOKEN) {
+			console.warn("ANTHROPIC_AUTH_TOKEN not set, skipping annotation.");
 			return { fixes: [], batchResults: [] };
 		}
 

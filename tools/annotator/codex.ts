@@ -14,7 +14,7 @@ import {
 	parseArgs,
 	runAnnotationPipeline,
 	starry,
-	ANNOTATION_API_KEY,
+	ANTHROPIC_AUTH_TOKEN,
 	ANNOTATION_BASE_URL,
 	DEFAULT_ANNOTATION_MODEL,
 } from "./common";

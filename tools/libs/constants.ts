@@ -67,6 +67,6 @@ export const ORT_SESSION_OPTIONS = process.env.ORT_SESSION_OPTIONS ? JSON.parse(
 export const OMR_API_BASE = process.env.OMR_API_BASE;
 
 export const ANNOTATION_BASE_URL = process.env.ANNOTATION_BASE_URL;
-export const ANNOTATION_API_KEY = process.env.ANNOTATION_API_KEY;
+export const ANTHROPIC_AUTH_TOKEN = process.env.ANTHROPIC_AUTH_TOKEN;
 export const ANNOTATION_MODEL = process.env.ANNOTATION_MODEL;
 export const ANNOTATION_MAX_TOKENS = Number(process.env.ANNOTATION_MAX_TOKENS) || 200000;
