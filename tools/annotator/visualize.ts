@@ -279,6 +279,16 @@ function textFromContentBlocks(content: any): string {
 		.join("\n");
 }
 
+function splitInlineThinkingText(text: string): { thinking?: string; text?: string } {
+	const end = text.indexOf("</think>");
+	if (end < 0) return { text };
+	const start = text.indexOf("<think>");
+	const thinkingStart = start >= 0 && start < end ? start + "<think>".length : 0;
+	const thinking = text.slice(thinkingStart, end).trim();
+	const rest = text.slice(end + "</think>".length).trimStart();
+	return { thinking: thinking || undefined, text: rest || undefined };
+}
+
 function parseDirectAgentOutput(items: any[]): { conversation: ConversationTurn[]; fixes: Fix[]; evaluateFixCalls: EvaluateFixCall[] } {
 	const conversation: ConversationTurn[] = [];
 	const evaluateFixCalls: EvaluateFixCall[] = [];
@@ -308,7 +318,9 @@ function parseDirectAgentOutput(items: any[]): { conversation: ConversationTurn[
 						conversation.push({ role: "assistant", thinking: block.thinking, model: response.model });
 					}
 					if (block.type === "text" && block.text) {
-						conversation.push({ role: "assistant", text: block.text, model: response.model });
+						const split = splitInlineThinkingText(block.text);
+						if (split.thinking) conversation.push({ role: "assistant", thinking: split.thinking, model: response.model });
+						if (split.text) conversation.push({ role: "assistant", text: split.text, model: response.model });
 					}
 					if (block.type === "tool_use") {
 						conversation.push({ role: "assistant", toolUse: { name: block.name, input: block.input }, model: response.model });
@@ -323,8 +335,12 @@ function parseDirectAgentOutput(items: any[]): { conversation: ConversationTurn[
 				conversation.push({ role: "assistant", thinking: block.thinking, model: response.model });
 			}
 			if (block.type === "text" && block.text) {
-				conversation.push({ role: "assistant", text: block.text, model: response.model });
-				allTexts.push(block.text);
+				const split = splitInlineThinkingText(block.text);
+				if (split.thinking) conversation.push({ role: "assistant", thinking: split.thinking, model: response.model });
+				if (split.text) {
+					conversation.push({ role: "assistant", text: split.text, model: response.model });
+					allTexts.push(split.text);
+				}
 			}
 			if (block.type === "tool_use") {
 				conversation.push({ role: "assistant", toolUse: { name: block.name, input: block.input }, model: response.model });
@@ -1245,12 +1261,39 @@ function safeMarkdownText(s: string): string {
 		.replace(/^(\s*)(`{3,}|~{3,})/gm, "$1\\$2");
 }
 
+function finalPassConversation(turns: ConversationTurn[] | undefined): ConversationTurn[] | undefined {
+	if (!turns) return undefined;
+	let lastUserText = -1;
+	for (let i = 0; i < turns.length; i++) {
+		if (turns[i].role === "user" && turns[i].text)
+			lastUserText = i;
+	}
+	return lastUserText >= 0 ? turns.slice(lastUserText) : turns;
+}
+
+function usageTotals(turns: ConversationTurn[] | undefined): { input: number; output: number } {
+	const usage = turns
+		?.filter(turn => turn.role === "result" && turn.usage)
+		.map(turn => turn.usage) || [];
+	return {
+		input: usage.reduce((sum, item) => sum + (item.input_tokens || 0), 0),
+		output: usage.reduce((sum, item) => sum + (item.output_tokens || 0), 0),
+	};
+}
+
 function renderPreprocessReports(reports: PreprocessReport[]): string {
 	const lines: string[] = [];
 	for (const report of reports) {
 		lines.push(`### Preprocess batch ${report.batch}`);
 		lines.push("");
 		lines.push(`Measures: ${report.measureIndices.map(i => `m${i}`).join(", ") || "?"}`);
+		const alignUsage = usageTotals(report.firstConversation);
+		const patchUsage = usageTotals(report.finalConversation);
+		const totalInput = alignUsage.input + patchUsage.input;
+		const totalOutput = alignUsage.output + patchUsage.output;
+		if (totalInput || totalOutput) {
+			lines.push(`Tokens: align ${alignUsage.input} in / ${alignUsage.output} out${report.finalConversation ? `; patch ${patchUsage.input} in / ${patchUsage.output} out; total ${totalInput} in / ${totalOutput} out` : ""}`);
+		}
 		lines.push("");
 		lines.push(report.finalConversation ? `#### Align pass conversation` : `#### Preprocess conversation`);
 		lines.push("");
@@ -1263,7 +1306,7 @@ function renderPreprocessReports(reports: PreprocessReport[]): string {
 			lines.push("");
 			lines.push(renderConversation([
 				{ role: "system", text: PREPROCESS_FINAL_SYSTEM_PROMPT },
-				...report.finalConversation,
+				...finalPassConversation(report.finalConversation)!,
 			]));
 		}
 		if (report.patches.length > 0) {
