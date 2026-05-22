@@ -97,6 +97,22 @@ const chatTemplateKwargs = () => {
 	return undefined;
 };
 
+const PREPROCESS_MAX_TOKENS = Math.max(1, Number(process.env.AGENT_PREPROCESS_MAX_TOKENS) || 65536);
+
+const preprocessThinkingConfig = () => {
+	const mode = process.env.AGENT_PREPROCESS_THINKING;
+	if (mode === "off" || mode === "disabled") return { type: "disabled" };
+	const budget = Number(mode || 8192);
+	if (Number.isFinite(budget) && budget > 0) return { type: "enabled", budget_tokens: Math.min(budget, PREPROCESS_MAX_TOKENS - 1) };
+	return undefined;
+};
+
+const preprocessChatTemplateKwargs = () => {
+	const mode = process.env.AGENT_PREPROCESS_THINKING;
+	if (mode === "off" || mode === "disabled") return { thinking: false, preserve_thinking: false };
+	return { thinking: true, preserve_thinking: false };
+};
+
 const reasoningEffortPrompt = () => {
 	if (process.env.AGENT_REASONING_EFFORT === "low") return "Reasoning Effort: Low. Use minimal reasoning. Think briefly and avoid unnecessary intermediate steps. Do not write analysis text. Either call evaluate_fix or output ONLY the final JSON fixes block.";
 	return "";
@@ -188,7 +204,7 @@ const preprocessSystemPrompt = () => {
 	const prompt = process.env.AGENT_REASONING_EFFORT === "low"
 		? PREPROCESS_SYSTEM_PROMPT.replace("Think step by step, and inspect the image carefully before producing patches.", "Inspect the image carefully, but keep the response minimal.")
 		: PREPROCESS_SYSTEM_PROMPT;
-	return [low, prompt, "Accessory type tokens must be valid STARRY tokens: use prefixes scripts-, pedal-, arpeggio, fermata, wedge, accidentals-, dynamics-, clefs-, octave-, |slur, |tie, or exact tokens f/p/m/r/s/z. For dynamics text, output dynamics-* (for example dynamics-espr), never bare dynamics or subtype fields. Do not add or preserve numeric fingering/internal tokens such as one|n1, two|n2, three|n3, or four|n4 in accessory patches."].filter(Boolean).join("\n\n");
+	return [low, prompt, "Accessory type tokens must be valid STARRY tokens: use prefixes scripts-, pedal-, arpeggio, fermata, wedge, accidentals-, dynamics-, clefs-, octave-, |slur, |tie, or exact tokens f/p/m/r/s/z. For dynamics text, output dynamics-* (for example dynamics-espr), never bare dynamics or subtype fields. Do not add or preserve numeric fingering/internal tokens such as one|n1, two|n2, three|n3, or four|n4 in accessory patch payloads; leave existing numeric fingering tokens unchanged unless the image clearly proves they are wrong."].filter(Boolean).join("\n\n");
 };
 
 const runAgentToolLoop = async (
@@ -201,6 +217,7 @@ const runAgentToolLoop = async (
 	const turns: AgentTurnLog[] = [];
 	let usage: any;
 	let lastResponse: MessagesResponse | undefined;
+	const seenToolCalls = new Set<string>();
 
 	for (let turn = 0; turn < MAX_TURNS; ++turn) {
 		const thinking = thinkingConfig();
@@ -221,8 +238,10 @@ const runAgentToolLoop = async (
 		messages.push({ role: "assistant", content: contentForNextTurn(response.content || []) });
 
 		const toolUses = toolUsesFromContent(response.content || []);
+		const repeatedToolUse = toolUses.length > 0 && toolUses.every(toolUse => seenToolCalls.has(`${toolUse.name}:${JSON.stringify(toolUse.input || {})}`));
 		const toolResults: any[] = [];
-		for (const toolUse of toolUses) {
+		if (!repeatedToolUse) for (const toolUse of toolUses) {
+			seenToolCalls.add(`${toolUse.name}:${JSON.stringify(toolUse.input || {})}`);
 			try {
 				const result = await callTool(toolUse.name, toolUse.input || {});
 				toolResults.push({ type: "tool_result", tool_use_id: toolUse.id, content: result });
@@ -248,10 +267,12 @@ const runAgentToolLoop = async (
 		}
 		messages.push({
 			role: "user",
-			content: [
-				...toolResults,
-				{ type: "text", text: "Use the evaluation result above. If the fix is acceptable, stop calling tools and output ONLY the final JSON fixes block." },
-			],
+			content: repeatedToolUse
+				? [{ type: "text", text: "You repeated the same evaluate_fix call. Do not call tools again. Use the previous evaluation result and output ONLY the final JSON fixes block now." }]
+				: [
+					...toolResults,
+					{ type: "text", text: "Use the evaluation result above. If the fix is acceptable, stop calling tools and output ONLY the final JSON fixes block." },
+				],
 		});
 	}
 
@@ -278,13 +299,16 @@ const runOnePreprocessBatch = async (
 		const { text: prompt, imagePaths } = await buildPreprocessPrompt(batch, tmpDir, { imageMode: "attached", midiContexts, measureImagesDir, previousContext });
 		if (logDir) fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_prompt.txt`), prompt);
 
+		const thinking = preprocessThinkingConfig();
+		const templateKwargs = preprocessChatTemplateKwargs();
 		const request = {
 			model: preprocessModel,
-			max_tokens: Math.min(ANNOTATION_MAX_TOKENS, 2048),
+			max_tokens: PREPROCESS_MAX_TOKENS,
 			temperature: 0,
 			system: preprocessSystemPrompt(),
 			messages: [{ role: "user", content: buildUserContent(prompt, imagePaths) }],
-			...(chatTemplateKwargs() ? { chat_template_kwargs: chatTemplateKwargs() } : {}),
+			...(thinking ? { thinking } : {}),
+			...(templateKwargs ? { chat_template_kwargs: templateKwargs } : {}),
 		};
 		const response = await messagesCreate(request);
 		const text = textFromContent(response.content || []);

@@ -377,10 +377,39 @@ const isValidFix = (fix: any): fix is Fix =>
 	&& typeof fix.duration === "number"
 	&& typeof fix.status === "number";
 
+const extractBalancedJsonObjects = (output: string): string[] => {
+	const objects: string[] = [];
+	let start = -1;
+	let depth = 0;
+	let inString = false;
+	let escaped = false;
+	for (let i = 0; i < output.length; ++i) {
+		const ch = output[i];
+		if (inString) {
+			if (escaped) escaped = false;
+			else if (ch === "\\") escaped = true;
+			else if (ch === "\"") inString = false;
+			continue;
+		}
+		if (ch === "\"") {
+			inString = true;
+			continue;
+		}
+		if (ch === "{") {
+			if (depth === 0) start = i;
+			depth++;
+		}
+		else if (ch === "}" && depth > 0) {
+			depth--;
+			if (depth === 0 && start >= 0) objects.push(output.slice(start, i + 1));
+		}
+	}
+	return objects;
+};
+
 export const parseFixes = (output: string): Fix[] => {
-	// Try to extract JSON block from markdown code fence
-	const jsonMatch = output.match(/```(?:json)?\s*\n?([\s\S]*?)\n?```/);
-	if (jsonMatch) {
+	const jsonMatches = [...output.matchAll(/```(?:json)?\s*\n?([\s\S]*?)\n?```/g)];
+	for (const jsonMatch of jsonMatches.reverse()) {
 		try {
 			const parsed = JSON.parse(jsonMatch[1]);
 			return parsed.fixes || [];
@@ -388,26 +417,21 @@ export const parseFixes = (output: string): Fix[] => {
 		catch {}
 	}
 
-	// Fallback: try to parse the entire output as JSON
 	try {
 		const parsed = JSON.parse(output.trim());
 		return parsed.fixes || [];
 	}
 	catch {}
 
-	// Fallback: find the last complete { ... } block that contains "fixes"
-	// Use non-greedy to prefer smaller matches first, then pick the one with "fixes"
-	const braceMatch = output.match(/\{[^{}]*"fixes"\s*:\s*\[[\s\S]*?\]\s*\}/)
-		|| output.match(/\{[\s\S]*"fixes"\s*:\s*\[[\s\S]*?\]\s*\}/);
-	if (braceMatch) {
+	for (const candidate of extractBalancedJsonObjects(output).reverse()) {
+		if (!candidate.includes('"fixes"')) continue;
 		try {
-			const parsed = JSON.parse(braceMatch[0]);
+			const parsed = JSON.parse(candidate);
 			return parsed.fixes || [];
 		}
 		catch {}
 	}
 
-	// Fallback for truncated output: extract individual fix objects
 	const fixObjects: any[] = [];
 	const fixPattern = /\{\s*"measureIndex"\s*:\s*\d+[\s\S]*?"status"\s*:\s*-?\d+\s*\}/g;
 	let match;
