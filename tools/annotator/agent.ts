@@ -19,7 +19,7 @@ import {
 	DEFAULT_ANNOTATION_MODEL,
 } from "./common";
 import { SYSTEM_PROMPT, buildAnnotationPrompt } from "./prompt";
-import { PREPROCESS_SYSTEM_PROMPT, buildPreprocessPrompt, type PreprocessCarryContext } from "./preprocessPrompt";
+import { PREPROCESS_SYSTEM_PROMPT, PREPROCESS_ALIGNMENT_SYSTEM_PROMPT, PREPROCESS_FINAL_SYSTEM_PROMPT, buildPreprocessPrompt, type PreprocessCarryContext } from "./preprocessPrompt";
 import { type PreprocessPatch, type PreprocessMidiMeasureContext, parsePreprocessPatches, applyPreprocessPatchToMeasure } from "./preprocess";
 import { startMeasureQualityMcp, type AnthropicToolDefinition } from "./mcpStdioTools";
 
@@ -110,7 +110,7 @@ const preprocessThinkingConfig = () => {
 const preprocessChatTemplateKwargs = () => {
 	const mode = process.env.AGENT_PREPROCESS_THINKING;
 	if (mode === "off" || mode === "disabled") return { thinking: false, preserve_thinking: false };
-	return { thinking: true, preserve_thinking: false };
+	return { thinking: true, preserve_thinking: true };
 };
 
 const reasoningEffortPrompt = () => {
@@ -199,12 +199,25 @@ const preprocessPatchesTouchCarryContext = (patches: PreprocessPatch[]): boolean
 	}),
 );
 
+const PREPROCESS_MIDI_ALIGNMENT_PROMPT = `Align MIDI evidence to score events for the following measures.`;
+const PREPROCESS_FINAL_WITH_ALIGNMENT_PROMPT = `Using the first-pass event/onset alignment plus the original measure image/data in this session, output final sparse preprocessing patches only.`;
+
 const preprocessSystemPrompt = () => {
 	const low = process.env.AGENT_REASONING_EFFORT === "low" ? "Reasoning Effort: Low. Use minimal reasoning. Think briefly and avoid unnecessary intermediate steps. Output ONLY the sparse JSON patches block." : "";
 	const prompt = process.env.AGENT_REASONING_EFFORT === "low"
 		? PREPROCESS_SYSTEM_PROMPT.replace("Think step by step, and inspect the image carefully before producing patches.", "Inspect the image carefully, but keep the response minimal.")
 		: PREPROCESS_SYSTEM_PROMPT;
 	return [low, prompt, "Accessory type tokens must be valid STARRY tokens: use prefixes scripts-, pedal-, arpeggio, fermata, wedge, accidentals-, dynamics-, clefs-, octave-, |slur, |tie, or exact tokens f/p/m/r/s/z. For dynamics text, output dynamics-* (for example dynamics-espr), never bare dynamics or subtype fields. Do not add or preserve numeric fingering/internal tokens such as one|n1, two|n2, three|n3, or four|n4 in accessory patch payloads; leave existing numeric fingering tokens unchanged unless the image clearly proves they are wrong."].filter(Boolean).join("\n\n");
+};
+
+const preprocessAlignmentSystemPrompt = () => {
+	const low = process.env.AGENT_REASONING_EFFORT === "low" ? "Reasoning Effort: Low. Use minimal reasoning. Output ONLY the compact alignment JSON block." : "";
+	return [low, PREPROCESS_ALIGNMENT_SYSTEM_PROMPT].filter(Boolean).join("\n\n");
+};
+
+const preprocessFinalSystemPrompt = () => {
+	const low = process.env.AGENT_REASONING_EFFORT === "low" ? "Reasoning Effort: Low. Use minimal reasoning. Output ONLY the sparse JSON patches block." : "";
+	return [low, PREPROCESS_FINAL_SYSTEM_PROMPT, "Accessory type tokens must be valid STARRY tokens: use prefixes scripts-, pedal-, arpeggio, fermata, wedge, accidentals-, dynamics-, clefs-, octave-, |slur, |tie, or exact tokens f/p/m/r/s/z. For dynamics text, output dynamics-* (for example dynamics-espr), never bare dynamics or subtype fields. Do not add or preserve numeric fingering/internal tokens such as one|n1, two|n2, three|n3, or four|n4 in accessory patch payloads; leave existing numeric fingering tokens unchanged unless the image clearly proves they are wrong."].filter(Boolean).join("\n\n");
 };
 
 const runAgentToolLoop = async (
@@ -284,6 +297,9 @@ const runAgentToolLoop = async (
 	};
 };
 
+const hasMidiForBatch = (batch: IssueMeasureInfo[], midiContexts?: Map<number, PreprocessMidiMeasureContext>) =>
+	!!midiContexts && batch.some(issue => midiContexts.has(issue.measureIndex));
+
 const runOnePreprocessBatch = async (
 	batch: IssueMeasureInfo[],
 	spartito: starry.Spartito,
@@ -296,33 +312,70 @@ const runOnePreprocessBatch = async (
 ): Promise<{ patches: PreprocessPatch[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasPatches: boolean }> => {
 	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-agent-preprocess-"));
 	try {
+		const hasMidi = hasMidiForBatch(batch, midiContexts);
 		const { text: prompt, imagePaths } = await buildPreprocessPrompt(batch, tmpDir, { imageMode: "attached", midiContexts, measureImagesDir, previousContext });
-		if (logDir) fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_prompt.txt`), prompt);
+		const { text: alignmentPrompt, imagePaths: alignmentImagePaths } = hasMidi
+			? await buildPreprocessPrompt(batch, tmpDir, { imageMode: "attached", midiContexts, measureImagesDir, alignmentOnly: true })
+			: { text: prompt, imagePaths };
+		if (logDir) {
+			fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_prompt.txt`), prompt);
+			if (hasMidi) fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_alignment_prompt.txt`), alignmentPrompt);
+		}
 
 		const thinking = preprocessThinkingConfig();
 		const templateKwargs = preprocessChatTemplateKwargs();
-		const request = {
+		const firstMessages: AgentMessage[] = [{
+			role: "user",
+			content: buildUserContent(hasMidi ? `${PREPROCESS_MIDI_ALIGNMENT_PROMPT}\n\n${alignmentPrompt}` : prompt, hasMidi ? alignmentImagePaths : imagePaths),
+		}];
+		const firstRequest = {
 			model: preprocessModel,
 			max_tokens: PREPROCESS_MAX_TOKENS,
 			temperature: 0,
-			system: preprocessSystemPrompt(),
-			messages: [{ role: "user", content: buildUserContent(prompt, imagePaths) }],
+			system: hasMidi ? preprocessAlignmentSystemPrompt() : preprocessSystemPrompt(),
+			messages: firstMessages,
 			...(thinking ? { thinking } : {}),
 			...(templateKwargs ? { chat_template_kwargs: templateKwargs } : {}),
 		};
-		const response = await messagesCreate(request);
-		const text = textFromContent(response.content || []);
-		if (logDir) fs.writeFileSync(path.join(logDir, `pre_${batchLabel}.json`), JSON.stringify({ request: redactForLog(request), response }, null, 2));
+		const firstResponse = await messagesCreate(firstRequest);
+		const firstText = textFromContent(firstResponse.content || []);
+		if (logDir) fs.writeFileSync(path.join(logDir, `pre_${batchLabel}.json`), JSON.stringify({ request: redactForLog(firstRequest), response: firstResponse }, null, 2));
 
-		if (response.usage) console.log(`  [pre ${batchLabel}] Tokens: ${response.usage.input_tokens || 0} in / ${response.usage.output_tokens || 0} out`);
+		let text = firstText;
+		let sessionId = firstResponse.id || `pre-${Date.now()}`;
+		let usage = firstResponse.usage;
+		if (hasMidi && firstText) {
+			if (logDir) fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_alignments.txt`), firstText);
+			const finalMessages: AgentMessage[] = [
+				...firstMessages,
+				{ role: "assistant", content: contentForNextTurn(firstResponse.content || []) },
+				{ role: "user", content: buildUserContent(`${PREPROCESS_FINAL_WITH_ALIGNMENT_PROMPT}\n\n${prompt}`, imagePaths) },
+			];
+			const finalRequest = {
+				model: preprocessModel,
+				max_tokens: PREPROCESS_MAX_TOKENS,
+				temperature: 0,
+				system: preprocessFinalSystemPrompt(),
+				messages: finalMessages,
+				...(thinking ? { thinking } : {}),
+				...(templateKwargs ? { chat_template_kwargs: templateKwargs } : {}),
+			};
+			const finalResponse = await messagesCreate(finalRequest);
+			text = textFromContent(finalResponse.content || []);
+			sessionId = finalResponse.id || sessionId;
+			usage = finalResponse.usage;
+			if (logDir) fs.writeFileSync(path.join(logDir, `pre_${batchLabel}_final.json`), JSON.stringify({ request: redactForLog(finalRequest), response: finalResponse }, null, 2));
+		}
+
+		if (usage) console.log(`  [pre ${batchLabel}] Tokens: ${usage.input_tokens || 0} in / ${usage.output_tokens || 0} out`);
 		if (!text) {
 			console.warn(`  [pre ${batchLabel}] empty result`);
-			return { patches: [], sessionId: response.id || "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false, hasPatches: false };
+			return { patches: [], sessionId, measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false, hasPatches: false };
 		}
 
 		console.log(`  [pre ${batchLabel}] Result text: ${text.length} chars`);
 		const patches = parsePreprocessPatches(text);
-		return { patches, sessionId: response.id || `pre-${Date.now()}`, measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: true, hasPatches: patches.length > 0 };
+		return { patches, sessionId, measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: true, hasPatches: patches.length > 0 };
 	} catch (err: any) {
 		console.warn(`  [pre ${batchLabel}] failed: ${err.message?.slice(0, 300)}`);
 		return { patches: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false, hasPatches: false };

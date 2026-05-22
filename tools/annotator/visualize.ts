@@ -283,18 +283,40 @@ function parseDirectAgentOutput(items: any[]): { conversation: ConversationTurn[
 	const conversation: ConversationTurn[] = [];
 	const evaluateFixCalls: EvaluateFixCall[] = [];
 	const allTexts: string[] = [];
-	let initialUserAdded = false;
+	let renderedMessageCount = 0;
 
 	for (const item of items) {
 		const request = item.request || {};
 		const response = item.response || {};
+		const messages = request.messages || [];
 
-		if (!initialUserAdded) {
-			const firstUser = request.messages?.find((m: any) => m.role === "user");
-			const text = textFromContentBlocks(firstUser?.content);
-			if (text) conversation.push({ role: "user", text });
-			initialUserAdded = true;
+		for (let i = renderedMessageCount; i < messages.length; i++) {
+			const message = messages[i];
+			if (message.role === "user") {
+				const text = textFromContentBlocks(message.content);
+				const toolResults = Array.isArray(message.content) ? message.content.filter((block: any) => block?.type === "tool_result") : [];
+				if (text) conversation.push({ role: "user", text });
+				for (const toolResult of toolResults) {
+					const resultText = typeof toolResult.content === "string" ? toolResult.content : JSON.stringify(toolResult.content, null, 2);
+					conversation.push({ role: "user", toolResult: resultText });
+					fillEvaluateFixResult(evaluateFixCalls, resultText);
+				}
+			}
+			else if (message.role === "assistant") {
+				for (const block of message.content || []) {
+					if (block.type === "thinking" && block.thinking) {
+						conversation.push({ role: "assistant", thinking: block.thinking, model: response.model });
+					}
+					if (block.type === "text" && block.text) {
+						conversation.push({ role: "assistant", text: block.text, model: response.model });
+					}
+					if (block.type === "tool_use") {
+						conversation.push({ role: "assistant", toolUse: { name: block.name, input: block.input }, model: response.model });
+					}
+				}
+			}
 		}
+		renderedMessageCount = Math.max(renderedMessageCount, messages.length);
 
 		for (const block of response.content || []) {
 			if (block.type === "thinking" && block.thinking) {
@@ -1133,7 +1155,7 @@ function renderConversation(turns: ConversationTurn[]): string {
 			if (turn.thinking) {
 				out.push(`<details><summary><i>💭 Thinking</i></summary>`);
 				out.push("");
-				out.push(`<pre><code>${escHtml(turn.thinking)}</code></pre>`);
+					out.push(`<div class="text-block">${renderPlainText(turn.thinking)}</div>`);
 				out.push("");
 				out.push(`</details>`);
 				out.push("");
@@ -1144,7 +1166,7 @@ function renderConversation(turns: ConversationTurn[]): string {
 			}
 			if (turn.toolUse) {
 				const argStr = JSON.stringify(turn.toolUse.input, null, 2);
-					out.push(`**[Tool Call]** \`${turn.toolUse.name}\``);
+				out.push(`**[Tool Call]** \`${turn.toolUse.name}\``);
 				out.push(`<details><summary>Arguments</summary>`);
 				out.push("");
 				out.push("```json");
@@ -1169,14 +1191,14 @@ function renderConversation(turns: ConversationTurn[]): string {
 				out.push("");
 				out.push(`<details><summary>Prompt</summary>`);
 				out.push("");
-				out.push(`<pre><code>${escHtml(turn.text)}</code></pre>`);
+					out.push(`<div class="text-block">${renderPlainText(turn.text)}</div>`);
 				out.push("");
 				out.push(`</details>`);
 				out.push("");
 			}
 			if (turn.toolResult) {
 				out.push(`**[Tool Result]**`);
-				out.push(`<pre><code>${escHtml(turn.toolResult)}</code></pre>`);
+					out.push(`<div class="text-block">${renderPlainText(turn.toolResult)}</div>`);
 				out.push("");
 			}
 			if (turn.attachedSvg) {
@@ -1210,6 +1232,10 @@ function escHtml(s: string): string {
 	return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\"/g, "&quot;");
 }
 
+function renderPlainText(s: string): string {
+	return escHtml(s).replace(/\n/g, "<br>");
+}
+
 function escMd(s: string): string {
 	return s.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -1226,40 +1252,14 @@ function renderPreprocessReports(reports: PreprocessReport[]): string {
 		lines.push("");
 		lines.push(`Measures: ${report.measureIndices.map(i => `m${i}`).join(", ") || "?"}`);
 		lines.push("");
-		if (report.promptText) {
-			lines.push(`<details><summary><b>Full preprocess prompt</b></summary>`);
-			lines.push("");
-			lines.push(`<pre><code>${escHtml(report.promptText)}</code></pre>`);
-			lines.push("");
-			lines.push(`</details>`);
-			lines.push("");
-		}
-		if (report.alignmentPromptText) {
-			lines.push(`<details><summary><b>Full alignment prompt</b></summary>`);
-			lines.push("");
-			lines.push(`<pre><code>${escHtml(report.alignmentPromptText)}</code></pre>`);
-			lines.push("");
-			lines.push(`</details>`);
-			lines.push("");
-		}
-		lines.push(`#### First preprocess pass conversation`);
+		lines.push(report.finalConversation ? `#### Align pass conversation` : `#### Preprocess conversation`);
 		lines.push("");
 		lines.push(renderConversation([
 			{ role: "system", text: report.alignmentPromptText ? PREPROCESS_ALIGNMENT_SYSTEM_PROMPT : PREPROCESS_SYSTEM_PROMPT },
 			...report.firstConversation,
 		]));
-		if (report.alignmentText) {
-			lines.push(`<details><summary><b>Alignment text used by final pass</b></summary>`);
-			lines.push("");
-			lines.push("```json");
-			lines.push(report.alignmentText);
-			lines.push("```");
-			lines.push("");
-			lines.push(`</details>`);
-			lines.push("");
-		}
 		if (report.finalConversation) {
-			lines.push(`#### Final preprocess pass conversation`);
+			lines.push(`#### Patch pass conversation`);
 			lines.push("");
 			lines.push(renderConversation([
 				{ role: "system", text: PREPROCESS_FINAL_SYSTEM_PROMPT },
