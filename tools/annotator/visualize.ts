@@ -1393,12 +1393,13 @@ function renderMarkdownReport(report: LogReport): string {
 			afterSvg = generateTopologySvg(afterEvents, afterVoices, mr.fix.duration || pm.duration, pm.timeSignature, { ...svgOpts, title: `After — M${mr.measureIndex}` });
 		}
 
+		if (mr.backgroundBase64) {
+			lines.push(`![background](${mr.backgroundBase64})`);
+			lines.push("");
+		}
+
 		if (report.backend === "codex") {
-			// Codex: images passed at init → show background + Before/After upfront
-			if (mr.backgroundBase64) {
-				lines.push(`![background](${mr.backgroundBase64})`);
-				lines.push("");
-			}
+			// Codex: show Before/After upfront
 			lines.push(`### Before (status=${pm.status ?? "?"})`);
 			lines.push(`| ${evalFields} |`);
 			lines.push("");
