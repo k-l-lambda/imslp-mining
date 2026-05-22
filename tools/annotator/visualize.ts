@@ -176,16 +176,79 @@ function parsePreprocessMeasureIndices(promptText: string): number[] {
 }
 
 function extractJsonObject(text: string): any | undefined {
-	const fenced = text.match(/```json\s*\n([\s\S]*?)\n```/);
-	const source = fenced ? fenced[1] : text;
-	const start = source.indexOf("{");
-	const end = source.lastIndexOf("}");
-	if (start < 0 || end <= start) return undefined;
-	try {
-		return JSON.parse(source.slice(start, end + 1));
-	} catch {
-		return undefined;
+	const fenced = [...text.matchAll(/```(?:json)?\s*\n?([\s\S]*?)\n?```/g)];
+	for (const match of fenced.reverse()) {
+		try { return JSON.parse(match[1]); } catch {}
 	}
+	const candidates: string[] = [];
+	let start = -1;
+	let depth = 0;
+	let inString = false;
+	let escaped = false;
+	for (let i = 0; i < text.length; i++) {
+		const ch = text[i];
+		if (inString) {
+			if (escaped) escaped = false;
+			else if (ch === "\\") escaped = true;
+			else if (ch === "\"") inString = false;
+			continue;
+		}
+		if (ch === "\"") {
+			inString = true;
+			continue;
+		}
+		if (ch === "{") {
+			if (depth === 0) start = i;
+			depth++;
+		}
+		else if (ch === "}" && depth > 0) {
+			depth--;
+			if (depth === 0 && start >= 0) candidates.push(text.slice(start, i + 1));
+		}
+	}
+	for (const source of candidates.reverse()) {
+		try { return JSON.parse(source); } catch {}
+	}
+	return undefined;
+}
+
+function extractJsonWithKey(text: string, key: string): any | undefined {
+	const fenced = [...text.matchAll(/```(?:json)?\s*\n?([\s\S]*?)\n?```/g)];
+	for (const match of fenced.reverse()) {
+		if (!match[1].includes(`"${key}"`)) continue;
+		try { return JSON.parse(match[1]); } catch {}
+	}
+	const candidates: string[] = [];
+	let start = -1;
+	let depth = 0;
+	let inString = false;
+	let escaped = false;
+	for (let i = 0; i < text.length; i++) {
+		const ch = text[i];
+		if (inString) {
+			if (escaped) escaped = false;
+			else if (ch === "\\") escaped = true;
+			else if (ch === "\"") inString = false;
+			continue;
+		}
+		if (ch === "\"") {
+			inString = true;
+			continue;
+		}
+		if (ch === "{") {
+			if (depth === 0) start = i;
+			depth++;
+		}
+		else if (ch === "}" && depth > 0) {
+			depth--;
+			if (depth === 0 && start >= 0) candidates.push(text.slice(start, i + 1));
+		}
+	}
+	for (const source of candidates.reverse()) {
+		if (!source.includes(`"${key}"`)) continue;
+		try { return JSON.parse(source); } catch {}
+	}
+	return undefined;
 }
 
 
@@ -196,6 +259,78 @@ function detectBackend(files: string[]): "claude" | "codex" {
 	return "claude";
 }
 
+function fillEvaluateFixResult(evaluateFixCalls: EvaluateFixCall[], resultText: string) {
+	if (!resultText) return;
+	const call = [...evaluateFixCalls].reverse().find(c => !c.resultText);
+	if (!call) return;
+	call.resultText = resultText;
+	const beforeMatch = resultText.match(/BEFORE[^:]*:\s*(.*)/);
+	const afterMatch = resultText.match(/AFTER[^:]*:\s*(.*)/);
+	call.beforeText = beforeMatch ? beforeMatch[1].trim() : "";
+	call.afterText = afterMatch ? afterMatch[1].trim() : "";
+}
+
+function textFromContentBlocks(content: any): string {
+	if (typeof content === "string") return content;
+	if (!Array.isArray(content)) return "";
+	return content
+		.filter((block: any) => block?.type === "text" && block.text)
+		.map((block: any) => block.text)
+		.join("\n");
+}
+
+function parseDirectAgentOutput(items: any[]): { conversation: ConversationTurn[]; fixes: Fix[]; evaluateFixCalls: EvaluateFixCall[] } {
+	const conversation: ConversationTurn[] = [];
+	const evaluateFixCalls: EvaluateFixCall[] = [];
+	const allTexts: string[] = [];
+	let initialUserAdded = false;
+
+	for (const item of items) {
+		const request = item.request || {};
+		const response = item.response || {};
+
+		if (!initialUserAdded) {
+			const firstUser = request.messages?.find((m: any) => m.role === "user");
+			const text = textFromContentBlocks(firstUser?.content);
+			if (text) conversation.push({ role: "user", text });
+			initialUserAdded = true;
+		}
+
+		for (const block of response.content || []) {
+			if (block.type === "thinking" && block.thinking) {
+				conversation.push({ role: "assistant", thinking: block.thinking, model: response.model });
+			}
+			if (block.type === "text" && block.text) {
+				conversation.push({ role: "assistant", text: block.text, model: response.model });
+				allTexts.push(block.text);
+			}
+			if (block.type === "tool_use") {
+				conversation.push({ role: "assistant", toolUse: { name: block.name, input: block.input }, model: response.model });
+				if (block.name?.includes("evaluate_fix")) {
+					evaluateFixCalls.push({
+						arguments: block.input,
+						beforeText: "",
+						afterText: "",
+						resultText: "",
+					});
+				}
+			}
+		}
+
+		for (const toolResult of item.toolResults || []) {
+			const resultText = typeof toolResult.content === "string" ? toolResult.content : JSON.stringify(toolResult.content, null, 2);
+			conversation.push({ role: "user", toolResult: resultText });
+			fillEvaluateFixResult(evaluateFixCalls, resultText);
+		}
+
+		if (response.usage) {
+			conversation.push({ role: "result", usage: response.usage });
+		}
+	}
+
+	return { conversation, fixes: parseFixes(allTexts.join("\n")), evaluateFixCalls };
+}
+
 /** Parse Claude JSON output into conversation turns + fixes */
 function parseClaudeOutput(raw: string): { conversation: ConversationTurn[]; fixes: Fix[]; evaluateFixCalls: EvaluateFixCall[] } {
 	const conversation: ConversationTurn[] = [];
@@ -204,6 +339,12 @@ function parseClaudeOutput(raw: string): { conversation: ConversationTurn[]; fix
 
 	try {
 		const items = JSON.parse(raw);
+		if (Array.isArray(items) && items.some(item => item?.request && item?.response)) {
+			return parseDirectAgentOutput(items);
+		}
+		if (!Array.isArray(items) && items?.request && items?.response) {
+			return parseDirectAgentOutput([items]);
+		}
 		if (!Array.isArray(items)) {
 			// Single result object
 			const text = items.result || JSON.stringify(items);
@@ -992,22 +1133,22 @@ function renderConversation(turns: ConversationTurn[]): string {
 			if (turn.thinking) {
 				out.push(`<details><summary><i>💭 Thinking</i></summary>`);
 				out.push("");
-				out.push(turn.thinking);
+				out.push(`<pre><code>${escHtml(turn.thinking)}</code></pre>`);
 				out.push("");
 				out.push(`</details>`);
 				out.push("");
 			}
 			if (turn.text) {
-				out.push(turn.text);
+				out.push(safeMarkdownText(turn.text));
 				out.push("");
 			}
 			if (turn.toolUse) {
 				const argStr = JSON.stringify(turn.toolUse.input, null, 2);
-				out.push(`**[Tool Call]** \`${turn.toolUse.name}\``);
+					out.push(`**[Tool Call]** \`${turn.toolUse.name}\``);
 				out.push(`<details><summary>Arguments</summary>`);
 				out.push("");
 				out.push("```json");
-				out.push(argStr.length > 2000 ? argStr.substring(0, 2000) + "\n..." : argStr);
+				out.push(argStr);
 				out.push("```");
 				out.push("");
 				out.push(`</details>`);
@@ -1023,11 +1164,19 @@ function renderConversation(turns: ConversationTurn[]): string {
 
 		if (turn.role === "user") {
 			prevRole = "user";
+			if (turn.text) {
+				out.push(`**[User]**`);
+				out.push("");
+				out.push(`<details><summary>Prompt</summary>`);
+				out.push("");
+				out.push(`<pre><code>${escHtml(turn.text)}</code></pre>`);
+				out.push("");
+				out.push(`</details>`);
+				out.push("");
+			}
 			if (turn.toolResult) {
 				out.push(`**[Tool Result]**`);
-				out.push("```");
-				out.push(turn.toolResult.length > 2000 ? turn.toolResult.substring(0, 2000) + "\n..." : turn.toolResult);
-				out.push("```");
+				out.push(`<pre><code>${escHtml(turn.toolResult)}</code></pre>`);
 				out.push("");
 			}
 			if (turn.attachedSvg) {
@@ -1063,6 +1212,11 @@ function escHtml(s: string): string {
 
 function escMd(s: string): string {
 	return s.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function safeMarkdownText(s: string): string {
+	return escMd(s)
+		.replace(/^(\s*)(`{3,}|~{3,})/gm, "$1\\$2");
 }
 
 function renderPreprocessReports(reports: PreprocessReport[]): string {
@@ -1139,7 +1293,8 @@ function buildPreprocessReports(logDir: string, batches: PreprocessLogBatch[]): 
 		const firstParsed = parseClaudeOutput(firstRaw);
 		const finalRaw = batch.finalOutputFile ? fs.readFileSync(batch.finalOutputFile, "utf-8") : undefined;
 		const finalParsed = finalRaw ? parseClaudeOutput(finalRaw) : undefined;
-		const patchJson = extractJsonObject(finalRaw ?? firstRaw);
+		const patchText = finalParsed?.conversation.map(t => t.text || "").join("\n") || firstParsed.conversation.map(t => t.text || "").join("\n");
+			const patchJson = extractJsonWithKey(patchText, "patches") ?? extractJsonWithKey(finalRaw ?? firstRaw, "patches");
 		reports.push({
 			batch: batch.batch,
 			measureIndices: parsePreprocessMeasureIndices(promptText),
