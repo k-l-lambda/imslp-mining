@@ -80,21 +80,31 @@ const textFromContent = (content: any[]) => content
 
 const toolUsesFromContent = (content: any[]) => content.filter(block => block?.type === "tool_use");
 
-const contentForNextTurn = (content: any[]) => content.filter(block => block?.type !== "thinking");
+const stripInlineThinking = (text: string) => {
+	const end = text.indexOf("</think>");
+	if (end < 0) return text;
+	return text.slice(end + "</think>".length).trimStart();
+};
+
+const contentForNextTurn = (content: any[]) => content.flatMap(block => {
+	if (block?.type === "thinking") return [];
+	if (block?.type !== "text") return [block];
+	const text = stripInlineThinking(block.text || "");
+	return text ? [{ ...block, text }] : [];
+});
 
 const thinkingConfig = () => {
 	const mode = process.env.AGENT_THINKING;
-	if (!mode || mode === "default") return undefined;
 	if (mode === "off" || mode === "disabled") return { type: "disabled" };
-	const budget = Number(mode);
-	if (Number.isFinite(budget) && budget > 0) return { type: "enabled", budget_tokens: budget };
+	const budget = Number(mode || 8192);
+	if (Number.isFinite(budget) && budget > 0) return { type: "enabled", budget_tokens: Math.min(budget, ANNOTATION_MAX_TOKENS - 1) };
 	return undefined;
 };
 
 const chatTemplateKwargs = () => {
 	const mode = process.env.AGENT_THINKING;
 	if (mode === "off" || mode === "disabled") return { thinking: false, preserve_thinking: false };
-	return undefined;
+	return { thinking: true, preserve_thinking: true };
 };
 
 const PREPROCESS_MAX_TOKENS = Math.max(1, Number(process.env.AGENT_PREPROCESS_MAX_TOKENS) || 65536);
@@ -252,8 +262,26 @@ const runAgentToolLoop = async (
 
 		const toolUses = toolUsesFromContent(response.content || []);
 		const repeatedToolUse = toolUses.length > 0 && toolUses.every(toolUse => seenToolCalls.has(`${toolUse.name}:${JSON.stringify(toolUse.input || {})}`));
+		if (repeatedToolUse) {
+			turns.push({
+				request: { messages: redactForLog([...messages]), tools, max_tokens: ANNOTATION_MAX_TOKENS },
+				response,
+				toolResults: toolUses.map(toolUse => ({
+					type: "tool_result",
+					tool_use_id: toolUse.id,
+					content: "This exact evaluate_fix call was already evaluated and rejected as worse.",
+					is_error: true,
+				})),
+			});
+			return {
+				text: "[]",
+				sessionId: response.id || `agent-${Date.now()}`,
+				turns,
+				usage,
+			};
+		}
 		const toolResults: any[] = [];
-		if (!repeatedToolUse) for (const toolUse of toolUses) {
+		for (const toolUse of toolUses) {
 			seenToolCalls.add(`${toolUse.name}:${JSON.stringify(toolUse.input || {})}`);
 			try {
 				const result = await callTool(toolUse.name, toolUse.input || {});
@@ -263,6 +291,7 @@ const runAgentToolLoop = async (
 				toolResults.push({ type: "tool_result", tool_use_id: toolUse.id, content: err.message, is_error: true });
 			}
 		}
+
 
 		turns.push({
 			request: { messages: redactForLog([...messages]), tools, max_tokens: ANNOTATION_MAX_TOKENS },

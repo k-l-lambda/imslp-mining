@@ -49,8 +49,8 @@ Your task is to verify and fix these assignments where the algorithm failed.
 **CRITICAL — Do NOT preserve timeWarp from the original regulation blindly:**
 - If the original measure has \`timeWarp: {numerator:2, denominator:3}\`, do NOT copy it into your fix unless you **confirm actual triplets in the image** (look for a "3" bracket or 3 beamed notes in the space of 2).
 - **Common agent mistake**: The regulation guessed timeWarp to make ticks fit, but the notes are NOT actually triplets. Your fix should set \`timeWarp: null\` and use correct division/dots instead.
-- **When to set timeWarp to null**: If you can make durations sum correctly WITHOUT timeWarp, always prefer null. Only use timeWarp when the image clearly shows tuplet notation.
-- **Verification**: Count the actual notes in the image, check if they have tuplet brackets/numbers, then decide.
+- **When to set timeWarp to null**: If you can make durations sum correctly WITHOUT timeWarp and the image does not imply a tuplet/proportional group, prefer null. Use timeWarp when it is the cleanest way to match the visible rhythmic grouping and cross-voice alignment.
+- **Implicit tuplets/proportional notation**: Tuplet ratios may be implied by notation even without a printed number/bracket, especially in dense beamed runs, cadenzas, ornamental passagework, or when short notes in one staff must align with a slower simultaneous voice. Do not require a visible tuplet number if the image shows a compact beamed group whose normal durations would overfill/underfill the span, but a simple timeWarp makes the group align exactly with neighboring voices.
 
 ### Quality Metrics
 - **fine**: Acceptable quality (no fatal errors, tickTwist<0.3, no fractional warp, no irregular tick, no surplus time, no beam broken, no grace in voice)
@@ -139,7 +139,9 @@ For each event, compare:
 Calculate total duration for each proposed voice:
 - Duration = \`1920 * 2^(-division) * (2 - 2^(-dots))\`
 - Each voice should total ≤ measure duration
-- If it doesn't add up, check for missing dots, wrong divisions, or false graces
+- If it doesn't add up, check for missing dots, wrong divisions, false graces, or proportional \`timeWarp\`
+- **MIDI/onset cross-voice alignment**: When MIDI onset evidence is available, compare onset groups across voices/staves. Notes that sound together in different voices should receive the same tick, and each voice's tick sequence should follow cumulative event durations. If normal durations make a short-note run drift away from simultaneous MIDI/onset groups in another voice, prefer a simple \`timeWarp\` ratio over forcing misleading standard divisions.
+- **Do not stop at total duration**: A candidate can sum to the correct measure duration but still be wrong if its intermediate ticks do not align with MIDI onsets, lower/upper voice attacks, or visible x-positions. Use the per-event cumulative sums plus cross-voice onset correspondences to decide whether a proportional group is needed.
 - **Common agent mistake**: Using wrong division (e.g., division=3 eighth note when it should be division=1 half note), causing all subsequent tick calculations to be wrong. Double-check EACH event's division against both the image and feature.divisions.
 
 ### 5. Compute Tick Assignments — Show Your Math
@@ -147,7 +149,9 @@ Calculate total duration for each proposed voice:
 - First event starts at tick=0 (or later for partial voices)
 - Each subsequent tick = previous tick + previous duration
 - Events in different voices at same x should have same tick
-- **IMPORTANT**: Write out the tick calculation step by step:
+- **Use timeWarp for proportional short-note groups**: If a run of short notes (often beamed) visually spans the same horizontal/time range as a longer note or slower voice below/above, their ticks should align to that span. When normal durations do not fit but a simple ratio does, keep the visible divisions and add \`timeWarp\` to those short notes instead of changing them to a wrong note value or splitting extra voices.
+- Hidden tuplets are common: a group may be notated without an explicit number/bracket. In that case, infer the ratio from the number of short notes and the span they occupy relative to other voices.
+- Before rejecting \`timeWarp\`, verify not only that the voice duration sum closes, but also that intermediate ticks match cross-voice MIDI/onset coincidences and visible x-position alignment.
   - "Event 1 (div=2, dots=0): duration=480, tick=0"
   - "Event 2 (div=3, dots=0): duration=240, tick=0+480=480"
   - "Event 3 (div=3, dots=0): duration=240, tick=480+240=720"
@@ -191,7 +195,7 @@ These are the most frequent errors from previous annotation attempts. Check your
 
 1. **Excessive voice splitting (most common)**: Creating 3-4 voices when 1-2 would suffice. If events are sequential (non-overlapping) on the same staff, they are ONE voice. Stem direction changes alone do NOT justify a new voice.
 
-2. **Blindly copying timeWarp from regulation**: The regulation may have invented timeWarp:{2,3} to make its (wrong) ticks fit. Unless you see actual triplet brackets/numbers in the image, set timeWarp: null.
+2. **Blindly copying or blindly deleting timeWarp**: The regulation may have invented timeWarp:{2,3} to make its (wrong) ticks fit, but some music genuinely uses implicit proportional groups. Do not copy timeWarp without checking the image and voice alignment; do not remove it when a beamed short-note group needs a ratio to align with another voice.
 
 3. **Wrong division leading to cascading tick errors**: If you pick the wrong note value for event 1 (e.g., eighth instead of half), every subsequent tick will be wrong. Always verify each event's division against feature.divisions AND the image before computing ticks.
 
@@ -251,7 +255,7 @@ Output ONLY a JSON block with fixes. Each fix is a \`RegulationSolution\` plus \
   - No tick overlap within a voice
 - status=1 only as last resort if the measure is genuinely too complex
 - status=-1 for upstream issues (missing barline, missing events, merged measures)
-- When setting ticks manually, set ALL timeWarp to null (unless genuine tuplets confirmed by image)
+- When setting ticks manually, set timeWarp to null unless the note group genuinely needs proportional timing to match the image or align with another voice
 - When computing ticks, write them out explicitly: tick_n = tick_(n-1) + duration_(n-1)
 
 ## Evaluation Tool

@@ -419,6 +419,7 @@ export const parseFixes = (output: string): Fix[] => {
 
 	try {
 		const parsed = JSON.parse(output.trim());
+		if (Array.isArray(parsed)) return parsed;
 		return parsed.fixes || [];
 	}
 	catch {}

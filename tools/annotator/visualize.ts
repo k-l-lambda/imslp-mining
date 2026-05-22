@@ -366,7 +366,7 @@ function parseDirectAgentOutput(items: any[]): { conversation: ConversationTurn[
 		}
 	}
 
-	return { conversation, fixes: parseFixes(allTexts.join("\n")), evaluateFixCalls };
+	return { conversation, fixes: allTexts.length ? parseFixes(allTexts.join("\n")) : [], evaluateFixCalls };
 }
 
 /** Parse Claude JSON output into conversation turns + fixes */
