@@ -10,7 +10,7 @@ import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
 
 import '../../env';
-import { ANTHROPIC_AUTH_TOKEN, ANNOTATION_BASE_URL, ANNOTATION_MODEL as DEFAULT_ANNOTATION_MODEL, IMAGE_BED } from '../libs/constants';
+import { ANNOTATION_BASE_URL, ANNOTATION_MODEL as DEFAULT_ANNOTATION_MODEL, IMAGE_BED } from '../libs/constants';
 import { starry } from '../libs/omr';
 import { extractSpartitoEvents, midiToOnset, type NoteOnPoint, type SpartitoEventPoint } from './common';
 
@@ -138,8 +138,10 @@ type ClaudeJsonResult = {
 
 
 const METHODS = new Set<BoundaryMethod>(['matched-notehead', 'estimated-beat-spacing', 'mixed', 'uncertain']);
+const ANNOTATION_API_KEY = process.env.ANNOTATION_API_KEY;
 const IMAGE_API_BASE = process.env.IMAGE_API_BASE;
 const MEASURE_IMAGE_PADDING = 2;
+const CLAUDE_BIN = process.env.CLAUDE_BIN ?? (process.env.NVM_BIN ? path.join(process.env.NVM_BIN, 'claude') : 'claude');
 
 const resolveImageSource = (url: string): { type: 'local'; path: string } | { type: 'remote'; url: string } | null => {
 	if (!url)
@@ -470,7 +472,7 @@ const validateBoundary = (
 const spawnClaude = (args: string[], input: string, env: Record<string, string>, timeoutMs: number): Promise<ClaudeRun> => {
 	return new Promise((resolve) => {
 		const started = Date.now();
-		const child = spawn('claude', args, { env, stdio: ['pipe', 'pipe', 'pipe'] });
+		const child = spawn(CLAUDE_BIN, args, { env, stdio: ['pipe', 'pipe', 'pipe'] });
 		let stdout = '';
 		let stderr = '';
 		let timedOut = false;
@@ -543,16 +545,11 @@ const simplifySpartitoPoints = (points: SpartitoEventPoint[]): PromptSpartitoPoi
 	tick: Math.round(point.tick),
 }));
 
-const toPromptOnsets = (onsets: NoteOnPoint[], startIndex: number): PromptOnset[] => {
-	const first = onsets[startIndex];
-	if (!first)
-		return [];
-	const tau0 = first[2];
+const toPromptOnsets = (onsets: NoteOnPoint[], startIndex: number, maxCount: number): PromptOnset[] => {
 	const result: PromptOnset[] = [];
-	for (let i = startIndex; i < onsets.length; ++i) {
+	const endIndex = Math.min(onsets.length, startIndex + maxCount);
+	for (let i = startIndex; i < endIndex; ++i) {
 		const [pitch, tick, tau] = onsets[i];
-		if (tau - tau0 > 24)
-			break;
 		result.push({ index: i, pitch, tick, tau: tau1(tau) });
 	}
 	return result;
@@ -652,7 +649,7 @@ Previous state:
 ${yaml({
 	previousBoundaryTick: context.previousBoundaryTick,
 	remainingOnsetStartIndex: context.remainingOnsetStartIndex,
-	defaultOnsetsRule: 'provided onsets stop when tau - firstTau > 32',
+	defaultOnsetsRule: 'provided onsets start at remainingOnsetStartIndex and include at most remainingWindow entries',
 })}
 
 Score-side approximate tick ranges, not authoritative:
@@ -763,8 +760,6 @@ const run = async () => {
 
 	if (!annotationModel)
 		throw new Error('ANNOTATION_MODEL is not set. Use .env or --annotation-model.');
-	if (!argv.dryRun && !ANTHROPIC_AUTH_TOKEN)
-		throw new Error('ANTHROPIC_AUTH_TOKEN is not set.');
 
 	const rawSpartito = JSON.parse(fs.readFileSync(spartitoPath).toString());
 	const spartito = starry.recoverJSON<starry.Spartito>(JSON.stringify(rawSpartito), starry);
@@ -774,13 +769,11 @@ const run = async () => {
 	const onsets = midiToOnset(midi);
 	const measureCount = rawSpartito.measures.length;
 	const toMeasure = Math.min(argv.toMeasure ?? measureCount - 2, measureCount - 2);
-	const logDir = path.resolve(argv.logDir ?? path.join(scoreDir, `.midi-annotator-${timestamp()}`));
+	const logDir = path.resolve(argv.logDir ?? path.join('/home/camus/work/imslp-mining/logs', `${timestamp()}_${path.basename(scoreDir)}_midi-segmentation`));
 
 	ensureDir(measuresDir);
 	ensureDir(path.dirname(outputPath));
 	ensureDir(logDir);
-	const measureImageDir = measuresDir;
-	ensureDir(measureImageDir);
 
 	const output = loadOrCreateOutput(outputPath, path.join(scoreDir, 'midi-segmentation.json'), scoreDir, spartitoPath, midiPath, annotationModel, measureCount, onsets.length);
 	const existing = new Set(output.boundaries.map(b => b.measureIndex));
@@ -810,8 +803,8 @@ const run = async () => {
 			const currentMeasureRawPoints = spartitoPoints.filter(p => p.measureIndex === measureIndex);
 			const nextMeasureRawPoints = spartitoPoints.filter(p => p.measureIndex === measureIndex + 1);
 			const prefix = `${padMeasure(measureIndex)}_w${remainingWindow}`;
-			const currentImagePath = path.join(measureImageDir, `${padMeasure(measureIndex)}.webp`);
-			const nextImagePath = path.join(measureImageDir, `${padMeasure(measureIndex + 1)}.webp`);
+			const currentImagePath = path.join(logDir, `${padMeasure(measureIndex)}_current.webp`);
+			const nextImagePath = path.join(logDir, `${padMeasure(measureIndex)}_next.webp`);
 			const currentMeasureImage = await prepareMeasureImage(spartito.measures[measureIndex], currentImagePath);
 			const nextMeasureImage = await prepareMeasureImage(spartito.measures[measureIndex + 1], nextImagePath);
 			const context: RoundContext = {
@@ -822,7 +815,7 @@ const run = async () => {
 				remainingWindow,
 				currentMeasureSpartitoPoints: simplifySpartitoPoints(currentMeasureRawPoints),
 				nextMeasureSpartitoPoints: simplifySpartitoPoints(nextMeasureRawPoints),
-				remainingOnsets: toPromptOnsets(onsets, remainingOnsetStartIndex),
+				remainingOnsets: toPromptOnsets(onsets, remainingOnsetStartIndex, remainingWindow),
 				currentMeasureImage,
 				nextMeasureImage,
 				currentScoreTickRange: getScoreTickRange(currentMeasureRawPoints),
@@ -836,7 +829,7 @@ const run = async () => {
 			fs.writeFileSync(promptLog, prompt);
 			writeJson(contextLog, context);
 
-			console.log(`measure ${measureIndex}/${toMeasure}, onsets ${remainingOnsetStartIndex}+${context.remainingOnsets.length} (tau window <=32)`);
+			console.log(`measure ${measureIndex}/${toMeasure}, onsets ${remainingOnsetStartIndex}+${context.remainingOnsets.length} (window <=${remainingWindow})`);
 
 			if (argv.dryRun) {
 				console.log('dry run prompt:', promptLog);
@@ -869,16 +862,17 @@ const run = async () => {
 				'--append-system-prompt', MIDI_SEGMENTATION_SYSTEM_PROMPT,
 				'--allowedTools', 'Read,mcp__midi-onsets__get_onsets',
 				'--mcp-config', mcpConfigPath,
-				'--effort', 'high',
+				'--effort', 'max',
 				'--verbose',
 			];
 			const env: Record<string, string> = {
 				...process.env as Record<string, string>,
 				ANTHROPIC_BASE_URL: ANNOTATION_BASE_URL ?? '',
-				ANTHROPIC_AUTH_TOKEN: ANTHROPIC_AUTH_TOKEN!,
 				ANTHROPIC_MODEL: annotationModel,
 				ANTHROPIC_SMALL_FAST_MODEL: annotationModel,
 			};
+			if (ANNOTATION_API_KEY)
+				env.ANTHROPIC_AUTH_TOKEN = ANNOTATION_API_KEY;
 			let runResult!: ClaudeRun;
 			let cliResult!: ClaudeJsonResult;
 			let validated!: ReturnType<typeof validateBoundary>;
