@@ -54,17 +54,30 @@ const messagesUrl = () => {
 	return `${ANNOTATION_BASE_URL.replace(/\/$/, "")}/v1/messages`;
 };
 
+const MESSAGES_TIMEOUT_MS = Number(process.env.ANNOTATION_REQUEST_TIMEOUT_MS) || 10 * 60 * 1000;
+
 const messagesCreate = async (body: any): Promise<MessagesResponse> => {
 	if (!ANTHROPIC_AUTH_TOKEN) throw new Error("ANTHROPIC_AUTH_TOKEN is not set");
-	const response = await fetch(messagesUrl(), {
-		method: "POST",
-		headers: {
-			"content-type": "application/json",
-			"anthropic-version": "2023-06-01",
-			"x-api-key": ANTHROPIC_AUTH_TOKEN,
-		},
-		body: JSON.stringify(body),
-	});
+	const controller = new AbortController();
+	const timeout = setTimeout(() => controller.abort(), MESSAGES_TIMEOUT_MS);
+	let response: Response;
+	try {
+		response = await fetch(messagesUrl(), {
+			method: "POST",
+			headers: {
+				"content-type": "application/json",
+				"anthropic-version": "2023-06-01",
+				"x-api-key": ANTHROPIC_AUTH_TOKEN,
+			},
+			body: JSON.stringify(body),
+			signal: controller.signal,
+		});
+	} catch (err: any) {
+		if (err?.name === "AbortError") throw new Error(`Messages API timed out after ${MESSAGES_TIMEOUT_MS}ms`);
+		throw err;
+	} finally {
+		clearTimeout(timeout);
+	}
 	const text = await response.text();
 	let parsed: any;
 	try { parsed = JSON.parse(text); }
@@ -486,7 +499,8 @@ export const createAgentBackend = (annotationModel: string, preprocessModel = an
 				console.log(`\n  Preprocess batch ${bi + 1}/${batches.length} [${measureIds}] starting...`);
 
 				const r = await runOnePreprocessBatch(batch, spartito, label, preprocessModel, logDir, midiContexts, measureImagesDir, previousContext);
-				allPatches.push(...r.patches);
+				if (!r.ok) throw new Error(`Preprocess batch ${label} failed for ${measureIds}`);
+					allPatches.push(...r.patches);
 				if (r.sessionId && r.hasPatches) batchResults.push({ patches: r.patches, sessionId: r.sessionId, measureIndices: r.measureIndices, env: r.sessionEnv });
 
 				const contextChanged = preprocessPatchesTouchCarryContext(r.patches);
@@ -531,9 +545,10 @@ export const createAgentBackend = (annotationModel: string, preprocessModel = an
 
 		let active = 0;
 		let nextBatch = 0;
+			let failedBatch = "";
 		await new Promise<void>((resolve) => {
 			const tryLaunch = () => {
-				while (active < CONCURRENCY && nextBatch < total) {
+				while (!failedBatch && active < CONCURRENCY && nextBatch < total) {
 					const bi = nextBatch++;
 					const batch = batches[bi];
 					const label = `b${bi + 1}`;
@@ -549,7 +564,7 @@ export const createAgentBackend = (annotationModel: string, preprocessModel = an
 								batchResults.push({ fixes: r.fixes, sessionId: r.sessionId, measureIndices: r.measureIndices, env: r.sessionEnv });
 							}
 						}
-						if (active === 0 && nextBatch >= total) resolve();
+						if (active === 0 && (nextBatch >= total || failedBatch)) resolve();
 						else tryLaunch();
 					});
 				}
