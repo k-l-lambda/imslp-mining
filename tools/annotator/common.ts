@@ -12,8 +12,8 @@ import "../../env";
 import { ANTHROPIC_AUTH_TOKEN, ANNOTATION_BASE_URL, ANNOTATION_MAX_TOKENS, ANNOTATION_MODEL as DEFAULT_ANNOTATION_MODEL, BEAD_PICKER_URL, IMAGE_BED, OMR_API_BASE, ORT_SESSION_OPTIONS } from "../libs/constants";
 import { starry, regulateWithBeadSolver } from "../libs/omr";
 import OnnxBeadPicker from "../libs/onnxBeadPicker";
-import remoteSolutionStore from "../libs/remoteSolutionStore";
-import { type PreprocessPatch, readMidiMeasureContexts } from "./preprocess";
+import solutionStore from "../libs/solutionStore";
+import { type PreprocessPatch, readMidiMeasureContexts, applyPreprocessPatchToMeasure } from "./preprocess";
 
 
 // ── Re-exports for entry points ──────────────────────────────────────────────
@@ -90,6 +90,7 @@ export interface ParsedArgs {
 	fetchServer: boolean;
 	logger: boolean;
 	skipAnnotation: boolean;
+	preprocessRegulateOnly: boolean;
 	forceRegulate: boolean;
 	annotationModel?: string;
 	preprocess: boolean;
@@ -97,6 +98,7 @@ export interface ParsedArgs {
 	midi?: string;
 	midiSegmentation?: string;
 	measureImages?: string;
+	renew: boolean;
 	maxRounds: number;
 	measures?: string;
 }
@@ -115,6 +117,7 @@ export const parseArgs = (): ParsedArgs => {
 				.option("fetch-server", { type: "boolean", default: false, describe: "Fetch existing server annotations before annotating" })
 				.option("logger", { alias: "l", type: "boolean", describe: "Enable verbose logging" })
 				.option("skip-annotation", { type: "boolean", describe: "Skip the annotation step" })
+				.option("preprocess-regulate-only", { type: "boolean", default: false, describe: "Run preprocessing and regulation only, write solved.spartito.json, and skip annotation" })
 				.option("force-regulate", { type: "boolean", describe: "Force re-regulation even if already regulated" })
 				.option("annotation-model", { type: "string", describe: "Model for annotation (overrides ANNOTATION_MODEL env)" })
 				.option("preprocess", { type: "boolean", default: false, describe: "Run agent preprocessing for pitch/basic/accessory recognition fixes before annotation" })
@@ -122,6 +125,7 @@ export const parseArgs = (): ParsedArgs => {
 				.option("midi", { type: "string", describe: "Optional MIDI file for preprocessing context" })
 				.option("midi-segmentation", { type: "string", describe: "Optional YAML segmentation for MIDI preprocessing context" })
 				.option("measure-images", { type: "string", describe: "Optional directory containing pre-rendered measure images (mNNN.webp) for preprocessing" })
+				.option("renew", { type: "boolean", default: false, describe: "Ignore preprocess checkpoints and rerun preprocessing" })
 				.option("max-rounds", { type: "number", default: 1, describe: "Max annotation rounds" })
 				.option("measures", { type: "string", describe: "Comma-separated measure indices to annotate (e.g. '16,70,83')" })
 			,
@@ -134,6 +138,94 @@ export const parseArgs = (): ParsedArgs => {
 // ── Constants ────────────────────────────────────────────────────────────────
 
 const PICKER_SEQS = [32, 64, 128, 512];
+
+const preprocessCheckpointPath = (logDir: string, measureIndex: number): string => path.join(logDir, `pre_m${measureIndex.toString().padStart(3, "0")}_result.json`);
+
+const findLatestPreprocessCheckpointDir = (inputPath: string): string | undefined => {
+	const logsRoot = path.join(__dirname, "..", "..", "logs");
+	if (!fs.existsSync(logsRoot)) return undefined;
+	const inputBasename = path.basename(inputPath, ".spartito.json");
+	const dirs = fs.readdirSync(logsRoot, { withFileTypes: true })
+		.filter(entry => entry.isDirectory() && entry.name.endsWith(`_${inputBasename}`))
+		.map(entry => path.join(logsRoot, entry.name))
+		.filter(dir => fs.readdirSync(dir).some(name => /^pre_m\d+_result\.json$/.test(name)))
+		.sort((a, b) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs);
+	return dirs[0];
+};
+
+const applyPreprocessPatchesWithWarnings = (spartito: starry.Spartito, patches: PreprocessPatch[]): number => {
+	let applied = 0;
+	for (const patch of patches) {
+		const measure = spartito.measures[patch.measureIndex];
+		if (!measure) {
+			console.warn(`  m${patch.measureIndex}: measure not found, skipping preprocessing checkpoint patch`);
+			continue;
+		}
+		const result = applyPreprocessPatchToMeasure(measure, patch);
+		for (const warning of result.warnings) console.warn(`  m${patch.measureIndex}: ${warning}`);
+		if (result.applied) applied++;
+	}
+	return applied;
+};
+
+const readPreprocessCheckpoint = (logDir: string, measureIndex: number): { patches: PreprocessPatch[] } | undefined => {
+	const checkpointPath = preprocessCheckpointPath(logDir, measureIndex);
+	if (!fs.existsSync(checkpointPath)) return undefined;
+	try {
+		const data = JSON.parse(fs.readFileSync(checkpointPath, "utf8"));
+		if (data?.measureIndex !== measureIndex || !Array.isArray(data?.patches)) return undefined;
+		return { patches: data.patches };
+	} catch (err: any) {
+		console.warn(`  m${measureIndex}: failed to read preprocess checkpoint: ${err.message}`);
+		return undefined;
+	}
+};
+
+const writePreprocessCheckpoint = (logDir: string, measureIndex: number, patches: PreprocessPatch[], source: Record<string, any>) => {
+	const checkpointPath = preprocessCheckpointPath(logDir, measureIndex);
+	const tmpPath = `${checkpointPath}.tmp`;
+	fs.writeFileSync(tmpPath, JSON.stringify({
+		version: 1,
+		kind: "preprocess-measure-checkpoint",
+		measureIndex,
+		patches,
+		patchCount: patches.length,
+		createdAt: new Date().toISOString(),
+		...source,
+	}, null, 2));
+	fs.renameSync(tmpPath, checkpointPath);
+};
+
+const runRegulation = async (spartito: starry.Spartito, argv: ParsedArgs, issueMeasures?: IssueMeasureInfo[]) => {
+	const loadings = [] as Promise<void>[];
+	const pickers = PICKER_SEQS.map(n_seq => new OnnxBeadPicker(BEAD_PICKER_URL.replace(/seq\d+/, `seq${n_seq}`), {
+		n_seq,
+		usePivotX: true,
+		onLoad: promise => loadings.push(promise.catch(err => console.warn("error to load BeadPicker:", err))),
+		sessionOptions: ORT_SESSION_OPTIONS,
+	}));
+
+	await Promise.all(loadings);
+
+	const dummyScore = {
+		assemble () {},
+		makeSpartito () { return spartito },
+		assignBackgroundForMeasure (_: starry.SpartitoMeasure) {},
+	} as starry.Score;
+
+	return regulateWithBeadSolver(dummyScore, {
+		logger: argv.logger ? console : undefined,
+		pickers,
+		solutionStore,
+		onSaveIssueMeasure: issueMeasures ? (data) => {
+			issueMeasures.push({
+				measureIndex: data.measureIndex,
+				status: data.status,
+				measure: data.measure,
+			});
+		} : undefined,
+	});
+};
 
 // Image API for fetching staff images when local IMAGE_BED is unavailable
 const IMAGE_API_BASE = process.env.IMAGE_API_BASE;
@@ -587,6 +679,10 @@ export const applyFixes = (spartito: starry.Spartito, fixes: Fix[]): Set<number>
 
 export async function runAnnotationPipeline(backend: AnnotationBackend, argv: ParsedArgs): Promise<void> {
 	const ANNOTATION_MODEL = argv.annotationModel || DEFAULT_ANNOTATION_MODEL;
+	if (argv.preprocessRegulateOnly) {
+		argv.preprocess = true;
+		argv.skipAnnotation = true;
+	}
 
 	const inputPath = path.resolve(argv.input!);
 	const outputPath = argv.output ? path.resolve(argv.output) : null;
@@ -614,37 +710,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 		if (alreadyRegulated)
 			console.log("Force re-regulation requested.");
 
-		// Load bead picker models
-		const loadings = [] as Promise<void>[];
-		const pickers = PICKER_SEQS.map(n_seq => new OnnxBeadPicker(BEAD_PICKER_URL.replace(/seq\d+/, `seq${n_seq}`), {
-			n_seq,
-			usePivotX: true,
-			onLoad: promise => loadings.push(promise.catch(err => console.warn("error to load BeadPicker:", err))),
-			sessionOptions: ORT_SESSION_OPTIONS,
-		}));
-
-		await Promise.all(loadings);
-
-		// Create dummy score wrapper
-		const dummyScore = {
-			assemble () {},
-			makeSpartito () { return spartito },
-			assignBackgroundForMeasure (_: starry.SpartitoMeasure) {},
-		} as starry.Score;
-
-		// Run regulation
-		const stat = await regulateWithBeadSolver(dummyScore, {
-			logger: argv.logger ? console : undefined,
-			pickers,
-			solutionStore: remoteSolutionStore,
-			onSaveIssueMeasure: (data) => {
-				issueMeasures.push({
-					measureIndex: data.measureIndex,
-					status: data.status,
-					measure: data.measure,
-				});
-			},
-		});
+		const stat = await runRegulation(spartito, argv, issueMeasures);
 
 		// Print regulation stats
 		console.log("\n--- Regulation Stats ---");
@@ -728,11 +794,17 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 	// Create log directory for agent phases when needed
 	let runLogDir: string | undefined;
 	if ((argv.preprocess && backend.callPreprocess) || (!argv.skipAnnotation && issueMeasures.length > 0)) {
-		const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
 		const inputBasename = path.basename(inputPath, ".spartito.json");
-		runLogDir = path.join(__dirname, "..", "..", "logs", `${timestamp}_${inputBasename}`);
-		fs.mkdirSync(runLogDir, { recursive: true });
-		console.log(`Log dir: ${runLogDir}`);
+		const resumeLogDir = argv.renew ? undefined : findLatestPreprocessCheckpointDir(inputPath);
+		if (argv.preprocess && resumeLogDir) {
+			runLogDir = resumeLogDir;
+			console.log(`Log dir: ${runLogDir} (resuming preprocess checkpoints)`);
+		} else {
+			const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+			runLogDir = path.join(__dirname, "..", "..", "logs", `${timestamp}_${inputBasename}`);
+			fs.mkdirSync(runLogDir, { recursive: true });
+			console.log(`Log dir: ${runLogDir}${argv.renew ? " (renew)" : ""}`);
+		}
 	}
 
 	// Track which measures were actually modified by annotation
@@ -761,9 +833,23 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 
 			for (const target of targets) {
 				console.log(`\n--- Measure m${target.measureIndex} ---`);
-				const { patches } = await backend.callPreprocess([target], spartito, runLogDir, midiContexts, argv.measureImages ? path.resolve(argv.measureImages) : undefined);
+				let patches: PreprocessPatch[];
+				const checkpoint = runLogDir && !argv.renew ? readPreprocessCheckpoint(runLogDir, target.measureIndex) : undefined;
+				if (checkpoint) {
+					patches = checkpoint.patches;
+					const applied = applyPreprocessPatchesWithWarnings(spartito, patches);
+					console.log(`m${target.measureIndex}: restored ${patches.length} preprocessing patches from checkpoint (${applied} applied).`);
+				} else {
+					const result = await backend.callPreprocess([target], spartito, runLogDir, midiContexts, argv.measureImages ? path.resolve(argv.measureImages) : undefined);
+					patches = result.patches;
+					if (runLogDir)
+						writePreprocessCheckpoint(runLogDir, target.measureIndex, patches, {
+							source: "agent",
+							batchResults: result.batchResults,
+						});
+					console.log(`m${target.measureIndex}: preprocessing returned ${patches.length} patches.`);
+				}
 				totalPreprocessPatches += patches.length;
-				console.log(`m${target.measureIndex}: preprocessing returned ${patches.length} patches.`);
 
 				if (argv.skipAnnotation)
 					continue;
@@ -798,6 +884,22 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 
 			console.log(`\nInterleaved preprocessing returned ${totalPreprocessPatches} patches.`);
 		}
+	}
+
+	if (argv.preprocessRegulateOnly) {
+		console.log(`\n--- Preprocess + Regulation Output ---`);
+		for (const measure of spartito.measures)
+			measure.voices = undefined;
+		const postPreprocessIssues: IssueMeasureInfo[] = [];
+		const stat = await runRegulation(spartito, argv, postPreprocessIssues);
+		console.log("measures:", `(${stat.measures.cached})${stat.measures.simple}->${stat.measures.solved}->${stat.measures.issue}->${stat.measures.fatal}/${spartito.measures.length}`);
+		console.log("qualityScore:", spartito.qualityScore);
+		console.log("totalCost:", stat.totalCost, "ms");
+		console.log("pickerCost:", stat.pickerCost, "ms");
+		const solvedPath = path.join(path.dirname(inputPath), "solved.spartito.json");
+		fs.writeFileSync(solvedPath, JSON.stringify(spartito));
+		console.log("Output:", solvedPath);
+		return;
 	} else if (!argv.skipAnnotation && issueMeasures.length > 0) {
 		console.log(`\n--- Annotation Phase ---`);
 		console.log(`${issueMeasures.length} issue measures to annotate`);

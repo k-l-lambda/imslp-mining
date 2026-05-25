@@ -9,7 +9,7 @@ import type { Fix, FixEvent } from "./common";
 import { SYSTEM_PROMPT } from "./prompt";
 import { PREPROCESS_SYSTEM_PROMPT, PREPROCESS_ALIGNMENT_SYSTEM_PROMPT, PREPROCESS_FINAL_SYSTEM_PROMPT } from "./preprocessPrompt";
 import OnnxBeadPicker from "../libs/onnxBeadPicker";
-import remoteSolutionStore from "../libs/remoteSolutionStore";
+import solutionStore from "../libs/solutionStore";
 
 import "../../env";
 
@@ -1043,7 +1043,7 @@ async function loadSpartito(spartitoPath: string, skipRegulate = false): Promise
 			makeSpartito() { return spartito; },
 			assignBackgroundForMeasure(_: starry.SpartitoMeasure) {},
 		} as starry.Score;
-		await regulateWithBeadSolver(dummyScore, { pickers, solutionStore: remoteSolutionStore });
+		await regulateWithBeadSolver(dummyScore, { pickers, solutionStore });
 	}
 	return spartito;
 }
