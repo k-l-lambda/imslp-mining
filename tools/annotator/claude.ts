@@ -24,7 +24,7 @@ import { PREPROCESS_SYSTEM_PROMPT, PREPROCESS_ALIGNMENT_SYSTEM_PROMPT, PREPROCES
 
 
 const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 1;
-const CONCURRENCY = Number(process.env.ANNOTATION_CONCURRENCY) || 3;
+const CONCURRENCY = Number(process.env.ANNOTATION_CONCURRENCY) || 1;
 
 
 // ── Claude subprocess ────────────────────────────────────────────────────────

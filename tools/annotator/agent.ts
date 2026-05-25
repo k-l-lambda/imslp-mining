@@ -25,7 +25,7 @@ import { startMeasureQualityMcp, type AnthropicToolDefinition } from "./mcpStdio
 
 
 const BATCH_SIZE = Number(process.env.ANNOTATION_BATCH_SIZE) || 1;
-const CONCURRENCY = Number(process.env.ANNOTATION_CONCURRENCY) || 3;
+const CONCURRENCY = Number(process.env.ANNOTATION_CONCURRENCY) || 1;
 const MAX_TURNS = Number(process.env.AGENT_MAX_TURNS) || 8;
 
 

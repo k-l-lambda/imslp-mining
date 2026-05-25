@@ -99,6 +99,8 @@ export interface ParsedArgs {
 	midiSegmentation?: string;
 	measureImages?: string;
 	renew: boolean;
+	regulationConcurrency: number;
+	annotationConcurrency: number;
 	maxRounds: number;
 	measures?: string;
 }
@@ -126,6 +128,8 @@ export const parseArgs = (): ParsedArgs => {
 				.option("midi-segmentation", { type: "string", describe: "Optional YAML segmentation for MIDI preprocessing context" })
 				.option("measure-images", { type: "string", describe: "Optional directory containing pre-rendered measure images (mNNN.webp) for preprocessing" })
 				.option("renew", { type: "boolean", default: false, describe: "Ignore preprocess checkpoints and rerun preprocessing" })
+				.option("regulation-concurrency", { type: "number", default: 1, describe: "Concurrent per-measure regulation window jobs" })
+				.option("annotation-concurrency", { type: "number", default: 1, describe: "Concurrent per-measure annotation jobs" })
 				.option("max-rounds", { type: "number", default: 1, describe: "Max annotation rounds" })
 				.option("measures", { type: "string", describe: "Comma-separated measure indices to annotate (e.g. '16,70,83')" })
 			,
@@ -135,22 +139,63 @@ export const parseArgs = (): ParsedArgs => {
 };
 
 
+const parseMeasureFilter = (spec?: string): Set<number> | null => {
+	if (!spec) return null;
+	const values = new Set<number>();
+	for (const part of spec.split(",")) {
+		const trimmed = part.trim();
+		if (!trimmed) continue;
+		const range = trimmed.match(/^(\d+)\s*-\s*(\d+)$/);
+		if (range) {
+			const start = Number(range[1]);
+			const end = Number(range[2]);
+			for (let value = Math.min(start, end); value <= Math.max(start, end); ++value)
+				values.add(value);
+			continue;
+		}
+		const value = Number(trimmed);
+		if (Number.isFinite(value)) values.add(value);
+	}
+	return values.size ? values : null;
+};
+
 // ── Constants ────────────────────────────────────────────────────────────────
 
 const PICKER_SEQS = [32, 64, 128, 512];
 
-const preprocessCheckpointPath = (logDir: string, measureIndex: number): string => path.join(logDir, `pre_m${measureIndex.toString().padStart(3, "0")}_result.json`);
+const stageCheckpointPath = (logDir: string, stage: "pre" | "reg" | "ann", measureIndex: number): string => path.join(logDir, `${stage}_m${measureIndex.toString().padStart(3, "0")}_result.json`);
+
+const preprocessCheckpointPath = (logDir: string, measureIndex: number): string => stageCheckpointPath(logDir, "pre", measureIndex);
+const regulationCheckpointPath = (logDir: string, measureIndex: number): string => stageCheckpointPath(logDir, "reg", measureIndex);
+const annotationCheckpointPath = (logDir: string, measureIndex: number): string => stageCheckpointPath(logDir, "ann", measureIndex);
+
+const regulationLogRoot = (inputPath: string): string => path.join(path.dirname(inputPath), ".regulation");
 
 const findLatestPreprocessCheckpointDir = (inputPath: string): string | undefined => {
-	const logsRoot = path.join(__dirname, "..", "..", "logs");
+	const logsRoot = regulationLogRoot(inputPath);
 	if (!fs.existsSync(logsRoot)) return undefined;
-	const inputBasename = path.basename(inputPath, ".spartito.json");
 	const dirs = fs.readdirSync(logsRoot, { withFileTypes: true })
-		.filter(entry => entry.isDirectory() && entry.name.endsWith(`_${inputBasename}`))
+		.filter(entry => entry.isDirectory())
 		.map(entry => path.join(logsRoot, entry.name))
-		.filter(dir => fs.readdirSync(dir).some(name => /^pre_m\d+_result\.json$/.test(name)))
+		.filter(dir => fs.readdirSync(dir).some(name => /^(pre|reg|ann)_m\d+_result\.json$/.test(name)))
 		.sort((a, b) => fs.statSync(b).mtimeMs - fs.statSync(a).mtimeMs);
 	return dirs[0];
+};
+
+const readJsonFile = <T = any>(filePath: string): T | undefined => {
+	if (!fs.existsSync(filePath)) return undefined;
+	try {
+		return JSON.parse(fs.readFileSync(filePath, "utf8"));
+	} catch (err: any) {
+		console.warn(`  failed to read checkpoint ${path.basename(filePath)}: ${err.message}`);
+		return undefined;
+	}
+};
+
+const writeJsonAtomic = (filePath: string, value: any) => {
+	const tmpPath = `${filePath}.tmp`;
+	fs.writeFileSync(tmpPath, JSON.stringify(value, null, 2));
+	fs.renameSync(tmpPath, filePath);
 };
 
 const applyPreprocessPatchesWithWarnings = (spartito: starry.Spartito, patches: PreprocessPatch[]): number => {
@@ -182,18 +227,47 @@ const readPreprocessCheckpoint = (logDir: string, measureIndex: number): { patch
 };
 
 const writePreprocessCheckpoint = (logDir: string, measureIndex: number, patches: PreprocessPatch[], source: Record<string, any>) => {
-	const checkpointPath = preprocessCheckpointPath(logDir, measureIndex);
-	const tmpPath = `${checkpointPath}.tmp`;
-	fs.writeFileSync(tmpPath, JSON.stringify({
-		version: 1,
-		kind: "preprocess-measure-checkpoint",
+	writeJsonAtomic(preprocessCheckpointPath(logDir, measureIndex), {
+		version: 2,
+		kind: "stage-checkpoint",
+		stage: "preprocess",
 		measureIndex,
 		patches,
 		patchCount: patches.length,
 		createdAt: new Date().toISOString(),
 		...source,
-	}, null, 2));
-	fs.renameSync(tmpPath, checkpointPath);
+	});
+};
+
+const readRegulationCheckpoint = (logDir: string, measureIndex: number): { measure: any; issue?: any; stat?: any; windowMeasureIndices?: number[] } | undefined => {
+	const data = readJsonFile(regulationCheckpointPath(logDir, measureIndex));
+	if (data?.measureIndex !== measureIndex || !data?.measure) return undefined;
+	return data;
+};
+
+const writeRegulationCheckpoint = (logDir: string, measureIndex: number, measure: starry.SpartitoMeasure, source: Record<string, any>) => {
+	writeJsonAtomic(regulationCheckpointPath(logDir, measureIndex), {
+		version: 2,
+		kind: "stage-checkpoint",
+		stage: "regulation",
+		measureIndex,
+		measure: measure.toJSON ? measure.toJSON() : measure,
+		createdAt: new Date().toISOString(),
+		...source,
+	});
+};
+
+const writeAnnotationCheckpoint = (logDir: string, measureIndex: number, fixes: Fix[], applied: Set<number>, source: Record<string, any>) => {
+	writeJsonAtomic(annotationCheckpointPath(logDir, measureIndex), {
+		version: 2,
+		kind: "stage-checkpoint",
+		stage: "annotation",
+		measureIndex,
+		fixes,
+		applied: [...applied],
+		createdAt: new Date().toISOString(),
+		...source,
+	});
 };
 
 const runRegulation = async (spartito: starry.Spartito, argv: ParsedArgs, issueMeasures?: IssueMeasureInfo[]) => {
@@ -225,6 +299,38 @@ const runRegulation = async (spartito: starry.Spartito, argv: ParsedArgs, issueM
 			});
 		} : undefined,
 	});
+};
+
+const recoverMeasure = (value: any): starry.SpartitoMeasure => new starry.SpartitoMeasure(starry.recoverJSON(value, starry));
+
+const cloneSpartito = (spartito: starry.Spartito): starry.Spartito => starry.recoverJSON<starry.Spartito>(JSON.stringify(spartito), starry);
+
+const measureWindowIndices = (measureIndex: number, measureCount: number): number[] => [measureIndex - 1, measureIndex, measureIndex + 1]
+	.filter(index => index >= 0 && index < measureCount);
+
+const runRegulationMeasureWindow = async (spartito: starry.Spartito, measureIndex: number, argv: ParsedArgs): Promise<{ measure: starry.SpartitoMeasure; issue?: IssueMeasureInfo; stat: any; windowMeasureIndices: number[] }> => {
+	const windowMeasureIndices = measureWindowIndices(measureIndex, spartito.measures.length);
+	const target = spartito.measures[measureIndex];
+	if (target?.events?.length === 0)
+		return { measure: target, stat: { skipped: true, reason: "empty measure" }, windowMeasureIndices };
+	const windowSpartito = cloneSpartito(spartito);
+	windowSpartito.measures = windowMeasureIndices.map(index => windowSpartito.measures[index]);
+	windowSpartito.measures.forEach((measure, index) => {
+		measure.measureIndex = index;
+		measure.voices = undefined;
+	});
+
+	const windowIssues: IssueMeasureInfo[] = [];
+	const stat = await runRegulation(windowSpartito, argv, windowIssues);
+	const localIndex = windowMeasureIndices.indexOf(measureIndex);
+	const measure = windowSpartito.measures[localIndex];
+	measure.measureIndex = measureIndex;
+	const issue = windowIssues.find(item => item.measureIndex === localIndex);
+	if (issue) {
+		issue.measureIndex = measureIndex;
+		issue.measure = measure;
+	}
+	return { measure, issue, stat, windowMeasureIndices };
 };
 
 // Image API for fetching staff images when local IMAGE_BED is unavailable
@@ -706,7 +812,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 	// Collect issue measures
 	const issueMeasures: IssueMeasureInfo[] = [];
 
-	if (!alreadyRegulated || argv.forceRegulate) {
+	if (!argv.preprocessRegulateOnly && (!alreadyRegulated || argv.forceRegulate)) {
 		if (alreadyRegulated)
 			console.log("Force re-regulation requested.");
 
@@ -719,7 +825,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 		console.log("totalCost:", stat.totalCost, "ms");
 		console.log("pickerCost:", stat.pickerCost, "ms");
 	}
-	else {
+	else if (!argv.preprocessRegulateOnly) {
 		console.log("Spartito already regulated, skipping regulation (use --force-regulate to override).");
 
 		// Collect issue measures from existing regulation
@@ -784,7 +890,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 	// ── Annotation phase ────────────────────────────────────────────────────
 
 	// Filter by --measures if specified
-	const measureFilter = argv.measures ? new Set(argv.measures.split(",").map(Number)) : null;
+	const measureFilter = parseMeasureFilter(argv.measures);
 	if (measureFilter) {
 		const before = issueMeasures.length;
 		issueMeasures.splice(0, issueMeasures.length, ...issueMeasures.filter(m => measureFilter.has(m.measureIndex)));
@@ -794,14 +900,13 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 	// Create log directory for agent phases when needed
 	let runLogDir: string | undefined;
 	if ((argv.preprocess && backend.callPreprocess) || (!argv.skipAnnotation && issueMeasures.length > 0)) {
-		const inputBasename = path.basename(inputPath, ".spartito.json");
 		const resumeLogDir = argv.renew ? undefined : findLatestPreprocessCheckpointDir(inputPath);
 		if (argv.preprocess && resumeLogDir) {
 			runLogDir = resumeLogDir;
 			console.log(`Log dir: ${runLogDir} (resuming preprocess checkpoints)`);
 		} else {
 			const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
-			runLogDir = path.join(__dirname, "..", "..", "logs", `${timestamp}_${inputBasename}`);
+			runLogDir = path.join(regulationLogRoot(inputPath), timestamp);
 			fs.mkdirSync(runLogDir, { recursive: true });
 			console.log(`Log dir: ${runLogDir}${argv.renew ? " (renew)" : ""}`);
 		}
@@ -809,6 +914,96 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 
 	// Track which measures were actually modified by annotation
 	let annotatedMeasures = new Set<number>();
+
+	if (argv.preprocessRegulateOnly) {
+		if (!backend.callPreprocess) {
+			console.warn("Preprocessing requested, but backend does not support preprocessing; skipping.");
+			return;
+		}
+		console.log(`\n--- Streaming Preprocess/Regulation Phase ---`);
+		const targets = (measureFilter
+			? spartito.measures.filter(m => measureFilter.has(m.measureIndex) && m.events.length > 0).map(m => ({ measureIndex: m.measureIndex, status: 0, measure: m }))
+			: spartito.measures.filter(m => m.events.length > 0).map(m => ({ measureIndex: m.measureIndex, status: 0, measure: m })))
+			.sort((a, b) => a.measureIndex - b.measureIndex);
+		console.log(`${targets.length} measures to preprocess / regulate`);
+
+		const midiContexts = readMidiMeasureContexts(argv.midi, argv.midiSegmentation);
+		if (midiContexts.size > 0)
+			console.log(`MIDI context loaded for ${midiContexts.size} measures. Image evidence takes precedence on conflicts.`);
+
+		let totalPreprocessPatches = 0;
+		const preprocessed = new Set<number>();
+		const regulated = new Set<number>();
+		const pendingRegulation = new Set<number>();
+		const postPreprocessIssues: IssueMeasureInfo[] = [];
+
+		const tryRegulateReady = async (force = false) => {
+			for (const target of targets) {
+				const mi = target.measureIndex;
+				if (regulated.has(mi) || pendingRegulation.has(mi) || !preprocessed.has(mi)) continue;
+				const nextIndex = targets.find(item => item.measureIndex > mi)?.measureIndex;
+				if (!force && nextIndex !== undefined && !preprocessed.has(nextIndex)) continue;
+				pendingRegulation.add(mi);
+
+				const checkpoint = runLogDir && !argv.renew ? readRegulationCheckpoint(runLogDir, mi) : undefined;
+				if (checkpoint) {
+					spartito.measures[mi] = recoverMeasure(checkpoint.measure);
+					regulated.add(mi);
+					pendingRegulation.delete(mi);
+					if (checkpoint.issue) postPreprocessIssues.push({ measureIndex: mi, status: checkpoint.issue.status, measure: spartito.measures[mi] });
+					console.log(`m${mi}: restored regulation from checkpoint.`);
+					continue;
+				}
+
+				console.log(`m${mi}: regulating window [${measureWindowIndices(mi, spartito.measures.length).map(index => `m${index}`).join(", ")}]`);
+				const result = await runRegulationMeasureWindow(spartito, mi, argv);
+				spartito.measures[mi] = result.measure;
+				regulated.add(mi);
+				pendingRegulation.delete(mi);
+				if (result.issue) postPreprocessIssues.push(result.issue);
+				if (runLogDir)
+					writeRegulationCheckpoint(runLogDir, mi, result.measure, {
+						windowMeasureIndices: result.windowMeasureIndices,
+						issue: result.issue ? { measureIndex: mi, status: result.issue.status } : undefined,
+						stat: result.stat,
+					});
+			}
+		};
+
+		for (const target of targets) {
+			console.log(`\n--- Measure m${target.measureIndex} ---`);
+			let patches: PreprocessPatch[];
+			const checkpoint = runLogDir && !argv.renew ? readPreprocessCheckpoint(runLogDir, target.measureIndex) : undefined;
+			if (checkpoint) {
+				patches = checkpoint.patches;
+				const applied = applyPreprocessPatchesWithWarnings(spartito, patches);
+				console.log(`m${target.measureIndex}: restored ${patches.length} preprocessing patches from checkpoint (${applied} applied).`);
+			} else {
+				const result = await backend.callPreprocess([target], spartito, runLogDir, midiContexts, argv.measureImages ? path.resolve(argv.measureImages) : undefined);
+				patches = result.patches;
+				if (runLogDir)
+					writePreprocessCheckpoint(runLogDir, target.measureIndex, patches, {
+						source: "agent",
+						batchResults: result.batchResults,
+					});
+				console.log(`m${target.measureIndex}: preprocessing returned ${patches.length} patches.`);
+			}
+			totalPreprocessPatches += patches.length;
+			preprocessed.add(target.measureIndex);
+			await tryRegulateReady();
+		}
+		await tryRegulateReady(true);
+
+		console.log(`\nStreaming preprocessing returned ${totalPreprocessPatches} patches.`);
+		console.log(`Streaming regulation completed ${regulated.size}/${targets.length} measures, issue candidates: ${postPreprocessIssues.length}.`);
+		const solvedName = measureFilter ? "solved.partial.spartito.json" : "solved.spartito.json";
+		const solvedPath = path.join(path.dirname(inputPath), solvedName);
+		if (measureFilter)
+			console.log("Partial measures requested; writing partial solved output.");
+		fs.writeFileSync(solvedPath, JSON.stringify(spartito));
+		console.log("Output:", solvedPath);
+		return;
+	}
 
 	if (argv.preprocess) {
 		if (!backend.callPreprocess) {
@@ -875,6 +1070,8 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 
 					console.log(`Applying ${fixes.length} fixes for m${target.measureIndex}:`);
 					const appliedIndices = applyFixes(spartito, fixes);
+					if (runLogDir)
+						writeAnnotationCheckpoint(runLogDir, target.measureIndex, fixes, appliedIndices, { round, source: "agent" });
 					annotatedMeasures = new Set([...annotatedMeasures, ...appliedIndices]);
 					console.log(`Applied ${appliedIndices.size} fixes for m${target.measureIndex}.`);
 					if (!appliedIndices.has(target.measureIndex))
@@ -886,7 +1083,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 		}
 	}
 
-	if (argv.preprocessRegulateOnly) {
+	if (false && argv.preprocessRegulateOnly) {
 		console.log(`\n--- Preprocess + Regulation Output ---`);
 		for (const measure of spartito.measures)
 			measure.voices = undefined;
@@ -896,7 +1093,10 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 		console.log("qualityScore:", spartito.qualityScore);
 		console.log("totalCost:", stat.totalCost, "ms");
 		console.log("pickerCost:", stat.pickerCost, "ms");
-		const solvedPath = path.join(path.dirname(inputPath), "solved.spartito.json");
+		const solvedName = measureFilter ? "solved.partial.spartito.json" : "solved.spartito.json";
+		const solvedPath = path.join(path.dirname(inputPath), solvedName);
+		if (measureFilter)
+			console.log("Partial measures requested; writing partial solved output.");
 		fs.writeFileSync(solvedPath, JSON.stringify(spartito));
 		console.log("Output:", solvedPath);
 		return;
