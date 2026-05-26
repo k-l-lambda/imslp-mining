@@ -137,12 +137,18 @@ const exportMidi = (spartito: any): Buffer | undefined => {
 	return Buffer.from(MIDI.encodeMidiFile(midi));
 };
 
+const outputBasenameFor = (inputPath: string): string => {
+	if (/\.spartito\.json$/i.test(path.basename(inputPath)))
+		return "spartito";
+	return path.basename(inputPath).replace(/\.json$/i, "");
+};
+
 const outputPathFor = (inputPath: string, format: ExportFormat, multiple: boolean): string => {
 	const extension = FORMAT_EXTENSIONS[format];
 	if (argv.out && !multiple && path.extname(argv.out))
 		return path.resolve(argv.out);
 	const outputDir = argv.out ? path.resolve(argv.out) : path.dirname(inputPath);
-	const basename = argv.name ?? path.basename(inputPath).replace(/\.spartito\.json$|\.json$/i, "");
+	const basename = argv.name ?? outputBasenameFor(inputPath);
 	return path.join(outputDir, `${basename}${extension}`);
 };
 

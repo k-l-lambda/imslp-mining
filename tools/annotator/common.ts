@@ -707,7 +707,20 @@ export const mergeWithBaseSolution = (measure: starry.SpartitoMeasure, fix: Part
 };
 
 
-export const applyFixes = (spartito: starry.Spartito, fixes: Fix[]): Set<number> => {
+const writeImprovedSolutionCache = async (origin: starry.SpartitoMeasure, current: starry.SpartitoMeasure) => {
+	const priority = -current?.solutionStat?.loss;
+	const originSolution = current.asSolution(origin);
+	if (originSolution)
+		await solutionStore.set(origin.regulationHash0, { ...originSolution, priority });
+	if (current.regulationHash !== origin.regulationHash0) {
+		const currentSolution = current.asSolution();
+		if (currentSolution)
+			await solutionStore.set(current.regulationHash, { ...currentSolution, priority });
+	}
+};
+
+
+export const applyFixes = async (spartito: starry.Spartito, fixes: Fix[]): Promise<Set<number>> => {
 	const appliedIndices = new Set<number>();
 
 	for (const fix of fixes) {
@@ -718,23 +731,19 @@ export const applyFixes = (spartito: starry.Spartito, fixes: Fix[]): Set<number>
 			continue;
 		}
 
-		// Basic fix validation
 		if (!isValidFix(fix)) {
 			console.warn(`  m${mi}: invalid fix shape, skipping`);
 			continue;
 		}
 
-		// Evaluate before fix
+		const origin = new starry.SpartitoMeasure(measure);
 		const evalBefore = starry.evaluateMeasure(measure);
 		const twistBefore = evalBefore?.tickTwist ?? Infinity;
-
-		// Save original solution for rollback
+		const qualityBefore = evalBefore?.qualityScore ?? 0;
 		const snapshot = measure.asSolution();
 
-		// Merge partial fix with base solution so events not in fix keep their ticks
 		const mergedFix = mergeWithBaseSolution(measure, fix);
 
-		// Apply fix as RegulationSolution (includes postRegulate)
 		try {
 			measure.applySolution(mergedFix);
 		}
@@ -757,11 +766,8 @@ export const applyFixes = (spartito: starry.Spartito, fixes: Fix[]): Set<number>
 			continue;
 		}
 		const twistAfter = evalAfter?.tickTwist ?? Infinity;
+		const qualityAfter = evalAfter?.qualityScore ?? 0;
 		const statusLabel = fix.status === 0 ? "Solved" : fix.status === -1 ? "Discard" : "Issue";
-
-		// Decide whether to keep the fix:
-		// - Accept only if fine=true after fix
-		// - Revert otherwise (fine=false means the fix didn't solve the problem)
 		const fineAfter = evalAfter?.fine ?? false;
 
 		if (!fineAfter && snapshot) {
@@ -771,6 +777,15 @@ export const applyFixes = (spartito: starry.Spartito, fixes: Fix[]): Set<number>
 				: `fine=false, tickTwist=${twistBefore.toFixed(3)}→${twistAfter.toFixed(3)}`;
 			console.log(`  m${mi}: REVERTED (${reason})`);
 			continue;
+		}
+
+		if (fineAfter && (qualityAfter > qualityBefore || !qualityBefore)) {
+			try {
+				await writeImprovedSolutionCache(origin, measure);
+				console.log(`  m${mi}: solution cache updated, quality=${qualityBefore.toFixed(6)}→${qualityAfter.toFixed(6)}`);
+			} catch (err: any) {
+				console.warn(`  m${mi}: failed to update solution cache: ${err.message}`);
+			}
 		}
 
 		appliedIndices.add(mi);
@@ -1069,7 +1084,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 					}
 
 					console.log(`Applying ${fixes.length} fixes for m${target.measureIndex}:`);
-					const appliedIndices = applyFixes(spartito, fixes);
+					const appliedIndices = await applyFixes(spartito, fixes);
 					if (runLogDir)
 						writeAnnotationCheckpoint(runLogDir, target.measureIndex, fixes, appliedIndices, { round, source: "agent" });
 					annotatedMeasures = new Set([...annotatedMeasures, ...appliedIndices]);
@@ -1133,7 +1148,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 			}
 
 			console.log(`\nApplying ${fixes.length} fixes:`);
-			const appliedIndices = applyFixes(spartito, fixes);
+			const appliedIndices = await applyFixes(spartito, fixes);
 			annotatedMeasures = new Set([...annotatedMeasures, ...appliedIndices]);
 			console.log(`Applied ${appliedIndices.size} fixes.`);
 		}
