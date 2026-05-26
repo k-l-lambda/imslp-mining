@@ -351,6 +351,10 @@ export const parsePreprocessPatches = (output: string): PreprocessPatch[] => {
 	return parsed.patches.filter((patch: any) => isFiniteInteger(patch?.measureIndex));
 };
 
+const hasReliableMidiSegmentation = (entry: MidiSegmentationEntry): boolean =>
+	isFiniteNumber(entry.matchScore) && entry.matchScore >= 0.6 && isFiniteNumber(entry.confidence) && entry.confidence >= 0.8;
+
+
 export const readMidiMeasureContexts = (midiPath?: string, segmentationPath?: string): Map<number, PreprocessMidiMeasureContext> => {
 	const contexts = new Map<number, PreprocessMidiMeasureContext>();
 	if (!midiPath || !segmentationPath) return contexts;
@@ -363,6 +367,7 @@ export const readMidiMeasureContexts = (midiPath?: string, segmentationPath?: st
 
 	entries.forEach(entry => {
 		if (!isFiniteInteger(entry.measureIndex) || !isFiniteNumber(entry.tick) || !isFiniteNumber(entry.duration)) return;
+		if (!hasReliableMidiSegmentation(entry)) return;
 		const start = entry.tick;
 		const end = entry.tick + entry.duration;
 		contexts.set(entry.measureIndex, {
