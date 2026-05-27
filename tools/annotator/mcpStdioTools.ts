@@ -20,6 +20,7 @@ export interface McpToolBridge {
 const repoRoot = path.resolve(__dirname, "../..");
 const suppressBannerPath = path.resolve(__dirname, "suppressBanner.cjs");
 const measureQualityMcpPath = path.resolve(__dirname, "measureQualityMcp.ts");
+const MCP_TOOL_TIMEOUT_MS = Number(process.env.ANNOTATION_MCP_TOOL_TIMEOUT_MS || process.env.ANNOTATION_REQUEST_TIMEOUT_MS) || 15 * 60 * 1000;
 
 const stringifyMcpContent = (content: any[]): string => content.map(item => {
 	if (item.type === "text") return item.text;
@@ -28,6 +29,23 @@ const stringifyMcpContent = (content: any[]): string => content.map(item => {
 	if (item.type === "resource") return item.resource?.text || item.resource?.uri || JSON.stringify(item.resource);
 	return JSON.stringify(item);
 }).join("\n");
+
+const withTimeout = async <T>(label: string, promise: Promise<T>): Promise<T> => {
+	const started = Date.now();
+	console.error(`[measure-quality] ${label} started (timeout=${MCP_TOOL_TIMEOUT_MS}ms)`);
+	let timeout: NodeJS.Timeout | undefined;
+	try {
+		return await Promise.race([
+			promise,
+			new Promise<T>((_, reject) => {
+				timeout = setTimeout(() => reject(new Error(`${label} timed out after ${MCP_TOOL_TIMEOUT_MS}ms`)), MCP_TOOL_TIMEOUT_MS);
+			}),
+		]);
+	} finally {
+		if (timeout) clearTimeout(timeout);
+		console.error(`[measure-quality] ${label} finished in ${Date.now() - started}ms`);
+	}
+};
 
 export const startMeasureQualityMcp = async (spartitoPath: string): Promise<McpToolBridge> => {
 	const client = new Client({ name: "agent-harness", version: "1.0.0" });
@@ -50,16 +68,16 @@ export const startMeasureQualityMcp = async (spartitoPath: string): Promise<McpT
 		});
 	}
 
-	await client.connect(transport);
+	await withTimeout("connect", client.connect(transport));
 
 	return {
 		async listTools() {
-			const result = await client.listTools();
+			const result = await withTimeout("listTools", client.listTools());
 			return result.tools;
 		},
 
 		async anthropicTools() {
-			const result = await client.listTools();
+			const result = await withTimeout("listTools", client.listTools());
 			return result.tools.map(tool => ({
 				name: tool.name,
 				description: tool.description,
@@ -68,7 +86,7 @@ export const startMeasureQualityMcp = async (spartitoPath: string): Promise<McpT
 		},
 
 		async callTool(name: string, input: unknown) {
-			const result = await client.callTool({ name, arguments: input as any });
+			const result = await withTimeout(`callTool:${name}`, client.callTool({ name, arguments: input as any }));
 			return stringifyMcpContent(result.content as any[] || []);
 		},
 

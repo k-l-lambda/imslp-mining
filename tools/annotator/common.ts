@@ -800,10 +800,8 @@ export const applyFixes = async (spartito: starry.Spartito, fixes: Fix[]): Promi
 
 export async function runAnnotationPipeline(backend: AnnotationBackend, argv: ParsedArgs): Promise<void> {
 	const ANNOTATION_MODEL = argv.annotationModel || DEFAULT_ANNOTATION_MODEL;
-	if (argv.preprocessRegulateOnly) {
-		argv.preprocess = true;
+	if (argv.preprocessRegulateOnly)
 		argv.skipAnnotation = true;
-	}
 
 	const inputPath = path.resolve(argv.input!);
 	const outputPath = argv.output ? path.resolve(argv.output) : null;
@@ -821,46 +819,13 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 	console.log("Input:", inputPath);
 	console.log("Measures:", spartito.measures.length);
 
-	// Check if already regulated
 	const alreadyRegulated = spartito.measures.some(m => m.regulated);
 
 	// Collect issue measures
 	const issueMeasures: IssueMeasureInfo[] = [];
 
-	if (!argv.preprocessRegulateOnly && (!alreadyRegulated || argv.forceRegulate)) {
-		if (alreadyRegulated)
-			console.log("Force re-regulation requested.");
-
-		const stat = await runRegulation(spartito, argv, issueMeasures);
-
-		// Print regulation stats
-		console.log("\n--- Regulation Stats ---");
-		console.log("measures:", `(${stat.measures.cached})${stat.measures.simple}->${stat.measures.solved}->${stat.measures.issue}->${stat.measures.fatal}/${spartito.measures.length}`);
-		console.log("qualityScore:", spartito.qualityScore);
-		console.log("totalCost:", stat.totalCost, "ms");
-		console.log("pickerCost:", stat.pickerCost, "ms");
-	}
-	else if (!argv.preprocessRegulateOnly) {
-		console.log("Spartito already regulated, skipping regulation (use --force-regulate to override).");
-
-		// Collect issue measures from existing regulation
-		for (const m of spartito.measures) {
-			if (!m.regulated || m.events.length === 0)
-				continue;
-			const ev = starry.evaluateMeasure(m);
-			if (ev && !ev.fine) {
-				issueMeasures.push({
-					measureIndex: m.measureIndex,
-					status: ev.error ? 2 : 1,
-					measure: m,
-				});
-			}
-		}
-
-		console.log(`\n--- Existing Regulation ---`);
-		const solved = spartito.measures.filter(m => m.regulated && m.events.length > 0 && starry.evaluateMeasure(m)?.fine).length;
-		console.log(`Solved: ${solved}, Issue: ${issueMeasures.filter(m => m.status === 1).length}, Fatal: ${issueMeasures.filter(m => m.status === 2).length}`);
-	}
+	if (alreadyRegulated && argv.forceRegulate)
+		console.log("Force per-measure re-regulation requested.");
 
 	// ── Pre-annotation: fetch existing server annotations ────────────────────
 	if (API_BASE && argv.fetchServer) {
@@ -914,7 +879,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 
 	// Create log directory for agent phases when needed
 	let runLogDir: string | undefined;
-	if ((argv.preprocess && backend.callPreprocess) || (!argv.skipAnnotation && issueMeasures.length > 0)) {
+	if (true) {
 		const resumeLogDir = argv.renew ? undefined : findLatestPreprocessCheckpointDir(inputPath);
 		if (argv.preprocess && resumeLogDir) {
 			runLogDir = resumeLogDir;
@@ -930,119 +895,149 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 	// Track which measures were actually modified by annotation
 	let annotatedMeasures = new Set<number>();
 
-	if (argv.preprocessRegulateOnly) {
-		if (!backend.callPreprocess) {
-			console.warn("Preprocessing requested, but backend does not support preprocessing; skipping.");
-			return;
-		}
-		console.log(`\n--- Streaming Preprocess/Regulation Phase ---`);
+	if (true) {
+		const preprocessEnabled = argv.preprocess && !!backend.callPreprocess;
+		const annotationEnabled = !argv.skipAnnotation && !argv.preprocessRegulateOnly;
+		if (argv.preprocess && !backend.callPreprocess)
+			console.warn("Preprocessing requested, but backend does not support preprocessing; skipping preprocessing.");
+
+		console.log(`\n--- Streaming Measure Pipeline ---`);
 		const targets = (measureFilter
 			? spartito.measures.filter(m => measureFilter.has(m.measureIndex) && m.events.length > 0).map(m => ({ measureIndex: m.measureIndex, status: 0, measure: m }))
 			: spartito.measures.filter(m => m.events.length > 0).map(m => ({ measureIndex: m.measureIndex, status: 0, measure: m })))
 			.sort((a, b) => a.measureIndex - b.measureIndex);
-		console.log(`${targets.length} measures to preprocess / regulate`);
+		console.log(`${targets.length} measures to ${preprocessEnabled ? "preprocess / " : ""}regulate${annotationEnabled ? " / annotate if needed" : ""}`);
 
 		const midiContexts = readMidiMeasureContexts(argv.midi, argv.midiSegmentation);
 		if (midiContexts.size > 0)
 			console.log(`MIDI context loaded for ${midiContexts.size} measures. Image evidence takes precedence on conflicts.`);
 
 		let totalPreprocessPatches = 0;
+		let annotationCallIndex = 0;
+		const maxRounds = argv.maxRounds!;
 		const preprocessed = new Set<number>();
 		const regulated = new Set<number>();
-		const pendingRegulation = new Set<number>();
-		const postPreprocessIssues: IssueMeasureInfo[] = [];
+		const regulationStarted = new Set<number>();
+		const annotationStarted = new Set<number>();
+		const annotationCompleted = new Set<number>();
+		const postPipelineIssues: IssueMeasureInfo[] = [];
+		const runningRegulations: Promise<void>[] = [];
+		const runningAnnotations: Promise<void>[] = [];
+		const regulationConcurrency = Math.max(1, argv.regulationConcurrency || 1);
+		const annotationConcurrency = Math.max(1, argv.annotationConcurrency || 1);
 
-		const tryRegulateReady = async (force = false) => {
+		const throttle = async (running: Promise<void>[], limit: number) => {
+			while (running.length >= limit)
+				await Promise.race(running);
+		};
+
+		const scheduleAnnotation = async (target: IssueMeasureInfo) => {
+			const mi = target.measureIndex;
+			if (!annotationEnabled || annotationStarted.has(mi) || annotationCompleted.has(mi)) return;
+			const measure = spartito.measures[mi];
+			if (!measure?.regulated || measure.events.length === 0) return;
+			const ev = starry.evaluateMeasure(measure);
+			if (!ev || ev.fine) {
+				console.log(`m${mi}: fine after regulation; skip annotation.`);
+				annotationCompleted.add(mi);
+				return;
+			}
+
+			await throttle(runningAnnotations, annotationConcurrency);
+			annotationStarted.add(mi);
+			const task = (async () => {
+				try {
+					for (let round = 1; round <= maxRounds; ++round) {
+						const currentMeasure = spartito.measures[mi];
+						if (!currentMeasure?.regulated || currentMeasure.events.length === 0)
+							break;
+						const currentEval = starry.evaluateMeasure(currentMeasure);
+						if (currentEval?.fine) {
+							if (round > 1) console.log(`m${mi}: fine after annotation round ${round - 1}; stop annotation.`);
+							break;
+						}
+
+						const annotationTarget = { measureIndex: currentMeasure.measureIndex, status: currentEval?.error ? 2 : 1, measure: currentMeasure };
+						annotationCallIndex++;
+						console.log(`m${mi}: annotation round ${round}/${maxRounds}`);
+						const { fixes } = await backend.callAnnotation([annotationTarget], spartito, annotationCallIndex, runLogDir);
+						if (fixes.length === 0) {
+							console.log(`m${mi}: no annotation fixes returned.`);
+							if (runLogDir)
+								writeAnnotationCheckpoint(runLogDir, mi, fixes, new Set<number>(), { round, source: "agent", noFixes: true });
+							break;
+						}
+
+						console.log(`Applying ${fixes.length} fixes for m${mi}:`);
+						const appliedIndices = await applyFixes(spartito, fixes);
+						if (runLogDir)
+							writeAnnotationCheckpoint(runLogDir, mi, fixes, appliedIndices, { round, source: "agent" });
+						annotatedMeasures = new Set([...annotatedMeasures, ...appliedIndices]);
+						console.log(`Applied ${appliedIndices.size} fixes for m${mi}.`);
+						if (!appliedIndices.has(mi))
+							break;
+					}
+				} finally {
+					annotationCompleted.add(mi);
+				}
+			})();
+			runningAnnotations.push(task);
+			task.then(() => {
+				const index = runningAnnotations.indexOf(task);
+				if (index >= 0) runningAnnotations.splice(index, 1);
+			}, () => {
+				const index = runningAnnotations.indexOf(task);
+				if (index >= 0) runningAnnotations.splice(index, 1);
+			});
+		};
+
+		const scheduleRegulations = async (force = false) => {
 			for (const target of targets) {
 				const mi = target.measureIndex;
-				if (regulated.has(mi) || pendingRegulation.has(mi) || !preprocessed.has(mi)) continue;
+				if (regulated.has(mi) || regulationStarted.has(mi) || !preprocessed.has(mi)) continue;
 				const nextIndex = targets.find(item => item.measureIndex > mi)?.measureIndex;
 				if (!force && nextIndex !== undefined && !preprocessed.has(nextIndex)) continue;
-				pendingRegulation.add(mi);
 
-				const checkpoint = runLogDir && !argv.renew ? readRegulationCheckpoint(runLogDir, mi) : undefined;
-				if (checkpoint) {
-					spartito.measures[mi] = recoverMeasure(checkpoint.measure);
+				await throttle(runningRegulations, regulationConcurrency);
+				regulationStarted.add(mi);
+				const task = (async () => {
+					const checkpoint = runLogDir && !argv.renew ? readRegulationCheckpoint(runLogDir, mi) : undefined;
+					if (checkpoint) {
+						spartito.measures[mi] = recoverMeasure(checkpoint.measure);
+						regulated.add(mi);
+						if (checkpoint.issue) postPipelineIssues.push({ measureIndex: mi, status: checkpoint.issue.status, measure: spartito.measures[mi] });
+						console.log(`m${mi}: restored regulation from checkpoint.`);
+						await scheduleAnnotation(target);
+						return;
+					}
+
+					console.log(`m${mi}: regulating window [${measureWindowIndices(mi, spartito.measures.length).map(index => `m${index}`).join(", ")}]`);
+					const result = await runRegulationMeasureWindow(spartito, mi, argv);
+					spartito.measures[mi] = result.measure;
 					regulated.add(mi);
-					pendingRegulation.delete(mi);
-					if (checkpoint.issue) postPreprocessIssues.push({ measureIndex: mi, status: checkpoint.issue.status, measure: spartito.measures[mi] });
-					console.log(`m${mi}: restored regulation from checkpoint.`);
-					continue;
-				}
-
-				console.log(`m${mi}: regulating window [${measureWindowIndices(mi, spartito.measures.length).map(index => `m${index}`).join(", ")}]`);
-				const result = await runRegulationMeasureWindow(spartito, mi, argv);
-				spartito.measures[mi] = result.measure;
-				regulated.add(mi);
-				pendingRegulation.delete(mi);
-				if (result.issue) postPreprocessIssues.push(result.issue);
-				if (runLogDir)
-					writeRegulationCheckpoint(runLogDir, mi, result.measure, {
-						windowMeasureIndices: result.windowMeasureIndices,
-						issue: result.issue ? { measureIndex: mi, status: result.issue.status } : undefined,
-						stat: result.stat,
-					});
+					if (result.issue) postPipelineIssues.push(result.issue);
+					if (runLogDir)
+						writeRegulationCheckpoint(runLogDir, mi, result.measure, {
+							windowMeasureIndices: result.windowMeasureIndices,
+							issue: result.issue ? { measureIndex: mi, status: result.issue.status } : undefined,
+							stat: result.stat,
+						});
+					await scheduleAnnotation(target);
+				})();
+				runningRegulations.push(task);
+				task.then(() => {
+					const index = runningRegulations.indexOf(task);
+					if (index >= 0) runningRegulations.splice(index, 1);
+				}, () => {
+					const index = runningRegulations.indexOf(task);
+					if (index >= 0) runningRegulations.splice(index, 1);
+				});
 			}
 		};
 
 		for (const target of targets) {
 			console.log(`\n--- Measure m${target.measureIndex} ---`);
-			let patches: PreprocessPatch[];
-			const checkpoint = runLogDir && !argv.renew ? readPreprocessCheckpoint(runLogDir, target.measureIndex) : undefined;
-			if (checkpoint) {
-				patches = checkpoint.patches;
-				const applied = applyPreprocessPatchesWithWarnings(spartito, patches);
-				console.log(`m${target.measureIndex}: restored ${patches.length} preprocessing patches from checkpoint (${applied} applied).`);
-			} else {
-				const result = await backend.callPreprocess([target], spartito, runLogDir, midiContexts, argv.measureImages ? path.resolve(argv.measureImages) : undefined);
-				patches = result.patches;
-				if (runLogDir)
-					writePreprocessCheckpoint(runLogDir, target.measureIndex, patches, {
-						source: "agent",
-						batchResults: result.batchResults,
-					});
-				console.log(`m${target.measureIndex}: preprocessing returned ${patches.length} patches.`);
-			}
-			totalPreprocessPatches += patches.length;
-			preprocessed.add(target.measureIndex);
-			await tryRegulateReady();
-		}
-		await tryRegulateReady(true);
-
-		console.log(`\nStreaming preprocessing returned ${totalPreprocessPatches} patches.`);
-		console.log(`Streaming regulation completed ${regulated.size}/${targets.length} measures, issue candidates: ${postPreprocessIssues.length}.`);
-		const solvedName = measureFilter ? "solved.partial.spartito.json" : "solved.spartito.json";
-		const solvedPath = path.join(path.dirname(inputPath), solvedName);
-		if (measureFilter)
-			console.log("Partial measures requested; writing partial solved output.");
-		fs.writeFileSync(solvedPath, JSON.stringify(spartito));
-		console.log("Output:", solvedPath);
-		return;
-	}
-
-	if (argv.preprocess) {
-		if (!backend.callPreprocess) {
-			console.warn("Preprocessing requested, but backend does not support preprocessing; skipping.");
-		} else {
-			console.log(`\n--- Interleaved Preprocess/Annotation Phase ---`);
-			const targets = (measureFilter
-				? spartito.measures.filter(m => measureFilter.has(m.measureIndex) && m.events.length > 0).map(m => ({ measureIndex: m.measureIndex, status: 0, measure: m }))
-				: (issueMeasures.length > 0
-					? issueMeasures
-					: spartito.measures.filter(m => m.events.length > 0).map(m => ({ measureIndex: m.measureIndex, status: 0, measure: m }))))
-				.sort((a, b) => a.measureIndex - b.measureIndex);
-			console.log(`${targets.length} measures to preprocess${argv.skipAnnotation ? "" : " / annotate if needed"}`);
-
-			const midiContexts = readMidiMeasureContexts(argv.midi, argv.midiSegmentation);
-			if (midiContexts.size > 0)
-				console.log(`MIDI context loaded for ${midiContexts.size} measures. Image evidence takes precedence on conflicts.`);
-
-			let totalPreprocessPatches = 0;
-			let annotationCallIndex = 0;
-			const maxRounds = argv.maxRounds!;
-
-			for (const target of targets) {
-				console.log(`\n--- Measure m${target.measureIndex} ---`);
+			if (preprocessEnabled) {
 				let patches: PreprocessPatch[];
 				const checkpoint = runLogDir && !argv.renew ? readPreprocessCheckpoint(runLogDir, target.measureIndex) : undefined;
 				if (checkpoint) {
@@ -1050,7 +1045,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 					const applied = applyPreprocessPatchesWithWarnings(spartito, patches);
 					console.log(`m${target.measureIndex}: restored ${patches.length} preprocessing patches from checkpoint (${applied} applied).`);
 				} else {
-					const result = await backend.callPreprocess([target], spartito, runLogDir, midiContexts, argv.measureImages ? path.resolve(argv.measureImages) : undefined);
+					const result = await backend.callPreprocess!([target], spartito, runLogDir, midiContexts, argv.measureImages ? path.resolve(argv.measureImages) : undefined);
 					patches = result.patches;
 					if (runLogDir)
 						writePreprocessCheckpoint(runLogDir, target.measureIndex, patches, {
@@ -1060,105 +1055,29 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 					console.log(`m${target.measureIndex}: preprocessing returned ${patches.length} patches.`);
 				}
 				totalPreprocessPatches += patches.length;
-
-				if (argv.skipAnnotation)
-					continue;
-
-				for (let round = 1; round <= maxRounds; ++round) {
-					const measure = spartito.measures[target.measureIndex];
-					if (!measure?.regulated || measure.events.length === 0)
-						break;
-					const ev = starry.evaluateMeasure(measure);
-					if (!ev || ev.fine) {
-						if (round === 1) console.log(`m${target.measureIndex}: fine after preprocessing; skip annotation.`);
-						break;
-					}
-
-					const annotationTarget = { measureIndex: measure.measureIndex, status: ev.error ? 2 : 1, measure };
-					annotationCallIndex++;
-					console.log(`m${target.measureIndex}: annotation round ${round}/${maxRounds}`);
-					const { fixes } = await backend.callAnnotation([annotationTarget], spartito, annotationCallIndex, runLogDir);
-					if (fixes.length === 0) {
-						console.log(`m${target.measureIndex}: no annotation fixes returned.`);
-						break;
-					}
-
-					console.log(`Applying ${fixes.length} fixes for m${target.measureIndex}:`);
-					const appliedIndices = await applyFixes(spartito, fixes);
-					if (runLogDir)
-						writeAnnotationCheckpoint(runLogDir, target.measureIndex, fixes, appliedIndices, { round, source: "agent" });
-					annotatedMeasures = new Set([...annotatedMeasures, ...appliedIndices]);
-					console.log(`Applied ${appliedIndices.size} fixes for m${target.measureIndex}.`);
-					if (!appliedIndices.has(target.measureIndex))
-						break;
-				}
 			}
+			preprocessed.add(target.measureIndex);
+			await scheduleRegulations();
+		}
+		await scheduleRegulations(true);
+		await Promise.all([...runningRegulations]);
+		await Promise.all([...runningAnnotations]);
 
-			console.log(`\nInterleaved preprocessing returned ${totalPreprocessPatches} patches.`);
+		if (argv.preprocess)
+			console.log(`\nStreaming preprocessing returned ${totalPreprocessPatches} patches.`);
+		console.log(`Streaming regulation completed ${regulated.size}/${targets.length} measures, issue candidates: ${postPipelineIssues.length}.`);
+
+		if (argv.preprocessRegulateOnly) {
+			const solvedName = measureFilter ? "solved.partial.spartito.json" : "solved.spartito.json";
+			const solvedPath = path.join(path.dirname(inputPath), solvedName);
+			if (measureFilter)
+				console.log("Partial measures requested; writing partial solved output.");
+			fs.writeFileSync(solvedPath, JSON.stringify(spartito));
+			console.log("Output:", solvedPath);
+			return;
 		}
 	}
-
-	if (false && argv.preprocessRegulateOnly) {
-		console.log(`\n--- Preprocess + Regulation Output ---`);
-		for (const measure of spartito.measures)
-			measure.voices = undefined;
-		const postPreprocessIssues: IssueMeasureInfo[] = [];
-		const stat = await runRegulation(spartito, argv, postPreprocessIssues);
-		console.log("measures:", `(${stat.measures.cached})${stat.measures.simple}->${stat.measures.solved}->${stat.measures.issue}->${stat.measures.fatal}/${spartito.measures.length}`);
-		console.log("qualityScore:", spartito.qualityScore);
-		console.log("totalCost:", stat.totalCost, "ms");
-		console.log("pickerCost:", stat.pickerCost, "ms");
-		const solvedName = measureFilter ? "solved.partial.spartito.json" : "solved.spartito.json";
-		const solvedPath = path.join(path.dirname(inputPath), solvedName);
-		if (measureFilter)
-			console.log("Partial measures requested; writing partial solved output.");
-		fs.writeFileSync(solvedPath, JSON.stringify(spartito));
-		console.log("Output:", solvedPath);
-		return;
-	} else if (!argv.skipAnnotation && issueMeasures.length > 0) {
-		console.log(`\n--- Annotation Phase ---`);
-		console.log(`${issueMeasures.length} issue measures to annotate`);
-		console.log(`Model: ${ANNOTATION_MODEL}`);
-
-		const maxRounds = argv.maxRounds!;
-
-		for (let round = 1; round <= maxRounds; round++) {
-			const currentIssues = round === 1
-				? issueMeasures
-				: spartito.measures
-					.filter(m => {
-						if (!m.regulated || m.events.length === 0)
-							return false;
-						const ev = starry.evaluateMeasure(m);
-						return ev && !ev.fine;
-					})
-					.map(m => ({ measureIndex: m.measureIndex, status: 1, measure: m }));
-
-			if (currentIssues.length === 0) {
-				console.log("All issue measures resolved!");
-				break;
-			}
-
-			console.log(`\nRound ${round}/${maxRounds}: ${currentIssues.length} measures to annotate`);
-			const { fixes } = await backend.callAnnotation(currentIssues, spartito, round, runLogDir);
-
-			if (fixes.length === 0) {
-				console.log("No fixes returned, stopping annotation.");
-				break;
-			}
-
-			console.log(`\nApplying ${fixes.length} fixes:`);
-			const appliedIndices = await applyFixes(spartito, fixes);
-			annotatedMeasures = new Set([...annotatedMeasures, ...appliedIndices]);
-			console.log(`Applied ${appliedIndices.size} fixes.`);
-		}
-	} else if (issueMeasures.length === 0) {
-		console.log("\nNo issue measures found, skipping annotation.");
-	} else {
-		console.log(`\nSkipping annotation (${issueMeasures.length} issue measures).`);
-	}
-
-	if ((!argv.skipAnnotation && issueMeasures.length > 0) || argv.preprocess) {
+	if (true) {
 		let solved = 0, issue = 0, fatal = 0;
 		for (const m of spartito.measures) {
 			if (m.events.length === 0)
