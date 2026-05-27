@@ -62,6 +62,12 @@ export interface Fix {
 	status: number;
 }
 
+export interface StageFailure {
+	measureIndex: number;
+	batchLabel: string;
+	error: string;
+}
+
 export interface AnnotationBackend {
 	callPreprocess?(
 		issues: IssueMeasureInfo[],
@@ -69,14 +75,14 @@ export interface AnnotationBackend {
 		logDir?: string,
 		midiContexts?: Map<number, any>,
 		measureImagesDir?: string,
-	): Promise<{ patches: PreprocessPatch[]; batchResults: PreprocessBatchResult[] }>;
+	): Promise<{ patches: PreprocessPatch[]; batchResults: PreprocessBatchResult[]; failedMeasures?: StageFailure[] }>;
 
 	callAnnotation(
 		issues: IssueMeasureInfo[],
 		spartito: starry.Spartito,
 		round: number,
 		logDir?: string,
-	): Promise<{ fixes: Fix[]; batchResults: BatchResult[] }>;
+	): Promise<{ fixes: Fix[]; batchResults: BatchResult[]; failedMeasures?: StageFailure[] }>;
 
 	requestSummary(
 		br: BatchResult,
@@ -960,7 +966,14 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 						const annotationTarget = { measureIndex: currentMeasure.measureIndex, status: currentEval?.error ? 2 : 1, measure: currentMeasure };
 						annotationCallIndex++;
 						console.log(`m${mi}: annotation round ${round}/${maxRounds}`);
-						const { fixes } = await backend.callAnnotation([annotationTarget], spartito, annotationCallIndex, runLogDir);
+						const { fixes, failedMeasures } = await backend.callAnnotation([annotationTarget], spartito, annotationCallIndex, runLogDir);
+						const failure = failedMeasures?.find(item => item.measureIndex === mi);
+						if (failure) {
+							console.warn(`m${mi}: annotation failed; skipping measure: ${failure.error}`);
+							if (runLogDir)
+								writeAnnotationCheckpoint(runLogDir, mi, [], new Set<number>(), { round, source: "agent", failed: true, error: failure.error, batchLabel: failure.batchLabel });
+							break;
+						}
 						if (fixes.length === 0) {
 							console.log(`m${mi}: no annotation fixes returned.`);
 							if (runLogDir)
@@ -1047,11 +1060,14 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 				} else {
 					const result = await backend.callPreprocess!([target], spartito, runLogDir, midiContexts, argv.measureImages ? path.resolve(argv.measureImages) : undefined);
 					patches = result.patches;
+					const failure = result.failedMeasures?.find(item => item.measureIndex === target.measureIndex);
 					if (runLogDir)
 						writePreprocessCheckpoint(runLogDir, target.measureIndex, patches, {
 							source: "agent",
 							batchResults: result.batchResults,
+							...(failure ? { failed: true, error: failure.error, batchLabel: failure.batchLabel } : {}),
 						});
+					if (failure) console.warn(`m${target.measureIndex}: preprocessing failed; continuing with empty patches: ${failure.error}`);
 					console.log(`m${target.measureIndex}: preprocessing returned ${patches.length} patches.`);
 				}
 				totalPreprocessPatches += patches.length;

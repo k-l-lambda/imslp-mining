@@ -9,6 +9,7 @@ import {
 	type PreprocessBatchResult,
 	type Fix,
 	type AnnotationBackend,
+	type StageFailure,
 	parseFixes,
 	parseArgs,
 	runAnnotationPipeline,
@@ -351,7 +352,7 @@ const runOnePreprocessBatch = async (
 	midiContexts?: Map<number, PreprocessMidiMeasureContext>,
 	measureImagesDir?: string,
 	previousContext?: PreprocessCarryContext,
-): Promise<{ patches: PreprocessPatch[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasPatches: boolean }> => {
+): Promise<{ patches: PreprocessPatch[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; hasPatches: boolean; error?: string }> => {
 	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-agent-preprocess-"));
 	try {
 		const hasMidi = hasMidiForBatch(batch, midiContexts);
@@ -419,8 +420,9 @@ const runOnePreprocessBatch = async (
 		const patches = parsePreprocessPatches(text);
 		return { patches, sessionId, measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: true, hasPatches: patches.length > 0 };
 	} catch (err: any) {
-		console.warn(`  [pre ${batchLabel}] failed: ${err.message?.slice(0, 300)}`);
-		return { patches: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false, hasPatches: false };
+		const message = err.message?.slice(0, 300) || String(err).slice(0, 300);
+		console.warn(`  [pre ${batchLabel}] failed: ${message}`);
+		return { patches: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false, hasPatches: false, error: message };
 	} finally {
 		fs.rmSync(tmpDir, { recursive: true, force: true });
 	}
@@ -433,7 +435,7 @@ const runOneBatch = async (
 	batchLabel: string,
 	annotationModel: string,
 	logDir?: string,
-): Promise<{ fixes: Fix[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean }> => {
+): Promise<{ fixes: Fix[]; sessionId: string; measureIndices: number[]; sessionEnv: Record<string, string>; ok: boolean; error?: string }> => {
 	const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "spartito-agent-"));
 	let mcp: Awaited<ReturnType<typeof startMeasureQualityMcp>> | undefined;
 	try {
@@ -462,8 +464,9 @@ const runOneBatch = async (
 		const fixes = parseFixes(result.text);
 		return { fixes, sessionId: result.sessionId, measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: true };
 	} catch (err: any) {
-		console.warn(`  [${batchLabel}] failed: ${err.message?.slice(0, 300)}`);
-		return { fixes: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false };
+		const message = err.message?.slice(0, 300) || String(err).slice(0, 300);
+		console.warn(`  [${batchLabel}] failed: ${message}`);
+		return { fixes: [], sessionId: "", measureIndices: batch.map(m => m.measureIndex), sessionEnv: {}, ok: false, error: message };
 	} finally {
 		if (mcp) await mcp.close();
 		fs.rmSync(tmpDir, { recursive: true, force: true });
@@ -480,7 +483,7 @@ export const createAgentBackend = (annotationModel: string, preprocessModel = an
 			logDir?: string,
 			midiContexts?: Map<number, PreprocessMidiMeasureContext>,
 			measureImagesDir?: string,
-		): Promise<{ patches: PreprocessPatch[]; batchResults: PreprocessBatchResult[] }> {
+		): Promise<{ patches: PreprocessPatch[]; batchResults: PreprocessBatchResult[]; failedMeasures?: StageFailure[] }> {
 			if (!ANTHROPIC_AUTH_TOKEN) {
 				console.warn("ANTHROPIC_AUTH_TOKEN not set, skipping preprocessing.");
 				return { patches: [], batchResults: [] };
@@ -488,6 +491,7 @@ export const createAgentBackend = (annotationModel: string, preprocessModel = an
 
 			const allPatches: PreprocessPatch[] = [];
 			const batchResults: PreprocessBatchResult[] = [];
+			const failedMeasures: StageFailure[] = [];
 			const batches = [...issueMeasures].sort((a, b) => a.measureIndex - b.measureIndex).map(measure => [measure]);
 			console.log(`  ${batches.length} preprocess batches, concurrency=1 (context carry-over enabled)`);
 
@@ -499,8 +503,11 @@ export const createAgentBackend = (annotationModel: string, preprocessModel = an
 				console.log(`\n  Preprocess batch ${bi + 1}/${batches.length} [${measureIds}] starting...`);
 
 				const r = await runOnePreprocessBatch(batch, spartito, label, preprocessModel, logDir, midiContexts, measureImagesDir, previousContext);
-				if (!r.ok) throw new Error(`Preprocess batch ${label} failed for ${measureIds}`);
-					allPatches.push(...r.patches);
+				if (!r.ok) {
+					console.warn(`  Preprocess batch ${label} failed for ${measureIds}; continuing with empty patches.`);
+					for (const measureIndex of r.measureIndices) failedMeasures.push({ measureIndex, batchLabel: label, error: r.error || "preprocess failed" });
+				}
+				allPatches.push(...r.patches);
 				if (r.sessionId && r.hasPatches) batchResults.push({ patches: r.patches, sessionId: r.sessionId, measureIndices: r.measureIndices, env: r.sessionEnv });
 
 				const contextChanged = preprocessPatchesTouchCarryContext(r.patches);
@@ -520,7 +527,7 @@ export const createAgentBackend = (annotationModel: string, preprocessModel = an
 			}
 
 			preprocessCarryContext = previousContext;
-			return { patches: allPatches, batchResults };
+			return { patches: allPatches, batchResults, failedMeasures };
 		},
 
 		async callAnnotation(
@@ -528,7 +535,7 @@ export const createAgentBackend = (annotationModel: string, preprocessModel = an
 		spartito: starry.Spartito,
 		roundNum: number,
 		logDir?: string,
-	): Promise<{ fixes: Fix[]; batchResults: BatchResult[] }> {
+	): Promise<{ fixes: Fix[]; batchResults: BatchResult[]; failedMeasures?: StageFailure[] }> {
 		if (!ANTHROPIC_AUTH_TOKEN) {
 			console.warn("ANTHROPIC_AUTH_TOKEN not set, skipping annotation.");
 			return { fixes: [], batchResults: [] };
@@ -536,6 +543,7 @@ export const createAgentBackend = (annotationModel: string, preprocessModel = an
 
 		const allFixes: Fix[] = [];
 		const batchResults: BatchResult[] = [];
+		const failedMeasures: StageFailure[] = [];
 		const batches: IssueMeasureInfo[][] = [];
 		for (let i = 0; i < issueMeasures.length; i += BATCH_SIZE)
 			batches.push(issueMeasures.slice(i, i + BATCH_SIZE));
@@ -545,10 +553,9 @@ export const createAgentBackend = (annotationModel: string, preprocessModel = an
 
 		let active = 0;
 		let nextBatch = 0;
-			let failedBatch = "";
 		await new Promise<void>((resolve) => {
 			const tryLaunch = () => {
-				while (!failedBatch && active < CONCURRENCY && nextBatch < total) {
+				while (active < CONCURRENCY && nextBatch < total) {
 					const bi = nextBatch++;
 					const batch = batches[bi];
 					const label = `b${bi + 1}`;
@@ -563,8 +570,11 @@ export const createAgentBackend = (annotationModel: string, preprocessModel = an
 							if (r.sessionId && r.fixes.some(f => f.status === 0)) {
 								batchResults.push({ fixes: r.fixes, sessionId: r.sessionId, measureIndices: r.measureIndices, env: r.sessionEnv });
 							}
+						} else {
+							console.warn(`  Batch ${label} failed for ${measureIds}; skipping annotation for these measures.`);
+							for (const measureIndex of r.measureIndices) failedMeasures.push({ measureIndex, batchLabel: label, error: r.error || "annotation failed" });
 						}
-						if (active === 0 && (nextBatch >= total || failedBatch)) resolve();
+						if (active === 0 && nextBatch >= total) resolve();
 						else tryLaunch();
 					});
 				}
@@ -573,7 +583,7 @@ export const createAgentBackend = (annotationModel: string, preprocessModel = an
 			tryLaunch();
 		});
 
-		return { fixes: allFixes, batchResults };
+		return { fixes: allFixes, batchResults, failedMeasures };
 	},
 
 	async requestSummary(): Promise<string> {
