@@ -1,21 +1,11 @@
 import fs from "fs";
 import path from "path";
-import { createRequire } from "module";
 import { MIDI } from "@k-l-lambda/music-widgets";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 import "../env";
-
-
-const requireFromStarry = createRequire("/home/camus/work/starry/package.json");
-
-const starry = requireFromStarry("./src/starry");
-const lilypondEncoder = requireFromStarry("./src/utils/lilypondEncoder");
-const lilyletEncoder = requireFromStarry("./src/utils/lilyletEncoder");
-const lilyletSerializer = requireFromStarry("./src/utils/lilyletSerializer");
-const React = requireFromStarry("react");
-(globalThis as any).React = React;
+import { starry, lilypondEncoder, lilyletEncoder, lilyletSerializer } from "./libs/omr";
 
 const FORMAT_EXTENSIONS = {
 	ly: ".ly",
@@ -90,16 +80,40 @@ const globBase = (pattern: string): string => {
 	return fs.existsSync(joined) && fs.statSync(joined).isDirectory() ? joined : path.dirname(joined);
 };
 
-const resolveInputs = (input: string): string[] => {
-	if (!hasGlob(input))
-		return [path.resolve(input)];
-	const regex = globToRegExp(input);
-	return walkFiles(globBase(input)).filter(file => regex.test(path.resolve(file).replace(/\\/g, "/"))).sort();
+const isExportJson = (file: string): boolean => {
+	const basename = path.basename(file).toLowerCase();
+	return basename === "score.json" || basename === "spartito.json" || basename.endsWith(".score.json") || basename.endsWith(".spartito.json");
 };
 
-const recoverSpartito = (filePath: string): any => {
+interface ResolvedInputs {
+	inputs: string[];
+	root?: string;
+}
+
+const resolveInputs = (input: string): ResolvedInputs => {
+	if (!hasGlob(input)) {
+		const resolved = path.resolve(input);
+		if (fs.existsSync(resolved) && fs.statSync(resolved).isDirectory()) {
+			return { inputs: walkFiles(resolved).filter(isExportJson).sort(), root: resolved };
+		}
+		return { inputs: [resolved] };
+	}
+	const root = globBase(input);
+	const regex = globToRegExp(input);
+	return { inputs: walkFiles(root).filter(file => regex.test(path.resolve(file).replace(/\\/g, "/"))).sort(), root };
+};
+
+interface ExportInput {
+	spartito: any;
+	kind: "score" | "spartito";
+}
+
+const recoverExportInput = (filePath: string): ExportInput => {
 	const json = fs.readFileSync(filePath, "utf8");
-	return starry.recoverJSON(json, starry);
+	const data: any = starry.recoverJSON(json, starry);
+	if (typeof data?.makeSpartito === "function")
+		return { spartito: data.makeSpartito(), kind: "score" };
+	return { spartito: data, kind: "spartito" };
 };
 
 const makeExportSheet = (spartito: any, title: string) => {
@@ -137,18 +151,23 @@ const exportMidi = (spartito: any): Buffer | undefined => {
 	return Buffer.from(MIDI.encodeMidiFile(midi));
 };
 
-const outputBasenameFor = (inputPath: string): string => {
-	if (/\.spartito\.json$/i.test(path.basename(inputPath)))
-		return "spartito";
-	return path.basename(inputPath).replace(/\.json$/i, "");
+const outputBasenameFor = (inputPath: string, kind: ExportInput["kind"]): string => {
+	const basename = path.basename(inputPath);
+	if (/\.(score|spartito)\.json$/i.test(basename) || /^(score|spartito)\.json$/i.test(basename))
+		return kind;
+	return basename.replace(/\.json$/i, "");
 };
 
-const outputPathFor = (inputPath: string, format: ExportFormat, multiple: boolean): string => {
+const outputPathFor = (inputPath: string, format: ExportFormat, multiple: boolean, kind: ExportInput["kind"], root?: string): string => {
 	const extension = FORMAT_EXTENSIONS[format];
 	if (argv.out && !multiple && path.extname(argv.out))
 		return path.resolve(argv.out);
 	const outputDir = argv.out ? path.resolve(argv.out) : path.dirname(inputPath);
-	const basename = argv.name ?? outputBasenameFor(inputPath);
+	const basename = argv.name ?? outputBasenameFor(inputPath, kind);
+	if (argv.out && multiple && root) {
+		const relativeDir = path.dirname(path.relative(root, inputPath));
+		return path.join(outputDir, relativeDir, `${basename}${extension}`);
+	}
 	return path.join(outputDir, `${basename}${extension}`);
 };
 
@@ -163,17 +182,17 @@ const writeOutput = (outputPath: string, data: string | Buffer) => {
 };
 
 const main = async () => {
-	const inputs = resolveInputs(argv.input);
+	const { inputs, root } = resolveInputs(argv.input);
 	if (!inputs.length)
 		throw new Error(`No inputs matched: ${argv.input}`);
 	const formats = [...new Set(argv.format as string[])] as ExportFormat[];
 	const multiple = inputs.length > 1 || formats.length > 1;
 
 	for (const inputPath of inputs) {
-		const spartito = recoverSpartito(inputPath);
+		const { spartito, kind } = recoverExportInput(inputPath);
 		const title = path.basename(path.dirname(inputPath));
 		for (const format of formats) {
-			const outputPath = outputPathFor(inputPath, format, multiple);
+			const outputPath = outputPathFor(inputPath, format, multiple, kind, root);
 			if (format === "lyl")
 				writeOutput(outputPath, exportLilylet(spartito, title));
 			else if (format === "ly")
