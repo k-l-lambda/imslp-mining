@@ -251,6 +251,25 @@ const readRegulationCheckpoint = (logDir: string, measureIndex: number): { measu
 	return data;
 };
 
+const readAnnotationCheckpoint = (logDir: string, measureIndex: number): { fixes: Fix[]; applied: number[] } | undefined => {
+	const data = readJsonFile(annotationCheckpointPath(logDir, measureIndex));
+	if (data?.measureIndex !== measureIndex || !Array.isArray(data?.fixes)) return undefined;
+	return { fixes: data.fixes, applied: Array.isArray(data.applied) ? data.applied.filter((value: any) => Number.isInteger(value)) : [] };
+};
+
+const contiguousCheckpointPrefixEnd = (logDir: string, stage: "pre" | "reg", targets: IssueMeasureInfo[]): number => {
+	let end = targets[0]?.measureIndex ?? -1;
+	end--;
+	for (const target of targets) {
+		const mi = target.measureIndex;
+		if (mi !== end + 1) break;
+		const checkpointPath = stageCheckpointPath(logDir, stage, mi);
+		if (!fs.existsSync(checkpointPath)) break;
+		end = mi;
+	}
+	return end;
+};
+
 const writeRegulationCheckpoint = (logDir: string, measureIndex: number, measure: starry.SpartitoMeasure, source: Record<string, any>) => {
 	writeJsonAtomic(regulationCheckpointPath(logDir, measureIndex), {
 		version: 2,
@@ -931,6 +950,55 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 		const runningAnnotations: Promise<void>[] = [];
 		const regulationConcurrency = Math.max(1, argv.regulationConcurrency || 1);
 		const annotationConcurrency = Math.max(1, argv.annotationConcurrency || 1);
+		let fastForwardEnd = -1;
+
+		if (runLogDir && !argv.renew && !measureFilter) {
+			const prePrefixEnd = preprocessEnabled ? contiguousCheckpointPrefixEnd(runLogDir, "pre", targets) : targets[0]?.measureIndex - 1;
+			const regPrefixEnd = contiguousCheckpointPrefixEnd(runLogDir, "reg", targets);
+			fastForwardEnd = Math.min(prePrefixEnd, regPrefixEnd);
+			if (fastForwardEnd >= 0) {
+				console.log(`Fast-forwarding sequential checkpoints through m${fastForwardEnd}.`);
+				let restoredPre = 0, restoredPrePatches = 0, restoredReg = 0, restoredAnn = 0;
+				for (const target of targets) {
+					const mi = target.measureIndex;
+					if (mi > fastForwardEnd) break;
+					if (preprocessEnabled) {
+						const checkpoint = readPreprocessCheckpoint(runLogDir, mi);
+						if (checkpoint) {
+							restoredPre++;
+							restoredPrePatches += checkpoint.patches.length;
+							applyPreprocessPatchesWithWarnings(spartito, checkpoint.patches);
+						}
+					}
+					preprocessed.add(mi);
+					const regulationCheckpoint = readRegulationCheckpoint(runLogDir, mi);
+					if (regulationCheckpoint) {
+						spartito.measures[mi] = recoverMeasure(regulationCheckpoint.measure);
+						regulated.add(mi);
+						regulationStarted.add(mi);
+						restoredReg++;
+						if (regulationCheckpoint.issue) postPipelineIssues.push({ measureIndex: mi, status: regulationCheckpoint.issue.status, measure: spartito.measures[mi] });
+					}
+				}
+				for (const target of targets) {
+					const mi = target.measureIndex;
+					if (mi > fastForwardEnd) break;
+					const annotationCheckpoint = readAnnotationCheckpoint(runLogDir, mi);
+					if (!annotationCheckpoint) continue;
+					restoredAnn++;
+					annotationStarted.add(mi);
+					annotationCompleted.add(mi);
+					if (annotationCheckpoint.fixes.length > 0) {
+						const appliedIndices = await applyFixes(spartito, annotationCheckpoint.fixes);
+						annotatedMeasures = new Set([...annotatedMeasures, ...appliedIndices]);
+					} else {
+						annotatedMeasures = new Set([...annotatedMeasures, ...annotationCheckpoint.applied]);
+					}
+				}
+				totalPreprocessPatches += restoredPrePatches;
+				console.log(`Fast-forward restored ${restoredPre} preprocess checkpoints (${restoredPrePatches} patches), ${restoredReg} regulation checkpoints, ${restoredAnn} annotation checkpoints.`);
+			}
+		}
 
 		const throttle = async (running: Promise<void>[], limit: number) => {
 			while (running.length >= limit)
@@ -1049,6 +1117,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 		};
 
 		for (const target of targets) {
+			if (target.measureIndex <= fastForwardEnd) continue;
 			console.log(`\n--- Measure m${target.measureIndex} ---`);
 			if (preprocessEnabled) {
 				let patches: PreprocessPatch[];
