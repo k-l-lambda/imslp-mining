@@ -919,6 +919,9 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 
 	// Track which measures were actually modified by annotation
 	let annotatedMeasures = new Set<number>();
+	const preprocessFailures: StageFailure[] = [];
+	const annotationFailures: StageFailure[] = [];
+	const apiSaveErrors: { measureIndex: number; error: string }[] = [];
 
 	if (true) {
 		const preprocessEnabled = argv.preprocess && !!backend.callPreprocess;
@@ -1037,6 +1040,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 						const { fixes, failedMeasures } = await backend.callAnnotation([annotationTarget], spartito, annotationCallIndex, runLogDir);
 						const failure = failedMeasures?.find(item => item.measureIndex === mi);
 						if (failure) {
+							annotationFailures.push(failure);
 							console.warn(`m${mi}: annotation failed; skipping measure: ${failure.error}`);
 							if (runLogDir)
 								writeAnnotationCheckpoint(runLogDir, mi, [], new Set<number>(), { round, source: "agent", failed: true, error: failure.error, batchLabel: failure.batchLabel });
@@ -1136,7 +1140,10 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 							batchResults: result.batchResults,
 							...(failure ? { failed: true, error: failure.error, batchLabel: failure.batchLabel } : {}),
 						});
-					if (failure) console.warn(`m${target.measureIndex}: preprocessing failed; continuing with empty patches: ${failure.error}`);
+					if (failure) {
+						preprocessFailures.push(failure);
+						console.warn(`m${target.measureIndex}: preprocessing failed; continuing with empty patches: ${failure.error}`);
+					}
 					console.log(`m${target.measureIndex}: preprocessing returned ${patches.length} patches.`);
 				}
 				totalPreprocessPatches += patches.length;
@@ -1211,6 +1218,7 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 				saved++;
 			} catch (err: any) {
 				console.warn(`  Failed to save measure ${m.measureIndex}: ${err.message}`);
+				apiSaveErrors.push({ measureIndex: m.measureIndex, error: err.message || String(err) });
 				errors++;
 			}
 		}
@@ -1221,5 +1229,26 @@ export async function runAnnotationPipeline(backend: AnnotationBackend, argv: Pa
 	if (outputPath) {
 		fs.writeFileSync(outputPath, JSON.stringify(spartito));
 		console.log("\nOutput:", outputPath);
+	}
+
+	const failureCount = preprocessFailures.length + annotationFailures.length + apiSaveErrors.length;
+	if (failureCount > 0) {
+		console.error("\n--- API/Agent Failure Summary ---");
+		if (preprocessFailures.length > 0) {
+			console.error(`Preprocess failures: ${preprocessFailures.length}`);
+			for (const failure of preprocessFailures.slice(0, 5))
+				console.error(`  m${failure.measureIndex} [${failure.batchLabel}]: ${failure.error}`);
+		}
+		if (annotationFailures.length > 0) {
+			console.error(`Annotation failures: ${annotationFailures.length}`);
+			for (const failure of annotationFailures.slice(0, 5))
+				console.error(`  m${failure.measureIndex} [${failure.batchLabel}]: ${failure.error}`);
+		}
+		if (apiSaveErrors.length > 0) {
+			console.error(`API save errors: ${apiSaveErrors.length}`);
+			for (const failure of apiSaveErrors.slice(0, 5))
+				console.error(`  m${failure.measureIndex}: ${failure.error}`);
+		}
+		throw new Error(`Annotator completed with API/agent failures: preprocess=${preprocessFailures.length}, annotation=${annotationFailures.length}, save=${apiSaveErrors.length}`);
 	}
 }
