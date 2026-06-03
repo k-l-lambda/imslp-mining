@@ -116,10 +116,12 @@ const recoverExportInput = (filePath: string): ExportInput => {
 	return { spartito: data, kind: "spartito" };
 };
 
-const makeExportSheet = (spartito: any, title: string) => {
+const makeExportSheet = (spartito: any, title: string): any => {
 	const staffGroups = spartito.staffGroups?.length ? spartito.staffGroups : Array.from({ length: spartito.stavesCount }, (_, i) => [i]);
 	return {
 		title,
+		pageSize: { width: 0, height: 0 },
+		unitSize: 1,
 		measureLayout: null,
 		staffLayout: {
 			staffIds: Array.from({ length: spartito.stavesCount }, (_, i) => i),
@@ -128,6 +130,8 @@ const makeExportSheet = (spartito: any, title: string) => {
 			partGroups: staffGroups.map((group: number[]) => ({ range: group })),
 		},
 		voiceStaves: spartito.makeVoiceStaves(),
+		headers: {},
+		instrumentDict: {},
 	};
 };
 
